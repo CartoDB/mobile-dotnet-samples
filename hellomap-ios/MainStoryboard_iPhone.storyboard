@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="20">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="19">
+            <objects>
+                <glkViewController autoresizesArchivedViewToFullSize="NO" preferredFramesPerSecond="60" id="20" sceneMemberID="viewController" customClass="MainViewController" pauseOnWillResignActive="YES" resumeOnDidBecomeActive="YES">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="17"/>
+                        <viewControllerLayoutGuide type="bottom" id="18"/>
+                    </layoutGuides>
+                    <glkView key="view" opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="21" enableSetNeedsDisplay="YES" customClass="MapView" clearsContextBeforeDrawing="NO" clipsSubviews="YES">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <connections>
+                            <outlet property="delegate" destination="20" id="22"/>
+                        </connections>
+                    </glkView>
+                    <connections>
+                        <outlet property="Map" destination="21" id="name-outlet-21"/>
+                    </connections>
+                </glkViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="23" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="260" y="-44"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+    <resources>
+        <image name="Icon.png" width="48" height="48"/>
+    </resources>
+</document>
