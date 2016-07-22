@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="CartoMobileSDK.Android">
+      <HintPath>..\packages\CartoMobileSDK.4.0.0-alphapreview1\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -92,12 +95,6 @@
     <AndroidAsset Include="Assets\fcd_auto.nml" />
     <AndroidAsset Include="Assets\nutibright-v2a.zip" />
     <AndroidAsset Include="Assets\nutiteq-dark.zip" />
-  </ItemGroup>
-  <ItemGroup>
-    <XamarinComponentReference Include="json.net">
-      <Version>6.0.8.1</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup />
 </Project>

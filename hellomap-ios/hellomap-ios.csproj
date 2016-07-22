@@ -112,6 +112,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="CartoMobileSDK.iOS">
+      <HintPath>..\packages\CartoMobileSDK.4.0.0-alphapreview1\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
@@ -148,11 +151,5 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Resources\world_ntvt_0_4.mbtiles" />
-  </ItemGroup>
-  <ItemGroup>
-    <XamarinComponentReference Include="json.net">
-      <Version>6.0.8.1</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
   </ItemGroup>
 </Project>
