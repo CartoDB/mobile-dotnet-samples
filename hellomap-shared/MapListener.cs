@@ -6,7 +6,7 @@ using Carto.Styles;
 using Carto.Utils;
 using Carto.Graphics;
 
-namespace NutiteqSample
+namespace CartoMobileSample
 {
 
 	public class MapListener : MapEventListener

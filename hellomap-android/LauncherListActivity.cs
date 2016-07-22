@@ -11,7 +11,7 @@ using Android.Widget;
 using HelloMap;
 
 
-namespace NutiteqSample
+namespace CartoMobileSample
 {
 	/// <summary>
 	/// Shows list of demo Activities. Enables to open pre-launch activity for file picking.
@@ -20,7 +20,7 @@ namespace NutiteqSample
 	/// @author jaak
 	/// @translated by m@t
 	/// </summary>
-	[Activity (Label = "Nutiteq Samples", MainLauncher = true)]			
+	[Activity (Label = "CARTO Mobile Samples", MainLauncher = true)]			
 	public class LauncherListActivity : ListActivity
 	{
 		// list of demos

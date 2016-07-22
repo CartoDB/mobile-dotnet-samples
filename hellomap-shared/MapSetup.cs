@@ -14,7 +14,7 @@ using Newtonsoft.Json.Linq;
 using Carto.Geometry;
 using System.Threading.Tasks;
 
-namespace NutiteqSample
+namespace CartoMobileSample
 {
 	public class MapSetup
 	{

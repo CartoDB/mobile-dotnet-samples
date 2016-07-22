@@ -4,7 +4,7 @@ using Android.App;
 using Carto.Layers;
 using Carto.Utils;
 
-namespace NutiteqSample
+namespace CartoMobileSample
 {
 	[Activity (Label = "Online Map")]			
 	public class OnlineMap: BaseMapActivity

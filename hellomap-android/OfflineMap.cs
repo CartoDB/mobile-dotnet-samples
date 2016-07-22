@@ -3,7 +3,7 @@ using Java.IO;
 using Carto.Utils;
 using Android.App;
 
-namespace NutiteqSample
+namespace CartoMobileSample
 {
 	[Activity (Label = "Offline Map")]			
 	public class OfflineMap: BaseMapActivity

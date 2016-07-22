@@ -17,7 +17,7 @@ using System.Linq;
 using HelloMap;
 using Carto.Ui;
 
-namespace NutiteqSample
+namespace CartoMobileSample
 {
 	[Activity (Label = "GPS Location Map")]			
 	public class GpsLocationMap : BaseMapActivity, ILocationListener

@@ -4,7 +4,7 @@ using Carto.Utils;
 using Android.App;
 using Carto.Layers;
 
-namespace NutiteqSample
+namespace CartoMobileSample
 {
 	[Activity (Label = "Map Overlays")]			
 	public class MapOverlays: BaseMapActivity

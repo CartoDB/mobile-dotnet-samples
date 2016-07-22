@@ -14,7 +14,7 @@ using Carto.VectorTiles;
 using Carto.Graphics;
 using Carto.Geometry;
 
-namespace NutiteqSample
+namespace CartoMobileSample
 {
 	partial class MainViewController : GLKit.GLKViewController
 	{

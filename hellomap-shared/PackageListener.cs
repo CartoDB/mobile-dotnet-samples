@@ -1,7 +1,7 @@
 ﻿using Carto.PackageManager;
 using Carto.Utils;
 
-namespace NutiteqSample
+namespace CartoMobileSample
 {
 
 	public class PackageListener : PackageManagerListener

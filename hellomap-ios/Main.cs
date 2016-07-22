@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace NutiteqSample
+namespace CartoMobileSample
 {
 	public class Application
 	{

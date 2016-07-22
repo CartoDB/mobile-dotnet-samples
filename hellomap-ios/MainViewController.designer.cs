@@ -9,7 +9,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace NutiteqSample
+namespace CartoMobileSample
 {
 	[Register ("MainViewController")]
 	partial class MainViewController

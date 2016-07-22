@@ -20,7 +20,7 @@ using Android.Widget;
 using Android.OS;
 using HelloMap;
 
-namespace NutiteqSample
+namespace CartoMobileSample
 {
 	[Activity (Label = "Offline Routing")]			
 	public class OfflineRouting: BaseMapActivity

@@ -5,7 +5,7 @@ using Carto.VectorElements;
 using Carto.Styles;
 using Carto.Utils;
 
-namespace NutiteqSample
+namespace CartoMobileSample
 {
 
 	public class VectorElementListener : VectorElementEventListener
