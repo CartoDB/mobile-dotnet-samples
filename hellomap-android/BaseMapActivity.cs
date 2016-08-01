@@ -16,27 +16,32 @@ using Carto.Projections;
 
 namespace CartoMobileSample
 {
-	[Activity (Label = "Hellomap", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Label = "Hello Map", MainLauncher = true, Icon = "@drawable/icon")]
 	public class BaseMapActivity : Activity
 	{
-		protected MapView mapView;
-		internal Projection baseProjection;
+		const string LICENSE = "XTUN3Q0ZDL3RoWlRJdzNqTDVBWFlZR1BTTlh0OWdWRkFBaFFIaENuR2hhaVdyWHU2N1B4YmtYK1hXWnRHNEE9" +
+			"PQoKcHJvZHVjdHM9c2RrLXhhbWFyaW4tYW5kcm9pZC00LioKcGFja2FnZU5hbWU9Y29tLmNhcnRvLmhlbGxvbWFwLnhhbWFyaW4Kd2F0" +
+			"ZXJtYXJrPWRldmVsb3BtZW50CnZhbGlkVW50aWw9MjAxNi0wOC0yMQpvbmxpbmVMaWNlbnNlPTEK";
 
-		protected override void OnCreate (Bundle bundle)
+		protected MapView MapView { get; set; }
+		internal Projection BaseProjection { get; set; }
+
+		protected override void OnCreate (Bundle savedInstanceState)
 		{
-			base.OnCreate (bundle);
+			base.OnCreate (savedInstanceState);
+
+			Log.ShowError = true;
+			Log.ShowWarn = true;
 
 			// Register license
-			Carto.Utils.Log.ShowError = true;
-			Carto.Utils.Log.ShowWarn = true;
-			MapView.RegisterLicense("XTUN3Q0ZDL3RoWlRJdzNqTDVBWFlZR1BTTlh0OWdWRkFBaFFIaENuR2hhaVdyWHU2N1B4YmtYK1hXWnRHNEE9PQoKcHJvZHVjdHM9c2RrLXhhbWFyaW4tYW5kcm9pZC00LioKcGFja2FnZU5hbWU9Y29tLmNhcnRvLmhlbGxvbWFwLnhhbWFyaW4Kd2F0ZXJtYXJrPWRldmVsb3BtZW50CnZhbGlkVW50aWw9MjAxNi0wOC0yMQpvbmxpbmVMaWNlbnNlPTEK", ApplicationContext);
+			MapView.RegisterLicense(LICENSE, ApplicationContext);
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
-			mapView = (MapView)FindViewById (Resource.Id.mapView);
 
-			baseProjection = new EPSG3857 ();
+			MapView = (MapView)FindViewById (Resource.Id.mapView);
 
+			BaseProjection = new EPSG3857 ();
 		}
 	}
 }

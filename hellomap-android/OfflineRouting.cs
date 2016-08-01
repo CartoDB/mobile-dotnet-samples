@@ -55,7 +55,7 @@ namespace CartoMobileSample
 			/// Set online base layer
 			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");
 			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
-			mapView.Layers.Add(baseLayer);
+			MapView.Layers.Add(baseLayer);
 
 			// create PackageManager instance for dealing with offline packages
 			var packageFolder = new File (GetExternalFilesDir(null), "routingpackages");
@@ -77,24 +77,24 @@ namespace CartoMobileSample
 			onlineRoutingService = new CartoOnlineRoutingService(ROUTING_SERVICE_SOURCE);
 
 			// define layer and datasource for route line and instructions
-			routeDataSource = new LocalVectorDataSource(baseProjection);
+			routeDataSource = new LocalVectorDataSource(BaseProjection);
 			VectorLayer routeLayer = new VectorLayer(routeDataSource);
-			mapView.Layers.Add(routeLayer);
+			MapView.Layers.Add(routeLayer);
 
 
 			// define layer and datasource for route start and stop markers
-			routeStartStopDataSource = new LocalVectorDataSource(baseProjection);
+			routeStartStopDataSource = new LocalVectorDataSource(BaseProjection);
 			// Initialize a vector layer with the previous data source
 			VectorLayer vectorLayer = new VectorLayer(routeStartStopDataSource);
 			// Add the previous vector layer to the map
-			mapView.Layers.Add(vectorLayer);
+			MapView.Layers.Add(vectorLayer);
 			// Set visible zoom range for the vector layer
 			vectorLayer.VisibleZoomRange = new MapRange(0, 22);
 
 
 			// set route listener
 			RouteMapEventListener mapListener = new RouteMapEventListener(this);
-			mapView.MapEventListener = mapListener;
+			MapView.MapEventListener = mapListener;
 
 			// create markers for start & end, and a layer for them
 			MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
@@ -140,8 +140,8 @@ namespace CartoMobileSample
 			balloonPopupStyleBuilder.TitleMargins = new BalloonPopupMargins(4,4,4,4);
 
 			// finally animate map to Estonia
-			mapView.FocusPos = baseProjection.FromWgs84(new MapPos(25.662893, 58.919365));
-			mapView.Zoom = 7;
+			MapView.FocusPos = BaseProjection.FromWgs84(new MapPos(25.662893, 58.919365));
+			MapView.Zoom = 7;
 
 			Toast.MakeText(ApplicationContext, "Long-press on map to set route start and finish",ToastLength.Long).Show();
 
@@ -167,7 +167,7 @@ namespace CartoMobileSample
 					MapPosVector poses = new MapPosVector ();
 					poses.Add (startPos);
 					poses.Add (stopPos);
-					RoutingRequest request = new RoutingRequest (baseProjection, poses);
+					RoutingRequest request = new RoutingRequest (BaseProjection, poses);
 					RoutingResult result;
 					if (offlinePackageReady) {
 						result = offlineRoutingService.CalculateRoute (request);
@@ -331,7 +331,7 @@ namespace CartoMobileSample
 			if (mapClickInfo.ClickType == ClickType.ClickTypeLong) {
 				MapPos clickPos = mapClickInfo.ClickPos;
 
-				MapPos wgs84Clickpos = controller.baseProjection.ToWgs84(clickPos);
+				MapPos wgs84Clickpos = controller.BaseProjection.ToWgs84(clickPos);
 				Log.Debug("onMapClicked " + wgs84Clickpos + " "+ mapClickInfo.ClickType);
 
 				if (startPos == null) {

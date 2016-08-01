@@ -32,7 +32,7 @@ namespace CartoMobileSample
 
 			// decice what to download offline
 			var toBeDownloaded = downloadId;
-			MapSetup.InitializePackageManager (packageFolder.AbsolutePath, importPackagePath, mapView, toBeDownloaded);
+			MapSetup.InitializePackageManager (packageFolder.AbsolutePath, importPackagePath, MapView, toBeDownloaded);
 		}
 	}
 }

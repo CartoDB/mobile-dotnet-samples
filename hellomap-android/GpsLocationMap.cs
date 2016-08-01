@@ -59,21 +59,21 @@ namespace CartoMobileSample
 
 			// Set our view from the "mainGPS" layout resource, reload MapView
 			SetContentView ( Resource.Layout.MainGPS);
-			mapView = (MapView)FindViewById (Resource.Id.mapView);
+			MapView = (MapView)FindViewById (Resource.Id.mapView);
 
 			// Set online base layer
 			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");
 			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
-			mapView.Layers.Add(baseLayer);
+			MapView.Layers.Add(baseLayer);
 
 			// bind the textViewMessage
 			_textViewMessage = FindViewById<TextView> ( Resource.Id.textViewMessage );
 
 			// create layer and add object to the layer, finally add layer to the map. 
 			// All overlay layers must be same projection as base layer, so we reuse it
-			_markerDataSource = new LocalVectorDataSource (mapView.Options.BaseProjection);
+			_markerDataSource = new LocalVectorDataSource (MapView.Options.BaseProjection);
 			var _markerLayer = new VectorLayer (_markerDataSource);
-			mapView.Layers.Add (_markerLayer);
+			MapView.Layers.Add (_markerLayer);
 
 			// inizialize the location manager to get the current position
 			InitializeLocationManager ();
@@ -107,7 +107,7 @@ namespace CartoMobileSample
 		{
 
 			// Define the location of the marker, it must be converted to base map coordinate system
-			MapPos currentLocation = mapView.Options.BaseProjection.FromWgs84 ( new MapPos(longitude, latitude) );
+			MapPos currentLocation = MapView.Options.BaseProjection.FromWgs84 ( new MapPos(longitude, latitude) );
 
 			// load default market style
 			MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
@@ -124,10 +124,10 @@ namespace CartoMobileSample
 			_markerDataSource.Add ( _currentPositionMarkerLabel );
 
 			//center the map in the current location
-			mapView.FocusPos = currentLocation;
+			MapView.FocusPos = currentLocation;
 
 			//zoom in the map in the current location
-			mapView.Zoom = 19f;
+			MapView.Zoom = 19f;
 		}
 
 		void UpdateMarker ( string myPosition, string subtitle, float latitude, float longitude )
@@ -138,7 +138,7 @@ namespace CartoMobileSample
 			} else {
 				_currentPositionMarkerLabel.Title = myPosition;
 				_currentPositionMarkerLabel.Description = subtitle;
-				_currentPositionMarker.Geometry = new PointGeometry(mapView.Options.BaseProjection.FromWgs84 (new MapPos(longitude, latitude)));
+				_currentPositionMarker.Geometry = new PointGeometry(MapView.Options.BaseProjection.FromWgs84 (new MapPos(longitude, latitude)));
 			}
 		}
 
