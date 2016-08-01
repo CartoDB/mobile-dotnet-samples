@@ -20,6 +20,7 @@ namespace CartoMobileSample
 
 			// read json from assets and add to map
 			string json;
+
 			using (System.IO.StreamReader sr = new System.IO.StreamReader (Assets.Open ("capitals_3857.geojson")))
 			{
 				json = sr.ReadToEnd ();
@@ -27,6 +28,7 @@ namespace CartoMobileSample
 
 			MapSetup.addJosnLayer (MapView, json);
 		}
+
 	}
 }
 

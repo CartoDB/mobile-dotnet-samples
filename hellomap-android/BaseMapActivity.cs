@@ -26,9 +26,9 @@ namespace CartoMobileSample
 		protected MapView MapView { get; set; }
 		internal Projection BaseProjection { get; set; }
 
-		protected override void OnCreate (Bundle savedInstanceState)
+		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate (savedInstanceState);
+			base.OnCreate(savedInstanceState);
 
 			Log.ShowError = true;
 			Log.ShowWarn = true;
@@ -37,11 +37,31 @@ namespace CartoMobileSample
 			MapView.RegisterLicense(LICENSE, ApplicationContext);
 
 			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
+			SetContentView(Resource.Layout.Main);
 
-			MapView = (MapView)FindViewById (Resource.Id.mapView);
+			MapView = (MapView)FindViewById(Resource.Id.mapView);
 
-			BaseProjection = new EPSG3857 ();
+			BaseProjection = new EPSG3857();
+
+			// Hide Back in MainActivity;
+			if (this.GetType() == typeof(LauncherListActivity))
+			{
+				ActionBar.SetDisplayHomeAsUpEnabled(false);
+			}
+			else {
+				ActionBar.SetDisplayHomeAsUpEnabled(true);
+			}
+		}
+
+		public override bool OnOptionsItemSelected(IMenuItem item)
+		{
+			if (item.ItemId == Android.Resource.Id.Home)
+			{
+				OnBackPressed();
+				return true;
+			}
+
+			return base.OnOptionsItemSelected(item);
 		}
 	}
 }
