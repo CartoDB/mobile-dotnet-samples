@@ -43,7 +43,7 @@ namespace CartoMobileSample
 
 			BaseProjection = new EPSG3857();
 
-			// Hide Back in MainActivity;
+			// Hide Back in MainActivity
 			if (this.GetType() == typeof(LauncherListActivity))
 			{
 				ActionBar.SetDisplayHomeAsUpEnabled(false);

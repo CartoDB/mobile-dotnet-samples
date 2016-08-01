@@ -20,11 +20,10 @@ namespace CartoMobileSample
 	/// @author jaak
 	/// @translated by m@t
 	/// </summary>
-	[Activity (Label = "CARTO Mobile Samples", MainLauncher = true)]			
+	[Activity(Label = "CARTO Mobile Samples", MainLauncher = true)]
 	public class LauncherListActivity : ListActivity
 	{
-		// list of demos
-
+		// List of demos
 		private static List<Type> _samples = new List<Type>(new Type[] {
 					typeof ( OfflineMap ),
 					typeof ( OnlineMap ),
@@ -34,29 +33,30 @@ namespace CartoMobileSample
 					typeof ( OfflineRouting )
 		});
 
-		protected override void OnCreate (Bundle bundle)
+		protected override void OnCreate(Bundle bundle)
 		{
-			base.OnCreate ( bundle );
- 
-			SetContentView ( Resource.Layout.List );
+			base.OnCreate(bundle);
+
+			SetContentView(Resource.Layout.List);
 			ListView listView = this.ListView;
-			listView.Adapter = new ArrayAdapter<String> ( this,  Android.Resource.Layout.SimpleListItem1, GetStringArray () );
+			listView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, GetStringArray());
 		}
 
-		private String[] GetStringArray () 
+		private String[] GetStringArray()
 		{
 			String[] sampleNames = new String[_samples.Count];
-			for( int i = 0; i < _samples.Count; i++ ) 
+
+			for (int i = 0; i < _samples.Count; i++)
 			{
 				sampleNames[i] = _samples[i].Name;
 			}
 			return sampleNames;
 		}
 
-		protected override void OnListItemClick ( ListView l, View v, int position, long id )
+		protected override void OnListItemClick(ListView l, View v, int position, long id)
 		{
-			Intent myIntent = new Intent ( this, _samples[position] );
-			this.StartActivity ( myIntent );
+			Intent myIntent = new Intent(this, _samples[position]);
+			this.StartActivity(myIntent);
 		}
 	}
 }
