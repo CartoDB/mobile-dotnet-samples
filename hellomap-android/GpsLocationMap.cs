@@ -66,7 +66,7 @@ namespace CartoMobileSample
 			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
 			MapView.Layers.Add(baseLayer);
 
-			// bind the textViewMessage
+			// Bind the textViewMessage
 			_textViewMessage = FindViewById<TextView>(Resource.Id.textViewMessage);
 
 			// create layer and add object to the layer, finally add layer to the map. 
@@ -75,7 +75,7 @@ namespace CartoMobileSample
 			var _markerLayer = new VectorLayer(_markerDataSource);
 			MapView.Layers.Add(_markerLayer);
 
-			// inizialize the location manager to get the current position
+			// Initialize the location manager to get the current position
 			InitializeLocationManager();
 
 		}
@@ -84,7 +84,7 @@ namespace CartoMobileSample
 		{
 			base.OnPause();
 
-			// remove the update of the position to save battery
+			// Remove the update of the position to save battery
 			if ((_locationManager != null) && (!String.IsNullOrEmpty(_locationProvider)))
 			{
 				_locationManager.RemoveUpdates(this);
@@ -96,7 +96,7 @@ namespace CartoMobileSample
 		{
 			base.OnResume();
 
-			// request updated position
+			// Request updated position
 			if ((_locationManager != null) && (!String.IsNullOrEmpty(_locationProvider)))
 			{
 				_locationManager.RequestLocationUpdates(_locationProvider, 0, 0, this);
@@ -109,24 +109,24 @@ namespace CartoMobileSample
 			// Define the location of the marker, it must be converted to base map coordinate system
 			MapPos currentLocation = MapView.Options.BaseProjection.FromWgs84(new MapPos(longitude, latitude));
 
-			// load default market style
+			// Load default market style
 			MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
 
-			// add the label to the Marker
+			// Add the label to the Marker
 			_currentPositionMarker = new Marker(currentLocation, markerStyleBuilder.BuildStyle());
 
 			// Define label what is shown when you click on marker, with default style
 			var balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
 			_currentPositionMarkerLabel = new BalloonPopup(_currentPositionMarker, balloonPopupStyleBuilder.BuildStyle(), currentPositionTitle, currentPositionSubtitle);
 
-			// add the marker and label to the layer
+			// Add the marker and label to the layer
 			_markerDataSource.Add(_currentPositionMarker);
 			_markerDataSource.Add(_currentPositionMarkerLabel);
 
-			//center the map in the current location
+			// Center the map in the current location
 			MapView.FocusPos = currentLocation;
 
-			//zoom in the map in the current location
+			// Zoom in the map in the current location
 			MapView.Zoom = 19f;
 		}
 
