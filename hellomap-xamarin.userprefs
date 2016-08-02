@@ -3,7 +3,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="hellomap-shared/MapSetup.cs">
     <Files>
       <File FileName="hellomap-android/ClusteredGeoJSONCaptitals.cs" Line="29" Column="8" />
-      <File FileName="hellomap-shared/MapSetup.cs" Line="172" Column="16" />
+      <File FileName="hellomap-shared/MapSetup.cs" Line="109" Column="42" />
       <File FileName="hellomap-shared/MyClusterElementBuilder.cs" Line="8" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>

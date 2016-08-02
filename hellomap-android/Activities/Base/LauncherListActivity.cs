@@ -24,13 +24,13 @@ namespace CartoMobileSample
 	public class LauncherListActivity : ListActivity
 	{
 		// List of demos
-		private static List<Type> _samples = new List<Type>(new Type[] {
-					typeof ( OfflineMap ),
-					typeof ( OnlineMap ),
-					typeof ( MapOverlays ),
-					typeof ( ClusteredGeoJSONCaptitals ),
-					typeof ( GpsLocationMap ),
-					typeof ( OfflineRouting )
+		static List<Type> _samples = new List<Type>(new Type[] {
+			typeof (ClusteredGeoJSONCaptitals),
+			typeof (GpsLocationMap),
+			typeof (MapOverlays),
+			typeof (OfflineMap),
+			typeof (OfflineRouting),
+			typeof (OnlineMap)
 		});
 
 		protected override void OnCreate(Bundle bundle)
@@ -38,13 +38,12 @@ namespace CartoMobileSample
 			base.OnCreate(bundle);
 
 			SetContentView(Resource.Layout.List);
-			ListView listView = this.ListView;
-			listView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, GetStringArray());
+			ListView.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, GetStringArray());
 		}
 
-		private String[] GetStringArray()
+		private string[] GetStringArray()
 		{
-			String[] sampleNames = new String[_samples.Count];
+			string[] sampleNames = new string[_samples.Count];
 
 			for (int i = 0; i < _samples.Count; i++)
 			{

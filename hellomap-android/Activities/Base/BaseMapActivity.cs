@@ -16,7 +16,7 @@ using Carto.Projections;
 
 namespace CartoMobileSample
 {
-	[Activity (Label = "Hello Map", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Label = "Hello Map", Icon = "@drawable/icon")]
 	public class BaseMapActivity : Activity
 	{
 		const string LICENSE = "XTUN3Q0ZDL3RoWlRJdzNqTDVBWFlZR1BTTlh0OWdWRkFBaFFIaENuR2hhaVdyWHU2N1B4YmtYK1hXWnRHNEE9" +

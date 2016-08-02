@@ -106,7 +106,7 @@ namespace CartoMobileSample
 
 			var linePoses = new MapPosVector();
 
-			// proj.FromWgs84 returns Mercator projection
+			// proj.FromWgs84 returns (spherical) Mercator projection
 			linePoses.Add(proj.FromWgs84(new MapPos(0, 0)));
 			linePoses.Add(proj.FromWgs84(new MapPos(0, 80)));
 			linePoses.Add(proj.FromWgs84(new MapPos(45, 45)));
@@ -167,11 +167,10 @@ namespace CartoMobileSample
 
 		public static void AddJsonLayer(IMapView mapView, String json)
 		{
-			var features = Newtonsoft.Json.Linq.JObject.Parse(json)["features"];
+			var features = JObject.Parse(json)["features"];
 
 			var geoJsonParser = new GeoJSONGeometryReader();
 
-			var proj = new EPSG3857();
 			var balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
 
 			// Create overlay layer for markers
