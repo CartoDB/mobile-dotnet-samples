@@ -53,9 +53,9 @@ namespace CartoMobileSample
 		private Marker _currentPositionMarker;
 		private BalloonPopup _currentPositionMarkerLabel;
 
-		protected override void OnCreate(Android.OS.Bundle bundle)
+		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate(bundle);
+			base.OnCreate(savedInstanceState);
 
 			// Set our view from the "mainGPS" layout resource, reload MapView
 			SetContentView(Resource.Layout.MainGPS);
@@ -195,17 +195,17 @@ namespace CartoMobileSample
 		/// <param name="location">Location.</param>
 		void LocationFound(Location location)
 		{
-			string title = String.Format("Location from '{0}'", location.Provider);
-			string subtitle = String.Format("lat:{0} lon:{1}", location.Latitude, location.Longitude);
+			string title = string.Format("Location from '{0}'", location.Provider);
+			string subtitle = string.Format("lat:{0} lon:{1}", location.Latitude, location.Longitude);
 
 			if (location.HasAccuracy)
-				subtitle += String.Format("\naccuracy: {0} m", location.Accuracy);
+				subtitle += string.Format("\naccuracy: {0} m", location.Accuracy);
 			if (location.HasAltitude)
-				subtitle += String.Format("\naltitude {0} m", location.Altitude);
+				subtitle += string.Format("\naltitude {0} m", location.Altitude);
 			if (location.HasSpeed)
-				subtitle += String.Format("\nspeed: {0} m/s", location.Speed);
+				subtitle += string.Format("\nspeed: {0} m/s", location.Speed);
 			if (location.HasBearing)
-				subtitle += String.Format("\nbearing: {0}", location.Bearing);
+				subtitle += string.Format("\nbearing: {0}", location.Bearing);
 
 
 			UpdateMarker(title, subtitle, (float)location.Latitude, (float)location.Longitude);

@@ -9,9 +9,9 @@ namespace CartoMobileSample
 	[Activity(Label = "Online Map")]
 	public class OnlineMap : BaseMapActivity
 	{
-		protected override void OnCreate(Android.OS.Bundle bundle)
+		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
-			base.OnCreate(bundle);
+			base.OnCreate(savedInstanceState);
 
 			/// Set online base layer
 			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");

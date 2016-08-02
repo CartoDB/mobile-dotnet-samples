@@ -1,5 +1,5 @@
 ﻿<Properties StartupItem="hellomap-android/hellomap-android.csproj" StartupConfiguration="{FAB116EB-6741-489E-884E-3E7D0D3D0DE8}|Default">
-  <MonoDevelop.Ide.ItemProperties.hellomap-android AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.767becfa" />
+  <MonoDevelop.Ide.ItemProperties.hellomap-android AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.Android_Accelerated_x86" />
   <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
