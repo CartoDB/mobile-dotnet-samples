@@ -10,7 +10,7 @@ namespace CartoMobileSample
 
 	public class VectorElementListener : VectorElementEventListener
 	{
-		private LocalVectorDataSource _dataSource;
+		LocalVectorDataSource _dataSource;
 
 		public VectorElementListener(LocalVectorDataSource dataSource)
 		{

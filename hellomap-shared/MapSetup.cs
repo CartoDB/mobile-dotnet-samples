@@ -21,8 +21,8 @@ namespace CartoMobileSample
 		// Set base projection
 		public static EPSG3857 proj = new EPSG3857();
 
-		public static void InitLocation(IMapView mapView){
-			
+		public static void InitLocation(IMapView mapView)
+		{
 			// Set initial location and other parameters, don't animate
 			mapView.FocusPos = proj.FromWgs84(new MapPos(-0.8164,51.2383)); // Berlin
 			mapView.Zoom = 2;
@@ -31,8 +31,8 @@ namespace CartoMobileSample
 		}
 
 
-		public static void InitializePackageManager(string packageFolder, string importPackagePath, IMapView mapView,string downloadedPackage ) {
-
+		public static void InitializePackageManager(string packageFolder, string importPackagePath, IMapView mapView,string downloadedPackage )
+		{
 			// offline base layer
 
 			// 2. define listener, definition is in same class above
@@ -71,23 +71,23 @@ namespace CartoMobileSample
 
 			var baseLayer = new VectorTileLayer(new PackageManagerTileDataSource(packageManager),vectorTileDecoder);
 			mapView.Layers.Add(baseLayer);
-
 		}
 
 
-		public static void StartBboxDownload(CartoPackageManager packageManager) {
-
+		public static void StartBboxDownload(CartoPackageManager packageManager)
+		{
 			// bounding box download can be done now
 			// for country package download see OnPackageListUpdated in PackageListener
-			String bbox = "bbox(-0.8164,51.2382,0.6406,51.7401)"; // London (about 30MB)
+			string bbox = "bbox(-0.8164,51.2382,0.6406,51.7401)"; // London (about 30MB)
+
 			if (packageManager.GetLocalPackage(bbox) == null) {
 				packageManager.StartPackageDownload (bbox);
 			}
 		}
 
 
-		async public static void AddMapOverlays(IMapView mapView) {
-
+		async public static void AddMapOverlays(IMapView mapView) 
+		{
 			// Create overlay layer for markers
 			var dataSource = new LocalVectorDataSource (proj);
 			var overlayLayer = new VectorLayer (dataSource);
@@ -141,10 +141,10 @@ namespace CartoMobileSample
 			mapView.MapEventListener = new MapListener (dataSource);
 
 			await AnimateModel (model);
-
 		}
 
-		public static async Task AnimateModel(NMLModel model){
+		public static async Task AnimateModel(NMLModel model)
+		{
 			for (int i = 0; i < 3600; i++) { 
 					model.SetRotation (new MapVec (0, 0, 1), i);
 				await Task.Delay(10);
@@ -152,8 +152,8 @@ namespace CartoMobileSample
 		}
 
 
-		public static void addJosnLayer(IMapView mapView, String json){
-
+		public static void AddJsonLayer(IMapView mapView, String json)
+		{
 			var features = Newtonsoft.Json.Linq.JObject.Parse (json)["features"];
 
 			var geoJsonParser = new GeoJSONGeometryReader();
@@ -197,14 +197,16 @@ namespace CartoMobileSample
 	{
 		BalloonPopupStyleBuilder balloonPopupStyleBuilder;
 
-		public MyClusterElementBuilder() {
+		public MyClusterElementBuilder()
+		{
 			balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
 			balloonPopupStyleBuilder.CornerRadius = 3;
-			balloonPopupStyleBuilder.TitleMargins = new BalloonPopupMargins (6, 6, 6, 6);
-			balloonPopupStyleBuilder.LeftColor = new Color(240,230,140,255);
+			balloonPopupStyleBuilder.TitleMargins = new BalloonPopupMargins(6, 6, 6, 6);
+			balloonPopupStyleBuilder.LeftColor = new Color(240, 230, 140, 255);
 		}
 
-		public override VectorElement BuildClusterElement(MapPos mapPos, VectorElementVector elements) {
+		public override VectorElement BuildClusterElement(MapPos mapPos, VectorElementVector elements)
+		{
 			var popup = new BalloonPopup(
 				mapPos,
 				balloonPopupStyleBuilder.BuildStyle(),
@@ -213,9 +215,6 @@ namespace CartoMobileSample
 		}
 
 	}
-
-
-
 }
 
 

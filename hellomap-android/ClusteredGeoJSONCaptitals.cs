@@ -26,7 +26,7 @@ namespace CartoMobileSample
 				json = sr.ReadToEnd ();
 			}
 
-			MapSetup.addJosnLayer (MapView, json);
+			MapSetup.AddJsonLayer (MapView, json);
 		}
 
 	}
