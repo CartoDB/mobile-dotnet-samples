@@ -1,6 +1,12 @@
 ﻿<Properties StartupItem="hellomap-android/hellomap-android.csproj" StartupConfiguration="{FAB116EB-6741-489E-884E-3E7D0D3D0DE8}|Default">
-  <MonoDevelop.Ide.ItemProperties.hellomap-android AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.Android_Accelerated_x86" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.ItemProperties.hellomap-android AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.767becfa" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="hellomap-shared/MapSetup.cs">
+    <Files>
+      <File FileName="hellomap-android/ClusteredGeoJSONCaptitals.cs" Line="29" Column="8" />
+      <File FileName="hellomap-shared/MapSetup.cs" Line="172" Column="16" />
+      <File FileName="hellomap-shared/MyClusterElementBuilder.cs" Line="8" Column="28" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

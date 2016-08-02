@@ -19,6 +19,8 @@ namespace CartoMobileSample
 	public class MapSetup
 	{
 		// Set base projection
+		// From wiki.openstreetmap: EPSG:3857 is a Spherical Mercator projection coordinate system 
+		// popularized by web services such as Google and later OpenStreetMap
 		public static EPSG3857 proj = new EPSG3857();
 
 		public static void InitLocation(IMapView mapView)
@@ -103,9 +105,12 @@ namespace CartoMobileSample
 			lineStyleBuilder.Width = 8;
 
 			var linePoses = new MapPosVector();
+
+			// proj.FromWgs84 returns Mercator projection
 			linePoses.Add(proj.FromWgs84(new MapPos(0, 0)));
 			linePoses.Add(proj.FromWgs84(new MapPos(0, 80)));
 			linePoses.Add(proj.FromWgs84(new MapPos(45, 45)));
+
 			var line = new Line(linePoses, lineStyleBuilder.BuildStyle());
 			dataSource.Add(line);
 
