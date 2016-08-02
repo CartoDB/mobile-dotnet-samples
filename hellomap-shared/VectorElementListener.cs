@@ -7,7 +7,6 @@ using Carto.Utils;
 
 namespace CartoMobileSample
 {
-
 	public class VectorElementListener : VectorElementEventListener
 	{
 		LocalVectorDataSource _dataSource;
