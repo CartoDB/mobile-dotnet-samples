@@ -32,7 +32,7 @@ namespace CartoMobileSample
 			}
 
 			// Initialize map
-			string downloadArea = "bbox(-0.8164,51.2382,0.6406,51.7401)"; // London (about 30MB)
+			//string downloadArea = "bbox(-0.8164,51.2382,0.6406,51.7401)"; // London (about 30MB)
 			string downloadId = "EE"; // one of ID-s from https://developer.nutiteq.com/guides/packages
 
 			// decice what to download offline
