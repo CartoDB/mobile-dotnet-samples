@@ -5,6 +5,8 @@ namespace CartoMobileSample
 {
 	public class Samples
 	{
+		public const string IntentName = "INTENTNAME";
+
 		// List of demo activities
 		static List<Type> List = new List<Type>(new Type[] {
 			typeof (ClusteredGeoJSONCaptitals),

@@ -22,7 +22,7 @@ using HelloMap;
 
 namespace CartoMobileSample
 {
-	[Activity (Label = "Offline Routing")]			
+	[Activity]	
 	public class OfflineRouting: BaseMapActivity
 	{
 		// Add packages you want to download

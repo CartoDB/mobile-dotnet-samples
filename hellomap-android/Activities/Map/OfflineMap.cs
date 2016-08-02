@@ -5,7 +5,7 @@ using Android.App;
 
 namespace CartoMobileSample
 {
-	[Activity (Label = "Offline Map")]			
+	[Activity]		
 	public class OfflineMap: BaseMapActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)

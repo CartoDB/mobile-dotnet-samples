@@ -19,7 +19,7 @@ using Carto.Ui;
 
 namespace CartoMobileSample
 {
-	[Activity(Label = "GPS Location Map")]
+	[Activity]
 	public class GpsLocationMap : BaseMapActivity, ILocationListener
 	{
 

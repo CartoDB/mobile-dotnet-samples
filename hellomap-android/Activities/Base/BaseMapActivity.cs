@@ -16,7 +16,7 @@ using Carto.Projections;
 
 namespace CartoMobileSample
 {
-	[Activity (Label = "Hello Map", Icon = "@drawable/icon")]
+	[Activity (Icon = "@drawable/icon")]
 	public class BaseMapActivity : Activity
 	{
 		const string LICENSE = "XTUN3Q0ZDL3RoWlRJdzNqTDVBWFlZR1BTTlh0OWdWRkFBaFFIaENuR2hhaVdyWHU2N1B4YmtYK1hXWnRHNEE9" +
@@ -42,6 +42,9 @@ namespace CartoMobileSample
 			MapView = (MapView)FindViewById(Resource.Id.mapView);
 
 			BaseProjection = new EPSG3857();
+
+			// Set Activity Title. Was passed from parent;
+			Title = Intent.GetStringExtra(Samples.IntentName);
 
 			// Hide Back in MainActivity
 			if (this.GetType() == typeof(LauncherListActivity))

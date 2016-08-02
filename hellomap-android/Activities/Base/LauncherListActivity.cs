@@ -36,7 +36,11 @@ namespace CartoMobileSample
 
 		protected override void OnListItemClick(ListView l, View v, int position, long id)
 		{
-			Intent intent = new Intent(this, Samples.FromPosition(position));
+			Type sample = Samples.FromPosition(position);
+
+			Intent intent = new Intent(this, sample);
+			intent.PutExtra(Samples.IntentName, sample.Name);
+
 			this.StartActivity(intent);
 		}
 	}

@@ -6,7 +6,7 @@ using Carto.Utils;
 
 namespace CartoMobileSample
 {
-	[Activity (Label = "Clustered GeoJSON Capitals")]			
+	[Activity]
 	public class ClusteredGeoJSONCaptitals: BaseMapActivity
 	{
 		protected override void OnCreate (Android.OS.Bundle savedInstanceState)
