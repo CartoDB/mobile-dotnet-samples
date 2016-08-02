@@ -63,6 +63,8 @@
     <Compile Include="Activities\Map\OfflineMap.cs" />
     <Compile Include="Activities\Map\OfflineRouting.cs" />
     <Compile Include="Activities\Map\OnlineMap.cs" />
+    <Compile Include="Samples.cs" />
+    <Compile Include="Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

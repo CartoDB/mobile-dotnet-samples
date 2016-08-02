@@ -23,39 +23,21 @@ namespace CartoMobileSample
 	[Activity(Label = "CARTO Mobile Samples", MainLauncher = true)]
 	public class LauncherListActivity : ListActivity
 	{
-		// List of demos
-		static List<Type> _samples = new List<Type>(new Type[] {
-			typeof (ClusteredGeoJSONCaptitals),
-			typeof (GpsLocationMap),
-			typeof (MapOverlays),
-			typeof (OfflineMap),
-			typeof (OfflineRouting),
-			typeof (OnlineMap)
-		});
-
-		protected override void OnCreate(Bundle bundle)
+		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate(bundle);
+			base.OnCreate(savedInstanceState);
 
 			SetContentView(Resource.Layout.List);
-			ListView.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, GetStringArray());
-		}
 
-		private string[] GetStringArray()
-		{
-			string[] sampleNames = new string[_samples.Count];
+			int id = Android.Resource.Layout.SimpleListItem1;
 
-			for (int i = 0; i < _samples.Count; i++)
-			{
-				sampleNames[i] = _samples[i].Name;
-			}
-			return sampleNames;
+			ListView.Adapter = new ArrayAdapter<string>(this, id, Samples.AsStringArray);
 		}
 
 		protected override void OnListItemClick(ListView l, View v, int position, long id)
 		{
-			Intent myIntent = new Intent(this, _samples[position]);
-			this.StartActivity(myIntent);
+			Intent intent = new Intent(this, Samples.FromPosition(position));
+			this.StartActivity(intent);
 		}
 	}
 }
