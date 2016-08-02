@@ -25,28 +25,29 @@ namespace CartoMobileSample
 	[Activity (Label = "Offline Routing")]			
 	public class OfflineRouting: BaseMapActivity
 	{
+		// Add packages you want to download
+		internal static string[] downloadablePackages = new string[]{"EE-routing", "LV-routing", "LT-routing", "PL-routing"};
 
-		// add packages what you want to download
-		internal static String[] downloadablePackages = new String[]{"EE-routing",
-			"LV-routing", "LT-routing", "PL-routing"};
+		static string ROUTING_PACKAGEMANAGER_SOURCE = "routing:nutiteq.osm.car";
+		static string ROUTING_SERVICE_SOURCE = "nutiteq.osm.car";
 
-		private static String ROUTING_PACKAGEMANAGER_SOURCE = "routing:nutiteq.osm.car";
-		private static String ROUTING_SERVICE_SOURCE = "nutiteq.osm.car";
-
-
-		private RoutingService onlineRoutingService;
-		private RoutingService offlineRoutingService;
+		RoutingService onlineRoutingService;
+		RoutingService offlineRoutingService;
 		internal PackageManager packageManager;
-		private bool shortestPathRunning;
+
+		bool shortestPathRunning;
 		internal bool offlinePackageReady;
-		private Marker startMarker;
-		private Marker stopMarker;
-		private MarkerStyle instructionUp;
-		private MarkerStyle instructionLeft;
-		private MarkerStyle instructionRight;
-		private LocalVectorDataSource routeDataSource;
-		private LocalVectorDataSource routeStartStopDataSource;
-		private BalloonPopupStyleBuilder balloonPopupStyleBuilder;
+
+		Marker startMarker;
+		Marker stopMarker;
+
+		MarkerStyle instructionUp;
+		MarkerStyle instructionLeft;
+		MarkerStyle instructionRight;
+
+		LocalVectorDataSource routeDataSource;
+		LocalVectorDataSource routeStartStopDataSource;
+		BalloonPopupStyleBuilder balloonPopupStyleBuilder;
 
 		protected override void OnCreate (Android.OS.Bundle bundle)
 		{
@@ -57,7 +58,7 @@ namespace CartoMobileSample
 			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
 			MapView.Layers.Add(baseLayer);
 
-			// create PackageManager instance for dealing with offline packages
+			// Create PackageManager instance for dealing with offline packages
 			var packageFolder = new File (GetExternalFilesDir(null), "routingpackages");
 			if (!(packageFolder.Mkdirs() || packageFolder.IsDirectory)) {
 				Log.Fatal("Could not create package folder!");
@@ -67,36 +68,41 @@ namespace CartoMobileSample
 			packageManager.PackageManagerListener = new RoutingPackageListener(this);
 			packageManager.Start();
 
-			// fetch list of available packages from server. Note that this is asynchronous operation and listener will be notified via onPackageListUpdated when this succeeds.        
+			// Fetch list of available packages from server. 
+			// Note that this is asynchronous operation 
+			// and listener will be notified via onPackageListUpdated when this succeeds.        
 			packageManager.StartPackageListDownload();
 
 			// create offline routing service connected to package manager
 			offlineRoutingService = new PackageManagerRoutingService(packageManager);
 
-			// create additional online routing service that will be used when offline package is not yet downloaded or offline routing fails
+			// Create additional online routing service that will be used 
+			// when offline package is not yet downloaded or offline routing fails
 			onlineRoutingService = new CartoOnlineRoutingService(ROUTING_SERVICE_SOURCE);
 
-			// define layer and datasource for route line and instructions
+			// Define layer and datasource for route line and instructions
 			routeDataSource = new LocalVectorDataSource(BaseProjection);
 			VectorLayer routeLayer = new VectorLayer(routeDataSource);
 			MapView.Layers.Add(routeLayer);
 
 
-			// define layer and datasource for route start and stop markers
+			// Define layer and datasource for route start and stop markers
 			routeStartStopDataSource = new LocalVectorDataSource(BaseProjection);
+
 			// Initialize a vector layer with the previous data source
 			VectorLayer vectorLayer = new VectorLayer(routeStartStopDataSource);
+
 			// Add the previous vector layer to the map
 			MapView.Layers.Add(vectorLayer);
+
 			// Set visible zoom range for the vector layer
 			vectorLayer.VisibleZoomRange = new MapRange(0, 22);
 
-
-			// set route listener
+			// Set route listener
 			RouteMapEventListener mapListener = new RouteMapEventListener(this);
 			MapView.MapEventListener = mapListener;
 
-			// create markers for start & end, and a layer for them
+			// Create markers for start & end, and a layer for them
 			MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
 			markerStyleBuilder.Bitmap = BitmapUtils
 				.CreateBitmapFromAndroidBitmap(BitmapFactory.DecodeResource(
@@ -108,7 +114,6 @@ namespace CartoMobileSample
 
 			startMarker = new Marker(new MapPos(0, 0), markerStyleBuilder.BuildStyle());
 			startMarker.Visible = false;
-
 
 			markerStyleBuilder.Color = new Carto.Graphics.Color(Android.Graphics.Color.Red);
 
@@ -135,25 +140,25 @@ namespace CartoMobileSample
 
 			instructionRight = markerStyleBuilder.BuildStyle();
 
-			// style for instruction balloons
+			// Style for instruction balloons
 			balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
 			balloonPopupStyleBuilder.TitleMargins = new BalloonPopupMargins(4,4,4,4);
 
-			// finally animate map to Estonia
+			// Finally animate map to Estonia
 			MapView.FocusPos = BaseProjection.FromWgs84(new MapPos(25.662893, 58.919365));
 			MapView.Zoom = 7;
 
 			Toast.MakeText(ApplicationContext, "Long-press on map to set route start and finish",ToastLength.Long).Show();
-
 		}
 
-		public void showRoute(MapPos startPos, MapPos stopPos) {
-
+		public void ShowRoute(MapPos startPos, MapPos stopPos) 
+		{
 			Log.Debug("calculating path " + startPos + " to " + stopPos);
 
 			if (!offlinePackageReady) {
 				RunOnUiThread (() => {
-					Toast.MakeText(ApplicationContext, "Offline package is not ready, using online routing",ToastLength.Long).Show();
+					string message = "Offline package is not ready, using online routing";
+					Toast.MakeText(ApplicationContext, message,ToastLength.Long).Show();
 				});
 			}
 
@@ -175,8 +180,7 @@ namespace CartoMobileSample
 						result = onlineRoutingService.CalculateRoute (request);
 					}
 
-
-					// now update response in UI thread
+					// Now update response in UI thread
 					RunOnUiThread (() => {
 						
 						if (result == null) {
@@ -185,8 +189,8 @@ namespace CartoMobileSample
 							return;
 						}
 
-						String routeText = "The route is " + (int)(result.TotalDistance / 100) / 10f
-						                   + "km (" + secondsToHours ((int)result.TotalTime)
+						string routeText = "The route is " + (int)(result.TotalDistance / 100) / 10f
+						                   + "km (" + SecondsToHours ((int)result.TotalTime)
 						                   + ") calculation: " + (Java.Lang.JavaSystem.CurrentTimeMillis () - timeStart) + " ms";
 						Log.Info (routeText);
 
@@ -196,17 +200,17 @@ namespace CartoMobileSample
 
 						startMarker.Visible = false;
 
-						routeDataSource.Add (createPolyline (startMarker.Geometry
+						routeDataSource.Add (CreatePolyline (startMarker.Geometry
 							.CenterPos, stopMarker.Geometry.CenterPos, result));
 
-						// add instruction markers
+						// Add instruction markers
 						RoutingInstructionVector instructions = result.Instructions;
+
 						for (int i = 0; i < instructions.Count; i++) {
 							RoutingInstruction instruction = instructions [i];
 							// Log.d(Const.LOG_TAG, instruction.toString());
-							createRoutePoint (result.Points [instruction.PointIndex], instruction.StreetName,
+							CreateRoutePoint (result.Points [instruction.PointIndex], instruction.StreetName,
 								instruction.Time, instruction.Distance, instruction.Action, routeDataSource);
-
 						}
 
 						shortestPathRunning = false;
@@ -216,7 +220,8 @@ namespace CartoMobileSample
 		}
 
 
-		protected String secondsToHours(int sec){
+		protected String SecondsToHours(int sec)
+		{
 			int hours = sec / 3600,
 			remainder = sec % 3600,
 			minutes = remainder / 60,
@@ -227,7 +232,7 @@ namespace CartoMobileSample
 				+ "m" + (seconds< 10 ? "0" : "") + seconds+"s" );
 		}
 
-		protected void createRoutePoint(MapPos pos, String name,
+		protected void CreateRoutePoint(MapPos pos, String name,
 			double time, double distance, RoutingAction action, LocalVectorDataSource ds) {
 
 			MarkerStyle style = instructionUp;
@@ -288,9 +293,9 @@ namespace CartoMobileSample
 			}
 		}
 
-		// creates Nutiteq line from GraphHopper response
-		protected Line createPolyline(MapPos start, MapPos end, RoutingResult result) {
-
+		// Creates Nutiteq line from GraphHopper response
+		protected Line CreatePolyline(MapPos start, MapPos end, RoutingResult result) 
+		{
 			LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();
 			lineStyleBuilder.Color = new Carto.Graphics.Color(Android.Graphics.Color.DarkGray);
 			lineStyleBuilder.Width = 12;
@@ -298,60 +303,69 @@ namespace CartoMobileSample
 			return new Line(result.Points, lineStyleBuilder.BuildStyle());
 		}
 
-		public void setStartMarker(MapPos startPos) {
+		public void SetStartMarker(MapPos startPos) 
+		{
 			routeDataSource.Clear();
 			stopMarker.Visible = false;
 			startMarker.SetPos(startPos);
 			startMarker.Visible = true;
 		}
 
-		public void setStopMarker(MapPos pos) {
+		public void SetStopMarker(MapPos pos) 
+		{
 			stopMarker.SetPos(pos);
 			stopMarker.Visible = true;
 		}
 	}
 
-
 	/**
 	 * This MapListener waits for two clicks on map - first to set routing start point, and then
 	 * second to mark end point and start routing service.
 	 */
-	public class RouteMapEventListener : MapEventListener {
+	public class RouteMapEventListener : MapEventListener
+	{
 		private MapPos startPos;
 		private MapPos stopPos;
 		private OfflineRouting controller;
 
-		public RouteMapEventListener(OfflineRouting controller){
+		public RouteMapEventListener(OfflineRouting controller)
+		{
 			this.controller = controller;
 		}
 
 		// Map View manipulation handlers
-		public override void OnMapClicked(MapClickInfo mapClickInfo) {
-
-			if (mapClickInfo.ClickType == ClickType.ClickTypeLong) {
+		public override void OnMapClicked(MapClickInfo mapClickInfo)
+		{
+			if (mapClickInfo.ClickType == ClickType.ClickTypeLong)
+			{
 				MapPos clickPos = mapClickInfo.ClickPos;
 
 				MapPos wgs84Clickpos = controller.BaseProjection.ToWgs84(clickPos);
-				Log.Debug("onMapClicked " + wgs84Clickpos + " "+ mapClickInfo.ClickType);
+				Log.Debug("onMapClicked " + wgs84Clickpos + " " + mapClickInfo.ClickType);
 
-				if (startPos == null) {
+				if (startPos == null)
+				{
 					// set start, or start again
 					startPos = clickPos;
-					controller.setStartMarker(clickPos);
-				} else if (stopPos == null) {
+					controller.SetStartMarker(clickPos);
+				}
+				else if (stopPos == null)
+				{
 					// set stop and calculate
 					stopPos = clickPos;
-					controller.setStopMarker(clickPos);
-					controller.showRoute(startPos, stopPos);
+					controller.SetStopMarker(clickPos);
+					controller.ShowRoute(startPos, stopPos);
 
 					// restart to force new route next time
 					startPos = null;
 					stopPos = null;
 				}
-			}			
+			}
 		}
 
-		public override void OnMapMoved() {
+		public override void OnMapMoved() 
+		{
+			
 		}
 	}
 
@@ -359,38 +373,47 @@ namespace CartoMobileSample
 	/**
 	 * Listener for package manager events. Contains only empty methods.
 	 */
-	class RoutingPackageListener : PackageManagerListener {
-
+	class RoutingPackageListener : PackageManagerListener
+	{
 		private OfflineRouting controller;
 
-		public RoutingPackageListener(OfflineRouting controller){
+		public RoutingPackageListener(OfflineRouting controller)
+		{
 			this.controller = controller;
 		}
 
-		public override void OnPackageListUpdated() {
+		public override void OnPackageListUpdated()
+		{
 			Log.Debug("Package list updated");
 
 			var downloadedPackages = 0;
 			var totalPackages = OfflineRouting.downloadablePackages.Length;
-			for(int i=0; i<totalPackages;i++){
+			for (int i = 0; i < totalPackages; i++)
+			{
 				var alreadyDownloaded = getPackageIfNotExists(OfflineRouting.downloadablePackages[i]);
-				if(alreadyDownloaded){
-					downloadedPackages ++;
+				if (alreadyDownloaded)
+				{
+					downloadedPackages++;
 				}
 			}
 
-			// if all downloaded, can start with offline routing
-			if(downloadedPackages == totalPackages){
+			// If all downloaded, can start with offline routing
+			if (downloadedPackages == totalPackages)
+			{
 				controller.offlinePackageReady = true;
 			}
 		}
 
-		private bool getPackageIfNotExists(String packageId) {
+		private bool getPackageIfNotExists(String packageId)
+		{
 			PackageStatus status = controller.packageManager.GetLocalPackageStatus(packageId, -1);
-			if (status == null) {
+			if (status == null)
+			{
 				controller.packageManager.StartPackageDownload(packageId);
 				return false;
-			}else if(status.CurrentAction == PackageAction.PackageActionReady){
+			}
+			else if (status.CurrentAction == PackageAction.PackageActionReady)
+			{
 				Log.Debug(packageId + " is downloaded and ready");
 				return true;
 			}
@@ -398,28 +421,35 @@ namespace CartoMobileSample
 			return false;
 		}
 
-		public override void OnPackageListFailed() {
+		public override void OnPackageListFailed()
+		{
 			Log.Error("Package list update failed");
 		}
 
-		public override void OnPackageStatusChanged(String id, int version, PackageStatus status) {
+		public override void OnPackageStatusChanged(String id, int version, PackageStatus status)
+		{
 		}
 
-		public override void OnPackageCancelled(String id, int version) {
+		public override void OnPackageCancelled(String id, int version)
+		{
 		}
 
-		public override void OnPackageUpdated(String id, int version) {
+		public override void OnPackageUpdated(String id, int version)
+		{
 			Log.Debug("Offline package updated: " + id);
-			controller.RunOnUiThread (() => {
-				Toast.MakeText (controller.BaseContext, "Offline package downloaded: " + id, ToastLength.Long).Show ();
+			controller.RunOnUiThread(() =>
+			{
+				Toast.MakeText(controller.BaseContext, "Offline package downloaded: " + id, ToastLength.Long).Show();
 			});
 			// if last downloaded
-			if (id == OfflineRouting.downloadablePackages[OfflineRouting.downloadablePackages.Length-1]) {
-				controller.offlinePackageReady = true;        			
+			if (id == OfflineRouting.downloadablePackages[OfflineRouting.downloadablePackages.Length - 1])
+			{
+				controller.offlinePackageReady = true;
 			}
 		}
 
-		public override void OnPackageFailed(String id, int version, PackageErrorType errorType) {
+		public override void OnPackageFailed(String id, int version, PackageErrorType errorType)
+		{
 			Log.Error("Offline package update failed: " + id);
 		}
 	}
