@@ -18,7 +18,11 @@ using Carto.VectorElements;
 namespace CartoMobileSample
 {
 	[Activity]
-	[ActivityDescription(Description = "Test Description")]
+	[ActivityDescription(Description = 
+	                     "A sample demonstrating how to use high level Carto VisJSON API to display interactive maps.\n " +
+	                     "A list of different visjson URLs can be selected from the menu.\n " +
+	                     "CartoVisLoader class is used to load and configure all corresponding layers.\n " +
+	                     "Items on overlay layers are clickable, this is implemented using custom UTFGridEventListener.")]
 	public class CartoVisJSONActivity : BaseMapActivity
 	{
 		const string _base = "https://documentation.cartodb.com/api/v2/viz/";

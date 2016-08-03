@@ -20,9 +20,9 @@ using Carto.Ui;
 namespace CartoMobileSample
 {
 	[Activity]
+	[ActivityDescription(Description = "")]
 	public class GpsLocationMap : BaseMapActivity, ILocationListener
 	{
-
 		/// <summary>
 		/// private field with the current coordinates
 		/// </summary>

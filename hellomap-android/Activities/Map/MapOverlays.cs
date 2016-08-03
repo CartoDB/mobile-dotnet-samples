@@ -6,7 +6,8 @@ using Carto.Layers;
 
 namespace CartoMobileSample
 {
-	[Activity]	
+	[Activity]
+	[ActivityDescription(Description = "")]
 	public class MapOverlays: BaseMapActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)

@@ -22,7 +22,12 @@ using HelloMap;
 
 namespace CartoMobileSample
 {
-	[Activity]	
+	[Activity]
+	[ActivityDescription(Description = 
+	                     "A sample demonstrating how to use Carto Mobile SDK routing engine to calculate offline routes.\n " +
+	                     "First a package is downloaded asynchronously. " +
+	                     "Until the package is fully downloaded, online routing service is used as a fallback. \n " +
+	                     "Once the package is available, routing\n * works offline.")]
 	public class OfflineRouting: BaseMapActivity
 	{
 		// Add packages you want to download

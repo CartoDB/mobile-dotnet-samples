@@ -7,6 +7,7 @@ using Carto.Utils;
 namespace CartoMobileSample
 {
 	[Activity]
+	[ActivityDescription(Description = "")]
 	public class OnlineMap : BaseMapActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
