@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace CartoMobileSample
-{
+{  
 	public class Samples
 	{
 		public const string IntentName = "INTENTNAME";
