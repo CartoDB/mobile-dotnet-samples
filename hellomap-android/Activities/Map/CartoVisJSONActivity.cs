@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Android.App;
 using Android.OS;
@@ -17,6 +18,7 @@ using Carto.VectorElements;
 namespace CartoMobileSample
 {
 	[Activity]
+	[ActivityDescription(Description = "Test Description")]
 	public class CartoVisJSONActivity : BaseMapActivity
 	{
 		const string _base = "https://documentation.cartodb.com/api/v2/viz/";
@@ -40,7 +42,8 @@ namespace CartoMobileSample
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
-			foreach (KeyValuePair<string, string> item in items) {
+			foreach (KeyValuePair<string, string> item in items)
+			{
 				menu.Add(item.Key);
 			}
 
@@ -50,6 +53,10 @@ namespace CartoMobileSample
 		public override bool OnMenuItemSelected(int featureId, IMenuItem item)
 		{
 			Console.WriteLine(featureId + " - " + item);
+
+			if (item.ItemId == Android.Resource.Id.Home) {
+				return base.OnMenuItemSelected(featureId, item);
+			}
 
 			string key = item.TitleFormatted.ToString();
 			string url = items[key];

@@ -66,6 +66,7 @@
     <Compile Include="Samples.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Activities\Map\CartoVisJSONActivity.cs" />
+    <Compile Include="Activities\ActivityDescription.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

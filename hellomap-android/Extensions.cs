@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CartoMobileSample
 {
-	public static class Extensions
+	static class Extensions
 	{
 		public static string[] ToStringArray(this List<Type> list)
 		{
@@ -15,6 +16,19 @@ namespace CartoMobileSample
 			}
 
 			return sampleNames;
+		}
+
+		public static string Description(this Type type)
+		{
+			try
+			{
+				IEnumerable<System.Reflection.CustomAttributeData> list = typeof(CartoVisJSONActivity).CustomAttributes;
+				string description = (string)list.ToList()[1].NamedArguments[0].TypedValue.Value;
+
+				return description;
+			} catch {
+				return "";
+			}
 		}
 	}
 }
