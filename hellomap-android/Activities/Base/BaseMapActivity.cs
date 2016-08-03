@@ -47,13 +47,8 @@ namespace CartoMobileSample
 			Title = Intent.GetStringExtra(Samples.IntentName);
 
 			// Hide Back in MainActivity
-			if (this.GetType() == typeof(LauncherListActivity))
-			{
-				ActionBar.SetDisplayHomeAsUpEnabled(false);
-			}
-			else {
-				ActionBar.SetDisplayHomeAsUpEnabled(true);
-			}
+
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
 		}
 
 		public override bool OnOptionsItemSelected(IMenuItem item)
