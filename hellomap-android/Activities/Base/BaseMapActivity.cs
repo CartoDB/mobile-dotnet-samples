@@ -46,8 +46,6 @@ namespace CartoMobileSample
 			// Set Activity Title. Was passed from parent;
 			Title = Intent.GetStringExtra(Samples.IntentName);
 
-			// Hide Back in MainActivity
-
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 		}
 

@@ -9,6 +9,7 @@ namespace CartoMobileSample
 
 		// List of demo activities
 		static List<Type> List = new List<Type>(new Type[] {
+			typeof (CartoVisJSONActivity),
 			typeof (ClusteredGeoJSONCaptitals),
 			typeof (GpsLocationMap),
 			typeof (MapOverlays),
