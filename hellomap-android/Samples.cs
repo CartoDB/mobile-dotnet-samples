@@ -17,6 +17,7 @@ namespace CartoMobileSample
 			typeof (OfflineRouting),
 			typeof (OnlineMap),
 			typeof (PinMapActivity),
+			typeof (PackageManagerActivity),
 			typeof (RasterOverlayActivity)
 		});
 

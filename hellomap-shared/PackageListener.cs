@@ -1,30 +1,51 @@
 ﻿using Carto.PackageManager;
 using Carto.Utils;
+using System;
 
 namespace CartoMobileSample
 {
-
 	public class PackageListener : PackageManagerListener
 	{
-		PackageManager _packageManager;
-		string _downloadedPackage;
+		public EventHandler OnPackageListUpdate;
+
+		public PackageManager PackageManager { get; set; }
+
+		public string DownloadedPackage { get; set; }
+
+		public PackageListener()
+		{
+			
+		}
+
+		public PackageListener(PackageManager manager)
+		{
+			PackageManager = manager;
+		}
 
 		public PackageListener (PackageManager packageManager, string downloadedPackage)
 		{
-			_packageManager = packageManager;
-			_downloadedPackage = downloadedPackage;
+			PackageManager = packageManager;
+			DownloadedPackage = downloadedPackage;
 		}
 
 		public override void OnPackageListUpdated ()
 		{
 			// called when package list is downloaded
 			// now you can start downloading packages
-			Log.Debug ("OnPackageListUpdated");
+			Console.WriteLine("!!!!!!!! ONPACKAGELISTUPDATED");
+
+			if (OnPackageListUpdate != null) {
+				OnPackageListUpdate(this, EventArgs.Empty);	
+			}
+
+			if (DownloadedPackage == null) {
+				return;
+			}
 
 			// to make sure that package list is updated, full package download is called here
-			if (_packageManager.GetLocalPackage(_downloadedPackage) == null)
+			if (PackageManager.GetLocalPackage(DownloadedPackage) == null)
 			{
-				_packageManager.StartPackageDownload(_downloadedPackage);
+				PackageManager.StartPackageDownload(DownloadedPackage);
 			}
 		}
 
@@ -59,4 +80,43 @@ namespace CartoMobileSample
 			Log.Debug ("OnPackageFailed: " + errorType);
 		}
 	}
+
+	// TODO UPCOMING FUNCTIONALITY IN PACKAGEMANAGERACTIVITY:
+
+	//public class PackageListener : PackageManagerListener
+	//{
+
+	//	public override void OnPackageListUpdated()
+	//	{
+	//		updatePackages();
+	//	}
+
+	//	public override void OnPackageListFailed()
+	//	{
+	//		updatePackages();
+	//		displayToast("Failed to download package list");
+	//	}
+
+	//	public override void OnPackageStatusChanged(String id, int version, PackageStatus status)
+	//	{
+	//		updatePackage(id);
+	//	}
+
+	//	public override void onPackageCancelled(String id, int version)
+	//	{
+	//		updatePackage(id);
+	//	}
+
+	//	public void onPackageUpdated(String id, int version)
+	//	{
+	//		updatePackage(id);
+	//	}
+
+	//	public override void OnPackageFailed(String id, int version, PackageErrorType errorType)
+	//	{
+	//		updatePackage(id);
+	//		displayToast("Failed to download package " + id + "/" + version + ": " + errorType);
+	//	}
+	//}
+
 }

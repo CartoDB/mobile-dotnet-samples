@@ -159,7 +159,7 @@ namespace CartoMobileSample
 			MapView.Layers.Insert(0, BaseLayer);
 		}
 
-		protected TileDataSource CreateTileDataSource()
+		protected virtual TileDataSource CreateTileDataSource()
 		{
 			TileDataSource vectorTileDataSource = new CartoOnlineTileDataSource("nutiteq.osm");
 

@@ -42,6 +42,11 @@ namespace CartoMobileSample
 			}
 		}
 
+		public static long ToLong(this ulong ulongValue)
+		{
+			return (long)ulongValue;
+		}
+
 	}
 }
 

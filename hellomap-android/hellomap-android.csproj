@@ -68,11 +68,14 @@
     <Compile Include="Activities\Map\CartoVisJSONActivity.cs" />
     <Compile Include="Activities\ActivityDescription.cs" />
     <Compile Include="Views\MapRowView.cs" />
-    <Compile Include="MapListAdapter.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Activities\Base\VectorBaseMapActivity.cs" />
     <Compile Include="Activities\Map\PinMapActivity.cs" />
     <Compile Include="Activities\Map\RasterOverlayActivity.cs" />
+    <Compile Include="Adapters\MapListAdapter.cs" />
+    <Compile Include="Adapters\PackageManagerAdapter.cs" />
+    <Compile Include="Activities\Base\PackageManagerActivity.cs" />
+    <Compile Include="Activities\Map\PackagedMapActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -96,6 +99,7 @@
     <AndroidResource Include="Resources\drawable-nodpi\olmarker.png" />
     <AndroidResource Include="Resources\layout\MainGPS.axml" />
     <AndroidResource Include="Resources\drawable-nodpi\marker.png" />
+    <AndroidResource Include="Resources\layout\package_item_row.xml" />
   </ItemGroup>
   <Import Project="..\hellomap-shared\hellomap-shared.projitems" Label="Shared" Condition="Exists('..\hellomap-shared\hellomap-shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
@@ -115,5 +119,6 @@
     <Folder Include="Activities\Map\" />
     <Folder Include="Activities\Base\" />
     <Folder Include="Views\" />
+    <Folder Include="Adapters\" />
   </ItemGroup>
 </Project>

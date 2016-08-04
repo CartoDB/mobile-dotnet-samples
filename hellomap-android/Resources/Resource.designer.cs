@@ -81,6 +81,18 @@ namespace HelloMap
 			// aapt resource value: 0x7f050000
 			public const int mapView = 2131034112;
 			
+			// aapt resource value: 0x7f050005
+			public const int package_action = 2131034117;
+			
+			// aapt resource value: 0x7f050002
+			public const int package_item_row = 2131034114;
+			
+			// aapt resource value: 0x7f050003
+			public const int package_name = 2131034115;
+			
+			// aapt resource value: 0x7f050004
+			public const int package_status = 2131034116;
+			
 			// aapt resource value: 0x7f050001
 			public const int textViewMessage = 2131034113;
 			
@@ -105,6 +117,9 @@ namespace HelloMap
 			
 			// aapt resource value: 0x7f030002
 			public const int MainGPS = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int package_item_row = 2130903043;
 			
 			static Layout()
 			{
