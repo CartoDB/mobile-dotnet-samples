@@ -152,24 +152,23 @@ namespace CartoMobileSample
 		void InitializeLocationManager()
 		{
 			_locationManager = (LocationManager)GetSystemService(LocationService);
-			Criteria criteriaForLocationService = new Criteria
-			{
-				Accuracy = Accuracy.Coarse
-			};
 
-			IList<string> acceptableLocationProviders = _locationManager.GetProviders(criteriaForLocationService, true);
+			Criteria criteria = new Criteria { Accuracy = Accuracy.Coarse };
+			IList<string> acceptableProviders = _locationManager.GetProviders(criteria, true);
 
-			if (acceptableLocationProviders.Any())
+			if (acceptableProviders.Any())
 			{
-				_locationProvider = acceptableLocationProviders.First();
-				_textViewMessage.Visibility = ViewStates.Visible;
+				_locationProvider = acceptableProviders.First();
+				_locationManager.RequestLocationUpdates(_locationProvider, 1000, 50, this);
+
 				_textViewMessage.Text = "Using location provider: " + _locationProvider;
 			}
 			else
 			{
-				_locationProvider = String.Empty;
-				_textViewMessage.Visibility = ViewStates.Visible;
+				_locationProvider = string.Empty;
 			}
+
+			_textViewMessage.Visibility = ViewStates.Visible;
 		}
 
 		/// <Docs>The new location, as a Location object.</Docs>
@@ -189,6 +188,49 @@ namespace CartoMobileSample
 			{
 				LocationFound(location);
 			}
+		}
+
+		/// <Docs>the name of the location provider associated with this
+		///  update.</Docs>
+		/// <remarks>Called when the provider is disabled by the user. If requestLocationUpdates
+		///  is called on an already disabled provider, this method is called
+		///  immediately.</remarks>
+		/// <format type="text/html">[Android Documentation]</format>
+		/// <since version="Added in API level 1"></since>
+		/// <summary>
+		/// Raises the provider disabled event.
+		/// </summary>
+		/// <param name="provider">Provider.</param>
+		public void OnProviderDisabled(string provider)
+		{
+			System.Console.WriteLine("OnProviderDisabled");
+		}
+
+		/// <Docs>the name of the location provider associated with this
+		///  update.</Docs>
+		/// <remarks>Called when the provider is enabled by the user.</remarks>
+		/// <format type="text/html">[Android Documentation]</format>
+		/// <since version="Added in API level 1"></since>
+		/// <summary>
+		/// Raises the provider enabled event.
+		/// </summary>
+		/// <param name="provider">Provider.</param>
+		public void OnProviderEnabled(string provider)
+		{
+			System.Console.WriteLine("OnProviderEnabled");
+		}
+
+		/// <Docs>the name of the location provider associated with this
+		///  update.</Docs>
+		/// <summary>
+		/// Raises the status changed event.
+		/// </summary>
+		/// <param name="provider">Provider.</param>
+		/// <param name="status">Status.</param>
+		/// <param name="extras">Extras.</param>
+		public void OnStatusChanged(string provider, Availability status, Bundle extras)
+		{
+			System.Console.WriteLine("OnStatusChanged");
 		}
 
 		/// <summary>
@@ -222,48 +264,6 @@ namespace CartoMobileSample
 			_textViewMessage.Visibility = ViewStates.Visible;
 		}
 
-		/// <Docs>the name of the location provider associated with this
-		///  update.</Docs>
-		/// <remarks>Called when the provider is disabled by the user. If requestLocationUpdates
-		///  is called on an already disabled provider, this method is called
-		///  immediately.</remarks>
-		/// <format type="text/html">[Android Documentation]</format>
-		/// <since version="Added in API level 1"></since>
-		/// <summary>
-		/// Raises the provider disabled event.
-		/// </summary>
-		/// <param name="provider">Provider.</param>
-		public void OnProviderDisabled(string provider)
-		{
-
-		}
-
-		/// <Docs>the name of the location provider associated with this
-		///  update.</Docs>
-		/// <remarks>Called when the provider is enabled by the user.</remarks>
-		/// <format type="text/html">[Android Documentation]</format>
-		/// <since version="Added in API level 1"></since>
-		/// <summary>
-		/// Raises the provider enabled event.
-		/// </summary>
-		/// <param name="provider">Provider.</param>
-		public void OnProviderEnabled(string provider)
-		{
-
-		}
-
-		/// <Docs>the name of the location provider associated with this
-		///  update.</Docs>
-		/// <summary>
-		/// Raises the status changed event.
-		/// </summary>
-		/// <param name="provider">Provider.</param>
-		/// <param name="status">Status.</param>
-		/// <param name="extras">Extras.</param>
-		public void OnStatusChanged(string provider, Availability status, Bundle extras)
-		{
-
-		}
 	}
 }
 
