@@ -154,12 +154,13 @@ namespace CartoMobileSample
 			_locationManager = (LocationManager)GetSystemService(LocationService);
 
 			Criteria criteria = new Criteria { Accuracy = Accuracy.Coarse };
+
 			IList<string> acceptableProviders = _locationManager.GetProviders(criteria, true);
 
-			if (acceptableProviders.Any())
+			if (acceptableProviders.Contains("gps"))
 			{
-				_locationProvider = acceptableProviders.First();
-				_locationManager.RequestLocationUpdates(_locationProvider, 1000, 50, this);
+				_locationProvider = acceptableProviders[0];
+				_locationManager.RequestLocationUpdates(_locationProvider, 0, 0, this);
 
 				_textViewMessage.Text = "Using location provider: " + _locationProvider;
 			}
