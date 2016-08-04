@@ -35,7 +35,7 @@ namespace CartoMobileSample
 			titleView.SetTextColor(nearWhite);
 
 			descriptionView = new TextView(context);
-			descriptionView.SetTypeface(Typeface.Create("sans-serif-light", TypefaceStyle.Bold), TypefaceStyle.Bold);
+			descriptionView.SetTypeface(Typeface.Create("sans-serif-thin", TypefaceStyle.Bold), TypefaceStyle.Bold);
 			descriptionView.SetTextSize(Android.Util.ComplexUnitType.Dip, 10);
 			descriptionView.SetTextColor(nearWhite);
 
