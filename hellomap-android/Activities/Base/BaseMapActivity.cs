@@ -25,6 +25,7 @@ namespace CartoMobileSample
 
 		protected MapView MapView { get; set; }
 		internal Projection BaseProjection { get; set; }
+		protected TileLayer BaseLayer { get; set; }
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{

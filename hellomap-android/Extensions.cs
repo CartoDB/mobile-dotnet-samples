@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Java.Lang;
 
 namespace CartoMobileSample
 {
@@ -16,6 +17,11 @@ namespace CartoMobileSample
 			}
 
 			return sampleNames;
+		}
+
+		public static ICharSequence ToCharSequence(this string text)
+		{
+			return new Java.Lang.String(text);
 		}
 
 		public static string GetTitle(this Type type)
@@ -35,6 +41,7 @@ namespace CartoMobileSample
 				return "";
 			}
 		}
+
 	}
 }
 

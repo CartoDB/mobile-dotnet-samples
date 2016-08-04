@@ -70,6 +70,7 @@
     <Compile Include="Views\MapRowView.cs" />
     <Compile Include="MapListAdapter.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="Activities\Base\VectorBaseMapActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -102,6 +103,8 @@
     <AndroidAsset Include="Assets\fcd_auto.nml" />
     <AndroidAsset Include="Assets\nutibright-v2a.zip" />
     <AndroidAsset Include="Assets\nutiteq-dark.zip" />
+    <AndroidAsset Include="Assets\looseleaf.zip" />
+    <AndroidAsset Include="Assets\basic.zip" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
