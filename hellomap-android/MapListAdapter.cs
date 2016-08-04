@@ -74,7 +74,7 @@ namespace CartoMobileSample
 			}
 
 
-			view.LayoutParameters = new RelativeLayout.LayoutParams(parent.Width, RowHeight);
+			view.LayoutParameters = new AbsListView.LayoutParams(parent.Width, RowHeight);
 			view.Update(item);
 
 			return view;
