@@ -26,7 +26,7 @@ namespace CartoMobileSample
 
 		public static string GetTitle(this Type type)
 		{
-			return type.Name;
+			return type.Name.Replace("Activity", "");
 		}
 
 		public static string GetDescription(this Type type)

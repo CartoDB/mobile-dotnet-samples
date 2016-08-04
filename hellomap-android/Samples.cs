@@ -12,10 +12,9 @@ namespace CartoMobileSample
 			typeof (CartoVisJSONActivity),
 			typeof (ClusteredGeoJSONCapitals),
 			typeof (GpsLocationMap),
-			typeof (MapOverlays),
-			typeof (OfflineMap),
+			typeof (Overlays2DActivity),
+			typeof (OfflineVectorMapActivity),
 			typeof (OfflineRouting),
-			typeof (OnlineMap),
 			typeof (PinMapActivity),
 			typeof (PackageManagerActivity),
 			typeof (RasterOverlayActivity)

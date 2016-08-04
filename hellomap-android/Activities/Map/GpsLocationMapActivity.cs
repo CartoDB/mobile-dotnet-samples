@@ -19,8 +19,10 @@ using Carto.Ui;
 
 namespace CartoMobileSample
 {
-	[Activity]
-	[ActivityDescription(Description = "")]
+	[Activity]//MyLocationActivity
+	[ActivityDescription(Description = 
+	                     "Shows user GPS location on map. " +
+	                     "Make sure your app has location permission in Manifest file")]
 	public class GpsLocationMap : BaseMapActivity, ILocationListener
 	{
 		/// <summary>

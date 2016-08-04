@@ -13,6 +13,10 @@ using Java.IO;
 namespace CartoMobileSample
 {
 	[Activity]
+	[ActivityDescription(Description =
+						 "A sample demonstrating how to use offline package manager of the Carto Mobile SDK. " +
+	                     "The sample downloads the latest package list from Carto online service, " +
+	                     "displays this list and allows user to manage offline packages")]
 	public class PackageManagerActivity : ListActivity
 	{
 		const string License = "XTUN3Q0ZBd2NtcmFxbUJtT1h4QnlIZ2F2ZXR0Mi9TY2JBaFJoZDNtTjUvSjJLay9aNUdSVjdnMnJwV" +

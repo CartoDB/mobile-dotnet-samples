@@ -6,8 +6,11 @@ using Android.App;
 namespace CartoMobileSample
 {
 	[Activity]
-	[ActivityDescription(Description = "")]
-	public class OfflineMap: BaseMapActivity
+	[ActivityDescription(Description = 
+	                     "A sample that uses bundled asset for offline base map. " +
+	                     "As MBTilesDataSource can be used only with files residing in file system, " +
+	                     "the assets needs to be copied first to the SDCard.")]
+	public class OfflineVectorMapActivity: VectorBaseMapActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
@@ -39,6 +42,12 @@ namespace CartoMobileSample
 			// decice what to download offline
 			var toBeDownloaded = downloadId;
 			MapSetup.InitializePackageManager(packageFolder.AbsolutePath, importPackagePath, MapView, toBeDownloaded);
+		}
+
+		protected override Carto.DataSources.TileDataSource CreateTileDataSource()
+		{
+			//TODO NEWER FILES
+			return base.CreateTileDataSource();
 		}
 	}
 }
