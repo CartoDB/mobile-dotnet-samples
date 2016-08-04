@@ -19,7 +19,7 @@ using Carto.Ui;
 
 namespace CartoMobileSample
 {
-	[Activity (Label = "GPS Location Map")]			
+	[Activity]
 	public class GpsLocationMap : BaseMapActivity, ILocationListener
 	{
 
@@ -53,113 +53,115 @@ namespace CartoMobileSample
 		private Marker _currentPositionMarker;
 		private BalloonPopup _currentPositionMarkerLabel;
 
-		protected override void OnCreate (Android.OS.Bundle bundle)
+		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate (bundle);
+			base.OnCreate(savedInstanceState);
 
 			// Set our view from the "mainGPS" layout resource, reload MapView
-			SetContentView ( Resource.Layout.MainGPS);
-			mapView = (MapView)FindViewById (Resource.Id.mapView);
+			SetContentView(Resource.Layout.MainGPS);
+			MapView = (MapView)FindViewById(Resource.Id.mapView);
 
 			// Set online base layer
 			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");
 			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
-			mapView.Layers.Add(baseLayer);
+			MapView.Layers.Add(baseLayer);
 
-			// bind the textViewMessage
-			_textViewMessage = FindViewById<TextView> ( Resource.Id.textViewMessage );
+			// Bind the textViewMessage
+			_textViewMessage = FindViewById<TextView>(Resource.Id.textViewMessage);
 
 			// create layer and add object to the layer, finally add layer to the map. 
 			// All overlay layers must be same projection as base layer, so we reuse it
-			_markerDataSource = new LocalVectorDataSource (mapView.Options.BaseProjection);
-			var _markerLayer = new VectorLayer (_markerDataSource);
-			mapView.Layers.Add (_markerLayer);
+			_markerDataSource = new LocalVectorDataSource(MapView.Options.BaseProjection);
+			var _markerLayer = new VectorLayer(_markerDataSource);
+			MapView.Layers.Add(_markerLayer);
 
-			// inizialize the location manager to get the current position
-			InitializeLocationManager ();
+			// Initialize the location manager to get the current position
+			InitializeLocationManager();
 
 		}
 
-		protected override void OnPause ()
+		protected override void OnPause()
 		{
-			base.OnPause ();
+			base.OnPause();
 
-			// remove the update of the position to save battery
-			if ( ( _locationManager != null ) && ( !String.IsNullOrEmpty ( _locationProvider ) ) ) 
+			// Remove the update of the position to save battery
+			if ((_locationManager != null) && (!String.IsNullOrEmpty(_locationProvider)))
 			{
 				_locationManager.RemoveUpdates(this);
 			}
 
 		}
 
-		protected override void OnResume ()
+		protected override void OnResume()
 		{
-			base.OnResume ();
+			base.OnResume();
 
-			// request updated position
-			if ( ( _locationManager != null ) && (!String.IsNullOrEmpty ( _locationProvider ) ) ) 
+			// Request updated position
+			if ((_locationManager != null) && (!String.IsNullOrEmpty(_locationProvider)))
 			{
-				_locationManager.RequestLocationUpdates ( _locationProvider, 0, 0, this );
+				_locationManager.RequestLocationUpdates(_locationProvider, 0, 0, this);
 			}
 		}
 
-		void AddMarker ( string currentPositionTitle, string currentPositionSubtitle, float latitude, float longitude )
+		void AddMarker(string currentPositionTitle, string currentPositionSubtitle, float latitude, float longitude)
 		{
 
 			// Define the location of the marker, it must be converted to base map coordinate system
-			MapPos currentLocation = mapView.Options.BaseProjection.FromWgs84 ( new MapPos(longitude, latitude) );
+			MapPos currentLocation = MapView.Options.BaseProjection.FromWgs84(new MapPos(longitude, latitude));
 
-			// load default market style
+			// Load default market style
 			MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
 
-			// add the label to the Marker
-			_currentPositionMarker = new Marker ( currentLocation, markerStyleBuilder.BuildStyle());
+			// Add the label to the Marker
+			_currentPositionMarker = new Marker(currentLocation, markerStyleBuilder.BuildStyle());
 
 			// Define label what is shown when you click on marker, with default style
 			var balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
-			_currentPositionMarkerLabel = new BalloonPopup (_currentPositionMarker, balloonPopupStyleBuilder.BuildStyle(), currentPositionTitle, currentPositionSubtitle );
-					
-			// add the marker and label to the layer
-			_markerDataSource.Add ( _currentPositionMarker );
-			_markerDataSource.Add ( _currentPositionMarkerLabel );
+			_currentPositionMarkerLabel = new BalloonPopup(_currentPositionMarker, balloonPopupStyleBuilder.BuildStyle(), currentPositionTitle, currentPositionSubtitle);
 
-			//center the map in the current location
-			mapView.FocusPos = currentLocation;
+			// Add the marker and label to the layer
+			_markerDataSource.Add(_currentPositionMarker);
+			_markerDataSource.Add(_currentPositionMarkerLabel);
 
-			//zoom in the map in the current location
-			mapView.Zoom = 19f;
+			// Center the map in the current location
+			MapView.FocusPos = currentLocation;
+
+			// Zoom in the map in the current location
+			MapView.Zoom = 19f;
 		}
 
-		void UpdateMarker ( string myPosition, string subtitle, float latitude, float longitude )
+		void UpdateMarker(string myPosition, string subtitle, float latitude, float longitude)
 		{
-			if (!_markerAdded) {
-				AddMarker (myPosition, subtitle, latitude, longitude);
+			if (!_markerAdded)
+			{
+				AddMarker(myPosition, subtitle, latitude, longitude);
 				_markerAdded = true;
-			} else {
+			}
+			else {
 				_currentPositionMarkerLabel.Title = myPosition;
 				_currentPositionMarkerLabel.Description = subtitle;
-				_currentPositionMarker.Geometry = new PointGeometry(mapView.Options.BaseProjection.FromWgs84 (new MapPos(longitude, latitude)));
+				_currentPositionMarker.Geometry = new PointGeometry(MapView.Options.BaseProjection.FromWgs84(new MapPos(longitude, latitude)));
 			}
 		}
 
 		/// <summary>
 		/// Initializes the location manager.
 		/// </summary>
-		void InitializeLocationManager ()
+		void InitializeLocationManager()
 		{
-			_locationManager = (LocationManager)GetSystemService ( LocationService );
+			_locationManager = (LocationManager)GetSystemService(LocationService);
 			Criteria criteriaForLocationService = new Criteria
 			{
 				Accuracy = Accuracy.Coarse
 			};
 
-			IList<string> acceptableLocationProviders = _locationManager.GetProviders ( criteriaForLocationService, true );
+			IList<string> acceptableLocationProviders = _locationManager.GetProviders(criteriaForLocationService, true);
 
-			if ( acceptableLocationProviders.Any () )
+			if (acceptableLocationProviders.Any())
 			{
-				_locationProvider = acceptableLocationProviders.First ();
+				_locationProvider = acceptableLocationProviders.First();
 				_textViewMessage.Visibility = ViewStates.Visible;
-				_textViewMessage.Text = "Using location provider: "+_locationProvider;
+				_textViewMessage.Text = "Using location provider: " + _locationProvider;
 			}
 			else
 			{
@@ -174,16 +176,16 @@ namespace CartoMobileSample
 		/// Raises the location changed event.
 		/// </summary>
 		/// <param name="location">Location.</param>
-		public void OnLocationChanged ( Location location )
+		public void OnLocationChanged(Location location)
 		{
 			_currentLocation = location;
-			if ( _currentLocation == null )
+			if (_currentLocation == null)
 			{
-				LocationNotFound ();
+				LocationNotFound();
 			}
 			else
-			{   
-				LocationFound ( location );
+			{
+				LocationFound(location);
 			}
 		}
 
@@ -191,28 +193,28 @@ namespace CartoMobileSample
 		/// Add a marker in the map when a new location is found.
 		/// </summary>
 		/// <param name="location">Location.</param>
-		void LocationFound ( Location location )
+		void LocationFound(Location location)
 		{
-			string title = String.Format ("Location from '{0}'", location.Provider);
-			string subtitle = String.Format ("lat:{0} lon:{1}", location.Latitude, location.Longitude);
+			string title = string.Format("Location from '{0}'", location.Provider);
+			string subtitle = string.Format("lat:{0} lon:{1}", location.Latitude, location.Longitude);
 
-			if(location.HasAccuracy)
-				subtitle += String.Format("\naccuracy: {0} m",location.Accuracy);
-			if(location.HasAltitude)
-				subtitle += String.Format("\naltitude {0} m",location.Altitude);
-			if(location.HasSpeed)
-				subtitle += String.Format("\nspeed: {0} m/s",location.Speed);
-			if(location.HasBearing)
-				subtitle += String.Format("\nbearing: {0}",location.Bearing);
-			
-			
-			UpdateMarker (title, subtitle, (float)location.Latitude, (float)location.Longitude );
+			if (location.HasAccuracy)
+				subtitle += string.Format("\naccuracy: {0} m", location.Accuracy);
+			if (location.HasAltitude)
+				subtitle += string.Format("\naltitude {0} m", location.Altitude);
+			if (location.HasSpeed)
+				subtitle += string.Format("\nspeed: {0} m/s", location.Speed);
+			if (location.HasBearing)
+				subtitle += string.Format("\nbearing: {0}", location.Bearing);
+
+
+			UpdateMarker(title, subtitle, (float)location.Latitude, (float)location.Longitude);
 		}
 
 		/// <summary>
 		/// Locations not found behaviour.
 		/// </summary>
-		void LocationNotFound ()
+		void LocationNotFound()
 		{
 			// the error message appears o the screen
 			_textViewMessage.Visibility = ViewStates.Visible;
@@ -229,7 +231,7 @@ namespace CartoMobileSample
 		/// Raises the provider disabled event.
 		/// </summary>
 		/// <param name="provider">Provider.</param>
-		public void OnProviderDisabled ( string provider )
+		public void OnProviderDisabled(string provider)
 		{
 
 		}
@@ -243,7 +245,7 @@ namespace CartoMobileSample
 		/// Raises the provider enabled event.
 		/// </summary>
 		/// <param name="provider">Provider.</param>
-		public void OnProviderEnabled ( string provider )
+		public void OnProviderEnabled(string provider)
 		{
 
 		}
@@ -256,7 +258,7 @@ namespace CartoMobileSample
 		/// <param name="provider">Provider.</param>
 		/// <param name="status">Status.</param>
 		/// <param name="extras">Extras.</param>
-		public void OnStatusChanged ( string provider, Availability status, Bundle extras )
+		public void OnStatusChanged(string provider, Availability status, Bundle extras)
 		{
 
 		}

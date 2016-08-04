@@ -6,8 +6,8 @@ namespace CartoMobileSample
 
 	public class PackageListener : PackageManagerListener
 	{
-		private PackageManager _packageManager;
-		private string _downloadedPackage;
+		PackageManager _packageManager;
+		string _downloadedPackage;
 
 		public PackageListener (PackageManager packageManager, string downloadedPackage)
 		{

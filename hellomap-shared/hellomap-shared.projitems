@@ -13,5 +13,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)PackageListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapSetup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VectorElementListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MyClusterElementBuilder.cs" />
   </ItemGroup>
 </Project>

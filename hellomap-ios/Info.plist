@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>hellomap-ios</string>
+	<string>hellomap-xamarin</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -44,5 +44,7 @@
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.nutiteq.hellomap.xamarin</string>
+	<key>CFBundleName</key>
+	<string>hellomap-xamarin</string>
 </dict>
 </plist>

@@ -55,14 +55,16 @@
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LauncherListActivity.cs" />
-    <Compile Include="BaseMapActivity.cs" />
-    <Compile Include="OfflineMap.cs" />
-    <Compile Include="OnlineMap.cs" />
-    <Compile Include="ClusteredGeoJSONCaptitals.cs" />
-    <Compile Include="MapOverlays.cs" />
-    <Compile Include="GpsLocationMap.cs" />
-    <Compile Include="OfflineRouting.cs" />
+    <Compile Include="Activities\Base\BaseMapActivity.cs" />
+    <Compile Include="Activities\Base\LauncherListActivity.cs" />
+    <Compile Include="Activities\Map\ClusteredGeoJSONCaptitals.cs" />
+    <Compile Include="Activities\Map\GpsLocationMap.cs" />
+    <Compile Include="Activities\Map\MapOverlays.cs" />
+    <Compile Include="Activities\Map\OfflineMap.cs" />
+    <Compile Include="Activities\Map\OfflineRouting.cs" />
+    <Compile Include="Activities\Map\OnlineMap.cs" />
+    <Compile Include="Samples.cs" />
+    <Compile Include="Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -97,4 +99,9 @@
     <AndroidAsset Include="Assets\nutiteq-dark.zip" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Activities\" />
+    <Folder Include="Activities\Map\" />
+    <Folder Include="Activities\Base\" />
+  </ItemGroup>
 </Project>

@@ -35,7 +35,7 @@ namespace CartoMobileSample
 			Carto.Utils.Log.ShowError = true;
 			Carto.Utils.Log.ShowWarn = true;
 			Carto.Utils.Log.ShowDebug = true;
-			Carto.Ui.MapView.RegisterLicense("XTUM0Q0ZRQytoU2xnd0MrZ2kvV0VhUmlWVGYxK0xsbDJNd0lWQUt6Z245R1F5NW95RXJ5WndoejBNcGpDdGpSZgoKcHJvZHVjdHM9c2RrLXhhbWFyaW4taW9zLTMuKgpidW5kbGVJZGVudGlmaWVyPWNvbS5udXRpdGVxLmhlbGxvbWFwLnhhbWFyaW4Kd2F0ZXJtYXJrPW51dGl0ZXEKdXNlcktleT0yYTllOWY3NDYyY2VmNDgxYmUyYThjMTI2MWZlNmNiZAo=");
+			Carto.Ui.MapView.RegisterLicense("XTUMwQ0ZRQzRzK205Z1VnTll2ZWZRTDJBK20wSXk2ZjRqQUlVV0VmN2l4Vm95dHFQQ3dLNUY2UC8rNVplQ2RvPQoKcHJvZHVjdHM9c2RrLXhhbWFyaW4taW9zLTQuKgpidW5kbGVJZGVudGlmaWVyPWNvbS5udXRpdGVxLmhlbGxvbWFwLnhhbWFyaW4Kd2F0ZXJtYXJrPWNhcnRvZGIKdmFsaWRVbnRpbD0yMDE2LTA5LTAyCm9ubGluZUxpY2Vuc2U9MQo=");
 
 
 			// Create package manager folder (Platform-specific)

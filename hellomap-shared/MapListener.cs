@@ -11,7 +11,7 @@ namespace CartoMobileSample
 
 	public class MapListener : MapEventListener
 	{
-		private LocalVectorDataSource _dataSource;
+		LocalVectorDataSource _dataSource;
 
 		public MapListener(LocalVectorDataSource dataSource)
 		{
@@ -29,6 +29,7 @@ namespace CartoMobileSample
 
 		public override void OnMapMoved()
 		{
+			
 		}
 	}
 }
