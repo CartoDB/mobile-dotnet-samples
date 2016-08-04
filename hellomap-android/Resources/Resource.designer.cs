@@ -60,7 +60,10 @@ namespace HelloMap
 			public const int Icon = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int olmarker = 2130837509;
+			public const int marker = 2130837509;
+			
+			// aapt resource value: 0x7f020006
+			public const int olmarker = 2130837510;
 			
 			static Drawable()
 			{

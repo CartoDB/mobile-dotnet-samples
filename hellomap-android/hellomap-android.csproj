@@ -71,6 +71,7 @@
     <Compile Include="MapListAdapter.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Activities\Base\VectorBaseMapActivity.cs" />
+    <Compile Include="Activities\Map\PinMapActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -93,6 +94,7 @@
     <AndroidResource Include="Resources\drawable-nodpi\direction_upthenright.png" />
     <AndroidResource Include="Resources\drawable-nodpi\olmarker.png" />
     <AndroidResource Include="Resources\layout\MainGPS.axml" />
+    <AndroidResource Include="Resources\drawable-nodpi\marker.png" />
   </ItemGroup>
   <Import Project="..\hellomap-shared\hellomap-shared.projitems" Label="Shared" Condition="Exists('..\hellomap-shared\hellomap-shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
