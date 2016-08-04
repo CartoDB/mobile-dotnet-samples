@@ -8,9 +8,27 @@ namespace CartoMobileSample
 {
 	public class MapListAdapter : BaseAdapter<string>
 	{
+		const int MINHEIGHT = 200;
+
+		int rowHeight;
+
 		int RowHeight {
 			get {
-				return context.Resources.DisplayMetrics.HeightPixels / 9;
+				if (rowHeight == 0)
+				{
+					int screenHeight = context.Resources.DisplayMetrics.HeightPixels;
+					int desiredHeight = screenHeight / 9;
+
+					if (desiredHeight < MINHEIGHT)
+					{
+						rowHeight = MINHEIGHT;
+					}
+					else {
+						rowHeight = desiredHeight;
+					}
+				}
+
+				return rowHeight;
 			}
 		}
 
@@ -54,6 +72,7 @@ namespace CartoMobileSample
 			{
 				view = new MapRowView(context);
 			}
+
 
 			view.LayoutParameters = new RelativeLayout.LayoutParams(parent.Width, RowHeight);
 			view.Update(item);

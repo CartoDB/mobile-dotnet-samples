@@ -20,7 +20,6 @@ namespace CartoMobileSample
 	[Activity]
 	[ActivityDescription(Description = 
 	                     "A sample demonstrating how to use high level Carto VisJSON API to display interactive maps. " +
-	                     "A list of different vis-json URLs can be selected from the menu. " +
 	                     "CartoVisLoader class is used to load and configure all corresponding layers.")]
 	public class CartoVisJSONActivity : BaseMapActivity
 	{

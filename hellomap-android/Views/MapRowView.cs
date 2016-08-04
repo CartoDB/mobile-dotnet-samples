@@ -27,21 +27,20 @@ namespace CartoMobileSample
 
 		public MapRowView(Context context) : base (context)
 		{
+			Color nearWhite = Color.Rgb(240, 240, 240);
+
 			titleView = new TextView(context);
 			titleView.SetTypeface(Typeface.Create("sans-serif-light", TypefaceStyle.Bold), TypefaceStyle.Bold);
 			titleView.SetTextSize(Android.Util.ComplexUnitType.Dip, 15);
-			titleView.SetTextColor(Color.DarkGray);
+			titleView.SetTextColor(nearWhite);
 
 			descriptionView = new TextView(context);
 			descriptionView.SetTypeface(Typeface.Create("sans-serif-light", TypefaceStyle.Bold), TypefaceStyle.Bold);
 			descriptionView.SetTextSize(Android.Util.ComplexUnitType.Dip, 10);
-			descriptionView.SetTextColor(Color.DarkGray);
+			descriptionView.SetTextColor(nearWhite);
 
 			AddView(titleView);
 			AddView(descriptionView);
-
-			Color nearWhite = Color.Rgb(240, 240, 240);
-			SetBackgroundColor(nearWhite);
 		}
 
 		public void Update(Type type)

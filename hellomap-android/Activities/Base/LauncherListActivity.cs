@@ -29,9 +29,6 @@ namespace CartoMobileSample
 
 			SetContentView(Resource.Layout.List);
 
-			int id = Android.Resource.Layout.SimpleListItem1;
-
-			//ListView.Adapter = new ArrayAdapter<string>(this, id, Samples.AsStringArray);
 			ListView.Adapter = new MapListAdapter(this, Samples.List);
 		}
 
