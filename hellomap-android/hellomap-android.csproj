@@ -72,6 +72,7 @@
     <Compile Include="Context.cs" />
     <Compile Include="Activities\Base\VectorBaseMapActivity.cs" />
     <Compile Include="Activities\Map\PinMapActivity.cs" />
+    <Compile Include="Activities\Map\RasterOverlayActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
