@@ -32,7 +32,7 @@
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
             android:text="Status" />
-        <Button
+        <CartoMobileSample.PackageManagerButton
             android:id="@+id/package_action"
             android:layout_width="75dp"
             android:layout_height="fill_parent"

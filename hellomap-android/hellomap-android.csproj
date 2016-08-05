@@ -75,6 +75,7 @@
     <Compile Include="Adapters\PackageManagerAdapter.cs" />
     <Compile Include="Activities\Base\PackageManagerActivity.cs" />
     <Compile Include="Activities\Map\PackagedMapActivity.cs" />
+    <Compile Include="Views\PackageManagerButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

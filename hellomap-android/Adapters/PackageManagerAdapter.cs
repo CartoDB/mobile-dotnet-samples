@@ -22,6 +22,8 @@ namespace CartoMobileSample
 			}
 		}
 
+		PackageManagerActivity Activity { get { return Context as PackageManagerActivity; } }
+
 		public PackageManagerAdapter(Context context, int resId, List<Package> packages) : base(context, resId, packages)
 		{
 			this.context = context;
@@ -43,7 +45,8 @@ namespace CartoMobileSample
 				holder = new PackageHolder();
 				holder.NameView = (TextView)row.FindViewById(HelloMap.Resource.Id.package_name);
 				holder.StatusView = (TextView)row.FindViewById(HelloMap.Resource.Id.package_status);
-				holder.ActionButton = (Button)row.FindViewById(HelloMap.Resource.Id.package_action);
+				holder.ActionButton = (PackageManagerButton)row.FindViewById(HelloMap.Resource.Id.package_action);
+				//holder.ActionButton = new PackageManagerButton(context);
 
 				row.Tag = holder;
 			}
@@ -57,14 +60,17 @@ namespace CartoMobileSample
 
 			if (pkg.Info != null)
 			{
-				String status = "available";
-				if (pkg.Info.Size.ToLong() < 1024 * 1024)
+				string status = "available";
+
+				if (pkg.IsSmallerThan1MB)
 				{
 					status += " v." + pkg.Info.Version + " (<1MB)";
 				}
 				else {
 					status += " v." + pkg.Info.Version + " (" + pkg.Info.Size.ToLong() / 1024 / 1024 + "MB)";
 				}
+
+				holder.ActionButton.PackageId = pkg.Info.PackageId;
 
 				// Check if the package is downloaded/is being downloaded (so that status is not null)
 				if (pkg.Status != null)
@@ -73,25 +79,13 @@ namespace CartoMobileSample
 					{
 						status = "ready";
 						holder.ActionButton.Text = "RM";
-						//holder.actionButton.setOnClickListener(new OnClickListener()
-						//{
-						//	public override void OnClick(View v)
-						//	{
-						//		packageManager.startPackageRemove(pkg.packageInfo.getPackageId());
-						//	}
-						//});
+						holder.ActionButton.Type = PackageManagerButtonType.StartRemovePackage;
 					}
 					else if (pkg.Status.CurrentAction == PackageAction.PackageActionWaiting)
 					{
 						status = "queued";
 						holder.ActionButton.Text = "C";
-						//holder.actionButton.setOnClickListener(new OnClickListener()
-						//{
-						//	public override void OnClick(View v)
-						//	{
-						//		packageManager.cancelPackageTasks(pkg.packageInfo.getPackageId());
-						//	}
-						//});
+						holder.ActionButton.Type = PackageManagerButtonType.CancelPackageTasks;
 					}
 					else {
 						if (pkg.Status.CurrentAction == PackageAction.PackageActionCopying)
@@ -113,50 +107,33 @@ namespace CartoMobileSample
 						{
 							status = status + " (paused)";
 							holder.ActionButton.Text = "R";
-							//holder.actionButton.setOnClickListener(new OnClickListener()
-							//{
-							//	public override void OnClick(View v)
-							//	{
-							//		packageManager.setPackagePriority(pkg.packageInfo.getPackageId(), 0);
-							//	}
-							//});
+							holder.ActionButton.Type = PackageManagerButtonType.SetPackagePriority;
+							holder.ActionButton.PriorityIndex = 0;
 						}
 						else {
 							holder.ActionButton.Text = "P";
-							//holder.actionButton.setOnClickListener(new OnClickListener()
-							//{
-							//	public override void OnClick(View v)
-							//	{
-							//		packageManager.setPackagePriority(pkg.packageInfo.getPackageId(), -1);
-							//	}
-							//});
+							holder.ActionButton.Type = PackageManagerButtonType.SetPackagePriority;
+							holder.ActionButton.PriorityIndex = -1;
 						}
 					}
 				}
 				else {
 					holder.ActionButton.Text = "DL";
-					//holder.actionButton.setOnClickListener(new OnClickListener()
-					//{
-					//	public override void OnClick(View v)
-					//	{
-					//		packageManager.startPackageDownload(pkg.packageInfo.getPackageId());
-					//	}
-					//});
+					holder.ActionButton.Type = PackageManagerButtonType.StartPackageDownload;
 				}
+
 				holder.StatusView.Text = status;
 			}
 			else {
 				holder.ActionButton.Text = ">";
-				//holder.actionButton.setOnClickListener(new OnClickListener()
-				//{
-				//	public override void OnClick(View v)
-				//	{
-				//		currentFolder = currentFolder + pkg.packageName + "/";
-				//		updatePackages();
-				//	}
-				//});
+				holder.ActionButton.Type = PackageManagerButtonType.UpdatePackages;
+				holder.ActionButton.PackageName = pkg.Name;
 				holder.StatusView.Text = "";
 			}
+
+			// Always Detach handler first to avoid multiple handlers on reuse
+			holder.ActionButton.Click -= Activity.OnAdapterActionButtonClick;
+			holder.ActionButton.Click += Activity.OnAdapterActionButtonClick;
 
 			return row;
 		}

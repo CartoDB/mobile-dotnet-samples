@@ -12,7 +12,7 @@ using Java.IO;
 
 namespace CartoMobileSample
 {
-	[Activity]
+	[Activity(Label = "PackageManager", Icon = "@drawable/icon")]
 	[ActivityDescription(Description =
 						 "A sample demonstrating how to use offline package manager of the Carto Mobile SDK. " +
 	                     "The sample downloads the latest package list from Carto online service, " +
@@ -69,6 +69,8 @@ namespace CartoMobileSample
 
 			packageAdapter = new PackageManagerAdapter(this, HelloMap.Resource.Layout.package_item_row, packageArray);
 			ListView.Adapter = packageAdapter;
+
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
@@ -80,6 +82,12 @@ namespace CartoMobileSample
 
 		public override bool OnMenuItemSelected(int featureId, IMenuItem item)
 		{
+			if (item.ItemId == Android.Resource.Id.Home)
+			{
+				OnBackPressed();
+				return true;
+			}
+
 			// Using static global variable to pass data. Avoid this in your app (memory leaks etc)!
 			DataSource = new PackageManagerTileDataSource(packageManager);
 
@@ -263,6 +271,39 @@ namespace CartoMobileSample
 			RunOnUiThread(delegate { Toast.MakeText(this, message, ToastLength.Short).Show(); });
 		}
 
+		#region Row Internal Button Click handling
+
+		public void OnAdapterActionButtonClick(object sender, EventArgs e)
+		{
+			PackageManagerButton button = (PackageManagerButton)sender;
+			System.Console.WriteLine("Clicked: " + button.PackageId + " - " + button.PackageName + " - " + button.Type);
+
+			if (button.Type == PackageManagerButtonType.CancelPackageTasks)
+			{
+				packageManager.CancelPackageTasks(button.PackageId);
+			}
+			else if (button.Type == PackageManagerButtonType.SetPackagePriority)
+			{
+				packageManager.SetPackagePriority(button.PackageId, button.PriorityIndex);
+			}
+			else if (button.Type == PackageManagerButtonType.StartPackageDownload)
+			{
+				packageManager.StartPackageDownload(button.PackageId);
+
+			}
+			else if (button.Type == PackageManagerButtonType.StartRemovePackage)
+			{
+				packageManager.StartPackageRemove(button.PackageId);
+			}
+			else if (button.Type == PackageManagerButtonType.UpdatePackages)
+			{
+				currentFolder = currentFolder + button.PackageName + "/";
+				UpdatePackages();
+			}
+		}
+
+		#endregion
+
 	}
 
 	#region Supporting Classes
@@ -277,6 +318,8 @@ namespace CartoMobileSample
 
 		public PackageInfo Info { get; private set; }
 		public PackageStatus Status { get; private set; }
+
+		public bool IsSmallerThan1MB { get { return Info.Size.ToLong() < 1024 * 1024; }}
 
 		public Package(string name, PackageInfo info, PackageStatus status)
 		{
@@ -293,8 +336,10 @@ namespace CartoMobileSample
 	public class PackageHolder : Java.Lang.Object
 	{
 		public TextView NameView { get; set; }
+
 		public TextView StatusView { get; set; }
-		public Button ActionButton { get; set; }
+
+		public PackageManagerButton ActionButton { get; set; }
 	}
 
 	#endregion
