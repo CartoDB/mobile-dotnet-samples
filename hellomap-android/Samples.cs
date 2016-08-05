@@ -17,7 +17,8 @@ namespace CartoMobileSample
 			typeof (OfflineRouting),
 			typeof (PinMapActivity),
 			typeof (PackageManagerActivity),
-			typeof (RasterOverlayActivity)
+			typeof (RasterOverlayActivity),
+			typeof (WmsMapActivity)
 		});
 
 		public static string[] AsStringArray {

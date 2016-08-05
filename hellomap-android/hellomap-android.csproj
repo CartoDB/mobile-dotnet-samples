@@ -76,6 +76,8 @@
     <Compile Include="Activities\Base\PackageManagerActivity.cs" />
     <Compile Include="Activities\Map\PackagedMapActivity.cs" />
     <Compile Include="Views\PackageManagerButton.cs" />
+    <Compile Include="Activities\Map\WmsMapActivity.cs" />
+    <Compile Include="DataSources\HttpWmsTileDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -120,5 +122,6 @@
     <Folder Include="Activities\Base\" />
     <Folder Include="Views\" />
     <Folder Include="Adapters\" />
+    <Folder Include="DataSources\" />
   </ItemGroup>
 </Project>
