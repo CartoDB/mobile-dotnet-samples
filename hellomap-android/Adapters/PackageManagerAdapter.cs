@@ -41,9 +41,9 @@ namespace CartoMobileSample
 				row = inflater.Inflate(layoutResourceId, parent, false);
 
 				holder = new PackageHolder();
-				holder.nameView = (TextView)row.FindViewById(HelloMap.Resource.Id.package_name);
-				holder.statusView = (TextView)row.FindViewById(HelloMap.Resource.Id.package_status);
-				holder.actionButton = (Button)row.FindViewById(HelloMap.Resource.Id.package_action);
+				holder.NameView = (TextView)row.FindViewById(HelloMap.Resource.Id.package_name);
+				holder.StatusView = (TextView)row.FindViewById(HelloMap.Resource.Id.package_status);
+				holder.ActionButton = (Button)row.FindViewById(HelloMap.Resource.Id.package_action);
 
 				row.Tag = holder;
 			}
@@ -53,7 +53,7 @@ namespace CartoMobileSample
 
 			// Report package name and size
 			Package pkg = packages[position];
-			holder.nameView.Text = pkg.Name;
+			holder.NameView.Text = pkg.Name;
 
 			if (pkg.Info != null)
 			{
@@ -72,7 +72,7 @@ namespace CartoMobileSample
 					if (pkg.Status.CurrentAction == PackageAction.PackageActionReady)
 					{
 						status = "ready";
-						holder.actionButton.Text = "RM";
+						holder.ActionButton.Text = "RM";
 						//holder.actionButton.setOnClickListener(new OnClickListener()
 						//{
 						//	public override void OnClick(View v)
@@ -84,7 +84,7 @@ namespace CartoMobileSample
 					else if (pkg.Status.CurrentAction == PackageAction.PackageActionWaiting)
 					{
 						status = "queued";
-						holder.actionButton.Text = "C";
+						holder.ActionButton.Text = "C";
 						//holder.actionButton.setOnClickListener(new OnClickListener()
 						//{
 						//	public override void OnClick(View v)
@@ -112,7 +112,7 @@ namespace CartoMobileSample
 						if (pkg.Status.Paused)
 						{
 							status = status + " (paused)";
-							holder.actionButton.Text = "R";
+							holder.ActionButton.Text = "R";
 							//holder.actionButton.setOnClickListener(new OnClickListener()
 							//{
 							//	public override void OnClick(View v)
@@ -122,7 +122,7 @@ namespace CartoMobileSample
 							//});
 						}
 						else {
-							holder.actionButton.Text = "P";
+							holder.ActionButton.Text = "P";
 							//holder.actionButton.setOnClickListener(new OnClickListener()
 							//{
 							//	public override void OnClick(View v)
@@ -134,7 +134,7 @@ namespace CartoMobileSample
 					}
 				}
 				else {
-					holder.actionButton.Text = "DL";
+					holder.ActionButton.Text = "DL";
 					//holder.actionButton.setOnClickListener(new OnClickListener()
 					//{
 					//	public override void OnClick(View v)
@@ -143,10 +143,10 @@ namespace CartoMobileSample
 					//	}
 					//});
 				}
-				holder.statusView.Text = status;
+				holder.StatusView.Text = status;
 			}
 			else {
-				holder.actionButton.Text = ">";
+				holder.ActionButton.Text = ">";
 				//holder.actionButton.setOnClickListener(new OnClickListener()
 				//{
 				//	public override void OnClick(View v)
@@ -155,7 +155,7 @@ namespace CartoMobileSample
 				//		updatePackages();
 				//	}
 				//});
-				holder.statusView.Text = "";
+				holder.StatusView.Text = "";
 			}
 
 			return row;

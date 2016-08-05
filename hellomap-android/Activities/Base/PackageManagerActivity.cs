@@ -92,13 +92,29 @@ namespace CartoMobileSample
 		protected override void OnResume()
 		{
 			base.OnResume();
+
+			// Always Attach handlers OnResume to avoid memory leaks and objects with multple handlers
 			PackageUpdateListener.OnPackageListUpdate += UpdatePackages;
+			PackageUpdateListener.OnPackageListFail += UpdatePackages;
+
+			PackageUpdateListener.OnPackageCancel += UpdatePackage;
+			PackageUpdateListener.OnPackageUpdate += UpdatePackage;
+			PackageUpdateListener.OnPackageStatusChange += UpdatePackage;
+			PackageUpdateListener.OnPackageFail += UpdatePackage;
 		}
 
 		protected override void OnPause()
 		{
 			base.OnPause();
-			PackageUpdateListener.OnPackageListUpdate += UpdatePackages;
+
+			// Always detach handlers OnPause to avoid memory leaks and objects with multple handlers
+			PackageUpdateListener.OnPackageListUpdate -= UpdatePackages;
+			PackageUpdateListener.OnPackageListFail -= UpdatePackages;
+
+			PackageUpdateListener.OnPackageCancel -= UpdatePackage;
+			PackageUpdateListener.OnPackageUpdate -= UpdatePackage;
+			PackageUpdateListener.OnPackageStatusChange -= UpdatePackage;
+			PackageUpdateListener.OnPackageFail -= UpdatePackage;
 		}
 
 		protected override void OnStart()
@@ -138,7 +154,7 @@ namespace CartoMobileSample
 
 			for (int i = 0; i < packageInfoVector.Count; i++)
 			{
-				PackageInfo packageInfo = packageInfoVector[i]; //packageInfoVector.get(i);
+				PackageInfo packageInfo = packageInfoVector[i];
 
 				// Get the list of names for this package. Each package may have multiple names,
 				// packages are grouped using '/' as a separator, so the the full name for Sweden
@@ -148,7 +164,7 @@ namespace CartoMobileSample
 
 				for (int j = 0; j < packageNames.Count; j++)
 				{
-					string packageName = packageNames[j];//packageNames.get(j);
+					string packageName = packageNames[j];
 
 					if (!packageName.StartsWith(currentFolder))
 					{
@@ -201,7 +217,22 @@ namespace CartoMobileSample
 			});
 		}
 
-		void UpdatePackage(string packageId)
+		void UpdatePackage(object sender, PackageEventArgs e)
+		{
+			UpdatePackage(e.Id);
+		}
+
+		void UpdatePackage(object sender, PackageStatusEventArgs e)
+		{
+			UpdatePackage(e.Id);
+		}
+
+		void UpdatePackage(object sender, PackageFailedEventArgs e)
+		{
+			UpdatePackage(e.Id);
+		}
+
+		void UpdatePackage(string id)
 		{
 			if (packageAdapter == null)
 			{
@@ -214,9 +245,9 @@ namespace CartoMobileSample
 				{
 					Package pkg = packageArray[i];
 
-					if (packageId.Equals(pkg.Id))
+					if (id.Equals(pkg.Id))
 					{
-						PackageStatus packageStatus = packageManager.GetLocalPackageStatus(packageId, -1);
+						PackageStatus packageStatus = packageManager.GetLocalPackageStatus(id, -1);
 						pkg = new Package(pkg.Name, pkg.Info, packageStatus);
 						packageArray.Insert(i, pkg);
 
@@ -261,9 +292,9 @@ namespace CartoMobileSample
 	*/
 	public class PackageHolder : Java.Lang.Object
 	{
-		public TextView nameView;
-		public TextView statusView;
-		public Button actionButton;
+		public TextView NameView { get; set; }
+		public TextView StatusView { get; set; }
+		public Button ActionButton { get; set; }
 	}
 
 	#endregion

@@ -6,7 +6,13 @@ namespace CartoMobileSample
 {
 	public class PackageListener : PackageManagerListener
 	{
-		public EventHandler OnPackageListUpdate;
+		public EventHandler<EventArgs> OnPackageListUpdate;
+		public EventHandler<EventArgs> OnPackageListFail;
+
+		public EventHandler<PackageEventArgs> OnPackageCancel;
+		public EventHandler<PackageEventArgs> OnPackageUpdate;
+		public EventHandler<PackageEventArgs> OnPackageStatusChange;
+		public EventHandler<PackageEventArgs> OnPackageFail;
 
 		public PackageManager PackageManager { get; set; }
 
@@ -17,11 +23,6 @@ namespace CartoMobileSample
 			
 		}
 
-		public PackageListener(PackageManager manager)
-		{
-			PackageManager = manager;
-		}
-
 		public PackageListener (PackageManager packageManager, string downloadedPackage)
 		{
 			PackageManager = packageManager;
@@ -30,10 +31,8 @@ namespace CartoMobileSample
 
 		public override void OnPackageListUpdated ()
 		{
-			// called when package list is downloaded
-			// now you can start downloading packages
-			Console.WriteLine("!!!!!!!! ONPACKAGELISTUPDATED");
-
+			// Called when package list is downloaded.
+			// Now you can start downloading packages
 			if (OnPackageListUpdate != null) {
 				OnPackageListUpdate(this, EventArgs.Empty);	
 			}
@@ -42,7 +41,7 @@ namespace CartoMobileSample
 				return;
 			}
 
-			// to make sure that package list is updated, full package download is called here
+			// To make sure that package list is updated, full package download is called here
 			if (PackageManager.GetLocalPackage(DownloadedPackage) == null)
 			{
 				PackageManager.StartPackageDownload(DownloadedPackage);
@@ -51,34 +50,65 @@ namespace CartoMobileSample
 
 		public override void OnPackageListFailed ()
 		{
-			Log.Debug ("OnPackageListFailed");
-			// Failed to download package list
+			if (OnPackageListFail != null)
+			{
+				OnPackageListFail(this, EventArgs.Empty);
+			}
 		}
 
 		public override void OnPackageStatusChanged (string id, int version, PackageStatus status)
 		{
-			// a portion of package is downloaded. Update your progress bar here.
+			// A portion of package is downloaded. Update your progress bar here.
 			// Notice that the view and SDK are in different threads, so data copy id needed
-			Log.Debug ("OnPackageStatusChanged " + id + " ver " + version + " progress " + status.Progress);
+			if (OnPackageStatusChange != null)
+			{
+				OnPackageStatusChange(this, new PackageStatusEventArgs { Id = id, Version = version, Status = status });
+			}
 		}
 
 		public override void OnPackageCancelled (string id, int version)
 		{
-			// called when you called cancel package download
-			Log.Debug ("OnPackageCancelled");
+			// Called when you called cancel package download
+			if (OnPackageCancel != null)
+			{
+				OnPackageCancel(this, new PackageEventArgs { Id = id, Version = version });
+			}
 		}
 
 		public override void OnPackageUpdated (string id, int version)
 		{
-			// called when package is updated
-			Log.Debug ("OnPackageUpdated");
+			// Called when package is updated
+			if (OnPackageUpdate != null)
+			{
+				OnPackageUpdate(this, new PackageEventArgs { Id = id, Version = version });
+			}
 		}
 
 		public override void OnPackageFailed (string id, int version, PackageErrorType errorType)
 		{
 			// Failed to download package " + id + "/" + version
-			Log.Debug ("OnPackageFailed: " + errorType);
+			if (OnPackageFail != null)
+			{
+				OnPackageFail(this, new PackageFailedEventArgs { Id = id, Version = version, ErrorType = errorType });
+			}
 		}
+	}
+
+	public class PackageEventArgs
+	{
+		public string Id { get; set; }
+
+		public int Version { get; set; }
+	}
+
+	public class PackageStatusEventArgs : PackageEventArgs
+	{
+		public PackageStatus Status { get; set; }
+	}
+
+	public class PackageFailedEventArgs : PackageEventArgs
+	{
+		public PackageErrorType ErrorType { get; set; }
 	}
 
 	// TODO UPCOMING FUNCTIONALITY IN PACKAGEMANAGERACTIVITY:
