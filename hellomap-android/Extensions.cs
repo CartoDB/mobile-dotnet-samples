@@ -47,6 +47,13 @@ namespace CartoMobileSample
 			return (long)ulongValue;
 		}
 
+		public static void MakeToast(this Android.App.Activity activity, string message)
+		{
+			activity.RunOnUiThread(delegate {
+				Android.Widget.Toast.MakeText(activity, message, Android.Widget.ToastLength.Short).Show();	
+			});
+		}
+
 	}
 }
 

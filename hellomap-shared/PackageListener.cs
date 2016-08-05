@@ -11,8 +11,8 @@ namespace CartoMobileSample
 
 		public EventHandler<PackageEventArgs> OnPackageCancel;
 		public EventHandler<PackageEventArgs> OnPackageUpdate;
-		public EventHandler<PackageEventArgs> OnPackageStatusChange;
-		public EventHandler<PackageEventArgs> OnPackageFail;
+		public EventHandler<PackageStatusEventArgs> OnPackageStatusChange;
+		public EventHandler<PackageFailedEventArgs> OnPackageFail;
 
 		public PackageManager PackageManager { get; set; }
 

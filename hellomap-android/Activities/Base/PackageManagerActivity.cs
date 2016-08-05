@@ -94,7 +94,7 @@ namespace CartoMobileSample
 
 			if (!(packageFolder.Mkdir() || packageFolder.IsDirectory))
 			{
-				Toast.MakeText(this, "Could not create package folder!", ToastLength.Short).Show();
+				this.MakeToast("Could not create package folder!");
 			}
 
 			try
@@ -103,7 +103,7 @@ namespace CartoMobileSample
 			}
 			catch (IOException e)
 			{
-				Toast.MakeText(this, "Exception: " + e, ToastLength.Short).Show();
+				this.MakeToast("Exception: " + e);
 				Finish();
 			}
 
@@ -236,6 +236,7 @@ namespace CartoMobileSample
 
 		void UpdatePackage(object sender, PackageFailedEventArgs e)
 		{
+			this.MakeToast("Error: " + e.ErrorType);
 			UpdatePackage(e.Id);
 		}
 
