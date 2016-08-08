@@ -29,8 +29,9 @@ namespace CartoMobileSample
 
 			// Initialize a local vector data source
 			string query = 
-				"SELECT cartodb_id,the_geom_webmercator AS the_geom,name,address,bikes,slot,field_7," +
+				"SELECT cartodb_id,the_geom_webmercator AS the_geom,name,address,bikes,slot," +
 				"field_8,field_9,field_16,field_17,field_18 FROM stations_1 WHERE !bbox!";
+
 			CartoDBSQLDataSource vectorDataSource1 = new CartoDBSQLDataSource(
 				BaseProjection, 
 				BaseUrl, 

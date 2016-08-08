@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Json;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 using Carto.Core;
@@ -49,34 +50,38 @@ namespace CartoMobileSample
 			return new VectorData(elements);
 		}
 
+		Stream GetStreamFromUrl(string url)
+		{
+			byte[] data = null;
+
+			using (var client = new WebClient())
+			{
+				data = client.DownloadData(url);
+			}
+
+			return new MemoryStream(data);
+		}
+
 		void LoadData(VectorElementVector elements, MapPos min, MapPos max, float zoom)
 		{
 			// Load and parse JSON
 			string format = "ST_SetSRID(ST_MakeEnvelope(%f,%f,%f,%f),3857) && the_geom_webmercator";
 			string bbox = string.Format(format, min.X, min.Y, max.X, max.Y);
+			bbox = GetBBoxString(min.X, min.Y, max.X, max.Y);
 
-			string unencodedQuery = query.Replace("!bbox!", bbox);
+			string unencoded = query.Replace("!bbox!", bbox);
 
-			unencodedQuery = unencodedQuery.Replace("zoom('!scale_denominator!')", Convert.ToString(zoom));
+			unencoded = unencoded.Replace("zoom('!scale_denominator!')", Convert.ToString(zoom));
 
-			string encodedQuery = null;
+			string encoded = System.Web.HttpUtility.UrlEncode(unencoded).Replace("(", "%28").Replace(")", "%29");
 
-			try
-			{
-				encodedQuery = System.Web.HttpUtility.UrlEncode(unencodedQuery, System.Text.Encoding.UTF8);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine("Exception: " + e.Message);
-			}
-
-			string urlAddress = baseUrl + "?format=GeoJSON&q=" + encodedQuery;
+			string fullPath = baseUrl + "?format=GeoJSON&q=" + encoded;
 
 			try
 			{
 				string result = "";
 
-				using (StreamReader reader = new StreamReader(urlAddress)) {
+				using (StreamReader reader = new StreamReader(GetStreamFromUrl(fullPath))) {
 					result = reader.ReadToEnd();
 				}
 
@@ -122,10 +127,10 @@ namespace CartoMobileSample
 					// Add all properties as MetaData, so you can use it with click handling
 					foreach (KeyValuePair<string, JsonValue> item in properties) 
 					{
-						//	string key = (string)iterator.Next();
-						//	string val = properties.GetString(key);
-						//	element.SetMetaDataElement(key, new Variant(val));
-						//	System.Console.WriteLine("KEY: " + key + "; VAL: " + val);	
+						string key = item.Key;
+						string val = item.Value.ToString();
+						Console.WriteLine(key + " - " + val);
+						element.SetMetaDataElement(key, new Variant(val));
 					}
 
 					elements.Add(element);
@@ -138,6 +143,16 @@ namespace CartoMobileSample
 			}
 		}
 
+		string GetBBoxString(double minx, double miny, double maxx, double maxy)
+		{
+			int roundBy = 6;
+
+			string start = "ST_SetSRID(ST_MakeEnvelope";
+			string data = "(" + Math.Round(minx, roundBy) + "," + Math.Round(miny, roundBy) + "," +
+									Math.Round(maxx, roundBy) + "," + Math.Round(maxy, roundBy) + ")";
+			string end = ",3857) && the_geom_webmercator";
+			return start + data + end;
+		}
 	}
 }
 
