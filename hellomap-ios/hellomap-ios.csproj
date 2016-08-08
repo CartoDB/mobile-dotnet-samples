@@ -149,6 +149,8 @@
     <Compile Include="Views\CustomMapView.cs" />
     <Compile Include="DataSources\MapListDataSource.cs" />
     <Compile Include="Device.cs" />
+    <Compile Include="Controllers\Map\ClusteredGeoJSONCapitalsController.cs" />
+    <Compile Include="Controllers\Map\GpsLocationMapController.cs" />
   </ItemGroup>
   <Import Project="..\hellomap-shared\hellomap-shared.projitems" Label="Shared" Condition="Exists('..\hellomap-shared\hellomap-shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

@@ -10,6 +10,8 @@ namespace CartoMobileSample
 		public static List<MapBaseController> List = new List<MapBaseController>
 		{
 			new CartoVisJsonController(),
+			new ClusteredGeoJSONCapitalsController(),
+			new GpsLocationMapController()
 		};
 
 		public Samples()
