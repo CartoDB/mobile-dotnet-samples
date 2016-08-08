@@ -140,6 +140,15 @@
       <DependentUpon>MainViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
+    <Compile Include="MapListController.cs" />
+    <Compile Include="Views\MapList\MapListView.cs" />
+    <Compile Include="Views\MapList\MapListRow.cs" />
+    <Compile Include="Samples.cs" />
+    <Compile Include="Controllers\Map\CartoVisJsonController.cs" />
+    <Compile Include="Controllers\Base\MapBaseController.cs" />
+    <Compile Include="Views\CustomMapView.cs" />
+    <Compile Include="DataSources\MapListDataSource.cs" />
+    <Compile Include="Device.cs" />
   </ItemGroup>
   <Import Project="..\hellomap-shared\hellomap-shared.projitems" Label="Shared" Condition="Exists('..\hellomap-shared\hellomap-shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -154,5 +163,13 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Resources\world_ntvt_0_4.mbtiles" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Controllers\Base\" />
+    <Folder Include="Controllers\Map\" />
+    <Folder Include="Views\MapList\" />
+    <Folder Include="DataSources\" />
   </ItemGroup>
 </Project>

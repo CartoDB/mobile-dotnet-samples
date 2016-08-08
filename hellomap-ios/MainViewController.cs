@@ -18,17 +18,12 @@ namespace CartoMobileSample
 {
 	partial class MainViewController : GLKit.GLKViewController
 	{
-		const string LICENSE = "XTUMwQ0ZRQzRzK205Z1VnTll2ZWZRTDJBK20wSXk2ZjRqQUlVV0VmN2l4Vm95dHFQQ3dLNUY" +
-			"2UC8rNVplQ2RvPQoKcHJvZHVjdHM9c2RrLXhhbWFyaW4taW9zLTQuKgpidW5kbGVJZGVudGlmaWVyPWNvbS5u" +
-			"dXRpdGVxLmhlbGxvbWFwLnhhbWFyaW4Kd2F0ZXJtYXJrPWNhcnRvZGIKdmFsaWRVbnRpbD0yMDE2LTA5LTAyCm9ubGluZUxpY2Vuc2U9MQo=";
-
 		public MainViewController(IntPtr handle) : base(handle)
 		{
 		}
 
 		public override void ViewDidLoad()
 		{
-
 			base.ViewDidLoad();
 
 			// GLKViewController-specific parameters for smoother animations
@@ -36,11 +31,10 @@ namespace CartoMobileSample
 			PreferredFramesPerSecond = 60;
 
 			// Register license
-			Carto.Utils.Log.ShowError = true;
-			Carto.Utils.Log.ShowWarn = true;
-			Carto.Utils.Log.ShowDebug = true;
-			Carto.Ui.MapView.RegisterLicense(LICENSE);
-
+			Log.ShowError = true;
+			Log.ShowWarn = true;
+			Log.ShowDebug = true;
+			MapView.RegisterLicense(AppDelegate.License);
 
 			// Create package manager folder (Platform-specific)
 			var paths = NSSearchPath.GetDirectories(NSSearchPathDirectory.ApplicationSupportDirectory, NSSearchPathDomain.User);
@@ -66,8 +60,7 @@ namespace CartoMobileSample
 
 			var json = System.IO.File.ReadAllText(AssetUtils.CalculateResourcePath("capitals_3857.geojson"));
 
-
-			//	MapSetup.addJsonLayer (Map, json);
+			MapSetup.AddJsonLayer (Map, json);
 		}
 
 		public override void ViewWillAppear(bool animated)
