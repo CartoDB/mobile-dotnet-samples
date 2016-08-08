@@ -77,6 +77,7 @@
     <Compile Include="Views\PackageManagerButton.cs" />
     <Compile Include="Activities\Map\WmsMapActivity.cs" />
     <Compile Include="DataSources\HttpWmsTileDataSource.cs" />
+    <Compile Include="Activities\Map\SQLActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

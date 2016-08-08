@@ -8,7 +8,6 @@ using Carto.Graphics;
 
 namespace CartoMobileSample
 {
-
 	public class MapListener : MapEventListener
 	{
 		LocalVectorDataSource _dataSource;

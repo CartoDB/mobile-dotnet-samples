@@ -17,11 +17,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Builders\MyCartoVisBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\MyClusterElementBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Package.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataSources\CartoDBSQLDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Listeners\MyMapEventListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Listeners\" />
     <Folder Include="$(MSBuildThisFileDirectory)Builders\" />
     <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
     <Folder Include="$(MSBuildThisFileDirectory)Model\" />
+    <Folder Include="$(MSBuildThisFileDirectory)DataSources\" />
   </ItemGroup>
 </Project>

@@ -18,6 +18,7 @@ namespace CartoMobileSample
 			typeof (PinMapActivity),
 			typeof (PackageManagerActivity),
 			typeof (RasterOverlayActivity),
+			typeof (SQLActivity),
 			typeof (WmsMapActivity)
 		});
 
