@@ -14,5 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MapSetup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VectorElementListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MyClusterElementBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MyCartoVisBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MyUTFGridEventListener.cs" />
   </ItemGroup>
 </Project>
