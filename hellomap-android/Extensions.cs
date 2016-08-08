@@ -47,6 +47,19 @@ namespace CartoMobileSample
 			return (long)ulongValue;
 		}
 
+		public static string ConvertFromSecondsToHours(this double sec)
+		{
+			int hours = ((int)sec) / 3600,
+
+			remainder = ((int)sec) % 3600,
+			minutes = remainder / 60,
+			seconds = remainder % 60;
+
+			return ((hours < 10 ? "0" : "") + hours
+				+ "h" + (minutes < 10 ? "0" : "") + minutes
+				+ "m" + (seconds < 10 ? "0" : "") + seconds + "s");
+		}
+
 		public static void MakeToast(this Android.App.Activity activity, string message)
 		{
 			activity.RunOnUiThread(delegate {

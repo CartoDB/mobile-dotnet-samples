@@ -14,7 +14,7 @@ namespace CartoMobileSample
 			typeof (GpsLocationMap),
 			typeof (Overlays2DActivity),
 			typeof (OfflineVectorMapActivity),
-			typeof (OfflineRouting),
+			typeof (OfflineRoutingActivity),
 			typeof (PinMapActivity),
 			typeof (PackageManagerActivity),
 			typeof (RasterOverlayActivity),

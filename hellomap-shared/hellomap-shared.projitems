@@ -20,5 +20,6 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Listeners\" />
     <Folder Include="$(MSBuildThisFileDirectory)Builders\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
   </ItemGroup>
 </Project>
