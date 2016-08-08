@@ -50,18 +50,6 @@ namespace CartoMobileSample
 			return new VectorData(elements);
 		}
 
-		Stream GetStreamFromUrl(string url)
-		{
-			byte[] data = null;
-
-			using (var client = new WebClient())
-			{
-				data = client.DownloadData(url);
-			}
-
-			return new MemoryStream(data);
-		}
-
 		void LoadData(VectorElementVector elements, MapPos min, MapPos max, float zoom)
 		{
 			// Load and parse JSON
@@ -79,13 +67,7 @@ namespace CartoMobileSample
 
 			try
 			{
-				string result = "";
-
-				using (StreamReader reader = new StreamReader(GetStreamFromUrl(fullPath))) {
-					result = reader.ReadToEnd();
-				}
-
-				JsonValue json = JsonValue.Parse(result);
+				JsonValue json = GetJson(fullPath);
 
 				GeoJSONGeometryReader geoJsonParser = new GeoJSONGeometryReader();
 
@@ -129,14 +111,13 @@ namespace CartoMobileSample
 					{
 						string key = item.Key;
 						string val = item.Value.ToString();
-						Console.WriteLine(key + " - " + val);
+
 						element.SetMetaDataElement(key, new Variant(val));
 					}
 
 					elements.Add(element);
 				}
 			}
-
 			catch (Exception e)
 			{
 				Console.WriteLine("Exception: " + e.Message);
@@ -153,6 +134,28 @@ namespace CartoMobileSample
 			string end = ",3857) && the_geom_webmercator";
 			return start + data + end;
 		}
+
+		JsonValue GetJson(string url)
+		{
+			using (StreamReader reader = new StreamReader(GetStreamFromUrl(url)))
+			{
+				string result = reader.ReadToEnd();
+				return JsonValue.Parse(result);
+			}
+		}
+
+		Stream GetStreamFromUrl(string url)
+		{
+			byte[] data = null;
+
+			using (var client = new WebClient())
+			{
+				data = client.DownloadData(url);
+			}
+
+			return new MemoryStream(data);
+		}
+
 	}
 }
 
