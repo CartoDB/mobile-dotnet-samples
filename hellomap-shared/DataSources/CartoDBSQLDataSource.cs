@@ -1,5 +1,11 @@
 ﻿
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Json;
+using System.Linq;
+using System.Text;
+
 using Carto.Core;
 using Carto.DataSources;
 using Carto.DataSources.Components;
@@ -8,10 +14,6 @@ using Carto.Projections;
 using Carto.Renderers.Components;
 using Carto.Styles;
 using Carto.VectorElements;
-using Java.IO;
-using Java.Lang;
-using Java.Net;
-using Org.Json;
 
 namespace CartoMobileSample
 {
@@ -61,47 +63,41 @@ namespace CartoMobileSample
 
 			try
 			{
-				encodedQuery = URLEncoder.Encode(unencodedQuery, "UTF-8");
+				encodedQuery = System.Web.HttpUtility.UrlEncode(unencodedQuery, System.Text.Encoding.UTF8);
 			}
-			catch (UnsupportedEncodingException e)
+			catch (Exception e)
 			{
-				e.PrintStackTrace();
+				Console.WriteLine("Exception: " + e.Message);
 			}
 
 			string urlAddress = baseUrl + "?format=GeoJSON&q=" + encodedQuery;
 
 			try
 			{
-				URL url = new URL(urlAddress);
+				string result = "";
 
-				BufferedReader streamReader = new BufferedReader(new InputStreamReader(url.OpenConnection().InputStream, "UTF-8"));
-				StringBuilder responseStrBuilder = new StringBuilder();
-
-				string inputStr;
-
-				while ((inputStr = streamReader.ReadLine()) != null)
-				{
-					responseStrBuilder.Append(inputStr);
+				using (StreamReader reader = new StreamReader(urlAddress)) {
+					result = reader.ReadToEnd();
 				}
 
-				JSONObject json = new JSONObject(responseStrBuilder.ToString());
+				JsonValue json = JsonValue.Parse(result);
 
 				GeoJSONGeometryReader geoJsonParser = new GeoJSONGeometryReader();
 
-				JSONArray features = json.GetJSONArray("features");
+				JsonArray features = (JsonArray)json["features"];
 
-				for (int i = 0; i < features.Length(); i++)
+				for (int i = 0; i < features.Count; i++)
 				{
-					JSONObject feature = (JSONObject)features.Get(i);
-					JSONObject geometry = feature.GetJSONObject("geometry");
+					JsonObject feature = (JsonObject)features[i];
+					JsonObject geometry = (JsonObject)feature["geometry"];
 
 					// Use SDK GeoJSON parser
 					Geometry ntGeom = geoJsonParser.ReadGeometry(geometry.ToString());
 
-					JSONObject properties = feature.GetJSONObject("properties");
+					JsonObject properties = (JsonObject)feature["properties"];
 					VectorElement element;
 
-					// create object based on given style
+					// Create object based on given style
 					if (style is PointStyle)
 					{
 						element = new Point((PointGeometry)ntGeom, (PointStyle)style);
@@ -123,40 +119,25 @@ namespace CartoMobileSample
 						break;
 					}
 
-					var iterator = properties.Keys();
-
 					// Add all properties as MetaData, so you can use it with click handling
-					while (iterator.HasNext) {
-						string key = (string)iterator.Next();
-						string val = properties.GetString(key);
-						element.SetMetaDataElement(key, new Variant(val));
-						System.Console.WriteLine("KEY: " + key + "; VAL: " + val);
+					foreach (KeyValuePair<string, JsonValue> item in properties) 
+					{
+						//	string key = (string)iterator.Next();
+						//	string val = properties.GetString(key);
+						//	element.SetMetaDataElement(key, new Variant(val));
+						//	System.Console.WriteLine("KEY: " + key + "; VAL: " + val);	
 					}
 
 					elements.Add(element);
 				}
-
 			}
 
-			catch (JSONException e)
+			catch (Exception e)
 			{
-				e.PrintStackTrace();
+				Console.WriteLine("Exception: " + e.Message);
 			}
-			catch (MalformedURLException e)
-			{
-				e.PrintStackTrace();
-			}
-			catch (UnsupportedEncodingException e)
-			{
-				e.PrintStackTrace();
-			}
-			catch (IOException e)
-			{
-				e.PrintStackTrace();
-			}
-
-
 		}
+
 	}
 }
 

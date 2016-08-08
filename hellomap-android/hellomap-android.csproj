@@ -51,6 +51,8 @@
     <Reference Include="CartoMobileSDK.Android">
       <HintPath>..\packages\CartoMobileSDK.4.0.0-alphapreview1\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
     </Reference>
+    <Reference Include="System.Json" />
+    <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />

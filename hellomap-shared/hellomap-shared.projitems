@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Package.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataSources\CartoDBSQLDataSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\MyMapEventListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\CommonExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Listeners\" />
