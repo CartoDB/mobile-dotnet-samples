@@ -23,6 +23,11 @@ namespace CartoMobileSample
 			return (long)ulongValue;
 		}
 
+		public static double To4Decimals(this double original)
+		{
+			return Math.Round(original, 4);	
+		}
+
 		public static string ConvertFromSecondsToHours(this double sec)
 		{
 			int hours = ((int)sec) / 3600,
