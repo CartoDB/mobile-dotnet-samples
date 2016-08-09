@@ -152,6 +152,10 @@
     <Compile Include="Controllers\Map\ClusteredGeoJSONCapitalsController.cs" />
     <Compile Include="Controllers\Map\GpsLocationMapController.cs" />
     <Compile Include="Services\LocationManager.cs" />
+    <Compile Include="Controllers\Map\Overlays2DController.cs" />
+    <Compile Include="Controllers\Map\OfflineVectorMapController.cs" />
+    <Compile Include="Controllers\Map\OfflineRoutingController.cs" />
+    <Compile Include="Controllers\Base\VectorMapBaseController.cs" />
   </ItemGroup>
   <Import Project="..\hellomap-shared\hellomap-shared.projitems" Label="Shared" Condition="Exists('..\hellomap-shared\hellomap-shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

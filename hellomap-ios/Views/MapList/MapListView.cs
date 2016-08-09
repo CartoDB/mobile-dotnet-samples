@@ -7,7 +7,7 @@ namespace CartoMobileSample
 {
 	public class MapListView : UITableView
 	{
-		public MapListDataSource DataSource { get; set; }
+		public MapListDataSource ListSource { get; set; }
 
 		public MapListView()
 		{
@@ -16,8 +16,8 @@ namespace CartoMobileSample
 
 		public void AddRows(List<MapBaseController> controllers)
 		{
-			DataSource = new MapListDataSource { Items = controllers };
-			Source = DataSource;
+			ListSource = new MapListDataSource { Items = controllers };
+			Source = ListSource;
 		}
 	}
 }

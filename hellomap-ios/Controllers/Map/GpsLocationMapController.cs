@@ -71,7 +71,6 @@ namespace CartoMobileSample
 			MapPos location = ContentView.Options.BaseProjection.FromWgs84(new MapPos(longitude, latitude));
 
 			if (IsMarkerSet) {
-				markerLabel.Title = title;
 				markerLabel.Description = description;
 				positionMarker.Geometry = new PointGeometry(location);
 				return;

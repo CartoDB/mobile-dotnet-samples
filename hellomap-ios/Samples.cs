@@ -11,12 +11,11 @@ namespace CartoMobileSample
 		{
 			new CartoVisJsonController(),
 			new ClusteredGeoJSONCapitalsController(),
-			new GpsLocationMapController()
+			new GpsLocationMapController(),
+			new OfflineRoutingController(),
+			new OfflineVectorMapController(),
+			new Overlays2DController()
 		};
-
-		public Samples()
-		{
-		}
 	}
 
 }

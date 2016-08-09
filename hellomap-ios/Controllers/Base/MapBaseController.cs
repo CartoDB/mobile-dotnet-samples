@@ -16,7 +16,7 @@ namespace CartoMobileSample
 
 		protected CustomMapView ContentView { get; private set; }
 		protected Projection BaseProjection { get; private set; }
-		protected TileLayer BaseLayer { get; private set; }
+		protected TileLayer BaseLayer { get; set; }
 
 		public override void ViewDidLoad()
 		{
@@ -38,6 +38,12 @@ namespace CartoMobileSample
 			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");
 			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
 			ContentView.Layers.Add(baseLayer);
+		}
+
+		protected void Alert(string message)
+		{
+			// TODO alert
+			Console.WriteLine("Error: " + message);
 		}
 	}
 }

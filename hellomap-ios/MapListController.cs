@@ -23,14 +23,14 @@ namespace CartoMobileSample
 		{
 			base.ViewWillAppear(animated);
 
-			ContentView.DataSource.MapSelected += OnMapSelected;
+			ContentView.ListSource.MapSelected += OnMapSelected;
 		}
 
 		public override void ViewWillDisappear(bool animated)
 		{
 			base.ViewWillDisappear(animated);
 
-			ContentView.DataSource.MapSelected -= OnMapSelected;
+			ContentView.ListSource.MapSelected -= OnMapSelected;
 		}
 
 		void OnMapSelected(object sender, ControllerEventArgs e)
