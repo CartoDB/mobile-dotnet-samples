@@ -1,5 +1,7 @@
 ﻿
 using System;
+using CoreLocation;
+using UIKit;
 
 namespace CartoMobileSample
 {
@@ -16,9 +18,38 @@ namespace CartoMobileSample
 			}
 		}
 
-		public GpsLocationMapController()
+		LocationManager LocationManager { get; set; }
+
+		public override void ViewDidLoad()
 		{
+			base.ViewDidLoad();
+
+			LocationManager = new LocationManager();
+			LocationManager.Start();
 		}
+
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			LocationManager.LocationUpdated += OnLocationUpdate;
+		}
+
+		public override void ViewWillDisappear(bool animated)
+		{
+			base.ViewWillDisappear(animated);
+
+			LocationManager.LocationUpdated -= OnLocationUpdate;
+		}
+
+		void OnLocationUpdate(object sender, LocationUpdatedEventArgs e)
+		{
+			double latitude = e.Location.Coordinate.Latitude;
+			double longitude = e.Location.Coordinate.Longitude;
+
+			Console.WriteLine("OnLocationUpdate: " + latitude + " - " + longitude);
+		}
+
 	}
 }
 

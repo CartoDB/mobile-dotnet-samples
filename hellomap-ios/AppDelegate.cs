@@ -26,7 +26,7 @@ namespace CartoMobileSample
 
 		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
 		{
-			MapView.RegisterLicense(AppDelegate.License);
+			MapView.RegisterLicense(License);
 
 			if (WritingViewsProgrammatically)
 			{
@@ -38,6 +38,12 @@ namespace CartoMobileSample
 				Window.RootViewController = Controller;
 
 				Window.MakeKeyAndVisible();
+			}
+			else {
+				Console.WriteLine("Writing views via StoryBoard");
+				// Add the following properties and values to Info.plist:
+				// [Main storyboard file base name] - [MainStoryboard_iPhone]
+				// [Main storyboard file base name (iPad)] - [MainStoryboard_iPad]
 			}
 
 			return true;

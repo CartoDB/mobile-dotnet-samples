@@ -19,10 +19,6 @@
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>MainStoryboard_iPhone</string>
-	<key>UIMainStoryboardFile</key>
-	<string>MainStoryboard_iPhone</string>
-	<key>UIMainStoryboardFile~ipad</key>
-	<string>MainStoryboard_iPad</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -51,5 +47,7 @@
 		<string>location</string>
 		<string>audio</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>asdfEntry</string>
 </dict>
 </plist>

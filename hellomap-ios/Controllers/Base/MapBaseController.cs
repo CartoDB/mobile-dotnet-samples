@@ -24,6 +24,8 @@ namespace CartoMobileSample
 
 			ContentView = new CustomMapView();
 			View = ContentView;
+
+			Title = Name;
 		}
 
 		public override void ViewDidAppear(bool animated)

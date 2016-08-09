@@ -151,6 +151,7 @@
     <Compile Include="Device.cs" />
     <Compile Include="Controllers\Map\ClusteredGeoJSONCapitalsController.cs" />
     <Compile Include="Controllers\Map\GpsLocationMapController.cs" />
+    <Compile Include="Services\LocationManager.cs" />
   </ItemGroup>
   <Import Project="..\hellomap-shared\hellomap-shared.projitems" Label="Shared" Condition="Exists('..\hellomap-shared\hellomap-shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -173,5 +174,6 @@
     <Folder Include="Controllers\Map\" />
     <Folder Include="Views\MapList\" />
     <Folder Include="DataSources\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>
