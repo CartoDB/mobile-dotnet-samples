@@ -46,5 +46,10 @@
 	<string>com.nutiteq.hellomap.xamarin</string>
 	<key>CFBundleName</key>
 	<string>hellomap-xamarin</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>audio</string>
+	</array>
 </dict>
 </plist>
