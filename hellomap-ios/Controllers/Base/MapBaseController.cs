@@ -18,6 +18,8 @@ namespace CartoMobileSample
 		protected Projection BaseProjection { get; private set; }
 		protected TileLayer BaseLayer { get; set; }
 
+		protected CustomMapView MapView { get { return ContentView; } }
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();

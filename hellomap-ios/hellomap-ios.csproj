@@ -156,6 +156,7 @@
     <Compile Include="Controllers\Map\OfflineVectorMapController.cs" />
     <Compile Include="Controllers\Map\OfflineRoutingController.cs" />
     <Compile Include="Controllers\Base\VectorMapBaseController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
   </ItemGroup>
   <Import Project="..\hellomap-shared\hellomap-shared.projitems" Label="Shared" Condition="Exists('..\hellomap-shared\hellomap-shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -167,6 +168,11 @@
     <BundleResource Include="Resources\fcd_auto.nml" />
     <BundleResource Include="Resources\nutibright-v2a.zip" />
     <BundleResource Include="Resources\nutiteq-dark.zip" />
+    <BundleResource Include="Resources\marker.png" />
+    <BundleResource Include="Resources\arrow.png" />
+    <BundleResource Include="Resources\info.png" />
+    <BundleResource Include="Resources\world_zoom5.mbtiles" />
+    <BundleResource Include="Resources\jefferson-building-ground-floor.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Resources\world_ntvt_0_4.mbtiles" />

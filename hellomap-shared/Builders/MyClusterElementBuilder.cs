@@ -7,6 +7,30 @@ using Carto.VectorElements;
 
 namespace CartoMobileSample
 {
+	//public class MyClusterElementBuilder : ClusterElementBuilder
+	//{
+	//	BalloonPopupStyleBuilder balloonPopupStyleBuilder;
+
+	//	public MyClusterElementBuilder()
+	//	{
+	//		balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
+	//		balloonPopupStyleBuilder.CornerRadius = 3;
+	//		balloonPopupStyleBuilder.TitleMargins = new BalloonPopupMargins(6, 6, 6, 6);
+	//		balloonPopupStyleBuilder.LeftColor = new Color(240, 230, 140, 255);
+	//	}
+
+	//	public override VectorElement BuildClusterElement(MapPos mapPos, VectorElementVector elements)
+	//	{
+	//		var popup = new BalloonPopup(
+	//			mapPos,
+	//			balloonPopupStyleBuilder.BuildStyle(),
+	//			elements.Count.ToString(), "");
+
+	//		return popup;
+	//	}
+
+	//}
+
 	public class MyClusterElementBuilder : ClusterElementBuilder
 	{
 		BalloonPopupStyleBuilder balloonPopupStyleBuilder;
@@ -19,16 +43,13 @@ namespace CartoMobileSample
 			balloonPopupStyleBuilder.LeftColor = new Color(240, 230, 140, 255);
 		}
 
-		public override VectorElement BuildClusterElement(MapPos mapPos, VectorElementVector elements)
+		public override VectorElement BuildClusterElement(MapPos pos, VectorElementVector elements)
 		{
-			var popup = new BalloonPopup(
-				mapPos,
-				balloonPopupStyleBuilder.BuildStyle(),
-				elements.Count.ToString(), "");
+			BalloonPopupStyle style = balloonPopupStyleBuilder.BuildStyle();
+			var popup = new BalloonPopup(pos, style, elements.Count.ToString(), "");
 
 			return popup;
 		}
-
 	}
 }
 
