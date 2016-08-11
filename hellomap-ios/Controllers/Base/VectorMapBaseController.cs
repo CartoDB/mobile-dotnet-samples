@@ -60,6 +60,9 @@ namespace CartoMobileSample
 			Menu.AddItems("Style", styleDict, OptionSelectType.Style);
 			Menu.AddItems("Language", languageDict, OptionSelectType.Language);
 
+			Menu.SetInitialValueOf("Style", BaseStyle);
+			Menu.SetInitialValueOf("Language", BaseLanguage);
+
 			MenuButton = new MenuButton();
 			NavigationItem.RightBarButtonItem = MenuButton;
 		}

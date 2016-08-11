@@ -11,12 +11,14 @@ namespace CartoMobileSample
 		static nfloat Padding = 5;
 		static nfloat LargePadding { get { return 2 * Padding; } }
 
-		static nfloat ItemHeight = 20;
+		public static nfloat ItemHeight { get { return Device.ScreenHeight / 20; } }
 
 		UILabel title;
 		List<OptionsSelect> options = new List<OptionsSelect>();
 
 		public EventHandler<EventArgs> SelectionChanged;
+
+		public string Title { get { return title.Text; } }
 
 		public OptionsMenuBox(string text, Dictionary<string, string> items, OptionSelectType type)
 		{
@@ -36,6 +38,9 @@ namespace CartoMobileSample
 				AddSubview(option);
 				options.Add(option);
 			}
+
+			Layer.CornerRadius = 5;
+			BackgroundColor = UIColor.White;
 		}
 
 		public override void LayoutSubviews()
@@ -52,7 +57,7 @@ namespace CartoMobileSample
 			y += h + LargePadding;
 
 			w = (w - 2 * Padding) / 3;
-			h = 20;
+			h = ItemHeight;
 
 			for (int i = 0; i < options.Count; i++)
 			{
@@ -70,11 +75,26 @@ namespace CartoMobileSample
 			}
 		}
 
+		public void SetValue(string value)
+		{
+			foreach (OptionsSelect option in options) 
+			{
+				if (option.Value == value) {
+					option.Highlight();
+					current = option;
+				}
+			}	
+		}
+
 		OptionsSelect current;
 
 		void OnOptionSelected(object sender, EventArgs e)
 		{
 			OptionsSelect option = (OptionsSelect)sender;
+
+			if (current == option) {
+				return;
+			}
 
 			option.Highlight();
 
@@ -145,6 +165,8 @@ namespace CartoMobileSample
 
 			Layer.BorderWidth = 0.5f;
 			Layer.BorderColor = AppleBlue.CGColor;
+
+			BackgroundColor = UIColor.White;
 		}
 
 		public override void LayoutSubviews()

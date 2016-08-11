@@ -23,6 +23,8 @@ namespace CartoMobileSample
 
 		public EventHandler<EventArgs> SelectionChanged;
 
+		List<OptionsMenuBox> Boxes = new List<OptionsMenuBox>();
+
 		public OptionsMenu()
 		{
 			BackgroundColor = UIColor.FromRGBA(0, 0, 0, 150);
@@ -59,6 +61,8 @@ namespace CartoMobileSample
 			OptionsMenuBox box = new OptionsMenuBox(title, items, type);
 			box.AddGestureRecognizer(new UITapGestureRecognizer(OnBoxTap));
 			AddSubview(box);
+			Boxes.Add(box);
+
 			box.SelectionChanged += OnSelectionChanged;
 
 			nfloat x = BoxPadding;
@@ -69,6 +73,16 @@ namespace CartoMobileSample
 			box.Frame = new CGRect(x, y, w, h);
 
 			Y += h + BoxPadding;
+		}
+
+		public void SetInitialValueOf(string label, string value)
+		{
+			foreach (OptionsMenuBox box in Boxes)
+			{
+				if (box.Title == label) {
+					box.SetValue(value);
+				}
+			}
 		}
 
 		void OnSelectionChanged(object sender, EventArgs e)

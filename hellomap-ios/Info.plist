@@ -44,10 +44,12 @@
 	<string>hellomap-xamarin</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>location</string>
 		<string>audio</string>
+		<string>location</string>
 	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>asdfEntry</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 </dict>
 </plist>

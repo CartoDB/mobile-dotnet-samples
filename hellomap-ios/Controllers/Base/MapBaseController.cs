@@ -27,19 +27,14 @@ namespace CartoMobileSample
 			MapView = new CustomMapView();
 			View = MapView;
 
-			Title = Name;
-		}
-
-		public override void ViewDidAppear(bool animated)
-		{
-			base.ViewWillAppear(animated);
-
 			BaseProjection = new EPSG3857();
 
 			// Initialize map
 			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");
 			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
 			MapView.Layers.Add(baseLayer);
+
+			Title = Name;
 		}
 
 		protected void Alert(string message)

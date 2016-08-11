@@ -176,9 +176,7 @@
     <BundleResource Include="Resources\jefferson-building-ground-floor.jpg" />
     <BundleResource Include="Resources\icon_close%402x.png" />
     <BundleResource Include="Resources\icon_more%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Resources\world_ntvt_0_4.mbtiles" />
+    <BundleResource Include="Resources\world_ntvt_0_4.mbtiles" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
