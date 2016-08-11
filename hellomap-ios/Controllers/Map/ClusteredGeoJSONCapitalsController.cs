@@ -25,12 +25,12 @@ namespace CartoMobileSample
 			// Set online base layer
 			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");
 			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
-			ContentView.Layers.Add(baseLayer);
+			MapView.Layers.Add(baseLayer);
 
 			// read json from assets and add to map
 			var json = System.IO.File.ReadAllText(AssetUtils.CalculateResourcePath("capitals_3857.geojson"));
 
-			MapSetup.AddJsonLayer(ContentView, json);
+			MapSetup.AddJsonLayer(MapView, json);
 		}
 	}
 }

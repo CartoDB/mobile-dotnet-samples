@@ -140,7 +140,6 @@
       <DependentUpon>MainViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
-    <Compile Include="MapListController.cs" />
     <Compile Include="Views\MapList\MapListView.cs" />
     <Compile Include="Views\MapList\MapListRow.cs" />
     <Compile Include="Samples.cs" />
@@ -156,7 +155,9 @@
     <Compile Include="Controllers\Map\OfflineVectorMapController.cs" />
     <Compile Include="Controllers\Map\OfflineRoutingController.cs" />
     <Compile Include="Controllers\Base\VectorMapBaseController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Views\OptionsMenu\OptionsMenu.cs" />
+    <Compile Include="Views\OptionsMenu\OptionsMenuBox.cs" />
+    <Compile Include="Controllers\MapListController.cs" />
   </ItemGroup>
   <Import Project="..\hellomap-shared\hellomap-shared.projitems" Label="Shared" Condition="Exists('..\hellomap-shared\hellomap-shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -173,6 +174,8 @@
     <BundleResource Include="Resources\info.png" />
     <BundleResource Include="Resources\world_zoom5.mbtiles" />
     <BundleResource Include="Resources\jefferson-building-ground-floor.jpg" />
+    <BundleResource Include="Resources\icon_close%402x.png" />
+    <BundleResource Include="Resources\icon_more%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Resources\world_ntvt_0_4.mbtiles" />
@@ -185,5 +188,6 @@
     <Folder Include="Views\MapList\" />
     <Folder Include="DataSources\" />
     <Folder Include="Services\" />
+    <Folder Include="Views\OptionsMenu\" />
   </ItemGroup>
 </Project>

@@ -45,17 +45,17 @@ namespace CartoMobileSample
 		{
 			InvokeInBackground(delegate
 			{
-				ContentView.Layers.Clear();
+				MapView.Layers.Clear();
 
 				// Create overlay layer for Popups
-				Projection projection = ContentView.Options.BaseProjection;
+				Projection projection = MapView.Options.BaseProjection;
 				LocalVectorDataSource source = new LocalVectorDataSource(projection);
 				VectorLayer layer = new VectorLayer(source);
 
 				// Create VIS loader
 				CartoVisLoader loader = new CartoVisLoader();
 				loader.DefaultVectorLayerMode = true;
-				MyCartoVisBuilder builder = new MyCartoVisBuilder(ContentView, layer);
+				MyCartoVisBuilder builder = new MyCartoVisBuilder(MapView, layer);
 
 				try
 				{
@@ -66,7 +66,7 @@ namespace CartoMobileSample
 					Console.WriteLine("Exception: " + e.Message);
 				}
 
-				ContentView.Layers.Add(layer);
+				MapView.Layers.Add(layer);
 			});
 		}
 	}

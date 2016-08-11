@@ -41,9 +41,9 @@ namespace CartoMobileSample
 
 			// create layer and add object to the layer, finally add layer to the map. 
 			// All overlay layers must be same projection as base layer, so we reuse it
-			markerSource = new LocalVectorDataSource(ContentView.Options.BaseProjection);
+			markerSource = new LocalVectorDataSource(MapView.Options.BaseProjection);
 			var _markerLayer = new VectorLayer(markerSource);
-			ContentView.Layers.Add(_markerLayer);
+			MapView.Layers.Add(_markerLayer);
 		}
 
 		public override void ViewWillAppear(bool animated)
@@ -68,7 +68,7 @@ namespace CartoMobileSample
 			string title = "Your current location";
 			string description = latitude.To4Decimals() + ", " + longitude.To4Decimals();
 
-			MapPos location = ContentView.Options.BaseProjection.FromWgs84(new MapPos(longitude, latitude));
+			MapPos location = MapView.Options.BaseProjection.FromWgs84(new MapPos(longitude, latitude));
 
 			if (IsMarkerSet) {
 				markerLabel.Description = description;
@@ -91,10 +91,10 @@ namespace CartoMobileSample
 			markerSource.Add(markerLabel);
 
 			// Center the map in the current location
-			ContentView.FocusPos = location;
+			MapView.FocusPos = location;
 
 			// Zoom in the map in the current location
-			ContentView.Zoom = 19f;
+			MapView.Zoom = 19f;
 		}
 
 	}

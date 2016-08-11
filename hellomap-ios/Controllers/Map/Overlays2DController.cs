@@ -25,9 +25,9 @@ namespace CartoMobileSample
 			// Set online base layer
 			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");
 			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
-			ContentView.Layers.Add(baseLayer);
+			MapView.Layers.Add(baseLayer);
 
-			MapSetup.AddMapOverlays(ContentView);
+			MapSetup.AddMapOverlays(MapView);
 		}
 	}
 }

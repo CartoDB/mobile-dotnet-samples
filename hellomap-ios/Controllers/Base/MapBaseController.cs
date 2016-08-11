@@ -14,18 +14,18 @@ namespace CartoMobileSample
 
 		public virtual new string Description { get; set; }
 
-		protected CustomMapView ContentView { get; private set; }
-		protected Projection BaseProjection { get; private set; }
-		protected TileLayer BaseLayer { get; set; }
+		protected CustomMapView MapView { get; private set; }
 
-		protected CustomMapView MapView { get { return ContentView; } }
+		protected Projection BaseProjection { get; private set; }
+
+		protected TileLayer BaseLayer { get; set; }
 
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
-			ContentView = new CustomMapView();
-			View = ContentView;
+			MapView = new CustomMapView();
+			View = MapView;
 
 			Title = Name;
 		}
@@ -39,7 +39,7 @@ namespace CartoMobileSample
 			// Initialize map
 			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");
 			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
-			ContentView.Layers.Add(baseLayer);
+			MapView.Layers.Add(baseLayer);
 		}
 
 		protected void Alert(string message)

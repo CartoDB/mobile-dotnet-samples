@@ -37,17 +37,18 @@ namespace CartoMobileSample
 		{
 			base.LayoutSubviews();
 
+			nfloat smallPadding = 5;
 			nfloat padding = 10;
 
 			nfloat x = padding;
-			nfloat y = 0;
+			nfloat y = smallPadding;
 			nfloat w = Frame.Width - 2 * padding;
 			nfloat h = Frame.Height / 5;
 
 			title.Frame = new CGRect(x, y, w, h);
 
 			y += h;
-			h = Frame.Height - h;
+			h = Frame.Height - (h + smallPadding);
 
 			description.Frame = new CGRect(x, y, w, h);
 		}

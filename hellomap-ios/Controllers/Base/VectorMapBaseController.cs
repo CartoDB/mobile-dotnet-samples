@@ -48,7 +48,7 @@ namespace CartoMobileSample
 		{
 			base.ViewDidLoad();
 
-			ContentView.Options.ZoomRange = new MapRange(0, 20);
+			MapView.Options.ZoomRange = new MapRange(0, 20);
 
 			UpdateBaseLayer();
 		}
@@ -96,20 +96,19 @@ namespace CartoMobileSample
 			// Remove old base layer, create new base layer
 			if (BaseLayer != null)
 			{
-				ContentView.Layers.Remove(BaseLayer);
+				MapView.Layers.Remove(BaseLayer);
 			}
 
 			BaseLayer = new VectorTileLayer(vectorTileDataSource, vectorTileDecoder);
-			ContentView.Layers.Insert(0, BaseLayer);
+			MapView.Layers.Insert(0, BaseLayer);
 		}
 
 		protected virtual TileDataSource CreateTileDataSource()
 		{
 			TileDataSource source = new CartoOnlineTileDataSource("nutiteq.osm");
 
-			// We don't use vectorTileDataSource directly (this would be also option),
-			// but via caching to cache data locally persistently/non-persistently
-			// Note that persistent cache requires WRITE_EXTERNAL_STORAGE permission
+			// We don't use VectorTileDataSource directly (this would be also option),
+			// but via caching to cache data locally persistently/non-persistently.
 			return new MemoryCacheTileDataSource(source);
 		}
 	}
