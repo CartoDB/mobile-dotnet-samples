@@ -15,7 +15,7 @@ namespace CartoMobileSample
 	[ActivityDescription(Description = 
 	                     "A sample demonstrating how to use markers on the map: " +
 	                     "creating a data source, creating a layer, loading marker bitmaps, creating a style " +
-	                     "and adding the marker to the data source. ")]
+	                     "and adding the marker to the data source.")]
 	public class PinMapActivity : VectorBaseMapActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)

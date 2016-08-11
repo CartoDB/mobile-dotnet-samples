@@ -158,6 +158,11 @@
     <Compile Include="Views\OptionsMenu\OptionsMenu.cs" />
     <Compile Include="Views\OptionsMenu\OptionsMenuBox.cs" />
     <Compile Include="Controllers\MapListController.cs" />
+    <Compile Include="Controllers\Map\PinMapController.cs" />
+    <Compile Include="Controllers\Base\PackageManagerController.cs" />
+    <Compile Include="Controllers\Map\RasterOverlayController.cs" />
+    <Compile Include="Controllers\Map\SQLController.cs" />
+    <Compile Include="Controllers\Map\WmsMapController.cs" />
   </ItemGroup>
   <Import Project="..\hellomap-shared\hellomap-shared.projitems" Label="Shared" Condition="Exists('..\hellomap-shared\hellomap-shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

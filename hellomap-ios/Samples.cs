@@ -1,7 +1,6 @@
 ﻿
-using System;
+
 using System.Collections.Generic;
-using UIKit;
 
 namespace CartoMobileSample
 {
@@ -14,7 +13,13 @@ namespace CartoMobileSample
 			new GpsLocationMapController(),
 			new OfflineRoutingController(),
 			new OfflineVectorMapController(),
-			new Overlays2DController()
+			new Overlays2DController(),
+			// Unfinished
+			new PinMapController(),
+			new PackageManagerController(),
+			new RasterOverlayController(),
+			new SQLController(),
+			new WmsMapController()
 		};
 	}
 
