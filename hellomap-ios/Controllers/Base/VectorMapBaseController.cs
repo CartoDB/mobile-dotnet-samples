@@ -57,8 +57,8 @@ namespace CartoMobileSample
 			UpdateBaseLayer();
 
 			Menu = new OptionsMenu();
-			Menu.AddItems("Style", styleDict);
-			Menu.AddItems("Language", languageDict);
+			Menu.AddItems("Style", styleDict, OptionSelectType.Style);
+			Menu.AddItems("Language", languageDict, OptionSelectType.Language);
 
 			MenuButton = new MenuButton();
 			NavigationItem.RightBarButtonItem = MenuButton;
@@ -68,17 +68,19 @@ namespace CartoMobileSample
 		{
 			base.ViewWillAppear(animated);
 
-			MenuButton.Click += OnMenuClick;
+			MenuButton.Click += OnMenuButtonClick;
+			Menu.SelectionChanged += OnMenuSelectionChanged;
 		}
 
 		public override void ViewWillDisappear(bool animated)
 		{
 			base.ViewWillDisappear(animated);
 
-			MenuButton.Click -= OnMenuClick;
+			MenuButton.Click -= OnMenuButtonClick;
+			Menu.SelectionChanged -= OnMenuSelectionChanged;
 		}
 
-		void OnMenuClick(object sender, EventArgs e)
+		void OnMenuButtonClick(object sender, EventArgs e)
 		{
 			if (Menu.IsVisible)
 			{
@@ -87,7 +89,22 @@ namespace CartoMobileSample
 			else {
 				Menu.Show();
 			}
+		}
 
+		void OnMenuSelectionChanged(object sender, EventArgs e)
+		{
+			OptionsSelect option = (OptionsSelect)sender;
+
+			if (option.Type == OptionSelectType.Style)
+			{
+				vectorStyleName = option.Value;
+			}
+			else if (option.Type == OptionSelectType.Language) 
+			{
+				vectorStyleLang = option.Value;
+			}
+
+			UpdateBaseLayer();
 		}
 
 		void UpdateBaseLayer()

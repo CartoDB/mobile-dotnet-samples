@@ -16,10 +16,10 @@ namespace CartoMobileSample
 		UILabel title;
 		List<OptionsSelect> options = new List<OptionsSelect>();
 
-		public OptionsMenuBox(string text, Dictionary<string, string> items)
-		{
-			BackgroundColor = UIColor.FromRGB(240, 240, 240);
+		public EventHandler<EventArgs> SelectionChanged;
 
+		public OptionsMenuBox(string text, Dictionary<string, string> items, OptionSelectType type)
+		{
 			title = new UILabel();
 			title.Text = text;
 			title.Font = UIFont.FromName("Helvetica", 13);
@@ -30,7 +30,7 @@ namespace CartoMobileSample
 
 			foreach (KeyValuePair<string, string> item in items)
 			{
-				OptionsSelect option = new OptionsSelect(item);
+				OptionsSelect option = new OptionsSelect(item, type);
 				option.TouchUpInside += OnOptionSelected;
 
 				AddSubview(option);
@@ -84,6 +84,11 @@ namespace CartoMobileSample
 			}
 
 			current = option;
+
+			if (SelectionChanged != null)
+			{
+				SelectionChanged(sender, e);
+			}
 		}
 
 		nfloat GetX(int counter, nfloat width)
@@ -108,6 +113,13 @@ namespace CartoMobileSample
 		}
 	}
 
+	public enum OptionSelectType
+	{
+		None,
+		Style,
+		Language
+	}
+
 	public class OptionsSelect : UIButton
 	{
 		static UIColor AppleBlue = UIColor.FromRGB(0, 122, 255);
@@ -116,9 +128,12 @@ namespace CartoMobileSample
 
 		public string Value { get; set; }
 
-		public OptionsSelect(KeyValuePair<string, string> item)
+		public OptionSelectType Type { get; set; }
+
+		public OptionsSelect(KeyValuePair<string, string> item, OptionSelectType type)
 		{
 			Value = item.Value;
+			Type = type;
 
 			title = new UILabel();
 			title.Text = item.Key;

@@ -21,6 +21,8 @@ namespace CartoMobileSample
 
 		public bool IsVisible { get { return Alpha == 1; } }
 
+		public EventHandler<EventArgs> SelectionChanged;
+
 		public OptionsMenu()
 		{
 			BackgroundColor = UIColor.FromRGBA(0, 0, 0, 150);
@@ -52,11 +54,12 @@ namespace CartoMobileSample
 			closeButton.Frame = new CGRect(x, y, w, h);
 		}
 
-		public void AddItems(string title, Dictionary<string, string> items)
+		public void AddItems(string title, Dictionary<string, string> items, OptionSelectType type)
 		{
-			OptionsMenuBox box = new OptionsMenuBox(title, items);
+			OptionsMenuBox box = new OptionsMenuBox(title, items, type);
 			box.AddGestureRecognizer(new UITapGestureRecognizer(OnBoxTap));
 			AddSubview(box);
+			box.SelectionChanged += OnSelectionChanged;
 
 			nfloat x = BoxPadding;
 			nfloat y = Y;
@@ -66,6 +69,14 @@ namespace CartoMobileSample
 			box.Frame = new CGRect(x, y, w, h);
 
 			Y += h + BoxPadding;
+		}
+
+		void OnSelectionChanged(object sender, EventArgs e)
+		{
+			if (SelectionChanged != null)
+			{
+				SelectionChanged(sender, e);
+			}	
 		}
 
 		public void Show()
