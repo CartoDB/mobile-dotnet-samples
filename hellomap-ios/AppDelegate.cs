@@ -39,6 +39,8 @@ namespace CartoMobileSample
 				Window.RootViewController = Controller;
 
 				Window.MakeKeyAndVisible();
+
+				Device.NavigationBarHeight = Controller.NavigationBar.Frame.Height;
 			}
 			else {
 				Console.WriteLine("Writing views via StoryBoard");

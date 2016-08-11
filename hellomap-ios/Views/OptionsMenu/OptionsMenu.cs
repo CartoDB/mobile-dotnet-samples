@@ -15,15 +15,17 @@ namespace CartoMobileSample
 		const int hiddenAlpha = 0;
 		const int showingAlpha = 150;
 
-		nfloat Y = 35;
+		nfloat Y = 80;
 
 		CloseButton closeButton;
+
+		public bool IsVisible { get { return Alpha == 1; } }
 
 		public OptionsMenu()
 		{
 			BackgroundColor = UIColor.FromRGBA(0, 0, 0, 150);
 
-			Alpha = 1;
+			Alpha = 0;
 
 			AddGestureRecognizer(new UITapGestureRecognizer(OnBackgroundTap));
 
@@ -31,18 +33,21 @@ namespace CartoMobileSample
 			AddSubview(closeButton);
 
 			closeButton.AddGestureRecognizer(new UITapGestureRecognizer(OnBackgroundTap));
+
+			Frame = new CGRect(0, 0, Device.ScreenWidth, Device.ScreenHeight);
 		}
 
 		public override void LayoutSubviews()
 		{
 			base.LayoutSubviews();
 
-			nfloat buttonPadding = 5;
+			nfloat buttonHorizontalPadding = 15;
+			nfloat buttonVerticalPadding = 20;
 
 			nfloat w = 25;
 			nfloat h = w;
-			nfloat y = buttonPadding;
-			nfloat x = Frame.Width - (w + buttonPadding);
+			nfloat y = buttonVerticalPadding;
+			nfloat x = Frame.Width - (w + buttonHorizontalPadding);
 
 			closeButton.Frame = new CGRect(x, y, w, h);
 		}
@@ -65,12 +70,14 @@ namespace CartoMobileSample
 
 		public void Show()
 		{
-			UIView.Animate(animationDuration, delegate { Alpha = 1; });
+			UIApplication.SharedApplication.KeyWindow.AddSubview(this);
+
+			Animate(animationDuration, delegate { Alpha = 1; });
 		}
 
 		public void Hide()
 		{
-			UIView.Animate(animationDuration, delegate { Alpha = 0; });
+			Animate(animationDuration, delegate { Alpha = 0; }, delegate { RemoveFromSuperview(); });
 		}
 
 		void OnBackgroundTap()

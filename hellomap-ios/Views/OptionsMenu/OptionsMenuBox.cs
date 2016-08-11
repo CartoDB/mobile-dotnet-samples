@@ -128,7 +128,7 @@ namespace CartoMobileSample
 
 			AddSubview(title);
 
-			Layer.BorderWidth = 1;
+			Layer.BorderWidth = 0.5f;
 			Layer.BorderColor = AppleBlue.CGColor;
 		}
 

@@ -7,6 +7,7 @@ using Carto.Layers;
 using Carto.Styles;
 using Carto.Utils;
 using Carto.VectorTiles;
+using UIKit;
 
 namespace CartoMobileSample
 {
@@ -44,6 +45,9 @@ namespace CartoMobileSample
 			{ "Chinese", "zh" }
 		};
 
+		OptionsMenu Menu { get; set; }
+		MenuButton MenuButton { get; set; }
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
@@ -51,6 +55,39 @@ namespace CartoMobileSample
 			MapView.Options.ZoomRange = new MapRange(0, 20);
 
 			UpdateBaseLayer();
+
+			Menu = new OptionsMenu();
+			Menu.AddItems("Style", styleDict);
+			Menu.AddItems("Language", languageDict);
+
+			MenuButton = new MenuButton();
+			NavigationItem.RightBarButtonItem = MenuButton;
+		}
+
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			MenuButton.Click += OnMenuClick;
+		}
+
+		public override void ViewWillDisappear(bool animated)
+		{
+			base.ViewWillDisappear(animated);
+
+			MenuButton.Click -= OnMenuClick;
+		}
+
+		void OnMenuClick(object sender, EventArgs e)
+		{
+			if (Menu.IsVisible)
+			{
+				Menu.Hide();
+			}
+			else {
+				Menu.Show();
+			}
+
 		}
 
 		void UpdateBaseLayer()
@@ -111,6 +148,32 @@ namespace CartoMobileSample
 			// but via caching to cache data locally persistently/non-persistently.
 			return new MemoryCacheTileDataSource(source);
 		}
+	}
+
+	public class MenuButton : UIBarButtonItem
+	{
+		public EventHandler<EventArgs> Click;
+
+		UIImageView image;
+
+		public MenuButton()
+		{
+			image = new UIImageView();
+			image.Image = UIImage.FromFile("icon_more.png");
+			image.Frame = new CoreGraphics.CGRect(0, 10, 20, 30);
+			CustomView = image;
+
+			image.AddGestureRecognizer(new UITapGestureRecognizer(OnImageClick));
+		}
+
+		void OnImageClick()
+		{
+			if (Click != null)
+			{
+				Click(new object(), EventArgs.Empty);
+			}
+		}
+
 	}
 }
 
