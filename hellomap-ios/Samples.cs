@@ -22,6 +22,5 @@ namespace CartoMobileSample
 			new WmsMapController()
 		};
 	}
-
 }
 

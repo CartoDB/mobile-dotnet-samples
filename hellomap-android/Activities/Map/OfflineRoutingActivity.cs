@@ -29,10 +29,10 @@ namespace CartoMobileSample
 	public class OfflineRoutingActivity: BaseMapActivity
 	{
 		// Add packages you want to download
-		internal static string[] downloadablePackages = new string[]{"EE-routing", "LV-routing", "LT-routing", "PL-routing"};
+		internal static string[] downloadablePackages = {"EE-routing", "LV-routing", "LT-routing", "PL-routing"};
 
-		static string ROUTING_PACKAGEMANAGER_SOURCE = "routing:nutiteq.osm.car";
-		static string ROUTING_SERVICE_SOURCE = "nutiteq.osm.car";
+		const string ROUTING_PACKAGEMANAGER_SOURCE = "routing:nutiteq.osm.car";
+		const string ROUTING_SERVICE_SOURCE = "nutiteq.osm.car";
 
 		RoutingService onlineRoutingService;
 		RoutingService offlineRoutingService;
@@ -430,15 +430,15 @@ namespace CartoMobileSample
 			Log.Error("Package list update failed");
 		}
 
-		public override void OnPackageStatusChanged(String id, int version, PackageStatus status)
+		public override void OnPackageStatusChanged(string id, int version, PackageStatus status)
 		{
 		}
 
-		public override void OnPackageCancelled(String id, int version)
+		public override void OnPackageCancelled(string id, int version)
 		{
 		}
 
-		public override void OnPackageUpdated(String id, int version)
+		public override void OnPackageUpdated(string id, int version)
 		{
 			Log.Debug("Offline package updated: " + id);
 
@@ -454,7 +454,7 @@ namespace CartoMobileSample
 			}
 		}
 
-		public override void OnPackageFailed(String id, int version, PackageErrorType errorType)
+		public override void OnPackageFailed(string id, int version, PackageErrorType errorType)
 		{
 			Log.Error("Offline package update failed: " + id);
 		}

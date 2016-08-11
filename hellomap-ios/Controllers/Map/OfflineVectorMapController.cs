@@ -20,14 +20,7 @@ namespace CartoMobileSample
 			}
 		}
 
-		public string SupportDirectory
-		{
-			get
-			{
-				string documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-				return Path.Combine(documents, "packages/");
-			}
-		}
+		public string SupportDirectory { get { return Utils.GetDocumentDirectory("packages"); } }
 
 		public override void ViewDidLoad()
 		{

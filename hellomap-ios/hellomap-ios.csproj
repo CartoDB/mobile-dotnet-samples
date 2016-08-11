@@ -163,6 +163,7 @@
     <Compile Include="Controllers\Map\RasterOverlayController.cs" />
     <Compile Include="Controllers\Map\SQLController.cs" />
     <Compile Include="Controllers\Map\WmsMapController.cs" />
+    <Compile Include="Utils\Utils.cs" />
   </ItemGroup>
   <Import Project="..\hellomap-shared\hellomap-shared.projitems" Label="Shared" Condition="Exists('..\hellomap-shared\hellomap-shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -182,6 +183,10 @@
     <BundleResource Include="Resources\icon_close%402x.png" />
     <BundleResource Include="Resources\icon_more%402x.png" />
     <BundleResource Include="Resources\world_ntvt_0_4.mbtiles" />
+    <BundleResource Include="Resources\olmarker.png" />
+    <BundleResource Include="Resources\direction_up.png" />
+    <BundleResource Include="Resources\direction_upthenleft.png" />
+    <BundleResource Include="Resources\direction_upthenright.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
@@ -192,5 +197,6 @@
     <Folder Include="DataSources\" />
     <Folder Include="Services\" />
     <Folder Include="Views\OptionsMenu\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
 </Project>
