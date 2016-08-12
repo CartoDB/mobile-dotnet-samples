@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.IO;
+using System.Threading;
 using Carto.Core;
 using Carto.DataSources;
 using Carto.Layers;
@@ -50,6 +51,9 @@ namespace CartoMobileSample
 		LocalVectorDataSource routeStartStopDataSource;
 		BalloonPopupStyleBuilder balloonPopupStyleBuilder;
 
+		RouteMapEventListener MapListener;
+		RoutingPackageListener PackageListener;
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
@@ -73,9 +77,9 @@ namespace CartoMobileSample
 			}
 
 			packageManager = new CartoPackageManager(ROUTING_PACKAGEMANAGER_SOURCE, folder);
-			//TODO
-			//packageManager.PackageManagerListener = new RoutingPackageListener(this);
-			packageManager.Start();
+			PackageListener = new RoutingPackageListener(packageManager, downloadablePackages);
+
+			packageManager.PackageManagerListener = PackageListener;
 
 			// Fetch list of available packages from server. 
 			// Note that this is asynchronous operation 
@@ -106,10 +110,8 @@ namespace CartoMobileSample
 			// Set visible zoom range for the vector layer
 			vectorLayer.VisibleZoomRange = new MapRange(0, 22);
 
-			// Set route listener
-			// TODO
-			//RouteMapEventListener mapListener = new RouteMapEventListener(this);
-			//MapView.MapEventListener = mapListener;
+			MapListener = new RouteMapEventListener();
+			MapView.MapEventListener = MapListener;
 
 			// Create markers for start & end, and a layer for them
 			MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
@@ -150,6 +152,227 @@ namespace CartoMobileSample
 			MapView.Zoom = 7;
 
 			Alert("Long-press on map to set route start and finish");
+		}
+
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			MapListener.StartPositionClicked += OnStartPositionClick;
+			MapListener.StopPositionClicked += OnStopPositionClick;
+
+			PackageListener.OfflinePackageReady += OnOfflinePackageReady;
+			PackageListener.PackageUpdated += OnPackageUpdated;
+
+			packageManager.Start();
+		}
+
+		public override void ViewWillDisappear(bool animated)
+		{
+			base.ViewWillDisappear(animated);
+
+			MapListener.StartPositionClicked -= OnStartPositionClick;
+			MapListener.StopPositionClicked -= OnStopPositionClick;
+
+			PackageListener.OfflinePackageReady -= OnOfflinePackageReady;
+			PackageListener.PackageUpdated -= OnPackageUpdated;
+
+			packageManager.Stop(true);
+		}
+
+		#region EventHandlers
+
+		void OnStartPositionClick(object sender, RouteMapEventArgs e)
+		{
+			SetStartMarker(e.ClickPosition);
+		}
+
+		void OnStopPositionClick(object sender, RouteMapEventArgs e)
+		{
+			SetStopMarker(e.ClickPosition);
+			ShowRoute(e.StartPosition, e.StopPosition);
+		}
+
+		void OnOfflinePackageReady(object sender, EventArgs e)
+		{
+			offlinePackageReady = true;
+		}
+
+		void OnPackageUpdated(object sender, PackageUpdateEventArgs e)
+		{
+			InvokeOnMainThread(() =>
+			{
+				Alert("Offline package downloaded: " + e.Id);
+			});
+
+			if (e.IsLastDownloaded)
+			{
+				offlinePackageReady = true;
+			}
+		}
+
+		#endregion
+		public void ShowRoute(MapPos startPos, MapPos stopPos)
+		{
+			Log.Debug("calculating path " + startPos + " to " + stopPos);
+
+			if (!offlinePackageReady)
+			{
+				InvokeOnMainThread(() =>
+				{
+					string message = "Offline package is not ready, using online routing";
+					Alert(message);
+				});
+			}
+
+			if (!shortestPathRunning)
+			{
+				shortestPathRunning = true;
+				long timeStart;
+
+				// run routing in background
+				System.Threading.Tasks.Task.Run(delegate
+				{
+					timeStart = DateTime.Now.ToUnixTime();
+					MapPosVector poses = new MapPosVector { startPos, stopPos };
+
+					RoutingRequest request = new RoutingRequest(BaseProjection, poses);
+					RoutingResult result;
+
+					if (offlinePackageReady)
+					{
+						result = offlineRoutingService.CalculateRoute(request);
+					}
+					else {
+						result = onlineRoutingService.CalculateRoute(request);
+					}
+
+					// Now update response in UI thread
+					InvokeOnMainThread(delegate
+					{
+						if (result == null)
+						{
+							Alert("Routing failed");
+							shortestPathRunning = false;
+							return;
+						}
+
+						routeDataSource.Clear();
+
+						startMarker.Visible = false;
+
+						Line line = CreatePolyline(startMarker.Geometry.CenterPos, stopMarker.Geometry.CenterPos, result);
+						routeDataSource.Add(line);
+
+						// Add instruction markers
+						RoutingInstructionVector instructions = result.Instructions;
+
+						for (int i = 0; i < instructions.Count; i++)
+						{
+							RoutingInstruction instruction = instructions[i];
+							MapPos position = result.Points[instruction.PointIndex];
+							CreateRoutePoint(position, instruction, routeDataSource);
+						}
+
+						string distance = "The route is " + (int)(result.TotalDistance / 100) / 10f + "km";
+						string time = " (" + result.TotalTime.ConvertFromSecondsToHours() + ") ";
+						string calculation = "| Calculation: " + (DateTime.Now.ToUnixTime() - timeStart) + " ms";
+
+						Alert(distance + time + calculation);
+
+						shortestPathRunning = false;
+					});
+				});
+			}
+		}
+
+		protected void CreateRoutePoint(MapPos pos, RoutingInstruction instruction, LocalVectorDataSource source)
+		{
+
+			MarkerStyle style = instructionUp;
+			string str = "";
+
+			switch (instruction.Action)
+			{
+				case RoutingAction.RoutingActionHeadOn:
+					str = "head on";
+					break;
+				case RoutingAction.RoutingActionFinish:
+					str = "finish";
+					break;
+				case RoutingAction.RoutingActionTurnLeft:
+					style = instructionLeft;
+					str = "turn left";
+					break;
+				case RoutingAction.RoutingActionTurnRight:
+					style = instructionRight;
+					str = "turn right";
+					break;
+				case RoutingAction.RoutingActionUturn:
+					str = "u turn";
+					break;
+				case RoutingAction.RoutingActionNoTurn:
+				case RoutingAction.RoutingActionGoStraight:
+					//style = instructionUp;
+					//str = "continue";
+					break;
+				case RoutingAction.RoutingActionReachViaLocation:
+					style = instructionUp;
+					str = "stopover";
+					break;
+				case RoutingAction.RoutingActionEnterAgainstAllowedDirection:
+					str = "enter against allowed direction";
+					break;
+				case RoutingAction.RoutingActionLeaveAgainstAllowedDirection:
+					break;
+				case RoutingAction.RoutingActionEnterRoundabout:
+					str = "enter roundabout";
+					break;
+				case RoutingAction.RoutingActionStayOnRoundabout:
+					str = "stay on roundabout";
+					break;
+				case RoutingAction.RoutingActionLeaveRoundabout:
+					str = "leave roundabout";
+					break;
+				case RoutingAction.RoutingActionStartAtEndOfStreet:
+					str = "start at end of street";
+					break;
+			}
+
+			if (str != "")
+			{
+				Marker marker = new Marker(pos, style);
+				BalloonPopup popup2 = new BalloonPopup(marker, balloonPopupStyleBuilder.BuildStyle(), str, "");
+
+				source.Add(popup2);
+				source.Add(marker);
+			}
+		}
+
+		// Creates Nutiteq line from GraphHopper response
+		protected Line CreatePolyline(MapPos start, MapPos end, RoutingResult result)
+		{
+			LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();
+
+			Carto.Graphics.Color darkGray = new Carto.Graphics.Color(49, 79, 79, 255);
+			lineStyleBuilder.Color = darkGray;
+			lineStyleBuilder.Width = 12;
+
+			return new Line(result.Points, lineStyleBuilder.BuildStyle());
+		}
+
+		public void SetStartMarker(MapPos startPos)
+		{
+			routeDataSource.Clear();
+			stopMarker.Visible = false;
+			startMarker.SetPos(startPos);
+			startMarker.Visible = true;
+		}
+
+		public void SetStopMarker(MapPos pos)
+		{
+			stopMarker.SetPos(pos);
+			stopMarker.Visible = true;
 		}
 	}
 }

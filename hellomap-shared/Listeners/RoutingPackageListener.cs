@@ -26,11 +26,11 @@ namespace CartoMobileSample
 			Console.WriteLine("RoutingPackageListener: Package list updated");
 
 			var downloadedPackages = 0;
-			var totalPackages = OfflineRoutingActivity.downloadablePackages.Length;
+			var totalPackageCount = DownloadablePackages.Length;
 
-			for (int i = 0; i < totalPackages; i++)
+			for (int i = 0; i < totalPackageCount; i++)
 			{
-				var isDownloaded = GetPackageIfNotExists(DownloadablePackages[i]);
+				var isDownloaded = GetPackageIfDoesNotExists(DownloadablePackages[i]);
 
 				if (isDownloaded)
 				{
@@ -39,30 +39,12 @@ namespace CartoMobileSample
 			}
 
 			// If all downloaded, can start with offline routing
-			if (downloadedPackages == totalPackages)
+			if (downloadedPackages == totalPackageCount)
 			{
 				if (OfflinePackageReady != null) {
 					OfflinePackageReady(new object(), EventArgs.Empty);
 				}
 			}
-		}
-
-		bool GetPackageIfNotExists(string packageId)
-		{
-			PackageStatus status = Manager.GetLocalPackageStatus(packageId, -1);
-
-			if (status == null)
-			{
-				Manager.StartPackageDownload(packageId);
-				return false;
-			}
-			else if (status.CurrentAction == PackageAction.PackageActionReady)
-			{
-				Console.WriteLine(packageId + " is downloaded and ready");
-				return true;
-			}
-
-			return false;
 		}
 
 		public override void OnPackageListFailed()
@@ -95,6 +77,24 @@ namespace CartoMobileSample
 		public override void OnPackageFailed(string id, int version, PackageErrorType errorType)
 		{
 			Console.WriteLine("RoutingPackageListener: Offline package update failed: " + id);
+		}
+
+		bool GetPackageIfDoesNotExists(string packageId)
+		{
+			PackageStatus status = Manager.GetLocalPackageStatus(packageId, -1);
+
+			if (status == null)
+			{
+				Manager.StartPackageDownload(packageId);
+				return false;
+			}
+			else if (status.CurrentAction == PackageAction.PackageActionReady)
+			{
+				Console.WriteLine(packageId + " is downloaded and ready");
+				return true;
+			}
+
+			return false;
 		}
 
 	}
