@@ -142,7 +142,7 @@ namespace CartoMobileSample
 
 	public class OptionsSelect : UIButton
 	{
-		static UIColor AppleBlue = UIColor.FromRGB(0, 122, 255);
+		public static UIColor AppleBlue = UIColor.FromRGB(0, 122, 255);
 
 		UILabel title;
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using Carto.DataSources;
 using Carto.PackageManager;
+using UIKit;
 
 namespace CartoMobileSample
 {
@@ -24,11 +25,11 @@ namespace CartoMobileSample
 		public static PackageManagerTileDataSource DataSource;
 
 		CartoPackageManager packageManager;
-		//ArrayAdapter<Package> packageAdapter;
-		List<Package> packageArray = new List<Package>();
 
 		string currentFolder = ""; // Current 'folder' of the package, for example "Asia/"
 		string language = "en"; // Language for the package names. Most major languages are supported
+
+		readonly List<Package> packageList = new List<Package>();
 
 		PackageListener PackageUpdateListener = new PackageListener();
 
@@ -41,6 +42,8 @@ namespace CartoMobileSample
 				currentFolder = folder;
 			}	
 		}
+
+		PackageManagerListView ContentView;
 
 		public override void ViewDidLoad()
 		{
@@ -64,6 +67,10 @@ namespace CartoMobileSample
 			packageManager.PackageManagerListener = PackageUpdateListener;
 
 			packageManager.StartPackageListDownload();
+
+			ContentView = new PackageManagerListView();
+			View = ContentView;
+			ContentView.AddRows(packageList);
 		}
 
 		public override void ViewWillAppear(bool animated)
@@ -78,6 +85,8 @@ namespace CartoMobileSample
 			PackageUpdateListener.OnPackageUpdate += UpdatePackage;
 			PackageUpdateListener.OnPackageStatusChange += UpdatePackage;
 			PackageUpdateListener.OnPackageFail += UpdatePackage;
+
+			packageManager.Start();
 		}
 
 		public override void ViewWillDisappear(bool animated)
@@ -92,6 +101,8 @@ namespace CartoMobileSample
 			PackageUpdateListener.OnPackageUpdate -= UpdatePackage;
 			PackageUpdateListener.OnPackageStatusChange -= UpdatePackage;
 			PackageUpdateListener.OnPackageFail -= UpdatePackage;
+
+			packageManager.Stop(true);
 		}
 
 		#region Package update
@@ -105,9 +116,10 @@ namespace CartoMobileSample
 		{
 			InvokeOnMainThread(delegate
 			{
-				packageArray.Clear();
-				packageArray.AddRange(Packages);
-				//packageAdapter.NotifyDataSetChanged();
+				packageList.Clear();
+				packageList.AddRange(Packages);
+				ContentView.ListSource.Items = packageList;
+				ContentView.ReloadData();
 			});
 		}
 
@@ -123,7 +135,7 @@ namespace CartoMobileSample
 
 		void UpdatePackage(object sender, PackageFailedEventArgs e)
 		{
-			Alert("Error: " + e.ErrorType);
+			//Alert("Error: " + e.ErrorType);
 			UpdatePackage(e.Id);
 		}
 
@@ -132,17 +144,18 @@ namespace CartoMobileSample
 			InvokeOnMainThread(delegate
 			{
 				// Try to find the package that needs to be updated
-				for (int i = 0; i < packageArray.Count; i++)
+				for (int i = 0; i < packageList.Count; i++)
 				{
-					Package pkg = packageArray[i];
+					Package pkg = packageList[i];
 
 					if (id.Equals(pkg.Id))
 					{
 						PackageStatus status = packageManager.GetLocalPackageStatus(id, -1);
 						pkg.UpdateStatus(status);
 
-						packageArray[i] = pkg;
-						//packageAdapter.NotifyDataSetChanged();
+						packageList[i] = pkg;
+						ContentView.ReloadData();
+						break;
 					}
 				}
 			});

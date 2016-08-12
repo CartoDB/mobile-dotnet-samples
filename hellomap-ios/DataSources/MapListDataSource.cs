@@ -55,11 +55,11 @@ namespace CartoMobileSample
 		{
 			MapBaseController controller = Items[indexPath.Row];
 
-			MapListRow cell = (MapListRow)tableView.DequeueReusableCell(identifier);
+			MapListCell cell = (MapListCell)tableView.DequeueReusableCell(identifier);
 
 			if (cell == null)
 			{
-				cell = new MapListRow();
+				cell = new MapListCell();
 			}
 
 			cell.Update(controller);

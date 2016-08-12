@@ -141,7 +141,7 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="Views\MapList\MapListView.cs" />
-    <Compile Include="Views\MapList\MapListRow.cs" />
+    <Compile Include="Views\MapList\MapListCell.cs" />
     <Compile Include="Samples.cs" />
     <Compile Include="Controllers\Map\CartoVisJsonController.cs" />
     <Compile Include="Controllers\Base\MapBaseController.cs" />
@@ -167,6 +167,9 @@
     <Compile Include="DataSources\HttpWmsTileDataSource.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Views\PackageManager\PackageManagerButton.cs" />
+    <Compile Include="Views\PackageManager\PackageManagerListView.cs" />
+    <Compile Include="DataSources\PackageListDataSource.cs" />
+    <Compile Include="Views\PackageManager\PackageListCell.cs" />
   </ItemGroup>
   <Import Project="..\hellomap-shared\hellomap-shared.projitems" Label="Shared" Condition="Exists('..\hellomap-shared\hellomap-shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

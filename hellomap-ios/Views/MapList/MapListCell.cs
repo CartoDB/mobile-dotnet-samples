@@ -5,13 +5,13 @@ using UIKit;
 
 namespace CartoMobileSample
 {
-	public class MapListRow : UITableViewCell
+	public class MapListCell : UITableViewCell
 	{
 		public int Index { get; set; }
 
 		UILabel title, description;
 
-		public MapListRow()
+		public MapListCell()
 		{
 			title = new UILabel();
 			title.Font = UIFont.FromName("Helvetica-Bold", 12);
