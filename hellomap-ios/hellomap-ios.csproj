@@ -166,6 +166,7 @@
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="DataSources\HttpWmsTileDataSource.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Views\PackageManager\PackageManagerButton.cs" />
   </ItemGroup>
   <Import Project="..\hellomap-shared\hellomap-shared.projitems" Label="Shared" Condition="Exists('..\hellomap-shared\hellomap-shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -200,5 +201,6 @@
     <Folder Include="Services\" />
     <Folder Include="Views\OptionsMenu\" />
     <Folder Include="Utils\" />
+    <Folder Include="Views\PackageManager\" />
   </ItemGroup>
 </Project>

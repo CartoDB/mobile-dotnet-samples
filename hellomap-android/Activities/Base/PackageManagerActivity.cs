@@ -36,50 +36,11 @@ namespace CartoMobileSample
 
 		PackageListener PackageUpdateListener = new PackageListener();
 
-		List<Package> Packages
-		{
-			get
-			{
-				List<Package> packages = new List<Package>();
-
-				foreach (PackageInfo info in packageManager.ServerPackages)
-				{
-					StringVector names = info.GetNames(language);
-
-					foreach (string name in names)
-					{
-						if (!name.StartsWith(currentFolder))
-						{
-							continue; // belongs to a different folder, so ignore
-						}
-
-						string modified = name.Substring(currentFolder.Length);
-						int index = modified.IndexOf('/');
-						Package package;
-
-						if (index == -1)
-						{
-							// This is an actual package
-							PackageStatus packageStatus = packageManager.GetLocalPackageStatus(info.PackageId, -1);
-							package = new Package(modified, info, packageStatus);
-						}
-						else {
-							// This is a package group
-							modified = modified.Substring(0, index);
-							if (packages.Any(i => i.Name == modified))
-							{
-								// Do not add if already contains
-								continue;
-							}
-							package = new Package(modified, null, null);
-						}
-
-						packages.Add(package);
-					}
-				}
-
-				return packages;
-			}
+		public List<Package> Packages { 
+			get {
+				// Extension method. cf CommonMapExtensions.cs
+				return packageManager.GetPackages(language, currentFolder); 
+			} 
 		}
 
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
@@ -300,60 +261,6 @@ namespace CartoMobileSample
 		}
 
 		#endregion
-
-		// TODO Remove when confirmed that new approach works
-		List<Package> GetPackages()
-		{
-			Dictionary<string, Package> pkgs = new Dictionary<string, Package>();
-			PackageInfoVector packageInfoVector = packageManager.ServerPackages;
-
-			for (int i = 0; i < packageInfoVector.Count; i++)
-			{
-				PackageInfo packageInfo = packageInfoVector[i];
-
-				// Get the list of names for this package. 
-				// Each package may have multiple names, packages are grouped using '/' as a separator, 
-				// e.g. the the full name for Sweden is "Europe/Northern Europe/Sweden". 
-				// We display packages as a tree, 
-				// so we need to extract only relevant packages belonging to the current folder.
-				StringVector packageNames = packageInfo.GetNames(language);
-
-				for (int j = 0; j < packageNames.Count; j++)
-				{
-					string packageName = packageNames[j];
-
-					if (!packageName.StartsWith(currentFolder))
-					{
-						continue; // belongs to a different folder, so ignore
-					}
-
-					packageName = packageName.Substring(currentFolder.Length);
-					int index = packageName.IndexOf('/');
-					Package pkg;
-
-					if (index == -1)
-					{
-						// This is a package
-						PackageStatus packageStatus = packageManager.GetLocalPackageStatus(packageInfo.PackageId, -1);
-						pkg = new Package(packageName, packageInfo, packageStatus);
-					}
-					else {
-						// This is a package group
-						packageName = packageName.Substring(0, index);
-						if (pkgs.ContainsKey(packageName))
-						{
-							continue;
-						}
-						pkg = new Package(packageName, null, null);
-					}
-
-					pkgs.Add(packageName, pkg);
-				}
-			}
-
-			return new List<Package>(pkgs.Values);
-		}
-
 	}
 
 	#region Supporting Classes

@@ -3,15 +3,6 @@ using Android.Widget;
 
 namespace CartoMobileSample
 {
-	public enum PackageManagerButtonType
-	{
-		StartRemovePackage,
-		CancelPackageTasks,
-		SetPackagePriority,
-		StartPackageDownload,
-		UpdatePackages
-	}
-
 	public class PackageManagerButton : Button
 	{
 		public string PackageId { get; set; }

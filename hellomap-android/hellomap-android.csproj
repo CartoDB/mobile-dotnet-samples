@@ -48,11 +48,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.4.0.0-alphapreview1\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
-    </Reference>
     <Reference Include="System.Json" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="CartoMobileSDK.Android">
+      <HintPath>..\packages\CartoMobileSDK.4.0.0-build43\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
