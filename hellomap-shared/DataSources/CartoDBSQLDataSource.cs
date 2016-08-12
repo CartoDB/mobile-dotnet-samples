@@ -1,8 +1,6 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Json;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -21,6 +19,7 @@ namespace CartoMobileSample
 	/**
 	* A custom vector data source making queries to http://docs.cartodb.com/cartodb-platform/sql-api/
 	*/
+	// TODO: reimplement to use Carto.Services.CartoSQLService, current version contains code not working on UWP/Windows Phone 10
 	public class CartoDBSQLDataSource : VectorDataSource
 	{
 		string baseUrl;
@@ -67,52 +66,46 @@ namespace CartoMobileSample
 
 			try
 			{
-				JsonValue json = GetJson(fullPath);
+				String json = GetString(fullPath);
 
 				GeoJSONGeometryReader geoJsonParser = new GeoJSONGeometryReader();
+				FeatureCollection features = geoJsonParser.ReadFeatureCollection(json);
 
-				JsonArray features = (JsonArray)json["features"];
-
-				for (int i = 0; i < features.Count; i++)
+				for (int i = 0; i < features.FeatureCount; i++)
 				{
-					JsonObject feature = (JsonObject)features[i];
-					JsonObject geometry = (JsonObject)feature["geometry"];
-
-					// Use SDK GeoJSON parser
-					Geometry ntGeom = geoJsonParser.ReadGeometry(geometry.ToString());
-
-					JsonObject properties = (JsonObject)feature["properties"];
-					VectorElement element;
+					Geometry geom = features.GetFeature(i).Geometry;
+					Variant props = features.GetFeature(i).Properties;
 
 					// Create object based on given style
+					VectorElement element;
 					if (style is PointStyle)
 					{
-						element = new Point((PointGeometry)ntGeom, (PointStyle)style);
+						element = new Point((PointGeometry)geom, (PointStyle)style);
 					}
 					else if (style is MarkerStyle)
 					{
-						element = new Marker(ntGeom, (MarkerStyle)style);
+						element = new Marker(geom, (MarkerStyle)style);
 					}
 					else if (style is LineStyle)
 					{
-						element = new Line((LineGeometry)ntGeom, (LineStyle)style);
+						element = new Line((LineGeometry)geom, (LineStyle)style);
 					}
 					else if (style is PolygonStyle)
 					{
-						element = new Polygon((PolygonGeometry)ntGeom, (PolygonStyle)style);
+						element = new Polygon((PolygonGeometry)geom, (PolygonStyle)style);
 					}
-					else {
+					else
+					{
 						System.Console.WriteLine("Object creation not implemented yet for style: " + style.SwigGetClassNameStyle());
 						break;
 					}
 
 					// Add all properties as MetaData, so you can use it with click handling
-					foreach (KeyValuePair<string, JsonValue> item in properties) 
+					for (int j = 0; j < props.ObjectKeys.Count; j++)
 					{
-						string key = item.Key;
-						string val = item.Value.ToString();
-
-						element.SetMetaDataElement(key, new Variant(val));
+						var key = props.ObjectKeys[j];
+						var val = props.GetObjectElement(key);
+						element.SetMetaDataElement(key, val);
 					}
 
 					elements.Add(element);
@@ -135,12 +128,11 @@ namespace CartoMobileSample
 			return start + data + end;
 		}
 
-		JsonValue GetJson(string url)
+		string GetString(string url)
 		{
 			using (StreamReader reader = new StreamReader(GetStreamFromUrl(url)))
 			{
-				string result = reader.ReadToEnd();
-				return JsonValue.Parse(result);
+				return reader.ReadToEnd();
 			}
 		}
 

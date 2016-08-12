@@ -76,7 +76,7 @@ namespace HelloMap
                 // Create map view and initialize (actual initialization code is shared between Android/iOS/WinPhone platforms)
                 mPage = new Carto.Ui.MapView();
                 //NutiteqSample.MapSetup.InitializePackageManager(packageFolder, importPackageName, mPage, "");
-                NutiteqSample.MapSetup.AddMapOverlays(mPage);
+                CartoMobileSample.MapSetup.AddMapOverlays(mPage);
             }
 
             // Place the page in the current window and ensure that it is active.
