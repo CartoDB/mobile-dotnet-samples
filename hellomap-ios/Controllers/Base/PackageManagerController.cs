@@ -8,19 +8,19 @@ using UIKit;
 
 namespace CartoMobileSample
 {
-	public class PackageManagerController : MapBaseController
+	public class PackageManagerController : UIViewController
 	{
-		public override string Name { get { return "Package Manager"; } }
+		//public override string Name { get { return "Package Manager"; } }
 
-		public override string Description
-		{
-			get
-			{
-				return "A sample demonstrating how to use offline package manager of the Carto Mobile SDK. " +
-						 "The sample downloads the latest package list from Carto online service, " +
-						 "displays this list and allows user to manage offline packages";
-			}
-		}
+		//public override string Description
+		//{
+		//	get
+		//	{
+		//		return "A sample demonstrating how to use offline package manager of the Carto Mobile SDK. " +
+		//				 "The sample downloads the latest package list from Carto online service, " +
+		//				 "displays this list and allows user to manage offline packages";
+		//	}
+		//}
 
 		public static PackageManagerTileDataSource DataSource;
 
@@ -86,6 +86,8 @@ namespace CartoMobileSample
 			PackageUpdateListener.OnPackageStatusChange += UpdatePackage;
 			PackageUpdateListener.OnPackageFail += UpdatePackage;
 
+			ContentView.ListSource.CellActionButtonClicked += OnCellActionButtonClick;
+
 			packageManager.Start();
 		}
 
@@ -101,6 +103,8 @@ namespace CartoMobileSample
 			PackageUpdateListener.OnPackageUpdate -= UpdatePackage;
 			PackageUpdateListener.OnPackageStatusChange -= UpdatePackage;
 			PackageUpdateListener.OnPackageFail -= UpdatePackage;
+
+			ContentView.ListSource.CellActionButtonClicked -= OnCellActionButtonClick;
 
 			packageManager.Stop(true);
 		}
@@ -165,10 +169,10 @@ namespace CartoMobileSample
 
 		#region Row Internal Button Click handling
 
-		public void OnAdapterActionButtonClick(object sender, EventArgs e)
+		public void OnCellActionButtonClick(object sender, EventArgs e)
 		{
 			PackageManagerButton button = (PackageManagerButton)sender;
-			System.Console.WriteLine("Clicked: " + button.PackageId + " - " + button.PackageName + " - " + button.Type);
+			Console.WriteLine("Clicked: " + button.PackageId + " - " + button.PackageName + " - " + button.Type);
 
 			if (button.Type == PackageManagerButtonType.CancelPackageTasks)
 			{
@@ -181,7 +185,6 @@ namespace CartoMobileSample
 			else if (button.Type == PackageManagerButtonType.StartPackageDownload)
 			{
 				packageManager.StartPackageDownload(button.PackageId);
-
 			}
 			else if (button.Type == PackageManagerButtonType.StartRemovePackage)
 			{
@@ -189,8 +192,10 @@ namespace CartoMobileSample
 			}
 			else if (button.Type == PackageManagerButtonType.UpdatePackages)
 			{
-				currentFolder = currentFolder + button.PackageName + "/";
-				UpdatePackages();
+				var controller = new PackageManagerController(currentFolder + button.PackageName + "/");
+				NavigationController.PushViewController(controller, true);
+				//currentFolder = currentFolder + button.PackageName + "/";
+				//UpdatePackages();
 			}
 		}
 

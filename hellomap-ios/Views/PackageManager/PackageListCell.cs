@@ -8,6 +8,8 @@ namespace CartoMobileSample
 {
 	public class PackageListCell : UITableViewCell
 	{
+		public EventHandler<EventArgs> CellActionButtonClicked;
+
 		UILabel nameLabel, statusLabel;
 
 		PackageManagerButton ActionButton { get; set; }
@@ -25,6 +27,8 @@ namespace CartoMobileSample
 			AddSubviews(nameLabel, statusLabel, ActionButton);
 
 			SelectionStyle = UITableViewCellSelectionStyle.None;
+
+			ActionButton.TouchUpInside += OnButtonClick;
 		}
 
 		public override void LayoutSubviews()
@@ -59,6 +63,14 @@ namespace CartoMobileSample
 			h = buttonHeight;
 
 			ActionButton.Frame = new CGRect(x, y, w, h);
+		}
+
+		void OnButtonClick(object sender, EventArgs e)
+		{
+			if (CellActionButtonClicked != null)
+			{
+				CellActionButtonClicked(sender, e);
+			}	
 		}
 
 		public void Update(Package pkg)
