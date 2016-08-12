@@ -23,7 +23,8 @@ namespace CartoMobileSample
 			HttpWmsTileDataSource wms = new HttpWmsTileDataSource(0, 14, BaseProjection, false, url, "", layers, "image/png8");
 			RasterTileLayer wmsLayer = new RasterTileLayer(wms);
 
-			// Calculate zoom bias, basically this is needed to 'undo' automatic DPI scaling, we will display original raster with close to 1:1 pixel density
+			// Calculate zoom bias, basically this is needed to 'undo' automatic DPI scaling, 
+			// we will display original raster with close to 1:1 pixel density
 			double zoomLevelBias = Math.Log(MapView.Options.DPI / 160) / Math.Log(2);
 			wmsLayer.ZoomLevelBias = (float)zoomLevelBias;
 

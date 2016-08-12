@@ -14,9 +14,8 @@ namespace CartoMobileSample
 			new OfflineRoutingController(),
 			new OfflineVectorMapController(),
 			new Overlays2DController(),
-			// Unfinished
 			new PinMapController(),
-			new PackageManagerController(),
+			new PackageManagerController(),// Unfinished
 			new RasterOverlayController(),
 			new SQLController(),
 			new WmsMapController()

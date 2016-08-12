@@ -6,7 +6,7 @@ using Carto.Projections;
 
 namespace CartoMobileSample
 {
-	public class HttpWmsTileDataSource : HTTPTileDataSource
+public class HttpWmsTileDataSource : HTTPTileDataSource
 	{
 		const int tileSize = 256;
 
@@ -41,8 +41,8 @@ namespace CartoMobileSample
 		 * * format e.g. image/png, image/jpeg
 		 * _________________________________________________
 		 */
-		public HttpWmsTileDataSource(int minZoom, int maxZoom, Projection proj, bool wgsWms, 
-		                             string baseUrl, string style, string layer, string format) : base(minZoom, maxZoom, baseUrl)
+		public HttpWmsTileDataSource(int minZoom, int maxZoom, Projection proj, bool wgsWms,
+									 string baseUrl, string style, string layer, string format) : base(minZoom, maxZoom, baseUrl)
 		{
 			this.baseUrl = baseUrl;
 			this.style = style;
@@ -62,29 +62,29 @@ namespace CartoMobileSample
 				srs = "EPSG:4326";
 			}
 
-			Android.Net.Uri.Builder uri = CreateBaseUri("GetMap", srs);
-			uri.AppendQueryParameter("BBOX", bbox);
+			// Example Uri:
+			// http://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WmsServer?
+			// LAYERS=0&FORMAT=image%2Fpng8&SERVICE=WMS&VERSION=1.1.0&REQUEST=GetMap&STYLES=
+			// &EXCEPTIONS=application%2Fvnd.ogc.se_inimage&SRS=EPSG%3A3857&WIDTH=256&HEIGHT=256
+			// &BBOX=-20037508.3427892%2C0%2C0%2C20037508.3427892
 
-			string result = uri.Build().ToString();
-			return result;
-		}
+			string url = baseUrl;
 
-		Android.Net.Uri.Builder CreateBaseUri(string request, string srs)
-		{
-			Android.Net.Uri.Builder uri = Android.Net.Uri.Parse(baseUrl).BuildUpon();
+			// Extension method; cf. iOS Extensions class
+			url = url.Append("LAYERS", layer);
+			url = url.Append("FORMAT", format);
+			url = url.Append("SERVICE", "WMS");
+			url = url.Append("VERSION", "1.1.0");
+			url = url.Append("REQUEST", "GetMap");
+			url = url.Append("STYLES", style);
+			url = url.Append("EXCEPTIONS", "application/vnd.ogc.se_inimage");
+			url = url.Append("SRS", srs);
+			url = url.Append("WIDTH", tileSize.ToString());
+			url = url.Append("HEIGHT", tileSize.ToString());
 
-			uri.AppendQueryParameter("LAYERS", layer);
-			uri.AppendQueryParameter("FORMAT", format);
-			uri.AppendQueryParameter("SERVICE", "WMS");
-			uri.AppendQueryParameter("VERSION", "1.1.0");
-			uri.AppendQueryParameter("REQUEST", request);
-			uri.AppendQueryParameter("STYLES", style);
-			uri.AppendQueryParameter("EXCEPTIONS", "application/vnd.ogc.se_inimage");
-			uri.AppendQueryParameter("SRS", srs);
-			uri.AppendQueryParameter("WIDTH", tileSize.ToString());
-			uri.AppendQueryParameter("HEIGHT", tileSize.ToString());
+			url = url.Append("BBOX", bbox);
 
-			return uri;
+			return url;
 		}
 
 		string GetTileBbox(MapTile tile)

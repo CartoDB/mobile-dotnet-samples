@@ -22,7 +22,7 @@ namespace CartoMobileSample
 			// MapSampleBaseActivity creates and configures mapView  
 			base.OnCreate(savedInstanceState);
 
-			// define style for vector objects. Note that all objects must have same style here, which can be big limitation
+			// Define style for vector objects. Note that all objects must have same style here, which can be big limitation
 			PointStyleBuilder pointStyleBuilder = new PointStyleBuilder();
 			pointStyleBuilder.Color = new Color(0, 0, 255, 255);
 			pointStyleBuilder.Size = 10;
