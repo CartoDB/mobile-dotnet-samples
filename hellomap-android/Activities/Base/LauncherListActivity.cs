@@ -29,9 +29,7 @@ namespace CartoMobileSample
 
 			SetContentView(Resource.Layout.List);
 
-			int id = Android.Resource.Layout.SimpleListItem1;
-
-			ListView.Adapter = new ArrayAdapter<string>(this, id, Samples.AsStringArray);
+			ListView.Adapter = new MapListAdapter(this, Samples.List);
 		}
 
 		protected override void OnListItemClick(ListView l, View v, int position, long id)
@@ -41,7 +39,7 @@ namespace CartoMobileSample
 			Intent intent = new Intent(this, sample);
 			intent.PutExtra(Samples.IntentName, sample.Name);
 
-			this.StartActivity(intent);
+			StartActivity(intent);
 		}
 	}
 }

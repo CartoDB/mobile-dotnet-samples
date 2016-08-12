@@ -2,3 +2,5 @@
 */obj/*
 packages/*
 *.userprefs
+
+.DS_Store

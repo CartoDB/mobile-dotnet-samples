@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 using Foundation;
 using UIKit;
+using Carto.Ui;
 
 namespace CartoMobileSample
 {
@@ -11,37 +12,46 @@ namespace CartoMobileSample
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
+	public class AppDelegate : UIApplicationDelegate
 	{
-		// class-level declarations
-		
-		public override UIWindow Window {
-			get;
-			set;
-		}
-		
-		// This method is invoked when the application is about to move from active to inactive state.
-		// OpenGL applications should use this method to pause.
-		public override void OnResignActivation (UIApplication application)
+		static bool WritingViewsProgrammatically = true;
+
+		public const string License = "XTUMwQ0ZRQzRzK205Z1VnTll2ZWZRTDJBK20wSXk2ZjRqQUlVV0VmN2l4Vm95dHFQQ3dLNUY" +
+		"2UC8rNVplQ2RvPQoKcHJvZHVjdHM9c2RrLXhhbWFyaW4taW9zLTQuKgpidW5kbGVJZGVudGlmaWVyPWNvbS5u" +
+		"dXRpdGVxLmhlbGxvbWFwLnhhbWFyaW4Kd2F0ZXJtYXJrPWNhcnRvZGIKdmFsaWRVbnRpbD0yMDE2LTA5LTAyCm9ubGluZUxpY2Vuc2U9MQo=";
+
+		public override UIWindow Window { get; set; }
+
+		public UINavigationController Controller { get; set; }
+
+		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
 		{
+			MapView.RegisterLicense(License);
+
+			if (WritingViewsProgrammatically)
+			{
+				Controller = new UINavigationController(new MapListController());
+
+				Controller.NavigationBarHidden = false;
+
+				Window = new UIWindow(UIScreen.MainScreen.Bounds);
+
+				Window.RootViewController = Controller;
+
+				Window.MakeKeyAndVisible();
+
+				Device.NavigationBarHeight = Controller.NavigationBar.Frame.Height;
+			}
+			else {
+				Console.WriteLine("Writing views via StoryBoard");
+				// Add the following properties and values to Info.plist:
+				// [Main storyboard file base name] - [MainStoryboard_iPhone]
+				// [Main storyboard file base name (iPad)] - [MainStoryboard_iPad]
+			}
+
+			return true;
 		}
-		
-		// This method should be used to release shared resources and it should store the application state.
-		// If your application supports background exection this method is called instead of WillTerminate
-		// when the user quits.
-		public override void DidEnterBackground (UIApplication application)
-		{
-		}
-		
-		// This method is called as part of the transiton from background to active state.
-		public override void WillEnterForeground (UIApplication application)
-		{
-		}
-		
-		// This method is called when the application is about to terminate. Save data, if needed.
-		public override void WillTerminate (UIApplication application)
-		{
-		}
+
 	}
 }
 

@@ -19,10 +19,6 @@
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>MainStoryboard_iPhone</string>
-	<key>UIMainStoryboardFile</key>
-	<string>MainStoryboard_iPhone</string>
-	<key>UIMainStoryboardFile~ipad</key>
-	<string>MainStoryboard_iPad</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -46,5 +42,14 @@
 	<string>com.nutiteq.hellomap.xamarin</string>
 	<key>CFBundleName</key>
 	<string>hellomap-xamarin</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>location</string>
+	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>asdfEntry</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 </dict>
 </plist>

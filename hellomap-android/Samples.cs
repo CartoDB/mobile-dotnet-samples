@@ -8,13 +8,18 @@ namespace CartoMobileSample
 		public const string IntentName = "INTENTNAME";
 
 		// List of demo activities
-		static List<Type> List = new List<Type>(new Type[] {
-			typeof (ClusteredGeoJSONCaptitals),
+		public static List<Type> List = new List<Type>(new Type[] {
+			typeof (CartoVisJSONActivity),
+			typeof (ClusteredGeoJSONCapitals),
 			typeof (GpsLocationMap),
-			typeof (MapOverlays),
-			typeof (OfflineMap),
-			typeof (OfflineRouting),
-			typeof (OnlineMap)
+			typeof (Overlays2DActivity),
+			typeof (OfflineVectorMapActivity),
+			typeof (OfflineRoutingActivity),
+			typeof (PinMapActivity),
+			typeof (PackageManagerActivity),
+			typeof (RasterOverlayActivity),
+			typeof (SQLActivity),
+			typeof (WmsMapActivity)
 		});
 
 		public static string[] AsStringArray {
