@@ -52,6 +52,9 @@ namespace CartoMobileSample
 		LocalVectorDataSource routeStartStopDataSource;
 		BalloonPopupStyleBuilder balloonPopupStyleBuilder;
 
+		RouteMapEventListener MapListener;
+		RoutingPackageListener PackageListener;
+
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
@@ -68,7 +71,9 @@ namespace CartoMobileSample
 			}
 
 			packageManager = new CartoPackageManager(ROUTING_PACKAGEMANAGER_SOURCE, packageFolder.AbsolutePath);
-			packageManager.PackageManagerListener = new RoutingPackageListener(this);
+
+			PackageListener = new RoutingPackageListener(packageManager, downloadablePackages);
+			packageManager.PackageManagerListener = PackageListener;
 			packageManager.Start();
 
 			// Fetch list of available packages from server. 
@@ -102,8 +107,8 @@ namespace CartoMobileSample
 			vectorLayer.VisibleZoomRange = new MapRange(0, 22);
 
 			// Set route listener
-			RouteMapEventListener mapListener = new RouteMapEventListener(this);
-			MapView.MapEventListener = mapListener;
+			MapListener = new RouteMapEventListener();
+			MapView.MapEventListener = MapListener;
 
 			// Create markers for start & end, and a layer for them
 			MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
@@ -154,6 +159,61 @@ namespace CartoMobileSample
 			Toast.MakeText(ApplicationContext, "Long-press on map to set route start and finish",ToastLength.Long).Show();
 		}
 
+		protected override void OnResume()
+		{
+			base.OnResume();
+
+			MapListener.StartPositionClicked += OnStartPositionClick;
+			MapListener.StopPositionClicked += OnStopPositionClick;
+
+			PackageListener.OfflinePackageReady += OnOfflinePackageReady;
+			PackageListener.PackageUpdated += OnPackageUpdated;
+		}
+
+		protected override void OnPause()
+		{
+			base.OnPause();
+
+			MapListener.StartPositionClicked -= OnStartPositionClick;
+			MapListener.StopPositionClicked -= OnStopPositionClick;
+
+			PackageListener.OfflinePackageReady -= OnOfflinePackageReady;
+			PackageListener.PackageUpdated -= OnPackageUpdated;
+		}
+
+		#region EventHandlers
+
+		void OnStartPositionClick(object sender, RouteMapEventArgs e)
+		{
+			SetStartMarker(e.ClickPosition);
+		}
+
+		void OnStopPositionClick(object sender, RouteMapEventArgs e)
+		{
+			SetStopMarker(e.ClickPosition);
+			ShowRoute(e.StartPosition, e.StopPosition);
+		}
+
+		void OnOfflinePackageReady(object sender, EventArgs e)
+		{
+			offlinePackageReady = true;
+		}
+
+		void OnPackageUpdated(object sender, PackageUpdateEventArgs e)
+		{
+			RunOnUiThread(() =>
+			{
+				Toast.MakeText(BaseContext, "Offline package downloaded: " + e.Id, ToastLength.Long).Show();
+			});
+
+			if (e.IsLastDownloaded)
+			{
+				offlinePackageReady = true;
+			}
+		}
+
+		#endregion
+
 		public void ShowRoute(MapPos startPos, MapPos stopPos)
 		{
 			Log.Debug("calculating path " + startPos + " to " + stopPos);
@@ -177,10 +237,13 @@ namespace CartoMobileSample
 				{
 					timeStart = Java.Lang.JavaSystem.CurrentTimeMillis();
 					MapPosVector poses = new MapPosVector();
+
 					poses.Add(startPos);
 					poses.Add(stopPos);
+
 					RoutingRequest request = new RoutingRequest(BaseProjection, poses);
 					RoutingResult result;
+
 					if (offlinePackageReady)
 					{
 						result = offlineRoutingService.CalculateRoute(request);
@@ -192,7 +255,6 @@ namespace CartoMobileSample
 					// Now update response in UI thread
 					RunOnUiThread(() =>
 					{
-
 						if (result == null)
 						{
 							Toast.MakeText(ApplicationContext, "Routing failed", ToastLength.Long).Show();
@@ -200,18 +262,18 @@ namespace CartoMobileSample
 							return;
 						}
 
-						string routeText = "The route is " + (int)(result.TotalDistance / 100) / 10f
-							+ "km (" + result.TotalTime.ConvertFromSecondsToHours()
-						    + ") calculation: " + (Java.Lang.JavaSystem.CurrentTimeMillis() - timeStart) + " ms";
-						
-						Toast.MakeText(ApplicationContext, routeText, ToastLength.Long).Show();
+						string distance = "The route is " + (int)(result.TotalDistance / 100) / 10f + "km";
+						string time = "(" + result.TotalTime.ConvertFromSecondsToHours() + ")";
+						string calculation = "| Calculation: " + (Java.Lang.JavaSystem.CurrentTimeMillis() - timeStart) + " ms";
+
+						Toast.MakeText(ApplicationContext, distance + time + calculation, ToastLength.Long).Show();
 
 						routeDataSource.Clear();
 
 						startMarker.Visible = false;
 
-						routeDataSource.Add(CreatePolyline(startMarker.Geometry
-							.CenterPos, stopMarker.Geometry.CenterPos, result));
+						Line line = CreatePolyline(startMarker.Geometry.CenterPos, stopMarker.Geometry.CenterPos, result);
+						routeDataSource.Add(line);
 
 						// Add instruction markers
 						RoutingInstructionVector instructions = result.Instructions;
@@ -219,9 +281,8 @@ namespace CartoMobileSample
 						for (int i = 0; i < instructions.Count; i++)
 						{
 							RoutingInstruction instruction = instructions[i];
-							// Log.d(Const.LOG_TAG, instruction.toString());
-							CreateRoutePoint(result.Points[instruction.PointIndex], instruction.StreetName,
-								instruction.Time, instruction.Distance, instruction.Action, routeDataSource);
+							MapPos position = result.Points[instruction.PointIndex];
+							CreateRoutePoint(position, instruction, routeDataSource);
 						}
 
 						shortestPathRunning = false;
@@ -230,14 +291,13 @@ namespace CartoMobileSample
 			}
 		}
 
-		protected void CreateRoutePoint(MapPos pos, string name,
-			double time, double distance, RoutingAction action, LocalVectorDataSource ds)
+		protected void CreateRoutePoint(MapPos pos, RoutingInstruction instruction, LocalVectorDataSource source)
 		{
 
 			MarkerStyle style = instructionUp;
 			string str = "";
 
-			switch (action)
+			switch (instruction.Action)
 			{
 				case RoutingAction.RoutingActionHeadOn:
 					str = "head on";
@@ -287,10 +347,10 @@ namespace CartoMobileSample
 			if (str != "")
 			{
 				Marker marker = new Marker(pos, style);
-				BalloonPopup popup2 = new BalloonPopup(marker, balloonPopupStyleBuilder.BuildStyle(),
-					str, "");
-				ds.Add(popup2);
-				ds.Add(marker);
+				BalloonPopup popup2 = new BalloonPopup(marker, balloonPopupStyleBuilder.BuildStyle(), str, "");
+
+				source.Add(popup2);
+				source.Add(marker);
 			}
 		}
 
@@ -317,149 +377,7 @@ namespace CartoMobileSample
 			stopMarker.SetPos(pos);
 			stopMarker.Visible = true;
 		}
+
 	}
-
-	/**
-	 * This MapListener waits for two clicks on map - first to set routing start point, and then
-	 * second to mark end point and start routing service.
-	 */
-	public class RouteMapEventListener : MapEventListener
-	{
-		MapPos startPos;
-		MapPos stopPos;
-		OfflineRoutingActivity activity;
-
-		public RouteMapEventListener(OfflineRoutingActivity activity)
-		{
-			this.activity = activity;
-		}
-
-		// Map View manipulation handlers
-		public override void OnMapClicked(MapClickInfo mapClickInfo)
-		{
-			if (mapClickInfo.ClickType == ClickType.ClickTypeLong)
-			{
-				MapPos clickPos = mapClickInfo.ClickPos;
-
-				MapPos wgs84Clickpos = activity.BaseProjection.ToWgs84(clickPos);
-				Log.Debug("onMapClicked " + wgs84Clickpos + " " + mapClickInfo.ClickType);
-
-				if (startPos == null)
-				{
-					// set start, or start again
-					startPos = clickPos;
-					activity.SetStartMarker(clickPos);
-				}
-				else if (stopPos == null)
-				{
-					// set stop and calculate
-					stopPos = clickPos;
-					activity.SetStopMarker(clickPos);
-					activity.ShowRoute(startPos, stopPos);
-
-					// restart to force new route next time
-					startPos = null;
-					stopPos = null;
-				}
-			}
-		}
-
-		public override void OnMapMoved() 
-		{
-			
-		}
-	}
-
-
-	/**
-	 * Listener for package manager events. Contains only empty methods.
-	 */
-	class RoutingPackageListener : PackageManagerListener
-	{
-		OfflineRoutingActivity activity;
-
-		public RoutingPackageListener(OfflineRoutingActivity activity)
-		{
-			this.activity = activity;
-		}
-
-		public override void OnPackageListUpdated()
-		{
-			Log.Debug("Package list updated");
-
-			var downloadedPackages = 0;
-			var totalPackages = OfflineRoutingActivity.downloadablePackages.Length;
-
-			for (int i = 0; i < totalPackages; i++)
-			{
-				var isDownloaded = GetPackageIfNotExists(OfflineRoutingActivity.downloadablePackages[i]);
-
-				if (isDownloaded)
-				{
-					downloadedPackages++;
-				}
-			}
-
-			// If all downloaded, can start with offline routing
-			if (downloadedPackages == totalPackages)
-			{
-				activity.offlinePackageReady = true;
-			}
-		}
-
-		bool GetPackageIfNotExists(string packageId)
-		{
-			PackageStatus status = activity.packageManager.GetLocalPackageStatus(packageId, -1);
-
-			if (status == null)
-			{
-				activity.packageManager.StartPackageDownload(packageId);
-				return false;
-			}
-			else if (status.CurrentAction == PackageAction.PackageActionReady)
-			{
-				Log.Debug(packageId + " is downloaded and ready");
-				return true;
-			}
-
-			return false;
-		}
-
-		public override void OnPackageListFailed()
-		{
-			Log.Error("Package list update failed");
-		}
-
-		public override void OnPackageStatusChanged(string id, int version, PackageStatus status)
-		{
-		}
-
-		public override void OnPackageCancelled(string id, int version)
-		{
-		}
-
-		public override void OnPackageUpdated(string id, int version)
-		{
-			Log.Debug("Offline package updated: " + id);
-
-			activity.RunOnUiThread(() =>
-			{
-				Toast.MakeText(activity.BaseContext, "Offline package downloaded: " + id, ToastLength.Long).Show();
-			});
-
-			// if last downloaded
-			if (id == OfflineRoutingActivity.downloadablePackages[OfflineRoutingActivity.downloadablePackages.Length - 1])
-			{
-				activity.offlinePackageReady = true;
-			}
-		}
-
-		public override void OnPackageFailed(string id, int version, PackageErrorType errorType)
-		{
-			Log.Error("Offline package update failed: " + id);
-		}
-	}
-
-
 }
 

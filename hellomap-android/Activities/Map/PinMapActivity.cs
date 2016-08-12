@@ -46,7 +46,7 @@ namespace CartoMobileSample
 			MarkerStyle sharedMarkerStyle = markerStyleBuilder.BuildStyle();
 
 			// 3. Add marker
-			MapPos berlin = new MapPos(13.38933, 52.51704);
+			//MapPos berlin = new MapPos(13.38933, 52.51704);
 			MapPos tallinn = new MapPos(24.646469, 59.426939);
 
 			MapPos markerPos = MapView.Options.BaseProjection.FromWgs84(tallinn);

@@ -82,7 +82,7 @@ namespace CartoMobileSample
 			// and listener will be notified via onPackageListUpdated when this succeeds.        
 			packageManager.StartPackageListDownload();
 
-			// create offline routing service connected to package manager
+			// Create offline routing service connected to package manager
 			offlineRoutingService = new PackageManagerRoutingService(packageManager);
 
 			// Create additional online routing service that will be used 
@@ -93,7 +93,6 @@ namespace CartoMobileSample
 			routeDataSource = new LocalVectorDataSource(BaseProjection);
 			VectorLayer routeLayer = new VectorLayer(routeDataSource);
 			MapView.Layers.Add(routeLayer);
-
 
 			// Define layer and datasource for route start and stop markers
 			routeStartStopDataSource = new LocalVectorDataSource(BaseProjection);
