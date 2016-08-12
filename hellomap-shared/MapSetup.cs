@@ -19,21 +19,23 @@ namespace CartoMobileSample
 	public class MapSetup
 	{
 		// Set base projection
+		// From wiki.openstreetmap: EPSG:3857 is a Spherical Mercator projection coordinate system 
+		// popularized by web services such as Google and later OpenStreetMap
 		public static EPSG3857 proj = new EPSG3857();
 
-		public static void InitLocation(IMapView mapView){
-			
+		public static void InitLocation(IMapView mapView)
+		{
 			// Set initial location and other parameters, don't animate
-			mapView.FocusPos = proj.FromWgs84(new MapPos(-0.8164,51.2383)); // Berlin
+			mapView.FocusPos = proj.FromWgs84(new MapPos(-0.8164, 51.2383)); // Berlin
 			mapView.Zoom = 2;
 			mapView.MapRotation = 0;
 			mapView.Tilt = 90;
 		}
 
 
-		public static void InitializePackageManager(string packageFolder, string importPackagePath, IMapView mapView,string downloadedPackage ) {
-
-			// offline base layer
+		public static void InitializePackageManager(string packageFolder, string importPackagePath, IMapView mapView, string downloadedPackage)
+		{
+			// Offline base layer
 
 			// 2. define listener, definition is in same class above
 			var packageManager = new CartoPackageManager("nutiteq.osm", packageFolder);
@@ -41,85 +43,95 @@ namespace CartoMobileSample
 
 			// Download new package list only if it is older than 24h
 			// Note: this is only needed if pre-made packages are used
-			if (packageManager.ServerPackageListAge > 24 * 60 * 60) {
-					packageManager.StartPackageListDownload ();
+			if (packageManager.ServerPackageListAge > 24 * 60 * 60)
+			{
+				packageManager.StartPackageListDownload();
 			}
 
 			// start manager - mandatory
-			packageManager.Start ();
+			packageManager.Start();
 
 			// Import initial package
-			if (packageManager.GetLocalPackage("world0_4") == null) {
-				packageManager.StartPackageImport ("world0_4", 1, importPackagePath);
+			if (packageManager.GetLocalPackage("world0_4") == null)
+			{
+				packageManager.StartPackageImport("world0_4", 1, importPackagePath);
 			}
-				
+
 			// Now can add vector map as layer
 			// define styling for vector map
 			BinaryData styleBytes = AssetUtils.LoadAsset("nutibright-v2a.zip");
 			MBVectorTileDecoder vectorTileDecoder = null;
-			if (styleBytes != null) {
+			if (styleBytes != null)
+			{
 				// Create style set
-				var vectorTileStyleSet = new CompiledStyleSet (new ZippedAssetPackage(styleBytes));
-				vectorTileDecoder = new MBVectorTileDecoder (vectorTileStyleSet);
-			} else {
-				Log.Error ("Failed to load style data");
+				var vectorTileStyleSet = new CompiledStyleSet(new ZippedAssetPackage(styleBytes));
+				vectorTileDecoder = new MBVectorTileDecoder(vectorTileStyleSet);
+			}
+			else {
+				Log.Error("Failed to load style data");
 			}
 
 			// Create online base layer (no package download needed then). Use vector style from assets (osmbright.zip)
 			// comment in to use online map. Packagemanager stuff is not needed then
 			//			VectorTileLayer baseLayer = new NutiteqOnlineVectorTileLayer("osmbright.zip");
 
-			var baseLayer = new VectorTileLayer(new PackageManagerTileDataSource(packageManager),vectorTileDecoder);
+			var baseLayer = new VectorTileLayer(new PackageManagerTileDataSource(packageManager), vectorTileDecoder);
 			mapView.Layers.Add(baseLayer);
-
 		}
 
 
-		public static void StartBboxDownload(CartoPackageManager packageManager) {
+		public static void StartBboxDownload(CartoPackageManager packageManager)
+		{
+			// Bounding box download can be done now
+			// For the country package download see OnPackageListUpdated in PackageListener
+			string bbox = "bbox(-0.8164,51.2382,0.6406,51.7401)"; // London (approx. 30MB)
 
-			// bounding box download can be done now
-			// for country package download see OnPackageListUpdated in PackageListener
-			String bbox = "bbox(-0.8164,51.2382,0.6406,51.7401)"; // London (about 30MB)
-			if (packageManager.GetLocalPackage(bbox) == null) {
-				packageManager.StartPackageDownload (bbox);
+			if (packageManager.GetLocalPackage(bbox) == null)
+			{
+				packageManager.StartPackageDownload(bbox);
 			}
 		}
 
 
-		async public static void AddMapOverlays(IMapView mapView) {
-
+		async public static void AddMapOverlays(IMapView mapView)
+		{
 			// Create overlay layer for markers
-			var dataSource = new LocalVectorDataSource (proj);
-			var overlayLayer = new VectorLayer (dataSource);
-			mapView.Layers.Add (overlayLayer);
+			var dataSource = new LocalVectorDataSource(proj);
+			var overlayLayer = new VectorLayer(dataSource);
+			mapView.Layers.Add(overlayLayer);
 
 			// Create line style, and line poses
 			var lineStyleBuilder = new LineStyleBuilder();
 			lineStyleBuilder.Width = 8;
 
-			var linePoses = new MapPosVector ();
+			var linePoses = new MapPosVector();
+
+			// proj.FromWgs84 returns (spherical) Mercator projection
 			linePoses.Add(proj.FromWgs84(new MapPos(0, 0)));
 			linePoses.Add(proj.FromWgs84(new MapPos(0, 80)));
 			linePoses.Add(proj.FromWgs84(new MapPos(45, 45)));
-			var line = new Line (linePoses, lineStyleBuilder.BuildStyle ());
-			dataSource.Add (line);
+
+			var line = new Line(linePoses, lineStyleBuilder.BuildStyle());
+			dataSource.Add(line);
 
 			// Create balloon popup
 			var balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
 			balloonPopupStyleBuilder.CornerRadius = 3;
 			balloonPopupStyleBuilder.TitleFontName = "Helvetica";
 			balloonPopupStyleBuilder.TitleFontSize = 55;
-			balloonPopupStyleBuilder.TitleColor = new Color(200,0,0,255);
+			balloonPopupStyleBuilder.TitleColor = new Color(200, 0, 0, 255);
 			balloonPopupStyleBuilder.StrokeColor = new Color(200, 120, 0, 255);
 			balloonPopupStyleBuilder.StrokeWidth = 1;
 			balloonPopupStyleBuilder.PlacementPriority = 1;
+
 			var popup = new BalloonPopup(
 				proj.FromWgs84(new MapPos(0, 20)),
 				balloonPopupStyleBuilder.BuildStyle(),
 				"Title", "Description");
+
 			dataSource.Add(popup);
 
-			// load NML file model from a file
+			// Load NML file model from a file
 			BinaryData modelFile = AssetUtils.LoadAsset("fcd_auto.nml");
 
 			// set location for model, and create NMLModel object with this
@@ -128,94 +140,71 @@ namespace CartoMobileSample
 			mapView.FocusPos = modelPos;
 			mapView.Zoom = 15;
 
-			// oversize it 20*, just to make it more visible (optional)
+			// Oversize it 20*, just to make it more visible (optional)
 			model.Scale = 20;
 
-			// add metadata for click handling (optional)
+			// Add metadata for click handling (optional)
 			model.SetMetaDataElement("ClickText", new Variant("Single model"));
 
-			// add it to normal datasource
+			// Add it to normal datasource
 			dataSource.Add(model);
 
 			// Create and set map listener
-			mapView.MapEventListener = new MapListener (dataSource);
+			mapView.MapEventListener = new MapListener(dataSource);
 
-			await AnimateModel (model);
-
+			await AnimateModel(model);
 		}
 
-		public static async Task AnimateModel(NMLModel model){
-			for (int i = 0; i < 3600; i++) { 
-					model.SetRotation (new MapVec (0, 0, 1), i);
+		public static async Task AnimateModel(NMLModel model)
+		{
+			for (int i = 0; i < 3600; i++)
+			{
+				model.SetRotation(new MapVec(0, 0, 1), i);
 				await Task.Delay(10);
 			}
 		}
 
 
-		public static void addJosnLayer(IMapView mapView, String json){
-
-			var features = Newtonsoft.Json.Linq.JObject.Parse (json)["features"];
+		public static void AddJsonLayer(IMapView mapView, String json)
+		{
+			var features = JObject.Parse(json)["features"];
 
 			var geoJsonParser = new GeoJSONGeometryReader();
 
-			var proj = new EPSG3857 ();
 			var balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
 
 			// Create overlay layer for markers
-			var dataSource = new LocalVectorDataSource (proj);
-			var overlayLayer = new ClusteredVectorLayer (dataSource, new MyClusterElementBuilder());
+			var dataSource = new LocalVectorDataSource(proj);
+			var overlayLayer = new ClusteredVectorLayer(dataSource, new MyClusterElementBuilder());
 			overlayLayer.MinimumClusterDistance = 80; // in pixels
-			mapView.Layers.Add (overlayLayer);
 
-			foreach(var feature in features){
-				var featureType = feature ["type"];
+			mapView.Layers.Add(overlayLayer);
 
-				var geometry = feature ["geometry"];
-				var ntGeom = geoJsonParser.ReadGeometry (Newtonsoft.Json.JsonConvert.SerializeObject(geometry));
+			foreach (var feature in features)
+			{
+				var featureType = feature["type"];
+
+				var geometry = feature["geometry"];
+				var ntGeom = geoJsonParser.ReadGeometry(Newtonsoft.Json.JsonConvert.SerializeObject(geometry));
 
 				var popup = new BalloonPopup(
 					ntGeom,
 					balloonPopupStyleBuilder.BuildStyle(),
-					(string) feature ["properties"]["Capital"], (string) feature ["properties"]["Country"]);
+					(string)feature["properties"]["Capital"], (string)feature["properties"]["Country"]);
 
-				var properties = (JObject) feature ["properties"];
-				foreach (var property in properties) {
-					var key = (string) property.Key;
-					var value = (string) property.Value;
+				var properties = (JObject)feature["properties"];
+				foreach (var property in properties)
+				{
+					var key = (string)property.Key;
+					var value = (string)property.Value;
 					popup.SetMetaDataElement(key, new Variant(value));
 				}
 
-				dataSource.Add (popup);
-
+				dataSource.Add(popup);
 			}
-
 		}
 
 	}
-
-	class MyClusterElementBuilder : ClusterElementBuilder
-	{
-		BalloonPopupStyleBuilder balloonPopupStyleBuilder;
-
-		public MyClusterElementBuilder() {
-			balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
-			balloonPopupStyleBuilder.CornerRadius = 3;
-			balloonPopupStyleBuilder.TitleMargins = new BalloonPopupMargins (6, 6, 6, 6);
-			balloonPopupStyleBuilder.LeftColor = new Color(240,230,140,255);
-		}
-
-		public override VectorElement BuildClusterElement(MapPos mapPos, VectorElementVector elements) {
-			var popup = new BalloonPopup(
-				mapPos,
-				balloonPopupStyleBuilder.BuildStyle(),
-				elements.Count.ToString(), "");
-			return popup;
-		}
-
-	}
-
-
-
 }
 
 

@@ -48,21 +48,38 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="System.Json" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.4.0.0-alphapreview1\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.4.0.0-build43\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LauncherListActivity.cs" />
-    <Compile Include="BaseMapActivity.cs" />
-    <Compile Include="OfflineMap.cs" />
-    <Compile Include="OnlineMap.cs" />
-    <Compile Include="ClusteredGeoJSONCaptitals.cs" />
-    <Compile Include="MapOverlays.cs" />
-    <Compile Include="GpsLocationMap.cs" />
-    <Compile Include="OfflineRouting.cs" />
+    <Compile Include="Activities\Base\BaseMapActivity.cs" />
+    <Compile Include="Activities\Base\LauncherListActivity.cs" />
+    <Compile Include="Activities\Map\ClusteredGeoJSONCapitalsActivity.cs" />
+    <Compile Include="Activities\Map\GpsLocationMapActivity.cs" />
+    <Compile Include="Activities\Map\Overlays2DActivity.cs" />
+    <Compile Include="Activities\Map\OfflineVectorMapActivity.cs" />
+    <Compile Include="Activities\Map\OfflineRoutingActivity.cs" />
+    <Compile Include="Samples.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Activities\Map\CartoVisJSONActivity.cs" />
+    <Compile Include="Activities\ActivityDescription.cs" />
+    <Compile Include="Views\MapRowView.cs" />
+    <Compile Include="Activities\Base\VectorBaseMapActivity.cs" />
+    <Compile Include="Activities\Map\PinMapActivity.cs" />
+    <Compile Include="Activities\Map\RasterOverlayActivity.cs" />
+    <Compile Include="Adapters\MapListAdapter.cs" />
+    <Compile Include="Adapters\PackageManagerAdapter.cs" />
+    <Compile Include="Activities\Base\PackageManagerActivity.cs" />
+    <Compile Include="Activities\Map\PackagedMapActivity.cs" />
+    <Compile Include="Views\PackageManagerButton.cs" />
+    <Compile Include="Activities\Map\WmsMapActivity.cs" />
+    <Compile Include="DataSources\HttpWmsTileDataSource.cs" />
+    <Compile Include="Activities\Map\SQLActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -85,6 +102,8 @@
     <AndroidResource Include="Resources\drawable-nodpi\direction_upthenright.png" />
     <AndroidResource Include="Resources\drawable-nodpi\olmarker.png" />
     <AndroidResource Include="Resources\layout\MainGPS.axml" />
+    <AndroidResource Include="Resources\drawable-nodpi\marker.png" />
+    <AndroidResource Include="Resources\layout\package_item_row.xml" />
   </ItemGroup>
   <Import Project="..\hellomap-shared\hellomap-shared.projitems" Label="Shared" Condition="Exists('..\hellomap-shared\hellomap-shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
@@ -95,6 +114,16 @@
     <AndroidAsset Include="Assets\fcd_auto.nml" />
     <AndroidAsset Include="Assets\nutibright-v2a.zip" />
     <AndroidAsset Include="Assets\nutiteq-dark.zip" />
+    <AndroidAsset Include="Assets\looseleaf.zip" />
+    <AndroidAsset Include="Assets\basic.zip" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Activities\" />
+    <Folder Include="Activities\Map\" />
+    <Folder Include="Activities\Base\" />
+    <Folder Include="Views\" />
+    <Folder Include="Adapters\" />
+    <Folder Include="DataSources\" />
+  </ItemGroup>
 </Project>
