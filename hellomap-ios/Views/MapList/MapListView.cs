@@ -20,7 +20,7 @@ namespace CartoMobileSample
 			base.LayoutSubviews();
 		}
 
-		public void AddRows(List<MapBaseController> controllers)
+		public void AddRows(List<UIViewController> controllers)
 		{
 			ListSource = new MapListDataSource { Items = controllers };
 			Source = ListSource;

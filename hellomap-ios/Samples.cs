@@ -1,12 +1,13 @@
 ﻿
 
 using System.Collections.Generic;
+using UIKit;
 
 namespace CartoMobileSample
 {
 	public class Samples
 	{
-		public static List<MapBaseController> List = new List<MapBaseController>
+		public static List<UIViewController> List = new List<UIViewController>
 		{
 			new CartoVisJsonController(),
 			new ClusteredGeoJSONCapitalsController(),
@@ -15,7 +16,7 @@ namespace CartoMobileSample
 			new OfflineVectorMapController(),
 			new Overlays2DController(),
 			new PinMapController(),
-			//new PackageManagerController(),// Unfinished
+			new PackageManagerController(),
 			new RasterOverlayController(),
 			new SQLController(),
 			new WmsMapController()

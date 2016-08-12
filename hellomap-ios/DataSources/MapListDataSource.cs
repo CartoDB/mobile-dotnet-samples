@@ -28,7 +28,7 @@ namespace CartoMobileSample
 
 		public EventHandler<ControllerEventArgs> MapSelected { get; set; }
 
-		public List<MapBaseController> Items = new List<MapBaseController>();
+		public List<UIViewController> Items = new List<UIViewController>();
 
 		public override nfloat GetHeightForRow(UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
@@ -42,18 +42,16 @@ namespace CartoMobileSample
 
 		public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			MapBaseController controller = Items[indexPath.Row];
+			UIViewController controller = Items[indexPath.Row];
 
 			if (MapSelected != null) {
 				MapSelected(new object(), new ControllerEventArgs { Controller = controller });
 			}
-
-			Console.WriteLine("Clicked on: " + controller.Name);
 		}
 
 		public override UITableViewCell GetCell(UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			MapBaseController controller = Items[indexPath.Row];
+			UIViewController controller = Items[indexPath.Row];
 
 			MapListCell cell = (MapListCell)tableView.DequeueReusableCell(identifier);
 
@@ -71,7 +69,7 @@ namespace CartoMobileSample
 
 	public class ControllerEventArgs
 	{
-		public MapBaseController Controller { get; set; }
+		public UIViewController Controller { get; set; }
 	}
 }
 

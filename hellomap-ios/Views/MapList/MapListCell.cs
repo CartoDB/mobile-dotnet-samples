@@ -27,10 +27,17 @@ namespace CartoMobileSample
 			SelectionStyle = UITableViewCellSelectionStyle.None;
 		}
 
-		public void Update(MapBaseController item)
+		public void Update(UIViewController item)
 		{
-			title.Text = item.Name;
-			description.Text = item.Description;
+			if (item is PackageManagerController)
+			{
+				title.Text = (item as PackageManagerController).Name;
+				description.Text = (item as PackageManagerController).Description;
+			}
+			else {
+				title.Text = (item as MapBaseController).Name;
+				description.Text = (item as MapBaseController).Description;
+			}
 		}
 
 		public override void LayoutSubviews()

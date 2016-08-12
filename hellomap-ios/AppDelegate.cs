@@ -30,8 +30,8 @@ namespace CartoMobileSample
 
 			if (WritingViewsProgrammatically)
 			{
-				//Controller = new UINavigationController(new MapListController());
-				Controller = new UINavigationController(new PackageManagerController());
+				Controller = new UINavigationController(new MapListController());
+
 				Controller.NavigationBarHidden = false;
 
 				Window = new UIWindow(UIScreen.MainScreen.Bounds);
