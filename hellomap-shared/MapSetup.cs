@@ -10,7 +10,6 @@ using Carto.Projections;
 using Carto.Styles;
 using Carto.PackageManager;
 using Carto.VectorTiles;
-using Newtonsoft.Json.Linq;
 using Carto.Geometry;
 using System.Threading.Tasks;
 
@@ -167,7 +166,7 @@ namespace CartoMobileSample
 
 		public static void AddJsonLayer(IMapView mapView, String json)
 		{
-			var features = JObject.Parse(json)["features"];
+			var features = new Carto.Geometry.GeoJSONGeometryReader().ReadFeatureCollection(json);
 
 			var geoJsonParser = new GeoJSONGeometryReader();
 
@@ -180,24 +179,23 @@ namespace CartoMobileSample
 
 			mapView.Layers.Add(overlayLayer);
 
-			foreach (var feature in features)
+			for (int i = 0; i < features.FeatureCount; i++)
 			{
-				var featureType = feature["type"];
+				var geom = features.GetFeature(i).Geometry;
+				var props = features.GetFeature(i).Properties;
 
-				var geometry = feature["geometry"];
-				var ntGeom = geoJsonParser.ReadGeometry(Newtonsoft.Json.JsonConvert.SerializeObject(geometry));
-
+				// Create popup
 				var popup = new BalloonPopup(
-					ntGeom,
+					geom,
 					balloonPopupStyleBuilder.BuildStyle(),
-					(string)feature["properties"]["Capital"], (string)feature["properties"]["Country"]);
+					props.GetObjectElement("Capital").String, props.GetObjectElement("Country").String);
 
-				var properties = (JObject)feature["properties"];
-				foreach (var property in properties)
+				// Copy feature properties to popup metadata
+				for (int j = 0; j < props.ObjectKeys.Count; j++)
 				{
-					var key = (string)property.Key;
-					var value = (string)property.Value;
-					popup.SetMetaDataElement(key, new Variant(value));
+					var key = props.ObjectKeys[j];
+					var val = props.GetObjectElement(key);
+					popup.SetMetaDataElement(key, val);
 				}
 
 				dataSource.Add(popup);
