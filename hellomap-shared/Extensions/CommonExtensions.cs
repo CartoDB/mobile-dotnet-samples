@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace CartoMobileSample
 {
@@ -59,6 +60,11 @@ namespace CartoMobileSample
 			property += key + "=" + value;
 
 			return url + property;
+		}
+
+		public static string ToInvariantString(this double item)
+		{
+			return Convert.ToString(item, CultureInfo.InvariantCulture);
 		}
 	}
 }

@@ -1,6 +1,5 @@
 ﻿
 using System;
-using System.Globalization;
 using Carto.Core;
 using Carto.DataSources;
 using Carto.Projections;
@@ -97,10 +96,18 @@ public class HttpWmsTileDataSource : HTTPTileDataSource
 			{
 				envelope = new MapBounds(projection.ToWgs84(envelope.Min), projection.ToWgs84(envelope.Max));
 			}
-			//Convert.ToString(envelope.Min.X, CultureInfo.InvariantCulture);
-			string bbox = envelope.Min.X.ToString() + "," + envelope.Min.Y + "," + envelope.Max.X + "," + envelope.Max.Y;
 
-			return bbox;
+			return EncodeBBox(envelope);
+		}
+
+		public string EncodeBBox(MapBounds envelope)
+		{
+			// ToInvariantString(): Convenience method to ignore culture info
+			return
+				envelope.Min.X.ToInvariantString() + "," +
+				envelope.Min.Y.ToInvariantString() + "," +
+				envelope.Max.X.ToInvariantString() + "," +
+				envelope.Max.Y.ToInvariantString();
 		}
 
 		public MapBounds GetTileBounds(int tx, int ty, int zoom, Projection proj)
