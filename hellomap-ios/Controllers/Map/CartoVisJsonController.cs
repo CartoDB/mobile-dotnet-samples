@@ -14,7 +14,7 @@ namespace CartoMobileSample
 
 		public override string Description {
 			get {
-				return "A sample demonstrating how to use high level Carto VisJSON API to display interactive maps. " +
+				return "High level Carto VisJSON API to display interactive maps. " +
 			  		"CartoVisLoader class is used to load and configure all corresponding layers.";
 			}
 		}

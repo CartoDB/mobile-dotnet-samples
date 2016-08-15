@@ -16,8 +16,7 @@ namespace CartoMobileSample
 		{
 			get
 			{
-				return "A sample demonstrating how to use Carto SQL API to get data" +
-						 "and how to create custom VectorDataSource";
+				return "Carto SQL API to get data and create custom VectorDataSource";
 			}
 		}
 

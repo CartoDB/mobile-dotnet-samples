@@ -13,7 +13,7 @@ namespace CartoMobileSample
 		{
 			get
 			{
-				return "\"A sample demonstrating how to add basic 2D objects to the map: " 
+				return "Basic 2D objects to the map: " 
 					+ "lines, points, polygon with hole, texts and pop-ups.";
 			}
 		}

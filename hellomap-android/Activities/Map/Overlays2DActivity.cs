@@ -8,7 +8,7 @@ namespace CartoMobileSample
 {
 	[Activity]
 	[ActivityDescription(Description = 
-	                     "A sample demonstrating how to add basic 2D objects to the map: " +
+	                     "Demonstrates how to add basic 2D objects to the map: " +
 	                     "lines, points, polygon with hole, texts and pop-ups.")]
 	public class Overlays2DActivity: BaseMapActivity
 	{

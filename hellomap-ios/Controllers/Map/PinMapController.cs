@@ -18,9 +18,8 @@ namespace CartoMobileSample
 		{
 			get
 			{
-				return "A sample demonstrating how to use markers on the map: " +
-						 "creating a data source, creating a layer, loading marker bitmaps, creating a style " +
-						 "and adding the marker to the data source.";
+				return "Markers on the map: creating data sources, layers, styles, " +
+					"loading marker bitmaps, and adding the marker to the data source.";
 			}
 		}
 

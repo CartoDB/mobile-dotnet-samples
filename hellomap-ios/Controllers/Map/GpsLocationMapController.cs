@@ -19,8 +19,7 @@ namespace CartoMobileSample
 		{
 			get
 			{
-				return "Shows user GPS location on map. " +
-					"Make sure your app has location permission in Manifest file";
+				return "Shows user GPS location on map.";
 			}
 		}
 

@@ -16,8 +16,7 @@ namespace CartoMobileSample
 		{
 			get
 			{
-				return "A sample demonstrating how to use raster layer " +
-						 "on top of the vector base map to provide height information.";
+				return "Raster layer on top of the vector base map to provide height information.";
 			}
 		}
 

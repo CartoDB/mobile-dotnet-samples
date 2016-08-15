@@ -354,7 +354,7 @@ namespace CartoMobileSample
 			}
 		}
 
-		// Creates Nutiteq line from GraphHopper response
+		// Creates a line from GraphHopper response
 		protected Line CreatePolyline(MapPos start, MapPos end, RoutingResult result) 
 		{
 			LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();

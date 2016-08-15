@@ -13,7 +13,7 @@ namespace CartoMobileSample
 		{
 			get
 			{
-				return "A sample demonstrating how to use WMS service raster on top of the vector base map";
+				return "WMS service raster on top of the vector base map";
 			}
 		}
 

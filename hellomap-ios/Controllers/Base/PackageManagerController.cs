@@ -16,9 +16,9 @@ namespace CartoMobileSample
 		{
 			get
 			{
-				return "A sample demonstrating how to use offline package manager of the Carto Mobile SDK. " +
-						 "The sample downloads the latest package list from Carto online service, " +
-						 "displays this list and allows user to manage offline packages";
+				return "Offline package manager of CARTO Mobile SDK. " +
+						 "Downloads the package list from Carto online service, " +
+						 "displays it and allows users to manage offline packages";
 			}
 		}
 
