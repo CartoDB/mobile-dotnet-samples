@@ -14,6 +14,8 @@ namespace CartoMobileSample
 
 		PackageManagerButton ActionButton { get; set; }
 
+		static nfloat MaxButtonWidth = 70;
+
 		public PackageListCell()
 		{
 			nameLabel = new UILabel();
@@ -57,7 +59,11 @@ namespace CartoMobileSample
 
 			statusLabel.Frame = new CGRect(x, y, w, h);
 
-			x += w + padding;
+			if (buttonWidth > MaxButtonWidth) {
+				buttonWidth = MaxButtonWidth;
+			}
+
+			x = Frame.Width - (buttonWidth + padding);
 			y = Frame.Height / 2 - buttonHeight / 2;
 			w = buttonWidth;
 			h = buttonHeight;
