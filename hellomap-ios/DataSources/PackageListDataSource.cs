@@ -27,10 +27,7 @@ namespace CartoMobileSample
 
 		public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			CoreGraphics.CGRect selectedArea = tableView.RectForRowAtIndexPath(indexPath);
-			Console.WriteLine(selectedArea);
-
-			base.RowSelected(tableView, indexPath);
+			
 		}
 
 		public override UITableViewCell GetCell(UITableView tableView, Foundation.NSIndexPath indexPath)

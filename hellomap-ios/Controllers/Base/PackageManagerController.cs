@@ -77,7 +77,7 @@ namespace CartoMobileSample
 		{
 			base.ViewWillAppear(animated);
 
-			// Always Attach handlers OnResume to avoid memory leaks and objects with multple handlers
+			// Always Attach handlers ViewWillAppear to avoid memory leaks and objects with multple handlers
 			PackageUpdateListener.OnPackageListUpdate += UpdatePackages;
 			PackageUpdateListener.OnPackageListFail += UpdatePackages;
 
@@ -95,7 +95,7 @@ namespace CartoMobileSample
 		{
 			base.ViewWillDisappear(animated);
 
-			// Always detach handlers OnPause to avoid memory leaks and objects with multple handlers
+			// Always detach handlers ViewWillDisappear to avoid memory leaks and objects with multple handlers
 			PackageUpdateListener.OnPackageListUpdate -= UpdatePackages;
 			PackageUpdateListener.OnPackageListFail -= UpdatePackages;
 
