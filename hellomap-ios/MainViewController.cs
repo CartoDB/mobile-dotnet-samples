@@ -47,9 +47,10 @@ namespace CartoMobileSample
 //			string downloadId = "EE"; // one of ID-s from https://developer.nutiteq.com/guides/packages
 																		  
 		    // Decide what to download offline
-			var toBeDownloaded = downloadArea;
+			string toBeDownloaded = downloadArea;
 			string importPackagePath = AssetUtils.CalculateResourcePath("world_ntvt_0_4.mbtiles");
-			//	MapSetup.InitializePackageManager (packagesDir, importPackagePath, Map, toBeDownloaded);
+
+			MapSetup.InitializePackageManager (packagesDir, importPackagePath, Map, toBeDownloaded);
 
 			/// Online vector base layer
 			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");

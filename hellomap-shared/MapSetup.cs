@@ -164,11 +164,11 @@ namespace CartoMobileSample
 		}
 
 
-		public static void AddJsonLayer(IMapView mapView, String json)
+		public static void AddJsonLayer(IMapView mapView, string json)
 		{
 			var features = new Carto.Geometry.GeoJSONGeometryReader().ReadFeatureCollection(json);
 
-			var geoJsonParser = new GeoJSONGeometryReader();
+			//var geoJsonParser = new GeoJSONGeometryReader();
 
 			var balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
 

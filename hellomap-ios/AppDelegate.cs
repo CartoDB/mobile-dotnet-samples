@@ -44,6 +44,7 @@ namespace CartoMobileSample
 			}
 			else {
 				Console.WriteLine("Writing views via StoryBoard");
+
 				// Add the following properties and values to Info.plist:
 				// [Main storyboard file base name] - [MainStoryboard_iPhone]
 				// [Main storyboard file base name (iPad)] - [MainStoryboard_iPad]
