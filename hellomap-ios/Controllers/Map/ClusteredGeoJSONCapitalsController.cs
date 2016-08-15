@@ -13,8 +13,7 @@ namespace CartoMobileSample
 		{
 			get
 			{
-				return "Read data from GeoJSON and add clustered Markers to map. " +
-						"Both points from GeoJSON, and cluster markers are shown as Ballons that have dynamic texts.";
+				return "Read data from GeoJSON and add clustered Markers (balloons with text) to the map";
 			}
 		}
 

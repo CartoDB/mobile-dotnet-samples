@@ -7,7 +7,7 @@ namespace CartoMobileSample
 {
 	public class MapListDataSource : UITableViewSource
 	{
-		static nfloat max = 60;
+		static nfloat max = 70;
 
 		const string identifier = "TaskCell";
 
@@ -15,7 +15,7 @@ namespace CartoMobileSample
 		{
 			get
 			{
-				nfloat height = Device.TrueScreenHeight / 10f;
+				nfloat height = Device.TrueScreenHeight / 8f;
 
 				if (height > max)
 				{

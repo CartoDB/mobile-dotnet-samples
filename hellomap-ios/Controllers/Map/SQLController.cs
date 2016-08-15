@@ -12,13 +12,7 @@ namespace CartoMobileSample
 	{
 		public override string Name { get { return "SQL Map"; } }
 
-		public override string Description
-		{
-			get
-			{
-				return "Carto SQL API to get data and create custom VectorDataSource";
-			}
-		}
+		public override string Description { get { return "SQL API to get data and create a custom vector data source"; } }
 
 		const string BaseUrl = "https://nutiteq.cartodb.com/api/v2/sql";
 

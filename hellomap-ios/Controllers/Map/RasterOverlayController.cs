@@ -12,11 +12,9 @@ namespace CartoMobileSample
 
 		public override string Name { get { return "Raster Overlay"; } }
 
-		public override string Description
-		{
-			get
-			{
-				return "Raster layer on top of the vector base map to provide height information.";
+		public override string Description { 
+			get {
+				return "Raster layer on top of the vector base map to provide height information";
 			}
 		}
 

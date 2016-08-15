@@ -22,8 +22,8 @@ namespace CartoMobileSample
 		{
 			get
 			{
-				return "Carto Mobile SDK routing engine to calculate offline routes. " +
-					"A package is downloaded and once the package is available, routing works offline.";
+				return "Routing engine to calculate offline routes. " +
+					"Packages are downloaded and, once available, routing works offline";
 			}
 		}
 

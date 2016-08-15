@@ -14,19 +14,12 @@ using Java.IO;
 namespace CartoMobileSample
 {
 	[Activity(Label = "PackageManager", Icon = "@drawable/icon")]
-	[ActivityDescription(Description =
-						 "A sample demonstrating how to use offline package manager of the Carto Mobile SDK. " +
-	                     "The sample downloads the latest package list from Carto online service, " +
-	                     "displays this list and allows user to manage offline packages")]
+	[ActivityDescription(Description = "Download packages from CARTO and manage them offline")]
 	public class PackageManagerActivity : ListActivity
 	{
-		//const string License = "XTUN3Q0ZBd2NtcmFxbUJtT1h4QnlIZ2F2ZXR0Mi9TY2JBaFJoZDNtTjUvSjJLay9aNUdSVjdnMnJwV" +
-		//	"XduQnc9PQoKcHJvZHVjdHM9c2RrLWlvcy0zLiosc2RrLWFuZHJvaWQtMy4qCnBhY2thZ2VOYW1lPWNv" +
-		//	"bS5udXRpdGVxLioKYnVuZGxlSWRlbnRpZmllcj1jb20ubnV0aXRlcS4qCndhdGVybWFyaz1ldmFsdWF0aW9uC" +
-		//	"nVzZXJLZXk9MTVjZDkxMzEwNzJkNmRmNjhiOGE1NGZlZGE1YjA0OTYK";
 		const string License = "XTUN3Q0ZDL3RoWlRJdzNqTDVBWFlZR1BTTlh0OWdWRkFBaFFIaENuR2hhaVdyWHU2N1B4YmtYK1hXWnRHNEE9" +
-	"PQoKcHJvZHVjdHM9c2RrLXhhbWFyaW4tYW5kcm9pZC00LioKcGFja2FnZU5hbWU9Y29tLmNhcnRvLmhlbGxvbWFwLnhhbWFyaW4Kd2F0" +
-	"ZXJtYXJrPWRldmVsb3BtZW50CnZhbGlkVW50aWw9MjAxNi0wOC0yMQpvbmxpbmVMaWNlbnNlPTEK";
+					"PQoKcHJvZHVjdHM9c2RrLXhhbWFyaW4tYW5kcm9pZC00LioKcGFja2FnZU5hbWU9Y29tLmNhcnRvLmhlbGxvbWFwLnhhbWFy" +
+					"aW4Kd2F0ZXJtYXJrPWRldmVsb3BtZW50CnZhbGlkVW50aWw9MjAxNi0wOC0yMQpvbmxpbmVMaWNlbnNlPTEK";
 
 		public static PackageManagerTileDataSource DataSource;
 

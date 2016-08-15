@@ -24,8 +24,8 @@ namespace CartoMobileSample
 {
 	[Activity]
 	[ActivityDescription(Description = 
-	                     "A sample demonstrating how to use Carto Mobile SDK routing engine to calculate offline routes. " +
-	                     "First a package is downloaded asynchronously. Once the package is available, routing works offline.")]
+	                     "Routing engine to calculate offline routes. " +
+						 "Packages are downloaded and, once available, routing works offline")]
 	public class OfflineRoutingActivity: BaseMapActivity
 	{
 		// Add packages you want to download

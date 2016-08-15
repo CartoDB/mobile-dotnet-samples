@@ -14,7 +14,7 @@ namespace CartoMobileSample
 		{
 			get
 			{
-				return "Uses bundled assets for offline base map.";
+				return "Uses bundled assets for the offline base map";
 			}
 		}
 

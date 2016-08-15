@@ -13,8 +13,7 @@ namespace CartoMobileSample
 		{
 			get
 			{
-				return "Basic 2D objects to the map: " 
-					+ "lines, points, polygon with hole, texts and pop-ups.";
+				return "Basic 2D objects to the map: lines, points, polygon with hole, texts and pop-ups";
 			}
 		}
 

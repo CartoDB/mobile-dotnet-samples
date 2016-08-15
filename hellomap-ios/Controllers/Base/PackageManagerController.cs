@@ -12,15 +12,7 @@ namespace CartoMobileSample
 	{
 		public string Name { get { return "Package Manager"; } }
 
-		public new string Description
-		{
-			get
-			{
-				return "Offline package manager of CARTO Mobile SDK. " +
-						 "Downloads the package list from Carto online service, " +
-						 "displays it and allows users to manage offline packages";
-			}
-		}
+		public new string Description { get { return "Download packages from CARTO and manage them offline"; } }
 
 		public static PackageManagerTileDataSource DataSource;
 

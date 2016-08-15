@@ -8,7 +8,7 @@ namespace CartoMobileSample
 {
 	public class MapListAdapter : BaseAdapter<string>
 	{
-		const int MINHEIGHT = 200;
+		const int MINHEIGHT = 120;
 
 		int rowHeight;
 
@@ -72,7 +72,6 @@ namespace CartoMobileSample
 			{
 				view = new MapRowView(context);
 			}
-
 
 			view.LayoutParameters = new AbsListView.LayoutParams(parent.Width, RowHeight);
 			view.Update(item);

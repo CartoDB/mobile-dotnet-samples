@@ -8,9 +8,7 @@ using Carto.Layers;
 namespace CartoMobileSample
 {
 	[Activity]
-	[ActivityDescription(Description =
-	                     "A sample demonstrating how to use raster layer " +
-	                     "on top of the vector base map to provide height information.")]
+	[ActivityDescription(Description = "Raster layer on top of the vector base map to provide height information")]
 	public class RasterOverlayActivity : VectorBaseMapActivity
 	{
 		const string HillsideRasterUrl = "http://tiles.wmflabs.org/hillshading/{zoom}/{x}/{y}.png";

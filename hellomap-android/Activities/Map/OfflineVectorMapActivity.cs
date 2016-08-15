@@ -6,10 +6,7 @@ using Android.App;
 namespace CartoMobileSample
 {
 	[Activity]
-	[ActivityDescription(Description = 
-	                     "A sample that uses bundled asset for offline base map. " +
-	                     "As MBTilesDataSource can be used only with files residing in file system, " +
-	                     "the assets needs to be copied first to the SDCard.")]
+	[ActivityDescription(Description = "Uses bundled assets for the offline base map")]
 	public class OfflineVectorMapActivity: VectorBaseMapActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)

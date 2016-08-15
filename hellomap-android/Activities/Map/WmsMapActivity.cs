@@ -8,8 +8,7 @@ using Carto.Layers;
 namespace CartoMobileSample
 {
 	[Activity]
-	[ActivityDescription(Description =
-					 "A sample demonstrating how to use WMS service raster on top of the vector base map")]
+	[ActivityDescription(Description = "WMS service raster on top of the vector base map")]
 	public class WmsMapActivity : VectorBaseMapActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)

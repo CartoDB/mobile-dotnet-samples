@@ -10,9 +10,7 @@ using Carto.Styles;
 namespace CartoMobileSample
 {
 	[Activity]
-	[ActivityDescription(Description =
-						 "A sample demonstrating how to use Carto SQL API to get data" +
-	                     "and how to create custom VectorDataSource")]
+	[ActivityDescription(Description = "SQL API to get data and create a custom vector data source")]
 	public class SQLActivity : VectorBaseMapActivity
 	{
 		const string BaseUrl = "https://nutiteq.cartodb.com/api/v2/sql";

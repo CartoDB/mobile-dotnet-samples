@@ -8,8 +8,7 @@ namespace CartoMobileSample
 {
 	[Activity]
 	[ActivityDescription(Description =
-						 "A sample demonstrating how to read data from GeoJSON and add clustered Markers to map. " +
-	                     "Both points from GeoJSON, and cluster markers are shown as Ballons that have dynamic texts.")]
+	                     "Read data from GeoJSON and add clustered Markers (balloons with text) to the map")]
 	public class ClusteredGeoJSONCapitals: BaseMapActivity
 	{
 		protected override void OnCreate (Android.OS.Bundle savedInstanceState)

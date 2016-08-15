@@ -9,13 +9,7 @@ namespace CartoMobileSample
 	{
 		public override string Name { get { return "WMS Map"; } }
 
-		public override string Description
-		{
-			get
-			{
-				return "WMS service raster on top of the vector base map";
-			}
-		}
+		public override string Description { get { return "WMS service raster on top of the vector base map"; } }
 
 		public override void ViewDidLoad()
 		{
