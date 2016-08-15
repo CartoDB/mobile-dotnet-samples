@@ -52,21 +52,20 @@ namespace CartoMobileSample
 		void LoadData(VectorElementVector elements, MapPos min, MapPos max, float zoom)
 		{
 			// Load and parse JSON
-			string format = "ST_SetSRID(ST_MakeEnvelope(%f,%f,%f,%f),3857) && the_geom_webmercator";
-			string bbox = string.Format(format, min.X, min.Y, max.X, max.Y);
-			bbox = GetBBoxString(min.X, min.Y, max.X, max.Y);
+			string bbox = EncodeBBox(min.X, min.Y, max.X, max.Y);
 
 			string unencoded = query.Replace("!bbox!", bbox);
 
 			unencoded = unencoded.Replace("zoom('!scale_denominator!')", Convert.ToString(zoom));
 
+			// UrlEncode does not replace parentheses by default as they are valid url elements
 			string encoded = System.Web.HttpUtility.UrlEncode(unencoded).Replace("(", "%28").Replace(")", "%29");
 
 			string fullPath = baseUrl + "?format=GeoJSON&q=" + encoded;
 
 			try
 			{
-				String json = GetString(fullPath);
+				string json = GetString(fullPath);
 
 				GeoJSONGeometryReader geoJsonParser = new GeoJSONGeometryReader();
 				FeatureCollection features = geoJsonParser.ReadFeatureCollection(json);
@@ -78,6 +77,7 @@ namespace CartoMobileSample
 
 					// Create object based on given style
 					VectorElement element;
+
 					if (style is PointStyle)
 					{
 						element = new Point((PointGeometry)geom, (PointStyle)style);
@@ -117,15 +117,16 @@ namespace CartoMobileSample
 			}
 		}
 
-		string GetBBoxString(double minx, double miny, double maxx, double maxy)
+		string EncodeBBox(double minx, double miny, double maxx, double maxy)
 		{
 			int roundBy = 6;
 
-			string start = "ST_SetSRID(ST_MakeEnvelope";
-			string data = "(" + Math.Round(minx, roundBy) + "," + Math.Round(miny, roundBy) + "," +
-									Math.Round(maxx, roundBy) + "," + Math.Round(maxy, roundBy) + ")";
-			string end = ",3857) && the_geom_webmercator";
-			return start + data + end;
+			string minX = Math.Round(minx, roundBy).ToInvariantString();
+			string minY = Math.Round(miny, roundBy).ToInvariantString();
+			string maxX = Math.Round(maxx, roundBy).ToInvariantString();
+			string maxY = Math.Round(maxy, roundBy).ToInvariantString();
+
+			return "ST_SetSRID(ST_MakeEnvelope(" + minX + "," + minY + "," + maxX + "," + maxY + "),3857) && the_geom_webmercator";
 		}
 
 		string GetString(string url)
