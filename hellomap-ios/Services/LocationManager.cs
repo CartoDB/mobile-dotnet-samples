@@ -35,13 +35,18 @@ namespace CartoMobileSample
 				// In meters
 				Manager.DesiredAccuracy = 1;
 
-				Manager.LocationsUpdated += (object sender, CLLocationsUpdatedEventArgs e) =>
-				{
-					CLLocation location = e.Locations[e.Locations.Length - 1];
-					LocationUpdated(this, new LocationUpdatedEventArgs { Location = location });
-				};
+				Manager.LocationsUpdated += OnLocationUpdated;
 
 				Manager.StartUpdatingLocation();
+			}
+		}
+
+		void OnLocationUpdated(object sender, CLLocationsUpdatedEventArgs e)
+		{
+			if (LocationUpdated != null)
+			{
+				CLLocation location = e.Locations[e.Locations.Length - 1];
+				LocationUpdated(this, new LocationUpdatedEventArgs { Location = location });
 			}
 		}
 

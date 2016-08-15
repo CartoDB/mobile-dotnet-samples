@@ -113,7 +113,7 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Web.Services" />
     <Reference Include="CartoMobileSDK.iOS">
-      <HintPath>..\packages\CartoMobileSDK.4.0.0-build35\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.4.0.0-build50\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

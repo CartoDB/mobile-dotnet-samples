@@ -39,7 +39,7 @@ namespace CartoMobileSample
 			LocationManager = new LocationManager();
 			LocationManager.Start();
 
-			// create layer and add object to the layer, finally add layer to the map. 
+			// Create layer and add object to the layer, finally add layer to the map. 
 			// All overlay layers must be same projection as base layer, so we reuse it
 			markerSource = new LocalVectorDataSource(MapView.Options.BaseProjection);
 			var _markerLayer = new VectorLayer(markerSource);
