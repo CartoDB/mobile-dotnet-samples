@@ -161,7 +161,6 @@
     <Compile Include="Controllers\Map\SQLController.cs" />
     <Compile Include="Controllers\Map\WmsMapController.cs" />
     <Compile Include="Utils\Utils.cs" />
-    <Compile Include="DataSources\HttpWmsTileDataSource.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Views\PackageManager\PackageManagerButton.cs" />
     <Compile Include="Views\PackageManager\PackageManagerListView.cs" />

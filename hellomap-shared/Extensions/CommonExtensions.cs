@@ -46,6 +46,20 @@ namespace CartoMobileSample
 			var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 			return Convert.ToInt64((date.ToUniversalTime() - epoch).TotalSeconds);
 		}
+
+		public static string Append(this string url, string key, string value)
+		{
+			string property = "";
+
+			if (url[url.Length - 1] != '?')
+			{
+				property += "&";
+			}
+
+			property += key + "=" + value;
+
+			return url + property;
+		}
 	}
 }
 

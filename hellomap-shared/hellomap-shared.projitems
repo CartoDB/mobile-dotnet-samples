@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\RoutingPackageListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\CommonMapExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\PackageManagerButtonType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataSources\HttpWmsTileDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Listeners\" />
