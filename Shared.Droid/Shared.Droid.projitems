@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{528EF7D5-3B72-4956-919F-8703CE0E388D}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Shared.Droid</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ActivityDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MapRowView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\MapListAdapter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Adapters\" />
+  </ItemGroup>
+</Project>

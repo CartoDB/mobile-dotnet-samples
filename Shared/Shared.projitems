@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{EC29109D-9F85-4B08-986F-47B368255550}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Builders\" />
+    <Folder Include="$(MSBuildThisFileDirectory)DataSources\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Listeners\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Enums\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\MyCartoVisBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\MyClusterElementBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataSources\CartoDBSQLDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataSources\HttpWmsTileDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\CommonExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\CommonMapExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\PackageManagerButtonType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Listeners\MapListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Listeners\MyMapEventListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Listeners\MyUTFGridEventListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Listeners\PackageListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Listeners\RouteMapEventListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Listeners\RoutingPackageListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Listeners\VectorElementListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Package.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MapSetup.cs" />
+  </ItemGroup>
+</Project>
