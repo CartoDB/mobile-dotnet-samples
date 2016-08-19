@@ -1,6 +1,5 @@
 ﻿
 using System;
-using AdvancedMap.iOS;
 using CoreGraphics;
 using UIKit;
 

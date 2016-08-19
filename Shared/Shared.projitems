@@ -17,7 +17,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Builders\MyCartoVisBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\CartoVisBuilderWithGridEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\MyClusterElementBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataSources\CartoDBSQLDataSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataSources\HttpWmsTileDataSource.cs" />
@@ -33,5 +33,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\VectorElementListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Package.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapSetup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\BasicCartoVisBuilder.cs" />
   </ItemGroup>
 </Project>

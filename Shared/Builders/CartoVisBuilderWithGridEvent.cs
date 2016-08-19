@@ -6,12 +6,12 @@ using Carto.Ui;
 
 namespace Shared
 {
-	public class MyCartoVisBuilder : CartoVisBuilder
+	public class CartoVisBuilderWithGridEvent : CartoVisBuilder
 	{
 		VectorLayer vectorLayer; // vector layer for popups
 		MapView mapView;
 
-		public MyCartoVisBuilder(MapView mapView, VectorLayer vectorLayer)
+		public CartoVisBuilderWithGridEvent(MapView mapView, VectorLayer vectorLayer)
 		{
 			this.mapView = mapView;
 			this.vectorLayer = vectorLayer;
