@@ -8,4 +8,20 @@
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>mobile_dotnet_samples</Import_RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Utils\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
+    <Folder Include="$(MSBuildThisFileDirectory)DataSources\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\OptionsMenu\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LocationManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MapListCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MapListView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\Utils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataSources\MapListDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\OptionsMenu\OptionsMenu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\OptionsMenu\OptionsMenuBox.cs" />
+  </ItemGroup>
 </Project>

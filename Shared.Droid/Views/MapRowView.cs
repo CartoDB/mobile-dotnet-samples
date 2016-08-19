@@ -51,7 +51,7 @@ namespace Shared.Droid
 			int width = this.LayoutParameters.Width;
 			int height = this.LayoutParameters.Height;
 
-			int titleHeight = (int)(height / 3.5);
+			int titleHeight = (int)(height / 2.7f);
 			int descHeight = height - titleHeight;
 
 			int padding = width / 50;

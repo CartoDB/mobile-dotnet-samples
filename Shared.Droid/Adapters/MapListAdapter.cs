@@ -8,7 +8,7 @@ namespace Shared.Droid
 {
 	public class MapListAdapter : BaseAdapter<string>
 	{
-		const int MINHEIGHT = 120;
+		const int MINHEIGHT = 150;
 
 		int rowHeight;
 
