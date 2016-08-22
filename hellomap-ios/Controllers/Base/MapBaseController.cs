@@ -26,6 +26,9 @@ namespace CartoMobileSample
 		{
 			base.ViewDidLoad();
 
+			// Use 60fps update rate, this makes zooming and panning animations much smoother
+			PreferredFramesPerSecond = 60;
+
 			MapView = new CustomMapView();
 			View = MapView;
 
