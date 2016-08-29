@@ -32,7 +32,7 @@ namespace CartoMap.iOS
 			BaseProjection = new EPSG3857();
 
 			// Initialize map
-			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");
+			var styleAsset = AssetUtils.LoadAsset("nutibright-v3.zip");
 			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
 			MapView.Layers.Add(baseLayer);
 
