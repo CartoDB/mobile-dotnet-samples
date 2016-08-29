@@ -53,8 +53,8 @@ namespace CartoMap.iOS
 			}
 
 			// Zoom map to the content area
-			MapPos position = BaseProjection.FromWgs84(new MapPos(22.7478235498916, 58.8330577553785));
-			MapView.SetFocusPos(position, 0);
+			MapPos hiiumaa = BaseProjection.FromWgs84(new MapPos(22.7478235498916, 58.8330577553785));
+			MapView.SetFocusPos(hiiumaa, 0);
 			MapView.SetZoom(11, 0);
 		}
 	
