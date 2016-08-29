@@ -19,9 +19,9 @@ namespace Shared.iOS
 			base.LayoutSubviews();
 		}
 
-		public void AddRows(List<UIViewController> controllers)
+		public void AddRows(List<MapListRowSource> sources)
 		{
-			ListSource = new MapListDataSource { Items = controllers };
+			ListSource = new MapListDataSource { Items = sources };
 			Source = ListSource;
 		}
 

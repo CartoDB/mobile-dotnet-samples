@@ -1,5 +1,6 @@
 ﻿
 using System;
+//using AdvancedMap.iOS;
 using CoreGraphics;
 using UIKit;
 
@@ -27,17 +28,10 @@ namespace Shared.iOS
 			SelectionStyle = UITableViewCellSelectionStyle.None;
 		}
 
-		public void Update(UIViewController item)
+		public void Update(MapListRowSource item)
 		{
-			if (item is PackageManagerController)
-			{
-				title.Text = (item as PackageManagerController).Name;
-				description.Text = (item as PackageManagerController).Description;
-			}
-			else {
-				title.Text = (item as MapBaseController).Name;
-				description.Text = (item as MapBaseController).Description;
-			}
+			title.Text = item.Title;
+			description.Text = item.Description;
 		}
 
 		public override void LayoutSubviews()

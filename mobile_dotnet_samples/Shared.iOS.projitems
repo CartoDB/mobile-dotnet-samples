@@ -23,5 +23,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataSources\MapListDataSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\OptionsMenu\OptionsMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\OptionsMenu\OptionsMenuBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataSources\MapListRowSource.cs" />
   </ItemGroup>
 </Project>

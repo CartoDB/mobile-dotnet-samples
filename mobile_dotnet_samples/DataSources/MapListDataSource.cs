@@ -28,7 +28,7 @@ namespace Shared.iOS
 
 		public EventHandler<ControllerEventArgs> MapSelected { get; set; }
 
-		public List<UIViewController> Items = new List<UIViewController>();
+		public List<MapListRowSource> Items = new List<MapListRowSource>();
 
 		public override nfloat GetHeightForRow(UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
@@ -42,7 +42,7 @@ namespace Shared.iOS
 
 		public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			UIViewController controller = Items[indexPath.Row];
+			UIViewController controller = Items[indexPath.Row].Controller;
 
 			if (MapSelected != null) {
 				MapSelected(new object(), new ControllerEventArgs { Controller = controller });
@@ -51,7 +51,7 @@ namespace Shared.iOS
 
 		public override UITableViewCell GetCell(UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			UIViewController controller = Items[indexPath.Row];
+			MapListRowSource data = Items[indexPath.Row];
 
 			MapListCell cell = (MapListCell)tableView.DequeueReusableCell(identifier);
 
@@ -60,7 +60,7 @@ namespace Shared.iOS
 				cell = new MapListCell();
 			}
 
-			cell.Update(controller);
+			cell.Update(data);
 
 			return cell;
 		}

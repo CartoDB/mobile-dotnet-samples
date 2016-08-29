@@ -13,8 +13,8 @@ namespace Shared.iOS
 
 		public LocationManager()
 		{
-			this.Manager = new CLLocationManager();
-			this.Manager.PausesLocationUpdatesAutomatically = false;
+			Manager = new CLLocationManager();
+			Manager.PausesLocationUpdatesAutomatically = false;
 
 			// iOS 8 has additional permissions requirements
 			if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))

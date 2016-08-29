@@ -15,7 +15,7 @@ namespace AdvancedMap.iOS
 			ContentView = new MapListView();
 			View = ContentView;
 
-			ContentView.AddRows(Samples.List);
+			ContentView.AddRows(Samples.ListOfRowSources);
 
 			Title = "CARTO Mobile Samples";
 		}
