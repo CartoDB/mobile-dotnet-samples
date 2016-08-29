@@ -9,7 +9,8 @@ namespace CartoMap.iOS
 	{
 		public static List<UIViewController> List = new List<UIViewController>
 		{
-			new CartoVisJsonController()
+			new CartoVisJsonController(),
+			new CartoRasterTileController()
 		};
 
 		public static List<MapListRowSource> ListOfRowSources

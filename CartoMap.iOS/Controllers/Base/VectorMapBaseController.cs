@@ -17,7 +17,7 @@ namespace CartoMap.iOS
 		const string Menu_Language = "Language";
 		const string Menu_Style = "Style";
 
-		public const string BaseStyle = "nutibright-v2a";
+		public const string BaseStyle = "nutibright-v3";
 		public const string BaseStyleFile = BaseStyle + ".zip";
 
 		const string BaseLanguage = "en";
@@ -126,7 +126,7 @@ namespace CartoMap.iOS
 
 			if (styleBytes == null)
 			{
-				Alert("Map style file must be in project assets: ");
+				Alert("Map style (" + styleAssetName + ") file must be in project assets");
 				return;
 			}
 

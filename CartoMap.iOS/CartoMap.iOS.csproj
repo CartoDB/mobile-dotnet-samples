@@ -93,6 +93,7 @@
       <HintPath>..\packages\CartoMobileSDK.4.0.0-build69\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Services" />
+    <Reference Include="System.Json" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json" />
@@ -127,6 +128,7 @@
     <Compile Include="Device.cs" />
     <Compile Include="Controllers\MapListController.cs" />
     <Compile Include="Samples.cs" />
+    <Compile Include="Controllers\Map\CartoRasterTileController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\basic.zip" />

@@ -34,5 +34,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Package.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapSetup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\BasicCartoVisBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonUtils.cs" />
   </ItemGroup>
 </Project>
