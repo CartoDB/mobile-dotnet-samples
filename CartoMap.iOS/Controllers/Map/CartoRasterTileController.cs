@@ -27,7 +27,7 @@ namespace CartoMap.iOS
 			string sql = "select * from table_46g";
 			string cartoCSS = "#table_46g {raster-opacity: 0.5;}";
 
-			string config = JsonUtils.GetConfigJson(sql, cartoCSS).ToString();
+			string config = JsonUtils.GetRasterLayerConfigJson(sql, cartoCSS).ToString();
 
 			// Use the Maps service to configure layers. Note that this must be done
 			// in a separate thread on Android, as Maps API requires connecting to server

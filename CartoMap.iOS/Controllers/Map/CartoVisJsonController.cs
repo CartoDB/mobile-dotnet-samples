@@ -38,37 +38,9 @@ namespace CartoMap.iOS
 			base.ViewDidAppear(animated);
 
 			string url = items["Dots"];
-			UpdateVis(url);
+			CartoMapUtils.UpdateVis(MapView, url);
 		}
 
-		protected void UpdateVis(string url)
-		{
-			InvokeInBackground(delegate
-			{
-				MapView.Layers.Clear();
-
-				// Create overlay layer for Popups
-				Projection projection = MapView.Options.BaseProjection;
-				LocalVectorDataSource source = new LocalVectorDataSource(projection);
-				VectorLayer layer = new VectorLayer(source);
-
-				// Create VIS loader
-				CartoVisLoader loader = new CartoVisLoader();
-				loader.DefaultVectorLayerMode = true;
-				CartoVisBuilderWithGridEvent builder = new CartoVisBuilderWithGridEvent(MapView, layer);
-
-				try
-				{
-					loader.LoadVis(builder, url);
-				}
-				catch (Exception e)
-				{
-					Console.WriteLine("Exception: " + e.Message);
-				}
-
-				MapView.Layers.Add(layer);
-			});
-		}
 	}
 }
 
