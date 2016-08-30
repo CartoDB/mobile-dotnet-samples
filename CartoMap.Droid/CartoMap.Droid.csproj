@@ -48,11 +48,18 @@
     <Reference Include="Xamarin.Android.Support.v7.AppCompat">
       <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.23.1.1.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
+    <Reference Include="CartoMobileSDK.Android">
+      <HintPath>..\packages\CartoMobileSDK.4.0.0-build63\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Json" />
+    <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Activities\Map\SQLActivity.cs" />
+    <Compile Include="Activities\Base\BaseMapActivity.cs" />
+    <Compile Include="Activities\Base\VectorBaseMapActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -71,6 +78,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
+    <Folder Include="Activities\" />
+    <Folder Include="Activities\Base\" />
+    <Folder Include="Activities\Map\" />
   </ItemGroup>
+  <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
+  <Import Project="..\Shared.Droid\Shared.Droid.projitems" Label="Shared" Condition="Exists('..\Shared.Droid\Shared.Droid.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

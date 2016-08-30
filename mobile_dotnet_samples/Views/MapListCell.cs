@@ -28,9 +28,9 @@ namespace Shared.iOS
 			SelectionStyle = UITableViewCellSelectionStyle.None;
 		}
 
-		public void Update(MapListRowSource item)
+		public void Update(MapListRowSource item, int position)
 		{
-			title.Text = item.Title;
+			title.Text = (position + 1) + ". " + item.Title;
 			description.Text = item.Description;
 		}
 

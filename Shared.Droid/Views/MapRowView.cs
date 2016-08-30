@@ -43,9 +43,9 @@ namespace Shared.Droid
 			AddView(descriptionView);
 		}
 
-		public void Update(Type type)
+		public void Update(Type type, int position)
 		{
-			Title = type.GetTitle();
+			Title = (position + 1) + ". " + type.GetTitle();
 			Description = type.GetDescription();
 
 			int width = this.LayoutParameters.Width;

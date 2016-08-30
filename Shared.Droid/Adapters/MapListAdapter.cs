@@ -51,9 +51,8 @@ namespace Shared.Droid
 			}
 		}
 
-		public MapListAdapter(Context context, List<Type> items) : base ()
+		public MapListAdapter(Context context, List<Type> items)
 		{
-			
 			Items = items;
 			this.context = context;
 		}
@@ -74,7 +73,7 @@ namespace Shared.Droid
 			}
 
 			view.LayoutParameters = new AbsListView.LayoutParams(parent.Width, RowHeight);
-			view.Update(item);
+			view.Update(item, position);
 
 			return view;
 		}

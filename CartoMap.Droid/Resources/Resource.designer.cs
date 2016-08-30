@@ -1561,6 +1561,9 @@ namespace CartoMap.Droid
 			// aapt resource value: 0x7f0c0028
 			public const int list_item = 2131492904;
 			
+			// aapt resource value: 0x7f0c0050
+			public const int mapView = 2131492944;
+			
 			// aapt resource value: 0x7f0c0054
 			public const int media_actions = 2131492948;
 			
@@ -1569,9 +1572,6 @@ namespace CartoMap.Droid
 			
 			// aapt resource value: 0x7f0c0013
 			public const int multiply = 2131492883;
-			
-			// aapt resource value: 0x7f0c0050
-			public const int myButton = 2131492944;
 			
 			// aapt resource value: 0x7f0c001e
 			public const int never = 2131492894;

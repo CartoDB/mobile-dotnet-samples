@@ -9,7 +9,7 @@ using Carto.Styles;
 using Shared;
 using Shared.Droid;
 
-namespace AdvancedMap.Droid
+namespace CartoMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "SQL API to get data and create a custom vector data source")]

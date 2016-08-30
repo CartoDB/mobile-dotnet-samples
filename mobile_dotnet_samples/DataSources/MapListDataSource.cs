@@ -60,7 +60,7 @@ namespace Shared.iOS
 				cell = new MapListCell();
 			}
 
-			cell.Update(data);
+			cell.Update(data, indexPath.Row);
 
 			return cell;
 		}
