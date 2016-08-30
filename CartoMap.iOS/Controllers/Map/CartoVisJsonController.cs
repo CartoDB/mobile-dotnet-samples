@@ -31,11 +31,6 @@ namespace CartoMap.iOS
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-		}
-
-		public override void ViewDidAppear(bool animated)
-		{
-			base.ViewDidAppear(animated);
 
 			string url = items["Dots"];
 			CartoMapUtils.UpdateVis(MapView, url);

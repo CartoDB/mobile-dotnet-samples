@@ -57,9 +57,15 @@
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Activities\Map\SQLActivity.cs" />
+    <Compile Include="Activities\Map\CartoSQLActivity.cs" />
     <Compile Include="Activities\Base\BaseMapActivity.cs" />
     <Compile Include="Activities\Base\VectorBaseMapActivity.cs" />
+    <Compile Include="Activities\Map\CartoRasterTileActivity.cs" />
+    <Compile Include="Activities\Map\CartoTorqueActivity.cs" />
+    <Compile Include="Activities\Map\CartoUTFGridActivity.cs" />
+    <Compile Include="Activities\Map\CartoVisJSONActivity.cs" />
+    <Compile Include="Samples.cs" />
+    <Compile Include="Activities\LauncherListActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -75,12 +81,22 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\layout\List.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
     <Folder Include="Activities\" />
     <Folder Include="Activities\Base\" />
     <Folder Include="Activities\Map\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\nutibright-v2a.zip" />
+    <AndroidAsset Include="Assets\nutiteq-dark.zip" />
+    <AndroidAsset Include="Assets\world_ntvt_0_4.mbtiles" />
+    <AndroidAsset Include="Assets\looseleaf.zip" />
+    <AndroidAsset Include="Assets\fcd_auto.nml" />
+    <AndroidAsset Include="Assets\capitals_3857.geojson" />
+    <AndroidAsset Include="Assets\basic.zip" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\Shared.Droid\Shared.Droid.projitems" Label="Shared" Condition="Exists('..\Shared.Droid\Shared.Droid.projitems')" />

@@ -118,6 +118,65 @@ namespace Shared
 			}
 		}
 
+		public static string TorqueCartoCSS
+		{
+			get
+			{
+				return "#layer {\n" +
+					   "  comp-op: lighten;\n" +
+					   "  marker-type:ellipse;\n" +
+					   "  marker-width: 10;\n" +
+					   "  marker-fill: #FEE391;\n" +
+					   "  [value > 2] { marker-fill: #FEC44F; }\n" +
+					   "  [value > 3] { marker-fill: #FE9929; }\n" +
+					   "  [value > 4] { marker-fill: #EC7014; }\n" +
+					   "  [value > 5] { marker-fill: #CC4C02; }\n" +
+					   "  [value > 6] { marker-fill: #993404; }\n" +
+					   "  [value > 7] { marker-fill: #662506; }\n" +
+					   "\n" +
+					   "  [frame-offset = 1] {\n" +
+					   "    marker-width: 20;\n" +
+					   "    marker-fill-opacity: 0.1;\n" +
+					   "  }\n" +
+					   "  [frame-offset = 2] {\n" +
+					   "    marker-width: 30;\n" +
+					   "    marker-fill-opacity: 0.05;\n" +
+					   "  }\n" +
+					   "}\n";
+			}
+		}
+
+		// Magic query to create torque tiles
+		public static string TorqueQuery
+		{
+			get
+			{
+				return "WITH par \n" +
+						"AS (SELECT Cdb_xyz_resolution({zoom}) * 1   AS res,\n" +
+						"256 / 1 AS tile_size,\n" +
+						"Cdb_xyz_extent({x}, {y}, {zoom}) AS ext),\n" +
+						"cte\n" +
+						"AS (SELECT St_snaptogrid(i.the_geom_webmercator, p.res) g,\n" +
+						" Count(cartodb_id) c,\n" +
+						" Floor(( Date_part('epoch', date) - -1796072400 ) / 476536.5) d\n" +
+						"FROM (SELECT *\n" +
+						" FROM ow) i,\n" +
+						"  par p\n" +
+						" WHERE i.the_geom_webmercator && p.ext\n" +
+						" GROUP BY g, d)\n" +
+						"SELECT ( St_x(g) - St_xmin(p.ext) ) / p.res x__uint8,\n" +
+						" ( St_y(g) - St_ymin(p.ext) ) / p.res y__uint8,\n" +
+						" Array_agg(c) vals__uint8,\n" +
+						" Array_agg(d) dates__uint16\n" +
+						"FROM cte,\n" +
+						"  par p\n" +
+						"WHERE  ( St_y(g) - St_ymin(p.ext) ) / p.res < tile_size\n" +
+						" AND ( St_x(g) - St_xmin(p.ext) ) / p.res < tile_size\n" +
+						"GROUP BY x__uint8,\n" +
+						" y__uint8 ";
+			}
+		}
+
 	}
 }
 
