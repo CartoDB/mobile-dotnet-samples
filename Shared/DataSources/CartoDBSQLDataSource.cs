@@ -59,7 +59,7 @@ namespace Shared
 			unencoded = unencoded.Replace("zoom('!scale_denominator!')", Convert.ToString(zoom));
 
 			// UrlEncode does not replace parentheses by default as they are valid url elements
-			string encoded = System.Web.HttpUtility.UrlEncode(unencoded).Replace("(", "%28").Replace(")", "%29");
+			string encoded = System.Web.HttpUtility.UrlEncode(unencoded).EncodeParenthesis();
 
 			string fullPath = baseUrl + "?format=GeoJSON&q=" + encoded;
 

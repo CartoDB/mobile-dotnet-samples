@@ -7,11 +7,11 @@ using Carto.Layers;
 using Carto.Styles;
 using Shared;
 
-namespace AdvancedMap.iOS
+namespace CartoMap.iOS
 {
-	public class SQLController : MapBaseController
+	public class CartoSQLController : MapBaseController
 	{
-		public override string Name { get { return "SQL Map"; } }
+		public override string Name { get { return "Carto SQL Map"; } }
 
 		public override string Description { get { return "SQL API to get data and create a custom vector data source"; } }
 

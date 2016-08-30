@@ -129,6 +129,8 @@
     <Compile Include="Controllers\MapListController.cs" />
     <Compile Include="Samples.cs" />
     <Compile Include="Controllers\Map\CartoRasterTileController.cs" />
+    <Compile Include="Controllers\Map\CartoSQLController.cs" />
+    <Compile Include="Controllers\Map\CartoTorqueController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\basic.zip" />

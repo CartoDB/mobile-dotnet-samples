@@ -66,6 +66,11 @@ namespace Shared
 		{
 			return Convert.ToString(item, CultureInfo.InvariantCulture);
 		}
+
+		public static string EncodeParenthesis(this string item)
+		{
+			return item.Replace("(", "%28").Replace(")", "%29");
+		}
 	}
 }
 

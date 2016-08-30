@@ -135,7 +135,6 @@
     <Compile Include="Controllers\Map\Overlays2DController.cs" />
     <Compile Include="Controllers\Map\PinMapController.cs" />
     <Compile Include="Controllers\Map\RasterOverlayController.cs" />
-    <Compile Include="Controllers\Map\SQLController.cs" />
     <Compile Include="Controllers\Map\WmsMapController.cs" />
     <Compile Include="Samples.cs" />
     <Compile Include="DataSources\PackageListDataSource.cs" />
