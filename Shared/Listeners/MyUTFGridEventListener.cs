@@ -11,17 +11,24 @@ namespace Shared
 	public class MyUTFGridEventListener : UTFGridEventListener
 	{
 		VectorLayer vectorLayer;
-		//Variant infoWindow;
+		LocalVectorDataSource vectorDataSource;
 
-		public MyUTFGridEventListener(VectorLayer vectorLayer, Variant infoWindow)
+		public MyUTFGridEventListener(VectorLayer vectorLayer, Variant infoWindow = null)
 		{
 			this.vectorLayer = vectorLayer;
-			//this.infoWindow = infoWindow;
+		}
+
+		public MyUTFGridEventListener(LocalVectorDataSource source)
+		{
+			vectorDataSource = source;
 		}
 
 		public override bool OnUTFGridClicked(UTFGridClickInfo clickInfo)
 		{
-			LocalVectorDataSource vectorDataSource = (LocalVectorDataSource)vectorLayer.DataSource;
+			if (vectorDataSource == null)
+			{
+				vectorDataSource = (LocalVectorDataSource)vectorLayer.DataSource;
+			}
 
 			// Clear previous popups
 			vectorDataSource.Clear();

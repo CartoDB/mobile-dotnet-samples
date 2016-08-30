@@ -12,6 +12,7 @@ namespace CartoMap.iOS
 			new CartoRasterTileController(),
 			new CartoSQLController(),
 			new CartoTorqueController(),
+			new CartoUTFGridController(),
 			new CartoVisJsonController()
 		};
 

@@ -131,6 +131,7 @@
     <Compile Include="Controllers\Map\CartoRasterTileController.cs" />
     <Compile Include="Controllers\Map\CartoSQLController.cs" />
     <Compile Include="Controllers\Map\CartoTorqueController.cs" />
+    <Compile Include="Controllers\Map\CartoUTFGridController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\basic.zip" />
