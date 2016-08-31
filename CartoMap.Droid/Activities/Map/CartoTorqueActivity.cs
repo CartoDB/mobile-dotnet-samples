@@ -35,9 +35,7 @@ namespace CartoMap.Droid
 			HTTPTileDataSource source = new HTTPTileDataSource(0, 14, url);
 
 			// Create persistent cache to make it faster
-
 			string cacheFile = GetExternalFilesDir(null) + "torque_tile_cache.db";
-
 			TileDataSource cacheSource = new PersistentCacheTileDataSource(source, cacheFile);
 
 			// Create CartoCSS style from Torque points
