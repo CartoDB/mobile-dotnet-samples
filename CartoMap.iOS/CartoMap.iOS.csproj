@@ -101,7 +101,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Views\" />
     <Folder Include="Controllers\" />
     <Folder Include="Controllers\Base\" />
     <Folder Include="Controllers\Map\" />

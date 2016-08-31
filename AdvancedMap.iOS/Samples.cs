@@ -18,7 +18,6 @@ namespace AdvancedMap.iOS
 			new PinMapController(),
 			new PackageManagerController(),
 			new RasterOverlayController(),
-			new SQLController(),
 			new WmsMapController()
 		};
 

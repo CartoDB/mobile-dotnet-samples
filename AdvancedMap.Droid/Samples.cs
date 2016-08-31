@@ -17,7 +17,6 @@ namespace AdvancedMap.Droid
 			typeof (PinMapActivity),
 			typeof (PackageManagerActivity),
 			typeof (RasterOverlayActivity),
-			typeof (SQLActivity),
 			typeof (WmsMapActivity)
 		});
 

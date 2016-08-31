@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using Android.Widget;
 using Shared;
 
@@ -19,11 +20,10 @@ namespace AdvancedMap.Droid
 
 		}
 
-		public PackageManagerButton(Android.Content.Context context, Android.Util.IAttributeSet attrs) : base (context, attrs)
+		public PackageManagerButton(Android.Content.Context context, Android.Util.IAttributeSet attrs) : base(context, attrs)
 		{
 			// TODO Auto-generated constructor stub
 		}
 	}
 
 }
-
