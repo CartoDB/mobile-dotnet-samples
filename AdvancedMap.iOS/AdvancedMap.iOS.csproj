@@ -89,11 +89,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="CartoMobileSDK.iOS">
-      <HintPath>..\packages\CartoMobileSDK.4.0.0-build63\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Json" />
+    <Reference Include="CartoMobileSDK.iOS">
+      <HintPath>..\packages\CartoMobileSDK.4.0.0-build69\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json" />
