@@ -1,9 +1,9 @@
-# Carto Mobile SDK Samples for .NET
+# .NET samples for CARTO Mobile SDK 4
 
-Includes samples and Carto Mobile SDK 1.x for .NET platform:
+Includes samples and Carto Mobile SDK 4.x for .NET platform:
 * Android (Xamarin)
 * iOS (Xamarin)
-* Windows Phone (Visual Studio)
+* Windows Phone 10 (Visual Studio)
 
 ## Get started
   1. Open project in Xamarin Studio or Visual Studio (with Xamarin extensions)

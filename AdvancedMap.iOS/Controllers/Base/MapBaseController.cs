@@ -27,6 +27,10 @@ namespace AdvancedMap.iOS
 			base.ViewDidLoad();
 
 			MapView = new MapView();
+
+			// Use 60fps update rate, this makes zooming and panning animations much smoother
+			PreferredFramesPerSecond = 60;
+
 			View = MapView;
 
 			BaseProjection = new EPSG3857();
