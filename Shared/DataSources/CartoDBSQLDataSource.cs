@@ -19,7 +19,8 @@ namespace Shared
 	/**
 	* A custom vector data source making queries to http://docs.cartodb.com/cartodb-platform/sql-api/
 	*/
-	// TODO: reimplement to use Carto.Services.CartoSQLService, current version contains code not working on UWP/Windows Phone 10
+	// TODO: reimplement to use Carto.Services.CartoSQLService, 
+	// current version contains code not working on UWP/Windows Phone 10
 	public class CartoDBSQLDataSource : VectorDataSource
 	{
 		string baseUrl;
@@ -127,7 +128,9 @@ namespace Shared
 			string maxX = Math.Round(maxx, roundBy).ToInvariantString();
 			string maxY = Math.Round(maxy, roundBy).ToInvariantString();
 
-			return "ST_SetSRID(ST_MakeEnvelope(" + minX + "," + minY + "," + maxX + "," + maxY + "),3857) && the_geom_webmercator";
+			return "ST_SetSRID(ST_MakeEnvelope(" + 
+				minX + "," + minY + "," + maxX + "," + maxY 
+				+ "),3857) && the_geom_webmercator";
 		}
 
 		string GetString(string url)
