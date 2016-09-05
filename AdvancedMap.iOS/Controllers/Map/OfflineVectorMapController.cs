@@ -2,6 +2,9 @@
 using System;
 using System.IO;
 using System.Linq;
+using Carto.Core;
+using Carto.DataSources;
+using Carto.Projections;
 using Foundation;
 using Shared;
 using Shared.iOS;
@@ -12,13 +15,7 @@ namespace AdvancedMap.iOS
 	{
 		public override string Name { get { return "Offline Vector Map"; } }
 
-		public override string Description
-		{
-			get
-			{
-				return "Uses bundled assets for the offline base map";
-			}
-		}
+		public override string Description { get { return "Uses bundled assets for the offline base map"; } }
 
 		public string SupportDirectory { get { return Utils.GetDocumentDirectory("packages"); } }
 
@@ -26,35 +23,55 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
-			string packageDirectory = SupportDirectory;
-			string fullWritePath = Path.Combine(packageDirectory, "world_ntvt_0_4.mbtile");
+			Projection projection = MapView.Options.BaseProjection;
+			MapPos rome = projection.FromWgs84(new MapPos(12.4807, 41.8962));
 
-			string resourceDirectory = NSBundle.MainBundle.PathForResource("world_ntvt_0_4", "mbtiles");
+			MapView.SetFocusPos(rome, 0);
+			MapView.SetZoom(13, 0);
+		}
+
+		protected override TileDataSource CreateTileDataSource()
+		{
+			//string fileName = "world_zoom5";
+			string fileName = "rome_ntvt";
+			string extension = "mbtiles";
+
+			string packageDirectory = SupportDirectory;
+			string fullWritePath = Path.Combine(packageDirectory, fileName + "." + extension);
+
+			string resourceDirectory = NSBundle.MainBundle.PathForResource(fileName, extension);
+
+			return new MBTilesTileDataSource(0, 4, resourceDirectory);
 
 			if (!Directory.Exists(packageDirectory))
 			{
 				Directory.CreateDirectory(packageDirectory);
 				Console.WriteLine("Directory: Does not exist... Creating");
 			}
-			else 
+			else
 			{
 				Console.WriteLine("Directory: Exists");
 			}
 
-			// Copy bundled tile data to file system so it can be imported by package manager
-			using (var input = new FileStream(resourceDirectory, FileMode.Open, FileAccess.Read))
+			try
 			{
-				using (var output = new FileStream(fullWritePath, FileMode.Create, FileAccess.Write))
+				// Copy bundled tile data to file system so it can be imported by package manager
+				using (var input = new FileStream(resourceDirectory, FileMode.Open, FileAccess.Read))
 				{
-					input.CopyTo(output);
+					using (var output = new FileStream(fullWritePath, FileMode.Create, FileAccess.Write))
+					{
+						input.CopyTo(output);
+					}
 				}
+
+				MBTilesTileDataSource source = new MBTilesTileDataSource(0, 4, fullWritePath);
+
+				return source;
 			}
-
-			string downloadId = "EE"; // one of ID-s from https://developer.nutiteq.com/guides/packages
-
-			MapSetup.InitializePackageManager(packageDirectory, resourceDirectory, MapView, downloadId);
+			catch {
+				return null;
+			}
 		}
-			
 	}
 }
 

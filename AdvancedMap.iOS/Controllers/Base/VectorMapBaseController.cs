@@ -17,7 +17,7 @@ namespace AdvancedMap.iOS
 		const string Menu_Language = "Language";
 		const string Menu_Style = "Style";
 
-		public const string BaseStyle = "nutibright-v2a";
+		public const string BaseStyle = "nutibright-v3";
 		public const string BaseStyleFile = BaseStyle + ".zip";
 
 		const string BaseLanguage = "en";
@@ -31,8 +31,8 @@ namespace AdvancedMap.iOS
 
 		Dictionary<string, string> styleDict = new Dictionary<string, string> {
 			{ "Basic", "basic" },
-			{ "NutiBright 2D", "nutibright-v2a" },
-			{ "NutiBright 3D", "ntibright3d" },
+			{ "NutiBright 2D", "nutibright-v3" },
+			{ "NutiBright 3D", "nutibright3d" },
 			{ "Loose Leaf", "looseleaf" }
 		};
 
@@ -138,12 +138,17 @@ namespace AdvancedMap.iOS
 			vectorTileDecoder.SetStyleParameter("lang", vectorStyleLang);
 
 			// OSM Bright style set supports choosing between 2d/3d buildings. Set corresponding parameter.
-			if (styleAssetName.Equals(BaseStyleFile))
+			if (styleBuildings3D)
 			{
-				vectorTileDecoder.SetStyleParameter("buildings3d", styleBuildings3D ? "1" : "0");
-				vectorTileDecoder.SetStyleParameter("markers3d", styleBuildings3D ? "1" : "0");
-				vectorTileDecoder.SetStyleParameter("texts3d", styleBuildings3D ? "1" : "0");
+				vectorTileDecoder.SetStyleParameter("buildings3d", "1");
 			}
+
+			vectorTileDecoder.SetStyleParameter("markers3d", "1");
+			vectorTileDecoder.SetStyleParameter("texts3d", "1");
+			vectorTileDecoder.SetStyleParameter("shields3d", "1");
+
+			vectorTileDecoder.SetStyleParameter("contour_stroke", "rgba(217, 166, 140, 0.53)");
+			vectorTileDecoder.SetStyleParameter("contour_width", "0.8");
 
 			// Create tile data source for vector tiles
 			if (vectorTileDataSource == null)
@@ -165,8 +170,6 @@ namespace AdvancedMap.iOS
 		{
 			TileDataSource source = new CartoOnlineTileDataSource("nutiteq.osm");
 
-			// We don't use VectorTileDataSource directly (this would be also option),
-			// but via caching to cache data locally persistently/non-persistently.
 			return new MemoryCacheTileDataSource(source);
 		}
 	}
