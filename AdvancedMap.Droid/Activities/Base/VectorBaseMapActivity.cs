@@ -72,10 +72,9 @@ namespace AdvancedMap.Droid
 			if (key == Menu_Language || key == Menu_Style)
 			{
 				// Parent menu click - Do nothing
-
 			}
 			else {
-
+				
 				if (styleDict.ContainsKey(key))
 				{
 					vectorStyleName = styleDict[key];

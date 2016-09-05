@@ -161,6 +161,9 @@
     <BundleResource Include="Resources\olmarker.png" />
     <BundleResource Include="Resources\world_ntvt_0_4.mbtiles" />
     <BundleResource Include="Resources\world_zoom5.mbtiles" />
+    <BundleResource Include="Resources\basic.zip" />
+    <BundleResource Include="Resources\looseleaf.zip" />
+    <BundleResource Include="Resources\nutibright-v3.zip" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />

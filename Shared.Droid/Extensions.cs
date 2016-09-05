@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using Android.Content.Res;
 using Java.Lang;
 
 namespace Shared.Droid
@@ -35,6 +37,17 @@ namespace Shared.Droid
 			activity.RunOnUiThread(delegate {
 				Android.Widget.Toast.MakeText(activity, message, Android.Widget.ToastLength.Short).Show();	
 			});
+		}
+
+		public static void CopyAssetToSDCard(this AssetManager manager, string fileName, string writePath)
+		{
+			using (Stream input = manager.Open(fileName))
+			{
+				using (var output = new FileStream(writePath, FileMode.Create, FileAccess.Write))
+				{
+					input.CopyTo(output);
+				}
+			}
 		}
 
 	}

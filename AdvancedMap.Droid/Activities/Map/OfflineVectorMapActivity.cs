@@ -4,6 +4,7 @@ using Carto.Utils;
 using Android.App;
 using Shared.Droid;
 using Shared;
+using Carto.DataSources;
 
 namespace AdvancedMap.Droid
 {
@@ -43,10 +44,30 @@ namespace AdvancedMap.Droid
 			MapSetup.InitializePackageManager(packageFolder.AbsolutePath, importPackagePath, MapView, toBeDownloaded);
 		}
 
-		protected override Carto.DataSources.TileDataSource CreateTileDataSource()
+		protected override TileDataSource CreateTileDataSource()
 		{
-			//TODO NEWER FILES
-			return base.CreateTileDataSource();
+			// offline map data source
+			string fileName = "world_zoom5.mbtiles";
+
+			try
+			{
+				string directory = GetExternalFilesDir(null).ToString();
+				string path = directory + "/" + fileName;
+
+				Assets.CopyAssetToSDCard(fileName, path);
+				Log.Debug("Copy done to " + path);
+
+				MBTilesTileDataSource source = new MBTilesTileDataSource(0, 4, path);
+				
+				return source;
+			}
+			catch (IOException e)
+			{
+				Log.Debug("MbTileFile cannot be copied: " + fileName);
+				Log.Debug("Message" + e.LocalizedMessage);
+			}
+
+			return null;
 		}
 	}
 }

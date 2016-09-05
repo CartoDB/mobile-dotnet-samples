@@ -115,6 +115,7 @@
     <AndroidAsset Include="Assets\fcd_auto.nml" />
     <AndroidAsset Include="Assets\capitals_3857.geojson" />
     <AndroidAsset Include="Assets\basic.zip" />
+    <AndroidAsset Include="Assets\world_zoom5.mbtiles" />
   </ItemGroup>
   <Import Project="..\Shared.Droid\Shared.Droid.projitems" Label="Shared" Condition="Exists('..\Shared.Droid\Shared.Droid.projitems')" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
