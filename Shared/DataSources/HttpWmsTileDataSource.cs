@@ -42,7 +42,7 @@ public class HttpWmsTileDataSource : HTTPTileDataSource
 		 * _________________________________________________
 		 */
 		public HttpWmsTileDataSource(int minZoom, int maxZoom, Projection proj, bool wgsWms,
-									 string baseUrl, string style, string layer, string format) : base(minZoom, maxZoom, baseUrl)
+			string baseUrl, string style, string layer, string format) : base(minZoom, maxZoom, baseUrl)
 		{
 			this.baseUrl = baseUrl;
 			this.style = style;

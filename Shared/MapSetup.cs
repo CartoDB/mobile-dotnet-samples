@@ -31,12 +31,12 @@ namespace Shared
 			mapView.Tilt = 90;
 		}
 
-
-		public static void InitializePackageManager(string packageFolder, string importPackagePath, IMapView mapView, string downloadedPackage)
+		public static void InitializePackageManager(string packageFolder, 
+			string importPackagePath, IMapView mapView, string downloadedPackage)
 		{
 			// Offline base layer
 
-			// 2. define listener, definition is in same class above
+			// Define listener, definition is in same class above
 			var packageManager = new CartoPackageManager("nutiteq.osm", packageFolder);
 			packageManager.PackageManagerListener = new PackageListener(packageManager, downloadedPackage);
 
@@ -47,7 +47,7 @@ namespace Shared
 				packageManager.StartPackageListDownload();
 			}
 
-			// start manager - mandatory
+			// Start manager - mandatory
 			packageManager.Start();
 
 			// Import initial package
@@ -57,9 +57,10 @@ namespace Shared
 			}
 
 			// Now can add vector map as layer
-			// define styling for vector map
+			// Define styling for vector map
 			BinaryData styleBytes = AssetUtils.LoadAsset("nutibright-v2a.zip");
 			MBVectorTileDecoder vectorTileDecoder = null;
+
 			if (styleBytes != null)
 			{
 				// Create style set
@@ -72,7 +73,8 @@ namespace Shared
 
 			// Create online base layer (no package download needed then). Use vector style from assets (osmbright.zip)
 			// comment in to use online map. Packagemanager stuff is not needed then
-			//			VectorTileLayer baseLayer = new NutiteqOnlineVectorTileLayer("osmbright.zip");
+
+			//VectorTileLayer baseLayer = new NutiteqOnlineVectorTileLayer("osmbright.zip");
 
 			var baseLayer = new VectorTileLayer(new PackageManagerTileDataSource(packageManager), vectorTileDecoder);
 			mapView.Layers.Add(baseLayer);
@@ -83,7 +85,9 @@ namespace Shared
 		{
 			// Bounding box download can be done now
 			// For the country package download see OnPackageListUpdated in PackageListener
-			string bbox = "bbox(-0.8164,51.2382,0.6406,51.7401)"; // London (approx. 30MB)
+
+			//string bbox = "bbox(-0.8164,51.2382,0.6406,51.7401)"; // London (approx. 30MB)
+			string bbox = "bbox(-73.581182, 41.013, -73.5811, 41.013503)";
 
 			if (packageManager.GetLocalPackage(bbox) == null)
 			{
