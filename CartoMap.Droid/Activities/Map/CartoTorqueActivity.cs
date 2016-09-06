@@ -27,8 +27,7 @@ namespace CartoMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			string processed = JsonUtils.TorqueQuery.Replace("\n", "").Replace("+", "%20");
-			string encoded = System.Web.HttpUtility.UrlEncode(processed);
+			string encoded = JsonUtils.GetTorqueQuery();
 
 			// Define datasource with the query
 			string url = "http://viz2.cartodb.com/api/v2/sql?q=" + encoded + "&cache_policy=persist";

@@ -26,10 +26,11 @@ namespace CartoMap.iOS
 		{
 			base.ViewDidLoad();
 
-			string encoded = System.Web.HttpUtility.UrlEncode(JsonUtils.TorqueQuery.Replace("\n", "")).EncodeParenthesis();
+			string encoded = JsonUtils.GetTorqueQuery();
+
+			string url = "http://viz2.cartodb.com/api/v2/sql?q=" + encoded + "&cache_policy=persist";
 
 			// Define datasource with the query
-			string url = "http://viz2.cartodb.com/api/v2/sql?q=" + encoded + "&cache_policy=persist";
 			HTTPTileDataSource source = new HTTPTileDataSource(0, 14, url);
 
 			// Create persistent cache to make it faster
@@ -68,8 +69,8 @@ namespace CartoMap.iOS
 		{
 			System.Threading.Tasks.Task.Run(delegate
 			{
-					int frameNumber = (tileLayer.FrameNr + 1) % decoder.FrameCount;
-					tileLayer.FrameNr = frameNumber;
+				int frameNumber = (tileLayer.FrameNr + 1) % decoder.FrameCount;
+				tileLayer.FrameNr = frameNumber;
 			});
 		}
 	}
