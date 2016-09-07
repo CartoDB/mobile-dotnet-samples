@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+
 using Carto.Core;
 using Carto.DataSources;
 using Carto.Layers;
@@ -84,6 +86,33 @@ namespace Shared
 			Marker marker = new Marker(position, style);
 			datasource.Add(marker);
 		}
-	}
+
+
+        public static void UpdateVis(this MapView map, string url)
+        {
+            ThreadPool.QueueUserWorkItem(delegate
+            {
+                MapView.Layers.Clear();
+
+                // Create VIS loader
+                CartoVisLoader loader = new CartoVisLoader();
+                loader.DefaultVectorLayerMode = true;
+                BasicCartoVisBuilder builder = new BasicCartoVisBuilder(MapView);
+
+                try
+                {
+                    loader.LoadVis(builder, url);
+                }
+                catch (Exception e)
+                {
+                    Toast.MakeText(this, e.Message, ToastLength.Short);
+                }
+
+                MapPos tallinn = new MapPos(24.646469, 59.426939);
+                MapView.AddMarkerToPosition(tallinn);
+            });
+        }
+
+    }
 }
 

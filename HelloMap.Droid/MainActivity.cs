@@ -45,33 +45,9 @@ namespace HelloMap.Droid
 
 			// Load vis
 			string url = "http://documentation.carto.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json";
-			UpdateVis(url);
+			MapView.UpdateVis(url);
 		}
 
-		void UpdateVis(string url)
-		{
-			ThreadPool.QueueUserWorkItem(delegate
-			{
-				MapView.Layers.Clear();
-
-				// Create VIS loader
-				CartoVisLoader loader = new CartoVisLoader();
-				loader.DefaultVectorLayerMode = true;
-				BasicCartoVisBuilder builder = new BasicCartoVisBuilder(MapView);
-
-				try
-				{
-					loader.LoadVis(builder, url);
-				}
-				catch (Exception e)
-				{
-					Toast.MakeText(this, e.Message, ToastLength.Short);
-				}
-
-				MapPos tallinn = new MapPos(24.646469, 59.426939);
-				MapView.AddMarkerToPosition(tallinn);
-			});
-		}
 	}
 }
 
