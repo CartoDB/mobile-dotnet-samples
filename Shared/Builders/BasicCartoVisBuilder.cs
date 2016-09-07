@@ -4,7 +4,7 @@ using Carto.Layers;
 using Carto.Services;
 using Carto.Ui;
 
-namespace HelloMap
+namespace Shared
 {
 	public class BasicCartoVisBuilder : CartoVisBuilder
 	{

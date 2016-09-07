@@ -12,35 +12,6 @@ namespace Shared
 {
 	public class CartoMapUtils
 	{
-		public static void UpdateVis(MapView map, string url)
-		{
-			ThreadPool.QueueUserWorkItem(delegate
-			{
-				map.Layers.Clear();
-
-				// Create overlay layer for Popups
-				Projection projection = map.Options.BaseProjection;
-				LocalVectorDataSource source = new LocalVectorDataSource(projection);
-				VectorLayer layer = new VectorLayer(source);
-
-				// Create VIS loader
-				CartoVisLoader loader = new CartoVisLoader();
-				loader.DefaultVectorLayerMode = true;
-				CartoVisBuilderWithGridEvent builder = new CartoVisBuilderWithGridEvent(map, layer);
-
-				try
-				{
-					loader.LoadVis(builder, url);
-				}
-				catch (Exception e)
-				{
-					Console.WriteLine("Exception: " + e.Message);
-				}
-
-				map.Layers.Add(layer);
-			});
-		}
-
 		public static void ConfigureUTFGridLayers(MapView MapView, JsonValue config)
 		{
 			// Use the Maps service to configure layers. 
