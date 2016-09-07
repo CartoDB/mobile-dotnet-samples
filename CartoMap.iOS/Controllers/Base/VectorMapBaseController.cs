@@ -31,8 +31,8 @@ namespace CartoMap.iOS
 
 		Dictionary<string, string> styleDict = new Dictionary<string, string> {
 			{ "Basic", "basic" },
-			{ "NutiBright 2D", "nutibright-v2a" },
-			{ "NutiBright 3D", "ntibright3d" },
+			{ "NutiBright 2D", "nutibright-v3" },
+			{ "NutiBright 3D", "nutibright3d" },
 			{ "Loose Leaf", "looseleaf" }
 		};
 
