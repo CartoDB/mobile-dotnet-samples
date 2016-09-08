@@ -33,9 +33,13 @@ namespace CartoMap.iOS
 			base.ViewDidLoad();
 
 			string url = items["Dots"];
-			CartoMapUtils.UpdateVis(MapView, url);
+			MapView.UpdateVisWithGridEvent(url, OnError);
 		}
 
+		void OnError(string message)
+		{
+			Alert(message);
+		}
 	}
 }
 

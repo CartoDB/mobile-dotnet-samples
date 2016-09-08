@@ -23,7 +23,7 @@ namespace HelloMap.WindowsPhone
     sealed partial class App : Application
     {
         const string License = "XTUN3Q0ZHNTVGeWdNakFxZXRyM1F4NlFCV3NPQ3BJZjlBaFFBemJjd1AzT3d4Tk9WekN6MmRVTHltSW0zV2c9PQoKcHJ" + 
-            "vZHVjdHM9c2RrLXdpbnBob25lLTMuKgpwcm9kdWN0SWQ9Yzg4MmQzOGEtNWMwOS00OTk0LTg3ZjAtODk4NzVjZGVlNTM5CndhdGVybWFyaz1udX" + "
+            "vZHVjdHM9c2RrLXdpbnBob25lLTMuKgpwcm9kdWN0SWQ9Yzg4MmQzOGEtNWMwOS00OTk0LTg3ZjAtODk4NzVjZGVlNTM5CndhdGVybWFyaz1udX" +
             "RpdGVxCnVzZXJLZXk9MTVjZDkxMzEwNzJkNmRmNjhiOGE1NGZlZGE1YjA0OTYK";
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace HelloMap.WindowsPhone
             }
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
-
+            
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
@@ -78,17 +78,19 @@ namespace HelloMap.WindowsPhone
                     // parameter
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
+
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
 
-            // Register Nutiteq app license
-            bool registered = Carto.Ui.MapView.RegisterLicense(License);
+            // Register CARTO license
+            //bool registered = Carto.Ui.MapView.RegisterLicense(License);
 
-            if (registered)
-            {
-                Carto.Utils.Log.ShowDebug = true;
-            }
+            //if (registered)
+            //{
+            //    Carto.Utils.Log.ShowDebug = true;
+            //}
+            
         }
 
         /// <summary>

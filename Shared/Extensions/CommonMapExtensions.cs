@@ -9,6 +9,7 @@ using Carto.DataSources;
 using Carto.Layers;
 using Carto.PackageManager;
 using Carto.Projections;
+using Carto.Services;
 using Carto.Styles;
 using Carto.Ui;
 using Carto.VectorElements;
@@ -88,16 +89,16 @@ namespace Shared
 		}
 
 
-        public static void UpdateVis(this MapView map, string url)
+		public static void UpdateVis(this MapView map, string url, Action<string> error = null)
         {
             ThreadPool.QueueUserWorkItem(delegate
             {
-                MapView.Layers.Clear();
+				map.Layers.Clear();
 
                 // Create VIS loader
                 CartoVisLoader loader = new CartoVisLoader();
                 loader.DefaultVectorLayerMode = true;
-                BasicCartoVisBuilder builder = new BasicCartoVisBuilder(MapView);
+                BasicCartoVisBuilder builder = new BasicCartoVisBuilder(map);
 
                 try
                 {
@@ -105,14 +106,48 @@ namespace Shared
                 }
                 catch (Exception e)
                 {
-                    Toast.MakeText(this, e.Message, ToastLength.Short);
+					if (error != null) {
+						error(e.Message);
+					}
                 }
 
                 MapPos tallinn = new MapPos(24.646469, 59.426939);
-                MapView.AddMarkerToPosition(tallinn);
+                map.AddMarkerToPosition(tallinn);
             });
         }
 
-    }
+		public static void UpdateVisWithGridEvent(this MapView map, string url, Action<string> error = null)
+		{
+			ThreadPool.QueueUserWorkItem(delegate
+			{
+				map.Layers.Clear();
+
+				// Create overlay layer for Popups
+				Projection projection = map.Options.BaseProjection;
+				LocalVectorDataSource source = new LocalVectorDataSource(projection);
+				VectorLayer layer = new VectorLayer(source);
+
+				// Create VIS loader
+				CartoVisLoader loader = new CartoVisLoader();
+				loader.DefaultVectorLayerMode = true;
+				CartoVisBuilderWithGridEvent builder = new CartoVisBuilderWithGridEvent(map, layer);
+
+				try
+				{
+					loader.LoadVis(builder, url);
+				}
+				catch (Exception e)
+				{
+					if (error != null)
+					{
+						error(e.Message);
+					}
+				}
+
+				map.Layers.Add(layer);
+			});
+		}
+
+	}
 }
 

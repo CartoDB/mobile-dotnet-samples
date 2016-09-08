@@ -39,7 +39,7 @@ namespace CartoMap.Droid
 
 			// Load the initial visJSON
 			string url = items["Circle"];
-			CartoMapUtils.UpdateVis(MapView, url);
+			MapView.UpdateVisWithGridEvent(url, OnError);
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
@@ -63,9 +63,14 @@ namespace CartoMap.Droid
 			string key = item.TitleFormatted.ToString();
 			string url = items[key];
 
-			CartoMapUtils.UpdateVis(MapView, url);
+			MapView.UpdateVisWithGridEvent(url, OnError);
 
 			return base.OnMenuItemSelected(featureId, item);
+		}
+
+		void OnError(string message)
+		{
+			Toast.MakeText(this, message, ToastLength.Long).Show();
 		}
 
 	}
