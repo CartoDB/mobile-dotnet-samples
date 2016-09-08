@@ -33,12 +33,16 @@ namespace CartoMap.WindowsPhone
             view.Padding = new Thickness(0, 20, 0, 0);
             view.ItemsSource = Samples.List;
             view.ItemTemplate = (DataTemplate)Resources["ListItemTemplate"];
-
-            new DataTemplate { };
+            view.SelectionChanged += OnListItemClick;
 
             Window.Current.Content = view;
 
             Window.Current.Activate();
+        }
+
+        private void OnListItemClick(object sender, SelectionChangedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("ListView Click: " + e.AddedItems);
         }
 
         /// <summary>
