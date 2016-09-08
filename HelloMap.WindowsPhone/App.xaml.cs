@@ -57,6 +57,7 @@ namespace HelloMap.WindowsPhone
             // Load vis
             string url = "http://documentation.carto.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json";
             MapView.UpdateVis(url);
+
             Window.Current.Content = MapView;
             Window.Current.Activate();
         }
