@@ -34,6 +34,7 @@ Global
 		Shared.Droid\Shared.Droid.projitems*{528ef7d5-3b72-4956-919f-8703ce0e388d}*SharedItemsImports = 13
 		mobile_dotnet_samples\Shared.iOS.projitems*{5b58a78c-04e0-4d47-8ef6-ed3c317b8ad9}*SharedItemsImports = 4
 		Shared\Shared.projitems*{5b58a78c-04e0-4d47-8ef6-ed3c317b8ad9}*SharedItemsImports = 4
+		Shared\Shared.projitems*{5b9c538b-dfad-4883-b526-33fcd546fb71}*SharedItemsImports = 4
 		Shared.Droid\Shared.Droid.projitems*{845358cd-197b-4946-bbd9-6bee2d906bdc}*SharedItemsImports = 4
 		Shared\Shared.projitems*{845358cd-197b-4946-bbd9-6bee2d906bdc}*SharedItemsImports = 4
 		Shared.Droid\Shared.Droid.projitems*{ae90e466-e3a6-48e9-a704-c56352f47fd0}*SharedItemsImports = 4

@@ -26,6 +26,8 @@ namespace HelloMap.WindowsPhone
             "vZHVjdHM9c2RrLXdpbnBob25lLTMuKgpwcm9kdWN0SWQ9Yzg4MmQzOGEtNWMwOS00OTk0LTg3ZjAtODk4NzVjZGVlNTM5CndhdGVybWFyaz1udX" +
             "RpdGVxCnVzZXJLZXk9MTVjZDkxMzEwNzJkNmRmNjhiOGE1NGZlZGE1YjA0OTYK";
 
+        Carto.Ui.MapView page;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -41,7 +43,7 @@ namespace HelloMap.WindowsPhone
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -50,7 +52,7 @@ namespace HelloMap.WindowsPhone
             }
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
-            
+
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
@@ -84,13 +86,27 @@ namespace HelloMap.WindowsPhone
             }
 
             // Register CARTO license
-            //bool registered = Carto.Ui.MapView.RegisterLicense(License);
+            bool registered = Carto.Ui.MapView.RegisterLicense(License);
 
-            //if (registered)
-            //{
-            //    Carto.Utils.Log.ShowDebug = true;
-            //}
-            
+            if (registered)
+            {
+                Carto.Utils.Log.ShowDebug = true;
+            }
+
+            // Get asset folder for mbtiles file
+            var importPackageName = Path.Combine(Windows.ApplicationModel.Package.Current.InstalledLocation.Path, "Assets\\world_ntvt_0_4.mbtiles");
+
+            // Create folder for packages
+            await Windows.Storage.ApplicationData.Current.LocalFolder.CreateFolderAsync("packages", Windows.Storage.CreationCollisionOption.OpenIfExists);
+            var packageFolder = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "packages");
+
+            // Create map view and initialize (actual initialization code is shared between Android/iOS/WinPhone platforms)
+            page = new Carto.Ui.MapView();
+            //NutiteqSample.MapSetup.InitializePackageManager(packageFolder, importPackageName, mPage, "");
+            Shared.MapSetup.AddMapOverlays(page);
+
+            Window.Current.Content = page;
+            Window.Current.Activate();
         }
 
         /// <summary>
