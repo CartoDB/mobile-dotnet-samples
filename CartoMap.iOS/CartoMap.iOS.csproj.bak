@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8"?>
+=======
 <?xml version="1.0" encoding="utf-8"?>
+>>>>>>> restructure-with-wp
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -33,7 +37,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhone\Release</OutputPath>
+<<<<<<< HEAD
+    <DefineConstants>
+    </DefineConstants>
+=======
     <DefineConstants></DefineConstants>
+>>>>>>> restructure-with-wp
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -50,7 +59,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+<<<<<<< HEAD
+    <DefineConstants>
+    </DefineConstants>
+=======
     <DefineConstants></DefineConstants>
+>>>>>>> restructure-with-wp
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -96,8 +110,17 @@
     <Reference Include="System.Json" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+=======
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+>>>>>>> restructure-with-wp
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
