@@ -89,6 +89,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\fcd_auto.nml" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +99,8 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MapExtensions.cs" />
+    <Compile Include="BasicCartoVisBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -134,7 +137,6 @@
       <Name>Carto Mobile SDK for Windows Phone 10</Name>
     </SDKReference>
   </ItemGroup>
-  <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
