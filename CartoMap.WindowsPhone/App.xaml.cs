@@ -65,10 +65,7 @@ namespace CartoMap.WindowsPhone
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-
-                    // TODO: Fix navigation logic
-                    rootFrame.Navigate(typeof(CartoVisPage), e.Arguments);
-                    //rootFrame.Navigate(typeof(LauncherListPage), e.Arguments);
+                    rootFrame.Navigate(typeof(LauncherListPage), e.Arguments);
                 }
 
                 // Ensure the current window is active
