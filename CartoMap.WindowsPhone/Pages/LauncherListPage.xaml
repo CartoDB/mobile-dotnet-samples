@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="CartoMap.WindowsPhone.Pages.LauncherListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CartoMap.WindowsPhone.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    </Grid>
+
+    <Page.Resources>
+        <DataTemplate x:Key="ListItemTemplate">
+
+            <StackPanel>
+
+                <TextBlock 
+                    Text="{ Binding Path=Name }" 
+                    Margin="10, 0, 10, 0"
+                    FontSize="12"
+                    TextWrapping="Wrap" 
+                    Foreground="Black"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Stretch"
+                    />
+                <TextBlock 
+                    Text="{ Binding Path=Description }" 
+                    Margin="10, 0, 10, 0" 
+                    FontSize="10" 
+                    TextWrapping="Wrap" 
+                    Foreground="Black"
+                    HorizontalAlignment="Stretch"
+                    />
+                <TextBlock
+                    Text="_________________________"
+                    TextAlignment="Center"
+                    Foreground="Gray"
+                    Margin="0, 5, 0, 5"
+                    />
+
+            </StackPanel>
+
+        </DataTemplate>
+    </Page.Resources>
+
+</Page>
