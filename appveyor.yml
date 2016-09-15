@@ -9,7 +9,7 @@ skip_non_tags: true
 
 branches:
   only:
-  - restructure
+  - master
 
 before_build:
   - nuget restore
