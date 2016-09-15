@@ -36,36 +36,33 @@ namespace HelloMap.WindowsPhone
                         error(e.Message);
                     }
                 }
-
-                MapPos tallinn = new MapPos(24.646469, 59.426939);
-                map.AddMarkerToPosition(tallinn);
             });
         }
 
-        public static void AddMarkerToPosition(this MapView map, MapPos position)
+        public static async void AddMarkerToPosition(this MapView map, MapPos position)
         {
-            // Initialize a local vector data source
-            Projection projection = map.Options.BaseProjection;
-            LocalVectorDataSource datasource = new LocalVectorDataSource(projection);
+            await ThreadPool.RunAsync(delegate
+            {
+                // Initialize a local vector data source
+                Projection projection = map.Options.BaseProjection;
+                LocalVectorDataSource datasource = new LocalVectorDataSource(projection);
 
-            // Initialize a vector layer with the previous data source
-            VectorLayer layer = new VectorLayer(datasource);
+                // Initialize a vector layer with the previous data source
+                VectorLayer layer = new VectorLayer(datasource);
 
-            // Add layer to map
-            map.Layers.Add(layer);
+                // Add layer to map
+                map.Layers.Add(layer);
 
-            MarkerStyleBuilder builder = new MarkerStyleBuilder();
-            builder.Size = 30;
-            builder.Color = new Carto.Graphics.Color(0, 255, 0, 255);
-            //builder.Color = new Carto.Graphics.Color(0xFF00FF00);
+                MarkerStyleBuilder builder = new MarkerStyleBuilder();
+                builder.Size = 15;
+                builder.Color = new Carto.Graphics.Color(0, 255, 0, 255);
+                
+                MarkerStyle style = builder.BuildStyle();
 
-            // Set marker position and style
-            position = projection.FromWgs84(position);
-            MarkerStyle style = builder.BuildStyle();
-
-            // Create marker and add it to the source
-            Marker marker = new Marker(position, style);
-            datasource.Add(marker);
+                // Create marker and add it to the source
+                Marker marker = new Marker(position, style);
+                datasource.Add(marker);
+            });
         }
     }
 }

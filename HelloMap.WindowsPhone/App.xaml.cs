@@ -44,19 +44,17 @@ namespace HelloMap.WindowsPhone
             // Add base map
 
             // TODO: Crashes here for some reason
-            //CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark);
-            //MapView.Layers.Add(baseLayer);
+            CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark);
+            MapView.Layers.Add(baseLayer);
 
             // Set default location and zoom
             Projection projection = MapView.Options.BaseProjection;
 
-            MapPos berlin = projection.FromWgs84(new MapPos(13.38933, 52.51704));
-            MapView.SetFocusPos(berlin, 0);
-            MapView.SetZoom(10, 0);
+            MapPos tallinn = projection.FromWgs84(new MapPos(24.646469, 59.426939));
+            MapView.AddMarkerToPosition(tallinn);
 
-            // Load vis
-            string url = "http://documentation.carto.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json";
-            MapView.UpdateVis(url);
+            MapView.SetFocusPos(tallinn, 0);
+            MapView.SetZoom(3, 0);
 
             Window.Current.Content = MapView;
             Window.Current.Activate();
