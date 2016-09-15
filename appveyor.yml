@@ -11,6 +11,9 @@ branches:
   only:
   - restructure
 
+before_build:
+  - nuget restore
+
 build:
   project: mobile_dotnet_samples.sln
   verbosity: minimal
