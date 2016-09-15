@@ -31,7 +31,7 @@ namespace CartoMap.WindowsPhone.Pages.Map
         public CartoVisPage()
         {
             // Load the initial visJSON
-            string url = items["Circle"];
+            string url = items["Dots"];
             MapView.UpdateVisWithGridEvent(url, OnError);
         }
 
