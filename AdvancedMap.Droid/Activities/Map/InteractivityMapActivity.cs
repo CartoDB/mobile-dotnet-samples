@@ -18,8 +18,8 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			MapPos berlin = new MapPos(24.650415, 59.428773);
-			MapView.AnimateZoomTo(berlin);
+			MapPos tallinn = new MapPos(24.650415, 59.428773);
+			MapView.AnimateZoomTo(tallinn);
 		}
 
 		protected override void UpdateBaseLayer()
