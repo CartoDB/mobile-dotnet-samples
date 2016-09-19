@@ -22,27 +22,30 @@ namespace Shared
 			{
 				CartoMapsService service = new CartoMapsService();
 				service.Username = "nutiteq";
+
 				// Use VectorLayers
 				service.DefaultVectorLayerMode = true;
+				service.Interactive = true;
 
 				try
 				{
 					LayerVector layers = service.BuildMap(Variant.FromString(config.ToString()));
 
-					LocalVectorDataSource vectorDataSource = new LocalVectorDataSource(MapView.Options.BaseProjection);
-					VectorLayer vectorLayer = new VectorLayer(vectorDataSource);
+					LocalVectorDataSource overlaySource = new LocalVectorDataSource(MapView.Options.BaseProjection);
+					VectorLayer overlayLayer = new VectorLayer(overlaySource);
+
+					MapView.Layers.Add(overlayLayer);
 
 					for (int i = 0; i < layers.Count; i++)
 					{
 						TileLayer layer = (TileLayer)layers[i];
-						TileDataSource ds = layer.UTFGridDataSource;
-						MyUTFGridEventListener mapListener = new MyUTFGridEventListener(vectorDataSource);
 
-						layer.UTFGridEventListener = mapListener;
+						MyUTFGridEventListener lisener = new MyUTFGridEventListener(overlaySource);
+						layer.UTFGridEventListener = lisener;
+
 						MapView.Layers.Add(layer);
 					}
 
-					MapView.Layers.Add(vectorLayer);
 				}
 				catch (Exception e)
 				{
