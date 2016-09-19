@@ -48,11 +48,11 @@
     <Reference Include="Xamarin.Android.Support.v7.AppCompat">
       <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.23.1.1.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
-    <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.4.0.0-build63\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
-    </Reference>
     <Reference Include="System.Json" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="CartoMobileSDK.Android">
+      <HintPath>..\packages\CartoMobileSDK.Android.4.0.0-devel-99\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
