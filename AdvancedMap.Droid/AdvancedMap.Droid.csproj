@@ -73,6 +73,7 @@
     <Compile Include="Activities\Base\VectorBaseMapActivity.cs" />
     <Compile Include="Activities\List\LauncherListActivity.cs" />
     <Compile Include="Views\PackageManagerButton.cs" />
+    <Compile Include="Activities\Map\InteractivityMapActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

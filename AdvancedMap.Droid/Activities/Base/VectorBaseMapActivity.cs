@@ -109,7 +109,7 @@ namespace AdvancedMap.Droid
 			return true;
 		}
 
-		void UpdateBaseLayer()
+		protected virtual void UpdateBaseLayer()
 		{
 			string styleAssetName = vectorStyleName + ".zip";
 			bool styleBuildings3D = false;

@@ -13,6 +13,7 @@ namespace AdvancedMap.Droid
 			typeof (GpsLocationMap),
 			typeof (Overlays2DActivity),
 			typeof (OfflineVectorMapActivity),
+			typeof (InteractivityMapActivity),
 			typeof (OfflineRoutingActivity),
 			typeof (PinMapActivity),
 			typeof (PackageManagerActivity),
