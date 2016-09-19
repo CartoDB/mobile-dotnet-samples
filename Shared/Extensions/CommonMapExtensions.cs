@@ -148,6 +148,29 @@ namespace Shared
 			});
 		}
 
+		public static void AnimateZoomTo(this MapView map, MapPos position)
+		{
+			position = map.Options.BaseProjection.FromWgs84(new MapPos(24.650415, 59.428773));
+			map.SetFocusPos(position, 2);
+			map.Zoom = 14;
+		}
+
+		public static void InitializeVectorLayer(this MapView map, VectorLayer vectorLayer)
+		{
+			if (vectorLayer == null)
+			{
+				LocalVectorDataSource source = new LocalVectorDataSource(map.Options.BaseProjection);
+				vectorLayer = new VectorLayer(source);
+				map.Layers.Add(vectorLayer);
+			}
+
+			Layer layer = map.Layers[0];
+
+			if (layer is VectorTileLayer)
+			{
+				(layer as VectorTileLayer).VectorTileEventListener = new VectorTileListener(vectorLayer);
+			}
+		}
 	}
 }
 

@@ -13,6 +13,7 @@ namespace AdvancedMap.iOS
 			new ClusteredGeoJSONCapitalsController(),
 			new GpsLocationMapController(),
 			new OfflineRoutingController(),
+			new InteractivityMapController(),
 			new OfflineVectorMapController(),
 			new Overlays2DController(),
 			new PinMapController(),

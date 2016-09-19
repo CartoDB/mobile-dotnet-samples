@@ -149,6 +149,7 @@
     <Compile Include="Views\PackageManager\PackageListCell.cs" />
     <Compile Include="Views\PackageManager\PackageManagerButton.cs" />
     <Compile Include="Views\PackageManager\PackageManagerListView.cs" />
+    <Compile Include="Controllers\Map\InteractivityMapController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\arrow.png" />

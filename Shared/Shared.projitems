@@ -37,5 +37,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Builders\BasicCartoVisBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\JsonUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\CartoMapUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Listeners\VectorTileListener.cs" />
   </ItemGroup>
 </Project>
