@@ -137,12 +137,14 @@
     <Compile Include="Controllers\Map\CartoSQLController.cs" />
     <Compile Include="Controllers\Map\CartoTorqueController.cs" />
     <Compile Include="Controllers\Map\CartoUTFGridController.cs" />
+    <Compile Include="Controllers\Map\CartoBaseMapsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\basic.zip" />
     <BundleResource Include="Resources\looseleaf.zip" />
     <BundleResource Include="Resources\nutibright-v3.zip" />
     <BundleResource Include="Resources\icon_more%402x.png" />
+    <BundleResource Include="Resources\positron.zip" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />

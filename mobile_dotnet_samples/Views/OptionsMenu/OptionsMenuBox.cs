@@ -56,7 +56,14 @@ namespace Shared.iOS
 
 			y += h + LargePadding;
 
-			w = (w - 2 * Padding) / 3;
+			if (options.Count == 2)
+			{
+				w = (w - Padding) / 2;
+			}
+			else {
+				w = (w - 2 * Padding) / 3;
+			}
+
 			h = ItemHeight;
 
 			for (int i = 0; i < options.Count; i++)
@@ -137,7 +144,9 @@ namespace Shared.iOS
 	{
 		None,
 		Style,
-		Language
+		Language,
+		TileType,
+		OSM
 	}
 
 	public class OptionsSelect : UIButton

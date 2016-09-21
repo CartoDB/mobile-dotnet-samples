@@ -28,23 +28,41 @@ namespace CartoMap.iOS
 		// Style Parameters
 		protected string vectorStyleName = BaseStyle; // default style name, each style has corresponding .zip asset
 		protected string vectorStyleLang = BaseLanguage; // default map language
+		protected string vectorStyleTileType = "";
+		protected string vectorStyleOSM = "nutiteq.osm";
+			
+		protected virtual Dictionary<string, string> GetStyleDict()
+		{
+			return new Dictionary<string, string> {
+				{ "Basic", "basic" },
+				{ "NutiBright 2D", "nutibright-v3" },
+				{ "NutiBright 3D", "nutibright3d" },
+				{ "Loose Leaf", "looseleaf" }
+			};
+		}
 
-		Dictionary<string, string> styleDict = new Dictionary<string, string> {
-			{ "Basic", "basic" },
-			{ "NutiBright 2D", "nutibright-v3" },
-			{ "NutiBright 3D", "nutibright3d" },
-			{ "Loose Leaf", "looseleaf" }
-		};
+		protected virtual Dictionary<string, string> GetLanguageDict()
+		{
+			return new Dictionary<string, string> {
+				{ "English", "en" },
+				{ "German", "de" },
+				{ "Spanish", "es" },
+				{ "Italian", "it" },
+				{ "French", "fr" },
+				{ "Russian", "ru" },
+				{ "Chinese", "zh" }
+			};
+		}
 
-		Dictionary<string, string> languageDict = new Dictionary<string, string> {
-			{ "English", "en" },
-			{ "German", "de" },
-			{ "Spanish", "es" },
-			{ "Italian", "it" },
-			{ "French", "fr" },
-			{ "Russian", "ru" },
-			{ "Chinese", "zh" }
-		};
+		protected virtual Dictionary<string, string> GetTileTypeDict()
+		{
+			return new Dictionary<string, string>();
+		}
+
+		protected virtual Dictionary<string, string> GetOSMDict()
+		{
+			return new Dictionary<string, string>();
+		}
 
 		OptionsMenu Menu { get; set; }
 		MenuButton MenuButton { get; set; }
@@ -58,11 +76,38 @@ namespace CartoMap.iOS
 			UpdateBaseLayer();
 
 			Menu = new OptionsMenu();
-			Menu.AddItems("Style", styleDict, OptionSelectType.Style);
-			Menu.AddItems("Language", languageDict, OptionSelectType.Language);
 
-			Menu.SetInitialValueOf("Style", BaseStyle);
-			Menu.SetInitialValueOf("Language", BaseLanguage);
+			Dictionary<string, string> styles = GetStyleDict();
+
+			if (styles.Count > 0)
+			{
+				Menu.AddItems("Style", styles, OptionSelectType.Style);
+				Menu.SetInitialValueOf("Style", vectorStyleName);
+			}
+
+			Dictionary<string, string> languages = GetLanguageDict();
+
+			if (languages.Count > 0)
+			{
+				Menu.AddItems("Language", languages, OptionSelectType.Language);
+				Menu.SetInitialValueOf("Language", BaseLanguage);
+			}
+
+			Dictionary<string, string> tileTypes = GetTileTypeDict();
+
+			if (tileTypes.Count > 0)
+			{
+				Menu.AddItems("Tile type", tileTypes, OptionSelectType.TileType);
+				Menu.SetInitialValueOf("Tile type", "raster");
+			}
+
+			Dictionary<string, string> osms = GetOSMDict();
+
+			if (osms.Count > 0)
+			{
+				Menu.AddItems("OSM", osms, OptionSelectType.OSM);
+				Menu.SetInitialValueOf("OSM", "nutiteq.osm");
+			}
 
 			MenuButton = new MenuButton();
 			NavigationItem.RightBarButtonItem = MenuButton;
@@ -103,15 +148,23 @@ namespace CartoMap.iOS
 			{
 				vectorStyleName = option.Value;
 			}
-			else if (option.Type == OptionSelectType.Language) 
+			else if (option.Type == OptionSelectType.Language)
 			{
 				vectorStyleLang = option.Value;
+			}
+			else if (option.Type == OptionSelectType.TileType) 
+			{
+				vectorStyleTileType = option.Value;
+			}
+			else if (option.Type == OptionSelectType.OSM) 
+			{
+				vectorStyleOSM = option.Value;
 			}
 
 			UpdateBaseLayer();
 		}
 
-		void UpdateBaseLayer()
+		protected virtual void UpdateBaseLayer()
 		{
 			string styleAssetName = vectorStyleName + ".zip";
 			bool styleBuildings3D = false;
@@ -148,7 +201,7 @@ namespace CartoMap.iOS
 			// Create tile data source for vector tiles
 			if (vectorTileDataSource == null)
 			{
-				vectorTileDataSource = CreateTileDataSource();
+				vectorTileDataSource = CreateTileDataSource(vectorStyleOSM);
 			}
 
 			// Remove old base layer, create new base layer
@@ -161,9 +214,9 @@ namespace CartoMap.iOS
 			MapView.Layers.Insert(0, BaseLayer);
 		}
 
-		protected virtual TileDataSource CreateTileDataSource()
+		protected virtual TileDataSource CreateTileDataSource(string osm)
 		{
-			TileDataSource source = new CartoOnlineTileDataSource("nutiteq.osm");
+			TileDataSource source = new CartoOnlineTileDataSource(osm);
 
 			// We don't use VectorTileDataSource directly (this would be also option),
 			// but via caching to cache data locally persistently/non-persistently.

@@ -34,6 +34,7 @@ namespace CartoMap.iOS
 			// Initialize map
 			var styleAsset = AssetUtils.LoadAsset("nutibright-v3.zip");
 			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
+
 			MapView.Layers.Add(baseLayer);
 
 			Title = Name;

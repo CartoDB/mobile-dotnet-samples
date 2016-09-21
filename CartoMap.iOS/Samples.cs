@@ -9,6 +9,7 @@ namespace CartoMap.iOS
 	{
 		public static List<UIViewController> List = new List<UIViewController>
 		{
+			new CartoBaseMapsController(),
 			new CartoRasterTileController(),
 			new CartoSQLController(),
 			new CartoTorqueController(),
