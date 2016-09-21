@@ -21,6 +21,9 @@ namespace Shared
 		public override bool OnVectorTileClicked(Carto.Ui.VectorTileClickInfo clickInfo)
 		{
 			LocalVectorDataSource source = (LocalVectorDataSource)layer.DataSource;
+
+			source.Clear();
+
 			Color color = new Color(0, 100, 200, 150);
 
 			Feature feature = clickInfo.Feature;
