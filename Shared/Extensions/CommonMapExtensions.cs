@@ -157,12 +157,9 @@ namespace Shared
 
 		public static void InitializeVectorLayer(this MapView map, VectorLayer vectorLayer)
 		{
-			if (vectorLayer == null)
-			{
-				LocalVectorDataSource source = new LocalVectorDataSource(map.Options.BaseProjection);
-				vectorLayer = new VectorLayer(source);
-				map.Layers.Add(vectorLayer);
-			}
+			LocalVectorDataSource source = new LocalVectorDataSource(map.Options.BaseProjection);
+			vectorLayer = new VectorLayer(source);
+			map.Layers.Add(vectorLayer);
 
 			Layer layer = map.Layers[0];
 
