@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Carto.Core;
+using Carto.DataSources;
 using Carto.Layers;
 using Carto.Styles;
 using Carto.Utils;
@@ -9,6 +10,9 @@ namespace CartoMap.iOS
 {
 	public class CartoBaseMapsController : VectorMapBaseController
 	{
+		const string PositronUrl = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
+		const string DarkMatterUrl = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";
+
 		public override string Name { get { return "Carto Base Maps"; } }
 
 		public override string Description
@@ -23,7 +27,7 @@ namespace CartoMap.iOS
 		{
 			return new Dictionary<string, string> { 
 				{ "Positron", "positron" }, 
-				{ "Dark Matter", "darkmatter" }
+				{ "Dark Matter", "dark_matter" }
 			};
 		}
 
@@ -57,14 +61,35 @@ namespace CartoMap.iOS
 
 		protected override void UpdateBaseLayer()
 		{
-			//base.UpdateBaseLayer();
-
 			MapView.Layers.Clear();
 
-			var styleAsset = AssetUtils.LoadAsset(vectorStyleName + ".zip");
-			var baseLayer = new CartoOnlineVectorTileLayer(vectorStyleOSM, new ZippedAssetPackage(styleAsset));
+			if (vectorStyleTileType == "raster")
+			{
+				string url = "";
 
-			MapView.Layers.Add(baseLayer);
+				if (vectorStyleName == "positron")
+				{
+					url = PositronUrl;
+				}
+				else 
+				{
+					url = DarkMatterUrl;
+				}
+
+				TileDataSource source = new HTTPTileDataSource(1, 19, url);
+				var layer = new RasterTileLayer(source);
+
+				MapView.Layers.Add(layer);
+			}
+			else 
+			{
+				var styleAsset = AssetUtils.LoadAsset(vectorStyleName + ".zip");
+				var layer = new CartoOnlineVectorTileLayer(vectorStyleOSM, new ZippedAssetPackage(styleAsset));
+
+				MapView.Layers.Add(layer);
+			}
+
+
 		}
 	}
 }
