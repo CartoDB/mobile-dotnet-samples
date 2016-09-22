@@ -16,6 +16,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Enums\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
     <Folder Include="$(MSBuildThisFileDirectory)Utils\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Constants\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CartoVisBuilderWithGridEvent.cs" />
@@ -38,5 +39,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\JsonUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\CartoMapUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\VectorTileListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants\Urls.cs" />
   </ItemGroup>
 </Project>

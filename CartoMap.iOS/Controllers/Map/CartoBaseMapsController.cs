@@ -5,14 +5,12 @@ using Carto.DataSources;
 using Carto.Layers;
 using Carto.Styles;
 using Carto.Utils;
+using Shared;
 
 namespace CartoMap.iOS
 {
 	public class CartoBaseMapsController : VectorMapBaseController
 	{
-		const string PositronUrl = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
-		const string DarkMatterUrl = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";
-
 		public override string Name { get { return "Carto Base Maps"; } }
 
 		public override string Description
@@ -69,11 +67,11 @@ namespace CartoMap.iOS
 
 				if (vectorStyleName == "positron")
 				{
-					url = PositronUrl;
+					url = Urls.Positron;
 				}
 				else 
 				{
-					url = DarkMatterUrl;
+					url = Urls.DarkMatter;
 				}
 
 				TileDataSource source = new HTTPTileDataSource(1, 19, url);
