@@ -20,6 +20,19 @@ namespace Shared.iOS
 
 		public string Title { get { return title.Text; } }
 
+		public bool Enabled {
+			set {
+				if (value)
+				{
+					UIView.Animate(0.2, delegate { Alpha = 1; });
+				}
+				else
+				{
+					UIView.Animate(0.2, delegate { Alpha = 0; });
+				}
+			}
+		}
+
 		public OptionsMenuBox(string text, Dictionary<string, string> items, OptionSelectType type)
 		{
 			title = new UILabel();

@@ -63,16 +63,9 @@ namespace CartoMap.iOS
 
 			if (vectorStyleTileType == "raster")
 			{
-				string url = "";
+				Menu.Disable("OSM");
 
-				if (vectorStyleName == "positron")
-				{
-					url = Urls.Positron;
-				}
-				else 
-				{
-					url = Urls.DarkMatter;
-				}
+				string url = (vectorStyleName == "positron") ? Urls.Positron : Urls.DarkMatter;
 
 				TileDataSource source = new HTTPTileDataSource(1, 19, url);
 				var layer = new RasterTileLayer(source);
@@ -81,6 +74,8 @@ namespace CartoMap.iOS
 			}
 			else 
 			{
+				Menu.Enable("OSM");
+
 				var styleAsset = AssetUtils.LoadAsset(vectorStyleName + ".zip");
 				var layer = new CartoOnlineVectorTileLayer(vectorStyleOSM, new ZippedAssetPackage(styleAsset));
 

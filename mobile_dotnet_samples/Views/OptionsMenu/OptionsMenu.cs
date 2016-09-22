@@ -81,6 +81,29 @@ namespace Shared.iOS
 			{
 				if (box.Title == label) {
 					box.SetValue(value);
+					return;
+				}
+			}
+		}
+
+		public void Enable(string label)
+		{	
+			UpdateStateofBox(label, true);
+		}
+
+		public void Disable(string label)
+		{
+			UpdateStateofBox(label, false);
+		}
+
+		void UpdateStateofBox(string label, bool enabled)
+		{
+			foreach (OptionsMenuBox box in Boxes)
+			{
+				if (box.Title == label)
+				{
+					box.Enabled = enabled;
+					return;
 				}
 			}
 		}

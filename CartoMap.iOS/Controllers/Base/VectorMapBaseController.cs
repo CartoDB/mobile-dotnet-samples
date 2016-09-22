@@ -28,7 +28,7 @@ namespace CartoMap.iOS
 		// Style Parameters
 		protected string vectorStyleName = BaseStyle; // default style name, each style has corresponding .zip asset
 		protected string vectorStyleLang = BaseLanguage; // default map language
-		protected string vectorStyleTileType = "";
+		protected string vectorStyleTileType = "raster";
 		protected string vectorStyleOSM = "nutiteq.osm";
 			
 		protected virtual Dictionary<string, string> GetStyleDict()
@@ -64,7 +64,7 @@ namespace CartoMap.iOS
 			return new Dictionary<string, string>();
 		}
 
-		OptionsMenu Menu { get; set; }
+		public OptionsMenu Menu { get; set; }
 		MenuButton MenuButton { get; set; }
 
 		public override void ViewDidLoad()
@@ -72,8 +72,6 @@ namespace CartoMap.iOS
 			base.ViewDidLoad();
 
 			MapView.Options.ZoomRange = new MapRange(0, 20);
-
-			UpdateBaseLayer();
 
 			Menu = new OptionsMenu();
 
@@ -98,7 +96,7 @@ namespace CartoMap.iOS
 			if (tileTypes.Count > 0)
 			{
 				Menu.AddItems("Tile type", tileTypes, OptionSelectType.TileType);
-				Menu.SetInitialValueOf("Tile type", "raster");
+				Menu.SetInitialValueOf("Tile type", vectorStyleTileType);
 			}
 
 			Dictionary<string, string> osms = GetOSMDict();
@@ -106,11 +104,13 @@ namespace CartoMap.iOS
 			if (osms.Count > 0)
 			{
 				Menu.AddItems("OSM", osms, OptionSelectType.OSM);
-				Menu.SetInitialValueOf("OSM", "nutiteq.osm");
+				Menu.SetInitialValueOf("OSM", vectorStyleOSM);
 			}
 
 			MenuButton = new MenuButton();
 			NavigationItem.RightBarButtonItem = MenuButton;
+
+			UpdateBaseLayer();
 		}
 
 		public override void ViewWillAppear(bool animated)
