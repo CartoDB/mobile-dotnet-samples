@@ -14,6 +14,8 @@ namespace Shared.iOS
 
 		public MapListCell()
 		{
+			AccessibilityIdentifier = "MapListCell";
+
 			title = new UILabel();
 			title.Font = UIFont.FromName("Helvetica-Bold", 12);
 

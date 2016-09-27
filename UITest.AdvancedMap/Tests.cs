@@ -29,8 +29,26 @@ namespace UITest.AdvancedMap
 		[Test]
 		public void AppLaunches()
 		{
-			app.ScrollDown();
-			app.Screenshot("First screen.");
+			if (platform == Platform.Android)
+			{
+				// Screenshots produce UnauthorizedException on iOS for some reason
+				app.Screenshot("First screen.");
+			}
+
+			AppResult[] items = app.GetListItems(platform);
+
+			int counter = 0;
+
+			foreach (AppResult item in items)
+			{
+				if (counter > 0)
+				{
+					break;
+				}
+
+				app.Click(item);
+				counter++;
+			}
 		}
 
 	}
