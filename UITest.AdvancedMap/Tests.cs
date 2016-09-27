@@ -37,17 +37,11 @@ namespace UITest.AdvancedMap
 
 			AppResult[] items = app.GetListItems(platform);
 
-			int counter = 0;
-
 			foreach (AppResult item in items)
 			{
-				if (counter > 0)
-				{
-					break;
-				}
-
 				app.Click(item);
-				counter++;
+
+				app.Back();
 			}
 		}
 
