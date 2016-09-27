@@ -7,6 +7,8 @@ namespace Shared.Droid
 {
 	public class MapRowView : RelativeLayout
 	{
+		public static int RowId = -1;
+
 		public string Title { 
 			get { 
 				return titleView.Text; 
@@ -27,6 +29,8 @@ namespace Shared.Droid
 
 		public MapRowView(Context context) : base (context)
 		{
+			Id = RowId;
+
 			Color nearWhite = Color.Rgb(240, 240, 240);
 
 			titleView = new TextView(context);

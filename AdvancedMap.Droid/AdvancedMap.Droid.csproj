@@ -98,6 +98,7 @@
     <AndroidResource Include="Resources\layout\List.axml" />
     <AndroidResource Include="Resources\layout\MainGPS.axml" />
     <AndroidResource Include="Resources\layout\package_item_row.xml" />
+    <AndroidResource Include="Resources\values\ids.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />

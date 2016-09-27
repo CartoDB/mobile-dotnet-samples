@@ -28,6 +28,9 @@ namespace AdvancedMap.Droid
 
 			SetContentView(Resource.Layout.List);
 
+			MapRowView.RowId = Resource.Id.MapListCell;
+			ListView.Id = Resource.Id.MapListView;
+
 			ListView.Adapter = new MapListAdapter(this, Samples.List);
 		}
 

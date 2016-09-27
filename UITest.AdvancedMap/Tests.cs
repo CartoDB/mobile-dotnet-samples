@@ -35,7 +35,7 @@ namespace UITest.AdvancedMap
 				app.Screenshot("First screen.");
 			}
 
-			AppResult[] items = app.GetListItems(platform);
+			AppResult[] items = app.Query("MapListCell");
 
 			foreach (AppResult item in items)
 			{
@@ -43,6 +43,12 @@ namespace UITest.AdvancedMap
 
 				app.Back();
 			}
+
+			//if (platform == Platform.Android) 
+			//{
+			//	app.ScrollDownTo(c => c.Id("MapListCell").All().Index(6), c => c.Id("MapListView"));
+			//	app.ScrollDown();
+			//}
 		}
 
 	}
