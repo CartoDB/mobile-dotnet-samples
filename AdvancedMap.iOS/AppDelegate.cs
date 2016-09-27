@@ -43,6 +43,10 @@ namespace AdvancedMap.iOS
 				// Main storyboard file base name - Main
 			}
 
+			#if ENABLE_TEST_CLOUD
+			Xamarin.Calabash.Start();
+			#endif
+
 			return true;
 		}
 
