@@ -18,7 +18,7 @@ namespace CartoMap.Droid
 		const string BaseUrl = "https://nutiteq.cartodb.com/api/v2/sql";
 
 		protected override void OnCreate(Bundle savedInstanceState)
-		{
+		{			
 			// MapSampleBaseActivity creates and configures mapView  
 			base.OnCreate(savedInstanceState);
 

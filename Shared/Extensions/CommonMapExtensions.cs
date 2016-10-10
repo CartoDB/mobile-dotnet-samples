@@ -88,7 +88,6 @@ namespace Shared
 			datasource.Add(marker);
 		}
 
-
 		public static void UpdateVis(this MapView map, string url, Action<string> error = null)
         {
             ThreadPool.QueueUserWorkItem(delegate
