@@ -9,7 +9,7 @@ using Shared.iOS;
 
 namespace CartoMap.iOS
 {
-	public class CartoUTFGridController : VectorMapBaseController
+	public class CartoUTFGridController : MapBaseController
 	{
 		public override string Name { get { return "Carto UTF Grid"; } }
 

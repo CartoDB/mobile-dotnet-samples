@@ -9,7 +9,7 @@ using Shared.iOS;
 
 namespace CartoMap.iOS
 {
-	public class CartoTorqueController : VectorMapBaseController
+	public class CartoTorqueController : MapBaseController
 	{
 		public override string Name { get { return "Carto Torque Map"; } }
 

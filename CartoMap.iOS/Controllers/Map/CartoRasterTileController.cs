@@ -8,7 +8,7 @@ using Shared.iOS;
 
 namespace CartoMap.iOS
 {
-	public class CartoRasterTileController : VectorMapBaseController
+	public class CartoRasterTileController : MapBaseController
 	{
 		public override string Name { get { return "Carto Raster Tile"; } }
 
