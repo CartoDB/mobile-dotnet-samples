@@ -6,6 +6,7 @@ using Carto.Layers;
 using Carto.Projections;
 using Carto.Services;
 using Shared;
+using Shared.iOS;
 
 namespace CartoMap.iOS
 {

@@ -15,6 +15,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)DataSources\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\OptionsMenu\" />
     <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
+    <Folder Include="$(MSBuildThisFileDirectory)BaseControllers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Services\LocationManager.cs" />
@@ -25,5 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\OptionsMenu\OptionsMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\OptionsMenu\OptionsMenuBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataSources\MapListRowSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\MapBaseController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\VectorMapBaseController.cs" />
   </ItemGroup>
 </Project>

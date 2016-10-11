@@ -10,7 +10,7 @@ using Carto.VectorTiles;
 using Shared.iOS;
 using UIKit;
 
-namespace CartoMap.iOS
+namespace Shared.iOS
 {
 	public class VectorMapBaseController : MapBaseController
 	{
@@ -217,9 +217,6 @@ namespace CartoMap.iOS
 		protected virtual TileDataSource CreateTileDataSource(string osm)
 		{
 			TileDataSource source = new CartoOnlineTileDataSource(osm);
-
-			// We don't use VectorTileDataSource directly (this would be also option),
-			// but via caching to cache data locally persistently/non-persistently.
 			return new MemoryCacheTileDataSource(source);
 		}
 	}

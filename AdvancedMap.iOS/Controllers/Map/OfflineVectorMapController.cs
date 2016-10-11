@@ -30,7 +30,7 @@ namespace AdvancedMap.iOS
 			MapView.SetZoom(13, 0);
 		}
 
-		protected override TileDataSource CreateTileDataSource()
+		protected override TileDataSource CreateTileDataSource(string osm)
 		{
 			//string fileName = "world_zoom5";
 			string fileName = "rome_ntvt";

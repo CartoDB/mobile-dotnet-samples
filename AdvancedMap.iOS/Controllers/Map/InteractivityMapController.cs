@@ -5,6 +5,7 @@ using Carto.DataSources;
 using Carto.Layers;
 using Carto.Projections;
 using Shared;
+using Shared.iOS;
 
 namespace AdvancedMap.iOS
 {

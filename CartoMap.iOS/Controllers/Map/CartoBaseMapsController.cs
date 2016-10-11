@@ -6,6 +6,7 @@ using Carto.Layers;
 using Carto.Styles;
 using Carto.Utils;
 using Shared;
+using Shared.iOS;
 
 namespace CartoMap.iOS
 {
@@ -81,8 +82,6 @@ namespace CartoMap.iOS
 
 				MapView.Layers.Add(layer);
 			}
-
-
 		}
 	}
 }

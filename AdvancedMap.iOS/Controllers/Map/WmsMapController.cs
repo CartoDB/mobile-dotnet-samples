@@ -3,6 +3,7 @@ using System;
 using Carto.Core;
 using Carto.Layers;
 using Shared;
+using Shared.iOS;
 
 namespace AdvancedMap.iOS
 {

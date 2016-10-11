@@ -8,7 +8,7 @@ using Carto.Utils;
 using Foundation;
 using UIKit;
 
-namespace AdvancedMap.iOS
+namespace Shared.iOS
 {
 	public class MapBaseController : GLKit.GLKViewController
 	{
@@ -27,17 +27,14 @@ namespace AdvancedMap.iOS
 			base.ViewDidLoad();
 
 			MapView = new MapView();
-
-			// Use 60fps update rate, this makes zooming and panning animations much smoother
-			PreferredFramesPerSecond = 60;
-
 			View = MapView;
 
 			BaseProjection = new EPSG3857();
 
 			// Initialize map
-			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");
+			var styleAsset = AssetUtils.LoadAsset("nutibright-v3.zip");
 			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
+
 			MapView.Layers.Add(baseLayer);
 
 			Title = Name;

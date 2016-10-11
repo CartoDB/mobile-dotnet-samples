@@ -111,7 +111,6 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Controllers\Base\" />
     <Folder Include="Controllers\List\" />
     <Folder Include="Controllers\Map\" />
     <Folder Include="Views\" />
@@ -135,8 +134,6 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Base\MapBaseController.cs" />
-    <Compile Include="Controllers\Base\VectorMapBaseController.cs" />
     <Compile Include="Controllers\List\PackageManagerController.cs" />
     <Compile Include="Controllers\List\MapListController.cs" />
     <Compile Include="Controllers\Map\ClusteredGeoJSONCapitalsController.cs" />

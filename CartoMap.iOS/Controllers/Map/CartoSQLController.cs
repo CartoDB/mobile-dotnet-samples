@@ -6,6 +6,7 @@ using Carto.Graphics;
 using Carto.Layers;
 using Carto.Styles;
 using Shared;
+using Shared.iOS;
 
 namespace CartoMap.iOS
 {

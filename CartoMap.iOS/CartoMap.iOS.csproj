@@ -108,7 +108,6 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Controllers\Base\" />
     <Folder Include="Controllers\Map\" />
   </ItemGroup>
   <ItemGroup>
@@ -127,8 +126,6 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Base\MapBaseController.cs" />
-    <Compile Include="Controllers\Base\VectorMapBaseController.cs" />
     <Compile Include="Controllers\Map\CartoVisJsonController.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="Controllers\MapListController.cs" />

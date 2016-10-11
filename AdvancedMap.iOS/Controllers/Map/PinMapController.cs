@@ -6,6 +6,7 @@ using Carto.Layers;
 using Carto.Styles;
 using Carto.Utils;
 using Carto.VectorElements;
+using Shared.iOS;
 using UIKit;
 
 namespace AdvancedMap.iOS
