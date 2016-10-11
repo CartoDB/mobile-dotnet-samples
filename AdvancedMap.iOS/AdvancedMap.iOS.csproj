@@ -117,6 +117,7 @@
     <Folder Include="Views\" />
     <Folder Include="DataSources\" />
     <Folder Include="Views\PackageManager\" />
+    <Folder Include="Recognizers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -153,6 +154,7 @@
     <Compile Include="Views\PackageManager\PackageManagerButton.cs" />
     <Compile Include="Views\PackageManager\PackageManagerListView.cs" />
     <Compile Include="Controllers\Map\InteractivityMapController.cs" />
+    <Compile Include="Recognizers\ForceTouchRecognizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\arrow.png" />

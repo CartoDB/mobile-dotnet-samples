@@ -16,12 +16,34 @@ namespace AdvancedMap.iOS
 
 		VectorLayer VectorLayer { get; set; }
 
+		ForceTouchRecognizer recognizer = new ForceTouchRecognizer();
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
 			MapPos berlin = new MapPos(24.650415, 59.428773);
 			MapView.AnimateZoomTo(berlin);
+
+			recognizer = new ForceTouchRecognizer();
+			MapView.AddGestureRecognizer(recognizer);
+		}
+
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+			recognizer.ForceTouch += OnForceTouch;
+		}
+
+		public override void ViewWillDisappear(bool animated)
+		{
+			base.ViewWillDisappear(animated);
+			recognizer.ForceTouch -= OnForceTouch;
+		}
+
+		void OnForceTouch(object sender, iOS.ForceEventArgs e)
+		{
+			Console.WriteLine("OnForceTouch: " + e.Type);
 		}
 
 		protected override void UpdateBaseLayer()

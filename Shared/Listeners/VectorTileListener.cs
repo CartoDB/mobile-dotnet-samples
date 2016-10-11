@@ -6,6 +6,7 @@ using Carto.Graphics;
 using Carto.Layers;
 using Carto.Styles;
 using Carto.VectorElements;
+using Carto.Ui;
 
 namespace Shared
 {
@@ -18,7 +19,7 @@ namespace Shared
 			this.layer = layer;
 		}
 
-		public override bool OnVectorTileClicked(Carto.Ui.VectorTileClickInfo clickInfo)
+		public override bool OnVectorTileClicked(VectorTileClickInfo clickInfo)
 		{
 			LocalVectorDataSource source = (LocalVectorDataSource)layer.DataSource;
 
