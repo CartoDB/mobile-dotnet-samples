@@ -24,14 +24,16 @@ namespace Shared.iOS
 			set {
 				if (value)
 				{
-					UIView.Animate(0.2, delegate { Alpha = 1; });
+					Animate(0.2, delegate { Alpha = 1; });
 				}
 				else
 				{
-					UIView.Animate(0.2, delegate { Alpha = 0; });
+					Animate(0.2, delegate { Alpha = 0; });
 				}
 			}
 		}
+
+		public string SelectedValue { get { return current.Value; } }
 
 		public OptionsMenuBox(string text, Dictionary<string, string> items, OptionSelectType type)
 		{
@@ -92,6 +94,29 @@ namespace Shared.iOS
 				}
 
 				Console.WriteLine(options[i].Frame);
+			}
+		}
+
+		public void Update(Dictionary<string, string> items, OptionSelectType type)
+		{
+			foreach (UIView subview in Subviews)
+			{
+				if (subview is OptionsSelect)
+				{
+					(subview as OptionsSelect).TouchUpInside -= OnOptionSelected;
+					subview.RemoveFromSuperview();
+				}
+			}
+
+			options.Clear();
+
+			foreach (KeyValuePair<string, string> item in items)
+			{
+				OptionsSelect option = new OptionsSelect(item, type);
+				option.TouchUpInside += OnOptionSelected;
+
+				AddSubview(option);
+				options.Add(option);
 			}
 		}
 

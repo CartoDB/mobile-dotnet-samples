@@ -75,6 +75,11 @@ namespace Shared.iOS
 			Y += h + BoxPadding;
 		}
 
+		public void UpdateItems(int index, Dictionary<string, string> items, OptionSelectType type)
+		{
+			Boxes[index].Update(items, type);
+		}
+
 		public void SetInitialValueOf(string label, string value)
 		{
 			foreach (OptionsMenuBox box in Boxes)
@@ -86,17 +91,30 @@ namespace Shared.iOS
 			}
 		}
 
+		public string GetSelectedValueOf(string label)
+		{
+			foreach (OptionsMenuBox box in Boxes)
+			{
+				if (box.Title == label)
+				{
+					return box.SelectedValue;
+				}
+			}
+
+			return null;
+		}
+
 		public void Enable(string label)
 		{	
-			UpdateStateofBox(label, true);
+			UpdateStateOfBox(label, true);
 		}
 
 		public void Disable(string label)
 		{
-			UpdateStateofBox(label, false);
+			UpdateStateOfBox(label, false);
 		}
 
-		void UpdateStateofBox(string label, bool enabled)
+		void UpdateStateOfBox(string label, bool enabled)
 		{
 			foreach (OptionsMenuBox box in Boxes)
 			{

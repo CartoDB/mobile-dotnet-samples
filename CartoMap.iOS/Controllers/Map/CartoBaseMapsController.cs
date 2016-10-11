@@ -22,12 +22,21 @@ namespace CartoMap.iOS
 			}
 		}
 
+		Dictionary<string, string> nutiteqStyles = new Dictionary<string, string> {
+			{ "Default", "nutibright:default" },
+			{ "Dark", "nutibright:dark" }
+		};
+
+		Dictionary<string, string> mapzenStyles = new Dictionary<string, string> {
+			{ "Positron", "positron" },
+			{ "Dark Matter", "dark_matter" }
+		};
+
+		Dictionary<string, string> selectedStyle;
+
 		protected override Dictionary<string, string> GetStyleDict()
 		{
-			return new Dictionary<string, string> { 
-				{ "Positron", "positron" }, 
-				{ "Dark Matter", "dark_matter" }
-			};
+			return selectedStyle;
 		}
 
 		protected override Dictionary<string, string> GetLanguageDict()
@@ -53,9 +62,45 @@ namespace CartoMap.iOS
 
 		public override void ViewDidLoad()
 		{
-			vectorStyleName = GetStyleDict()["Positron"];
+			selectedStyle = nutiteqStyles;
+
+			vectorStyleName = GetStyleDict()["Default"];
+			vectorStyleTileType = GetTileTypeDict()["Vector"];
 
 			base.ViewDidLoad();
+		}
+
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			OSMChanged += OnVectorStyleChanged;
+		}
+
+		public override void ViewWillDisappear(bool animated)
+		{
+			base.ViewWillDisappear(animated);
+
+			OSMChanged -= OnVectorStyleChanged;
+		}
+
+		void OnVectorStyleChanged(object sender, EventArgs e)
+		{
+			string selection = (string)sender;
+
+			if (selection == "nutiteq.osm")
+			{
+				selectedStyle = nutiteqStyles;
+				vectorStyleName = GetStyleDict()["Default"];
+			}
+			else
+			{
+				selectedStyle = mapzenStyles;
+				vectorStyleName = GetStyleDict()["Positron"];
+			}
+
+			Menu.UpdateItems(0, selectedStyle, OptionSelectType.Style);
+			Menu.SetInitialValueOf("Style", vectorStyleName);
 		}
 
 		protected override void UpdateBaseLayer()
@@ -76,9 +121,26 @@ namespace CartoMap.iOS
 			else 
 			{
 				Menu.Enable("OSM");
+				string selection = Menu.GetSelectedValueOf("OSM");
 
-				var styleAsset = AssetUtils.LoadAsset(vectorStyleName + ".zip");
-				var layer = new CartoOnlineVectorTileLayer(vectorStyleOSM, new ZippedAssetPackage(styleAsset));
+				CartoOnlineVectorTileLayer layer = null;
+
+				if (selection == "nutiteq.osm")
+				{
+					if (vectorStyleName.Split(':')[1] == "default")
+					{
+						layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+					}
+					else
+					{ 
+						layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark);
+					}
+				}
+				else
+				{
+					var styleAsset = AssetUtils.LoadAsset(vectorStyleName + ".zip");
+					layer = new CartoOnlineVectorTileLayer(vectorStyleOSM, new ZippedAssetPackage(styleAsset));
+				}
 
 				MapView.Layers.Add(layer);
 			}

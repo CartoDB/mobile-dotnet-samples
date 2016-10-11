@@ -22,6 +22,8 @@ namespace Shared.iOS
 
 		const string BaseLanguage = "en";
 
+		public EventHandler<EventArgs> OSMChanged;
+
 		protected TileDataSource vectorTileDataSource;
 		protected MBVectorTileDecoder vectorTileDecoder;
 
@@ -159,6 +161,11 @@ namespace Shared.iOS
 			else if (option.Type == OptionSelectType.OSM) 
 			{
 				vectorStyleOSM = option.Value;
+
+				if (OSMChanged != null)
+				{
+					OSMChanged(vectorStyleOSM, EventArgs.Empty);
+				}
 			}
 
 			UpdateBaseLayer();
