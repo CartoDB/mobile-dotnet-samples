@@ -69,11 +69,10 @@
     <Compile Include="Activities\Map\PinMapActivity.cs" />
     <Compile Include="Activities\Map\RasterOverlayActivity.cs" />
     <Compile Include="Activities\Map\WmsMapActivity.cs" />
-    <Compile Include="Activities\Base\BaseMapActivity.cs" />
-    <Compile Include="Activities\Base\VectorBaseMapActivity.cs" />
     <Compile Include="Activities\List\LauncherListActivity.cs" />
     <Compile Include="Views\PackageManagerButton.cs" />
     <Compile Include="Activities\Map\InteractivityMapActivity.cs" />
+    <Compile Include="MapApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -106,7 +105,6 @@
     <Folder Include="Activities\List\" />
     <Folder Include="Activities\Map\" />
     <Folder Include="Adapters\" />
-    <Folder Include="Activities\Base\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>

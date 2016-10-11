@@ -12,7 +12,7 @@ using Carto.Utils;
 using Carto.VectorTiles;
 using Shared.Droid;
 
-namespace CartoMap.Droid
+namespace Shared.Droid
 {
 	[Activity]
 	public class VectorBaseMapActivity : BaseMapActivity
@@ -110,7 +110,7 @@ namespace CartoMap.Droid
 			return true;
 		}
 
-		void UpdateBaseLayer()
+		protected virtual void UpdateBaseLayer()
 		{
 			string styleAssetName = vectorStyleName + ".zip";
 			bool styleBuildings3D = false;

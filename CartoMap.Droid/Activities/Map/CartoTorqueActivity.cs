@@ -14,7 +14,7 @@ namespace CartoMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "How to use Carto Torque tiles with CartoCSS styling")]
-	public class CartoTorqueActivity : VectorBaseMapActivity
+	public class CartoTorqueActivity : BaseMapActivity
 	{
 		const long FRAMETIME = 100;
 

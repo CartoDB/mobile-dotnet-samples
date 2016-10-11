@@ -11,7 +11,7 @@ namespace CartoMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "A sample demonstrating how to use Carto PostGIS Raster data, as tiled raster layer")]
-	public class CartoRasterTileActivity : VectorBaseMapActivity
+	public class CartoRasterTileActivity : BaseMapActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{

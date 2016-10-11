@@ -1,6 +1,7 @@
 ﻿
 using System;
 using Android.App;
+using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {

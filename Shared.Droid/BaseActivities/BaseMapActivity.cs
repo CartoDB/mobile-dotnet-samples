@@ -15,14 +15,14 @@ using Carto.Layers;
 using Carto.Projections;
 using Shared.Droid;
 
-namespace CartoMap.Droid
+namespace Shared.Droid
 {
 	[Activity (Icon = "@mipmap/icon")]
 	public class BaseMapActivity : Activity
 	{
-		const string LICENSE = "XTUN3Q0ZFMmhzUWEwdlZwNlJNVW5kL1hMRExMYXNYVUxBaFFhKzlSK2drYjEzNnBhSTJzY1c5aDBkL2licFE9PQo" +
-			"KcHJvZHVjdHM9c2RrLXhhbWFyaW4tYW5kcm9pZC00LioKcGFja2FnZU5hbWU9Y29tLmNhcnRvLmFkdmFuY2VkbWFwLnhhbWFyaW4uZHJvaW" +
-			"QKd2F0ZXJtYXJrPWRldmVsb3BtZW50CnZhbGlkVW50aWw9MjAxNi0wOS0xOApvbmxpbmVMaWNlbnNlPTEK";
+		public static int ViewResource { get; set; }
+
+		public static int MapViewResource { get; set;}
 
 		protected MapView MapView { get; set; }
 		internal Projection BaseProjection { get; set; }
@@ -32,18 +32,16 @@ namespace CartoMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			Log.ShowError = true;
-			Log.ShowWarn = true;
-
-			// Register license
-			MapView.RegisterLicense(LICENSE, ApplicationContext);
-
 			// Set our view from the "main" layout resource
-			SetContentView(Resource.Layout.Main);
 
-			MapView = (MapView)FindViewById(Resource.Id.mapView);
+			SetContentView(ViewResource);
+			MapView = (MapView)FindViewById(MapViewResource);
 
 			BaseProjection = new EPSG3857();
+
+			// Initialize map
+			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+			MapView.Layers.Add(baseLayer);
 
 			Title = GetType().GetTitle();
 

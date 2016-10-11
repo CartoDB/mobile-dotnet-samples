@@ -38,7 +38,7 @@ namespace CartoMap.Droid
 			base.OnCreate(savedInstanceState);
 
 			// Load the initial visJSON
-			string url = items["Circle"];
+			string url = items["Dots"];
 			MapView.UpdateVisWithGridEvent(url, OnError);
 		}
 

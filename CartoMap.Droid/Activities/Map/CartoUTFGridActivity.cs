@@ -10,7 +10,7 @@ namespace CartoMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "A sample demonstrating how to use Carto Maps API with Raster tiles and UTFGrid")]
-	public class CartoUTFGridActivity : VectorBaseMapActivity
+	public class CartoUTFGridActivity : BaseMapActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{

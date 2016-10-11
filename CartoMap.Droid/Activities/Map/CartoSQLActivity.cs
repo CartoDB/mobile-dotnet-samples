@@ -13,7 +13,7 @@ namespace CartoMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "SQL API to get data and create a custom vector data source")]
-	public class CartoSQLActivity : VectorBaseMapActivity
+	public class CartoSQLActivity : BaseMapActivity
 	{
 		const string BaseUrl = "https://nutiteq.cartodb.com/api/v2/sql";
 

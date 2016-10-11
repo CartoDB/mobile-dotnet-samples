@@ -13,9 +13,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MapRowView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Adapters\MapListAdapter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseActivities\BaseMapActivity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseActivities\VectorBaseMapActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)Adapters\" />
+    <Folder Include="$(MSBuildThisFileDirectory)BaseActivities\" />
   </ItemGroup>
 </Project>
