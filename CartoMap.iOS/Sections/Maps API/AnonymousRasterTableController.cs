@@ -8,17 +8,11 @@ using Shared.iOS;
 
 namespace CartoMap.iOS
 {
-	public class CartoRasterTileController : MapBaseController
+	public class AnonymousRasterTableController : MapBaseController
 	{
-		public override string Name { get { return "Carto Raster Tile"; } }
+		public override string Name { get { return "Anonymous Raster Tile"; } }
 
-		public override string Description
-		{
-			get
-			{
-				return "A sample demonstrating how to use Carto PostGIS Raster data, as tiled raster layer";
-			}
-		}
+		public override string Description { get { return "Using Carto PostGIS Raster data"; } }
 
 		public override void ViewDidLoad()
 		{

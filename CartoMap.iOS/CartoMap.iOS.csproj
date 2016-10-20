@@ -109,6 +109,12 @@
     <Folder Include="Resources\" />
     <Folder Include="Controllers\" />
     <Folder Include="Controllers\Map\" />
+    <Folder Include="Sections\" />
+    <Folder Include="Sections\CARTO.js API\" />
+    <Folder Include="Sections\Import API\" />
+    <Folder Include="Sections\Maps API\" />
+    <Folder Include="Sections\SQL API\" />
+    <Folder Include="Sections\Torque API\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -126,15 +132,19 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Map\CartoVisJsonController.cs" />
     <Compile Include="Device.cs" />
-    <Compile Include="Controllers\MapListController.cs" />
     <Compile Include="Samples.cs" />
-    <Compile Include="Controllers\Map\CartoRasterTileController.cs" />
-    <Compile Include="Controllers\Map\CartoSQLController.cs" />
-    <Compile Include="Controllers\Map\CartoTorqueController.cs" />
-    <Compile Include="Controllers\Map\CartoUTFGridController.cs" />
     <Compile Include="Controllers\Map\CartoBaseMapsController.cs" />
+    <Compile Include="Sections\CARTO.js API\BaseVisController.cs" />
+    <Compile Include="Sections\CARTO.js API\CountriesVisController.cs" />
+    <Compile Include="Sections\CARTO.js API\DotsVisController.cs" />
+    <Compile Include="Sections\CARTO.js API\FontsVisController.cs" />
+    <Compile Include="Sections\Import API\TilePackagerController.cs" />
+    <Compile Include="Sections\Maps API\AnonymousRasterTableController.cs" />
+    <Compile Include="Sections\Maps API\AnonymousVectorTableController.cs" />
+    <Compile Include="Sections\Maps API\NamedMapController.cs" />
+    <Compile Include="Sections\Torque API\TorqueShipController.cs" />
+    <Compile Include="Sections\SQL API\SQLServiceController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\basic.zip" />

@@ -9,11 +9,11 @@ using Shared.iOS;
 
 namespace CartoMap.iOS
 {
-	public class CartoTorqueController : MapBaseController
+	public class TorqueShipController : MapBaseController
 	{
 		public override string Name { get { return "Carto Torque Map"; } }
 
-		public override string Description { get { return "How to use Carto Torque tiles with CartoCSS styling"; } }
+		public override string Description { get { return "Torque tiles of WWII ship movement"; } }
 
 		const long FRAMETIME = 100;
 

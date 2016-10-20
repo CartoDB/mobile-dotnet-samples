@@ -18,7 +18,7 @@ namespace CartoMap.Droid
 
 			JsonValue config = JsonUtils.UTFGridConfigJson;
 
-			CartoMapUtils.ConfigureUTFGridLayers(MapView, config);
+			CartoMapExtensions.ConfigureAnonymousVectorLayers(MapView, config);
 
 			// Animate map to the content area
 			MapPos newYork = MapView.Options.BaseProjection.FromWgs84(new MapPos(-74.0059, 40.7127));

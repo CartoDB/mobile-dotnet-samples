@@ -1,5 +1,7 @@
-﻿using Carto.Ui;
+﻿
+using Carto.Ui;
 using Foundation;
+using Shared.iOS;
 using UIKit;
 
 namespace CartoMap.iOS
@@ -17,7 +19,7 @@ namespace CartoMap.iOS
 		{
 			MapView.RegisterLicense(License);
 
-			Controller = new UINavigationController(new MapListController());
+			Controller = new UINavigationController(new MapListController("CARTO Mobile Samples", Samples.RowSources));
 
 			Controller.NavigationBarHidden = false;
 

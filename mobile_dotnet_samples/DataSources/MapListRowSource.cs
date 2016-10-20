@@ -10,6 +10,8 @@ namespace Shared.iOS
 
 		public string Description { get; set; }
 
+		public bool IsHeader { get { return Description == "Header"; } }
+
 		public UIViewController Controller { get; set; }
 	}
 }

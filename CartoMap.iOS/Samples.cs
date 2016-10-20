@@ -9,15 +9,23 @@ namespace CartoMap.iOS
 	{
 		public static List<UIViewController> List = new List<UIViewController>
 		{
-			new CartoBaseMapsController(),
-			new CartoRasterTileController(),
-			new CartoSQLController(),
-			new CartoTorqueController(),
-			new CartoUTFGridController(),
-			new CartoVisJsonController()
+			new HeaderController() { Name = "CARTO.js API" },
+			new CountriesVisController(),
+			new DotsVisController(),
+			new FontsVisController(),
+			new HeaderController() { Name = "Import API" },
+			new TilePackagerController(),
+			new HeaderController() { Name = "Maps API" },
+			new AnonymousRasterTableController(),
+			new AnonymousVectorTableController(),
+			new NamedMapController(),
+			new HeaderController() { Name = "SQL API" },
+			new SQLServiceController(),
+			new HeaderController() { Name = "Torque API" },
+			new TorqueShipController()
 		};
 
-		public static List<MapListRowSource> ListOfRowSources
+		public static List<MapListRowSource> RowSources
 		{
 			get
 			{
@@ -27,8 +35,8 @@ namespace CartoMap.iOS
 				{
 					MapListRowSource source = new MapListRowSource { Controller = controller };
 
-					source.Title = (controller as MapBaseController).Name;
-					source.Description = (controller as MapBaseController).Description;
+					source.Title = (controller as BaseController).Name;
+					source.Description = (controller as BaseController).Description;
 
 					sources.Add(source);
 				}

@@ -1,13 +1,23 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using Shared.iOS;
 using UIKit;
 
-namespace CartoMap.iOS
+namespace Shared.iOS
 {
 	public class MapListController : UIViewController
 	{
 		MapListView ContentView { get; set; }
+
+		List<MapListRowSource> sources;
+
+		public MapListController(string title, List<MapListRowSource> sources)
+		{
+			Title = title;
+
+			this.sources = sources;
+		}
 
 		public override void ViewDidLoad()
 		{
@@ -16,9 +26,7 @@ namespace CartoMap.iOS
 			ContentView = new MapListView();
 			View = ContentView;
 
-			ContentView.AddRows(Samples.RowSources);
-
-			Title = "CARTO Mobile Samples";
+			ContentView.AddRows(sources);
 		}
 
 		public override void ViewWillAppear(bool animated)

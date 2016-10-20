@@ -63,7 +63,7 @@ namespace Shared
 
 			BalloonPopupStyleBuilder builder = new BalloonPopupStyleBuilder();
 
-			/// Set a higher placement priority so it would always be visible
+			// Set a higher placement priority so it would always be visible
 			builder.PlacementPriority = 10;
 
 			string message = feature.Properties.ToString();

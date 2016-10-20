@@ -7,19 +7,20 @@ namespace Shared.iOS
 {
 	public class MapListDataSource : UITableViewSource
 	{
-		static nfloat max = 70;
+		static nfloat maxRowHeight = 50;
+		static nfloat headerHeight = 40;
 
 		const string identifier = "TaskCell";
 
-		public static nfloat ROWHEIGHT
+		public static nfloat RowHeight
 		{
 			get
 			{
 				nfloat height = UIScreen.MainScreen.Bounds.Size.Height / 8f;
 
-				if (height > max)
+				if (height > maxRowHeight)
 				{
-					return max;
+					return maxRowHeight;
 				}
 
 				return height;
@@ -32,7 +33,11 @@ namespace Shared.iOS
 
 		public override nfloat GetHeightForRow(UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			return ROWHEIGHT;
+			MapListRowSource data = Items[indexPath.Row];
+			if (data.IsHeader) {
+				return headerHeight;
+			}
+			return RowHeight;
 		}
 
 		public override nint RowsInSection(UITableView tableview, nint section)
@@ -53,14 +58,20 @@ namespace Shared.iOS
 		{
 			MapListRowSource data = Items[indexPath.Row];
 
-			MapListCell cell = (MapListCell)tableView.DequeueReusableCell(identifier);
+			BaseCell cell = (BaseCell)tableView.DequeueReusableCell(identifier);
 
 			if (cell == null)
 			{
-				cell = new MapListCell();
+				if (data.IsHeader)
+				{
+					cell = new MapListHeaderCell();
+				}
+				else {
+					cell = new MapListCell();
+				}
 			}
 
-			cell.Update(data, indexPath.Row);
+			cell.Update(data);
 
 			return cell;
 		}

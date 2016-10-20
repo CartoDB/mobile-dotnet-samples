@@ -9,8 +9,6 @@ namespace Shared
 		{
 			JsonObject configJson = new JsonObject();
 
-			configJson.Add("asd", "asd");
-
 			configJson.Add("version", "1.2.0");
 
 			JsonArray layersArrayJson = new JsonArray();

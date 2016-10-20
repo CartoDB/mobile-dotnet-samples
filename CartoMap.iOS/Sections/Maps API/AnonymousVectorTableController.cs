@@ -9,13 +9,13 @@ using Shared.iOS;
 
 namespace CartoMap.iOS
 {
-	public class CartoUTFGridController : MapBaseController
+	public class AnonymousVectorTableController : MapBaseController
 	{
-		public override string Name { get { return "Carto UTF Grid"; } }
+		public override string Name { get { return "Anonymous Vector Tile"; } }
 
 		public override string Description { 
 			get { 
-				return "A sample demonstrating how to use Carto Maps API with Raster tiles and UTFGrid"; 
+				return "Usage of Carto Maps API with vector tiles"; 
 			} 
 		}
 
@@ -25,7 +25,7 @@ namespace CartoMap.iOS
 
 			JsonValue config = JsonUtils.UTFGridConfigJson;
 
-			CartoMapUtils.ConfigureUTFGridLayers(MapView, config);
+			MapView.ConfigureAnonymousVectorLayers(config);
 
 			// Animate map to the content area
 			MapPos newYork = MapView.Options.BaseProjection.FromWgs84(new MapPos(-74.0059, 40.7127));
