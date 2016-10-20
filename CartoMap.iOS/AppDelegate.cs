@@ -7,9 +7,7 @@ namespace CartoMap.iOS
 	[Register("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
-		const string License = "XTUMwQ0ZRREVzQjVXdUhMb3V3eGVIeU9XN2JvUHNtSm9kd0lVQkRrVkp2T282SlRpSFVlNUIvMDFJNmdmTVg0" +
-			"PQoKcHJvZHVjdHM9c2RrLXhhbWFyaW4taW9zLTQuKgpidW5kbGVJZGVudGlmaWVyPWNvbS5jYXJ0by5hZHZhbmNlZG1hcC54YW1hcmlu" +
-			"Lmlvcwp3YXRlcm1hcms9ZGV2ZWxvcG1lbnQKdmFsaWRVbnRpbD0yMDE2LTA5LTE4Cm9ubGluZUxpY2Vuc2U9MQo=";
+		const string License = "XTUN3Q0ZFMk5uUEwwQXQyUm5jN3BDeHpDeWdrMGs0VVRBaFFocVQybmRXRkxFcDlhUDBKWWxCN04rRHkwRWc9PQoKYXBwVG9rZW49NDQyNTRiNjQtNTRlNS00Y2Y1LTgzZDMtZDA2ZTU1M2QzOGIzCmJ1bmRsZUlkZW50aWZpZXI9Y29tLmNhcnRvLmNhcnRvbWFwCm9ubGluZUxpY2Vuc2U9MQpwcm9kdWN0cz1zZGsteGFtYXJpbi1pb3MtNC4qCndhdGVybWFyaz1jdXN0b20K";
 
 		static bool WritingViewsProgrammatically = true;
 
