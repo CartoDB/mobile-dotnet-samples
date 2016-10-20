@@ -156,6 +156,7 @@
     <Compile Include="Sections\Other\GpsLocationMapController.cs" />
     <Compile Include="Sections\Other\ClusteredGeoJSONCapitalsController.cs" />
     <Compile Include="Sections\OverlayDataSources\CustomRasterDatasourceController.cs" />
+    <Compile Include="Sections\Other\CaptureController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\arrow.png" />

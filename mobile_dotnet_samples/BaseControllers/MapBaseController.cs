@@ -21,7 +21,7 @@ namespace Shared.iOS
 			MapView = new MapView();
 			View = MapView;
 
-			BaseProjection = new EPSG3857();
+			BaseProjection = MapView.Options.BaseProjection;
 
 			// Initialize map with default base layer
 			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);

@@ -21,7 +21,7 @@ namespace AdvancedMap.iOS
 		{
 			MapView.RegisterLicense(License);
 
-			UIViewController initial = new MapListController("Advanced Map Samples", Samples.ListOfRowSources);
+			UIViewController initial = new MapListController("Advanced Map Samples", Samples.RowSources);
 			Controller = new UINavigationController(initial);
 
 			Controller.NavigationBarHidden = false;

@@ -25,12 +25,13 @@ namespace AdvancedMap.iOS
 			new PackageManagerController(),
 
 			new HeaderController { Name = "Other" },
+			new CaptureController(),
 			new ClusteredGeoJSONCapitalsController(),
 			new GpsLocationMapController(),
 			new OfflineRoutingController(),
 		};
 
-		public static List<MapListRowSource> ListOfRowSources
+		public static List<MapListRowSource> RowSources
 		{
 			get
 			{
