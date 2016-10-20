@@ -1,6 +1,7 @@
 ﻿
 using Carto.Ui;
 using Foundation;
+using Shared.iOS;
 using UIKit;
 
 namespace AdvancedMap.iOS
@@ -12,8 +13,6 @@ namespace AdvancedMap.iOS
 			"PQoKcHJvZHVjdHM9c2RrLXhhbWFyaW4taW9zLTQuKgpidW5kbGVJZGVudGlmaWVyPWNvbS5jYXJ0by5hZHZhbmNlZG1hcC54YW1hcmlu" +
 			"Lmlvcwp3YXRlcm1hcms9ZGV2ZWxvcG1lbnQKdmFsaWRVbnRpbD0yMDE2LTA5LTE4Cm9ubGluZUxpY2Vuc2U9MQo=";
 
-		static bool WritingViewsProgrammatically = true;
-
 		public override UIWindow Window { get; set; }
 
 		public UINavigationController Controller { get; set; }
@@ -22,26 +21,18 @@ namespace AdvancedMap.iOS
 		{
 			MapView.RegisterLicense(License);
 
-			if (WritingViewsProgrammatically)
-			{
-				Controller = new UINavigationController(new MapListController());
+			UIViewController initial = new MapListController("Advanced Map Samples", Samples.ListOfRowSources);
+			Controller = new UINavigationController(initial);
 
-				Controller.NavigationBarHidden = false;
+			Controller.NavigationBarHidden = false;
 
-				Window = new UIWindow(UIScreen.MainScreen.Bounds);
+			Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-				Window.RootViewController = Controller;
+			Window.RootViewController = Controller;
 
-				Window.MakeKeyAndVisible();
+			Window.MakeKeyAndVisible();
 
-				Device.NavigationBarHeight = Controller.NavigationBar.Frame.Height;
-			}
-			else {
-				Carto.Utils.Log.Debug("Writing views via StoryBoard");
-
-				// Add the following KeyValuePair to Info.plist:
-				// Main storyboard file base name - Main
-			}
+			Device.NavigationBarHeight = Controller.NavigationBar.Frame.Height;
 
 			#if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();

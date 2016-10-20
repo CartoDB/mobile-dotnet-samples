@@ -97,7 +97,7 @@
       <HintPath>..\packages\Xamarin.TestCloud.Agent.0.20.1\lib\Xamarin.iOS10\Calabash.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.iOS">
-      <HintPath>..\packages\CartoMobileSDK.iOS.4.0.0-pre-135\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.iOS.4.0.0-pre-151\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -135,7 +135,6 @@
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\List\PackageManagerController.cs" />
-    <Compile Include="Controllers\List\MapListController.cs" />
     <Compile Include="Controllers\Map\ClusteredGeoJSONCapitalsController.cs" />
     <Compile Include="Controllers\Map\GpsLocationMapController.cs" />
     <Compile Include="Controllers\Map\OfflineRoutingController.cs" />

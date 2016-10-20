@@ -10,6 +10,11 @@ namespace AdvancedMap.iOS
 	{
 		public static List<UIViewController> List = new List<UIViewController>
 		{
+			new HeaderController { Name = "Base maps" },
+			new HeaderController { Name = "Overlay data sources" },
+			new HeaderController { Name = "Vector objects" },
+			new HeaderController { Name = "Offline maps" },
+			new HeaderController { Name = "Other" },
 			new ClusteredGeoJSONCapitalsController(),
 			new GpsLocationMapController(),
 			new OfflineRoutingController(),
@@ -38,8 +43,8 @@ namespace AdvancedMap.iOS
 						source.Description = (controller as PackageManagerController).Description;
 					}
 					else {
-						source.Title = (controller as MapBaseController).Name;
-						source.Description = (controller as MapBaseController).Description;
+						source.Title = (controller as BaseController).Name;
+						source.Description = (controller as BaseController).Description;
 					}
 
 					sources.Add(source);
