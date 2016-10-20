@@ -11,11 +11,12 @@ using Shared.iOS;
 
 namespace AdvancedMap.iOS
 {
-	public class OfflineVectorMapController : VectorMapBaseController
+	// Formerly known as OfflineVectorMapController
+	public class BundledMBTilesController : VectorMapBaseController
 	{
-		public override string Name { get { return "Offline Vector Map"; } }
+		public override string Name { get { return "Bundled MBTiles"; } }
 
-		public override string Description { get { return "Uses bundled assets for the offline base map"; } }
+		public override string Description { get { return "Bundle MBTiles file for offline base map"; } }
 
 		public string SupportDirectory { get { return Utils.GetDocumentDirectory("packages"); } }
 

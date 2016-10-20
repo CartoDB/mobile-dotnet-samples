@@ -111,12 +111,17 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Controllers\List\" />
     <Folder Include="Controllers\Map\" />
     <Folder Include="Views\" />
     <Folder Include="DataSources\" />
     <Folder Include="Views\PackageManager\" />
     <Folder Include="Recognizers\" />
+    <Folder Include="Sections\" />
+    <Folder Include="Sections\BaseMap\" />
+    <Folder Include="Sections\OfflineMap\" />
+    <Folder Include="Sections\Other\" />
+    <Folder Include="Sections\OverlayDataSources\" />
+    <Folder Include="Sections\VectorObjects\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -134,15 +139,6 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\List\PackageManagerController.cs" />
-    <Compile Include="Controllers\Map\ClusteredGeoJSONCapitalsController.cs" />
-    <Compile Include="Controllers\Map\GpsLocationMapController.cs" />
-    <Compile Include="Controllers\Map\OfflineRoutingController.cs" />
-    <Compile Include="Controllers\Map\OfflineVectorMapController.cs" />
-    <Compile Include="Controllers\Map\Overlays2DController.cs" />
-    <Compile Include="Controllers\Map\PinMapController.cs" />
-    <Compile Include="Controllers\Map\RasterOverlayController.cs" />
-    <Compile Include="Controllers\Map\WmsMapController.cs" />
     <Compile Include="Samples.cs" />
     <Compile Include="DataSources\PackageListDataSource.cs" />
     <Compile Include="Device.cs" />
@@ -151,6 +147,15 @@
     <Compile Include="Views\PackageManager\PackageManagerListView.cs" />
     <Compile Include="Controllers\Map\InteractivityMapController.cs" />
     <Compile Include="Recognizers\ForceTouchRecognizer.cs" />
+    <Compile Include="Sections\BaseMap\BaseMapsController.cs" />
+    <Compile Include="Sections\OfflineMap\BundledMBTilesController.cs" />
+    <Compile Include="Sections\OfflineMap\PackageManagerController.cs" />
+    <Compile Include="Sections\OverlayDataSources\WmsMapController.cs" />
+    <Compile Include="Sections\Other\OfflineRoutingController.cs" />
+    <Compile Include="Sections\VectorObjects\Overlays2DController.cs" />
+    <Compile Include="Sections\Other\GpsLocationMapController.cs" />
+    <Compile Include="Sections\Other\ClusteredGeoJSONCapitalsController.cs" />
+    <Compile Include="Sections\OverlayDataSources\CustomRasterDatasourceController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\arrow.png" />

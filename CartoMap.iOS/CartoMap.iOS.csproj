@@ -107,8 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Controllers\Map\" />
     <Folder Include="Sections\" />
     <Folder Include="Sections\CARTO.js API\" />
     <Folder Include="Sections\Import API\" />
@@ -134,7 +132,6 @@
     </Compile>
     <Compile Include="Device.cs" />
     <Compile Include="Samples.cs" />
-    <Compile Include="Controllers\Map\CartoBaseMapsController.cs" />
     <Compile Include="Sections\CARTO.js API\BaseVisController.cs" />
     <Compile Include="Sections\CARTO.js API\CountriesVisController.cs" />
     <Compile Include="Sections\CARTO.js API\DotsVisController.cs" />

@@ -11,20 +11,23 @@ namespace AdvancedMap.iOS
 		public static List<UIViewController> List = new List<UIViewController>
 		{
 			new HeaderController { Name = "Base maps" },
+			new BaseMapsController(),
+
 			new HeaderController { Name = "Overlay data sources" },
+			new CustomRasterDatasourceController(),
+			new WmsMapController(),
+
 			new HeaderController { Name = "Vector objects" },
+			new Overlays2DController(),
+
 			new HeaderController { Name = "Offline maps" },
+			new BundledMBTilesController(),
+			new PackageManagerController(),
+
 			new HeaderController { Name = "Other" },
 			new ClusteredGeoJSONCapitalsController(),
 			new GpsLocationMapController(),
 			new OfflineRoutingController(),
-			new InteractivityMapController(),
-			new OfflineVectorMapController(),
-			new Overlays2DController(),
-			new PinMapController(),
-			new PackageManagerController(),
-			new RasterOverlayController(),
-			new WmsMapController()
 		};
 
 		public static List<MapListRowSource> ListOfRowSources

@@ -8,9 +8,9 @@ using Carto.Utils;
 using Shared;
 using Shared.iOS;
 
-namespace CartoMap.iOS
+namespace AdvancedMap.iOS
 {
-	public class CartoBaseMapsController : VectorMapBaseController
+	public class BaseMapsController : VectorMapBaseController
 	{
 		public override string Name { get { return "Carto Base Maps"; } }
 

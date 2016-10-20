@@ -7,7 +7,7 @@ using Shared.iOS;
 
 namespace AdvancedMap.iOS
 {
-	public class RasterOverlayController : MapBaseController
+	public class CustomRasterDatasourceController : MapBaseController
 	{
 		const string HillsideRasterUrl = "http://tiles.wmflabs.org/hillshading/{zoom}/{x}/{y}.png";
 
@@ -15,7 +15,7 @@ namespace AdvancedMap.iOS
 
 		public override string Description { 
 			get {
-				return "Raster layer on top of the vector base map to provide height information";
+				return "Raster layer on top of the vector base map";
 			}
 		}
 
@@ -32,6 +32,7 @@ namespace AdvancedMap.iOS
 
 			// Initialize a raster layer with the previous data source
 			RasterTileLayer hillshadeLayer = new RasterTileLayer(cachedSource);
+
 			// Add the previous raster layer to the map
 			MapView.Layers.Add(hillshadeLayer);
 
