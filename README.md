@@ -10,7 +10,7 @@ Includes samples and Carto Mobile SDK 4.x for .NET platform:
   1. SDK should be downloaded automatically using *nuget*.
 
 ## SDK API documentation
-  * TODO
+  * Official docs: https://carto.com/docs/carto-engine/mobile-sdk/
 
 ## Use in your own app
   * You need license code based on your app ID from carto.com account, see **API Keys > Mobile Apps** section in user profile. 
