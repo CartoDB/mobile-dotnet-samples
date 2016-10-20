@@ -40,5 +40,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\VectorTileListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\Urls.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\CartoMapExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Listeners\HelloMapEventListener.cs" />
   </ItemGroup>
 </Project>
