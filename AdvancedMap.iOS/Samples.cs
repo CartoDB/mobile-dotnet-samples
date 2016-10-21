@@ -27,7 +27,7 @@ namespace AdvancedMap.iOS
 
 			new HeaderController { Name = "Other" },
 			new CaptureController(),
-			new ClusteredGeoJSONCapitalsController(),
+			new ClusteredGeoJsonController(),
 			new GpsLocationMapController(),
 			new OfflineRoutingController(),
 		};

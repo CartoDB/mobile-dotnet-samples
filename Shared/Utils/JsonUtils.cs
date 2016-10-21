@@ -193,7 +193,6 @@ namespace Shared
 
 			return encoded;
 		}
-
 	}
 }
 

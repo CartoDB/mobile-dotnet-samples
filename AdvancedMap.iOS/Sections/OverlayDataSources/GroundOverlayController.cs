@@ -10,6 +10,10 @@ namespace AdvancedMap.iOS
 {
 	public class GroundOverlayController : MapBaseController
 	{
+		public override string Name { get { return "Ground overlays"; } }
+
+		public override string Description { get { return "Show not tiled Bitmap on ground"; } }
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();

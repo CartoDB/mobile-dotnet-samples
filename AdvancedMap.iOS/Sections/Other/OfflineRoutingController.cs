@@ -20,14 +20,7 @@ namespace AdvancedMap.iOS
 	{
 		public override string Name { get { return "Offline Routing"; } }
 
-		public override string Description
-		{
-			get
-			{
-				return "Routing engine to calculate offline routes. " +
-					"Packages are downloaded and, once available, routing works offline";
-			}
-		}
+		public override string Description { get { return "Offline routing with OpenStreetMap data packages"; } }
 
 		// Add packages you want to download
 		internal static string[] downloadablePackages = { "EE-routing", "LV-routing", "LT-routing", "PL-routing" };

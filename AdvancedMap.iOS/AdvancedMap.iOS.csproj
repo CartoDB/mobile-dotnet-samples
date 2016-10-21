@@ -154,7 +154,7 @@
     <Compile Include="Sections\Other\OfflineRoutingController.cs" />
     <Compile Include="Sections\VectorObjects\OverlaysController.cs" />
     <Compile Include="Sections\Other\GpsLocationMapController.cs" />
-    <Compile Include="Sections\Other\ClusteredGeoJSONCapitalsController.cs" />
+    <Compile Include="Sections\Other\ClusteredGeoJsonController.cs" />
     <Compile Include="Sections\OverlayDataSources\CustomRasterDatasourceController.cs" />
     <Compile Include="Sections\Other\CaptureController.cs" />
     <Compile Include="Sections\OverlayDataSources\GroundOverlayController.cs" />
@@ -181,6 +181,8 @@
     <BundleResource Include="Resources\nutibright-v3.zip" />
     <BundleResource Include="Resources\rome_ntvt.mbtiles" />
     <BundleResource Include="Resources\milktruck.nml" />
+    <BundleResource Include="Resources\cities15000.geojson" />
+    <BundleResource Include="Resources\marker_black.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />
