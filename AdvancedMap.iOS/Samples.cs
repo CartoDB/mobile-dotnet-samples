@@ -18,7 +18,7 @@ namespace AdvancedMap.iOS
 			new WmsMapController(),
 
 			new HeaderController { Name = "Vector objects" },
-			new Overlays2DController(),
+			new OverlaysController(),
 
 			new HeaderController { Name = "Offline maps" },
 			new BundledMBTilesController(),

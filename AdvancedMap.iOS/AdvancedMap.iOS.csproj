@@ -152,7 +152,7 @@
     <Compile Include="Sections\OfflineMap\PackageManagerController.cs" />
     <Compile Include="Sections\OverlayDataSources\WmsMapController.cs" />
     <Compile Include="Sections\Other\OfflineRoutingController.cs" />
-    <Compile Include="Sections\VectorObjects\Overlays2DController.cs" />
+    <Compile Include="Sections\VectorObjects\OverlaysController.cs" />
     <Compile Include="Sections\Other\GpsLocationMapController.cs" />
     <Compile Include="Sections\Other\ClusteredGeoJSONCapitalsController.cs" />
     <Compile Include="Sections\OverlayDataSources\CustomRasterDatasourceController.cs" />
@@ -179,6 +179,7 @@
     <BundleResource Include="Resources\looseleaf.zip" />
     <BundleResource Include="Resources\nutibright-v3.zip" />
     <BundleResource Include="Resources\rome_ntvt.mbtiles" />
+    <BundleResource Include="Resources\milktruck.nml" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />

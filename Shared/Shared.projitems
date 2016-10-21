@@ -41,5 +41,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Constants\Urls.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\CartoMapExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\HelloMapEventListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\Overlays.cs" />
   </ItemGroup>
 </Project>

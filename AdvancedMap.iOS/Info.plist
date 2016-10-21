@@ -5,7 +5,7 @@
 	<key>CFBundleName</key>
 	<string>AdvancedMap.iOS</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.carto.advancedmap.xamarin.ios</string>
+	<string>com.carto.advancedmap</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>

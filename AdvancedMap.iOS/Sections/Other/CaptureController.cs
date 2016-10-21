@@ -27,29 +27,29 @@ namespace AdvancedMap.iOS
 			base.ViewDidLoad();
 
 			// Initialize a local vector data source
-			LocalVectorDataSource vectorDataSource1 = new LocalVectorDataSource(BaseProjection);
+			LocalVectorDataSource source = new LocalVectorDataSource(BaseProjection);
 
 			// Initialize a vector layer with the previous data source
-			VectorLayer vectorLayer1 = new VectorLayer(vectorDataSource1);
+			VectorLayer layer = new VectorLayer(source);
 
 			// Add the previous vector layer to the map
-			MapView.Layers.Add(vectorLayer1);
+			MapView.Layers.Add(layer);
 			// Set visible zoom range for the vector layer
-			vectorLayer1.VisibleZoomRange = new MapRange(0, 18);
+			layer.VisibleZoomRange = new MapRange(0, 18);
 
 			// Create marker style
 			UIImage image = UIImage.FromFile("marker.png");
 			Bitmap markerBitmap = BitmapUtils.CreateBitmapFromUIImage(image);
 
-			MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
-			markerStyleBuilder.Bitmap = markerBitmap;
-			markerStyleBuilder.Size = 30;
-			MarkerStyle style = markerStyleBuilder.BuildStyle();
+			MarkerStyleBuilder builder = new MarkerStyleBuilder();
+			builder.Bitmap = markerBitmap;
+			builder.Size = 30;
+			MarkerStyle style = builder.BuildStyle();
 
 			// Add marker
 			MapPos berlin = BaseProjection.FromWgs84(new MapPos(13.38933, 52.51704));
-			Marker marker1 = new Marker(berlin, style);
-			vectorDataSource1.Add(marker1);
+			Marker marker = new Marker(berlin, style);
+			source.Add(marker);
 
 			// Animate map to the marker
 			MapView.SetFocusPos(berlin, 1);
