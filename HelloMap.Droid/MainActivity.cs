@@ -9,15 +9,14 @@ using Carto.Projections;
 using Carto.Services;
 using System;
 using Shared;
+using Carto.VectorElements;
 
 namespace HelloMap.Droid
 {
 	[Activity(Label = "HelloMap", MainLauncher = true, Icon = "@mipmap/icon")]
 	public class MainActivity : Activity
 	{
-		const string LICENSE = "XTUN3Q0ZEdkRBMy9IREh4K1RMK0J5UFZlM0gzY3pIdGVBaFFVTjgrQlQ0dDYrVXNWeGF2S2Z6V" +
-			"URpNjJSQXc9PQoKcHJvZHVjdHM9c2RrLWFuZHJvaWQtNC4qCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5oZWxsb21hcC54YW" +
-			"1hcmluLmFuZHJvaWQKd2F0ZXJtYXJrPWRldmVsb3BtZW50CnZhbGlkVW50aWw9MjAxNi0wOS0xNQpvbmxpbmVMaWNlbnNlPTEK";
+		const string LICENSE = "XTUN3Q0ZIaGlMNGZFOU5OcmNYUVVoSHhYMDM1dXdmd1hBaFFKR2FDa1puc2RTdk5PWDVqT1FyL2JhU0c4MVE9PQoKYXBwVG9rZW49ZGU3N2ZlYzgtN2MyNC00NWI0LWEwZDItODM0Yjc4ODAwNjAyCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5oZWxsb21hcApvbmxpbmVMaWNlbnNlPTEKcHJvZHVjdHM9c2RrLXhhbWFyaW4tYW5kcm9pZC00LioKd2F0ZXJtYXJrPWN1c3RvbQo=";
 
 		MapView MapView { get; set; }
 
@@ -33,19 +32,22 @@ namespace HelloMap.Droid
 			MapView = (MapView)FindViewById(Resource.Id.mapView);
 
 			// Add base map
-			CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark);
+			CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 			MapView.Layers.Add(baseLayer);
 
-			// Set default location and zoom
+			// Set projection
 			Projection projection = MapView.Options.BaseProjection;
 
-			MapPos berlin = projection.FromWgs84(new MapPos(13.38933, 52.51704));
+			// Set default position and zoom
+			// Change projection of map so coordinates would fit on a mercator map
+			MapPos berlin = MapView.Options.BaseProjection.FromWgs84(new MapPos(13.38933, 52.51704));
 			MapView.SetFocusPos(berlin, 0);
 			MapView.SetZoom(10, 0);
 
-			// Load vis
-			string url = "http://documentation.carto.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json";
-			MapView.UpdateVis(url);
+			Marker marker = MapView.AddMarkerToPosition(berlin);
+
+			// Add simple event listener that changes size and/or color on map click
+			MapView.MapEventListener = new HelloMapEventListener(marker);
 		}
 
 	}
