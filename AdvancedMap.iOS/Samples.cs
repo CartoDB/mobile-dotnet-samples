@@ -15,6 +15,7 @@ namespace AdvancedMap.iOS
 
 			new HeaderController { Name = "Overlay data sources" },
 			new CustomRasterDatasourceController(),
+			new GroundOverlayController(),
 			new WmsMapController(),
 
 			new HeaderController { Name = "Vector objects" },
