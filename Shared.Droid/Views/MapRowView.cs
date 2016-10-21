@@ -1,75 +1,77 @@
 ﻿using System;
 using Android.Content;
 using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.Graphics.Drawables.Shapes;
+using Android.OS;
+using Android.Views;
 using Android.Widget;
 
 namespace Shared.Droid
 {
-	public class MapRowView : RelativeLayout
+	public class MapRowView : LinearLayout
 	{
 		public static int RowId = -1;
 
-		public string Title { 
-			get { 
-				return titleView.Text; 
-			} set { 
-				titleView.Text = value; 
-			} 
-		}
+		TextView title, description;
+		RelativeLayout topBorder;
 
-		public string Description { 
-			get { 
-				return descriptionView.Text; 
-			} set { 
-				descriptionView.Text = value; 
-			}
-		}
-
-		TextView titleView, descriptionView;
-
-		public MapRowView(Context context) : base (context)
+		public MapRowView(Context context) : base (context) 
 		{
 			Id = RowId;
 
-			Color nearWhite = Color.Rgb(240, 240, 240);
+			Orientation = Orientation.Vertical;
 
-			titleView = new TextView(context);
-			titleView.SetTypeface(Typeface.Create("sans-serif-light", TypefaceStyle.Bold), TypefaceStyle.Bold);
-			titleView.SetTextSize(Android.Util.ComplexUnitType.Dip, 15);
-			titleView.SetTextColor(nearWhite);
+			title = new TextView(context);
 
-			descriptionView = new TextView(context);
-			descriptionView.SetTypeface(Typeface.Create("sans-serif-thin", TypefaceStyle.Bold), TypefaceStyle.Bold);
-			descriptionView.SetTextSize(Android.Util.ComplexUnitType.Dip, 10);
-			descriptionView.SetTextColor(nearWhite);
+			title.SetTypeface(Typeface.Create("sans-serif-light", TypefaceStyle.Bold), TypefaceStyle.Bold);
+			title.SetTextSize(Android.Util.ComplexUnitType.Dip, 16);
+			title.SetTextColor(Color.Black);
+			title.Gravity = Android.Views.GravityFlags.CenterVertical;
 
-			AddView(titleView);
-			AddView(descriptionView);
+			description = new TextView(context);
+
+			description.SetTypeface(Typeface.Create("sans-serif-thin", TypefaceStyle.Bold), TypefaceStyle.Bold);
+			description.SetTextSize(Android.Util.ComplexUnitType.Dip, 13);
+			description.SetTextColor(Color.DarkGray);
+
+			topBorder = new RelativeLayout(context);
+
+			AddView(topBorder);
+			AddView(title);
+			AddView(description);
 		}
 
-		public void Update(Type type, int position)
+		public void Update(Type type)
 		{
-			Title = (position + 1) + ". " + type.GetTitle();
-			Description = type.GetDescription();
+			LayoutParams parameters = new LayoutParams(LayoutParams.WrapContent, LayoutParams.MatchParent);
+			parameters.SetMargins(10, 10, 10, 10);
 
-			int width = this.LayoutParameters.Width;
-			int height = this.LayoutParameters.Height;
+			title.Text = type.GetTitle();
+			title.LayoutParameters = parameters;
 
-			int titleHeight = (int)(height / 2.7f);
-			int descHeight = height - titleHeight;
+			ColorDrawable background;
 
-			int padding = width / 50;
+			if (type.IsHeader())
+			{
+				background = new ColorDrawable(Color.Black);
+				parameters = new LayoutParams(ViewGroup.LayoutParams.MatchParent, 15);
+				topBorder.LayoutParameters = parameters;
 
-			RelativeLayout.LayoutParams titleParams = new RelativeLayout.LayoutParams(width - padding, titleHeight);
-			titleParams.LeftMargin = padding;
+				description.Text = "";
+				description.LayoutParameters = new LayoutParams(0, 0);
+				SetBackgroundColor(Color.Rgb(200, 200, 200));
+			}
+			else {
+				background = null;
+				description.Text = type.GetDescription();
+				description.LayoutParameters = parameters;
+				SetBackgroundColor(Color.Rgb(240, 240, 240));
+			}
 
-			RelativeLayout.LayoutParams descriptionParams = new RelativeLayout.LayoutParams(width - padding, descHeight);
-			descriptionParams.TopMargin = titleHeight;
-			descriptionParams.LeftMargin = padding;
-
-			titleView.LayoutParameters = titleParams;
-			descriptionView.LayoutParameters = descriptionParams;
+			topBorder.Background = background;
 		}
+
 	}
 }
 

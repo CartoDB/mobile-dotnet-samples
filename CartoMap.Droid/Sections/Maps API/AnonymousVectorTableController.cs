@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Json;
 using Android.App;
 using Carto.Core;
@@ -9,8 +8,8 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity]
-	[ActivityDescription(Description = "A sample demonstrating how to use Carto Maps API with Raster tiles and UTFGrid")]
-	public class CartoUTFGridActivity : BaseMapActivity
+	[ActivityDescription(Description = "Usage of Carto Maps API with vector tiles")]
+	public class AnonymousVectorTableController : BaseMapActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
@@ -18,7 +17,7 @@ namespace CartoMap.Droid
 
 			JsonValue config = JsonUtils.UTFGridConfigJson;
 
-			CartoMapExtensions.ConfigureAnonymousVectorLayers(MapView, config);
+			MapView.ConfigureAnonymousVectorLayers(config);
 
 			// Animate map to the content area
 			MapPos newYork = MapView.Options.BaseProjection.FromWgs84(new MapPos(-74.0059, 40.7127));

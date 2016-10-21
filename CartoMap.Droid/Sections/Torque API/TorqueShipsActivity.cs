@@ -13,8 +13,8 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity]
-	[ActivityDescription(Description = "How to use Carto Torque tiles with CartoCSS styling")]
-	public class CartoTorqueActivity : BaseMapActivity
+	[ActivityDescription(Description = "Animated ship movement in WWII")]
+	public class TorqueShipsActivity : BaseMapActivity
 	{
 		const long FRAMETIME = 100;
 

@@ -9,6 +9,11 @@ namespace Shared.Droid
 {
 	static class Extensions
 	{
+		public static bool IsHeader(this Type type)
+		{
+			return type.GetTitle().Contains("Header");
+		}
+
 		public static string GetTitle(this Type type)
 		{
 			return type.Name.Replace("Activity", "");

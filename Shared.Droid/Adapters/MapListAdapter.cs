@@ -8,30 +8,6 @@ namespace Shared.Droid
 {
 	public class MapListAdapter : BaseAdapter<string>
 	{
-		const int MINHEIGHT = 150;
-
-		int rowHeight;
-
-		int RowHeight {
-			get {
-				if (rowHeight == 0)
-				{
-					int screenHeight = context.Resources.DisplayMetrics.HeightPixels;
-					int desiredHeight = screenHeight / 9;
-
-					if (desiredHeight < MINHEIGHT)
-					{
-						rowHeight = MINHEIGHT;
-					}
-					else {
-						rowHeight = desiredHeight;
-					}
-				}
-
-				return rowHeight;
-			}
-		}
-
 		List<Type> Items { get; set; }
 		Context context;
 
@@ -72,8 +48,7 @@ namespace Shared.Droid
 				view = new MapRowView(context);
 			}
 
-			view.LayoutParameters = new AbsListView.LayoutParams(parent.Width, RowHeight);
-			view.Update(item, position);
+			view.Update(item);
 
 			return view;
 		}
