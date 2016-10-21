@@ -24,6 +24,11 @@ namespace CartoMap.Droid
 		{
 			Type sample = Samples.FromPosition(position);
 
+			if (sample.IsHeader()) {
+				// Group headers aren't clickable
+				return;
+			}
+
 			StartActivity(new Intent(this, sample));
 		}
 	}
