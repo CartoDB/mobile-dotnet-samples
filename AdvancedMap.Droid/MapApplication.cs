@@ -21,8 +21,8 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate();
 
-			BaseMapActivity.ViewResource = Resource.Layout.Main;
-			BaseMapActivity.MapViewResource = Resource.Id.mapView;
+			MapBaseActivity.ViewResource = Resource.Layout.Main;
+			MapBaseActivity.MapViewResource = Resource.Id.mapView;
 
 			Log.ShowError = true;
 			Log.ShowWarn = true;

@@ -11,7 +11,7 @@ namespace CartoMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "Using Carto PostGIS Raster data")]
-	public class AnonymousRasterTableActivity : BaseMapActivity
+	public class AnonymousRasterTableActivity : MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{

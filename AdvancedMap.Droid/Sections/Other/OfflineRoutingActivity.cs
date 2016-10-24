@@ -27,7 +27,7 @@ namespace AdvancedMap.Droid
 	[ActivityDescription(Description = 
 	                     "Routing engine to calculate offline routes. " +
 						 "Packages are downloaded and, once available, routing works offline")]
-	public class OfflineRoutingActivity: BaseMapActivity
+	public class OfflineRoutingActivity: MapBaseActivity
 	{
 		// Add packages you want to download
 		internal static string[] downloadablePackages = { "EE-routing", "LV-routing", "LT-routing", "PL-routing" };

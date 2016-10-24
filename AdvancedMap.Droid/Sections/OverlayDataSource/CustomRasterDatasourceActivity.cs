@@ -10,7 +10,7 @@ namespace AdvancedMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "Raster layer on top of the vector base map to provide height information")]
-	public class RasterOverlayActivity : VectorBaseMapActivity
+	public class CustomRasterDatasourceActivity : VectorBaseMapActivity
 	{
 		const string HillsideRasterUrl = "http://tiles.wmflabs.org/hillshading/{zoom}/{x}/{y}.png";
 

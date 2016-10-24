@@ -7,7 +7,7 @@ namespace CartoMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "Vis displaying text on the map")]
-	public class FontsVisActivity : BaseMapActivity
+	public class FontsVisActivity : MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{

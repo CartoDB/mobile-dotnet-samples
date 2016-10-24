@@ -10,7 +10,7 @@ namespace AdvancedMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "Basic 2D objects to the map: lines, points, polygon with hole, texts and pop-ups")]
-	public class Overlays2DActivity: BaseMapActivity
+	public class Overlays2DActivity: MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{

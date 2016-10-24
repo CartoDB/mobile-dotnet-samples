@@ -15,7 +15,7 @@ using Shared.Droid;
 namespace Shared.Droid
 {
 	[Activity]
-	public class VectorBaseMapActivity : BaseMapActivity
+	public class VectorBaseMapActivity : MapBaseActivity
 	{
 		const string Menu_Language = "Language";
 		const string Menu_Style = "Style";

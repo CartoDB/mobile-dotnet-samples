@@ -11,7 +11,7 @@ namespace AdvancedMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "Uses bundled assets for the offline base map")]
-	public class OfflineVectorMapActivity: VectorBaseMapActivity
+	public class BundledMBTilesActivity: VectorBaseMapActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{

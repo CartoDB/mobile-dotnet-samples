@@ -7,18 +7,25 @@ namespace AdvancedMap.Droid
 	{
 		public const string IntentName = "INTENTNAME";
 
-		// List of demo activities
 		public static List<Type> List = new List<Type>(new Type[] {
+			typeof(BaseMapsHeader),
+			typeof(BaseMapsActivity),
+
+			typeof(OfflineMapsHeader),
+			typeof(PackageManagerActivity),
+			typeof(BundledMBTilesActivity),
+
+			typeof(OverlayDatasourcesHeader),
+			typeof(CustomRasterDatasourceActivity),
+			typeof(WmsMapActivity),
+
+			typeof(VectorElementsHeader),
+			typeof(Overlays2DActivity),
+
+			typeof(OtherMapHeader),
 			typeof (ClusteredGeoJSONCapitals),
 			typeof (GpsLocationMap),
-			typeof (Overlays2DActivity),
-			typeof (OfflineVectorMapActivity),
-			typeof (InteractivityMapActivity),
 			typeof (OfflineRoutingActivity),
-			typeof (PinMapActivity),
-			typeof (PackageManagerActivity),
-			typeof (RasterOverlayActivity),
-			typeof (WmsMapActivity)
 		});
 
 		public static Type FromPosition(int position) 

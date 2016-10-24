@@ -12,7 +12,7 @@ namespace CartoMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "Displays cities on the map via SQL query")]
-	public class SQLServiceActivity : BaseMapActivity
+	public class SQLServiceActivity : MapBaseActivity
 	{
 		const string query = "SELECT * FROM cities15000 WHERE population > 100000";
 

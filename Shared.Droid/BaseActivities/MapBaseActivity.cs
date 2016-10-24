@@ -18,7 +18,7 @@ using Shared.Droid;
 namespace Shared.Droid
 {
 	[Activity (Icon = "@mipmap/icon")]
-	public class BaseMapActivity : Activity
+	public class MapBaseActivity : Activity
 	{
 		public static int ViewResource { get; set; }
 

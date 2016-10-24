@@ -11,7 +11,7 @@ namespace AdvancedMap.Droid
 	[Activity]
 	[ActivityDescription(Description =
 	                     "Read data from GeoJSON and add clustered Markers (balloons with text) to the map")]
-	public class ClusteredGeoJSONCapitals: BaseMapActivity
+	public class ClusteredGeoJSONCapitals: MapBaseActivity
 	{
 		protected override void OnCreate (Android.OS.Bundle savedInstanceState)
 		{

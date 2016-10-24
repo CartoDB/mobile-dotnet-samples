@@ -19,7 +19,7 @@ namespace AdvancedMap.Droid
 	/// @author jaak
 	/// @translated by m@t
 	/// </summary>
-	[Activity(Label = "CARTO Mobile Samples", MainLauncher = true)]
+	[Activity(Label = "Advanced Mobile Samples", MainLauncher = true)]
 	public class LauncherListActivity : ListActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -37,6 +37,11 @@ namespace AdvancedMap.Droid
 		protected override void OnListItemClick(ListView l, View v, int position, long id)
 		{
 			Type sample = Samples.FromPosition(position);
+
+			if (sample.IsHeader()) {
+				// Group headers aren't clickable
+				return;
+			}
 
 			StartActivity(new Intent(this, sample));
 		}

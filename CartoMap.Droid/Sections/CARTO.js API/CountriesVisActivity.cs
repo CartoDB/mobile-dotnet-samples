@@ -8,7 +8,7 @@ namespace CartoMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "Vis displaying countries in different colors")]
-	public class CountriesVisActivity : BaseMapActivity
+	public class CountriesVisActivity : MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{

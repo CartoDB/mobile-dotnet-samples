@@ -9,7 +9,7 @@ namespace CartoMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "CARTO data as vector tiles from a named map")]
-	public class NamedMapActivity : BaseMapActivity
+	public class NamedMapActivity : MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{

@@ -120,7 +120,7 @@
     <Folder Include="Sections\BaseMap\" />
     <Folder Include="Sections\OfflineMap\" />
     <Folder Include="Sections\Other\" />
-    <Folder Include="Sections\OverlayDataSources\" />
+    <Folder Include="Sections\OverlayDataSource\" />
     <Folder Include="Sections\VectorObjects\" />
   </ItemGroup>
   <ItemGroup>
@@ -150,14 +150,14 @@
     <Compile Include="Sections\BaseMap\BaseMapsController.cs" />
     <Compile Include="Sections\OfflineMap\BundledMBTilesController.cs" />
     <Compile Include="Sections\OfflineMap\PackageManagerController.cs" />
-    <Compile Include="Sections\OverlayDataSources\WmsMapController.cs" />
+    <Compile Include="Sections\OverlayDataSource\WmsMapController.cs" />
     <Compile Include="Sections\Other\OfflineRoutingController.cs" />
     <Compile Include="Sections\VectorObjects\OverlaysController.cs" />
     <Compile Include="Sections\Other\GpsLocationMapController.cs" />
     <Compile Include="Sections\Other\ClusteredGeoJsonController.cs" />
-    <Compile Include="Sections\OverlayDataSources\CustomRasterDatasourceController.cs" />
+    <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceController.cs" />
     <Compile Include="Sections\Other\CaptureController.cs" />
-    <Compile Include="Sections\OverlayDataSources\GroundOverlayController.cs" />
+    <Compile Include="Sections\OverlayDataSource\GroundOverlayController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\arrow.png" />

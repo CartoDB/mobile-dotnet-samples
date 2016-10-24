@@ -12,7 +12,7 @@ namespace AdvancedMap.iOS
 {
 	public class BaseMapsController : VectorMapBaseController
 	{
-		public override string Name { get { return "Carto Base Maps"; } }
+		public override string Name { get { return "Choice of different Base Maps"; } }
 
 		public override string Description
 		{

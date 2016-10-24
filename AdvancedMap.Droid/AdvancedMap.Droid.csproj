@@ -51,28 +51,33 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Json" />
     <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.Android.4.0.0-pre-135\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.Android.4.0.0-pre-153\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples.cs" />
-    <Compile Include="Adapters\PackageManagerAdapter.cs" />
-    <Compile Include="Activities\List\PackageManagerActivity.cs" />
-    <Compile Include="Activities\Map\ClusteredGeoJSONCapitalsActivity.cs" />
-    <Compile Include="Activities\Map\GpsLocationMapActivity.cs" />
-    <Compile Include="Activities\Map\OfflineRoutingActivity.cs" />
-    <Compile Include="Activities\Map\OfflineVectorMapActivity.cs" />
-    <Compile Include="Activities\Map\Overlays2DActivity.cs" />
-    <Compile Include="Activities\Map\PackagedMapActivity.cs" />
-    <Compile Include="Activities\Map\PinMapActivity.cs" />
-    <Compile Include="Activities\Map\RasterOverlayActivity.cs" />
-    <Compile Include="Activities\Map\WmsMapActivity.cs" />
-    <Compile Include="Activities\List\LauncherListActivity.cs" />
-    <Compile Include="Views\PackageManagerButton.cs" />
-    <Compile Include="Activities\Map\InteractivityMapActivity.cs" />
     <Compile Include="MapApplication.cs" />
+    <Compile Include="Sections\BaseMap\BaseMapsActivity.cs" />
+    <Compile Include="Sections\Other\ClusteredGeoJSONCapitalsActivity.cs" />
+    <Compile Include="Sections\Other\GpsLocationMapActivity.cs" />
+    <Compile Include="Sections\Other\OfflineRoutingActivity.cs" />
+    <Compile Include="Sections\OfflineMap\BundledMBTilesActivity.cs" />
+    <Compile Include="Sections\OfflineMap\PackageManager\PackageManagerActivity.cs" />
+    <Compile Include="Sections\OfflineMap\PackageManager\PackagedMapActivity.cs" />
+    <Compile Include="Sections\OfflineMap\PackageManager\PackageManagerAdapter.cs" />
+    <Compile Include="LauncherListActivity.cs" />
+    <Compile Include="Sections\VectorElement\Overlays2DActivity.cs" />
+    <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceActivity.cs" />
+    <Compile Include="Sections\OverlayDataSource\WmsMapActivity.cs" />
+    <Compile Include="InteractivityMapActivity.cs" />
+    <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageManagerButton.cs" />
+    <Compile Include="Sections\_Header\BaseMapsHeader.cs" />
+    <Compile Include="Sections\_Header\OfflineMapsHeader.cs" />
+    <Compile Include="Sections\_Header\OtherMapHeader.cs" />
+    <Compile Include="Sections\_Header\OverlayDatasourcesHeader.cs" />
+    <Compile Include="Sections\_Header\VectorElementsHeader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -101,11 +106,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />
-    <Folder Include="Activities\" />
-    <Folder Include="Activities\List\" />
-    <Folder Include="Activities\Map\" />
-    <Folder Include="Adapters\" />
-    <Folder Include="Views\" />
+    <Folder Include="Sections\" />
+    <Folder Include="Sections\_Header\" />
+    <Folder Include="Sections\BaseMap\" />
+    <Folder Include="Sections\OfflineMap\" />
+    <Folder Include="Sections\Other\" />
+    <Folder Include="Sections\OverlayDataSource\" />
+    <Folder Include="Sections\VectorElement\" />
+    <Folder Include="Sections\OfflineMap\PackageManager\" />
+    <Folder Include="Sections\OfflineMap\PackageManager\Views\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\world_ntvt_0_4.mbtiles" />

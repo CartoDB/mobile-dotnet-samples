@@ -6,7 +6,7 @@ namespace CartoMap.Droid
 {
 	[Activity]
 	[ActivityDescription(Description = "Packaging tiles (?) //TODO")]
-	public class TilePackagerActivity : BaseMapActivity
+	public class TilePackagerActivity : MapBaseActivity
 	{
 		
 	}

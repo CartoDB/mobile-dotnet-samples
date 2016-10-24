@@ -22,7 +22,7 @@ namespace AdvancedMap.Droid
 {
 	[Activity]//MyLocationActivity
 	[ActivityDescription(Description = "Shows user GPS location on map.")]
-	public class GpsLocationMap : BaseMapActivity, ILocationListener
+	public class GpsLocationMap : MapBaseActivity, ILocationListener
 	{
 		/// <summary>
 		/// private field with the current coordinates
