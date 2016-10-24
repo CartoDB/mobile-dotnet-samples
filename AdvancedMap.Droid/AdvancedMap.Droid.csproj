@@ -77,6 +77,10 @@
     <Compile Include="Sections\_Header\OtherMapHeader.cs" />
     <Compile Include="Sections\_Header\OverlayDatasourcesHeader.cs" />
     <Compile Include="Sections\_Header\VectorElementsHeader.cs" />
+    <Compile Include="Sections\BaseMap\Views\BaseMapsView.cs" />
+    <Compile Include="Sections\BaseMap\Views\StyleButton\Menu\BaseMapsContent.cs" />
+    <Compile Include="Sections\BaseMap\Views\StyleButton\Menu\BaseMapsSection.cs" />
+    <Compile Include="Sections\BaseMap\Views\StyleButton\ChangeStyleButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -114,6 +118,9 @@
     <Folder Include="Sections\VectorElement\" />
     <Folder Include="Sections\OfflineMap\PackageManager\" />
     <Folder Include="Sections\OfflineMap\PackageManager\Views\" />
+    <Folder Include="Sections\BaseMap\Views\" />
+    <Folder Include="Sections\BaseMap\Views\StyleButton\" />
+    <Folder Include="Sections\BaseMap\Views\StyleButton\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\world_ntvt_0_4.mbtiles" />

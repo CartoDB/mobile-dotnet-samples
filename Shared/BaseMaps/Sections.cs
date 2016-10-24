@@ -22,23 +22,22 @@ namespace Shared
 					}
 				});
 
+				List<NameValuePair> cartoStyles = new List<NameValuePair> {
+						new NameValuePair { Name = "Positron", Value = "positron" },
+						new NameValuePair { Name = "Dark Matter", Value = "dark_matter" }
+				};
+
 				sections.Add(new Section {
 					OSM = new NameValuePair { Name = "MapZen", Value = "mapzen.osm" },
 					Type = MapType.Vector,
-					Styles = new List<NameValuePair> { 
-						new NameValuePair { Name = "Positron", Value = "positron" },
-						new NameValuePair { Name = "Dark Matter", Value = "dark_matter" }
-					}
+					Styles = cartoStyles
 				});
 
 				sections.Add(new Section
 				{
 					OSM = new NameValuePair { Name = "CARTO", Value = "carto.osm" },
 					Type = MapType.Raster,
-					Styles = new List<NameValuePair> {
-						new NameValuePair { Name = "Positron", Value = "positron" },
-						new NameValuePair { Name = "Dark Matter", Value = "dark_matter" }
-					}
+					Styles = cartoStyles
 				});
 
 				return sections;
