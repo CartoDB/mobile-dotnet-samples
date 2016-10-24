@@ -110,18 +110,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Controllers\Map\" />
-    <Folder Include="Views\" />
-    <Folder Include="DataSources\" />
-    <Folder Include="Views\PackageManager\" />
-    <Folder Include="Recognizers\" />
+    <Folder Include="ForceTouch\" />
     <Folder Include="Sections\" />
     <Folder Include="Sections\BaseMap\" />
     <Folder Include="Sections\OfflineMap\" />
     <Folder Include="Sections\Other\" />
     <Folder Include="Sections\OverlayDataSource\" />
     <Folder Include="Sections\VectorObjects\" />
+    <Folder Include="Sections\OfflineMap\PackageManager\" />
+    <Folder Include="Sections\OfflineMap\PackageManager\Views\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -140,16 +137,10 @@
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Samples.cs" />
-    <Compile Include="DataSources\PackageListDataSource.cs" />
     <Compile Include="Device.cs" />
-    <Compile Include="Views\PackageManager\PackageListCell.cs" />
-    <Compile Include="Views\PackageManager\PackageManagerButton.cs" />
-    <Compile Include="Views\PackageManager\PackageManagerListView.cs" />
-    <Compile Include="Controllers\Map\InteractivityMapController.cs" />
-    <Compile Include="Recognizers\ForceTouchRecognizer.cs" />
+    <Compile Include="ForceTouch\ForceTouchRecognizer.cs" />
     <Compile Include="Sections\BaseMap\BaseMapsController.cs" />
     <Compile Include="Sections\OfflineMap\BundledMBTilesController.cs" />
-    <Compile Include="Sections\OfflineMap\PackageManagerController.cs" />
     <Compile Include="Sections\OverlayDataSource\WmsMapController.cs" />
     <Compile Include="Sections\Other\OfflineRoutingController.cs" />
     <Compile Include="Sections\VectorObjects\OverlaysController.cs" />
@@ -158,6 +149,12 @@
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceController.cs" />
     <Compile Include="Sections\Other\CaptureController.cs" />
     <Compile Include="Sections\OverlayDataSource\GroundOverlayController.cs" />
+    <Compile Include="ForceTouch\ForceTouchExampleController.cs" />
+    <Compile Include="Sections\OfflineMap\PackageManager\PackageManagerController.cs" />
+    <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageListCell.cs" />
+    <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageManagerButton.cs" />
+    <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageManagerListView.cs" />
+    <Compile Include="Sections\OfflineMap\PackageManager\PackageListDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\arrow.png" />

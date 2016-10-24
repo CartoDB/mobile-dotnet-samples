@@ -69,6 +69,8 @@ namespace Shared.iOS
 		public OptionsMenu Menu { get; set; }
 		MenuButton MenuButton { get; set; }
 
+		VectorLayer VectorLayer { get; set; }
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
@@ -111,6 +113,8 @@ namespace Shared.iOS
 
 			MenuButton = new MenuButton();
 			NavigationItem.RightBarButtonItem = MenuButton;
+
+			MapView.InitializeVectorTileListener(VectorLayer);
 
 			UpdateBaseLayer();
 		}

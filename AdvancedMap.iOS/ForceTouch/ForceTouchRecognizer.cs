@@ -53,10 +53,16 @@ namespace AdvancedMap.iOS
 
 	public class ForceEventArgs : EventArgs
 	{
-		public ForceType Type;
+		public nfloat Force { get; set; }
+
+		public double RoundedForce { get { return Math.Round(Force, 2); } }
+
+		public ForceType Type { get; set; }
 
 		public ForceEventArgs(nfloat force)
 		{
+			Force = force;
+
 			// TODO These numbers may need to be tweaked
 			if (force > 5)
 			{
