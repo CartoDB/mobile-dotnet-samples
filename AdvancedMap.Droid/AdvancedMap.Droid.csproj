@@ -71,7 +71,6 @@
     <Compile Include="Sections\VectorElement\Overlays2DActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\WmsMapActivity.cs" />
-    <Compile Include="InteractivityMapActivity.cs" />
     <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageManagerButton.cs" />
     <Compile Include="Sections\_Header\BaseMapsHeader.cs" />
     <Compile Include="Sections\_Header\OfflineMapsHeader.cs" />

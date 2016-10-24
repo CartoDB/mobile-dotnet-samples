@@ -51,11 +51,15 @@ namespace Shared.Droid
 			{ "Chinese", "zh" }
 		};
 
+		VectorLayer VectorLayer { get; set; }
+
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
 			MapView.Options.ZoomRange = new MapRange(0, 20);
+
+			MapView.InitializeVectorTileListener(VectorLayer);
 
 			UpdateBaseLayer();
 		}

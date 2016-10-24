@@ -51,7 +51,7 @@ namespace AdvancedMap.iOS
 		{
 			base.UpdateBaseLayer();
 
-			MapView.InitializeVectorLayer(VectorLayer);
+			MapView.InitializeVectorTileListener(VectorLayer);
 		}
 	}
 }
