@@ -17,6 +17,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
     <Folder Include="$(MSBuildThisFileDirectory)Utils\" />
     <Folder Include="$(MSBuildThisFileDirectory)Constants\" />
+    <Folder Include="$(MSBuildThisFileDirectory)BaseMaps\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CartoVisBuilderWithGridEvent.cs" />
@@ -42,5 +43,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\CartoMapExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\HelloMapEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Overlays.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseMaps\Section.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseMaps\Sections.cs" />
   </ItemGroup>
 </Project>
