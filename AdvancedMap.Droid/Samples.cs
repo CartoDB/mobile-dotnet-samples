@@ -22,10 +22,13 @@ namespace AdvancedMap.Droid
 			typeof(VectorElementsHeader),
 			typeof(Overlays2DActivity),
 
+			typeof(GISHeader),
+			typeof(BasicEditableOverlayActivity),
+
 			typeof(OtherMapHeader),
 			typeof (ClusteredGeoJSONCapitals),
 			typeof (GpsLocationMap),
-			typeof (OfflineRoutingActivity),
+			typeof (OfflineRoutingActivity)
 		});
 
 		public static Type FromPosition(int position) 

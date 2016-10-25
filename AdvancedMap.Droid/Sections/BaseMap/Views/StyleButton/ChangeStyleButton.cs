@@ -11,8 +11,6 @@ namespace AdvancedMap.Droid
 {
 	public class ChangeStyleButton : RelativeLayout
 	{
-		public EventHandler<StyleEventArgs> StyleChanged;
-
 		public ChangeStyleButton(Context context) : base(context)
 		{
 			DisplayMetrics metrics = context.Resources.DisplayMetrics;
@@ -43,11 +41,7 @@ namespace AdvancedMap.Droid
 				// No elevation for you, my friend
 			}
 		}
-	}
 
-	public class StyleEventArgs : EventArgs
-	{
-		
 	}
 }
 

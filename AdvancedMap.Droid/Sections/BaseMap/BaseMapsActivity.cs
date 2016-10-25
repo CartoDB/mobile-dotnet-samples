@@ -32,17 +32,17 @@ namespace AdvancedMap.Droid
 		{
 			base.OnPause();
 
-			ContentView.Button.StyleChanged += OnStyleChanged;
+			ContentView.Button.Click += OnStyleChanged;
 		}
 
 		protected override void OnResume()
 		{
 			base.OnResume();
 
-			ContentView.Button.StyleChanged -= OnStyleChanged;
+			ContentView.Button.Click -= OnStyleChanged;
 		}
 
-		void OnStyleChanged(object sender, StyleEventArgs e)
+		void OnStyleChanged(object sender, EventArgs e)
 		{
 			
 		}

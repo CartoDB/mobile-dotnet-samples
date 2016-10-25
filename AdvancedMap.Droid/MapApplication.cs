@@ -24,6 +24,7 @@ namespace AdvancedMap.Droid
 			MapBaseActivity.ViewResource = Resource.Layout.Main;
 			MapBaseActivity.MapViewResource = Resource.Id.mapView;
 
+			Log.ShowInfo = true;
 			Log.ShowError = true;
 			Log.ShowWarn = true;
 

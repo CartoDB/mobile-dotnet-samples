@@ -45,5 +45,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Overlays.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseMaps\Section.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseMaps\Sections.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\LocalVectorDataSourceExtensions.cs" />
   </ItemGroup>
 </Project>

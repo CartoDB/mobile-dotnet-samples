@@ -51,7 +51,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Json" />
     <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.Android.4.0.0-pre-153\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.Android.4.0.0-pre-157\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +81,8 @@
     <Compile Include="Sections\BaseMap\Views\StyleButton\Menu\BaseMapsContent.cs" />
     <Compile Include="Sections\BaseMap\Views\StyleButton\Menu\BaseMapsSection.cs" />
     <Compile Include="Sections\BaseMap\Views\StyleButton\ChangeStyleButton.cs" />
+    <Compile Include="Sections\_Header\GISHeader.cs" />
+    <Compile Include="Sections\GIS\BasicEditableOverlayActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -121,6 +123,7 @@
     <Folder Include="Sections\BaseMap\Views\" />
     <Folder Include="Sections\BaseMap\Views\StyleButton\" />
     <Folder Include="Sections\BaseMap\Views\StyleButton\Menu\" />
+    <Folder Include="Sections\GIS\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\world_ntvt_0_4.mbtiles" />

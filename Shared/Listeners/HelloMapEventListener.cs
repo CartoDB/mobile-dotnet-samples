@@ -44,7 +44,7 @@ namespace Shared
 			marker.Style = builder.BuildStyle();
 		}
 
-		private int GetRandomInt(int min, int max)
+		int GetRandomInt(int min, int max)
 		{
 			return random.Next(max - min) + min;
 		}

@@ -33,8 +33,8 @@ namespace Shared.Droid
 			base.OnCreate(savedInstanceState);
 
 			// Set our view from the "main" layout resource
-
 			SetContentView(ViewResource);
+
 			MapView = (MapView)FindViewById(MapViewResource);
 
 			BaseProjection = new EPSG3857();
