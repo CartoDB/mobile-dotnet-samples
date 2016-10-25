@@ -43,13 +43,13 @@ namespace AdvancedMap.Droid
 				new MapPos(-5000000, -5000000), new MapPos(5000000, -5000000), new MapPos(0, 10000000) 
 			});
 
-			// Add a vector element even listener to select elements (on element click)
+			// Add a vector element event listener to select elements (on element click)
 			editLayer.VectorElementEventListener = new VectorElementSelectEventListener(editLayer);
 
-			// Add a map even listener to deselect element (on map click)
+			// Add a map event listener to deselect element (on map click)
 			MapView.MapEventListener = new VectorElementDeselectEventListener(editLayer);
 
-			// Add the vector element edit even listener
+			// Add the vector element edit event listener
 			editLayer.VectorEditEventListener = new BasicEditEventListener(source);
 		}
 
