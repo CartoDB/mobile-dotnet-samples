@@ -25,6 +25,9 @@ namespace AdvancedMap.iOS
 			new BundledMBTilesController(),
 			new PackageManagerController(),
 
+			new HeaderController { Name = "GIS" },
+			new BasicEditableOverlayController(),
+
 			new HeaderController { Name = "Other" },
 			new CaptureController(),
 			new ClusteredGeoJsonController(),

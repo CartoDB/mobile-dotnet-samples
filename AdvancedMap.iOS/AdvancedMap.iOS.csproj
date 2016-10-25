@@ -97,7 +97,7 @@
       <HintPath>..\packages\Xamarin.TestCloud.Agent.0.20.1\lib\Xamarin.iOS10\Calabash.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.iOS">
-      <HintPath>..\packages\CartoMobileSDK.iOS.4.0.0-pre-151\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.iOS.4.0.0-pre-157\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +119,7 @@
     <Folder Include="Sections\VectorObjects\" />
     <Folder Include="Sections\OfflineMap\PackageManager\" />
     <Folder Include="Sections\OfflineMap\PackageManager\Views\" />
+    <Folder Include="Sections\GIS\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -155,6 +156,7 @@
     <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageManagerButton.cs" />
     <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageManagerListView.cs" />
     <Compile Include="Sections\OfflineMap\PackageManager\PackageListDataSource.cs" />
+    <Compile Include="Sections\GIS\BasicEditableOverlayController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\arrow.png" />

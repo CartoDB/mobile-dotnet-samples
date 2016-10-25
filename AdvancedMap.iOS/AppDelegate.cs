@@ -19,7 +19,7 @@ namespace AdvancedMap.iOS
 		{
 			MapView.RegisterLicense(License);
 
-			UIViewController initial = new ForceTouchExampleController();//new MapListController("Advanced Map Samples", Samples.RowSources);
+			UIViewController initial = new MapListController("Advanced Map Samples", Samples.RowSources);
 			Controller = new UINavigationController(initial);
 
 			Controller.NavigationBarHidden = false;
