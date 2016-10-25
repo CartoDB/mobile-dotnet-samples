@@ -19,6 +19,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Constants\" />
     <Folder Include="$(MSBuildThisFileDirectory)BaseMaps\" />
     <Folder Include="$(MSBuildThisFileDirectory)Listeners\GISListeners\" />
+    <Folder Include="$(MSBuildThisFileDirectory)EventArgs\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CartoVisBuilderWithGridEvent.cs" />
@@ -50,5 +51,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\GISListeners\VectorElementSelectEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\GISListeners\VectorElementDeselectEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\GISListeners\BasicEditEventListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EventArgs\ScreenshotEventArgs.cs" />
   </ItemGroup>
 </Project>

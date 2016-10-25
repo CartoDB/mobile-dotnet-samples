@@ -58,5 +58,13 @@ namespace Shared.Droid
 
 			return base.OnOptionsItemSelected(item);
 		}
+
+		protected void Alert(string message)
+		{
+			RunOnUiThread(delegate
+			{
+				Toast.MakeText(this, message, ToastLength.Short).Show();
+			});
+		}
 	}
 }

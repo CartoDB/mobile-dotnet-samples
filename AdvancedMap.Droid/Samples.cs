@@ -8,6 +8,7 @@ namespace AdvancedMap.Droid
 		public const string IntentName = "INTENTNAME";
 
 		public static List<Type> List = new List<Type>(new Type[] {
+
 			typeof(BaseMapsHeader),
 			typeof(BaseMapsActivity),
 
@@ -26,9 +27,10 @@ namespace AdvancedMap.Droid
 			typeof(BasicEditableOverlayActivity),
 
 			typeof(OtherMapHeader),
-			typeof (ClusteredGeoJSONCapitals),
-			typeof (GpsLocationMap),
-			typeof (OfflineRoutingActivity)
+			typeof(ScreenCaptureActivity),
+			typeof(ClusteredGeoJSONCapitals),
+			typeof(GpsLocationMap),
+			typeof(OfflineRoutingActivity)
 		});
 
 		public static Type FromPosition(int position) 

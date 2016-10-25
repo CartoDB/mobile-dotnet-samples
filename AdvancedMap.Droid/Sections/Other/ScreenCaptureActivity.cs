@@ -1,31 +1,28 @@
 ﻿using System;
+using System.IO;
+using Android.App;
 using Carto.Core;
 using Carto.DataSources;
-using Carto.Graphics;
 using Carto.Layers;
 using Carto.Renderers;
 using Carto.Styles;
 using Carto.Ui;
 using Carto.Utils;
 using Carto.VectorElements;
-using Foundation;
 using Shared;
-using Shared.iOS;
-using UIKit;
+using Shared.Droid;
 
-namespace AdvancedMap.iOS
+namespace AdvancedMap.Droid
 {
-	public class CaptureController : MapBaseController
+	[Activity]
+	[ActivityDescription(Description = "Captures rendered MapView as a Bitmap")]
+	public class ScreenCaptureActivity : MapBaseActivity
 	{
-		public override string Name { get { return "Screencapture"; } }
-
-		public override string Description { get { return "Captures rendered MapView as a Bitmap"; } }
-
 		RenderListener listener;
 
-		public override void ViewDidLoad()
+		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
-			base.ViewDidLoad();
+			base.OnCreate(savedInstanceState);
 
 			// Initialize a local vector data source
 			LocalVectorDataSource source = new LocalVectorDataSource(BaseProjection);
@@ -39,8 +36,8 @@ namespace AdvancedMap.iOS
 			layer.VisibleZoomRange = new MapRange(0, 18);
 
 			// Create marker style
-			UIImage image = UIImage.FromFile("marker.png");
-			Bitmap markerBitmap = BitmapUtils.CreateBitmapFromUIImage(image);
+			Android.Graphics.Bitmap image = Android.Graphics.BitmapFactory.DecodeResource(Resources, Resource.Drawable.marker);
+			Carto.Graphics.Bitmap markerBitmap = BitmapUtils.CreateBitmapFromAndroidBitmap(image);
 
 			MarkerStyleBuilder builder = new MarkerStyleBuilder();
 			builder.Bitmap = markerBitmap;
@@ -60,25 +57,25 @@ namespace AdvancedMap.iOS
 			MapView.MapRenderer.CaptureRendering(listener, true);
 		}
 
-		public override void ViewWillAppear(bool animated)
+		protected override void OnPause()
 		{
-			base.ViewWillAppear(animated);
-
-			listener.ScreenCaptured += OnScreenCapture;
-		}
-
-		public override void ViewWillDisappear(bool animated)
-		{
-			base.ViewWillDisappear(animated);
+			base.OnPause();
 
 			listener.ScreenCaptured -= OnScreenCapture;
+		}
+
+		protected override void OnResume()
+		{
+			base.OnResume();
+
+			listener.ScreenCaptured += OnScreenCapture;
 		}
 
 		void OnScreenCapture(object sender, ScreenshotEventArgs e)
 		{
 			if (e.IsOK)
 			{
-				Alert("Great success! Screenshot saved as: " + e.Path);
+				Alert("Great success! Screenshot saved to: " + e.Path);
 			}
 			else {
 				Alert("Error! " + e.Message);
@@ -100,38 +97,41 @@ namespace AdvancedMap.iOS
 			this.map = map;
 		}
 
-		public override void OnMapRendered(Bitmap bitmap)
+		public override void OnMapRendered(Carto.Graphics.Bitmap bitmap)
 		{
 			if (!map.FocusPos.Equals(position))
 			{
 				position = map.FocusPos;
 				number++;
 
-				UIImage image = BitmapUtils.CreateUIImageFromBitmap(bitmap);
+				Android.Graphics.Bitmap image = BitmapUtils.CreateAndroidBitmapFromBitmap(bitmap);
 
 				string folder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 				string filename = number + "png";
 
-				string path = System.IO.Path.Combine(folder, filename);
+				string path = Path.Combine(folder, filename);
 
-				NSData data = image.AsPNG();
-				NSError error;
+				string message = null;
 
-				bool success = data.Save(path, false, out error);
-
-				if (ScreenCaptured != null) {
-
-					ScreenshotEventArgs args = new ScreenshotEventArgs { Path = path };
-
-					if (!success)
+				try
+				{
+					using (var stream = new FileStream(path, FileMode.Create))
 					{
-						args.Message = error.LocalizedDescription;
+						image.Compress(Android.Graphics.Bitmap.CompressFormat.Jpeg, 100, stream);
 					}
+				}
+				catch(Exception e) {
+					message = e.Message;
+				}
 
+				if (ScreenCaptured != null)
+				{
+					ScreenshotEventArgs args = new ScreenshotEventArgs { Path = path, Message = message };
 					ScreenCaptured(this, args);
 				}
 			}
 		}
+
 	}
 }
 
