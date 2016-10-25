@@ -29,6 +29,7 @@ namespace AdvancedMap.Droid
 			typeof(OtherMapHeader),
 			typeof(ScreenCaptureActivity),
 			typeof(ClusteredGeoJSONCapitals),
+			typeof(CustomPopupActivity),
 			typeof(GpsLocationMap),
 			typeof(OfflineRoutingActivity)
 		});

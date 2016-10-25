@@ -84,6 +84,7 @@
     <Compile Include="Sections\_Header\GISHeader.cs" />
     <Compile Include="Sections\GIS\BasicEditableOverlayActivity.cs" />
     <Compile Include="Sections\Other\ScreenCaptureActivity.cs" />
+    <Compile Include="Sections\Other\CustomPopupActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
