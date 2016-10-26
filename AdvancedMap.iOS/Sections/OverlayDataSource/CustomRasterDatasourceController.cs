@@ -27,8 +27,8 @@ namespace AdvancedMap.iOS
 			HTTPTileDataSource tileSource = new HTTPTileDataSource(0, 24, HillsideRasterUrl);
 
 			// Add persistent caching datasource, tiles will be stored locally on persistent storage
-			PersistentCacheTileDataSource cachedSource =
-				new PersistentCacheTileDataSource(tileSource, Utils.GetDocumentDirectory() + "mapcache_hills.db");
+			string path = Utils.GetDocumentDirectory() + "mapcache_hills.db";
+			PersistentCacheTileDataSource cachedSource = new PersistentCacheTileDataSource(tileSource, path);
 
 			// Initialize a raster layer with the previous data source
 			RasterTileLayer hillshadeLayer = new RasterTileLayer(cachedSource);

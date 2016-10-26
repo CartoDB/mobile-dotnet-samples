@@ -47,7 +47,13 @@ namespace Shared.iOS
 
 		public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			UIViewController controller = Items[indexPath.Row].Controller;
+			MapListRowSource item = Items[indexPath.Row];
+
+			if (item.IsHeader) {
+				return;
+			}
+
+			UIViewController controller = item.Controller;
 
 			if (MapSelected != null) {
 				MapSelected(new object(), new ControllerEventArgs { Controller = controller });
