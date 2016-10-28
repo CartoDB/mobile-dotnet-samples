@@ -79,7 +79,7 @@ namespace Shared
 				json.Add("version", "1.0.1");
 				json.Add("stat_tag", StatTag);
 
-				JsonArray layers = new JsonArray();
+				JsonArray layerArray = new JsonArray();
 				JsonObject layerJson = new JsonObject();
 
 				layerJson.Add("type", "cartodb");
@@ -108,9 +108,9 @@ namespace Shared
 				attributesJson.Add("columns", columnJson);
 				optionJson.Add("attributes", attributesJson);
 				layerJson.Add("options", optionJson);
-				layers.Add(layerJson);
+				layerArray.Add(layerJson);
 
-				json.Add("layers", layers);
+				json.Add("layers", layerArray);
 
 				return json;
 			}

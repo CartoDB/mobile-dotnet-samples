@@ -114,12 +114,15 @@ public class HttpWmsTileDataSource : HTTPTileDataSource
 		{
 			MapBounds bounds = proj.Bounds;
 
+			// World size (bounds), approx 40000km
 			double boundWidth = bounds.Max.X - bounds.Min.X;
 			double boundHeight = bounds.Max.Y - bounds.Min.Y;
 
+				
 			int xCount = Math.Max(1, (int)Math.Round(boundWidth / boundHeight));
 			int yCount = Math.Max(1, (int)Math.Round(boundHeight / boundWidth));
 
+			// Resolution
 			double resx = boundWidth / xCount / (tileSize * (double)(1 << (zoom)));
 			double resy = boundHeight / yCount / (tileSize * (double)(1 << (zoom)));
 

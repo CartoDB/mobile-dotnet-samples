@@ -21,7 +21,7 @@ namespace AdvancedMap.iOS
 		{
 			get
 			{
-				return "Shows user GPS location on map.";
+				return "Shows user GPS location on map";
 			}
 		}
 
@@ -45,7 +45,7 @@ namespace AdvancedMap.iOS
 			markerSource = new LocalVectorDataSource(MapView.Options.BaseProjection);
 			var _markerLayer = new VectorLayer(markerSource);
 			MapView.Layers.Add(_markerLayer);
-		}
+		}	
 
 		public override void ViewWillAppear(bool animated)
 		{
