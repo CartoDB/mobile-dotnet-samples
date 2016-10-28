@@ -52,5 +52,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\GISListeners\VectorElementDeselectEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\GISListeners\BasicEditEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventArgs\ScreenshotEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\RendererExtensions.cs" />
   </ItemGroup>
 </Project>

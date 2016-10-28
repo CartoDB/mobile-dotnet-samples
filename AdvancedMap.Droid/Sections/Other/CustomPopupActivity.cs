@@ -8,6 +8,7 @@ using Carto.Styles;
 using Carto.Ui;
 using Carto.Utils;
 using Carto.VectorElements;
+using Shared;
 using Shared.Droid;
 
 namespace AdvancedMap.Droid
@@ -103,7 +104,7 @@ namespace AdvancedMap.Droid
 			float screenWidth = popupDrawInfo.ScreenBounds.GetWidth() * PXTODP;
 			float screenHeight = popupDrawInfo.ScreenBounds.GetHeight() * PXTODP;
 
-			// Update sizes based on scale
+			// Update sizes based on scale (uses extension method, cf. Shared/Extensions
 			int fontSize = FontSize.Update(DPToPX);
 
 			int triangleWidth = TriangleSize.Update(DPToPX);
@@ -192,14 +193,6 @@ namespace AdvancedMap.Droid
 		public override bool OnPopupClicked(PopupClickInfo popupClickInfo)
 		{
 			return base.OnPopupClicked(popupClickInfo);
-		}
-	}
-
-	public static class RendererExtensions
-	{
-		public static int Update(this int original, float ratio)
-		{
-			return (int)(original * ratio); 
 		}
 	}
 }

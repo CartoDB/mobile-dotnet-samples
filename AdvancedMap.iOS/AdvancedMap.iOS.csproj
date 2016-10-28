@@ -157,6 +157,7 @@
     <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageManagerListView.cs" />
     <Compile Include="Sections\OfflineMap\PackageManager\PackageListDataSource.cs" />
     <Compile Include="Sections\GIS\BasicEditableOverlayController.cs" />
+    <Compile Include="Sections\Other\CustomPopupController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\arrow.png" />
