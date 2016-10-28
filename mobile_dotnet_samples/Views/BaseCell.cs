@@ -18,6 +18,7 @@ namespace Shared.iOS
 			title = new UILabel();
 
 			description = new UILabel();
+			description.TextColor = UIColor.DarkGray;
 
 			AddSubviews(title, description);
 		}
