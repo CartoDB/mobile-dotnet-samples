@@ -19,8 +19,9 @@ namespace AdvancedMap.iOS
 			new WmsMapController(),
 
 			new HeaderController { Name = "Vector objects" },
-			new OverlaysController(),
 			new BasicEditableOverlayController(),
+			new OverlaysController(),
+			new ClusteredMarkersController(),
 
 			new HeaderController { Name = "Offline maps" },
 			new BundledMapController(),
@@ -29,7 +30,6 @@ namespace AdvancedMap.iOS
 			new HeaderController { Name = "Other" },
 			new CaptureController(),
 			new CustomPopupController(),
-			new ClusteredGeoJsonController(),
 			new GpsLocationMapController(),
 			new OfflineRoutingController(),
 		};

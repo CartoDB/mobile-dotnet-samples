@@ -2,7 +2,7 @@
 using System;
 using UIKit;
 
-namespace Shared.iOS
+namespace AdvancedMap.iOS
 {
 	public class MenuButton : UIBarButtonItem
 	{

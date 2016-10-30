@@ -2,9 +2,10 @@
 using System;
 using System.Collections.Generic;
 using CoreGraphics;
+using Shared;
 using UIKit;
 
-namespace Shared.iOS
+namespace AdvancedMap.iOS
 {
 	public class OptionsMenu : UIView
 	{

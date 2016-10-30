@@ -158,6 +158,9 @@
     <Compile Include="Sections\BaseMap\BaseMapsController.cs" />
     <Compile Include="Sections\VectorObjects\BasicEditableOverlayController.cs" />
     <Compile Include="Sections\VectorObjects\ClusteredMarkersController.cs" />
+    <Compile Include="Sections\BaseMap\Views\MenuButton.cs" />
+    <Compile Include="Sections\BaseMap\Views\OptionsMenu.cs" />
+    <Compile Include="Sections\BaseMap\Views\OptionsMenuItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\arrow.png" />

@@ -66,8 +66,8 @@ namespace Shared.iOS
 			return new Dictionary<string, string>();
 		}
 
-		public OptionsMenu Menu { get; set; }
-		MenuButton MenuButton { get; set; }
+		//public OptionsMenu Menu { get; set; }
+		//MenuButton MenuButton { get; set; }
 
 		VectorLayer VectorLayer { get; set; }
 
@@ -86,25 +86,25 @@ namespace Shared.iOS
 		{
 			base.ViewWillAppear(animated);
 
-			MenuButton.Click += OnMenuButtonClick;
+			//MenuButton.Click += OnMenuButtonClick;
 		}
 
 		public override void ViewWillDisappear(bool animated)
 		{
 			base.ViewWillDisappear(animated);
 
-			MenuButton.Click -= OnMenuButtonClick;
+			//MenuButton.Click -= OnMenuButtonClick;
 		}
 
 		void OnMenuButtonClick(object sender, EventArgs e)
 		{
-			if (Menu.IsVisible)
-			{
-				Menu.Hide();
-			}
-			else {
-				Menu.Show();
-			}
+			//if (Menu.IsVisible)
+			//{
+			//	Menu.Hide();
+			//}
+			//else {
+			//	Menu.Show();
+			//}
 		}
 
 		void OnMenuSelectionChanged(object sender, EventArgs e)

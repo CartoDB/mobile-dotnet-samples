@@ -4,17 +4,18 @@ using System.IO;
 using System.Linq;
 using Carto.Core;
 using Carto.DataSources;
+using Carto.Layers;
 using Carto.Projections;
+using Carto.VectorTiles;
 using Foundation;
 using Shared;
 using Shared.iOS;
 
 namespace AdvancedMap.iOS
 {
-	// Formerly known as OfflineVectorMapController
-	public class BundledMBTilesController : VectorMapBaseController
+	public class BundledMapController : MapBaseController
 	{
-		public override string Name { get { return "Bundled MBTiles"; } }
+		public override string Name { get { return "Bundled Map"; } }
 
 		public override string Description { get { return "Bundle MBTiles file for offline base map"; } }
 
@@ -25,53 +26,72 @@ namespace AdvancedMap.iOS
 			base.ViewDidLoad();
 
 			Projection projection = MapView.Options.BaseProjection;
-			MapPos rome = projection.FromWgs84(new MapPos(12.4807, 41.8962));
 
+			TileDataSource source = CreateTileDataSource();
+
+			// Get decoder from current layer,
+			// so we wouldn't need a style asset to create a decoder from scratch
+			MBVectorTileDecoder decoder = (MBVectorTileDecoder)(MapView.Layers[0] as VectorTileLayer).TileDecoder;
+
+			//BinaryData styleBytes = Carto.Utils.AssetUtils.LoadAsset("positron.zip");
+			//var vectorTileStyleSet = new Carto.Styles.CompiledStyleSet(new Carto.Utils.ZippedAssetPackage(styleBytes));
+			//decoder = new MBVectorTileDecoder(vectorTileStyleSet);
+
+			// Set language, language-specific texts from vector tiles will be used
+			//decoder.SetStyleParameter("lang", "en");
+
+			// Remove default baselayer
+			MapView.Layers.Clear();
+
+			// Add our new layer
+			var layer = new VectorTileLayer(source, decoder);
+			MapView.Layers.Insert(0, layer);
+
+			// Zoom to the correct location
+			MapPos rome = projection.FromWgs84(new MapPos(12.4807, 41.8962));
 			MapView.SetFocusPos(rome, 0);
 			MapView.SetZoom(13, 0);
 		}
 
-		protected override TileDataSource CreateTileDataSource(string osm)
+		protected TileDataSource CreateTileDataSource()
 		{
-			//string fileName = "world_zoom5";
-			string fileName = "rome_ntvt";
+			string name = "rome_ntvt";
 			string extension = "mbtiles";
 
-			string packageDirectory = SupportDirectory;
-			string fullWritePath = Path.Combine(packageDirectory, fileName + "." + extension);
 
-			string resourceDirectory = NSBundle.MainBundle.PathForResource(fileName, extension);
+			string packageDirectory = SupportDirectory;
+			string fullWritePath = Path.Combine(packageDirectory, name + "." + extension);
+			string resourceDirectory = NSBundle.MainBundle.PathForResource(name, extension);
+
+			//if (!Directory.Exists(packageDirectory))
+			//{
+			//	Directory.CreateDirectory(packageDirectory);
+			//	Console.WriteLine("Directory: Does not exist... Creating");
+			//}
+			//else
+			//{
+			//	Console.WriteLine("Directory: Exists");
+			//}
+
+			//try
+			//{
+			//	// Copy bundled tile data to file system so it can be imported by package manager
+			//	using (var input = new FileStream(resourceDirectory, FileMode.Open, FileAccess.Read))
+			//	{
+			//		using (var output = new FileStream(fullWritePath, FileMode.Create, FileAccess.Write))
+			//		{
+			//			input.CopyTo(output);
+			//		}
+			//	}
+
+			//	return new MBTilesTileDataSource(0, 4, fullWritePath);
+			//}
+			//catch
+			//{
+			//	return null;
+			//}
 
 			return new MBTilesTileDataSource(0, 4, resourceDirectory);
-
-			if (!Directory.Exists(packageDirectory))
-			{
-				Directory.CreateDirectory(packageDirectory);
-				Console.WriteLine("Directory: Does not exist... Creating");
-			}
-			else
-			{
-				Console.WriteLine("Directory: Exists");
-			}
-
-			try
-			{
-				// Copy bundled tile data to file system so it can be imported by package manager
-				using (var input = new FileStream(resourceDirectory, FileMode.Open, FileAccess.Read))
-				{
-					using (var output = new FileStream(fullWritePath, FileMode.Create, FileAccess.Write))
-					{
-						input.CopyTo(output);
-					}
-				}
-
-				MBTilesTileDataSource source = new MBTilesTileDataSource(0, 4, fullWritePath);
-
-				return source;
-			}
-			catch {
-				return null;
-			}
 		}
 	}
 }
