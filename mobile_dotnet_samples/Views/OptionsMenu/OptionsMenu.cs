@@ -8,35 +8,46 @@ namespace Shared.iOS
 {
 	public class OptionsMenu : UIView
 	{
+		public EventHandler<OptionEventArgs> OptionTapped;
+
 		static nfloat BoxPadding = 20;
 
 		const double animationDuration = 0.2;
 
-		const int hiddenAlpha = 0;
-		const int showingAlpha = 150;
-
-		nfloat Y = 80;
-
-		CloseButton closeButton;
-
 		public bool IsVisible { get { return Alpha == 1; } }
 
-		public EventHandler<EventArgs> SelectionChanged;
+		List<OptionsMenuItem> views;
 
-		List<OptionsMenuBox> Boxes = new List<OptionsMenuBox>();
+		List<Section> items;
+		public List<Section> Items
+		{
+			get { return items; }
+			set {
+
+				items = value;
+
+				foreach (Section section in items)
+				{
+					OptionsMenuItem view = new OptionsMenuItem();
+					view.Section = section;
+					view.AddGestureRecognizer(new UITapGestureRecognizer(OnSubviewTap));
+					views.Add(view);
+					AddSubview(view);
+
+					view.OptionTapped += OnOptionTap;
+				}
+			}
+		}
 
 		public OptionsMenu()
 		{
 			BackgroundColor = UIColor.FromRGBA(0, 0, 0, 150);
 
+			views = new List<OptionsMenuItem>();
+
 			Alpha = 0;
 
 			AddGestureRecognizer(new UITapGestureRecognizer(OnBackgroundTap));
-
-			closeButton = new CloseButton();
-			AddSubview(closeButton);
-
-			closeButton.AddGestureRecognizer(new UITapGestureRecognizer(OnBackgroundTap));
 
 			Frame = new CGRect(0, 0, UIScreen.MainScreen.Bounds.Size.Width, UIScreen.MainScreen.Bounds.Size.Height);
 		}
@@ -45,93 +56,16 @@ namespace Shared.iOS
 		{
 			base.LayoutSubviews();
 
-			nfloat buttonHorizontalPadding = 15;
-			nfloat buttonVerticalPadding = 20;
-
-			nfloat w = 25;
-			nfloat h = w;
-			nfloat y = buttonVerticalPadding;
-			nfloat x = Frame.Width - (w + buttonHorizontalPadding);
-
-			closeButton.Frame = new CGRect(x, y, w, h);
-		}
-
-		public void AddItems(string title, Dictionary<string, string> items, OptionSelectType type)
-		{
-			OptionsMenuBox box = new OptionsMenuBox(title, items, type);
-			box.AddGestureRecognizer(new UITapGestureRecognizer(OnBoxTap));
-			AddSubview(box);
-			Boxes.Add(box);
-
-			box.SelectionChanged += OnSelectionChanged;
-
 			nfloat x = BoxPadding;
-			nfloat y = Y;
+			nfloat y = BoxPadding;
 			nfloat w = Frame.Width - 2 * BoxPadding;
-			nfloat h = box.GetHeight();
+			nfloat h = 100;
 
-			box.Frame = new CGRect(x, y, w, h);
-
-			Y += h + BoxPadding;
-		}
-
-		public void UpdateItems(int index, Dictionary<string, string> items, OptionSelectType type)
-		{
-			Boxes[index].Update(items, type);
-		}
-
-		public void SetInitialValueOf(string label, string value)
-		{
-			foreach (OptionsMenuBox box in Boxes)
+			foreach (OptionsMenuItem view in views)
 			{
-				if (box.Title == label) {
-					box.SetValue(value);
-					return;
-				}
+				view.Frame = new CGRect(x, y, w, h);
+				y += h + BoxPadding;
 			}
-		}
-
-		public string GetSelectedValueOf(string label)
-		{
-			foreach (OptionsMenuBox box in Boxes)
-			{
-				if (box.Title == label)
-				{
-					return box.SelectedValue;
-				}
-			}
-
-			return null;
-		}
-
-		public void Enable(string label)
-		{	
-			UpdateStateOfBox(label, true);
-		}
-
-		public void Disable(string label)
-		{
-			UpdateStateOfBox(label, false);
-		}
-
-		void UpdateStateOfBox(string label, bool enabled)
-		{
-			foreach (OptionsMenuBox box in Boxes)
-			{
-				if (box.Title == label)
-				{
-					box.Enabled = enabled;
-					return;
-				}
-			}
-		}
-
-		void OnSelectionChanged(object sender, EventArgs e)
-		{
-			if (SelectionChanged != null)
-			{
-				SelectionChanged(sender, e);
-			}	
 		}
 
 		public void Show()
@@ -151,35 +85,36 @@ namespace Shared.iOS
 			Hide();
 		}
 
-		void OnBoxTap()
+		void OnSubviewTap()
 		{
-			// Empty GestureRecognizer so tapping on box wouldn't close the menu
+			// Do nothing. Just catch taps
+			Console.WriteLine("Subview (box) tapped");
+		}
+
+		OptionLabel current;
+		void OnOptionTap(object sender, OptionEventArgs e)
+		{
+			if (current != null)
+			{
+				current.Normalize();
+			}
+
+			e.Option.Highlight();
+
+			current = e.Option;
+
+			if (OptionTapped != null)
+			{
+				OptionTapped(null, e);
+			}
 		}
 	}
 
-	public class CloseButton : UIButton
+	public class OptionEventArgs : EventArgs
 	{
-		UIImageView icon;
+		public Section Section { get; set; }
 
-		public CloseButton()
-		{
-			icon = new UIImageView();
-			icon.Image = UIImage.FromFile("icon_close.png");
-			BackgroundColor = UIColor.Black;
-
-			AddSubview(icon);
-		}
-
-		public override void LayoutSubviews()
-		{
-			base.LayoutSubviews();
-
-			Layer.CornerRadius = Frame.Width / 2;
-
-			nfloat padding = Frame.Width / 5;
-
-			icon.Frame = new CGRect(padding, padding, Frame.Width - 2 * padding, Frame.Height - 2 * padding);
-		}
+		public OptionLabel Option { get; set; }
 	}
 }
 

@@ -24,7 +24,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Utils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataSources\MapListDataSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\OptionsMenu\OptionsMenu.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\OptionsMenu\OptionsMenuBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataSources\MapListRowSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\MapBaseController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\VectorMapBaseController.cs" />
@@ -33,5 +32,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MapListHeaderCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\HeaderController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapListController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\OptionsMenu\MenuButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\OptionsMenu\OptionsMenuItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\Colors.cs" />
   </ItemGroup>
 </Project>

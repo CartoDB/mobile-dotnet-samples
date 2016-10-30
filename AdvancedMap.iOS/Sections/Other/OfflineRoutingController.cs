@@ -53,9 +53,8 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
-			/// Set online base layer
-			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");
-			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
+			// Set online base layer
+			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 			MapView.Layers.Add(baseLayer);
 
 			// Create PackageManager instance for dealing with offline packages

@@ -26,7 +26,7 @@ namespace AdvancedMap.iOS
 
 		public PackageManagerButton ()
 		{
-			BackgroundColor = OptionsSelect.AppleBlue;
+			BackgroundColor = Colors.AppleBlue;
 			SetTitleColor(UIColor.White, UIControlState.Normal);
 			Layer.CornerRadius = 5;
 			HorizontalAlignment = UIControlContentHorizontalAlignment.Right;

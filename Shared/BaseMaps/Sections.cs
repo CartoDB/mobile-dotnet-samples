@@ -24,7 +24,7 @@ namespace Shared
 
 				List<NameValuePair> cartoStyles = new List<NameValuePair> {
 						new NameValuePair { Name = "Positron", Value = "positron" },
-						new NameValuePair { Name = "Dark Matter", Value = "dark_matter" }
+						new NameValuePair { Name = "Dark Matter", Value = "darkmatter" }
 				};
 
 				sections.Add(new Section {

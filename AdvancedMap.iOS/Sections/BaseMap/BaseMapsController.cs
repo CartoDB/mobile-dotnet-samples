@@ -1,150 +1,115 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System;
 using Carto.Core;
 using Carto.DataSources;
 using Carto.Layers;
-using Carto.Styles;
 using Carto.Utils;
 using Shared;
 using Shared.iOS;
 
 namespace AdvancedMap.iOS
 {
-	public class BaseMapsController : VectorMapBaseController
+	public class BaseMapsController : MapBaseController
 	{
 		public override string Name { get { return "Choice of different Base Maps"; } }
 
-		public override string Description
-		{
-			get
-			{
-				return "Overview of base maps offered by CARTO";
-			}
-		}
+		public override string Description { get { return "Overview of base maps offered by CARTO"; } }
 
-		Dictionary<string, string> nutiteqStyles = new Dictionary<string, string> {
-			{ "Default", "nutibright:default" },
-			{ "Dark", "nutibright:dark" }
-		};
-
-		Dictionary<string, string> mapzenStyles = new Dictionary<string, string> {
-			{ "Positron", "positron" },
-			{ "Dark Matter", "dark_matter" }
-		};
-
-		Dictionary<string, string> selectedStyle;
-
-		protected override Dictionary<string, string> GetStyleDict()
-		{
-			return selectedStyle;
-		}
-
-		protected override Dictionary<string, string> GetLanguageDict()
-		{
-			return new Dictionary<string, string>();
-		}
-
-		protected override Dictionary<string, string> GetOSMDict()
-		{
-			return new Dictionary<string, string> {
-				{ "Nutiteq", "nutiteq.osm" },
-				{ "Mapzen", "mapzen.osm" }
-			};
-		}
-
-		protected override Dictionary<string, string> GetTileTypeDict()
-		{
-			return new Dictionary<string, string> {
-				{ "Raster", "raster" },
-				{ "Vector", "vector" }
-			};
-		}
+		public OptionsMenu Menu { get; set; }
+		MenuButton MenuButton { get; set; }
 
 		public override void ViewDidLoad()
 		{
-			selectedStyle = nutiteqStyles;
-
-			vectorStyleName = GetStyleDict()["Default"];
-			vectorStyleTileType = GetTileTypeDict()["Vector"];
-
 			base.ViewDidLoad();
+
+			Menu = new OptionsMenu();
+			Menu.Items = Sections.List;
+
+			MenuButton = new MenuButton();
+			NavigationItem.RightBarButtonItem = MenuButton;
 		}
 
 		public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
 
-			OSMChanged += OnVectorStyleChanged;
+			MenuButton.Click += OnMenuButtonClick;
+			Menu.OptionTapped += OnMenuSelectionChanged;
 		}
 
 		public override void ViewWillDisappear(bool animated)
 		{
 			base.ViewWillDisappear(animated);
 
-			OSMChanged -= OnVectorStyleChanged;
+			MenuButton.Click -= OnMenuButtonClick;
+			Menu.OptionTapped -= OnMenuSelectionChanged;
 		}
 
-		void OnVectorStyleChanged(object sender, EventArgs e)
+		void OnMenuButtonClick(object sender, EventArgs e)
 		{
-			string selection = (string)sender;
-
-			if (selection == "nutiteq.osm")
+			if (Menu.IsVisible)
 			{
-				selectedStyle = nutiteqStyles;
-				vectorStyleName = GetStyleDict()["Default"];
+				Menu.Hide();
 			}
+			else {
+				Menu.Show();
+			}
+		}
+
+		void OnMenuSelectionChanged(object sender, OptionEventArgs e)
+		{
+			UpdateBaseLayer(e.Section, e.Option.Value);
+		}
+
+		void UpdateBaseLayer(Section section, string selection)
+		{
+			if (section.Type == MapType.Vector)
+			{
+				CartoOnlineVectorTileLayer layer = null;
+				string osm = section.OSM.Value;
+
+				if (osm == "nutiteq.osm")
+				{
+					// Nutiteq styles are bundled with the SDK, we can initialize them via constuctor
+					if (selection == "default")
+					{
+						layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+					}
+					else if (selection == "gray")
+					{
+						layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+					}
+					else
+					{
+						layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark);
+					}
+				}
+				else if (osm == "mapzen.osm")
+				{
+					// MapZen styles are not, styles need to manually added to assets and then decoded
+					BinaryData styleAsset = AssetUtils.LoadAsset(selection + ".zip");
+					layer = new CartoOnlineVectorTileLayer(osm, new ZippedAssetPackage(styleAsset));
+				}
+
+				MapView.Layers.Clear();
+				MapView.Layers.Add(layer);
+		    }
 			else
 			{
-				selectedStyle = mapzenStyles;
-				vectorStyleName = GetStyleDict()["Positron"];
-			}
-
-			Menu.UpdateItems(0, selectedStyle, OptionSelectType.Style);
-			Menu.SetInitialValueOf("Style", vectorStyleName);
-		}
-
-		protected override void UpdateBaseLayer()
-		{
-			MapView.Layers.Clear();
-
-			if (vectorStyleTileType == "raster")
-			{
-				Menu.Disable("OSM");
-
-				string url = (vectorStyleName == "positron") ? Urls.Positron : Urls.DarkMatter;
+				// We know that the value of raster will be Positron or Darkmatter,
+				// as Nutiteq and Mapzen use vector tiles
+				string url = (selection == "positron") ? Urls.Positron : Urls.DarkMatter;
 
 				TileDataSource source = new HTTPTileDataSource(1, 19, url);
 				var layer = new RasterTileLayer(source);
 
+				MapView.Layers.Clear();
 				MapView.Layers.Add(layer);
 			}
-			else 
-			{
-				Menu.Enable("OSM");
-				string selection = Menu.GetSelectedValueOf("OSM");
 
-				CartoOnlineVectorTileLayer layer = null;
-
-				if (selection == "nutiteq.osm")
-				{
-					if (vectorStyleName.Split(':')[1] == "default")
-					{
-						layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
-					}
-					else
-					{ 
-						layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark);
-					}
-				}
-				else
-				{
-					var styleAsset = AssetUtils.LoadAsset(vectorStyleName + ".zip");
-					layer = new CartoOnlineVectorTileLayer(vectorStyleOSM, new ZippedAssetPackage(styleAsset));
-				}
-
-				MapView.Layers.Add(layer);
-			}
+			Menu.Hide();
 		}
+
 	}
 }
 

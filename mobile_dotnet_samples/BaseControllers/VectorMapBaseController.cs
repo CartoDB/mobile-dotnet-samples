@@ -77,43 +77,6 @@ namespace Shared.iOS
 
 			MapView.Options.ZoomRange = new MapRange(0, 20);
 
-			Menu = new OptionsMenu();
-
-			Dictionary<string, string> styles = GetStyleDict();
-
-			if (styles.Count > 0)
-			{
-				Menu.AddItems("Style", styles, OptionSelectType.Style);
-				Menu.SetInitialValueOf("Style", vectorStyleName);
-			}
-
-			Dictionary<string, string> languages = GetLanguageDict();
-
-			if (languages.Count > 0)
-			{
-				Menu.AddItems("Language", languages, OptionSelectType.Language);
-				Menu.SetInitialValueOf("Language", BaseLanguage);
-			}
-
-			Dictionary<string, string> tileTypes = GetTileTypeDict();
-
-			if (tileTypes.Count > 0)
-			{
-				Menu.AddItems("Tile type", tileTypes, OptionSelectType.TileType);
-				Menu.SetInitialValueOf("Tile type", vectorStyleTileType);
-			}
-
-			Dictionary<string, string> osms = GetOSMDict();
-
-			if (osms.Count > 0)
-			{
-				Menu.AddItems("OSM", osms, OptionSelectType.OSM);
-				Menu.SetInitialValueOf("OSM", vectorStyleOSM);
-			}
-
-			MenuButton = new MenuButton();
-			NavigationItem.RightBarButtonItem = MenuButton;
-
 			MapView.InitializeVectorTileListener(VectorLayer);
 
 			UpdateBaseLayer();
@@ -124,7 +87,6 @@ namespace Shared.iOS
 			base.ViewWillAppear(animated);
 
 			MenuButton.Click += OnMenuButtonClick;
-			Menu.SelectionChanged += OnMenuSelectionChanged;
 		}
 
 		public override void ViewWillDisappear(bool animated)
@@ -132,7 +94,6 @@ namespace Shared.iOS
 			base.ViewWillDisappear(animated);
 
 			MenuButton.Click -= OnMenuButtonClick;
-			Menu.SelectionChanged -= OnMenuSelectionChanged;
 		}
 
 		void OnMenuButtonClick(object sender, EventArgs e)
@@ -148,29 +109,29 @@ namespace Shared.iOS
 
 		void OnMenuSelectionChanged(object sender, EventArgs e)
 		{
-			OptionsSelect option = (OptionsSelect)sender;
+			//OptionsSelect option = (OptionsSelect)sender;
 
-			if (option.Type == OptionSelectType.Style)
-			{
-				vectorStyleName = option.Value;
-			}
-			else if (option.Type == OptionSelectType.Language)
-			{
-				vectorStyleLang = option.Value;
-			}
-			else if (option.Type == OptionSelectType.TileType) 
-			{
-				vectorStyleTileType = option.Value;
-			}
-			else if (option.Type == OptionSelectType.OSM) 
-			{
-				vectorStyleOSM = option.Value;
+			//if (option.Type == OptionSelectType.Style)
+			//{
+			//	vectorStyleName = option.Value;
+			//}
+			//else if (option.Type == OptionSelectType.Language)
+			//{
+			//	vectorStyleLang = option.Value;
+			//}
+			//else if (option.Type == OptionSelectType.TileType) 
+			//{
+			//	vectorStyleTileType = option.Value;
+			//}
+			//else if (option.Type == OptionSelectType.OSM) 
+			//{
+			//	vectorStyleOSM = option.Value;
 
-				if (OSMChanged != null)
-				{
-					OSMChanged(vectorStyleOSM, EventArgs.Empty);
-				}
-			}
+			//	if (OSMChanged != null)
+			//	{
+			//		OSMChanged(vectorStyleOSM, EventArgs.Empty);
+			//	}
+			//}
 
 			UpdateBaseLayer();
 		}
@@ -229,31 +190,6 @@ namespace Shared.iOS
 		{
 			TileDataSource source = new CartoOnlineTileDataSource(osm);
 			return new MemoryCacheTileDataSource(source);
-		}
-	}
-
-	public class MenuButton : UIBarButtonItem
-	{
-		public EventHandler<EventArgs> Click;
-
-		UIImageView image;
-
-		public MenuButton()
-		{
-			image = new UIImageView();
-			image.Image = UIImage.FromFile("icon_more.png");
-			image.Frame = new CoreGraphics.CGRect(0, 10, 20, 30);
-			CustomView = image;
-
-			image.AddGestureRecognizer(new UITapGestureRecognizer(OnImageClick));
-		}
-
-		void OnImageClick()
-		{
-			if (Click != null)
-			{
-				Click(new object(), EventArgs.Empty);
-			}
 		}
 
 	}

@@ -18,6 +18,8 @@ namespace Shared.iOS
 
 			topBorder = new UIView { BackgroundColor = UIColor.FromRGB(50, 50, 50) };
 			AddSubview(topBorder);
+
+			SelectionStyle = UITableViewCellSelectionStyle.None;
 		}
 
 		public override void LayoutSubviews()

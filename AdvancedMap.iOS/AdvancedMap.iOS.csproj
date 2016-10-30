@@ -120,6 +120,7 @@
     <Folder Include="Sections\OfflineMap\PackageManager\" />
     <Folder Include="Sections\OfflineMap\PackageManager\Views\" />
     <Folder Include="Sections\GIS\" />
+    <Folder Include="Sections\BaseMap\Views\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -140,7 +141,6 @@
     <Compile Include="Samples.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="ForceTouch\ForceTouchRecognizer.cs" />
-    <Compile Include="Sections\BaseMap\BaseMapsController.cs" />
     <Compile Include="Sections\OfflineMap\BundledMBTilesController.cs" />
     <Compile Include="Sections\OverlayDataSource\WmsMapController.cs" />
     <Compile Include="Sections\Other\OfflineRoutingController.cs" />
@@ -158,10 +158,10 @@
     <Compile Include="Sections\OfflineMap\PackageManager\PackageListDataSource.cs" />
     <Compile Include="Sections\GIS\BasicEditableOverlayController.cs" />
     <Compile Include="Sections\Other\CustomPopupController.cs" />
+    <Compile Include="Sections\BaseMap\BaseMapsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\arrow.png" />
-    <BundleResource Include="Resources\capitals_3857.geojson" />
     <BundleResource Include="Resources\direction_up.png" />
     <BundleResource Include="Resources\direction_upthenleft.png" />
     <BundleResource Include="Resources\direction_upthenright.png" />
@@ -171,18 +171,15 @@
     <BundleResource Include="Resources\info.png" />
     <BundleResource Include="Resources\jefferson-building-ground-floor.jpg" />
     <BundleResource Include="Resources\marker.png" />
-    <BundleResource Include="Resources\nutibright-v2a.zip" />
-    <BundleResource Include="Resources\nutiteq-dark.zip" />
     <BundleResource Include="Resources\olmarker.png" />
     <BundleResource Include="Resources\world_ntvt_0_4.mbtiles" />
     <BundleResource Include="Resources\world_zoom5.mbtiles" />
-    <BundleResource Include="Resources\basic.zip" />
-    <BundleResource Include="Resources\looseleaf.zip" />
-    <BundleResource Include="Resources\nutibright-v3.zip" />
     <BundleResource Include="Resources\rome_ntvt.mbtiles" />
     <BundleResource Include="Resources\milktruck.nml" />
     <BundleResource Include="Resources\cities15000.geojson" />
     <BundleResource Include="Resources\marker_black.png" />
+    <BundleResource Include="Resources\darkmatter.zip" />
+    <BundleResource Include="Resources\positron.zip" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />
