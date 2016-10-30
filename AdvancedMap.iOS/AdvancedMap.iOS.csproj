@@ -119,7 +119,6 @@
     <Folder Include="Sections\VectorObjects\" />
     <Folder Include="Sections\OfflineMap\PackageManager\" />
     <Folder Include="Sections\OfflineMap\PackageManager\Views\" />
-    <Folder Include="Sections\GIS\" />
     <Folder Include="Sections\BaseMap\Views\" />
   </ItemGroup>
   <ItemGroup>
@@ -141,12 +140,11 @@
     <Compile Include="Samples.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="ForceTouch\ForceTouchRecognizer.cs" />
-    <Compile Include="Sections\OfflineMap\BundledMBTilesController.cs" />
+    <Compile Include="Sections\OfflineMap\BundledMapController.cs" />
     <Compile Include="Sections\OverlayDataSource\WmsMapController.cs" />
     <Compile Include="Sections\Other\OfflineRoutingController.cs" />
     <Compile Include="Sections\VectorObjects\OverlaysController.cs" />
     <Compile Include="Sections\Other\GpsLocationMapController.cs" />
-    <Compile Include="Sections\Other\ClusteredGeoJsonController.cs" />
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceController.cs" />
     <Compile Include="Sections\Other\CaptureController.cs" />
     <Compile Include="Sections\OverlayDataSource\GroundOverlayController.cs" />
@@ -156,9 +154,10 @@
     <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageManagerButton.cs" />
     <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageManagerListView.cs" />
     <Compile Include="Sections\OfflineMap\PackageManager\PackageListDataSource.cs" />
-    <Compile Include="Sections\GIS\BasicEditableOverlayController.cs" />
     <Compile Include="Sections\Other\CustomPopupController.cs" />
     <Compile Include="Sections\BaseMap\BaseMapsController.cs" />
+    <Compile Include="Sections\VectorObjects\BasicEditableOverlayController.cs" />
+    <Compile Include="Sections\VectorObjects\ClusteredMarkersController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\arrow.png" />

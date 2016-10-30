@@ -133,7 +133,6 @@ namespace AdvancedMap.iOS
 
 		void UpdatePackage(object sender, PackageFailedEventArgs e)
 		{
-			//Alert("Error: " + e.ErrorType);
 			UpdatePackage(e.Id);
 		}
 
@@ -166,7 +165,6 @@ namespace AdvancedMap.iOS
 		public void OnCellActionButtonClick(object sender, EventArgs e)
 		{
 			PackageManagerButton button = (PackageManagerButton)sender;
-			Console.WriteLine("Clicked: " + button.PackageId + " - " + button.PackageName + " - " + button.Type);
 
 			if (button.Type == PackageManagerButtonType.CancelPackageTasks)
 			{
@@ -188,8 +186,6 @@ namespace AdvancedMap.iOS
 			{
 				var controller = new PackageManagerController(currentFolder + button.PackageName + "/");
 				NavigationController.PushViewController(controller, true);
-				//currentFolder = currentFolder + button.PackageName + "/";
-				//UpdatePackages();
 			}
 		}
 

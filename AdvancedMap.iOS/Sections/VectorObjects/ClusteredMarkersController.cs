@@ -16,9 +16,9 @@ using UIKit;
 
 namespace AdvancedMap.iOS
 {
-	public class ClusteredGeoJsonController : MapBaseController
+	public class ClusteredMarkersController : MapBaseController
 	{
-		public override string Name { get { return "Clustered GeoJson"; } }
+		public override string Name { get { return "Clustered Markers"; } }
 
 		public override string Description { get { return "Read data from .geojson and show as clusters"; } }
 

@@ -20,13 +20,11 @@ namespace AdvancedMap.iOS
 
 			new HeaderController { Name = "Vector objects" },
 			new OverlaysController(),
+			new BasicEditableOverlayController(),
 
 			new HeaderController { Name = "Offline maps" },
-			new BundledMBTilesController(),
+			new BundledMapController(),
 			new PackageManagerController(),
-
-			new HeaderController { Name = "GIS" },
-			new BasicEditableOverlayController(),
 
 			new HeaderController { Name = "Other" },
 			new CaptureController(),
