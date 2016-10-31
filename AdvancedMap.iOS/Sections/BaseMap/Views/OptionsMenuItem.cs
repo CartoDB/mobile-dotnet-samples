@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using CoreGraphics;
 using Shared;
@@ -11,18 +12,20 @@ namespace AdvancedMap.iOS
 	{
 		public EventHandler<OptionEventArgs> OptionTapped;
 
-		UIView headerContainer;
-		UIView contentContainer;
+		protected UIView headerContainer;
+		protected UIView contentContainer;
 
-		UILabel osmLabel, separator, tileTypeLabel;
+		protected UILabel osmLabel, separator, tileTypeLabel;
 
-		List<OptionLabel> optionLabels;
+		protected List<OptionLabel> optionLabels;
+
+		public bool IsMultiLine { get { return section.Styles.Count > 3; } }
 
 		public Section section;
-		public Section Section 
-		{ 
+		public Section Section
+		{
 			get { return section; }
-			set 
+			set
 			{
 				section = value;
 
@@ -81,17 +84,11 @@ namespace AdvancedMap.iOS
 			contentContainer.AddGestureRecognizer(new UITapGestureRecognizer(OnContainerTap));
 		}
 
-		void OnContainerTap(UITapGestureRecognizer recognizer)
-		{
-			CGPoint point = recognizer.LocationInView(contentContainer);
+		protected nfloat padding = 10;
+		protected nfloat smallPadding = 6;
 
-			foreach (OptionLabel label in optionLabels)
-			{
-				if (label.Frame.Contains(point) && OptionTapped != null) {
-					OptionTapped(null, new OptionEventArgs { Section = this.Section, Option = label });
-				}
-			}
-		}
+		protected nfloat separatorWidth = 1;
+		protected nfloat separatorPadding = 7;
 
 		public override void LayoutSubviews()
 		{
@@ -101,12 +98,6 @@ namespace AdvancedMap.iOS
 
 			headerContainer.Frame = new CGRect(0, 0, Frame.Width, height);
 			contentContainer.Frame = new CGRect(0, height, Frame.Width, Frame.Height - height);
-
-			nfloat padding = 10;
-			nfloat smallPadding = 6;
-
-			nfloat separatorWidth = 1;
-			nfloat separatorPadding = 7;
 
 			nfloat x = padding;
 			nfloat y = 0;
@@ -135,43 +126,20 @@ namespace AdvancedMap.iOS
 				x += w + padding;
 			}
 		}
-	}
 
-	public class OptionLabel : UILabel
-	{
-		public string Name { get; set; }
-
-		public string Value { get; set; }
-
-		public bool IsActive { get { return BackgroundColor != UIColor.White; } }
-
-		public OptionLabel(NameValuePair option)
+		void OnContainerTap(UITapGestureRecognizer recognizer)
 		{
-			Name = option.Name;
-			Value = option.Value;
+			CGPoint point = recognizer.LocationInView(contentContainer);
 
-			Text = option.Name.ToUpper();
-
-			TextAlignment = UITextAlignment.Center;
-
-			Font = UIFont.FromName("HelveticaNeue-Bold", 11);
-
-			Layer.BorderWidth = 0.5f;
+			foreach (OptionLabel label in optionLabels)
+			{
+				if (label.Frame.Contains(point) && OptionTapped != null)
+				{
+					OptionTapped(null, new OptionEventArgs { Section = this.Section, Option = label });
+				}
+			}
 		}
 
-		public void Highlight()
-		{
-			BackgroundColor = Colors.AppleBlue;
-			Layer.BorderColor = Colors.AppleBlue.CGColor;
-			TextColor = UIColor.White;
-		}
-
-		public void Normalize()
-		{
-			BackgroundColor = UIColor.White;
-			Layer.BorderColor = UIColor.FromRGB(50, 50, 50).CGColor;
-			TextColor = UIColor.FromRGB(50, 50, 50);
-		}
 
 	}
 }

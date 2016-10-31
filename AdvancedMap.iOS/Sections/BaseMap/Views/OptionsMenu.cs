@@ -60,10 +60,11 @@ namespace AdvancedMap.iOS
 			nfloat x = BoxPadding;
 			nfloat y = BoxPadding;
 			nfloat w = Frame.Width - 2 * BoxPadding;
-			nfloat h = 80;
+			nfloat h = 0;
 
 			foreach (OptionsMenuItem view in views)
 			{
+				h = view.IsMultiLine ? 160 : 80;
 				view.Frame = new CGRect(x, y, w, h);
 				y += h + BoxPadding;
 			}

@@ -161,6 +161,7 @@
     <Compile Include="Sections\BaseMap\Views\MenuButton.cs" />
     <Compile Include="Sections\BaseMap\Views\OptionsMenu.cs" />
     <Compile Include="Sections\BaseMap\Views\OptionsMenuItem.cs" />
+    <Compile Include="Sections\BaseMap\Views\OptionLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\arrow.png" />
