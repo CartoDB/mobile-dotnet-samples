@@ -94,16 +94,34 @@ namespace AdvancedMap.iOS
 		}
 
 		OptionLabel current;
+		OptionLabel currentLanguage;
+
 		void OnOptionTap(object sender, OptionEventArgs e)
 		{
-			if (current != null)
+			OptionLabel option = e.Option;
+
+			if (e.Section.Type == SectionType.Language)
 			{
-				current.Normalize();
+				if (currentLanguage != null)
+				{
+					currentLanguage.Normalize();
+				}
+
+				option.Highlight();
+
+				currentLanguage = option;
 			}
+			else 
+			{
+				if (current != null)
+				{
+					current.Normalize();
+				}
 
-			e.Option.Highlight();
+				option.Highlight();
 
-			current = e.Option;
+				current = option;
+			}
 
 			if (OptionTapped != null)
 			{
@@ -121,7 +139,6 @@ namespace AdvancedMap.iOS
 				}
 			}
 		}
-
 	}
 
 	public class OptionEventArgs : EventArgs

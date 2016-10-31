@@ -94,7 +94,8 @@ namespace AdvancedMap.iOS
 		{
 			base.LayoutSubviews();
 
-			nfloat height = Frame.Height / 2;
+			nfloat height = 40;
+			nfloat itemHeight = 28;
 
 			headerContainer.Frame = new CGRect(0, 0, Frame.Width, height);
 			contentContainer.Frame = new CGRect(0, height, Frame.Width, Frame.Height - height);
@@ -117,13 +118,38 @@ namespace AdvancedMap.iOS
 			x = padding;
 			y = smallPadding;
 
-			w = (contentContainer.Frame.Width - (padding + optionLabels.Count * padding)) / optionLabels.Count;
-			h = contentContainer.Frame.Height - 2 * smallPadding;
-
-			foreach (OptionLabel label in optionLabels)
+			if (IsMultiLine)
 			{
-				label.Frame = new CGRect(x, y, w, h);
-				x += w + padding;
+				// One third, taking padding into account
+				w = (contentContainer.Frame.Width - (padding + 3 * padding)) / 3;
+				h = itemHeight;
+
+				int counter = 0;
+
+				foreach (OptionLabel label in optionLabels)
+				{
+					if (counter > 0 && counter % 3 == 0)
+					{
+						y += h + padding;
+						x = padding;
+					}
+
+					label.Frame = new CGRect(x, y, w, h);
+					x += w + padding;
+
+					counter++;
+				}
+			}
+			else 
+			{
+				w = (contentContainer.Frame.Width - (padding + optionLabels.Count * padding)) / optionLabels.Count;
+				h = itemHeight;
+
+				foreach (OptionLabel label in optionLabels)
+				{
+					label.Frame = new CGRect(x, y, w, h);
+					x += w + padding;
+				}
 			}
 		}
 

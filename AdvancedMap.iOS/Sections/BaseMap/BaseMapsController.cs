@@ -63,21 +63,33 @@ namespace AdvancedMap.iOS
 			UpdateBaseLayer(e.Section, e.Option.Value);
 		}
 
+		string currentOSM;
+		string currentSelection;
+
 		void UpdateBaseLayer(Section section, string selection)
 		{
-			if (section.Type == MapType.Vector)
-			{
-				CartoOnlineVectorTileLayer layer = null;
-				string osm = section.OSM.Value;
+			currentOSM = section.OSM.Value;
+			currentSelection = selection;
 
-				if (osm == "nutiteq.osm")
+			if (section.Type == SectionType.Language)
+			{
+				return;
+			}
+
+			TileLayer layer = null;
+
+
+			if (section.Type == SectionType.Vector)
+			{
+
+				if (currentOSM == "nutiteq.osm")
 				{
 					// Nutiteq styles are bundled with the SDK, we can initialize them via constuctor
-					if (selection == "default")
+					if (currentSelection == "default")
 					{
 						layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 					}
-					else if (selection == "gray")
+					else if (currentSelection == "gray")
 					{
 						layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
 					}
@@ -86,28 +98,27 @@ namespace AdvancedMap.iOS
 						layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark);
 					}
 				}
-				else if (osm == "mapzen.osm")
+				else if (currentOSM == "mapzen.osm")
 				{
 					// MapZen styles are not, styles need to manually added to assets and then decoded
-					BinaryData styleAsset = AssetUtils.LoadAsset(selection + ".zip");
-					layer = new CartoOnlineVectorTileLayer(osm, new ZippedAssetPackage(styleAsset));
+					BinaryData styleAsset = AssetUtils.LoadAsset(currentSelection + ".zip");
+					layer = new CartoOnlineVectorTileLayer(currentOSM, new ZippedAssetPackage(styleAsset));
 				}
-
-				MapView.Layers.Clear();
-				MapView.Layers.Add(layer);
 		    }
 			else
 			{
 				// We know that the value of raster will be Positron or Darkmatter,
 				// as Nutiteq and Mapzen use vector tiles
-				string url = (selection == "positron") ? Urls.Positron : Urls.DarkMatter;
+
+				// Additionally, raster tiles do not support language choice
+				string url = (currentSelection == "positron") ? Urls.Positron : Urls.DarkMatter;
 
 				TileDataSource source = new HTTPTileDataSource(1, 19, url);
-				var layer = new RasterTileLayer(source);
-
-				MapView.Layers.Clear();
-				MapView.Layers.Add(layer);
+				layer = new RasterTileLayer(source);
 			}
+
+			MapView.Layers.Clear();
+			MapView.Layers.Add(layer);
 
 			Menu.Hide();
 		}

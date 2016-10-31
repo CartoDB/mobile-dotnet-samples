@@ -3,18 +3,19 @@ using System.Collections.Generic;
 
 namespace Shared
 {
-	public enum MapType
+	public enum SectionType
 	{
 		None,
 		Raster,
-		Vector
+		Vector,
+		Language
 	}
 
 	public class Section
 	{
 		public NameValuePair OSM { get; set; }
 
-		public MapType Type { get; set; }
+		public SectionType Type { get; set; }
 
 		public List<NameValuePair> Styles { get; set; }
 

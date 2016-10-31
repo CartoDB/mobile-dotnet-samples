@@ -14,7 +14,7 @@ namespace Shared
 				sections.Add(new Section
 				{
 					OSM = new NameValuePair { Name = "Nutiteq", Value = "nutiteq.osm" },
-					Type = MapType.Vector,
+					Type = SectionType.Vector,
 					Styles = new List<NameValuePair> {
 						new NameValuePair { Name = "Bright", Value = "default" },
 						new NameValuePair { Name = "Gray", Value = "gray" },
@@ -27,17 +27,35 @@ namespace Shared
 						new NameValuePair { Name = "Dark Matter", Value = "darkmatter" }
 				};
 
-				sections.Add(new Section {
+				sections.Add(new Section
+				{
 					OSM = new NameValuePair { Name = "MapZen", Value = "mapzen.osm" },
-					Type = MapType.Vector,
+					Type = SectionType.Vector,
 					Styles = cartoStyles
 				});
 
 				sections.Add(new Section
 				{
 					OSM = new NameValuePair { Name = "CARTO", Value = "carto.osm" },
-					Type = MapType.Raster,
+					Type = SectionType.Raster,
 					Styles = cartoStyles
+				});
+
+				List<NameValuePair> languageStyles = new List<NameValuePair> {
+					new NameValuePair { Name = "English", Value = "en" },
+					new NameValuePair { Name = "German", Value = "de" },
+					new NameValuePair { Name = "Spanish", Value = "es" },
+					new NameValuePair { Name = "Italian", Value = "it" },
+					new NameValuePair { Name = "French", Value = "fr" },
+					new NameValuePair { Name = "Russian", Value = "ru" },
+					new NameValuePair { Name = "Chinese", Value = "zh" }
+				};
+
+				sections.Add(new Section
+				{
+					OSM = new NameValuePair { Name = "Language", Value = "lang" },
+					Type = SectionType.Language,
+					Styles = languageStyles
 				});
 
 				return sections;
