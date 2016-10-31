@@ -60,7 +60,7 @@
     <Compile Include="Samples.cs" />
     <Compile Include="MapApplication.cs" />
     <Compile Include="Sections\BaseMap\BaseMapsActivity.cs" />
-    <Compile Include="Sections\Other\GpsLocationActivityActivity.cs" />
+    <Compile Include="Sections\Other\GpsLocationActivity.cs" />
     <Compile Include="Sections\Other\OfflineRoutingActivity.cs" />
     <Compile Include="Sections\OfflineMap\BundledMapActivity.cs" />
     <Compile Include="Sections\OfflineMap\PackageManager\PackageManagerActivity.cs" />

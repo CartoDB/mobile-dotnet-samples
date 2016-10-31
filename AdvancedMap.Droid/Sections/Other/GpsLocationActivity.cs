@@ -24,35 +24,20 @@ namespace AdvancedMap.Droid
 	[ActivityData(Title = "GPS Location Map", Description = "Shows user GPS location on map.")]
 	public class GpsLocationActivity : MapBaseActivity, ILocationListener
 	{
-		/// <summary>
-		/// private field with the current coordinates
-		/// </summary>
-		private Location _currentLocation;
+		TextView messageView;
 
-		/// <summary>
-		/// The "Unable to determine your location." message.
-		/// </summary>
-		private TextView _textViewMessage;
+		Location currentLocation;
 
-		/// <summary>
-		/// The location manager.
-		/// </summary>
-		private LocationManager _locationManager;
+		LocationManager manager;
 
-		/// <summary>
-		/// The location provider.
-		/// </summary>
-		private string _locationProvider;
+		string locationProvider;
 
-		/// <summary>
-		/// The marker dataSource
-		/// </summary>
-		private LocalVectorDataSource _markerDataSource;
+		LocalVectorDataSource markerSource;
 
-		private bool _markerAdded;
+		bool isMarkerAdded;
 
-		private Marker _currentPositionMarker;
-		private BalloonPopup _currentPositionMarkerLabel;
+		Marker positionMarker;
+		BalloonPopup positionLabel;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -62,19 +47,17 @@ namespace AdvancedMap.Droid
 			SetContentView(Resource.Layout.MainGPS);
 			MapView = (MapView)FindViewById(Resource.Id.mapView);
 
-			// Set online base layer
-			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");
-			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
+			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 			MapView.Layers.Add(baseLayer);
 
 			// Bind the textViewMessage
-			_textViewMessage = FindViewById<TextView>(Resource.Id.textViewMessage);
+			messageView = FindViewById<TextView>(Resource.Id.textViewMessage);
 
-			// create layer and add object to the layer, finally add layer to the map. 
+			// Create layer and add object to the layer, finally add layer to the map. 
 			// All overlay layers must be same projection as base layer, so we reuse it
-			_markerDataSource = new LocalVectorDataSource(MapView.Options.BaseProjection);
-			var _markerLayer = new VectorLayer(_markerDataSource);
-			MapView.Layers.Add(_markerLayer);
+			markerSource = new LocalVectorDataSource(MapView.Options.BaseProjection);
+			var markerLayer = new VectorLayer(markerSource);
+			MapView.Layers.Add(markerLayer);
 
 			// Initialize the location manager to get the current position
 			InitializeLocationManager();
@@ -86,9 +69,9 @@ namespace AdvancedMap.Droid
 			base.OnPause();
 
 			// Remove the update of the position to save battery
-			if ((_locationManager != null) && (!String.IsNullOrEmpty(_locationProvider)))
+			if ((manager != null) && (!string.IsNullOrEmpty(locationProvider)))
 			{
-				_locationManager.RemoveUpdates(this);
+				manager.RemoveUpdates(this);
 			}
 
 		}
@@ -98,34 +81,33 @@ namespace AdvancedMap.Droid
 			base.OnResume();
 
 			// Request updated position
-			if ((_locationManager != null) && (!String.IsNullOrEmpty(_locationProvider)))
+			if ((manager != null) && (!string.IsNullOrEmpty(locationProvider)))
 			{
-				_locationManager.RequestLocationUpdates(_locationProvider, 0, 0, this);
+				manager.RequestLocationUpdates(locationProvider, 0, 0, this);
 			}
 		}
 
-		void AddMarker(string currentPositionTitle, string currentPositionSubtitle, float latitude, float longitude)
+		void AddMarker(string title, string subtitle, float latitude, float longitude)
 		{
-
 			// Define the location of the marker, it must be converted to base map coordinate system
-			MapPos currentLocation = MapView.Options.BaseProjection.FromWgs84(new MapPos(longitude, latitude));
+			MapPos location = MapView.Options.BaseProjection.FromWgs84(new MapPos(longitude, latitude));
 
 			// Load default market style
-			MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
+			MarkerStyleBuilder markerBuilder = new MarkerStyleBuilder();
 
 			// Add the label to the Marker
-			_currentPositionMarker = new Marker(currentLocation, markerStyleBuilder.BuildStyle());
+			positionMarker = new Marker(location, markerBuilder.BuildStyle());
 
 			// Define label what is shown when you click on marker, with default style
-			var balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
-			_currentPositionMarkerLabel = new BalloonPopup(_currentPositionMarker, balloonPopupStyleBuilder.BuildStyle(), currentPositionTitle, currentPositionSubtitle);
+			var balloonBuilder = new BalloonPopupStyleBuilder();
+			positionLabel = new BalloonPopup(positionMarker, balloonBuilder.BuildStyle(), title, subtitle);
 
 			// Add the marker and label to the layer
-			_markerDataSource.Add(_currentPositionMarker);
-			_markerDataSource.Add(_currentPositionMarkerLabel);
+			markerSource.Add(positionMarker);
+			markerSource.Add(positionLabel);
 
 			// Center the map in the current location
-			MapView.FocusPos = currentLocation;
+			MapView.FocusPos = location;
 
 			// Zoom in the map in the current location
 			MapView.Zoom = 19f;
@@ -133,15 +115,16 @@ namespace AdvancedMap.Droid
 
 		void UpdateMarker(string myPosition, string subtitle, float latitude, float longitude)
 		{
-			if (!_markerAdded)
+			if (!isMarkerAdded)
 			{
 				AddMarker(myPosition, subtitle, latitude, longitude);
-				_markerAdded = true;
+				isMarkerAdded = true;
 			}
-			else {
-				_currentPositionMarkerLabel.Title = myPosition;
-				_currentPositionMarkerLabel.Description = subtitle;
-				_currentPositionMarker.Geometry = new PointGeometry(MapView.Options.BaseProjection.FromWgs84(new MapPos(longitude, latitude)));
+			else 
+			{
+				positionLabel.Title = myPosition;
+				positionLabel.Description = subtitle;
+				positionMarker.Geometry = new PointGeometry(MapView.Options.BaseProjection.FromWgs84(new MapPos(longitude, latitude)));
 			}
 		}
 
@@ -150,25 +133,25 @@ namespace AdvancedMap.Droid
 		/// </summary>
 		void InitializeLocationManager()
 		{
-			_locationManager = (LocationManager)GetSystemService(LocationService);
+			manager = (LocationManager)GetSystemService(LocationService);
 
 			Criteria criteria = new Criteria { Accuracy = Accuracy.Coarse };
 
-			IList<string> acceptableProviders = _locationManager.GetProviders(criteria, true);
+			IList<string> acceptableProviders = manager.GetProviders(criteria, true);
 
 			if (acceptableProviders.Contains("gps"))
 			{
-				_locationProvider = acceptableProviders[0];
-				_locationManager.RequestLocationUpdates(_locationProvider, 0, 0, this);
+				locationProvider = acceptableProviders[0];
+				manager.RequestLocationUpdates(locationProvider, 0, 0, this);
 
-				_textViewMessage.Text = "Using location provider: " + _locationProvider;
+				messageView.Text = "Using location provider: " + locationProvider;
 			}
 			else
 			{
-				_locationProvider = string.Empty;
+				locationProvider = string.Empty;
 			}
 
-			_textViewMessage.Visibility = ViewStates.Visible;
+			messageView.Visibility = ViewStates.Visible;
 		}
 
 		/// <Docs>The new location, as a Location object.</Docs>
@@ -179,8 +162,8 @@ namespace AdvancedMap.Droid
 		/// <param name="location">Location.</param>
 		public void OnLocationChanged(Location location)
 		{
-			_currentLocation = location;
-			if (_currentLocation == null)
+			currentLocation = location;
+			if (currentLocation == null)
 			{
 				LocationNotFound();
 			}
@@ -243,14 +226,21 @@ namespace AdvancedMap.Droid
 			string subtitle = string.Format("lat:{0} lon:{1}", location.Latitude, location.Longitude);
 
 			if (location.HasAccuracy)
+			{
 				subtitle += string.Format("\naccuracy: {0} m", location.Accuracy);
+			}
 			if (location.HasAltitude)
+			{
 				subtitle += string.Format("\naltitude {0} m", location.Altitude);
+			}
 			if (location.HasSpeed)
+			{
 				subtitle += string.Format("\nspeed: {0} m/s", location.Speed);
+			}
 			if (location.HasBearing)
+			{
 				subtitle += string.Format("\nbearing: {0}", location.Bearing);
-
+			}
 
 			UpdateMarker(title, subtitle, (float)location.Latitude, (float)location.Longitude);
 		}
@@ -261,7 +251,7 @@ namespace AdvancedMap.Droid
 		void LocationNotFound()
 		{
 			// the error message appears o the screen
-			_textViewMessage.Visibility = ViewStates.Visible;
+			messageView.Visibility = ViewStates.Visible;
 		}
 
 	}
