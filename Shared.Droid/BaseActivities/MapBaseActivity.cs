@@ -37,7 +37,7 @@ namespace Shared.Droid
 
 			MapView = (MapView)FindViewById(MapViewResource);
 
-			BaseProjection = new EPSG3857();
+			BaseProjection = MapView.Options.BaseProjection;
 
 			// Initialize map
 			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);

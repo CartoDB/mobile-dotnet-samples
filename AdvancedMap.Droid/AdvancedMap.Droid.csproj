@@ -130,14 +130,11 @@
     <Folder Include="Resources\mipmap-nodpi\" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\world_ntvt_0_4.mbtiles" />
-    <AndroidAsset Include="Assets\nutiteq-dark.zip" />
-    <AndroidAsset Include="Assets\nutibright-v2a.zip" />
-    <AndroidAsset Include="Assets\looseleaf.zip" />
     <AndroidAsset Include="Assets\fcd_auto.nml" />
-    <AndroidAsset Include="Assets\capitals_3857.geojson" />
-    <AndroidAsset Include="Assets\basic.zip" />
-    <AndroidAsset Include="Assets\world_zoom5.mbtiles" />
+    <AndroidAsset Include="Assets\positron.zip" />
+    <AndroidAsset Include="Assets\rome_ntvt.mbtiles" />
+    <AndroidAsset Include="Assets\darkmatter.zip" />
+    <AndroidAsset Include="Assets\cities15000.geojson" />
   </ItemGroup>
   <Import Project="..\Shared.Droid\Shared.Droid.projitems" Label="Shared" Condition="Exists('..\Shared.Droid\Shared.Droid.projitems')" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />

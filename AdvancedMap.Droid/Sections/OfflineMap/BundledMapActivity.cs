@@ -6,25 +6,42 @@ using Shared.Droid;
 using Shared;
 using Carto.DataSources;
 using Carto.Core;
+using Carto.VectorTiles;
+using Carto.Layers;
 
 namespace AdvancedMap.Droid
 {
 	[Activity]
 	[ActivityData(Title = "Bundled map", Description = "Uses bundled assets for the offline base map")]
-	public class BundledMapActivity: VectorBaseMapActivity
+	public class BundledMapActivity: MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			MapView.Options.ZoomRange = new MapRange(0, 6);
-			MapView.SetZoom(3, 0);
+			TileDataSource source = CreateTileDataSource();
+
+			// Get decoder from current layer,
+			// so we wouldn't need a style asset to create a decoder from scratch
+			MBVectorTileDecoder decoder = (MBVectorTileDecoder)(MapView.Layers[0] as VectorTileLayer).TileDecoder;
+
+			// Remove default baselayer
+			MapView.Layers.Clear();
+
+			// Add our new layer
+			var layer = new VectorTileLayer(source, decoder);
+			MapView.Layers.Insert(0, layer);
+
+			// Zoom to the correct location
+			MapPos rome = BaseProjection.FromWgs84(new MapPos(12.4807, 41.8962));
+			MapView.SetFocusPos(rome, 0);
+			MapView.SetZoom(13, 0);
 		}
 
-		protected override TileDataSource CreateTileDataSource()
+		TileDataSource CreateTileDataSource()
 		{
 			// offline map data source
-			string fileName = "world_zoom5.mbtiles";
+			string fileName = "rome_ntvt.mbtiles";
 
 			try
 			{
@@ -34,7 +51,7 @@ namespace AdvancedMap.Droid
 				Assets.CopyAssetToSDCard(fileName, path);
 				Log.Debug("Copy done to " + path);
 
-				MBTilesTileDataSource source = new MBTilesTileDataSource(0, 4, path);
+				MBTilesTileDataSource source = new MBTilesTileDataSource(0, 14, path);
 				
 				return source;
 			}
