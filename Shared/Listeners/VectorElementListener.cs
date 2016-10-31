@@ -4,31 +4,62 @@ using Carto.DataSources;
 using Carto.VectorElements;
 using Carto.Styles;
 using Carto.Utils;
+using System.Linq;
+using Carto.Core;
 
 namespace Shared
 {
 	public class VectorElementListener : VectorElementEventListener
 	{
-		LocalVectorDataSource _dataSource;
+		LocalVectorDataSource source;
+
+		BalloonPopup previous;
 
 		public VectorElementListener(LocalVectorDataSource dataSource)
 		{
-			_dataSource = dataSource;
+			source = dataSource;
 		}
 
 		public override bool OnVectorElementClicked(VectorElementClickInfo clickInfo)
 		{
-			// A note about iOS: DISABLE 'Optimize PNG files for iOS' option in iOS build settings,
-			// otherwise icons can not be loaded using AssetUtils/Bitmap constructor as Xamarin converts
-			// PNGs to unsupported custom format.
-			var bitmap = BitmapUtils.LoadBitmapFromAssets("Icon.png");
+			if (previous != null)
+			{
+				source.Remove(previous);
+			}
 
-			var styleBuilder = new MarkerStyleBuilder();
-			styleBuilder.Size = 20;
-			styleBuilder.Bitmap = bitmap;
-			styleBuilder.Color = new Carto.Graphics.Color(200, 0, 200, 200);
-			var marker = new Marker(clickInfo.ClickPos, styleBuilder.BuildStyle());
-			_dataSource.Add(marker);
+			VectorElement element = clickInfo.VectorElement;
+
+			BalloonPopupStyleBuilder builder = new BalloonPopupStyleBuilder();
+			builder.LeftMargins = new BalloonPopupMargins(0, 0, 0, 0);
+			builder.RightMargins = new BalloonPopupMargins(6, 3, 6, 3);
+			builder.PlacementPriority = 10;
+
+			BalloonPopupStyle style = builder.BuildStyle();
+
+			string title = element.GetMetaDataElement("ClickText").String;
+			string description = "";
+
+			for (int i = 0; i < element.MetaData.Count; i++)
+			{
+				string key = element.MetaData.Keys.ToList()[i];
+				description += key + " = " + element.GetMetaDataElement(key) + "; ";
+			}
+
+			BalloonPopup popup;
+
+			if (element is BalloonPopup)
+			{
+				Billboard billboard = (Billboard)element;
+				popup = new BalloonPopup(billboard, style, title, description);
+			}
+			else
+			{
+				MapPos position = clickInfo.ClickPos;
+				popup = new BalloonPopup(position, style, title, description);
+			}
+
+			source.Add(popup);
+			previous = popup;
 
 			return true;
 		}

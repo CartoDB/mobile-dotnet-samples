@@ -24,13 +24,11 @@ namespace AdvancedMap.iOS
 			}
 		}
 
-		Projection projection;
-
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
-			this.projection = BaseProjection;
+			Projection projection = BaseProjection;
 
 			// Initialize an local vector data source
 			LocalVectorDataSource source = new LocalVectorDataSource(projection);

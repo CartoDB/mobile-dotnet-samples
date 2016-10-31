@@ -112,6 +112,8 @@
     <AndroidResource Include="Resources\mipmap-nodpi\icon180.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\icon180.png" />
     <AndroidResource Include="Resources\mipmap-xhdpi\icon180.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\arrow.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\info.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />
@@ -135,6 +137,7 @@
     <AndroidAsset Include="Assets\rome_ntvt.mbtiles" />
     <AndroidAsset Include="Assets\darkmatter.zip" />
     <AndroidAsset Include="Assets\cities15000.geojson" />
+    <AndroidAsset Include="Assets\milktruck.nml" />
   </ItemGroup>
   <Import Project="..\Shared.Droid\Shared.Droid.projitems" Label="Shared" Condition="Exists('..\Shared.Droid\Shared.Droid.projitems')" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />

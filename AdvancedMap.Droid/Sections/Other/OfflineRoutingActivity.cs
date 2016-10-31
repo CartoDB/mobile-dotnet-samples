@@ -161,11 +161,6 @@ namespace AdvancedMap.Droid
 			PackageListener.PackageUpdated -= OnPackageUpdated;
 		}
 
-		Carto.Graphics.Bitmap CreateBitmap(int resource)
-		{
-			return BitmapUtils.CreateBitmapFromAndroidBitmap(BitmapFactory.DecodeResource(Resources, resource));
-		}
-
 		#region EventHandlers
 
 		void OnStartPositionClick(object sender, RouteMapEventArgs e)

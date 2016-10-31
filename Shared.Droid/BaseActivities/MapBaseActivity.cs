@@ -66,5 +66,12 @@ namespace Shared.Droid
 				Toast.MakeText(this, message, ToastLength.Short).Show();
 			});
 		}
+
+
+		protected Carto.Graphics.Bitmap CreateBitmap(int resource)
+		{
+			return BitmapUtils.CreateBitmapFromAndroidBitmap(Android.Graphics.BitmapFactory.DecodeResource(Resources, resource));
+		}
+
 	}
 }
