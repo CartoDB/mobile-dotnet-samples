@@ -19,6 +19,8 @@ namespace AdvancedMap.iOS
 		public OptionsMenu Menu { get; set; }
 		MenuButton MenuButton { get; set; }
 
+		VectorLayer VectorLayer { get; set; }
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
@@ -29,15 +31,19 @@ namespace AdvancedMap.iOS
 			MenuButton = new MenuButton();
 			NavigationItem.RightBarButtonItem = MenuButton;
 
+			// Set initial style 
 			Menu.SetInitialItem(Sections.Nutiteq);
 			Menu.SetInitialItem(Sections.Language);
 
 			UpdateBaseLayer(Sections.Nutiteq, Sections.BaseStyleValue);
 			UpdateLanguage(Sections.BaseLanguageCode);
 
+			// Zoom to Central Europe so some texts would be visible
 			MapPos europe = BaseProjection.FromWgs84(new MapPos(15.2551, 54.5260));
 			MapView.SetFocusPos(europe, 0);
 			MapView.Zoom = 5;
+
+			MapView.InitializeVectorTileListener(VectorLayer);
 		}
 
 		public override void ViewWillAppear(bool animated)
