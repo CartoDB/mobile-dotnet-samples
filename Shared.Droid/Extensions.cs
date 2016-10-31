@@ -11,23 +11,36 @@ namespace Shared.Droid
 	{
 		public static bool IsHeader(this Type type)
 		{
-			return type.GetTitle().Contains("Header");
+			// Maps have two CustomAttributes (Activity and ActivityData), Headers just one (ActivityData)
+			return type.CustomAttributes.ToList().Count == 1;
 		}
 
 		public static string GetTitle(this Type type)
 		{
-			return type.Name.Replace("Activity", "");
+			return GetAnnotation(type, 0);
 		}
 
 		public static string GetDescription(this Type type)
 		{
+			return GetAnnotation(type, 1);
+		}
+
+		public static string GetAnnotation(Type type, int index)
+		{
 			try
 			{
 				IEnumerable<System.Reflection.CustomAttributeData> list = type.CustomAttributes;
-				string description = (string)list.ToList()[1].NamedArguments[0].TypedValue.Value;
 
-				return description;
-			} catch {
+				if (list.ToList().Count == 1)
+				{
+					// It's a header, only one custom attribute
+					return (string)list.ToList()[0].NamedArguments[index].TypedValue.Value;
+				}
+
+				return (string)list.ToList()[1].NamedArguments[index].TypedValue.Value;
+			}
+			catch
+			{
 				return "";
 			}
 		}

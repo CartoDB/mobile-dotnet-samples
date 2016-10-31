@@ -13,8 +13,8 @@ using Carto.Layers;
 
 namespace AdvancedMap.Droid
 {
-	[Activity(Label = "")]
-	[ActivityDescription(Description = "Choice of different Base Maps")]
+	[Activity]
+	[ActivityData(Title = "Base maps", Description = "Overview of base maps offered by CARTO")]
 	public class BaseMapsActivity : MapBaseActivity
 	{
 		BaseMapsView ContentView { get; set; }
@@ -22,7 +22,6 @@ namespace AdvancedMap.Droid
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-
 
 			ContentView = new BaseMapsView(this);
 			SetContentView(ContentView);

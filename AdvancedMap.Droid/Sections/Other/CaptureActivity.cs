@@ -15,8 +15,8 @@ using Shared.Droid;
 namespace AdvancedMap.Droid
 {
 	[Activity]
-	[ActivityDescription(Description = "Captures rendered MapView as a Bitmap")]
-	public class ScreenCaptureActivity : MapBaseActivity
+	[ActivityData(Title = "Screencapture", Description = "Captures rendered MapView as a Bitmap")]
+	public class CaptureActivity : MapBaseActivity
 	{
 		RenderListener listener;
 

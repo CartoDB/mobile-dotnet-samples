@@ -13,7 +13,7 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity]
-	[ActivityDescription(Description = "Animated ship movement in WWII")]
+	[ActivityData(Description = "Animated ship movement in WWII")]
 	public class TorqueShipsActivity : MapBaseActivity
 	{
 		const long FRAMETIME = 100;

@@ -10,7 +10,7 @@ using Shared.Droid;
 namespace AdvancedMap.Droid
 {
 	[Activity]
-	[ActivityDescription(Description = "WMS service raster on top of the vector base map")]
+	[ActivityData(Title = "WMS map", Description = "WMS service raster on top of the vector base map")]
 	public class WmsMapActivity : VectorBaseMapActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)

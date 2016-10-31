@@ -9,7 +9,7 @@
     <Import_RootNamespace>Shared.Droid</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)ActivityDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ActivityData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MapRowView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Adapters\MapListAdapter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />

@@ -15,8 +15,8 @@ using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	[Activity(Label = "PackageManager", Icon = "@mipmap/icon")]
-	[ActivityDescription(Description = "Download packages from CARTO and manage them offline")]
+	[Activity]
+	[ActivityData(Title = "Package Manager", Description = "Download packages from CARTO and manage them offline")]
 	public class PackageManagerActivity : ListActivity
 	{
 		const string LICENSE = "XTUN3Q0ZFMmhzUWEwdlZwNlJNVW5kL1hMRExMYXNYVUxBaFFhKzlSK2drYjEzNnBhSTJzY1c5aDBkL2licFE9PQo" +

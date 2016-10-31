@@ -8,7 +8,7 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity]
-	[ActivityDescription(Description = "CARTO data as vector tiles from a named map")]
+	[ActivityData(Description = "CARTO data as vector tiles from a named map")]
 	public class NamedMapActivity : MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)

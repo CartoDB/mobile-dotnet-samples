@@ -20,9 +20,9 @@ using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	[Activity]//MyLocationActivity
-	[ActivityDescription(Description = "Shows user GPS location on map.")]
-	public class GpsLocationMap : MapBaseActivity, ILocationListener
+	[Activity]
+	[ActivityData(Title = "GPS Location Map", Description = "Shows user GPS location on map.")]
+	public class GpsLocationActivity : MapBaseActivity, ILocationListener
 	{
 		/// <summary>
 		/// private field with the current coordinates

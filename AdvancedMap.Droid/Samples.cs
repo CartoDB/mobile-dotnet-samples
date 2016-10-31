@@ -14,23 +14,21 @@ namespace AdvancedMap.Droid
 
 			typeof(OfflineMapsHeader),
 			typeof(PackageManagerActivity),
-			typeof(BundledMBTilesActivity),
+			typeof(BundledMapActivity),
 
 			typeof(OverlayDatasourcesHeader),
 			typeof(CustomRasterDatasourceActivity),
 			typeof(WmsMapActivity),
 
-			typeof(VectorElementsHeader),
-			typeof(Overlays2DActivity),
-
-			typeof(GISHeader),
-			typeof(BasicEditableOverlayActivity),
+			typeof(VectorObjectsHeader),
+			typeof(ClusteredMarkersActivity),
+			typeof(OverlaysActivity),
+			typeof(VectorObjectEditingActvity),
 
 			typeof(OtherMapHeader),
-			typeof(ScreenCaptureActivity),
-			typeof(ClusteredGeoJSONCapitals),
+			typeof(CaptureActivity),
 			typeof(CustomPopupActivity),
-			typeof(GpsLocationMap),
+			typeof(GpsLocationActivity),
 			typeof(OfflineRoutingActivity)
 		});
 

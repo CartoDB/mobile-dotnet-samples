@@ -24,9 +24,7 @@ using Shared.Droid;
 namespace AdvancedMap.Droid
 {
 	[Activity]
-	[ActivityDescription(Description = 
-	                     "Routing engine to calculate offline routes. " +
-						 "Packages are downloaded and, once available, routing works offline")]
+	[ActivityData(Title = "Offline routing", Description = "Offline routing with OpenStreetMap data packages")]
 	public class OfflineRoutingActivity: MapBaseActivity
 	{
 		// Add packages you want to download

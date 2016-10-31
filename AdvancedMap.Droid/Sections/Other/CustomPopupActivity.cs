@@ -14,7 +14,7 @@ using Shared.Droid;
 namespace AdvancedMap.Droid
 {
 	[Activity]
-	[ActivityDescription(Description = "Captures rendered MapView as a Bitmap")]
+	[ActivityData(Title = "Custom Popup", Description = "Creating and using custom popups")]
 	public class CustomPopupActivity : MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)

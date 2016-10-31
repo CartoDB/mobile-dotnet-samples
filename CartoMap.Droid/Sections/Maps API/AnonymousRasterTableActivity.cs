@@ -10,7 +10,7 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity]
-	[ActivityDescription(Description = "Using Carto PostGIS Raster data")]
+	[ActivityData(Description = "Using Carto PostGIS Raster data")]
 	public class AnonymousRasterTableActivity : MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)

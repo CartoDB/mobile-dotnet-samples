@@ -7,7 +7,7 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity]
-	[ActivityDescription(Description = "Vis showing dots on the map")]
+	[ActivityData(Description = "Vis showing dots on the map")]
 	public class DotsVisActivity : MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)

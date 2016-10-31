@@ -9,11 +9,12 @@ using Shared;
 namespace AdvancedMap.Droid
 {
 	[Activity]
-	[ActivityDescription(Description = "Basic 2D objects to the map: lines, points, polygon with hole, texts and pop-ups")]
-	public class Overlays2DActivity: MapBaseActivity
+	[ActivityData(Title = "Overlays", Description = "2D and 3D objects: lines, points, polygons, texts, pop-ups and a NMLModel")]
+	public class OverlaysActivity: MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
+			// TODO
 			base.OnCreate(savedInstanceState);
 
 			/// Set online base layer

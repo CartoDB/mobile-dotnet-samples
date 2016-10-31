@@ -17,13 +17,7 @@ namespace AdvancedMap.iOS
 	{
 		public override string Name { get { return "GPS Location Map"; } }
 
-		public override string Description
-		{
-			get
-			{
-				return "Shows user GPS location on map";
-			}
-		}
+		public override string Description { get { return "Shows user GPS location on map"; } }
 
 		LocationManager LocationManager { get; set; }
 

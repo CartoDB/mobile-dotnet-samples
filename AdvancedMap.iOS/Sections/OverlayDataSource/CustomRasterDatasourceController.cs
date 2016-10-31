@@ -13,11 +13,7 @@ namespace AdvancedMap.iOS
 
 		public override string Name { get { return "Raster Overlay"; } }
 
-		public override string Description { 
-			get {
-				return "Raster layer on top of the vector base map";
-			}
-		}
+		public override string Description { get { return "Raster layer on top of the vector base map"; } }
 
 		public override void ViewDidLoad()
 		{

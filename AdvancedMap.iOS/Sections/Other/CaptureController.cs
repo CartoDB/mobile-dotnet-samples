@@ -19,7 +19,7 @@ namespace AdvancedMap.iOS
 	{
 		public override string Name { get { return "Screencapture"; } }
 
-		public override string Description { get { return "Captures rendered MapView as a Bitmap"; } }
+		public override string Description { get { return "Captures rendered MapView as a UIImage"; } }
 
 		RenderListener listener;
 

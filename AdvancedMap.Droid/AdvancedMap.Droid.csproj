@@ -60,15 +60,14 @@
     <Compile Include="Samples.cs" />
     <Compile Include="MapApplication.cs" />
     <Compile Include="Sections\BaseMap\BaseMapsActivity.cs" />
-    <Compile Include="Sections\Other\ClusteredGeoJSONCapitalsActivity.cs" />
-    <Compile Include="Sections\Other\GpsLocationMapActivity.cs" />
+    <Compile Include="Sections\Other\GpsLocationActivityActivity.cs" />
     <Compile Include="Sections\Other\OfflineRoutingActivity.cs" />
-    <Compile Include="Sections\OfflineMap\BundledMBTilesActivity.cs" />
+    <Compile Include="Sections\OfflineMap\BundledMapActivity.cs" />
     <Compile Include="Sections\OfflineMap\PackageManager\PackageManagerActivity.cs" />
     <Compile Include="Sections\OfflineMap\PackageManager\PackagedMapActivity.cs" />
     <Compile Include="Sections\OfflineMap\PackageManager\PackageManagerAdapter.cs" />
     <Compile Include="LauncherListActivity.cs" />
-    <Compile Include="Sections\VectorElement\Overlays2DActivity.cs" />
+    <Compile Include="Sections\VectorObject\OverlaysActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\WmsMapActivity.cs" />
     <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageManagerButton.cs" />
@@ -76,15 +75,15 @@
     <Compile Include="Sections\_Header\OfflineMapsHeader.cs" />
     <Compile Include="Sections\_Header\OtherMapHeader.cs" />
     <Compile Include="Sections\_Header\OverlayDatasourcesHeader.cs" />
-    <Compile Include="Sections\_Header\VectorElementsHeader.cs" />
+    <Compile Include="Sections\_Header\VectorObjectsHeader.cs" />
     <Compile Include="Sections\BaseMap\Views\BaseMapsView.cs" />
     <Compile Include="Sections\BaseMap\Views\StyleButton\Menu\BaseMapsContent.cs" />
     <Compile Include="Sections\BaseMap\Views\StyleButton\Menu\BaseMapsSection.cs" />
     <Compile Include="Sections\BaseMap\Views\StyleButton\ChangeStyleButton.cs" />
-    <Compile Include="Sections\_Header\GISHeader.cs" />
-    <Compile Include="Sections\GIS\BasicEditableOverlayActivity.cs" />
-    <Compile Include="Sections\Other\ScreenCaptureActivity.cs" />
+    <Compile Include="Sections\Other\CaptureActivity.cs" />
     <Compile Include="Sections\Other\CustomPopupActivity.cs" />
+    <Compile Include="Sections\VectorObject\VectorObjectEditingActvity.cs" />
+    <Compile Include="Sections\VectorObject\ClusteredMarkersActivityActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -122,13 +121,12 @@
     <Folder Include="Sections\OfflineMap\" />
     <Folder Include="Sections\Other\" />
     <Folder Include="Sections\OverlayDataSource\" />
-    <Folder Include="Sections\VectorElement\" />
+    <Folder Include="Sections\VectorObject\" />
     <Folder Include="Sections\OfflineMap\PackageManager\" />
     <Folder Include="Sections\OfflineMap\PackageManager\Views\" />
     <Folder Include="Sections\BaseMap\Views\" />
     <Folder Include="Sections\BaseMap\Views\StyleButton\" />
     <Folder Include="Sections\BaseMap\Views\StyleButton\Menu\" />
-    <Folder Include="Sections\GIS\" />
     <Folder Include="Resources\mipmap-nodpi\" />
   </ItemGroup>
   <ItemGroup>

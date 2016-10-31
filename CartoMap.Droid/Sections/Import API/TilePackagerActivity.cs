@@ -5,7 +5,7 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity]
-	[ActivityDescription(Description = "Packaging tiles (?) //TODO")]
+	[ActivityData(Description = "Packaging tiles (?) //TODO")]
 	public class TilePackagerActivity : MapBaseActivity
 	{
 		
