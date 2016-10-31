@@ -19,12 +19,14 @@ namespace AdvancedMap.Droid
 	/// @author jaak
 	/// @translated by m@t
 	/// </summary>
-	[Activity(Label = "Advanced Mobile Samples", MainLauncher = true)]
+	[Activity(MainLauncher = true)]
 	public class LauncherListActivity : ListActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+
+			Title = "Advanced Samples";
 
 			SetContentView(Resource.Layout.List);
 

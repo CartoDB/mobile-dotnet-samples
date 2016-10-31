@@ -110,6 +110,9 @@
     <AndroidResource Include="Resources\layout\MainGPS.axml" />
     <AndroidResource Include="Resources\layout\package_item_row.xml" />
     <AndroidResource Include="Resources\values\ids.xml" />
+    <AndroidResource Include="Resources\mipmap-nodpi\icon180.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\icon180.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\icon180.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />
@@ -126,6 +129,7 @@
     <Folder Include="Sections\BaseMap\Views\StyleButton\" />
     <Folder Include="Sections\BaseMap\Views\StyleButton\Menu\" />
     <Folder Include="Sections\GIS\" />
+    <Folder Include="Resources\mipmap-nodpi\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\world_ntvt_0_4.mbtiles" />
