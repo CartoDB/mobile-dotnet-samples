@@ -97,12 +97,14 @@ namespace AdvancedMap.iOS
 		{
 			base.LayoutSubviews();
 
-			nfloat height = Frame.Height / 3;
+			nfloat height = Frame.Height / 2;
 
 			headerContainer.Frame = new CGRect(0, 0, Frame.Width, height);
 			contentContainer.Frame = new CGRect(0, height, Frame.Width, Frame.Height - height);
 
 			nfloat padding = 10;
+			nfloat smallPadding = 6;
+
 			nfloat separatorWidth = 1;
 			nfloat separatorPadding = 7;
 
@@ -122,10 +124,10 @@ namespace AdvancedMap.iOS
 			tileTypeLabel.Frame = new CGRect(x, y, w, h);
 
 			x = padding;
-			y = padding;
+			y = smallPadding;
 
 			w = (contentContainer.Frame.Width - (padding + optionLabels.Count * padding)) / optionLabels.Count;
-			h = contentContainer.Frame.Height / 2.5f;
+			h = contentContainer.Frame.Height - 2 * smallPadding;
 
 			foreach (OptionLabel label in optionLabels)
 			{

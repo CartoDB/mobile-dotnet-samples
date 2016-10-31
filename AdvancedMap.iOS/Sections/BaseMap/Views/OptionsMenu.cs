@@ -60,7 +60,7 @@ namespace AdvancedMap.iOS
 			nfloat x = BoxPadding;
 			nfloat y = BoxPadding;
 			nfloat w = Frame.Width - 2 * BoxPadding;
-			nfloat h = 100;
+			nfloat h = 80;
 
 			foreach (OptionsMenuItem view in views)
 			{
