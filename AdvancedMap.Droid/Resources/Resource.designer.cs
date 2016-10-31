@@ -1431,11 +1431,14 @@ namespace AdvancedMap.Droid
 			// aapt resource value: 0x7f02004b
 			public const int marker = 2130837579;
 			
-			// aapt resource value: 0x7f02004d
-			public const int notification_template_icon_bg = 2130837581;
-			
 			// aapt resource value: 0x7f02004c
-			public const int olmarker = 2130837580;
+			public const int marker_black = 2130837580;
+			
+			// aapt resource value: 0x7f02004e
+			public const int notification_template_icon_bg = 2130837582;
+			
+			// aapt resource value: 0x7f02004d
+			public const int olmarker = 2130837581;
 			
 			static Drawable()
 			{

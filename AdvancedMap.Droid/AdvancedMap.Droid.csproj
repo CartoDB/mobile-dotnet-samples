@@ -114,6 +114,7 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\icon180.png" />
     <AndroidResource Include="Resources\drawable-nodpi\arrow.png" />
     <AndroidResource Include="Resources\drawable-nodpi\info.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\marker_black.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />
