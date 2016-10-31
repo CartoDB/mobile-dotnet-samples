@@ -135,7 +135,14 @@ namespace AdvancedMap.iOS
 			{
 				if (view.Section.Equals(section))
 				{
-					view.SetFirstItemActive();
+					if (section.Type == SectionType.Language)
+					{
+						currentLanguage = view.SetFirstItemActive();
+					}
+					else
+					{
+						current = view.SetFirstItemActive();
+					}
 				}
 			}
 		}

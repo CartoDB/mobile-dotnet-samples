@@ -166,12 +166,16 @@ namespace AdvancedMap.iOS
 			}
 		}
 
-		public void SetFirstItemActive()
+		public OptionLabel SetFirstItemActive()
 		{
 			if (optionLabels.Count > 0)
 			{
-				optionLabels[0].Highlight();
+				OptionLabel label = optionLabels[0];
+				label.Highlight();
+				return label;
 			}
+
+			return null;
 		}
 
 	}

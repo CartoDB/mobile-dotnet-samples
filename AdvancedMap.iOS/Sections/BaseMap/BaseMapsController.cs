@@ -4,6 +4,7 @@ using Carto.Core;
 using Carto.DataSources;
 using Carto.Layers;
 using Carto.Utils;
+using Carto.VectorTiles;
 using Shared;
 using Shared.iOS;
 
@@ -28,7 +29,15 @@ namespace AdvancedMap.iOS
 			MenuButton = new MenuButton();
 			NavigationItem.RightBarButtonItem = MenuButton;
 
-			Menu.SetInitialItem(Sections.List[0]);
+			Menu.SetInitialItem(Sections.Nutiteq);
+			Menu.SetInitialItem(Sections.Language);
+
+			UpdateBaseLayer(Sections.Nutiteq, Sections.Nutiteq.Styles[0].Value);
+			UpdateLanguage("en");
+
+			MapPos europe = BaseProjection.FromWgs84(new MapPos(15.2551, 54.5260));
+			MapView.SetFocusPos(europe, 0);
+			MapView.Zoom = 5;
 		}
 
 		public override void ViewWillAppear(bool animated)
@@ -65,19 +74,15 @@ namespace AdvancedMap.iOS
 
 		string currentOSM;
 		string currentSelection;
+		TileLayer currentLayer;
 
 		void UpdateBaseLayer(Section section, string selection)
 		{
-			currentOSM = section.OSM.Value;
-			currentSelection = selection;
-
-			if (section.Type == SectionType.Language)
+			if (section.Type != SectionType.Language)
 			{
-				return;
+				currentOSM = section.OSM.Value;
+				currentSelection = selection;
 			}
-
-			TileLayer layer = null;
-
 
 			if (section.Type == SectionType.Vector)
 			{
@@ -87,25 +92,25 @@ namespace AdvancedMap.iOS
 					// Nutiteq styles are bundled with the SDK, we can initialize them via constuctor
 					if (currentSelection == "default")
 					{
-						layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+						currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 					}
 					else if (currentSelection == "gray")
 					{
-						layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+						currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
 					}
 					else
 					{
-						layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark);
+						currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark);
 					}
 				}
 				else if (currentOSM == "mapzen.osm")
 				{
 					// MapZen styles are not, styles need to manually added to assets and then decoded
 					BinaryData styleAsset = AssetUtils.LoadAsset(currentSelection + ".zip");
-					layer = new CartoOnlineVectorTileLayer(currentOSM, new ZippedAssetPackage(styleAsset));
+					currentLayer = new CartoOnlineVectorTileLayer(currentOSM, new ZippedAssetPackage(styleAsset));
 				}
 		    }
-			else
+			else if (section.Type == SectionType.Raster)
 			{
 				// We know that the value of raster will be Positron or Darkmatter,
 				// as Nutiteq and Mapzen use vector tiles
@@ -114,15 +119,29 @@ namespace AdvancedMap.iOS
 				string url = (currentSelection == "positron") ? Urls.Positron : Urls.DarkMatter;
 
 				TileDataSource source = new HTTPTileDataSource(1, 19, url);
-				layer = new RasterTileLayer(source);
+				currentLayer = new RasterTileLayer(source);
+			} 
+			else if (section.Type == SectionType.Language)
+			{
+				UpdateLanguage(selection);
 			}
 
 			MapView.Layers.Clear();
-			MapView.Layers.Add(layer);
+			MapView.Layers.Add(currentLayer);
 
 			Menu.Hide();
 		}
 
+		void UpdateLanguage(string code)
+		{
+			if (currentLayer == null) 
+			{
+				return;
+			}
+
+			MBVectorTileDecoder decoder = (currentLayer as VectorTileLayer).TileDecoder as MBVectorTileDecoder;
+			decoder.SetStyleParameter("lang", code);
+		}
 	}
 }
 

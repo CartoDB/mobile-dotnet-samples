@@ -61,6 +61,10 @@ namespace Shared
 				return sections;
 			}
 		}
+
+		public static Section Nutiteq { get { return List[0]; } }
+
+		public static Section Language { get { return List[List.Count - 1]; } }
 	}
 }
 
