@@ -33,13 +33,6 @@ namespace AdvancedMap.iOS
 			// so we wouldn't need a style asset to create a decoder from scratch
 			MBVectorTileDecoder decoder = (MBVectorTileDecoder)(MapView.Layers[0] as VectorTileLayer).TileDecoder;
 
-			//BinaryData styleBytes = Carto.Utils.AssetUtils.LoadAsset("positron.zip");
-			//var vectorTileStyleSet = new Carto.Styles.CompiledStyleSet(new Carto.Utils.ZippedAssetPackage(styleBytes));
-			//decoder = new MBVectorTileDecoder(vectorTileStyleSet);
-
-			// Set language, language-specific texts from vector tiles will be used
-			//decoder.SetStyleParameter("lang", "en");
-
 			// Remove default baselayer
 			MapView.Layers.Clear();
 
