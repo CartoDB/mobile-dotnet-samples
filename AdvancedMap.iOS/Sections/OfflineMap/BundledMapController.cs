@@ -63,35 +63,33 @@ namespace AdvancedMap.iOS
 			string fullWritePath = Path.Combine(packageDirectory, name + "." + extension);
 			string resourceDirectory = NSBundle.MainBundle.PathForResource(name, extension);
 
-			//if (!Directory.Exists(packageDirectory))
-			//{
-			//	Directory.CreateDirectory(packageDirectory);
-			//	Console.WriteLine("Directory: Does not exist... Creating");
-			//}
-			//else
-			//{
-			//	Console.WriteLine("Directory: Exists");
-			//}
+			if (!Directory.Exists(packageDirectory))
+			{
+				Directory.CreateDirectory(packageDirectory);
+				Console.WriteLine("Directory: Does not exist... Creating");
+			}
+			else
+			{
+				Console.WriteLine("Directory: Exists");
+			}
 
-			//try
-			//{
-			//	// Copy bundled tile data to file system so it can be imported by package manager
-			//	using (var input = new FileStream(resourceDirectory, FileMode.Open, FileAccess.Read))
-			//	{
-			//		using (var output = new FileStream(fullWritePath, FileMode.Create, FileAccess.Write))
-			//		{
-			//			input.CopyTo(output);
-			//		}
-			//	}
+			try
+			{
+				// Copy bundled tile data to file system
+				using (var input = new FileStream(resourceDirectory, FileMode.Open, FileAccess.Read))
+				{
+					using (var output = new FileStream(fullWritePath, FileMode.Create, FileAccess.Write))
+					{
+						input.CopyTo(output);
+					}
+				}
 
-			//	return new MBTilesTileDataSource(0, 4, fullWritePath);
-			//}
-			//catch
-			//{
-			//	return null;
-			//}
-
-			return new MBTilesTileDataSource(0, 4, resourceDirectory);
+				return new MBTilesTileDataSource(0, 14, fullWritePath);
+			}
+			catch
+			{
+				return null;
+			}
 		}
 	}
 }
