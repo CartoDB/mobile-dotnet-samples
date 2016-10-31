@@ -27,6 +27,8 @@ namespace AdvancedMap.iOS
 
 			MenuButton = new MenuButton();
 			NavigationItem.RightBarButtonItem = MenuButton;
+
+			Menu.SetInitialItem(Sections.List[0]);
 		}
 
 		public override void ViewWillAppear(bool animated)

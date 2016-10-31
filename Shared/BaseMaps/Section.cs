@@ -9,6 +9,7 @@ namespace Shared
 		Raster,
 		Vector
 	}
+
 	public class Section
 	{
 		public NameValuePair OSM { get; set; }
@@ -16,6 +17,23 @@ namespace Shared
 		public MapType Type { get; set; }
 
 		public List<NameValuePair> Styles { get; set; }
+
+		public override bool Equals(object obj)
+		{
+			if (!(obj is Section))
+			{
+				return false;
+			}
+
+			Section comparable = (Section)obj;
+
+			return OSM.Value == comparable.OSM.Value;
+		}
+
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
+		}
 	}
 
 	public class NameValuePair 

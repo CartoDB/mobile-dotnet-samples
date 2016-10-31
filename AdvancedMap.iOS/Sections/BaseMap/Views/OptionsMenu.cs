@@ -110,6 +110,18 @@ namespace AdvancedMap.iOS
 				OptionTapped(null, e);
 			}
 		}
+
+		public void SetInitialItem(Section section)
+		{
+			foreach (OptionsMenuItem view in views)
+			{
+				if (view.Section.Equals(section))
+				{
+					view.SetFirstItemActive();
+				}
+			}
+		}
+
 	}
 
 	public class OptionEventArgs : EventArgs

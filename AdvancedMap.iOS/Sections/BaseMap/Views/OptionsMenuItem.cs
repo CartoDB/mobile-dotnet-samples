@@ -140,6 +140,13 @@ namespace AdvancedMap.iOS
 			}
 		}
 
+		public void SetFirstItemActive()
+		{
+			if (optionLabels.Count > 0)
+			{
+				optionLabels[0].Highlight();
+			}
+		}
 
 	}
 }
