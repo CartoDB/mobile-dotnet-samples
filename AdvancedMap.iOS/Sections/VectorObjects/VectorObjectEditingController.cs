@@ -8,9 +8,9 @@ using Shared.iOS;
 
 namespace AdvancedMap.iOS
 {
-	public class BasicEditableOverlayController : MapBaseController
+	public class VectorObjectEditingController : MapBaseController
 	{
-		public override string Name { get { return "Basic editable overlay"; } }
+		public override string Name { get { return "Vector object editing"; } }
 
 		public override string Description { get { return "Shows usage of an editable vector layer"; } }
 
@@ -27,14 +27,14 @@ namespace AdvancedMap.iOS
 			MapView.Layers.Add(editLayer);
 
 			// Convenience methods to add elements to the map, cf. LocalVectorDataSourceExtensions
-			source.AddPoint(new MapPos(-5000000, -900000));
+			source.AddPoint(new MapPos(-7000000, 7000000));
 
-			source.AddLine(new MapPosVector {
-				new MapPos(-6000000, -500000), new MapPos(-9000000, -500000)
+			source.AddLine(new MapPosVector { 
+				new MapPos(-9000000, -9000000), new MapPos(-5000000, -500000)
 			});
 
 			source.AddPolygon(new MapPosVector {
-				new MapPos(-5000000, -5000000), new MapPos(5000000, -5000000), new MapPos(0, 10000000)
+				new MapPos(-4000000, -4000000), new MapPos(4000000, -4000000), new MapPos(0, 7000000)
 			});
 
 			// Add a vector element even listener to select elements (on element click)

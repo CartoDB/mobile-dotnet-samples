@@ -19,7 +19,7 @@ namespace AdvancedMap.iOS
 			new WmsMapController(),
 
 			new HeaderController { Name = "Vector objects" },
-			new BasicEditableOverlayController(),
+			new VectorObjectEditingController(),
 			new OverlaysController(),
 			new ClusteredMarkersController(),
 

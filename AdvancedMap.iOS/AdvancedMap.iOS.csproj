@@ -156,7 +156,7 @@
     <Compile Include="Sections\OfflineMap\PackageManager\PackageListDataSource.cs" />
     <Compile Include="Sections\Other\CustomPopupController.cs" />
     <Compile Include="Sections\BaseMap\BaseMapsController.cs" />
-    <Compile Include="Sections\VectorObjects\BasicEditableOverlayController.cs" />
+    <Compile Include="Sections\VectorObjects\VectorObjectEditingController.cs" />
     <Compile Include="Sections\VectorObjects\ClusteredMarkersController.cs" />
     <Compile Include="Sections\BaseMap\Views\MenuButton.cs" />
     <Compile Include="Sections\BaseMap\Views\OptionsMenu.cs" />

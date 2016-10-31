@@ -65,6 +65,10 @@ namespace Shared
 		public static Section Nutiteq { get { return List[0]; } }
 
 		public static Section Language { get { return List[List.Count - 1]; } }
+
+		public static string BaseLanguageCode { get { return "en"; } }
+
+		public static string BaseStyleValue { get { return Nutiteq.Styles[0].Value; } }
 	}
 }
 

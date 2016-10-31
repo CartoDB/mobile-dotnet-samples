@@ -32,8 +32,8 @@ namespace AdvancedMap.iOS
 			Menu.SetInitialItem(Sections.Nutiteq);
 			Menu.SetInitialItem(Sections.Language);
 
-			UpdateBaseLayer(Sections.Nutiteq, Sections.Nutiteq.Styles[0].Value);
-			UpdateLanguage("en");
+			UpdateBaseLayer(Sections.Nutiteq, Sections.BaseStyleValue);
+			UpdateLanguage(Sections.BaseLanguageCode);
 
 			MapPos europe = BaseProjection.FromWgs84(new MapPos(15.2551, 54.5260));
 			MapView.SetFocusPos(europe, 0);
@@ -123,6 +123,10 @@ namespace AdvancedMap.iOS
 			} 
 			else if (section.Type == SectionType.Language)
 			{
+				if (currentLayer is RasterTileLayer) {
+					// Raster tile language chance is not supported
+					return;
+				}
 				UpdateLanguage(selection);
 			}
 

@@ -11,30 +11,32 @@ namespace Shared
 	{
 		public static void AddPoint(this LocalVectorDataSource source, MapPos position)
 		{
-			PointStyleBuilder pointStyleBuilder = new PointStyleBuilder();
-			pointStyleBuilder.Color = new Color(0, 0, 255, 255);
+			PointStyleBuilder builder = new PointStyleBuilder();
+			builder.Size = 30;
+			builder.Color = new Color(0, 0, 255, 255);
 
-			Point point = new Point(position, pointStyleBuilder.BuildStyle());
+			Point point = new Point(position, builder.BuildStyle());
 
 			source.Add(point);
 		}
 
 		public static void AddLine(this LocalVectorDataSource source, MapPosVector positions)
 		{
-			LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();
-			lineStyleBuilder.Color = new Color(255, 0, 0, 255);
+			LineStyleBuilder builder = new LineStyleBuilder();
+			builder.Width = 20;
+			builder.Color = new Color(255, 0, 0, 255);
 
-			Line line = new Line(positions, lineStyleBuilder.BuildStyle());
+			Line line = new Line(positions, builder.BuildStyle());
 
 			source.Add(line);
 		}
 
 		public static void AddPolygon(this LocalVectorDataSource source, MapPosVector positions)
 		{
-			PolygonStyleBuilder polygonStyleBuilder = new PolygonStyleBuilder();
-			polygonStyleBuilder.Color = new Color(0, 255, 0, 255);
+			PolygonStyleBuilder builder = new PolygonStyleBuilder();
+			builder.Color = new Color(0, 255, 0, 255);
 
-			Polygon polygon = new Polygon(positions, polygonStyleBuilder.BuildStyle());
+			Polygon polygon = new Polygon(positions, builder.BuildStyle());
 
 			source.Add(polygon);
 		}
