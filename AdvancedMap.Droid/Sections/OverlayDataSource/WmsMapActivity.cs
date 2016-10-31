@@ -11,7 +11,7 @@ namespace AdvancedMap.Droid
 {
 	[Activity]
 	[ActivityData(Title = "WMS map", Description = "WMS service raster on top of the vector base map")]
-	public class WmsMapActivity : VectorBaseMapActivity
+	public class WmsMapActivity : MapBaseActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
 		{

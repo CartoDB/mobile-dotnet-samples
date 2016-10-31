@@ -97,7 +97,6 @@ namespace AdvancedMap.Droid
 
 			if (style == null)
 			{
-
 				Android.Graphics.Bitmap canvasBitmap = markerBitmap.Copy(Android.Graphics.Bitmap.Config.Argb8888, true);
 				Android.Graphics.Canvas canvas = new Android.Graphics.Canvas(canvasBitmap);
 

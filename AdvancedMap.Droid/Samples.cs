@@ -18,6 +18,7 @@ namespace AdvancedMap.Droid
 
 			typeof(OverlayDatasourcesHeader),
 			typeof(CustomRasterDatasourceActivity),
+			typeof(GroundOverlayActivity),
 			typeof(WmsMapActivity),
 
 			typeof(VectorObjectsHeader),

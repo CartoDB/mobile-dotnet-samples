@@ -1,27 +1,26 @@
 ﻿using System;
+using Android.App;
 using Carto.Core;
 using Carto.DataSources;
 using Carto.Graphics;
 using Carto.Layers;
 using Carto.Utils;
-using Shared.iOS;
+using Shared.Droid;
 
-namespace AdvancedMap.iOS
+namespace AdvancedMap.Droid
 {
-	public class GroundOverlayController : MapBaseController
+	[Activity]
+	[ActivityData(Title = "Ground overlay", Description = "Show non-tiled Bitmap on ground")]
+	public class GroundOverlayActivity : MapBaseActivity
 	{
-		public override string Name { get { return "Ground overlays"; } }
-
-		public override string Description { get { return "Show non-tiled Bitmap on ground"; } }
-
-		public override void ViewDidLoad()
+		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
-			base.ViewDidLoad();
+			base.OnCreate(savedInstanceState);
 
 			// Load ground overlay bitmap
 			//Bitmap androidMarkerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.jefferson);
 			//com.carto.graphics.Bitmap overlayBitmap = BitmapUtils.createBitmapFromAndroidBitmap(androidMarkerBitmap);
-			Bitmap overlayBitmap = BitmapUtils.LoadBitmapFromFile("jefferson-building-ground-floor.jpg");
+			Bitmap overlayBitmap = BitmapUtils.LoadBitmapFromAssets("jefferson-building-ground-floor.jpg");
 
 			// Create two vectors containing geographical positions and corresponding raster image pixel coordinates.
 			// 2, 3 or 4 points may be specified. Usually 2 points are enough (for conformal mapping).

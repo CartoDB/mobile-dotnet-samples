@@ -84,6 +84,7 @@
     <Compile Include="Sections\Other\CustomPopupActivity.cs" />
     <Compile Include="Sections\VectorObject\VectorObjectEditingActvity.cs" />
     <Compile Include="Sections\VectorObject\ClusteredMarkersActivityActivity.cs" />
+    <Compile Include="Sections\OverlayDataSource\GroundOverlayActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -139,6 +140,7 @@
     <AndroidAsset Include="Assets\darkmatter.zip" />
     <AndroidAsset Include="Assets\cities15000.geojson" />
     <AndroidAsset Include="Assets\milktruck.nml" />
+    <AndroidAsset Include="Assets\jefferson-building-ground-floor.jpg" />
   </ItemGroup>
   <Import Project="..\Shared.Droid\Shared.Droid.projitems" Label="Shared" Condition="Exists('..\Shared.Droid\Shared.Droid.projitems')" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
