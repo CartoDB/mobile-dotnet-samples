@@ -68,7 +68,6 @@ namespace AdvancedMap.Droid
 		{
 			base.OnPause();
 
-			// Remove the update of the position to save battery
 			if ((manager != null) && (!string.IsNullOrEmpty(locationProvider)))
 			{
 				manager.RemoveUpdates(this);
@@ -80,7 +79,6 @@ namespace AdvancedMap.Droid
 		{
 			base.OnResume();
 
-			// Request updated position
 			if ((manager != null) && (!string.IsNullOrEmpty(locationProvider)))
 			{
 				manager.RequestLocationUpdates(locationProvider, 0, 0, this);
@@ -128,9 +126,6 @@ namespace AdvancedMap.Droid
 			}
 		}
 
-		/// <summary>
-		/// Initializes the location manager.
-		/// </summary>
 		void InitializeLocationManager()
 		{
 			manager = (LocationManager)GetSystemService(LocationService);
@@ -154,18 +149,12 @@ namespace AdvancedMap.Droid
 			messageView.Visibility = ViewStates.Visible;
 		}
 
-		/// <Docs>The new location, as a Location object.</Docs>
-		/// <remarks>Called when the location has changed.</remarks>
-		/// <summary>
-		/// Raises the location changed event.
-		/// </summary>
-		/// <param name="location">Location.</param>
 		public void OnLocationChanged(Location location)
 		{
 			currentLocation = location;
 			if (currentLocation == null)
 			{
-				LocationNotFound();
+				UnableToFindLocation();
 			}
 			else
 			{
@@ -173,55 +162,25 @@ namespace AdvancedMap.Droid
 			}
 		}
 
-		/// <Docs>the name of the location provider associated with this
-		///  update.</Docs>
-		/// <remarks>Called when the provider is disabled by the user. If requestLocationUpdates
-		///  is called on an already disabled provider, this method is called
-		///  immediately.</remarks>
-		/// <format type="text/html">[Android Documentation]</format>
-		/// <since version="Added in API level 1"></since>
-		/// <summary>
-		/// Raises the provider disabled event.
-		/// </summary>
-		/// <param name="provider">Provider.</param>
 		public void OnProviderDisabled(string provider)
 		{
-			System.Console.WriteLine("OnProviderDisabled");
+			Alert("Location provider disabled, bro!");
 		}
 
-		/// <Docs>the name of the location provider associated with this
-		///  update.</Docs>
-		/// <remarks>Called when the provider is enabled by the user.</remarks>
-		/// <format type="text/html">[Android Documentation]</format>
-		/// <since version="Added in API level 1"></since>
-		/// <summary>
-		/// Raises the provider enabled event.
-		/// </summary>
-		/// <param name="provider">Provider.</param>
 		public void OnProviderEnabled(string provider)
 		{
-			System.Console.WriteLine("OnProviderEnabled");
+			Alert("Location provider enabled... scanning for location");
 		}
 
-		/// <Docs>the name of the location provider associated with this
-		///  update.</Docs>
-		/// <summary>
-		/// Raises the status changed event.
-		/// </summary>
-		/// <param name="provider">Provider.</param>
-		/// <param name="status">Status.</param>
-		/// <param name="extras">Extras.</param>
 		public void OnStatusChanged(string provider, Availability status, Bundle extras)
 		{
 			System.Console.WriteLine("OnStatusChanged");
 		}
 
-		/// <summary>
-		/// Add a marker in the map when a new location is found.
-		/// </summary>
-		/// <param name="location">Location.</param>
 		void LocationFound(Location location)
 		{
+			// Add a marker in the map when a new location is found.
+
 			string title = string.Format("Location from '{0}'", location.Provider);
 			string subtitle = string.Format("lat:{0} lon:{1}", location.Latitude, location.Longitude);
 
@@ -245,12 +204,9 @@ namespace AdvancedMap.Droid
 			UpdateMarker(title, subtitle, (float)location.Latitude, (float)location.Longitude);
 		}
 
-		/// <summary>
-		/// Locations not found behaviour.
-		/// </summary>
-		void LocationNotFound()
+		void UnableToFindLocation()
 		{
-			// the error message appears o the screen
+			// The error message appears on the screen
 			messageView.Visibility = ViewStates.Visible;
 		}
 

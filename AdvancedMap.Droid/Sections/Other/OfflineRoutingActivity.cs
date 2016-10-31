@@ -25,31 +25,27 @@ namespace AdvancedMap.Droid
 {
 	[Activity]
 	[ActivityData(Title = "Offline routing", Description = "Offline routing with OpenStreetMap data packages")]
-	public class OfflineRoutingActivity: MapBaseActivity
+	public class OfflineRoutingActivity : MapBaseActivity
 	{
 		// Add packages you want to download
-		internal static string[] downloadablePackages = { "EE-routing", "LV-routing", "LT-routing", "PL-routing" };
+		internal static string[] downloadablePackages = { "EE-routing", "LV-routing" };
 
-		const string ROUTING_PACKAGEMANAGER_SOURCE = "routing:nutiteq.osm.car";
-		const string ROUTING_SERVICE_SOURCE = "nutiteq.osm.car";
+		const string ManagerSource = "routing:nutiteq.osm.car";
+		const string ServiceSource = "nutiteq.osm.car";
 
-		RoutingService onlineRoutingService;
-		RoutingService offlineRoutingService;
+		RoutingService onlineRoutingService, offlineRoutingService;
 		internal PackageManager packageManager;
 
 		bool shortestPathRunning;
 		internal bool offlinePackageReady;
 
-		Marker startMarker;
-		Marker stopMarker;
+		Marker startMarker, stopMarker;
 
-		MarkerStyle instructionUp;
-		MarkerStyle instructionLeft;
-		MarkerStyle instructionRight;
+		MarkerStyle instructionUp, instructionLeft, instructionRight;
 
 		LocalVectorDataSource routeDataSource;
 		LocalVectorDataSource routeStartStopDataSource;
-		BalloonPopupStyleBuilder balloonPopupStyleBuilder;
+		BalloonPopupStyleBuilder balloonBuilder;
 
 		RouteMapEventListener MapListener;
 		RoutingPackageListener PackageListener;
@@ -58,18 +54,13 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate (savedInstanceState);
 
-			/// Set online base layer
-			var styleAsset = AssetUtils.LoadAsset("nutibright-v2a.zip");
-			var baseLayer = new CartoOnlineVectorTileLayer("nutiteq.osm", new ZippedAssetPackage(styleAsset));
-			MapView.Layers.Add(baseLayer);
-
 			// Create PackageManager instance for dealing with offline packages
 			var packageFolder = new File (GetExternalFilesDir(null), "routingpackages");
 			if (!(packageFolder.Mkdirs() || packageFolder.IsDirectory)) {
 				Log.Fatal("Could not create package folder!");
 			}
 
-			packageManager = new CartoPackageManager(ROUTING_PACKAGEMANAGER_SOURCE, packageFolder.AbsolutePath);
+			packageManager = new CartoPackageManager(ManagerSource, packageFolder.AbsolutePath);
 
 			PackageListener = new RoutingPackageListener(packageManager, downloadablePackages);
 			packageManager.PackageManagerListener = PackageListener;
@@ -85,7 +76,7 @@ namespace AdvancedMap.Droid
 
 			// Create additional online routing service that will be used 
 			// when offline package is not yet downloaded or offline routing fails
-			onlineRoutingService = new CartoOnlineRoutingService(ROUTING_SERVICE_SOURCE);
+			onlineRoutingService = new CartoOnlineRoutingService(ServiceSource);
 
 			// Define layer and datasource for route line and instructions
 			routeDataSource = new LocalVectorDataSource(BaseProjection);
@@ -109,53 +100,43 @@ namespace AdvancedMap.Droid
 			MapListener = new RouteMapEventListener();
 			MapView.MapEventListener = MapListener;
 
-			// Create markers for start & end, and a layer for them
-			MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
-			markerStyleBuilder.Bitmap = BitmapUtils
-				.CreateBitmapFromAndroidBitmap(BitmapFactory.DecodeResource(
-					Resources, Resource.Drawable.olmarker));
-			markerStyleBuilder.HideIfOverlapped = false;
-			markerStyleBuilder.Size = 30;
+			// Create markers for start & end and a layer for them
+			MarkerStyleBuilder markerBuilder = new MarkerStyleBuilder();
+			markerBuilder.Bitmap = CreateBitmap(Resource.Drawable.olmarker);
+			markerBuilder.HideIfOverlapped = false;
+			markerBuilder.Size = 30;
+			markerBuilder.Color = new Carto.Graphics.Color(Android.Graphics.Color.Green);
 
-			markerStyleBuilder.Color = new Carto.Graphics.Color(Android.Graphics.Color.Green);
-
-			startMarker = new Marker(new MapPos(0, 0), markerStyleBuilder.BuildStyle());
+			startMarker = new Marker(new MapPos(0, 0), markerBuilder.BuildStyle());
 			startMarker.Visible = false;
 
-			markerStyleBuilder.Color = new Carto.Graphics.Color(Android.Graphics.Color.Red);
+			markerBuilder.Color = new Carto.Graphics.Color(Android.Graphics.Color.Red);
 
-			stopMarker = new Marker(new MapPos(0, 0), markerStyleBuilder.BuildStyle());
+			stopMarker = new Marker(new MapPos(0, 0), markerBuilder.BuildStyle());
 			stopMarker.Visible = false;
 
 			routeStartStopDataSource.Add(startMarker);
 			routeStartStopDataSource.Add(stopMarker);
 
-			markerStyleBuilder.Color = new Carto.Graphics.Color(Android.Graphics.Color.White);
-			markerStyleBuilder.Bitmap = BitmapUtils
-				.CreateBitmapFromAndroidBitmap(BitmapFactory.DecodeResource(
-					Resources, Resource.Drawable.direction_up));
-			instructionUp = markerStyleBuilder.BuildStyle();
+			markerBuilder.Color = new Carto.Graphics.Color(Android.Graphics.Color.White);
+			markerBuilder.Bitmap = CreateBitmap(Resource.Drawable.direction_up);
+			instructionUp = markerBuilder.BuildStyle();
 
-			markerStyleBuilder.Bitmap = BitmapUtils
-				.CreateBitmapFromAndroidBitmap(BitmapFactory.DecodeResource(
-					Resources, Resource.Drawable.direction_upthenleft));
-			instructionLeft = markerStyleBuilder.BuildStyle();
+			markerBuilder.Bitmap = CreateBitmap(Resource.Drawable.direction_upthenleft);
+			instructionLeft = markerBuilder.BuildStyle();
 
-			markerStyleBuilder.Bitmap = BitmapUtils
-				.CreateBitmapFromAndroidBitmap(BitmapFactory.DecodeResource(
-					Resources, Resource.Drawable.direction_upthenright));
-
-			instructionRight = markerStyleBuilder.BuildStyle();
+			markerBuilder.Bitmap = CreateBitmap(Resource.Drawable.direction_upthenright);
+			instructionRight = markerBuilder.BuildStyle();
 
 			// Style for instruction balloons
-			balloonPopupStyleBuilder = new BalloonPopupStyleBuilder();
-			balloonPopupStyleBuilder.TitleMargins = new BalloonPopupMargins(4,4,4,4);
+			balloonBuilder = new BalloonPopupStyleBuilder();
+			balloonBuilder.TitleMargins = new BalloonPopupMargins(4, 4, 4, 4);
 
 			// Finally animate map to Estonia
 			MapView.FocusPos = BaseProjection.FromWgs84(new MapPos(25.662893, 58.919365));
 			MapView.Zoom = 7;
 
-			Toast.MakeText(ApplicationContext, "Long-press on map to set route start and finish",ToastLength.Long).Show();
+			Alert("Long-press on map to set route start and finish");
 		}
 
 		protected override void OnResume()
@@ -180,6 +161,11 @@ namespace AdvancedMap.Droid
 			PackageListener.PackageUpdated -= OnPackageUpdated;
 		}
 
+		Carto.Graphics.Bitmap CreateBitmap(int resource)
+		{
+			return BitmapUtils.CreateBitmapFromAndroidBitmap(BitmapFactory.DecodeResource(Resources, resource));
+		}
+
 		#region EventHandlers
 
 		void OnStartPositionClick(object sender, RouteMapEventArgs e)
@@ -202,7 +188,7 @@ namespace AdvancedMap.Droid
 		{
 			RunOnUiThread(() =>
 			{
-				Toast.MakeText(BaseContext, "Offline package downloaded: " + e.Id, ToastLength.Long).Show();
+				Alert("Offline package downloaded: " + e.Id);
 			});
 
 			if (e.IsLastDownloaded)
@@ -256,7 +242,7 @@ namespace AdvancedMap.Droid
 					{
 						if (result == null)
 						{
-							Toast.MakeText(ApplicationContext, "Routing failed", ToastLength.Long).Show();
+							Alert("Routing failed");
 							shortestPathRunning = false;
 							return;
 						}
@@ -265,7 +251,7 @@ namespace AdvancedMap.Droid
 						string time = "(" + result.TotalTime.ConvertFromSecondsToHours() + ")";
 						string calculation = "| Calculation: " + (Java.Lang.JavaSystem.CurrentTimeMillis() - timeStart) + " ms";
 
-						Toast.MakeText(ApplicationContext, distance + time + calculation, ToastLength.Long).Show();
+						Alert(distance + time + calculation);
 
 						routeDataSource.Clear();
 
@@ -292,7 +278,6 @@ namespace AdvancedMap.Droid
 
 		protected void CreateRoutePoint(MapPos pos, RoutingInstruction instruction, LocalVectorDataSource source)
 		{
-
 			MarkerStyle style = instructionUp;
 			string str = "";
 
@@ -346,7 +331,7 @@ namespace AdvancedMap.Droid
 			if (str != "")
 			{
 				Marker marker = new Marker(pos, style);
-				BalloonPopup popup2 = new BalloonPopup(marker, balloonPopupStyleBuilder.BuildStyle(), str, "");
+				BalloonPopup popup2 = new BalloonPopup(marker, balloonBuilder.BuildStyle(), str, "");
 
 				source.Add(popup2);
 				source.Add(marker);
