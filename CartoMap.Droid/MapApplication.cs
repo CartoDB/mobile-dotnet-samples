@@ -28,7 +28,6 @@ namespace CartoMap.Droid
 
 			// Register license
 			MapView.RegisterLicense(LICENSE, ApplicationContext);
-
 		}
 	}
 }

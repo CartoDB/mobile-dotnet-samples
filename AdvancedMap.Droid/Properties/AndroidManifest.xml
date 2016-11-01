@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.carto.advancedmap.xamarin.droid">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.1" package="com.carto.advancedmap.xamarin.droid" android:versionCode="2">
 	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21" />
 	<application android:label="Advanced.Xam" android:icon="@mipmap/icon180"></application>
 	<uses-permission android:name="android.permission.INTERNET" />

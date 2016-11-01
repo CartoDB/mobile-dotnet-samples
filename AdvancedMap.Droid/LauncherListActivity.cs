@@ -9,17 +9,11 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using HockeyApp.Android;
 using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	/// <summary>
-	/// Shows list of demo Activities. Enables to open pre-launch activity for file picking.
-	/// This is the "main" of samples
-	/// 
-	/// @author jaak
-	/// @translated by m@t
-	/// </summary>
 	[Activity(MainLauncher = true)]
 	public class LauncherListActivity : ListActivity
 	{
@@ -37,6 +31,8 @@ namespace AdvancedMap.Droid
 			ListView.Id = Resource.Id.MapListView;
 
 			ListView.Adapter = new MapListAdapter(this, Samples.List);
+
+			UpdateManager.Register(this, MapApplication.HockeyAppId);
 		}
 
 		protected override void OnListItemClick(ListView l, View v, int position, long id)
