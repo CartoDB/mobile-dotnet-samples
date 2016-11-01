@@ -1,5 +1,6 @@
 ﻿
 using System;
+using Android.Animation;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
@@ -14,6 +15,8 @@ namespace AdvancedMap.Droid
 
 		public MenuButton Button { get; set; }
 
+		public OptionsMenu Menu { get; set; }
+
 		public BaseMapsView(Context context) : base(context)
 		{
 			MapView = new MapView(context);
@@ -26,8 +29,10 @@ namespace AdvancedMap.Droid
 			AddView(MapView);
 
 			Button = new MenuButton(context);
-
 			AddView(Button);
+
+			Menu = new OptionsMenu(context);
+			AddView(Menu);
 		}
 	}
 }

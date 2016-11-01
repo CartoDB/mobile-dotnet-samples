@@ -31,12 +31,18 @@ namespace AdvancedMap.Droid
 			ContentView = new BaseMapsView(this);
 			SetContentView(ContentView);
 
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+
+			Title = "Base maps";
+
 			// Zoom to Central Europe so some texts would be visible
 			MapPos europe = MapView.Options.BaseProjection.FromWgs84(new MapPos(15.2551, 54.5260));
 			MapView.SetFocusPos(europe, 0);
 			MapView.Zoom = 5;
 
 			MapView.InitializeVectorTileListener(VectorLayer);
+
+			Alert("Click the menu to choose between different styles and languages");
 		}
 
 		protected override void OnResume()
@@ -53,9 +59,31 @@ namespace AdvancedMap.Droid
 			ContentView.Button.Click -= OnMenuClicked;
 		}
 
+		public override bool OnOptionsItemSelected(IMenuItem item)
+		{
+			if (item.ItemId == Android.Resource.Id.Home)
+			{
+				OnBackPressed();
+				return true;
+			}
+
+			return base.OnOptionsItemSelected(item);
+		}
+
 		void OnMenuClicked(object sender, EventArgs e)
 		{
-			Console.WriteLine("OnMenuClicked");
+			if (ContentView.Menu.IsVisible)
+			{
+				ContentView.Menu.Hide();
+			}
+			else {
+				ContentView.Menu.Show();
+			}
+		}
+
+		void Alert(string message)
+		{
+			Toast.MakeText(this, message, ToastLength.Short).Show();
 		}
 	}
 }
