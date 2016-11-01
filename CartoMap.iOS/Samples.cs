@@ -13,8 +13,9 @@ namespace CartoMap.iOS
 			new CountriesVisController(),
 			new DotsVisController(),
 			new FontsVisController(),
-			new HeaderController() { Name = "Import API" },
-			new TilePackagerController(),
+			// TODO: Currently disabled, as the feature is a work in progress
+			//new HeaderController() { Name = "Import API" },
+			//new TilePackagerController(),
 			new HeaderController() { Name = "Maps API" },
 			new AnonymousRasterTableController(),
 			new AnonymousVectorTableController(),

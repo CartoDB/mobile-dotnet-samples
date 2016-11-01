@@ -39,7 +39,7 @@ namespace AdvancedMap.iOS
 			#endif
 
 			BITHockeyManager manager = BITHockeyManager.SharedHockeyManager;
-			manager.Configure("Your_App_Id");
+			manager.Configure(HockeyId);
 			manager.DisableUpdateManager = false;
 			manager.StartManager();
 

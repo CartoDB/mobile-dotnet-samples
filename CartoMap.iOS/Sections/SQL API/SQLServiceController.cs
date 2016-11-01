@@ -22,6 +22,10 @@ namespace CartoMap.iOS
 		{
 			base.ViewDidLoad();
 
+			// Clear the default layer, add a dark one instead
+			MapView.Layers.Clear();
+			MapView.Layers.Add(new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark));
+
 			Projection projection = MapView.Options.BaseProjection;
 
 			// Create a datasource and layer for the map
