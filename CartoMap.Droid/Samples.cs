@@ -15,8 +15,9 @@ namespace CartoMap.Droid
 			typeof(DotsVisActivity),
 			typeof(FontsVisActivity),
 
-			typeof(ImportHeader),
-			typeof(TilePackagerActivity),
+			// TODO: Currently disabled, as the feature is a work in progress
+			//typeof(ImportHeader),
+			//typeof(TilePackagerActivity),
 
 			typeof(MapsHeader),
 			typeof(AnonymousRasterTableActivity),

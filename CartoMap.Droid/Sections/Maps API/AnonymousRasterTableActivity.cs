@@ -10,7 +10,7 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity]
-	[ActivityData(Description = "Using Carto PostGIS Raster data")]
+	[ActivityData(Title = "Anonymous Raster Table", Description = "Using Carto PostGIS Raster data")]
 	public class AnonymousRasterTableActivity : MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
@@ -33,18 +33,21 @@ namespace CartoMap.Droid
 			// Use raster layers, not vector layers
 			mapsService.DefaultVectorLayerMode = false;
 
-			try
+			System.Threading.Tasks.Task.Run(delegate
 			{
-				LayerVector layers = mapsService.BuildMap(Variant.FromString(config));
-				for (int i = 0; i < layers.Count; i++)
+				try
 				{
-					MapView.Layers.Add(layers[i]);
+					LayerVector layers = mapsService.BuildMap(Variant.FromString(config));
+					for (int i = 0; i < layers.Count; i++)
+					{
+						MapView.Layers.Add(layers[i]);
+					}
 				}
-			}
-			catch (IOException e)
-			{
-				Carto.Utils.Log.Debug("EXCEPTION: Exception: " + e);
-			}
+				catch (IOException e)
+				{
+					Carto.Utils.Log.Debug("EXCEPTION: Exception: " + e);
+				}
+			});
 
 			// Zoom map to the content area
 			MapPos hiiumaa = BaseProjection.FromWgs84(new MapPos(22.7478235498916, 58.8330577553785));

@@ -51,7 +51,13 @@
     <Reference Include="System.Json" />
     <Reference Include="System.Web.Services" />
     <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.Android.4.0.0-pre-157\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.Android.4.0.0-pre-159\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="HockeySDK">
+      <HintPath>..\packages\HockeySDK.Xamarin.4.1.0\lib\MonoAndroid403\HockeySDK.dll</HintPath>
+    </Reference>
+    <Reference Include="HockeySDK.AndroidBindings">
+      <HintPath>..\packages\HockeySDK.Xamarin.4.1.0\lib\MonoAndroid403\HockeySDK.AndroidBindings.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +96,10 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\layout\List.axml" />
+    <AndroidResource Include="Resources\mipmap-nodpi\icon180.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\icon180.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\icon180.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\icon180.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
@@ -100,6 +110,7 @@
     <Folder Include="Sections\Maps API\" />
     <Folder Include="Sections\SQL API\" />
     <Folder Include="Sections\Torque API\" />
+    <Folder Include="Resources\mipmap-nodpi\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\nutibright-v2a.zip" />

@@ -11,7 +11,7 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity]
-	[ActivityData(Description = "Displays cities on the map via SQL query")]
+	[ActivityData(Title = "SQL Service", Description = "Displays cities on the map via SQL query")]
 	public class SQLServiceActivity : MapBaseActivity
 	{
 		const string query = "SELECT * FROM cities15000 WHERE population > 100000";
@@ -19,6 +19,10 @@ namespace CartoMap.Droid
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+
+			// Clear the default layer, add a dark one instead
+			MapView.Layers.Clear();
+			MapView.Layers.Add(new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark));
 
 			Projection projection = MapView.Options.BaseProjection;
 

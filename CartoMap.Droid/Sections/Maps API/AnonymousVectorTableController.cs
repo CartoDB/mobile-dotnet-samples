@@ -8,7 +8,7 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity]
-	[ActivityData(Description = "Usage of Carto Maps API with vector tiles")]
+	[ActivityData(Title = "Anonymous Vector Table", Description = "Usage of Carto Maps API with vector tiles")]
 	public class AnonymousVectorTableController : MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)

@@ -32,7 +32,7 @@ namespace AdvancedMap.Droid
 
 			ListView.Adapter = new MapListAdapter(this, Samples.List);
 
-			UpdateManager.Register(this, MapApplication.HockeyAppId);
+			UpdateManager.Register(this, MapApplication.HockeyId);
 		}
 
 		protected override void OnListItemClick(ListView l, View v, int position, long id)

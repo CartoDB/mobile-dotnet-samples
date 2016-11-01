@@ -7,7 +7,7 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity]
-	[ActivityData(Description = "Vis displaying countries in different colors")]
+	[ActivityData(Title = "Countries Vis", Description = "Vis displaying countries in different colors")]
 	public class CountriesVisActivity : MapBaseActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)

@@ -4,6 +4,7 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using HockeyApp.Android;
 using Shared.Droid;
 
 namespace CartoMap.Droid
@@ -18,6 +19,8 @@ namespace CartoMap.Droid
 			SetContentView(Resource.Layout.List);
 
 			ListView.Adapter = new MapListAdapter(this, Samples.List);
+
+			UpdateManager.Register(this, MapApplication.HockeyId);
 		}
 
 		protected override void OnListItemClick(ListView l, View v, int position, long id)
