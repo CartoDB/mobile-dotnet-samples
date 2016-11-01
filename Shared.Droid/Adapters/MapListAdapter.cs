@@ -48,7 +48,7 @@ namespace Shared.Droid
 				view = new MapRowView(context);
 			}
 
-			view.Update(item);
+			view.Update(item, position);
 
 			return view;
 		}

@@ -14,11 +14,12 @@ using Carto.Layers;
 
 using Carto.Projections;
 using Shared.Droid;
+using Android.Text;
 
 namespace Shared.Droid
 {
-	[Activity (Icon = "@mipmap/icon")]
-	public class MapBaseActivity : Activity
+	[Activity]
+	public class MapBaseActivity : BaseActivity
 	{
 		public static int ViewResource { get; set; }
 
@@ -44,29 +45,8 @@ namespace Shared.Droid
 			MapView.Layers.Add(baseLayer);
 
 			Title = GetType().GetTitle();
-
-			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			ActionBar.Subtitle = GetType().GetDescription();
 		}
-
-		public override bool OnOptionsItemSelected(IMenuItem item)
-		{
-			if (item.ItemId == Android.Resource.Id.Home)
-			{
-				OnBackPressed();
-				return true;
-			}
-
-			return base.OnOptionsItemSelected(item);
-		}
-
-		protected void Alert(string message)
-		{
-			RunOnUiThread(delegate
-			{
-				Toast.MakeText(this, message, ToastLength.Short).Show();
-			});
-		}
-
 
 		protected Carto.Graphics.Bitmap CreateBitmap(int resource)
 		{

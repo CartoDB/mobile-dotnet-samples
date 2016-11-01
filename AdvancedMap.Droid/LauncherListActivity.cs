@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Android.App;
 using Android.Content;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -27,6 +28,8 @@ namespace AdvancedMap.Droid
 			base.OnCreate(savedInstanceState);
 
 			Title = "Advanced Samples";
+
+			ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.ActionBar });
 
 			SetContentView(Resource.Layout.List);
 

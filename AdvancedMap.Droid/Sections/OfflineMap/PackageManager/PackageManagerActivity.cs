@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Content;
+using Android.Graphics.Drawables;
 using Android.Views;
 using Android.Widget;
 using Carto.Core;
@@ -45,8 +46,8 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			// Register license
-			MapView.RegisterLicense(LICENSE, ApplicationContext);
+			ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.ActionBar });
+			Title = GetType().GetTitle();
 
 			// Create package manager
 			File packageFolder = new File(ApplicationContext.GetExternalFilesDir(null), "mappackages");

@@ -42,7 +42,7 @@ namespace Shared.Droid
 			AddView(description);
 		}
 
-		public void Update(Type type)
+		public void Update(Type type, int position)
 		{
 			LayoutParams parameters = new LayoutParams(LayoutParams.WrapContent, LayoutParams.MatchParent);
 			parameters.SetMargins(10, 10, 10, 10);
@@ -55,8 +55,14 @@ namespace Shared.Droid
 			if (type.IsHeader())
 			{
 				background = new ColorDrawable(Color.Black);
-				parameters = new LayoutParams(ViewGroup.LayoutParams.MatchParent, 15);
-				topBorder.LayoutParameters = parameters;
+				if (position == 0)
+				{
+					topBorder.LayoutParameters = new LayoutParams(0, 0);
+				}
+				else {
+					parameters = new LayoutParams(ViewGroup.LayoutParams.MatchParent, 15);
+					topBorder.LayoutParameters = parameters;
+				}
 
 				description.Text = "";
 				description.LayoutParameters = new LayoutParams(0, 0);

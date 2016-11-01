@@ -16,7 +16,7 @@ namespace AdvancedMap.Droid
 {
 	[Activity]
 	[ActivityData(Title = "Base maps", Description = "Overview of base maps offered by CARTO")]
-	public class BaseMapsActivity : Activity
+	public class BaseMapsActivity : BaseActivity
 	{
 		BaseMapsView ContentView { get; set; }
 
@@ -30,8 +30,6 @@ namespace AdvancedMap.Droid
 
 			ContentView = new BaseMapsView(this);
 			SetContentView(ContentView);
-
-			ActionBar.SetDisplayHomeAsUpEnabled(true);
 
 			Title = "Base maps";
 
@@ -81,10 +79,6 @@ namespace AdvancedMap.Droid
 			}
 		}
 
-		void Alert(string message)
-		{
-			Toast.MakeText(this, message, ToastLength.Short).Show();
-		}
 	}
 }
 
