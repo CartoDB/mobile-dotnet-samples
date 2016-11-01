@@ -66,7 +66,7 @@ namespace AdvancedMap.Droid
 
 				contentContainer.Measure(0, 0);
 
-				int rowHeight = Metrics.HeightPixels / 17;
+				int rowHeight = Metrics.HeightPixels / 16;
 
 				if (optionLabels.Count <= 3)
 				{
@@ -99,6 +99,20 @@ namespace AdvancedMap.Droid
 						y += rowHeight;
 					}
 					counter++;
+				}
+
+				if (Section.Type == SectionType.Language)
+				{
+					(LayoutParameters as LinearLayout.LayoutParams).TopMargin = Padding * 2;
+				}
+				else if (Section.OSM.Value == "nutiteq.osm")
+				{
+					// Initial item, set additional padding
+					(LayoutParameters as LinearLayout.LayoutParams).TopMargin = Padding;
+				}
+				else
+				{
+					(LayoutParameters as LinearLayout.LayoutParams).TopMargin = Padding / 3;
 				}
 			}
 		}
@@ -160,6 +174,18 @@ namespace AdvancedMap.Droid
 			view.SetPadding(0, 20, 0, 20);
 
 			return view;
+		}
+
+		public OptionLabel SetFirstItemActive()
+		{
+			if (optionLabels.Count > 0)
+			{
+				OptionLabel label = optionLabels[0];
+				label.Highlight();
+				return label;
+			}
+
+			return null;
 		}
 	}
 }

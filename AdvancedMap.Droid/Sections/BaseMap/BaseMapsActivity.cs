@@ -46,6 +46,13 @@ namespace AdvancedMap.Droid
 			Alert("Click the menu to choose between different styles and languages");
 
 			ContentView.Menu.Items = Sections.List;
+
+			// Set initial style 
+			ContentView.Menu.SetInitialItem(Sections.Nutiteq);
+			ContentView.Menu.SetInitialItem(Sections.Language);
+
+			UpdateBaseLayer(Sections.Nutiteq, Sections.BaseStyleValue);
+			UpdateLanguage(Sections.BaseLanguageCode);
 		}
 
 		protected override void OnResume()

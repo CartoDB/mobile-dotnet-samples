@@ -80,6 +80,9 @@ namespace AdvancedMap.Droid
 			}));
 		}
 
+		OptionLabel current;
+		OptionLabel currentLanguage;
+
 		public override bool OnTouchEvent(MotionEvent e)
 		{
 			MotionEventActions action = e.Action;
@@ -100,13 +103,36 @@ namespace AdvancedMap.Droid
 						isInBox = true;
 						int headerHeight = item.HeaderHeight;
 
-						foreach (OptionLabel label in item.Options) 
+						foreach (OptionLabel option in item.Options) 
 						{
-							if (label.GetGlobalRect(headerHeight, outerRect).Contains(x, y))
+							if (option.GetGlobalRect(headerHeight, outerRect).Contains(x, y))
 							{
+								if (item.Section.Type == SectionType.Language)
+								{
+									if (currentLanguage != null)
+									{
+										currentLanguage.Normalize();
+									}
+
+									option.Highlight();
+
+									currentLanguage = option;
+								}
+								else
+								{
+									if (current != null)
+									{
+										current.Normalize();
+									}
+
+									option.Highlight();
+
+									current = option;
+								}
+
 								if (SelectionChange != null)
 								{
-									SelectionChange(null, new OptionEventArgs { Section = item.Section, Option = label });
+									SelectionChange(null, new OptionEventArgs { Section = item.Section, Option = option });
 								}
 							}
 						}
@@ -120,6 +146,24 @@ namespace AdvancedMap.Droid
 			}
 
 			return true;
+		}
+
+		public void SetInitialItem(Section section)
+		{
+			foreach (OptionMenuItem view in views)
+			{
+				if (view.Section.Equals(section))
+				{
+					if (section.Type == SectionType.Language)
+					{
+						currentLanguage = view.SetFirstItemActive();
+					}
+					else
+					{
+						current = view.SetFirstItemActive();
+					}
+				}
+			}
 		}
 	}
 

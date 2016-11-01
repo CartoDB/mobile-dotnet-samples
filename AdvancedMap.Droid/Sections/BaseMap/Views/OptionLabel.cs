@@ -66,7 +66,7 @@ namespace AdvancedMap.Droid
 
 		public void Highlight()
 		{
-			BackgroundColor = Colors.ActionBar;
+			BackgroundColor = Colors.ActiveMenuItem;
 			SetTextColor(Color.White);
 		}
 
@@ -126,8 +126,6 @@ namespace AdvancedMap.Droid
 			var parameters = new RelativeLayout.LayoutParams(w, h);
 			parameters.LeftMargin = x;
 			parameters.TopMargin = y;
-			Console.WriteLine("Inside: " + x + " - " + y + " - " + w + " - " + h);
-			Console.WriteLine("Total: " + total + "; Counter: " + counter);
 
 			LayoutParameters = parameters;
 		}
