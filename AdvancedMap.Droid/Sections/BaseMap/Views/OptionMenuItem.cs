@@ -12,7 +12,7 @@ namespace AdvancedMap.Droid
 	public class OptionMenuItem : LinearLayout
 	{
 		LinearLayout headerContainer;
-		LinearLayout contentContainer;
+		RelativeLayout contentContainer;
 
 		public bool IsMultiLine { get { return section.Styles.Count > 3; } }
 
@@ -36,20 +36,52 @@ namespace AdvancedMap.Droid
 				{
 					OptionLabel optionLabel = new OptionLabel(context, option);
 
-					if (section.Styles.Count > 2)
-					{
-						optionLabel.SetLayout(0.3f);
-					}
-					else {
-						optionLabel.SetLayout(0.5f);
-					}
+					//if (section.Styles.Count > 2)
+					//{
+					//	optionLabel.SetLayout(0.3f);
+					//}
+					//else {
+					//	optionLabel.SetLayout(0.5f);
+					//}
 
 					optionLabels.Add(optionLabel);
 					contentContainer.AddView(optionLabel);
 				}
 
-				Measure(0, 0);
-				Console.WriteLine("Width: " + MeasuredWidth);
+				contentContainer.Measure(0, 0);
+
+				int rowHeight = Metrics.HeightPixels / 19;
+
+				if (optionLabels.Count <= 3)
+				{
+					contentContainer.LayoutParameters.Height = rowHeight;
+				}
+				else if (optionLabels.Count <= 6)
+				{
+					contentContainer.LayoutParameters.Height = 2 * rowHeight;
+				}
+				else if (optionLabels.Count <= 9)
+				{
+					contentContainer.LayoutParameters.Height = 3 * rowHeight;
+				}
+				else 
+				{
+					// Not supported
+				}
+
+				int counter = 1;
+				int y = 0;
+
+				foreach (OptionLabel label in optionLabels)
+				{
+					label.SetRelativeLayout(contentContainer.MeasuredWidth, rowHeight, optionLabels.Count, counter, y);
+
+					if (counter % 3 == 0)
+					{
+						y += rowHeight;
+					}
+					counter++;
+				}
 			}
 		}
 
@@ -65,14 +97,17 @@ namespace AdvancedMap.Droid
 
 			this.context = context;
 
+			int width = (int)(Metrics.WidthPixels * 0.9);
+
 			headerContainer = new LinearLayout(context);
 			headerContainer.SetBackgroundColor(Colors.ActionBar);
 			headerContainer.Orientation = Orientation.Horizontal;
 
 			AddView(headerContainer);
 
-			contentContainer = new LinearLayout(context);
-			contentContainer.Orientation = Orientation.Horizontal;
+			contentContainer = new RelativeLayout(context);
+			contentContainer.LayoutParameters = new RelativeLayout.LayoutParams(width, 100);
+			//contentContainer.Orientation = Orientation.Horizontal;
 			AddView(contentContainer);
 
 			osmLabel = GetHeaderItem(TypefaceStyle.Bold);
@@ -85,7 +120,7 @@ namespace AdvancedMap.Droid
 			headerContainer.AddView(separatorLabel);
 			headerContainer.AddView(tileTypeLabel);
 
-			var parameters = new LinearLayout.LayoutParams((int)(Metrics.WidthPixels * 0.9), LayoutParams.WrapContent, 0.8f);
+			var parameters = new LinearLayout.LayoutParams(width, LayoutParams.WrapContent, 0.8f);
 			parameters.LeftMargin = Padding;
 			parameters.RightMargin = Padding;
 			parameters.TopMargin = Padding;

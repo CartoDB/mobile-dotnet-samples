@@ -60,6 +60,53 @@ namespace AdvancedMap.Droid
 			SetPadding(0, 20, 0, 20);
 			LayoutParameters = parameters;
 		}
+
+		public void SetRelativeLayout(int width, int height, int total, int counter, int y)
+		{
+			int x = 0;
+			int w = 0;
+			int h = height;
+
+			if (total == 2)
+			{
+				w = width / 2;
+			}
+			else if (total >= 3)
+			{
+				w = width / 3;
+			}
+			else
+			{
+				w = width;
+			}
+
+			if (counter % 3 == 0)
+			{
+				x = width / 3 * 2;
+			}
+			else if (counter % 2 == 0)
+			{
+				if (total == 2)
+				{
+					x = width / 2;
+				}
+				else {
+					x = width / 3;
+				}
+			}
+			else
+			{
+				x = 0;
+			}
+
+			var parameters = new RelativeLayout.LayoutParams(w, h);
+			parameters.LeftMargin = x;
+			parameters.TopMargin = y;
+			Console.WriteLine("Inside: " + x + " - " + y + " - " + w + " - " + h);
+			Console.WriteLine("Total: " + total + "; Counter: " + counter);
+
+			LayoutParameters = parameters;
+		}
 	}
 }
 
