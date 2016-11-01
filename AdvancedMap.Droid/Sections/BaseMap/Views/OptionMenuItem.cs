@@ -85,7 +85,7 @@ namespace AdvancedMap.Droid
 					// Not supported
 				}
 
-				// TODO Some clusterfuck logic here
+				// TODO - Refactor this clusterfuck
 
 				int counter = 1;
 				int y = 0;
