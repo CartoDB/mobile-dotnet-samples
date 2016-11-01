@@ -15,11 +15,25 @@ namespace AdvancedMap.Droid
 	{
 		public new EventHandler<EventArgs> Click;
 
+		int SmallerScreenMetric {
+			get {
+				int width = context.Resources.DisplayMetrics.WidthPixels;
+				int height = Context.Resources.DisplayMetrics.HeightPixels;
+
+				if (width > height) { return height; }
+				return width;
+			}
+		}
+
+		Context context;
+
 		public MenuButton(Context context) : base(context)
 		{
+			this.context = context;
+
 			SetBackgroundResource(Resource.Drawable.icon_menu_round);
 
-			int size = (int)(context.Resources.DisplayMetrics.WidthPixels / 6.5);
+			int size = (int)(SmallerScreenMetric / 6.5);
 			int margin = size / 5;
 
 			RelativeLayout.LayoutParams parameters = new RelativeLayout.LayoutParams(size, size);

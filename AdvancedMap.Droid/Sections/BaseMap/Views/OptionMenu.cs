@@ -1,19 +1,52 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.Animation;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
+using Shared;
 
 namespace AdvancedMap.Droid
 {
-
-	public class OptionsMenu : RelativeLayout
+	public class OptionMenu : LinearLayout
 	{
 		public bool IsVisible { get { return Alpha == 1.0f; } }
 
-		public OptionsMenu(Context context) : base(context)
+		List<OptionMenuItem> views = new List<OptionMenuItem>();
+		LinearLayout contentContainer;
+
+		List<Section> items;
+		public List<Section> Items
 		{
-			LayoutParameters = new ViewGroup.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
+			get { return items; }
+			set
+			{
+
+				items = value;
+
+				foreach (Section section in items)
+				{
+					OptionMenuItem view = new OptionMenuItem(context);
+					view.Section = section;
+					views.Add(view);
+					contentContainer.AddView(view);
+				}
+			}
+		}
+
+		Context context;
+
+		public OptionMenu(Context context) : base(context)
+		{
+			this.context = context;
+
+			LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
+
+			contentContainer = new LinearLayout(context);
+			contentContainer.LayoutParameters = new ViewGroup.LayoutParams(LayoutParams.MatchParent, LayoutParams.WrapContent);
+			contentContainer.Orientation = Orientation.Vertical;
+
+			AddView(contentContainer);
 
 			SetBackgroundColor(Android.Graphics.Color.Argb(130, 0, 0, 0));
 

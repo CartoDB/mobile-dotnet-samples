@@ -41,6 +41,8 @@ namespace AdvancedMap.Droid
 			MapView.InitializeVectorTileListener(VectorLayer);
 
 			Alert("Click the menu to choose between different styles and languages");
+
+			ContentView.Menu.Items = Sections.List;
 		}
 
 		protected override void OnResume()
