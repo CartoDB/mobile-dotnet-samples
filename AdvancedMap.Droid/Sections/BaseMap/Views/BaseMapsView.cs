@@ -12,7 +12,7 @@ namespace AdvancedMap.Droid
 	{
 		public MapView MapView { get; set; }
 
-		public ChangeStyleButton Button { get; set; }
+		public MenuButton Button { get; set; }
 
 		public BaseMapsView(Context context) : base(context)
 		{
@@ -25,7 +25,7 @@ namespace AdvancedMap.Droid
 
 			AddView(MapView);
 
-			Button = new ChangeStyleButton(context);
+			Button = new MenuButton(context);
 
 			AddView(Button);
 		}

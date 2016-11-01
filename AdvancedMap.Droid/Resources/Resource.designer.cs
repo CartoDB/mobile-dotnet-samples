@@ -1426,19 +1426,22 @@ namespace AdvancedMap.Droid
 			public const int direction_upthenright = 2130837577;
 			
 			// aapt resource value: 0x7f02004a
-			public const int info = 2130837578;
+			public const int icon_menu_round = 2130837578;
 			
 			// aapt resource value: 0x7f02004b
-			public const int marker = 2130837579;
+			public const int info = 2130837579;
 			
 			// aapt resource value: 0x7f02004c
-			public const int marker_black = 2130837580;
-			
-			// aapt resource value: 0x7f02004e
-			public const int notification_template_icon_bg = 2130837582;
+			public const int marker = 2130837580;
 			
 			// aapt resource value: 0x7f02004d
-			public const int olmarker = 2130837581;
+			public const int marker_black = 2130837581;
+			
+			// aapt resource value: 0x7f02004f
+			public const int notification_template_icon_bg = 2130837583;
+			
+			// aapt resource value: 0x7f02004e
+			public const int olmarker = 2130837582;
 			
 			static Drawable()
 			{

@@ -79,7 +79,7 @@
     <Compile Include="Sections\BaseMap\Views\BaseMapsView.cs" />
     <Compile Include="Sections\BaseMap\Views\StyleButton\Menu\BaseMapsContent.cs" />
     <Compile Include="Sections\BaseMap\Views\StyleButton\Menu\BaseMapsSection.cs" />
-    <Compile Include="Sections\BaseMap\Views\StyleButton\ChangeStyleButton.cs" />
+    <Compile Include="Sections\BaseMap\Views\StyleButton\MenuButton.cs" />
     <Compile Include="Sections\Other\CaptureActivity.cs" />
     <Compile Include="Sections\Other\CustomPopupActivity.cs" />
     <Compile Include="Sections\VectorObject\VectorObjectEditingActvity.cs" />
@@ -116,6 +116,7 @@
     <AndroidResource Include="Resources\drawable-nodpi\arrow.png" />
     <AndroidResource Include="Resources\drawable-nodpi\info.png" />
     <AndroidResource Include="Resources\drawable-nodpi\marker_black.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_menu_round.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />
