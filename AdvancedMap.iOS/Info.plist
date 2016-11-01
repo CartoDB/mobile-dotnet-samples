@@ -6,10 +6,6 @@
 	<string>Advanced.Xam</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.carto.advancedmap</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -41,5 +37,9 @@
 	<string>New Entry</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcons.appiconset</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.0.1</string>
+	<key>CFBundleVersion</key>
+	<string>0.0.1</string>
 </dict>
 </plist>
