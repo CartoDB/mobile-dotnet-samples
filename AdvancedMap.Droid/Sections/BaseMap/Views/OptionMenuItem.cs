@@ -20,6 +20,30 @@ namespace AdvancedMap.Droid
 
 		List<OptionLabel> optionLabels = new List<OptionLabel>();
 
+		public List<OptionLabel> Options { get { return optionLabels; } }
+
+		public Rect HitRect 
+		{ 
+			get {
+				var rect = new Rect();
+				GetHitRect(rect);
+
+				return rect;
+			} 
+		}
+
+		int headerHeight;
+		public int HeaderHeight {
+			get {
+				if (headerHeight == 0) {
+					headerContainer.Measure(0, 0);
+					headerHeight = headerContainer.MeasuredHeight;
+				}
+
+				return headerHeight;
+			}
+		}
+
 		public Section section;
 		public Section Section
 		{
@@ -36,21 +60,13 @@ namespace AdvancedMap.Droid
 				{
 					OptionLabel optionLabel = new OptionLabel(context, option);
 
-					//if (section.Styles.Count > 2)
-					//{
-					//	optionLabel.SetLayout(0.3f);
-					//}
-					//else {
-					//	optionLabel.SetLayout(0.5f);
-					//}
-
 					optionLabels.Add(optionLabel);
 					contentContainer.AddView(optionLabel);
 				}
 
 				contentContainer.Measure(0, 0);
 
-				int rowHeight = Metrics.HeightPixels / 19;
+				int rowHeight = Metrics.HeightPixels / 17;
 
 				if (optionLabels.Count <= 3)
 				{
@@ -64,10 +80,12 @@ namespace AdvancedMap.Droid
 				{
 					contentContainer.LayoutParameters.Height = 3 * rowHeight;
 				}
-				else 
+				else
 				{
 					// Not supported
 				}
+
+				// TODO Some clusterfuck logic here
 
 				int counter = 1;
 				int y = 0;
@@ -139,7 +157,7 @@ namespace AdvancedMap.Droid
 			view.Typeface = Typeface.Create("Helvetica Neue", style);
 			view.Gravity = Android.Views.GravityFlags.CenterVertical;
 			view.SetTextColor(Color.White);
-			view.SetPadding(0, 30, 0, 30);
+			view.SetPadding(0, 20, 0, 20);
 
 			return view;
 		}

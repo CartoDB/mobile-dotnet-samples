@@ -26,6 +26,30 @@ namespace AdvancedMap.Droid
 				SetBackgroundColor(backgroundColor);
 			} 
 		}
+
+		public Rect HitRect
+		{
+			get
+			{
+				var rect = new Rect();
+				GetHitRect(rect);
+
+				return rect;
+			}
+		}
+
+		public Rect GetGlobalRect(int headerHeight, Rect outerRect)
+		{
+			Rect rect = HitRect;
+
+			int left = outerRect.Left + rect.Left;
+			int top = outerRect.Top + headerHeight + rect.Top;
+			int right = outerRect.Left + rect.Right;
+			int bottom = outerRect.Top + headerHeight + rect.Bottom;
+
+			return new Rect(left, top, right, bottom);
+		}
+
 		public OptionLabel(Context context, NameValuePair option) : base(context)
 		{
 			Name = option.Name;
@@ -107,6 +131,13 @@ namespace AdvancedMap.Droid
 
 			LayoutParameters = parameters;
 		}
+	}
+
+	public class OptionEventArgs : EventArgs
+	{
+		public Section Section { get; set; }
+
+		public OptionLabel Option { get; set; }
 	}
 }
 

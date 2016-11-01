@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Android.Animation;
 using Android.Content;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using Shared;
@@ -10,6 +11,8 @@ namespace AdvancedMap.Droid
 {
 	public class OptionMenu : LinearLayout
 	{
+		public EventHandler<OptionEventArgs> SelectionChange;
+
 		public bool IsVisible { get { return Alpha == 1.0f; } }
 
 		List<OptionMenuItem> views = new List<OptionMenuItem>();
@@ -51,6 +54,7 @@ namespace AdvancedMap.Droid
 			SetBackgroundColor(Android.Graphics.Color.Argb(130, 0, 0, 0));
 
 			Alpha = 0.0f;
+			Visibility = ViewStates.Gone;
 		}
 
 		public void Show()
@@ -74,6 +78,48 @@ namespace AdvancedMap.Droid
 					completionHandler();
 				}
 			}));
+		}
+
+		public override bool OnTouchEvent(MotionEvent e)
+		{
+			MotionEventActions action = e.Action;
+
+			int x = (int)e.GetX();
+			int y = (int)e.GetY();
+
+			if (e.Action == MotionEventActions.Up)
+			{
+				bool isInBox = false;
+
+				foreach (OptionMenuItem item in views) {
+
+					Rect outerRect = item.HitRect;
+
+					if (outerRect.Contains(x, y))
+					{
+						isInBox = true;
+						int headerHeight = item.HeaderHeight;
+
+						foreach (OptionLabel label in item.Options) 
+						{
+							if (label.GetGlobalRect(headerHeight, outerRect).Contains(x, y))
+							{
+								if (SelectionChange != null)
+								{
+									SelectionChange(null, new OptionEventArgs { Section = item.Section, Option = label });
+								}
+							}
+						}
+					}
+				}
+
+				if (!isInBox)
+				{
+					Hide();
+				}
+			}
+
+			return true;
 		}
 	}
 
