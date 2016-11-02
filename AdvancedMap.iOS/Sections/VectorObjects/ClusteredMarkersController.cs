@@ -27,7 +27,7 @@ namespace AdvancedMap.iOS
 			base.ViewDidAppear(animated);
 
 			// Add default base layer
-			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
 
 			// Initialize a local vector data source
 			LocalVectorDataSource source = new LocalVectorDataSource(BaseProjection);
@@ -37,9 +37,6 @@ namespace AdvancedMap.iOS
 
 			// Default is 100. A good value depends on data
 			layer.MinimumClusterDistance = 50;
-
-			// Add the clustered vector layer to the map
-			MapView.Layers.Add(layer);
 
 			// read json from assets and add to map
 			string json = System.IO.File.ReadAllText(AssetUtils.CalculateResourcePath("cities15000.geojson"));
@@ -64,6 +61,9 @@ namespace AdvancedMap.iOS
 				source.Add(new Marker(geometry, style));
 			}
 
+			// Add the clustered vector layer to the map
+			MapView.Layers.Add(layer);
+
 			Alert("Finished adding Markers to source. Clustering started...");
 		}
 
@@ -76,7 +76,7 @@ namespace AdvancedMap.iOS
 
 		public MyClusterElementBuilder()
 		{
-			markerImage = UIImage.FromFile("marker_black.png");
+			markerImage = UIImage.FromFile("icons/marker_black.png");
 		}
 
 		public override VectorElement BuildClusterElement(MapPos pos, VectorElementVector elements)

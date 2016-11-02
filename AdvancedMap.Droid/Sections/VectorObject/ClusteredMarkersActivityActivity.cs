@@ -23,6 +23,8 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate (savedInstanceState);
 
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+
 			// read json from assets and add to map
 			string json;
 
@@ -35,7 +37,8 @@ namespace AdvancedMap.Droid
 			LocalVectorDataSource source = new LocalVectorDataSource(BaseProjection);
 
 			// Initialize a vector layer with the previous data source
-			VectorLayer layer = new ClusteredVectorLayer(source, new MyClusterElementBuilder(this));
+			ClusteredVectorLayer layer = new ClusteredVectorLayer(source, new MyClusterElementBuilder(this));
+			layer.MinimumClusterDistance = 50;
 
 			new System.Threading.Thread((obj) =>
 			{
@@ -65,7 +68,6 @@ namespace AdvancedMap.Droid
 				Alert("Finished adding Markers to source. Clustering started");
 
 				// Add the clustered vector layer to the map
-				// Do it after adding markers
 				MapView.Layers.Add(layer);
 
 			}).Start();
