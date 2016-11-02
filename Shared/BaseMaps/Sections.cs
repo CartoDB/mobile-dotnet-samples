@@ -48,7 +48,10 @@ namespace Shared
 					new NameValuePair { Name = "Italian", Value = "it" },
 					new NameValuePair { Name = "French", Value = "fr" },
 					new NameValuePair { Name = "Russian", Value = "ru" },
-					new NameValuePair { Name = "Chinese", Value = "zh" }
+
+					// Chinese is supported, but disabled in our example, 
+					// as it requires an extra asset package (nutibright-v3-full.zip)
+					//new NameValuePair { Name = "Chinese", Value = "zh" }
 				};
 
 				sections.Add(new Section

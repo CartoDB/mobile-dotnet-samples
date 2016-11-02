@@ -11,7 +11,9 @@ namespace AdvancedMap.iOS
 	{
 		public EventHandler<OptionEventArgs> OptionTapped;
 
-		static nfloat BoxPadding = 20;
+		static nfloat SmallBoxPadding = 5;
+
+		static nfloat LargeBoxPadding = 20;
 
 		const double animationDuration = 0.2;
 
@@ -57,16 +59,29 @@ namespace AdvancedMap.iOS
 		{
 			base.LayoutSubviews();
 
-			nfloat x = BoxPadding;
-			nfloat y = BoxPadding;
-			nfloat w = Frame.Width - 2 * BoxPadding;
+			nfloat x = SmallBoxPadding;
+			nfloat y = LargeBoxPadding;
+			nfloat w = Frame.Width - 2 * SmallBoxPadding;
 			nfloat h = 0;
+
+			int counter = 0;
 
 			foreach (OptionsMenuItem view in views)
 			{
-				h = view.IsMultiLine ? 160 : 80;
+				// Trivial heights
+				h = view.IsMultiLine ? 120 : 80;
 				view.Frame = new CGRect(x, y, w, h);
-				y += h + BoxPadding;
+
+				if (counter == 2)
+				{
+					// Extra padding so language menu would be more separate
+					y += h + LargeBoxPadding;
+				}
+				else {
+					y += h + SmallBoxPadding;
+				}
+
+				counter++;
 			}
 		}
 

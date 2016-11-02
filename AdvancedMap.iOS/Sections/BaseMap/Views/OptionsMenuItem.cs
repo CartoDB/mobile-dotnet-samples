@@ -84,21 +84,20 @@ namespace AdvancedMap.iOS
 			contentContainer.AddGestureRecognizer(new UITapGestureRecognizer(OnContainerTap));
 		}
 
-		protected nfloat padding = 10;
-		protected nfloat smallPadding = 6;
-
-		protected nfloat separatorWidth = 1;
-		protected nfloat separatorPadding = 7;
-
 		public override void LayoutSubviews()
 		{
 			base.LayoutSubviews();
 
-			nfloat height = 40;
+			nfloat headerHeight = 30;
 			nfloat itemHeight = 28;
 
-			headerContainer.Frame = new CGRect(0, 0, Frame.Width, height);
-			contentContainer.Frame = new CGRect(0, height, Frame.Width, Frame.Height - height);
+			nfloat padding = 10;
+			nfloat itemTopPadding = 11;
+			nfloat separatorWidth = 1;
+			nfloat separatorPadding = 7;
+
+			headerContainer.Frame = new CGRect(0, 0, Frame.Width, headerHeight);
+			contentContainer.Frame = new CGRect(0, headerHeight, Frame.Width, Frame.Height - headerHeight);
 
 			nfloat x = padding;
 			nfloat y = 0;
@@ -116,7 +115,7 @@ namespace AdvancedMap.iOS
 			tileTypeLabel.Frame = new CGRect(x, y, w, h);
 
 			x = padding;
-			y = smallPadding;
+			y = itemTopPadding;
 
 			if (IsMultiLine)
 			{
