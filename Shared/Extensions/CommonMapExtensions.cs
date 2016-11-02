@@ -12,6 +12,7 @@ using Carto.Projections;
 using Carto.Services;
 using Carto.Styles;
 using Carto.Ui;
+using Carto.Utils;
 using Carto.VectorElements;
 
 namespace Shared
@@ -109,13 +110,10 @@ namespace Shared
 						error(e.Message);
 					}
                 }
-
-                MapPos tallinn = new MapPos(24.646469, 59.426939);
-                map.AddMarkerToPosition(tallinn);
             });
         }
 
-		public static void UpdateVisWithGridEvent(this MapView map, string url, Action<string> error = null)
+		public static LocalVectorDataSource UpdateVisWithGridEvent(this MapView map, string url, Action<string> error = null)
 		{
 			ThreadPool.QueueUserWorkItem(delegate
 			{
@@ -131,6 +129,9 @@ namespace Shared
 				loader.DefaultVectorLayerMode = true;
 				CartoVisBuilderWithGridEvent builder = new CartoVisBuilderWithGridEvent(map, layer);
 
+				BinaryData fontData = AssetUtils.LoadAsset("carto-fonts.zip");
+				loader.VectorTileAssetPackage = new ZippedAssetPackage(fontData);
+
 				try
 				{
 					loader.LoadVis(builder, url);
@@ -144,7 +145,11 @@ namespace Shared
 				}
 
 				map.Layers.Add(layer);
+
+				//return source;
 			});
+
+			return null;
 		}
 
 		public static void AnimateZoomTo(this MapView map, MapPos position)

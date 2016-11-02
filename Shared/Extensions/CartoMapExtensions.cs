@@ -66,8 +66,15 @@ namespace Shared
 
 				for (int i = 0; i < features.FeatureCount; i++)
 				{
-					PointGeometry geometry = (PointGeometry)features.GetFeature(i).Geometry;
-					source.Add(new Point(geometry, style));
+					Feature feature = features.GetFeature(i);
+
+					PointGeometry geometry = (PointGeometry)feature.Geometry;
+
+					// TODO listener
+					var point = new Point(geometry, style);
+					point.SetMetaDataElement("properties", feature.Properties);
+
+					source.Add(point);
 				}
 
 			});	

@@ -30,7 +30,10 @@ namespace AdvancedMap.iOS
 			LocalVectorDataSource source = new LocalVectorDataSource(BaseProjection);
 
 			// Initialize a vector layer with the previous data source
-			VectorLayer layer = new ClusteredVectorLayer(source, new MyClusterElementBuilder());
+			var layer = new ClusteredVectorLayer(source, new MyClusterElementBuilder());
+
+			// Default is 100. A good value depends on data
+			layer.MinimumClusterDistance = 50;
 
 			// Add the clustered vector layer to the map
 			MapView.Layers.Add(layer);

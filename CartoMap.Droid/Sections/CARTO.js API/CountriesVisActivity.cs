@@ -14,7 +14,7 @@ namespace CartoMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			MapView.UpdateVis("http://documentation.cartodb.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json");
+			MapView.UpdateVisWithGridEvent("http://documentation.cartodb.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json");
 		}
 	}
 }

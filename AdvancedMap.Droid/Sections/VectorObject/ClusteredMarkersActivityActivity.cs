@@ -37,9 +37,6 @@ namespace AdvancedMap.Droid
 			// Initialize a vector layer with the previous data source
 			VectorLayer layer = new ClusteredVectorLayer(source, new MyClusterElementBuilder(this));
 
-			// Add the clustered vector layer to the map
-			MapView.Layers.Add(layer);
-
 			new System.Threading.Thread((obj) =>
 			{
 
@@ -66,6 +63,11 @@ namespace AdvancedMap.Droid
 				}
 
 				Alert("Finished adding Markers to source. Clustering started");
+
+				// Add the clustered vector layer to the map
+				// Do it after adding markers
+				MapView.Layers.Add(layer);
+
 			}).Start();
 		}
 	}

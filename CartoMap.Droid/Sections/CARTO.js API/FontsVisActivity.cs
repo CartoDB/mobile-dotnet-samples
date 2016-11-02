@@ -13,7 +13,7 @@ namespace CartoMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			MapView.UpdateVis("https://cartomobile-team.carto.com/u/nutiteq/api/v2/viz/13332848-27da-11e6-8801-0e5db1731f59/viz.json");
+			MapView.UpdateVisWithGridEvent("https://cartomobile-team.carto.com/u/nutiteq/api/v2/viz/13332848-27da-11e6-8801-0e5db1731f59/viz.json");
 		}
 	}
 }
