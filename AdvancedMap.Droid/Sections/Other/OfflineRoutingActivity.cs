@@ -23,7 +23,7 @@ using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	[Activity]
+	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "Offline routing", Description = "Offline routing with OpenStreetMap data packages")]
 	public class OfflineRoutingActivity : MapBaseActivity
 	{

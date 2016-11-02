@@ -11,7 +11,7 @@ using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	[Activity]
+	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "Custom raster data source", Description = "Creating and using custom raster tile data source")]
 	public class CustomRasterDatasourceActivity : MapBaseActivity
 	{

@@ -15,7 +15,7 @@ using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	[Activity]
+	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "Screencapture", Description = "Captures rendered MapView as a Bitmap")]
 	public class CaptureActivity : MapBaseActivity
 	{

@@ -12,7 +12,7 @@ using Carto.Graphics;
 
 namespace AdvancedMap.Droid
 {
-	[Activity]
+	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "Overlays", Description = "2D and 3D objects: lines, points, polygons, texts, pop-ups and a NMLModel")]
 	public class OverlaysActivity: MapBaseActivity
 	{

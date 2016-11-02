@@ -16,7 +16,7 @@ using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	[Activity(Label = "")]
+	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "Vector object editing", Description = "Shows usage of an editable vector layer")]
 	public class VectorObjectEditingActvity : MapBaseActivity
 	{

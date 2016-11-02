@@ -9,7 +9,7 @@ using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	[Activity]
+	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "Ground overlay", Description = "Show non-tiled Bitmap on ground")]
 	public class GroundOverlayActivity : MapBaseActivity
 	{
