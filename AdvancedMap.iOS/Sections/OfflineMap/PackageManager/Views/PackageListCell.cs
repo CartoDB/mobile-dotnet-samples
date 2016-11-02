@@ -13,50 +13,59 @@ namespace AdvancedMap.iOS
 
 		UILabel nameLabel, statusLabel;
 
-		PackageManagerButton ActionButton { get; set; }
+		PackageManagerButton Button { get; set; }
 
 		static nfloat MaxButtonWidth = 70;
+
+		Package package;
 
 		public PackageListCell()
 		{
 			nameLabel = new UILabel();
-			nameLabel.Font = UIFont.FromName("Helvetica", 14);
+			nameLabel.Font = UIFont.FromName("HelveticaNeue-Bold", 15);
 
 			statusLabel = new UILabel();
-			statusLabel.Font = UIFont.FromName("Helvetica", 12);
+			statusLabel.Font = UIFont.FromName("HelveticaNeue", 12);
+			statusLabel.TextColor = UIColor.DarkGray;
 
-			ActionButton = new PackageManagerButton();
+			Button = new PackageManagerButton();
+			Button.TitleLabel.TextAlignment = UITextAlignment.Center;
 
-			AddSubviews(nameLabel, statusLabel, ActionButton);
+			AddSubviews(nameLabel, statusLabel, Button);
 
 			SelectionStyle = UITableViewCellSelectionStyle.None;
 
-			ActionButton.TouchUpInside += OnButtonClick;
+			Button.TouchUpInside += OnButtonClick;
 		}
 
 		public override void LayoutSubviews()
 		{
 			base.LayoutSubviews();
 
+			if (package == null)
+			{
+				return;
+			}
+
 			nfloat padding = 5;
 
-			nfloat totalWidth = Frame.Width - 4 * padding;
+			nfloat totalWidth = Frame.Width - 3 * padding;
 
-			nfloat nameWidth = totalWidth / 2.2f;
-			nfloat statusWidth = totalWidth / 3;
-			nfloat buttonWidth = totalWidth - (nameWidth + statusWidth);
+			nfloat textWidth = totalWidth * 0.7f;
+			nfloat buttonWidth = totalWidth - textWidth;
 
 			nfloat buttonHeight = Frame.Height / 2;
 
 			nfloat x = padding;
 			nfloat y = 0;
-			nfloat w = nameWidth;
-			nfloat h = Frame.Height;
+			nfloat w = textWidth;
+			// If package has info (subtitle), make room for it, else full height
+			nfloat h = package.HasInfo() ? Frame.Height / 3 * 2 : Frame.Height;
 
 			nameLabel.Frame = new CGRect(x, y, w, h);
 
-			x += w + padding;
-			w = statusWidth;
+			y += h * 0.75f;
+			h = Frame.Height - h;
 
 			statusLabel.Frame = new CGRect(x, y, w, h);
 
@@ -64,12 +73,12 @@ namespace AdvancedMap.iOS
 				buttonWidth = MaxButtonWidth;
 			}
 
-			x = Frame.Width - (buttonWidth + padding);
+			x = totalWidth - (buttonWidth + padding);
 			y = Frame.Height / 2 - buttonHeight / 2;
 			w = buttonWidth;
 			h = buttonHeight;
 
-			ActionButton.Frame = new CGRect(x, y, w, h);
+			Button.Frame = new CGRect(x, y, w, h);
 		}
 
 		void OnButtonClick(object sender, EventArgs e)
@@ -80,80 +89,84 @@ namespace AdvancedMap.iOS
 			}	
 		}
 
-		public void Update(Package pkg)
+		public void Update(Package package)
 		{
-			nameLabel.Text = pkg.Name;
+			this.package = package;
 
-			if (pkg.Info != null)
+			nameLabel.Text = package.Name;
+
+			if (package.Info != null)
 			{
 				string status = "available";
 
-				if (pkg.IsSmallerThan1MB)
+				if (package.IsSmallerThan1MB)
 				{
-					status += " v." + pkg.Info.Version + " (<1MB)";
+					status += " v." + package.Info.Version + " (<1MB)";
 				}
 				else {
-					status += " v." + pkg.Info.Version + " (" + pkg.Info.Size.ToLong() / 1024 / 1024 + "MB)";
+					status += " v." + package.Info.Version + " (" + package.Info.Size.ToLong() / 1024 / 1024 + "MB)";
 				}
 
-				ActionButton.PackageId = pkg.Info.PackageId;
+				Button.PackageId = package.Info.PackageId;
 
 				// Check if the package is downloaded/is being downloaded (so that status is not null)
-				if (pkg.Status != null)
+				if (package.Status != null)
 				{
-					if (pkg.Status.CurrentAction == PackageAction.PackageActionReady)
+					if (package.Status.CurrentAction == PackageAction.PackageActionReady)
 					{
 						status = "ready";
-						ActionButton.Text = "RM";
-						ActionButton.Type = PackageManagerButtonType.StartRemovePackage;
+						Button.Text = "Remove";
+						Button.Type = PMButtonType.StartRemovePackage;
 					}
-					else if (pkg.Status.CurrentAction == PackageAction.PackageActionWaiting)
+					else if (package.Status.CurrentAction == PackageAction.PackageActionWaiting)
 					{
 						status = "queued";
-						ActionButton.Text = "C";
-						ActionButton.Type = PackageManagerButtonType.CancelPackageTasks;
+						Button.Text = "Cancel";
+						Button.Type = PMButtonType.CancelPackageTasks;
 					}
 					else {
-						if (pkg.Status.CurrentAction == PackageAction.PackageActionCopying)
+						if (package.Status.CurrentAction == PackageAction.PackageActionCopying)
 						{
 							status = "copying";
 						}
-						else if (pkg.Status.CurrentAction == PackageAction.PackageActionDownloading)
+						else if (package.Status.CurrentAction == PackageAction.PackageActionDownloading)
 						{
 							status = "downloading";
 						}
-						else if (pkg.Status.CurrentAction == PackageAction.PackageActionRemoving)
+						else if (package.Status.CurrentAction == PackageAction.PackageActionRemoving)
 						{
 							status = "removing";
 						}
 
-						status += " " + ((int)pkg.Status.Progress).ToString() + "%";
+						status += " " + ((int)package.Status.Progress).ToString() + "%";
 
-						if (pkg.Status.Paused)
+						if (package.Status.Paused)
 						{
 							status = status + " (paused)";
-							ActionButton.Text = "R";
-							ActionButton.Type = PackageManagerButtonType.SetPackagePriority;
-							ActionButton.PriorityIndex = 0;
+							Button.Text = "Resume";
+							Button.Type = PMButtonType.SetPackagePriority;
+							Button.PriorityIndex = 0;
 						}
 						else {
-							ActionButton.Text = "P";
-							ActionButton.Type = PackageManagerButtonType.SetPackagePriority;
-							ActionButton.PriorityIndex = -1;
+							Button.Text = "Pause";
+							Button.Type = PMButtonType.SetPackagePriority;
+							Button.PriorityIndex = -1;
 						}
 					}
 				}
 				else {
-					ActionButton.Text = "DL";
-					ActionButton.Type = PackageManagerButtonType.StartPackageDownload;
+					Button.Text = "Download";
+					Button.Type = PMButtonType.StartPackageDownload;
 				}
 
 				statusLabel.Text = status;
+				Button.Font = UIFont.FromName("HelveticaNeue-Light", 12);
 			}
 			else {
-				ActionButton.Text = ">";
-				ActionButton.Type = PackageManagerButtonType.UpdatePackages;
-				ActionButton.PackageName = pkg.Name;
+				Button.Font = UIFont.FromName("HelveticaNeue-Bold", 14);
+				Button.Text = ">";
+				Button.Type = PMButtonType.UpdatePackages;
+				Button.PackageName = package.Name;
 				statusLabel.Text = "";
 			}
 		}

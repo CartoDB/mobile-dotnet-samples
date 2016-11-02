@@ -166,23 +166,23 @@ namespace AdvancedMap.iOS
 		{
 			PackageManagerButton button = (PackageManagerButton)sender;
 
-			if (button.Type == PackageManagerButtonType.CancelPackageTasks)
+			if (button.Type == PMButtonType.CancelPackageTasks)
 			{
 				packageManager.CancelPackageTasks(button.PackageId);
 			}
-			else if (button.Type == PackageManagerButtonType.SetPackagePriority)
+			else if (button.Type == PMButtonType.SetPackagePriority)
 			{
 				packageManager.SetPackagePriority(button.PackageId, button.PriorityIndex);
 			}
-			else if (button.Type == PackageManagerButtonType.StartPackageDownload)
+			else if (button.Type == PMButtonType.StartPackageDownload)
 			{
 				packageManager.StartPackageDownload(button.PackageId);
 			}
-			else if (button.Type == PackageManagerButtonType.StartRemovePackage)
+			else if (button.Type == PMButtonType.StartRemovePackage)
 			{
 				packageManager.StartPackageRemove(button.PackageId);
 			}
-			else if (button.Type == PackageManagerButtonType.UpdatePackages)
+			else if (button.Type == PMButtonType.UpdatePackages)
 			{
 				var controller = new PackageManagerController(currentFolder + button.PackageName + "/");
 				NavigationController.PushViewController(controller, true);

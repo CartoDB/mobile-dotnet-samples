@@ -13,7 +13,7 @@ namespace AdvancedMap.Droid
 
 		public int PriorityIndex { get; set; }
 
-		public PackageManagerButtonType Type { get; set; }
+		public PMButtonType Type { get; set; }
 
 		public PackageManagerButton(Android.Content.Context context) : base(context)
 		{

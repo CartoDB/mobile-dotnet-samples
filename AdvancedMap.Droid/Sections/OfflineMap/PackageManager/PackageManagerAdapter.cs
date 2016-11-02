@@ -79,13 +79,13 @@ namespace AdvancedMap.Droid
 					{
 						status = "ready";
 						holder.ActionButton.Text = "RM";
-						holder.ActionButton.Type = PackageManagerButtonType.StartRemovePackage;
+						holder.ActionButton.Type = PMButtonType.StartRemovePackage;
 					}
 					else if (pkg.Status.CurrentAction == PackageAction.PackageActionWaiting)
 					{
 						status = "queued";
 						holder.ActionButton.Text = "C";
-						holder.ActionButton.Type = PackageManagerButtonType.CancelPackageTasks;
+						holder.ActionButton.Type = PMButtonType.CancelPackageTasks;
 					}
 					else {
 						if (pkg.Status.CurrentAction == PackageAction.PackageActionCopying)
@@ -107,26 +107,26 @@ namespace AdvancedMap.Droid
 						{
 							status = status + " (paused)";
 							holder.ActionButton.Text = "R";
-							holder.ActionButton.Type = PackageManagerButtonType.SetPackagePriority;
+							holder.ActionButton.Type = PMButtonType.SetPackagePriority;
 							holder.ActionButton.PriorityIndex = 0;
 						}
 						else {
 							holder.ActionButton.Text = "P";
-							holder.ActionButton.Type = PackageManagerButtonType.SetPackagePriority;
+							holder.ActionButton.Type = PMButtonType.SetPackagePriority;
 							holder.ActionButton.PriorityIndex = -1;
 						}
 					}
 				}
 				else {
 					holder.ActionButton.Text = "DL";
-					holder.ActionButton.Type = PackageManagerButtonType.StartPackageDownload;
+					holder.ActionButton.Type = PMButtonType.StartPackageDownload;
 				}
 
 				holder.StatusView.Text = status;
 			}
 			else {
 				holder.ActionButton.Text = ">";
-				holder.ActionButton.Type = PackageManagerButtonType.UpdatePackages;
+				holder.ActionButton.Type = PMButtonType.UpdatePackages;
 				holder.ActionButton.PackageName = pkg.Name;
 				holder.StatusView.Text = "";
 			}

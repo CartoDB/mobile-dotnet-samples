@@ -14,7 +14,7 @@ namespace AdvancedMap.iOS
 
 		public int PriorityIndex { get; set; }
 
-		public PackageManagerButtonType Type { get; set; }
+		public PMButtonType Type { get; set; }
 
 		public string Text {
 			get {
@@ -32,6 +32,7 @@ namespace AdvancedMap.iOS
 			HorizontalAlignment = UIControlContentHorizontalAlignment.Right;
 			TitleEdgeInsets = new UIEdgeInsets(0, 0, 0, 10);
 		}
+
 	}
 }
 

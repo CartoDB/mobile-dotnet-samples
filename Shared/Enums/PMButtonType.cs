@@ -3,7 +3,7 @@ using System;
 
 namespace Shared
 {
-	public enum PackageManagerButtonType
+	public enum PMButtonType
 	{
 		StartRemovePackage,
 		CancelPackageTasks,

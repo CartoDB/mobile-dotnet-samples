@@ -28,7 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataSources\HttpWmsTileDataSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\CommonExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\CommonMapExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Enums\PackageManagerButtonType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\PMButtonType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\MapListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\MyMapEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\MyUTFGridEventListener.cs" />
@@ -53,5 +53,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\GISListeners\BasicEditEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventArgs\ScreenshotEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\RendererExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\PackageExtensions.cs" />
   </ItemGroup>
 </Project>
