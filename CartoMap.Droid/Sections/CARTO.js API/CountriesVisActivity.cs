@@ -8,13 +8,13 @@ namespace CartoMap.Droid
 {
 	[Activity]
 	[ActivityData(Title = "Countries Vis", Description = "Vis displaying countries in different colors")]
-	public class CountriesVisActivity : MapBaseActivity
+	public class CountriesVisActivity : BaseVisActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			MapView.UpdateVisWithGridEvent("http://documentation.cartodb.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json");
+			UpdateVis("http://documentation.cartodb.com/api/v2/viz/2b13c956-e7c1-11e2-806b-5404a6a683d5/viz.json");
 		}
 	}
 }

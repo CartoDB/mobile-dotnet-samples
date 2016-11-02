@@ -23,8 +23,6 @@ namespace CartoMap.iOS
 			base.ViewDidLoad();
 
 			MapView.UpdateVisWithGridEvent(Url, OnError);
-
-			//MapView.InitializeVectorTileListener(new VectorLayer(new Loca);
 		}
 
 		void OnError(string message)

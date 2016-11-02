@@ -18,6 +18,8 @@ namespace CartoMap.iOS
 		{
 			base.ViewDidLoad();
 
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+
 			// You need to change these according to your DB
 			string sql = "select * from table_46g";
 			string cartoCSS = "#table_46g {raster-opacity: 0.5;}";
@@ -50,7 +52,7 @@ namespace CartoMap.iOS
 			// Zoom map to the content area
 			MapPos hiiumaa = BaseProjection.FromWgs84(new MapPos(22.7478235498916, 58.8330577553785));
 			MapView.SetFocusPos(hiiumaa, 0);
-			MapView.SetZoom(11, 0);
+			MapView.SetZoom(10, 0);
 		}
 	
 	}

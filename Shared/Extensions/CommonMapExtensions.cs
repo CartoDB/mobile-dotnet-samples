@@ -89,31 +89,7 @@ namespace Shared
 			return marker;
 		}
 
-		public static void UpdateVis(this MapView map, string url, Action<string> error = null)
-        {
-            ThreadPool.QueueUserWorkItem(delegate
-            {
-				map.Layers.Clear();
-
-                // Create VIS loader
-                CartoVisLoader loader = new CartoVisLoader();
-                loader.DefaultVectorLayerMode = true;
-                BasicCartoVisBuilder builder = new BasicCartoVisBuilder(map);
-
-                try
-                {
-                    loader.LoadVis(builder, url);
-                }
-                catch (Exception e)
-                {
-					if (error != null) {
-						error(e.Message);
-					}
-                }
-            });
-        }
-
-		public static LocalVectorDataSource UpdateVisWithGridEvent(this MapView map, string url, Action<string> error = null)
+		public static void UpdateVisWithGridEvent(this MapView map, string url, Action<string> error = null)
 		{
 			ThreadPool.QueueUserWorkItem(delegate
 			{
@@ -145,11 +121,7 @@ namespace Shared
 				}
 
 				map.Layers.Add(layer);
-
-				//return source;
 			});
-
-			return null;
 		}
 
 		public static void AnimateZoomTo(this MapView map, MapPos position)

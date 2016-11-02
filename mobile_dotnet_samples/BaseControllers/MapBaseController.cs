@@ -23,12 +23,14 @@ namespace Shared.iOS
 
 			BaseProjection = MapView.Options.BaseProjection;
 
-			// Initialize map with default base layer
-			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
-
-			MapView.Layers.Add(baseLayer);
-
 			Title = Name;
+		}
+
+		protected void AddBaseLayer(CartoBaseMapStyle withStyle)
+		{
+			// Initialize map
+			var baseLayer = new CartoOnlineVectorTileLayer(withStyle);
+			MapView.Layers.Add(baseLayer);
 		}
 	}
 }

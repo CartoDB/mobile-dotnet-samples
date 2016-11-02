@@ -27,6 +27,8 @@ namespace CartoMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+
 			string encoded = JsonUtils.GetTorqueQuery();
 
 			// Define datasource with the query

@@ -26,6 +26,8 @@ namespace CartoMap.iOS
 		{
 			base.ViewDidLoad();
 
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+
 			string encoded = JsonUtils.GetTorqueQuery();
 
 			string url = "http://viz2.cartodb.com/api/v2/sql?q=" + encoded + "&cache_policy=persist";

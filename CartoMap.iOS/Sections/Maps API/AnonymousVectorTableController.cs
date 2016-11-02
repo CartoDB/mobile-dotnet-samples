@@ -23,6 +23,8 @@ namespace CartoMap.iOS
 		{
 			base.ViewDidLoad();
 
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+
 			JsonValue config = JsonUtils.UTFGridConfigJson;
 
 			MapView.ConfigureAnonymousVectorLayers(config);

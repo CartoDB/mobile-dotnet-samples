@@ -80,6 +80,7 @@
     <Compile Include="Sections\Maps API\NamedMapActivity.cs" />
     <Compile Include="Sections\SQL API\SQLServiceActivity.cs" />
     <Compile Include="LauncherListActivity.cs" />
+    <Compile Include="Sections\CARTO.js API\BaseVisActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

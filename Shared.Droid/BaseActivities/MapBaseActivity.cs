@@ -40,10 +40,6 @@ namespace Shared.Droid
 
 			BaseProjection = MapView.Options.BaseProjection;
 
-			// Initialize map
-			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
-			MapView.Layers.Add(baseLayer);
-
 			Title = GetType().GetTitle();
 			ActionBar.Subtitle = GetType().GetDescription();
 		}
@@ -53,5 +49,11 @@ namespace Shared.Droid
 			return BitmapUtils.CreateBitmapFromAndroidBitmap(Android.Graphics.BitmapFactory.DecodeResource(Resources, resource));
 		}
 
+		protected void AddBaseLayer(CartoBaseMapStyle withStyle)
+		{
+			// Initialize map
+			var baseLayer = new CartoOnlineVectorTileLayer(withStyle);
+			MapView.Layers.Add(baseLayer);
+		}
 	}
 }

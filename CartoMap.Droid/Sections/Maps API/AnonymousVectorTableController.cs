@@ -2,6 +2,7 @@
 using System.Json;
 using Android.App;
 using Carto.Core;
+using Carto.Layers;
 using Shared;
 using Shared.Droid;
 
@@ -14,6 +15,8 @@ namespace CartoMap.Droid
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
 
 			JsonValue config = JsonUtils.UTFGridConfigJson;
 
