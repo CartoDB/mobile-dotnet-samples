@@ -10,7 +10,7 @@ using Shared.Droid;
 
 namespace CartoMap.Droid
 {
-	[Activity]
+	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "SQL Service", Description = "Displays cities on the map via SQL query")]
 	public class SQLServiceActivity : MapBaseActivity
 	{

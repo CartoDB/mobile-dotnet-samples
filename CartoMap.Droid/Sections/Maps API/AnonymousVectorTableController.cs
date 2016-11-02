@@ -8,7 +8,7 @@ using Shared.Droid;
 
 namespace CartoMap.Droid
 {
-	[Activity]
+	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "Anonymous Vector Table", Description = "Usage of Carto Maps API with vector tiles")]
 	public class AnonymousVectorTableController : MapBaseActivity
 	{

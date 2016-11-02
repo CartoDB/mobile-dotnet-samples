@@ -12,7 +12,7 @@ using Shared.Droid;
 
 namespace CartoMap.Droid
 {
-	[Activity]
+	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "Torque Ships", Description = "Animated ship movement in WWII")]
 	public class TorqueShipsActivity : MapBaseActivity
 	{

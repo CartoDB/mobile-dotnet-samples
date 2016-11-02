@@ -11,7 +11,7 @@ using Carto.Layers;
 
 namespace AdvancedMap.Droid
 {
-	[Activity]
+	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "Bundled map", Description = "Uses bundled assets for the offline base map")]
 	public class BundledMapActivity: MapBaseActivity
 	{

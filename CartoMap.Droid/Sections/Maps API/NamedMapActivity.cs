@@ -7,7 +7,7 @@ using Shared.Droid;
 
 namespace CartoMap.Droid
 {
-	[Activity]
+	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "Named Map", Description = "CARTO data as vector tiles from a named map")]
 	public class NamedMapActivity : MapBaseActivity
 	{

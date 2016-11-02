@@ -9,7 +9,7 @@ using Shared.Droid;
 
 namespace CartoMap.Droid
 {
-	[Activity]
+	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "Anonymous Raster Table", Description = "Using Carto PostGIS Raster data")]
 	public class AnonymousRasterTableActivity : MapBaseActivity
 	{

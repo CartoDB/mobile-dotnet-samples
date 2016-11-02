@@ -6,7 +6,7 @@ using Shared.Droid;
 
 namespace CartoMap.Droid
 {
-	[Activity]
+	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "Dots Vis", Description = "Vis showing dots on the map")]
 	public class DotsVisActivity : BaseVisActivity
 	{
