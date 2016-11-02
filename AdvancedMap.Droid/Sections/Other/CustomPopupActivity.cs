@@ -21,6 +21,8 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+
 			// Initialize a local vector data source
 			LocalVectorDataSource source = new LocalVectorDataSource(BaseProjection);
 

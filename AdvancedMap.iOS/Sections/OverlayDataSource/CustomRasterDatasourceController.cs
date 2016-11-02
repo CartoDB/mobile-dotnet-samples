@@ -24,9 +24,6 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
-			// Remove default baselayer (set in MapBaseActivity)
-			MapView.Layers.Clear();
-
 			// Initialize hillshading raster data source, better visible in mountain ranges
 			HTTPTileDataSource source1 = new HTTPTileDataSource(0, 24, TiledRasterUrl);
 			HTTPTileDataSource source2 = new HTTPTileDataSource(0, 24, HillsideRasterUrl);

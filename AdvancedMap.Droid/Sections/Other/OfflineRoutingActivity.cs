@@ -54,6 +54,8 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate (savedInstanceState);
 
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+
 			// Create PackageManager instance for dealing with offline packages
 			var packageFolder = new File (GetExternalFilesDir(null), "routingpackages");
 			if (!(packageFolder.Mkdirs() || packageFolder.IsDirectory)) {
@@ -82,7 +84,6 @@ namespace AdvancedMap.Droid
 			routeDataSource = new LocalVectorDataSource(BaseProjection);
 			VectorLayer routeLayer = new VectorLayer(routeDataSource);
 			MapView.Layers.Add(routeLayer);
-
 
 			// Define layer and datasource for route start and stop markers
 			routeStartStopDataSource = new LocalVectorDataSource(BaseProjection);

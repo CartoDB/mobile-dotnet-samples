@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Android.App;
+using Android.Content;
 using Carto.Core;
 using Carto.DataSources;
 using Carto.Layers;
@@ -23,6 +24,8 @@ namespace AdvancedMap.Droid
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 
 			// Initialize a local vector data source
 			LocalVectorDataSource source = new LocalVectorDataSource(BaseProjection);
@@ -53,7 +56,7 @@ namespace AdvancedMap.Droid
 			MapView.SetFocusPos(berlin, 1);
 			MapView.SetZoom(12, 1);
 
-			listener = new RenderListener(MapView);
+			listener = new RenderListener(this, MapView);
 			MapView.MapRenderer.CaptureRendering(listener, true);
 		}
 
@@ -92,8 +95,11 @@ namespace AdvancedMap.Droid
 
 		MapView map;
 
-		public RenderListener(MapView map)
+		Activity context;
+
+		public RenderListener(Activity context, MapView map)
 		{
+			this.context = context;
 			this.map = map;
 		}
 
@@ -129,7 +135,19 @@ namespace AdvancedMap.Droid
 					ScreenshotEventArgs args = new ScreenshotEventArgs { Path = path, Message = message };
 					ScreenCaptured(this, args);
 				}
+
+				Share(path);
 			}
+		}
+
+		void Share(string path)
+		{
+			Intent intent = new Intent(Intent.ActionSend);
+			intent.SetType("image/png");
+
+			intent.PutExtra(Intent.ExtraStream, Android.Net.Uri.Parse(path));
+
+			context.StartActivity(Intent.CreateChooser(intent, "Share image"));
 		}
 
 	}

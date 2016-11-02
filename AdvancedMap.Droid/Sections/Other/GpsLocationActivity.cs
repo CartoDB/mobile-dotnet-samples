@@ -47,8 +47,7 @@ namespace AdvancedMap.Droid
 			SetContentView(Resource.Layout.MainGPS);
 			MapView = (MapView)FindViewById(Resource.Id.mapView);
 
-			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
-			MapView.Layers.Add(baseLayer);
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 
 			// Bind the textViewMessage
 			messageView = FindViewById<TextView>(Resource.Id.textViewMessage);

@@ -19,6 +19,8 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+
 			TileDataSource source = CreateTileDataSource();
 
 			// Get decoder from current layer,

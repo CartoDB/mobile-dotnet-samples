@@ -53,9 +53,7 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
-			// Set online base layer
-			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
-			MapView.Layers.Add(baseLayer);
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 
 			// Create PackageManager instance for dealing with offline packages
 			string folder = Utils.GetDocumentDirectory("routingpackages");
