@@ -141,12 +141,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fcd_auto.nml" />
-    <AndroidAsset Include="Assets\positron.zip" />
     <AndroidAsset Include="Assets\rome_ntvt.mbtiles" />
-    <AndroidAsset Include="Assets\darkmatter.zip" />
     <AndroidAsset Include="Assets\cities15000.geojson" />
     <AndroidAsset Include="Assets\milktruck.nml" />
     <AndroidAsset Include="Assets\jefferson-building-ground-floor.jpg" />
+    <AndroidAsset Include="Assets\styles_mapzen.zip" />
   </ItemGroup>
   <Import Project="..\Shared.Droid\Shared.Droid.projitems" Label="Shared" Condition="Exists('..\Shared.Droid\Shared.Droid.projitems')" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />

@@ -195,9 +195,6 @@
     <BundleResource Include="Resources\mbtiles\world_zoom5.mbtiles" />
     <BundleResource Include="Resources\icons\marker.png" />
     <BundleResource Include="Resources\icons\marker_black.png" />
-    <BundleResource Include="Resources\styles\darkmatter.zip" />
-    <BundleResource Include="Resources\styles\positron.zip" />
-    <BundleResource Include="Resources\styles\bright.zip" />
     <BundleResource Include="Resources\styles\styles_mapzen.zip" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />

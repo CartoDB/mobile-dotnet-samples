@@ -3,6 +3,7 @@ using System;
 using Carto.Core;
 using Carto.DataSources;
 using Carto.Layers;
+using Carto.Styles;
 using Carto.Utils;
 using Carto.VectorTiles;
 using Shared;
@@ -110,9 +111,21 @@ namespace AdvancedMap.iOS
 				}
 				else if (currentOSM == "mapzen.osm")
 				{
-					// MapZen styles are not, styles need to manually added to assets and then decoded
-					BinaryData styleAsset = AssetUtils.LoadAsset("styles/" + currentSelection + ".zip");
-					currentLayer = new CartoOnlineVectorTileLayer(currentOSM, new ZippedAssetPackage(styleAsset));
+					// Mapzen styles are all bundled in one .zip file.
+					// Selection contains both the style name and file name (cf. Sections.cs in Shared)
+					string fileName = currentSelection.Split(':')[0];
+					string styleName = currentSelection.Split(':')[1];
+
+					// Create a style set from the file and style
+					BinaryData styleAsset = AssetUtils.LoadAsset("styles/" + fileName + ".zip");
+					var package = new ZippedAssetPackage(styleAsset);
+					CompiledStyleSet styleSet = new CompiledStyleSet(package, styleName);
+
+					// Create datasource and style decoder
+					var source = new CartoOnlineTileDataSource(currentOSM);
+					var decoder = new MBVectorTileDecoder(styleSet);
+
+					currentLayer = new VectorTileLayer(source, decoder);
 				}
 		    }
 			else if (section.Type == SectionType.Raster)

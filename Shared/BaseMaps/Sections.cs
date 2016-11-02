@@ -28,9 +28,10 @@ namespace Shared
 				};
 
 				List<NameValuePair> mapzenStyles = new List<NameValuePair> {
-					new NameValuePair { Name = "Bright", Value = "bright" }
+					new NameValuePair { Name = "Bright", Value = "styles_mapzen:style" },
+					new NameValuePair { Name = "Positron", Value = "styles_mapzen:positron" },
+					new NameValuePair { Name = "Dark Matter", Value = "styles_mapzen:positron_dark" }
 				};
-				mapzenStyles.AddRange(cartoStyles);
 
 				sections.Add(new Section
 				{
