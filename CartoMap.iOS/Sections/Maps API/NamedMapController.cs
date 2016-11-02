@@ -16,13 +16,14 @@ namespace CartoMap.iOS
 		{
 			base.ViewDidLoad();
 
-			MapView.ConfigureNamedVectorLayers("tpl_0af72420_e533_11e5_9dba_0e5db1731f59");
+			MapView.ConfigureNamedVectorLayers("tpl_69f3eebe_33b6_11e6_8634_0e5db1731f59");
 
 			Projection projection = MapView.Options.BaseProjection;
-			MapPos hiiumaa = projection.FromWgs84(new MapPos(22.7478235498916, 58.8330577553785));
 
-			MapView.FocusPos = hiiumaa;
-			MapView.SetZoom(5, 1);
+			// Coordinates are available in the viz.json we download
+			MapPos position = projection.FromLatLong(37.32549682016584, -121.94595158100128);
+			MapView.FocusPos = position;
+			MapView.SetZoom(19, 1);
 		}
 	}
 }
