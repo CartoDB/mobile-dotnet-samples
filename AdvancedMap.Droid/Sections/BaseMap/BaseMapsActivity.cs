@@ -42,8 +42,6 @@ namespace AdvancedMap.Droid
 			MapView.SetFocusPos(europe, 0);
 			MapView.Zoom = 5;
 
-			MapView.InitializeVectorTileListener(VectorLayer);
-
 			Alert("Click the menu to choose between different styles and languages");
 
 			ContentView.Menu.Items = Sections.List;
@@ -175,6 +173,8 @@ namespace AdvancedMap.Droid
 			MapView.Layers.Add(currentLayer);
 
 			ContentView.Menu.Hide();
+
+			MapView.InitializeVectorTileListener(VectorLayer);
 		}
 
 		void UpdateLanguage(string code)

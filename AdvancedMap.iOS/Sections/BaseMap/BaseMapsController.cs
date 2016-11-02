@@ -43,8 +43,6 @@ namespace AdvancedMap.iOS
 			MapPos europe = BaseProjection.FromWgs84(new MapPos(15.2551, 54.5260));
 			MapView.SetFocusPos(europe, 0);
 			MapView.Zoom = 5;
-
-			MapView.InitializeVectorTileListener(VectorLayer);
 		}
 
 		public override void ViewWillAppear(bool animated)
@@ -152,6 +150,8 @@ namespace AdvancedMap.iOS
 			MapView.Layers.Add(currentLayer);
 
 			Menu.Hide();
+
+			MapView.InitializeVectorTileListener(VectorLayer);
 		}
 
 		void UpdateLanguage(string code)
