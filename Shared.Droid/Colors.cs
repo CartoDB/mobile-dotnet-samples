@@ -5,9 +5,9 @@ namespace Shared.Droid
 {
 	public class Colors
 	{
-		public static Color ActionBar = Color.Rgb(0, 150, 136);
+		public static Color ActionBar = Color.Rgb(215, 82, 75);
 
-		public static Color ActiveMenuItem = Color.Rgb(0, 77, 64);
+		public static Color ActiveMenuItem = Color.Rgb(180, 82, 75);
 	}
 }
 

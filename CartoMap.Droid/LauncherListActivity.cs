@@ -18,6 +18,8 @@ namespace CartoMap.Droid
 
 			SetContentView(Resource.Layout.List);
 
+			ActionBar.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable { Color = Colors.ActionBar });
+
 			ListView.Adapter = new MapListAdapter(this, Samples.List);
 
 			UpdateManager.Register(this, MapApplication.HockeyId);

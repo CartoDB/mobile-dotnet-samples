@@ -20,10 +20,6 @@ namespace AdvancedMap.Droid
 	[ActivityData(Title = "Package Manager", Description = "Download packages from CARTO and manage them offline")]
 	public class PackageManagerActivity : ListActivity
 	{
-		const string LICENSE = "XTUN3Q0ZFMmhzUWEwdlZwNlJNVW5kL1hMRExMYXNYVUxBaFFhKzlSK2drYjEzNnBhSTJzY1c5aDBkL2licFE9PQo" +
-			"KcHJvZHVjdHM9c2RrLXhhbWFyaW4tYW5kcm9pZC00LioKcGFja2FnZU5hbWU9Y29tLmNhcnRvLmFkdmFuY2VkbWFwLnhhbWFyaW4uZHJvaW" +
-			"QKd2F0ZXJtYXJrPWRldmVsb3BtZW50CnZhbGlkVW50aWw9MjAxNi0wOS0xOApvbmxpbmVMaWNlbnNlPTEK";
-
 		public static PackageManagerTileDataSource DataSource;
 
 		CartoPackageManager packageManager;
@@ -46,7 +42,8 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.ActionBar });
+			ActionBar.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable { Color = Colors.ActionBar });
+
 			Title = GetType().GetTitle();
 
 			// Create package manager
