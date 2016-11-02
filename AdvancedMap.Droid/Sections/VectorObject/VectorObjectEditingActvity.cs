@@ -26,6 +26,8 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+
 			// Initialize source and Edit layer, add it to the map
 			source = new LocalVectorDataSource(MapView.Options.BaseProjection);
 
@@ -51,6 +53,8 @@ namespace AdvancedMap.Droid
 
 			// Add the vector element edit event listener
 			editLayer.VectorEditEventListener = new BasicEditEventListener(source);
+
+			Alert("Click on object to modify or move it");
 		}
 
 	}

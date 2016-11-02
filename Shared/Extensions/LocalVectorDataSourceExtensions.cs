@@ -23,7 +23,8 @@ namespace Shared
 		public static void AddLine(this LocalVectorDataSource source, MapPosVector positions)
 		{
 			LineStyleBuilder builder = new LineStyleBuilder();
-			builder.Width = 40;
+			builder.Width = 20;
+			builder.ClickWidth = 40;
 			builder.Color = new Color(255, 0, 0, 255);
 
 			Line line = new Line(positions, builder.BuildStyle());

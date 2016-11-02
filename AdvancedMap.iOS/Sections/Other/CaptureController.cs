@@ -59,7 +59,7 @@ namespace AdvancedMap.iOS
 			MapView.SetFocusPos(berlin, 1);
 			MapView.SetZoom(12, 1);
 
-			listener = new RenderListener(MapView);
+			listener = new RenderListener(this, MapView);
 			MapView.MapRenderer.CaptureRendering(listener, true);
 		}
 
@@ -87,6 +87,7 @@ namespace AdvancedMap.iOS
 				Alert("Error! " + e.Message);
 			}
 		}
+
 	}
 
 	public class RenderListener : RendererCaptureListener
@@ -97,9 +98,11 @@ namespace AdvancedMap.iOS
 		int number = 0;
 
 		MapView map;
+		UIViewController controller;
 
-		public RenderListener(MapView map)
+		public RenderListener(UIViewController controller, MapView map)
 		{
+			this.controller = controller;
 			this.map = map;
 		}
 
@@ -133,7 +136,27 @@ namespace AdvancedMap.iOS
 
 					ScreenCaptured(this, args);
 				}
+
+				if (success)
+				{
+					Share(data);
+				}
 			}
+		}
+
+		void Share(NSData data)
+		{
+			NSObject[] items = { new NSString("I would like to share this image"), data };
+
+			UIActivityViewController alertController = new UIActivityViewController(items, null);
+			alertController.ExcludedActivityTypes = new NSString[] {
+				UIActivityType.Message,
+				UIActivityType.AssignToContact,
+				UIActivityType.SaveToCameraRoll
+			};
+			alertController.PopoverPresentationController.SourceView = controller.View;
+
+			controller.PresentViewController(alertController, true, null);
 		}
 	}
 }

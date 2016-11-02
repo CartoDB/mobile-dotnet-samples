@@ -20,6 +20,8 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+
 			// Initialize source and Edit layer, add it to the map
 			source = new LocalVectorDataSource(MapView.Options.BaseProjection);
 
@@ -45,6 +47,13 @@ namespace AdvancedMap.iOS
 
 			// Add the vector element edit even listener
 			editLayer.VectorEditEventListener = new BasicEditEventListener(source);
+		}
+
+		public override void ViewDidAppear(bool animated)
+		{
+			base.ViewDidAppear(animated);
+
+			Alert("Click on object to modify or move it");
 		}
 	}
 }
