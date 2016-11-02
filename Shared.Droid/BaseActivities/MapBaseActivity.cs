@@ -18,7 +18,6 @@ using Android.Text;
 
 namespace Shared.Droid
 {
-	[Activity]
 	public class MapBaseActivity : BaseActivity
 	{
 		public static int ViewResource { get; set; }
