@@ -27,11 +27,16 @@ namespace Shared
 						new NameValuePair { Name = "Dark Matter", Value = "darkmatter" }
 				};
 
+				List<NameValuePair> mapzenStyles = new List<NameValuePair> {
+					new NameValuePair { Name = "Bright", Value = "bright" }
+				};
+				mapzenStyles.AddRange(cartoStyles);
+
 				sections.Add(new Section
 				{
 					OSM = new NameValuePair { Name = "MapZen", Value = "mapzen.osm" },
 					Type = SectionType.Vector,
-					Styles = cartoStyles
+					Styles = mapzenStyles
 				});
 
 				sections.Add(new Section

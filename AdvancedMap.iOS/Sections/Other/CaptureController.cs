@@ -27,6 +27,9 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
+			// Add default base layer
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+
 			// Initialize a local vector data source
 			LocalVectorDataSource source = new LocalVectorDataSource(BaseProjection);
 
@@ -39,7 +42,7 @@ namespace AdvancedMap.iOS
 			layer.VisibleZoomRange = new MapRange(0, 18);
 
 			// Create marker style
-			UIImage image = UIImage.FromFile("marker.png");
+			UIImage image = UIImage.FromFile("icons/marker.png");
 			Bitmap markerBitmap = BitmapUtils.CreateBitmapFromUIImage(image);
 
 			MarkerStyleBuilder builder = new MarkerStyleBuilder();

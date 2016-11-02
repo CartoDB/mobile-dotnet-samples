@@ -13,7 +13,7 @@ namespace AdvancedMap.iOS
 		public MenuButton()
 		{
 			image = new UIImageView();
-			image.Image = UIImage.FromFile("icon_more.png");
+			image.Image = UIImage.FromFile("icons/icon_more.png");
 			image.Frame = new CoreGraphics.CGRect(0, 10, 20, 30);
 			CustomView = image;
 

@@ -109,7 +109,7 @@ namespace AdvancedMap.iOS
 
 			// Create markers for start & end, and a layer for them
 			MarkerStyleBuilder markerStyleBuilder = new MarkerStyleBuilder();
-			markerStyleBuilder.Bitmap = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("olmarker.png"));
+			markerStyleBuilder.Bitmap = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("icons/olmarker.png"));
 			markerStyleBuilder.HideIfOverlapped = false;
 			markerStyleBuilder.Size = 30;
 
@@ -127,13 +127,13 @@ namespace AdvancedMap.iOS
 			routeStartStopDataSource.Add(stopMarker);
 
 			markerStyleBuilder.Color = new Carto.Graphics.Color(255, 255, 255, 255);
-			markerStyleBuilder.Bitmap = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("direction_up.png"));
+			markerStyleBuilder.Bitmap = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("icons/direction_up.png"));
 			instructionUp = markerStyleBuilder.BuildStyle();
 
-			markerStyleBuilder.Bitmap = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("direction_upthenleft.png"));
+			markerStyleBuilder.Bitmap = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("icons/direction_upthenleft.png"));
 			instructionLeft = markerStyleBuilder.BuildStyle();
 
-			markerStyleBuilder.Bitmap = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("direction_upthenright.png"));
+			markerStyleBuilder.Bitmap = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("icons/direction_upthenright.png"));
 
 			instructionRight = markerStyleBuilder.BuildStyle();
 

@@ -131,6 +131,9 @@
     <Folder Include="Sections\OfflineMap\PackageManager\" />
     <Folder Include="Sections\OfflineMap\PackageManager\Views\" />
     <Folder Include="Sections\BaseMap\Views\" />
+    <Folder Include="Resources\icons\" />
+    <Folder Include="Resources\styles\" />
+    <Folder Include="Resources\mbtiles\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -175,25 +178,26 @@
     <Compile Include="Sections\BaseMap\Views\OptionLabel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\arrow.png" />
-    <BundleResource Include="Resources\direction_up.png" />
-    <BundleResource Include="Resources\direction_upthenleft.png" />
-    <BundleResource Include="Resources\direction_upthenright.png" />
     <BundleResource Include="Resources\fcd_auto.nml" />
-    <BundleResource Include="Resources\icon_close%402x.png" />
-    <BundleResource Include="Resources\icon_more%402x.png" />
-    <BundleResource Include="Resources\info.png" />
     <BundleResource Include="Resources\jefferson-building-ground-floor.jpg" />
-    <BundleResource Include="Resources\marker.png" />
-    <BundleResource Include="Resources\olmarker.png" />
-    <BundleResource Include="Resources\world_ntvt_0_4.mbtiles" />
-    <BundleResource Include="Resources\world_zoom5.mbtiles" />
-    <BundleResource Include="Resources\rome_ntvt.mbtiles" />
     <BundleResource Include="Resources\milktruck.nml" />
     <BundleResource Include="Resources\cities15000.geojson" />
-    <BundleResource Include="Resources\marker_black.png" />
-    <BundleResource Include="Resources\darkmatter.zip" />
-    <BundleResource Include="Resources\positron.zip" />
+    <BundleResource Include="Resources\icons\arrow.png" />
+    <BundleResource Include="Resources\icons\direction_up.png" />
+    <BundleResource Include="Resources\icons\direction_upthenleft.png" />
+    <BundleResource Include="Resources\icons\direction_upthenright.png" />
+    <BundleResource Include="Resources\icons\icon_close%402x.png" />
+    <BundleResource Include="Resources\icons\icon_more%402x.png" />
+    <BundleResource Include="Resources\icons\info.png" />
+    <BundleResource Include="Resources\icons\olmarker.png" />
+    <BundleResource Include="Resources\mbtiles\rome_ntvt.mbtiles" />
+    <BundleResource Include="Resources\mbtiles\world_ntvt_0_4.mbtiles" />
+    <BundleResource Include="Resources\mbtiles\world_zoom5.mbtiles" />
+    <BundleResource Include="Resources\icons\marker.png" />
+    <BundleResource Include="Resources\icons\marker_black.png" />
+    <BundleResource Include="Resources\styles\darkmatter.zip" />
+    <BundleResource Include="Resources\styles\positron.zip" />
+    <BundleResource Include="Resources\styles\bright.zip" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />

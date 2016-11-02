@@ -55,9 +55,9 @@ namespace AdvancedMap.iOS
 			Overlays.AddText2(source, projection);
 			Overlays.AddText3(source, projection);
 
-			Bitmap info = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("info.png"));
-			Bitmap arrow = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("arrow.png"));
-			Bitmap marker = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("marker.png"));
+			Bitmap info = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("icons/info.png"));
+			Bitmap arrow = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("icons/arrow.png"));
+			Bitmap marker = BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile("icons/marker.png"));
 
 			Overlays.AddBalloonPopup1(source, projection, info, arrow);
 			Overlays.AddBalloonPopup2(source, projection, info, arrow, marker);
@@ -71,7 +71,17 @@ namespace AdvancedMap.iOS
 			MapView.SetZoom(12, 1);
 
 			// Add maplistener to detect click on model
-			MapView.MapEventListener = new MyMapEventListener(MapView, source);
+
+			VectorElementListener listener = new VectorElementListener(source);
+			for (int i = 0; i < MapView.Layers.Count; i++)
+			{
+				Layer layer = MapView.Layers[i];
+
+				if (layer is VectorLayer)
+				{
+					(layer as VectorLayer).VectorElementEventListener = listener;
+				}
+			}
 		}
 	}
 }

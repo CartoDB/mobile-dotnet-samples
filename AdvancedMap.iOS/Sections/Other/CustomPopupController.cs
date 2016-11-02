@@ -24,7 +24,7 @@ namespace AdvancedMap.iOS
 		Bitmap Bitmap
 		{
 			get { 
-				UIImage image = UIImage.FromFile("marker.png"); 
+				UIImage image = UIImage.FromFile("icons/marker.png"); 
 				return BitmapUtils.CreateBitmapFromUIImage(image);
 			}
 		}
@@ -32,6 +32,9 @@ namespace AdvancedMap.iOS
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+
+			// Add default base layer
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 
 			LocalVectorDataSource source = new LocalVectorDataSource(BaseProjection);
 			VectorLayer layer = new VectorLayer(source);

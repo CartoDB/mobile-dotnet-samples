@@ -92,7 +92,6 @@ namespace AdvancedMap.iOS
 
 			if (section.Type == SectionType.Vector)
 			{
-
 				if (currentOSM == "nutiteq.osm")
 				{
 					// Nutiteq styles are bundled with the SDK, we can initialize them via constuctor
@@ -112,7 +111,7 @@ namespace AdvancedMap.iOS
 				else if (currentOSM == "mapzen.osm")
 				{
 					// MapZen styles are not, styles need to manually added to assets and then decoded
-					BinaryData styleAsset = AssetUtils.LoadAsset(currentSelection + ".zip");
+					BinaryData styleAsset = AssetUtils.LoadAsset("styles/" + currentSelection + ".zip");
 					currentLayer = new CartoOnlineVectorTileLayer(currentOSM, new ZippedAssetPackage(styleAsset));
 				}
 		    }
