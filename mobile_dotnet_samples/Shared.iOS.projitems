@@ -24,7 +24,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataSources\MapListDataSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataSources\MapListRowSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\MapBaseController.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\VectorMapBaseController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\BaseController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\BaseCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MapListHeaderCell.cs" />

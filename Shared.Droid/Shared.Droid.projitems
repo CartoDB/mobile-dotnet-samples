@@ -14,7 +14,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Adapters\MapListAdapter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseActivities\MapBaseActivity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BaseActivities\VectorBaseMapActivity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseActivities\BaseActivity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Colors.cs" />
   </ItemGroup>
