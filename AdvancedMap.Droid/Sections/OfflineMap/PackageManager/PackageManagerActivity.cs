@@ -42,6 +42,7 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable { Color = Colors.ActionBar });
 
 			Title = GetType().GetTitle();
@@ -70,11 +71,8 @@ namespace AdvancedMap.Droid
 
 			// Initialize ListView
 			SetContentView(Resource.Layout.List);
-
 			packageAdapter = new PackageManagerAdapter(this, Resource.Layout.package_item_row, packageArray);
 			ListView.Adapter = packageAdapter;
-
-			ActionBar.SetDisplayHomeAsUpEnabled(true);
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
@@ -229,7 +227,7 @@ namespace AdvancedMap.Droid
 
 		public void OnAdapterActionButtonClick(object sender, EventArgs e)
 		{
-			PackageManagerButton button = (PackageManagerButton)sender;
+			PMButton button = (PMButton)sender;
 			System.Console.WriteLine("Clicked: " + button.PackageId + " - " + button.PackageName + " - " + button.Type);
 
 			if (button.Type == PMButtonType.CancelPackageTasks)
@@ -258,21 +256,5 @@ namespace AdvancedMap.Droid
 
 		#endregion
 	}
-
-	#region Supporting Classes
-
-	/**
-	* Holder class for packages containing views for each row in list view.
-	*/
-	public class PackageHolder : Java.Lang.Object
-	{
-		public TextView NameView { get; set; }
-
-		public TextView StatusView { get; set; }
-
-		public PackageManagerButton Button { get; set; }
-	}
-
-	#endregion
 }
 

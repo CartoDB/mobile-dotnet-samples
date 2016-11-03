@@ -76,7 +76,6 @@
     <Compile Include="Sections\VectorObject\OverlaysActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\WmsMapActivity.cs" />
-    <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageManagerButton.cs" />
     <Compile Include="Sections\_Header\BaseMapsHeader.cs" />
     <Compile Include="Sections\_Header\OfflineMapsHeader.cs" />
     <Compile Include="Sections\_Header\OtherMapHeader.cs" />
@@ -92,6 +91,7 @@
     <Compile Include="Sections\BaseMap\Views\OptionMenu.cs" />
     <Compile Include="Sections\BaseMap\Views\OptionMenuItem.cs" />
     <Compile Include="Sections\BaseMap\Views\OptionLabel.cs" />
+    <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageRow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
