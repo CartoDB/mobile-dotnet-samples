@@ -270,7 +270,7 @@ namespace AdvancedMap.Droid
 
 		public TextView StatusView { get; set; }
 
-		public PackageManagerButton ActionButton { get; set; }
+		public PackageManagerButton Button { get; set; }
 	}
 
 	#endregion

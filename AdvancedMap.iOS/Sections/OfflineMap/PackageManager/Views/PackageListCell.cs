@@ -60,7 +60,7 @@ namespace AdvancedMap.iOS
 			nfloat y = 0;
 			nfloat w = textWidth;
 			// If package has info (subtitle), make room for it, else full height
-			nfloat h = package.HasInfo() ? Frame.Height / 3 * 2 : Frame.Height;
+			nfloat h = package.HasInfo ? Frame.Height / 3 * 2 : Frame.Height;
 
 			nameLabel.Frame = new CGRect(x, y, w, h);
 
@@ -91,85 +91,30 @@ namespace AdvancedMap.iOS
 
 		public void Update(Package package)
 		{
+			// Local variable because it's used in Layoutsubviews
 			this.package = package;
 
 			nameLabel.Text = package.Name;
 
-			if (package.Info != null)
+			statusLabel.Text = package.GetStatusText();
+
+			ButtonInfo info = package.GetButtonInfo();
+
+			Button.Text = info.Text;
+			Button.Type = info.Type;
+			Button.PriorityIndex = info.PriorityIndex;
+			Button.PackageName = info.PackageName;
+			Button.PackageId = info.PackageId;
+
+			if (Button.Type == PMButtonType.UpdatePackages)
 			{
-				string status = "available";
-
-				if (package.IsSmallerThan1MB)
-				{
-					status += " v." + package.Info.Version + " (<1MB)";
-				}
-				else {
-					status += " v." + package.Info.Version + " (" + package.Info.Size.ToLong() / 1024 / 1024 + "MB)";
-				}
-
-				Button.PackageId = package.Info.PackageId;
-
-				// Check if the package is downloaded/is being downloaded (so that status is not null)
-				if (package.Status != null)
-				{
-					if (package.Status.CurrentAction == PackageAction.PackageActionReady)
-					{
-						status = "ready";
-						Button.Text = "Remove";
-						Button.Type = PMButtonType.StartRemovePackage;
-					}
-					else if (package.Status.CurrentAction == PackageAction.PackageActionWaiting)
-					{
-						status = "queued";
-						Button.Text = "Cancel";
-						Button.Type = PMButtonType.CancelPackageTasks;
-					}
-					else {
-						if (package.Status.CurrentAction == PackageAction.PackageActionCopying)
-						{
-							status = "copying";
-						}
-						else if (package.Status.CurrentAction == PackageAction.PackageActionDownloading)
-						{
-							status = "downloading";
-						}
-						else if (package.Status.CurrentAction == PackageAction.PackageActionRemoving)
-						{
-							status = "removing";
-						}
-
-						status += " " + ((int)package.Status.Progress).ToString() + "%";
-
-						if (package.Status.Paused)
-						{
-							status = status + " (paused)";
-							Button.Text = "Resume";
-							Button.Type = PMButtonType.SetPackagePriority;
-							Button.PriorityIndex = 0;
-						}
-						else {
-							Button.Text = "Pause";
-							Button.Type = PMButtonType.SetPackagePriority;
-							Button.PriorityIndex = -1;
-						}
-					}
-				}
-				else {
-					Button.Text = "Download";
-					Button.Type = PMButtonType.StartPackageDownload;
-				}
-
-				statusLabel.Text = status;
-				Button.Font = UIFont.FromName("HelveticaNeue-Light", 12);
+				Button.Font = UIFont.FromName("HelveticaNeue-Bold", 14);
 			}
 			else {
-				Button.Font = UIFont.FromName("HelveticaNeue-Bold", 14);
-				Button.Text = ">";
-				Button.Type = PMButtonType.UpdatePackages;
-				Button.PackageName = package.Name;
-				statusLabel.Text = "";
+				Button.Font = UIFont.FromName("HelveticaNeue-Light", 12);
 			}
 		}
+
 	}
 }
 

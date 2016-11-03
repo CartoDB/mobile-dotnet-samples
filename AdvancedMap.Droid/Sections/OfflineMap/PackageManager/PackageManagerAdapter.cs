@@ -46,7 +46,7 @@ namespace AdvancedMap.Droid
 				holder = new PackageHolder();
 				holder.NameView = (TextView)row.FindViewById(Resource.Id.package_name);
 				holder.StatusView = (TextView)row.FindViewById(Resource.Id.package_status);
-				holder.ActionButton = (PackageManagerButton)row.FindViewById(Resource.Id.package_action);
+				holder.Button = (PackageManagerButton)row.FindViewById(Resource.Id.package_action);
 
 				row.Tag = holder;
 			}
@@ -54,86 +54,22 @@ namespace AdvancedMap.Droid
 				holder = (PackageHolder)row.Tag;
 			}
 
-			// Report package name and size
-			Package pkg = packages[position];
-			holder.NameView.Text = pkg.Name;
+			Package package = packages[position];
 
-			if (pkg.Info != null)
-			{
-				string status = "available";
+			holder.NameView.Text = package.Name;
+			// Parse status and button texts
+			holder.StatusView.Text = package.GetStatusText();
 
-				if (pkg.IsSmallerThan1MB)
-				{
-					status += " v." + pkg.Info.Version + " (<1MB)";
-				}
-				else {
-					status += " v." + pkg.Info.Version + " (" + pkg.Info.Size.ToLong() / 1024 / 1024 + "MB)";
-				}
-
-				holder.ActionButton.PackageId = pkg.Info.PackageId;
-
-				// Check if the package is downloaded/is being downloaded (so that status is not null)
-				if (pkg.Status != null)
-				{
-					if (pkg.Status.CurrentAction == PackageAction.PackageActionReady)
-					{
-						status = "ready";
-						holder.ActionButton.Text = "RM";
-						holder.ActionButton.Type = PMButtonType.StartRemovePackage;
-					}
-					else if (pkg.Status.CurrentAction == PackageAction.PackageActionWaiting)
-					{
-						status = "queued";
-						holder.ActionButton.Text = "C";
-						holder.ActionButton.Type = PMButtonType.CancelPackageTasks;
-					}
-					else {
-						if (pkg.Status.CurrentAction == PackageAction.PackageActionCopying)
-						{
-							status = "copying";
-						}
-						else if (pkg.Status.CurrentAction == PackageAction.PackageActionDownloading)
-						{
-							status = "downloading";
-						}
-						else if (pkg.Status.CurrentAction == PackageAction.PackageActionRemoving)
-						{
-							status = "removing";
-						}
-
-						status += " " + ((int)pkg.Status.Progress).ToString() + "%";
-
-						if (pkg.Status.Paused)
-						{
-							status = status + " (paused)";
-							holder.ActionButton.Text = "R";
-							holder.ActionButton.Type = PMButtonType.SetPackagePriority;
-							holder.ActionButton.PriorityIndex = 0;
-						}
-						else {
-							holder.ActionButton.Text = "P";
-							holder.ActionButton.Type = PMButtonType.SetPackagePriority;
-							holder.ActionButton.PriorityIndex = -1;
-						}
-					}
-				}
-				else {
-					holder.ActionButton.Text = "DL";
-					holder.ActionButton.Type = PMButtonType.StartPackageDownload;
-				}
-
-				holder.StatusView.Text = status;
-			}
-			else {
-				holder.ActionButton.Text = ">";
-				holder.ActionButton.Type = PMButtonType.UpdatePackages;
-				holder.ActionButton.PackageName = pkg.Name;
-				holder.StatusView.Text = "";
-			}
+			ButtonInfo info = package.GetButtonInfo();
+			holder.Button.Text = info.Text;
+			holder.Button.Type = info.Type;
+			holder.Button.PriorityIndex = info.PriorityIndex;
+			holder.Button.PackageName = info.PackageName;
+			holder.Button.PackageId = info.PackageId;
 
 			// Always Detach handler first to avoid multiple handlers on reuse
-			holder.ActionButton.Click -= Activity.OnAdapterActionButtonClick;
-			holder.ActionButton.Click += Activity.OnAdapterActionButtonClick;
+			holder.Button.Click -= Activity.OnAdapterActionButtonClick;
+			holder.Button.Click += Activity.OnAdapterActionButtonClick;
 
 			return row;
 		}
