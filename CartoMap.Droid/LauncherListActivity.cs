@@ -9,7 +9,7 @@ using Shared.Droid;
 
 namespace CartoMap.Droid
 {
-	[Activity(Label = "CARTO Mobile Samples", MainLauncher = true)]
+	[Activity(MainLauncher = true)]
 	public class LauncherListActivity : ListActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)

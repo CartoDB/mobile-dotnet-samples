@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>HelloMap.iOS</string>
+	<string>Hello.Xam</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.carto.hellomap</string>
 	<key>CFBundleShortVersionString</key>
