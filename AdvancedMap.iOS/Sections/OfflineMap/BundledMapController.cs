@@ -54,10 +54,9 @@ namespace AdvancedMap.iOS
 			string name = "rome_ntvt";
 			string extension = "mbtiles";
 
-
 			string packageDirectory = SupportDirectory;
 			string fullWritePath = Path.Combine(packageDirectory, name + "." + extension);
-			string resourceDirectory = NSBundle.MainBundle.PathForResource(name, extension);
+			string resourceDirectory = NSBundle.MainBundle.PathForResource("mbtiles/" + name, extension);
 
 			if (!Directory.Exists(packageDirectory))
 			{
