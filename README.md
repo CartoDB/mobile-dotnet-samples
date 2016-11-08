@@ -1,4 +1,4 @@
-## .NET samples for CARTO Mobile SDK 4
+## .NET samples for CARTO Mobile SDK
 
 * Official docs: https://carto.com/docs/carto-engine/mobile-sdk/
 
