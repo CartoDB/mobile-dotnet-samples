@@ -28,6 +28,8 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
+			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+			             
 			Projection projection = BaseProjection;
 
 			// Initialize an local vector data source
@@ -44,6 +46,7 @@ namespace AdvancedMap.iOS
 
 			// Add a bunch of vector elements
 			// As elements can be shared across platforms, they are in a shared project
+
 			Overlays.AddPoint1(source, projection);
 			Overlays.AddPoint2(source, projection);
 
