@@ -12,7 +12,7 @@ namespace AdvancedMap.iOS
 {
 	public class PackageManagerController : UIViewController
 	{
-		public string Name { get { return "Package Manager"; } }
+		public string Name { get { return "Advanced Package Manager"; } }
 
 		public new string Description { get { return "Download packages from CARTO and manage them offline"; } }
 

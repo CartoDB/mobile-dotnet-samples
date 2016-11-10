@@ -25,6 +25,7 @@ namespace AdvancedMap.iOS
 
 			new HeaderController { Name = "Offline maps" },
 			new BundledMapController(),
+			new BasicPackageManagerController(),
 			new PackageManagerController(),
 
 			new HeaderController { Name = "Other" },

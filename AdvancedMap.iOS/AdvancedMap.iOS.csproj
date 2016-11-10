@@ -128,8 +128,8 @@
     <Folder Include="Sections\Other\" />
     <Folder Include="Sections\OverlayDataSource\" />
     <Folder Include="Sections\VectorObjects\" />
-    <Folder Include="Sections\OfflineMap\PackageManager\" />
-    <Folder Include="Sections\OfflineMap\PackageManager\Views\" />
+    <Folder Include="Sections\OfflineMap\AdvancedPackageManager\" />
+    <Folder Include="Sections\OfflineMap\AdvancedPackageManager\Views\" />
     <Folder Include="Sections\BaseMap\Views\" />
     <Folder Include="Resources\icons\" />
     <Folder Include="Resources\styles\" />
@@ -163,11 +163,11 @@
     <Compile Include="Sections\Other\CaptureController.cs" />
     <Compile Include="Sections\OverlayDataSource\GroundOverlayController.cs" />
     <Compile Include="ForceTouch\ForceTouchExampleController.cs" />
-    <Compile Include="Sections\OfflineMap\PackageManager\PackageManagerController.cs" />
-    <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageListCell.cs" />
-    <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageManagerButton.cs" />
-    <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageManagerListView.cs" />
-    <Compile Include="Sections\OfflineMap\PackageManager\PackageListDataSource.cs" />
+    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\AdvancedPackageManagerController.cs" />
+    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageListCell.cs" />
+    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageManagerButton.cs" />
+    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageManagerListView.cs" />
+    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackageListDataSource.cs" />
     <Compile Include="Sections\Other\CustomPopupController.cs" />
     <Compile Include="Sections\BaseMap\BaseMapsController.cs" />
     <Compile Include="Sections\VectorObjects\VectorObjectEditingController.cs" />
@@ -176,6 +176,7 @@
     <Compile Include="Sections\BaseMap\Views\OptionsMenu.cs" />
     <Compile Include="Sections\BaseMap\Views\OptionsMenuItem.cs" />
     <Compile Include="Sections\BaseMap\Views\OptionLabel.cs" />
+    <Compile Include="Sections\OfflineMap\BasicPackageManagerController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\fcd_auto.nml" />
