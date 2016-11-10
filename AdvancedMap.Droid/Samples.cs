@@ -13,7 +13,8 @@ namespace AdvancedMap.Droid
 			typeof(BaseMapsActivity),
 
 			typeof(OfflineMapsHeader),
-			typeof(PackageManagerActivity),
+			typeof(BasicPackageManagerActivity),
+			typeof(AdvancedPackageManagerActivity),
 			typeof(BundledMapActivity),
 
 			typeof(OverlayDatasourcesHeader),

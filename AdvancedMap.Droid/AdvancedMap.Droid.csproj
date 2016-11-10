@@ -69,9 +69,9 @@
     <Compile Include="Sections\Other\GpsLocationActivity.cs" />
     <Compile Include="Sections\Other\OfflineRoutingActivity.cs" />
     <Compile Include="Sections\OfflineMap\BundledMapActivity.cs" />
-    <Compile Include="Sections\OfflineMap\PackageManager\PackageManagerActivity.cs" />
-    <Compile Include="Sections\OfflineMap\PackageManager\PackagedMapActivity.cs" />
-    <Compile Include="Sections\OfflineMap\PackageManager\PackageManagerAdapter.cs" />
+    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\AdvancedPackageManagerActivity.cs" />
+    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackagedMapActivity.cs" />
+    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackageManagerAdapter.cs" />
     <Compile Include="LauncherListActivity.cs" />
     <Compile Include="Sections\VectorObject\OverlaysActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceActivity.cs" />
@@ -91,7 +91,8 @@
     <Compile Include="Sections\BaseMap\Views\OptionMenu.cs" />
     <Compile Include="Sections\BaseMap\Views\OptionMenuItem.cs" />
     <Compile Include="Sections\BaseMap\Views\OptionLabel.cs" />
-    <Compile Include="Sections\OfflineMap\PackageManager\Views\PackageRow.cs" />
+    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageRow.cs" />
+    <Compile Include="Sections\OfflineMap\BasicPackageManagerActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -134,8 +135,8 @@
     <Folder Include="Sections\Other\" />
     <Folder Include="Sections\OverlayDataSource\" />
     <Folder Include="Sections\VectorObject\" />
-    <Folder Include="Sections\OfflineMap\PackageManager\" />
-    <Folder Include="Sections\OfflineMap\PackageManager\Views\" />
+    <Folder Include="Sections\OfflineMap\AdvancedPackageManager\" />
+    <Folder Include="Sections\OfflineMap\AdvancedPackageManager\Views\" />
     <Folder Include="Sections\BaseMap\Views\" />
     <Folder Include="Resources\mipmap-nodpi\" />
   </ItemGroup>
@@ -146,6 +147,7 @@
     <AndroidAsset Include="Assets\milktruck.nml" />
     <AndroidAsset Include="Assets\jefferson-building-ground-floor.jpg" />
     <AndroidAsset Include="Assets\styles_mapzen.zip" />
+    <AndroidAsset Include="Assets\nutiteq-dark.zip" />
   </ItemGroup>
   <Import Project="..\Shared.Droid\Shared.Droid.projitems" Label="Shared" Condition="Exists('..\Shared.Droid\Shared.Droid.projitems')" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
