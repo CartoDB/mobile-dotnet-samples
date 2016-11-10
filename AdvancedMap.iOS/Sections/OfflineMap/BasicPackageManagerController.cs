@@ -2,7 +2,12 @@
 using System;
 using System.IO;
 using Carto.Core;
+using Carto.DataSources;
+using Carto.Layers;
 using Carto.PackageManager;
+using Carto.Styles;
+using Carto.Utils;
+using Carto.VectorTiles;
 using Shared;
 using Shared.iOS;
 using UIKit;
@@ -27,8 +32,6 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
-			AddBaseLayer(Carto.Layers.CartoBaseMapStyle.CartoBasemapStyleDefault);
-
 			string folder = CreateFolder("mappackages");
 
 			SetStatusLabel();
@@ -47,6 +50,8 @@ namespace AdvancedMap.iOS
 				UpdateStatusLabel("Package downloaded");
 				ZoomTo(bbox.Center);
 			}
+
+			SetBaseLayer();
 		}
 
 		void ZoomTo(MapPos position)
@@ -117,8 +122,8 @@ namespace AdvancedMap.iOS
 		void SetStatusLabel()
 		{
 			status = new UILabel();
-			status.BackgroundColor = UIColor.FromRGBA(0, 0, 0, 150);
-			status.TextColor = UIColor.White;
+			status.BackgroundColor = UIColor.FromRGBA(255, 255, 255, 160);
+			status.TextColor = UIColor.Black;
 			status.Layer.CornerRadius = 5;
 			status.ClipsToBounds = true;
 			status.TextAlignment = UITextAlignment.Center;
@@ -137,6 +142,22 @@ namespace AdvancedMap.iOS
 			nfloat y = UIApplication.SharedApplication.StatusBarFrame.Height + NavigationController.NavigationBar.Frame.Height + 10;
 
 			status.Frame = new CoreGraphics.CGRect(x, y, width, height);
+		}
+
+		public void SetBaseLayer()
+		{
+			var source = new PackageManagerTileDataSource(packageManager);
+
+			// Create style set
+			BinaryData styleBytes = AssetUtils.LoadAsset("styles/nutiteq-dark.zip");
+			var style = new CompiledStyleSet(new ZippedAssetPackage(styleBytes));
+
+			// Create Decoder
+			var decoder = new MBVectorTileDecoder(style);
+
+			var layer = new VectorTileLayer(source, decoder);
+
+			MapView.Layers.Add(layer);
 		}
 	}
 }
