@@ -4,6 +4,7 @@ using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Graphics.Drawables;
+using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Carto.Core;
@@ -20,9 +21,7 @@ namespace AdvancedMap.Droid
 	[ActivityData(Title = "Advanced Package Manager", Description = "Download packages from CARTO and manage them offline")]
 	public class AdvancedPackageManagerActivity : ListActivity
 	{
-		public static PackageManagerTileDataSource DataSource;
-
-		CartoPackageManager packageManager;
+		public CartoPackageManager packageManager;
 		ArrayAdapter<Package> packageAdapter;
 		List<Package> packageArray = new List<Package>();
 
@@ -77,7 +76,13 @@ namespace AdvancedMap.Droid
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
-			menu.Add("Map");
+			IMenuItem item = menu.Add("Map");
+			item.SetIcon(Android.Resource.Drawable.IcDialogMap);
+			item.SetOnMenuItemClickListener(new MenuClickListener(this));
+			if (Build.VERSION.SdkInt > BuildVersionCodes.Honeycomb)
+			{
+				item.SetShowAsAction(ShowAsAction.Always);
+			}
 
 			return base.OnCreateOptionsMenu(menu);
 		}
@@ -89,12 +94,6 @@ namespace AdvancedMap.Droid
 				OnBackPressed();
 				return true;
 			}
-
-			// Using static global variable to pass data. Avoid this in your app (memory leaks etc)!
-			DataSource = new PackageManagerTileDataSource(packageManager);
-
-			Intent myIntent = new Intent(this, typeof(PackagedMapActivity));
-            StartActivity(myIntent);
 
 			return base.OnMenuItemSelected(featureId, item);
 		}

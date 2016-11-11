@@ -93,6 +93,7 @@
     <Compile Include="Sections\BaseMap\Views\OptionLabel.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageRow.cs" />
     <Compile Include="Sections\OfflineMap\BasicPackageManagerActivity.cs" />
+    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\MenuClickListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

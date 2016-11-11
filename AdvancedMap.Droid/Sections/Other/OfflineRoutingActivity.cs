@@ -52,7 +52,7 @@ namespace AdvancedMap.Droid
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
-			base.OnCreate (savedInstanceState);
+			base.OnCreate(savedInstanceState);
 
 			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 

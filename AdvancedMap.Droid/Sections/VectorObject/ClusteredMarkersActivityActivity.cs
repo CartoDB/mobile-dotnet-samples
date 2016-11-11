@@ -21,7 +21,7 @@ namespace AdvancedMap.Droid
 	{
 		protected override void OnCreate (Android.OS.Bundle savedInstanceState)
 		{
-			base.OnCreate (savedInstanceState);
+			base.OnCreate(savedInstanceState);
 
 			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
 
