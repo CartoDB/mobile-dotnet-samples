@@ -41,10 +41,11 @@ namespace AdvancedMap.iOS
 
 			// Custom convience class to enhance readability 
 			bbox = new BoundingBox { MinLon = -0.8164, MinLat = 51.2382, MaxLon = 0.6406, MaxLat = 51.7401 };
+			string packaged = bbox.ToString();
 
-			if (packageManager.GetLocalPackage(bbox.ToString()) == null)
+			if (packageManager.GetLocalPackage(packaged) == null)
 			{
-				packageManager.StartPackageDownload(bbox.ToString());
+				packageManager.StartPackageDownload(packaged);
 			}
 			else {
 				UpdateStatusLabel("Package downloaded");

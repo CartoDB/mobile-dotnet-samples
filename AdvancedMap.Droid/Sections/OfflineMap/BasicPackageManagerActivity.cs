@@ -47,7 +47,7 @@ namespace AdvancedMap.Droid
 			manager = new CartoPackageManager("nutiteq.osm", folder);
 			manager.PackageManagerListener = updateListener;
 
-			// Custom convience class to enhance readability 
+			// Custom convenience class to enhance readability 
 			bbox = new BoundingBox { MinLon = -0.8164, MinLat = 51.2382, MaxLon = 0.6406, MaxLat = 51.7401 };
 
 			if (manager.GetLocalPackage(bbox.ToString()) == null)

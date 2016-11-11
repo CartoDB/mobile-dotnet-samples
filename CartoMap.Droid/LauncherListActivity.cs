@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -16,11 +17,14 @@ namespace CartoMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
+			Title = "CARTO Samples";
+
 			SetContentView(Resource.Layout.List);
 
 			ActionBar.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable { Color = Colors.ActionBar });
 
 			ListView.Adapter = new MapListAdapter(this, Samples.List);
+			ListView.SetBackgroundColor(Color.Black);
 
 			UpdateManager.Register(this, MapApplication.HockeyId);
 		}

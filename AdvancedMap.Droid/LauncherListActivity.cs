@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
@@ -29,7 +30,7 @@ namespace AdvancedMap.Droid
 
 			MapRowView.RowId = Resource.Id.MapListCell;
 			ListView.Id = Resource.Id.MapListView;
-
+			ListView.SetBackgroundColor(Color.Black);
 			ListView.Adapter = new MapListAdapter(this, Samples.List);
 
 			UpdateManager.Register(this, MapApplication.HockeyId);
