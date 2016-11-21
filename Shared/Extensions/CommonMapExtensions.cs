@@ -31,7 +31,9 @@ namespace Shared
 				{
 					if (!name.StartsWith(folder))
 					{
-						continue; // belongs to a different folder, so ignore
+						// Belongs to a different folder,
+						// should not be added if name is e.g. Asia/, while folder is /Europe
+						continue;
 					}
 
 					string modified = name.Substring(folder.Length);
@@ -47,12 +49,29 @@ namespace Shared
 					else {
 						// This is a package group
 						modified = modified.Substring(0, index);
-						if (packages.Any(i => i.Name == modified))
+						List<Package> existing = packages.Where(i => i.Name == modified).ToList();
+
+						if (existing.Count == 0)
 						{
-							// Do not add if already contains
+							// Add a package group if we don't have an existing list item
+							package = new Package(modified, null, null);
+						}
+						else if (existing.Count == 1 && existing[0].Info != null)
+						{
+							// Sometimes we need to add two labels with the same name.
+							// One a downloadable package and the other pointing to a list of said country's counties,
+							// such as with Spain, Germany, France, Great Britain
+
+							// If there is one existing package and its info isn't null,
+							// we will add a "parent" package containing subpackages (or package group)
+							package = new Package(modified, null, null);
+						}
+						else
+						{
+							// Shouldn't be added, as both cases are accounted for
 							continue;
 						}
-						package = new Package(modified, null, null);
+
 					}
 
 					packages.Add(package);

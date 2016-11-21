@@ -87,7 +87,8 @@ namespace Shared
 				return new ButtonInfo { Text = ">", Type = PMButtonType.UpdatePackages, PackageName = Name };
 			}
 
-			if (Status == null) {
+			if (Status == null) 
+			{
 				return new ButtonInfo { Text = "Download", Type = PMButtonType.StartPackageDownload, PackageName = Name, PackageId = Info.PackageId };
 			}
 
