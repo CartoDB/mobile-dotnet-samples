@@ -19,6 +19,11 @@ namespace CartoMap.iOS
 
 		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
 		{
+			BITHockeyManager manager = BITHockeyManager.SharedHockeyManager;
+			manager.Configure(HockeyId);
+			manager.DisableUpdateManager = false;
+			manager.StartManager();
+
 			MapView.RegisterLicense(License);
 
 			Controller = new UINavigationController(new MapListController("CARTO Mobile Samples", Samples.RowSources));
@@ -32,11 +37,6 @@ namespace CartoMap.iOS
 			Window.MakeKeyAndVisible();
 
 			Device.NavigationBarHeight = Controller.NavigationBar.Frame.Height;
-
-			BITHockeyManager manager = BITHockeyManager.SharedHockeyManager;
-			manager.Configure(HockeyId);
-			manager.DisableUpdateManager = false;
-			manager.StartManager();
 
 			return true;
 		}
