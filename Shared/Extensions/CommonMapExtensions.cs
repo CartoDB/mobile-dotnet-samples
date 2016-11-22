@@ -46,14 +46,17 @@ namespace Shared
 						PackageStatus packageStatus = packageManager.GetLocalPackageStatus(info.PackageId, -1);
 						package = new Package(modified, info, packageStatus);
 					}
-					else {
+					else
+					{
 						// This is a package group
 						modified = modified.Substring(0, index);
+
+						// Try n' find an existing package from the list.
 						List<Package> existing = packages.Where(i => i.Name == modified).ToList();
 
 						if (existing.Count == 0)
 						{
-							// Add a package group if we don't have an existing list item
+							// If there are none, add a package group if we don't have an existing list item
 							package = new Package(modified, null, null);
 						}
 						else if (existing.Count == 1 && existing[0].Info != null)
