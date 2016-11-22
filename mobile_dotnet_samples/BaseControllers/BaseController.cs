@@ -20,7 +20,8 @@ namespace Shared.iOS
 		{
 			if (toast == null)
 			{
-				toast = new UIAlertView(null, message, null, null, null);
+				toast = new UIAlertView(null, message, new AlertDelegate(), null, null);
+
 				toast.Show();
 				await Task.Delay(1 * 1000);
 				await ShowToast(message, toast);
@@ -32,6 +33,11 @@ namespace Shared.iOS
 			UIView.CommitAnimations();
 			toast.DismissWithClickedButtonIndex(0, true);
 		}
+	}
+
+	public class AlertDelegate : UIAlertViewDelegate
+	{
+		
 	}
 }
 
