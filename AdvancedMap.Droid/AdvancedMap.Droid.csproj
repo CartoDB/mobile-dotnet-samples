@@ -87,13 +87,14 @@
     <Compile Include="Sections\VectorObject\VectorObjectEditingActvity.cs" />
     <Compile Include="Sections\VectorObject\ClusteredMarkersActivityActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\GroundOverlayActivity.cs" />
-    <Compile Include="Sections\BaseMap\Views\MenuButton.cs" />
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenu.cs" />
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenuItem.cs" />
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionLabel.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageRow.cs" />
-    <Compile Include="Sections\OfflineMap\BasicPackageManagerActivity.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\MenuClickListener.cs" />
+    <Compile Include="Sections\OfflineMap\BasicPackageManager\BasicPackageManagerActivity.cs" />
+    <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\CityChoiceMenu.cs" />
+    <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\BasicPackageManagerView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -140,6 +141,8 @@
     <Folder Include="Sections\OfflineMap\AdvancedPackageManager\Views\" />
     <Folder Include="Sections\BaseMap\Views\" />
     <Folder Include="Resources\mipmap-nodpi\" />
+    <Folder Include="Sections\OfflineMap\BasicPackageManager\" />
+    <Folder Include="Sections\OfflineMap\BasicPackageManager\Views\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fcd_auto.nml" />

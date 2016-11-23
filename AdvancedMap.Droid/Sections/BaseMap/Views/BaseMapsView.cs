@@ -6,6 +6,7 @@ using Android.Views;
 using Android.Widget;
 using Carto.Layers;
 using Carto.Ui;
+using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
@@ -28,7 +29,7 @@ namespace AdvancedMap.Droid
 
 			AddView(MapView);
 
-			Button = new MenuButton(context);
+			Button = new MenuButton(Resource.Drawable.icon_menu_round, context);
 			AddView(Button);
 
 			Menu = new BaseMapSectionMenu(context);

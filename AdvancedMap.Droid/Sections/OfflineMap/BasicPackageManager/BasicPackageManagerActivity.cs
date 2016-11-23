@@ -21,7 +21,7 @@ using Shared.Droid;
 namespace AdvancedMap.Droid
 {
 	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
-	[ActivityData(Title = "Basic Package Manager", Description = "Download a bounding box of London")]
+	[ActivityData(Title = "Basic Package Manager", Description = "Download cities from an assortment of bounding boxes")]
 	public class BasicPackageManagerActivity : BaseActivity
 	{
 		BasicPackageManagerView ContentView;
@@ -29,8 +29,6 @@ namespace AdvancedMap.Droid
 		CartoPackageManager manager;
 
 		PackageListener packageListener;
-
-		BoundingBox bbox;
 
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
@@ -46,18 +44,7 @@ namespace AdvancedMap.Droid
 
 			manager = new CartoPackageManager("nutiteq.osm", folder);
 
-			// Custom convenience class to enhance readability 
-			bbox = new BoundingBox { MinLon = -0.8164, MinLat = 51.2382, MaxLon = 0.6406, MaxLat = 51.7401 };
-
-			// Package version has no use here, can be anything
-			if (manager.GetLocalPackageStatus(bbox.ToString(), 1) == null)
-			{
-				manager.StartPackageDownload(bbox.ToString());
-			}
-			else {
-				UpdateStatusLabel("Package downloaded");
-				ContentView.ZoomTo(bbox.Center);
-			}
+			ContentView.Menu.Items = BoundingBoxes.List;
 
 			ContentView.SetBaseLayer(new PackageManagerTileDataSource(manager));
 		}
@@ -65,6 +52,9 @@ namespace AdvancedMap.Droid
 		protected override void OnResume()
 		{
 			base.OnResume();
+
+			ContentView.Button.Click += OnMenuButtonClicked;
+			ContentView.Menu.CityTapped += OnMenuSelectionChanged;
 
 			packageListener = new PackageListener();
 			manager.PackageManagerListener = packageListener;
@@ -80,6 +70,10 @@ namespace AdvancedMap.Droid
 
 		protected override void OnPause()
 		{
+
+			ContentView.Button.Click -= OnMenuButtonClicked;
+			ContentView.Menu.CityTapped -= OnMenuSelectionChanged;
+
 			// Always detach handlers OnPause to avoid memory leaks and objects with multple handlers
 			packageListener.OnPackageCancel -= UpdatePackage;
 			packageListener.OnPackageUpdate -= UpdatePackage;
@@ -92,10 +86,52 @@ namespace AdvancedMap.Droid
 			base.OnPause();
 		}
 
+		void OnMenuButtonClicked(object sender, EventArgs e)
+		{
+			if (ContentView.Menu.IsVisible)
+			{
+				ContentView.Menu.Hide();
+			}
+			else {
+				ContentView.Menu.Show();
+				ContentView.Button.BringToFront();
+			}
+		}
+
+		void OnMenuSelectionChanged(object sender, EventArgs e)
+		{
+			ContentView.ZoomOut();
+
+			BoundingBox city = (BoundingBox)sender;
+			ContentView.Menu.Hide();
+			DownloadAndZoomToBbox(city);
+		}
+
+		BoundingBox currentCity;
+
+		void DownloadAndZoomToBbox(BoundingBox bbox)
+		{
+			currentCity = bbox;
+
+			string packaged = bbox.ToString();
+
+			// Package version has no use here, can be anything
+			if (manager.GetLocalPackageStatus(packaged, 1) == null)
+			{
+				manager.StartPackageDownload(packaged);
+				Alert("Downloading " + bbox.Name);
+			}
+			else {
+				UpdateStatusLabel("Download complete");
+				Alert(bbox.Name + " already downloaded. Zooming");
+				ContentView.ZoomTo(bbox.Center);
+			}
+		}
+
 		void UpdatePackage(object sender, PackageEventArgs e)
 		{
 			UpdateStatusLabel("Downloaded Complete");
-			ContentView.ZoomTo(bbox.Center);
+			ContentView.ZoomTo(currentCity.Center);
 		}
 
 		void UpdatePackage(object sender, PackageStatusEventArgs e)
@@ -123,65 +159,6 @@ namespace AdvancedMap.Droid
 		{
 			RunOnUiThread(delegate { ContentView.StatusLabel.Text = text; });
 		}
-	}
 
-	public class BasicPackageManagerView : RelativeLayout
-	{
-		public MapView MapView { get; private set; }
-
-		public TextView StatusLabel { get; private set; }
-
-		public BasicPackageManagerView(Context context) : base(context)
-		{
-			MapView = new MapView(context);
-			MapView.LayoutParameters = new RelativeLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
-			AddView(MapView);
-
-			// Initialize & style Status label
-			StatusLabel = new TextView(context);
-			StatusLabel.SetTextColor(Color.Black);
-
-			GradientDrawable background = new GradientDrawable();
-			background.SetCornerRadius(5);
-			background.SetColor(Color.Argb(160, 255, 255, 255));
-			StatusLabel.Background = background;
-
-			StatusLabel.Gravity = Android.Views.GravityFlags.Center;
-			StatusLabel.Typeface = Typeface.Create("HelveticaNeue", TypefaceStyle.Normal);
-
-			DisplayMetrics screen = Resources.DisplayMetrics;
-
-			int width = screen.WidthPixels / 2;
-			int height = width / 4;
-
-			int x = screen.WidthPixels / 2 - width / 2;
-			int y = screen.HeightPixels / 100;
-
-			var parameters = new RelativeLayout.LayoutParams(width, height);
-			parameters.TopMargin = y;
-			parameters.LeftMargin = x;
-
-			AddView(StatusLabel, parameters);
-		}
-
-		public void ZoomTo(MapPos position)
-		{
-			MapView.FocusPos = MapView.Options.BaseProjection.FromWgs84(position);
-			MapView.SetZoom(12, 2);
-		}
-
-		public void SetBaseLayer(PackageManagerTileDataSource source)
-		{
-			// Create style set
-			BinaryData styleBytes = AssetUtils.LoadAsset("nutiteq-dark.zip");
-			var style = new CompiledStyleSet(new ZippedAssetPackage(styleBytes));
-
-			// Create Decoder
-			var decoder = new MBVectorTileDecoder(style);
-
-			var layer = new VectorTileLayer(source, decoder);
-
-			MapView.Layers.Add(layer);
-		}
 	}
 }

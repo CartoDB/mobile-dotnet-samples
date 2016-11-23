@@ -9,7 +9,7 @@ using Android.Views;
 using Android.Views.Animations;
 using Android.Widget;
 
-namespace AdvancedMap.Droid
+namespace Shared.Droid
 {
 	public class MenuButton : RelativeLayout
 	{
@@ -27,11 +27,11 @@ namespace AdvancedMap.Droid
 
 		Context context;
 
-		public MenuButton(Context context) : base(context)
+		public MenuButton(int resource, Context context) : base(context)
 		{
 			this.context = context;
 
-			SetBackgroundResource(Resource.Drawable.icon_menu_round);
+			SetBackgroundResource(resource);
 
 			int size = (int)(SmallerScreenMetric / 6.5);
 			int margin = size / 5;

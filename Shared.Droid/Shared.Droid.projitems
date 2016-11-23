@@ -16,6 +16,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)BaseActivities\MapBaseActivity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseActivities\BaseActivity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Colors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\BaseMenu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MenuButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />

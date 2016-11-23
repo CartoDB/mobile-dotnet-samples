@@ -6,14 +6,13 @@ using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using Shared;
+using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	public class BaseMapSectionMenu : LinearLayout
+	public class BaseMapSectionMenu : BaseMenu
 	{
 		public EventHandler<OptionEventArgs> SelectionChange;
-
-		public bool IsVisible { get { return Alpha == 1.0f; } }
 
 		List<BaseMapSectionMenuItem> views = new List<BaseMapSectionMenuItem>();
 		LinearLayout contentContainer;
@@ -43,18 +42,13 @@ namespace AdvancedMap.Droid
 		{
 			this.context = context;
 
-			LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
-
 			contentContainer = new LinearLayout(context);
 			contentContainer.LayoutParameters = new ViewGroup.LayoutParams(LayoutParams.MatchParent, LayoutParams.WrapContent);
 			contentContainer.Orientation = Orientation.Vertical;
 
 			AddView(contentContainer);
 
-			SetBackgroundColor(Android.Graphics.Color.Argb(130, 0, 0, 0));
-
-			Alpha = 0.0f;
-			Visibility = ViewStates.Gone;
+			SetBackgroundColor(Color.Argb(130, 0, 0, 0));
 		}
 
 		public bool LanguageChoiceEnabled
@@ -77,29 +71,6 @@ namespace AdvancedMap.Droid
 					language.Enabled = false;
 				}
 			}
-		}
-
-		public void Show()
-		{
-			Visibility = ViewStates.Visible;
-			AnimateAlpha(1.0f);
-		}
-
-		public void Hide()
-		{
-			AnimateAlpha(0.0f, delegate { Visibility = ViewStates.Gone; });
-		}
-
-		void AnimateAlpha(float alpha, Action completionHandler = null)
-		{
-			Animate().Alpha(alpha).SetDuration(200).SetListener(new CompletionListener(delegate
-			{
-				Alpha = alpha;
-				if (completionHandler != null)
-				{
-					completionHandler();
-				}
-			}));
 		}
 
 		BaseMapSectionLabel current;
@@ -192,39 +163,7 @@ namespace AdvancedMap.Droid
 				}
 			}
 		}
-	}
 
-	public class CompletionListener : Java.Lang.Object, Animator.IAnimatorListener
-	{
-		Action onComplete;
-
-		public CompletionListener(Action onComplete = null)
-		{
-			this.onComplete = onComplete;
-		}
-
-		public void OnAnimationCancel(Animator animation)
-		{
-
-		}
-
-		public void OnAnimationEnd(Animator animation)
-		{
-			if (onComplete != null)
-			{
-				onComplete();
-			}
-		}
-
-		public void OnAnimationRepeat(Animator animation)
-		{
-
-		}
-
-		public void OnAnimationStart(Animator animation)
-		{
-
-		}
 	}
 }
 
