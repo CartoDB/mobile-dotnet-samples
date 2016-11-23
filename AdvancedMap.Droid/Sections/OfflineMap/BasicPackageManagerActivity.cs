@@ -28,7 +28,7 @@ namespace AdvancedMap.Droid
 
 		CartoPackageManager manager;
 
-		PackageListener updateListener = new PackageListener();
+		PackageListener packageListener;
 
 		BoundingBox bbox;
 
@@ -42,15 +42,15 @@ namespace AdvancedMap.Droid
 			ContentView = new BasicPackageManagerView(this);
 			SetContentView(ContentView);
 
-			string folder = CreateFolder("mappackages");
+			string folder = CreateFolder("citypackages");
 
 			manager = new CartoPackageManager("nutiteq.osm", folder);
-			manager.PackageManagerListener = updateListener;
 
 			// Custom convenience class to enhance readability 
 			bbox = new BoundingBox { MinLon = -0.8164, MinLat = 51.2382, MaxLon = 0.6406, MaxLat = 51.7401 };
 
-			if (manager.GetLocalPackage(bbox.ToString()) == null)
+			// Package version has no use here, can be anything
+			if (manager.GetLocalPackageStatus(bbox.ToString(), 1) == null)
 			{
 				manager.StartPackageDownload(bbox.ToString());
 			}
@@ -66,11 +66,14 @@ namespace AdvancedMap.Droid
 		{
 			base.OnResume();
 
+			packageListener = new PackageListener();
+			manager.PackageManagerListener = packageListener;
+
 			// Always Attach handlers OnResume to avoid memory leaks and objects with multple handlers
-			updateListener.OnPackageCancel += UpdatePackage;
-			updateListener.OnPackageUpdate += UpdatePackage;
-			updateListener.OnPackageStatusChange += UpdatePackage;
-			updateListener.OnPackageFail += UpdatePackage;
+			packageListener.OnPackageCancel += UpdatePackage;
+			packageListener.OnPackageUpdate += UpdatePackage;
+			packageListener.OnPackageStatusChange += UpdatePackage;
+			packageListener.OnPackageFail += UpdatePackage;
 
 			manager.Start();
 		}
@@ -78,12 +81,13 @@ namespace AdvancedMap.Droid
 		protected override void OnPause()
 		{
 			// Always detach handlers OnPause to avoid memory leaks and objects with multple handlers
-			updateListener.OnPackageCancel -= UpdatePackage;
-			updateListener.OnPackageUpdate -= UpdatePackage;
-			updateListener.OnPackageStatusChange -= UpdatePackage;
-			updateListener.OnPackageFail -= UpdatePackage;
+			packageListener.OnPackageCancel -= UpdatePackage;
+			packageListener.OnPackageUpdate -= UpdatePackage;
+			packageListener.OnPackageStatusChange -= UpdatePackage;
+			packageListener.OnPackageFail -= UpdatePackage;
 
 			manager.Stop(true);
+			packageListener = null;
 
 			base.OnPause();
 		}

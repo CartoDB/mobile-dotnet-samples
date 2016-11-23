@@ -114,6 +114,7 @@ namespace AdvancedMap.iOS
 
 			string packaged = bbox.ToString();
 
+			// Package version has no use here, can be anything
 			if (packageManager.GetLocalPackageStatus(packaged, 1) == null)
 			{
 				packageManager.StartPackageDownload(packaged);

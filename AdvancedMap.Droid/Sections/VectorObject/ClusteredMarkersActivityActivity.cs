@@ -57,14 +57,17 @@ namespace AdvancedMap.Droid
 				FeatureCollection features = reader.ReadFeatureCollection(json);
 				Alert("Finished load from .geojson");
 
+				VectorElementVector elements = new VectorElementVector();
+
 				for (int i = 0; i < features.FeatureCount; i++)
 				{
 					// This data set features point geometry,
 					// however, it can also be LineGeometry or PolygonGeometry
 					PointGeometry geometry = (PointGeometry)features.GetFeature(i).Geometry;
-					source.Add(new Marker(geometry, style));
+					elements.Add(new Marker(geometry, style));
 				}
 
+				source.AddAll(elements);
 				Alert("Finished adding Markers to source. Clustering started");
 
 				// Add the clustered vector layer to the map

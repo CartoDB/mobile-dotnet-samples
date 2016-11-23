@@ -28,7 +28,7 @@ namespace AdvancedMap.Droid
 		string currentFolder = ""; // Current 'folder' of the package, for example "Asia/"
 		string language = "en"; // Language for the package names. Most major languages are supported
 
-		PackageListener PackageUpdateListener = new PackageListener();
+		PackageListener packageListener;
 
 		public List<Package> Packages { 
 			get {
@@ -47,7 +47,7 @@ namespace AdvancedMap.Droid
 			Title = GetType().GetTitle();
 
 			// Create package manager
-			File packageFolder = new File(ApplicationContext.GetExternalFilesDir(null), "mappackages");
+			File packageFolder = new File(ApplicationContext.GetExternalFilesDir(null), "regionpackages");
 
 			if (!(packageFolder.Mkdir() || packageFolder.IsDirectory))
 			{
@@ -63,10 +63,6 @@ namespace AdvancedMap.Droid
 				this.MakeToast("Exception: " + e);
 				Finish();
 			}
-
-			packageManager.PackageManagerListener = PackageUpdateListener;
-
-			packageManager.StartPackageListDownload();
 
 			// Initialize ListView
 			SetContentView(Resource.Layout.List);
@@ -102,14 +98,20 @@ namespace AdvancedMap.Droid
 		{
 			base.OnResume();
 
-			// Always Attach handlers OnResume to avoid memory leaks and objects with multple handlers
-			PackageUpdateListener.OnPackageListUpdate += UpdatePackages;
-			PackageUpdateListener.OnPackageListFail += UpdatePackages;
+			packageListener = new PackageListener();
+			packageManager.PackageManagerListener = packageListener;
 
-			PackageUpdateListener.OnPackageCancel += UpdatePackage;
-			PackageUpdateListener.OnPackageUpdate += UpdatePackage;
-			PackageUpdateListener.OnPackageStatusChange += UpdatePackage;
-			PackageUpdateListener.OnPackageFail += UpdatePackage;
+			// Always Attach handlers OnResume to avoid memory leaks and objects with multple handlers
+			packageListener.OnPackageListUpdate += UpdatePackages;
+			packageListener.OnPackageListFail += UpdatePackages;
+
+			packageListener.OnPackageCancel += UpdatePackage;
+			packageListener.OnPackageUpdate += UpdatePackage;
+			packageListener.OnPackageStatusChange += UpdatePackage;
+			packageListener.OnPackageFail += UpdatePackage;
+
+			packageManager.StartPackageListDownload();
+			packageManager.Start();
 		}
 
 		protected override void OnPause()
@@ -117,13 +119,16 @@ namespace AdvancedMap.Droid
 			base.OnPause();
 
 			// Always detach handlers OnPause to avoid memory leaks and objects with multple handlers
-			PackageUpdateListener.OnPackageListUpdate -= UpdatePackages;
-			PackageUpdateListener.OnPackageListFail -= UpdatePackages;
+			packageListener.OnPackageListUpdate -= UpdatePackages;
+			packageListener.OnPackageListFail -= UpdatePackages;
 
-			PackageUpdateListener.OnPackageCancel -= UpdatePackage;
-			PackageUpdateListener.OnPackageUpdate -= UpdatePackage;
-			PackageUpdateListener.OnPackageStatusChange -= UpdatePackage;
-			PackageUpdateListener.OnPackageFail -= UpdatePackage;
+			packageListener.OnPackageCancel -= UpdatePackage;
+			packageListener.OnPackageUpdate -= UpdatePackage;
+			packageListener.OnPackageStatusChange -= UpdatePackage;
+			packageListener.OnPackageFail -= UpdatePackage;
+
+			packageManager.Stop(true);
+			packageListener = null;
 		}
 
 		protected override void OnStart()
@@ -211,7 +216,6 @@ namespace AdvancedMap.Droid
 					{
 						PackageStatus status = packageManager.GetLocalPackageStatus(id, -1);
 						pkg.UpdateStatus(status);
-
 
 						packageArray[i] = pkg;
 						packageAdapter.NotifyDataSetChanged();

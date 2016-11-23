@@ -101,7 +101,6 @@ namespace AdvancedMap.iOS
 			ContentView.ListSource.CellActionButtonClicked -= OnCellActionButtonClick;
 
 			packageManager.Stop(true);
-
 			packageListener = null;
 		}
 
