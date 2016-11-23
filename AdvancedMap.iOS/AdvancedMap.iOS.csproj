@@ -136,6 +136,8 @@
     <Folder Include="Resources\icons\" />
     <Folder Include="Resources\styles\" />
     <Folder Include="Resources\mbtiles\" />
+    <Folder Include="Sections\OfflineMap\BasicPackageManager\" />
+    <Folder Include="Sections\OfflineMap\BasicPackageManager\Views\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
@@ -177,7 +179,8 @@
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenu.cs" />
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenuItem.cs" />
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionLabel.cs" />
-    <Compile Include="Sections\OfflineMap\BasicPackageManagerController.cs" />
+    <Compile Include="Sections\OfflineMap\BasicPackageManager\BasicPackageManagerController.cs" />
+    <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\CityChoiceMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\fcd_auto.nml" />

@@ -5,7 +5,7 @@ namespace Shared
 {
 	public class BoundingBoxes
 	{
-		public List<BoundingBox> List
+		public static List<BoundingBox> List
 		{
 			get
 			{

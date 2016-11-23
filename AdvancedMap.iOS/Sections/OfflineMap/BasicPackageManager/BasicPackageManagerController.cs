@@ -18,7 +18,7 @@ namespace AdvancedMap.iOS
 	{
 		public override string Name { get { return "Basic Package Manager"; } }
 
-		public override string Description { get { return "Download a bounding box of London"; } }
+		public override string Description { get { return "Download cities from an assortment of bounding boxes"; } }
 
 		CartoPackageManager packageManager;
 
@@ -26,31 +26,25 @@ namespace AdvancedMap.iOS
 
 		UILabel status;
 
-		BoundingBox bbox;
+		public CityChoiceMenu Menu { get; set; }
+		MenuButton MenuButton { get; set; }
 
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
-			string folder = CreateFolder("mappackages");
+			Menu = new CityChoiceMenu();
+			Menu.Items = BoundingBoxes.List;
+
+			MenuButton = new MenuButton();
+			NavigationItem.RightBarButtonItem = MenuButton;
+
+			string folder = CreateFolder("citypackages");
 
 			SetStatusLabel();
 
 			packageManager = new CartoPackageManager("nutiteq.osm", folder);
 			packageManager.PackageManagerListener = PackageUpdateListener;
-
-			// Custom convience class to enhance readability 
-			bbox = new BoundingBox { MinLon = -0.8164, MinLat = 51.2382, MaxLon = 0.6406, MaxLat = 51.7401 };
-			string packaged = bbox.ToString();
-
-			if (packageManager.GetLocalPackage(packaged) == null)
-			{
-				packageManager.StartPackageDownload(packaged);
-			}
-			else {
-				UpdateStatusLabel("Package downloaded");
-				ZoomTo(bbox.Center);
-			}
 
 			SetBaseLayer();
 		}
@@ -61,11 +55,20 @@ namespace AdvancedMap.iOS
 			MapView.SetZoom(12, 2);
 		}
 
+		void ZoomOut()
+		{
+			MapView.SetZoom(0, 2);
+		}
+
 		public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
 
 			// Always Attach handlers ViewWillAppear to avoid memory leaks and objects with multple handlers
+
+			MenuButton.Click += OnMenuButtonClick;
+			Menu.CityTapped += OnMenuSelectionChanged;
+
 			PackageUpdateListener.OnPackageCancel += UpdatePackage;
 			PackageUpdateListener.OnPackageUpdate += UpdatePackage;
 			PackageUpdateListener.OnPackageStatusChange += UpdatePackage;
@@ -79,6 +82,10 @@ namespace AdvancedMap.iOS
 			base.ViewWillDisappear(animated);
 
 			// Always detach handlers ViewWillDisappear to avoid memory leaks and objects with multple handlers
+
+			MenuButton.Click -= OnMenuButtonClick;
+			Menu.CityTapped -= OnMenuSelectionChanged;
+
 			PackageUpdateListener.OnPackageCancel -= UpdatePackage;
 			PackageUpdateListener.OnPackageUpdate -= UpdatePackage;
 			PackageUpdateListener.OnPackageStatusChange -= UpdatePackage;
@@ -87,10 +94,57 @@ namespace AdvancedMap.iOS
 			packageManager.Stop(true);
 		}
 
+		public override void ViewDidAppear(bool animated)
+		{
+			base.ViewDidAppear(animated);
+
+			Alert("Choose a city from the menu to download its bounding box");
+		}
+
+		BoundingBox currentCity;
+
+		void DownloadAndZoomToBbox(BoundingBox bbox)
+		{
+			currentCity = bbox;
+
+			string packaged = bbox.ToString();
+
+			if (packageManager.GetLocalPackage(packaged) == null)
+			{
+				packageManager.StartPackageDownload(packaged);
+				Alert("Downloading " + bbox.Name);
+			}
+			else {
+				UpdateStatusLabel("Download complete");
+				Alert(bbox.Name + " already downloaded. Zooming");
+				ZoomTo(bbox.Center);
+			}
+		}
+
+		void OnMenuButtonClick(object sender, EventArgs e)
+		{
+			if (Menu.IsVisible)
+			{
+				Menu.Hide();
+			}
+			else {
+				Menu.Show();
+			}
+		}
+
+		void OnMenuSelectionChanged(object sender, EventArgs e)
+		{
+			ZoomOut();
+
+			BoundingBox city = (BoundingBox)sender;
+			Menu.Hide();
+			DownloadAndZoomToBbox(city);
+		}
+
 		void UpdatePackage(object sender, PackageEventArgs e)
 		{
 			UpdateStatusLabel("Downloaded Complete");
-			ZoomTo(bbox.Center);
+			ZoomTo(currentCity.Center);
 		}
 
 		void UpdatePackage(object sender, PackageStatusEventArgs e)

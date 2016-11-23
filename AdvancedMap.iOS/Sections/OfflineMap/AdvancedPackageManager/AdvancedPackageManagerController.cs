@@ -44,7 +44,7 @@ namespace AdvancedMap.iOS
 			base.ViewDidLoad();
 
 			// Create PackageManager instance for dealing with offline packages
-			string folder = Utils.GetDocumentDirectory("mappackages");
+			string folder = Utils.GetDocumentDirectory("regionpackages");
 
 			if (!Directory.Exists(folder))
 			{
