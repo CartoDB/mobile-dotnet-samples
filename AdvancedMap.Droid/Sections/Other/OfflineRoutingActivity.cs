@@ -139,6 +139,13 @@ namespace AdvancedMap.Droid
 
 			Alert("Long-press on map to set route start and finish");
 		}
+	
+		protected override void OnDestroy()
+		{
+			base.OnDestroy();
+
+			MapListener = null;
+		}
 
 		protected override void OnResume()
 		{

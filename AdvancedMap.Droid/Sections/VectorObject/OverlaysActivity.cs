@@ -16,6 +16,8 @@ namespace AdvancedMap.Droid
 	[ActivityData(Title = "Overlays", Description = "2D and 3D objects: lines, points, polygons, texts, pop-ups and a NMLModel")]
 	public class OverlaysActivity: MapBaseActivity
 	{
+		VectorElementListener listener;
+
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -66,7 +68,8 @@ namespace AdvancedMap.Droid
 
 			// Add maplistener to detect click on model
 
-			VectorElementListener listener = new VectorElementListener(source);
+			listener = new VectorElementListener(source);
+
 			for (int i = 0; i < MapView.Layers.Count; i++) 
 			{
 				Layer layer = MapView.Layers[i];
@@ -76,6 +79,13 @@ namespace AdvancedMap.Droid
 					(layer as VectorLayer).VectorElementEventListener = listener;
 				}
 			}
+		}
+
+		protected override void OnDestroy()
+		{
+			base.OnDestroy();
+
+			listener = null;
 		}
 	}
 }

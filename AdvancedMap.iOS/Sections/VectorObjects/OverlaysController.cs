@@ -24,6 +24,8 @@ namespace AdvancedMap.iOS
 			}
 		}
 
+		VectorElementListener listener;
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
@@ -75,7 +77,7 @@ namespace AdvancedMap.iOS
 
 			// Add maplistener to detect click on model
 
-			VectorElementListener listener = new VectorElementListener(source);
+			listener = new VectorElementListener(source);
 			for (int i = 0; i < MapView.Layers.Count; i++)
 			{
 				Layer layer = MapView.Layers[i];
@@ -85,6 +87,13 @@ namespace AdvancedMap.iOS
 					(layer as VectorLayer).VectorElementEventListener = listener;
 				}
 			}
+		}
+
+		public override void ViewDidUnload()
+		{
+			base.ViewDidUnload();
+
+			listener = null;
 		}
 	}
 }

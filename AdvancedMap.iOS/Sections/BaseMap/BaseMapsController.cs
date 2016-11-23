@@ -81,6 +81,8 @@ namespace AdvancedMap.iOS
 		string currentSelection;
 		TileLayer currentLayer;
 
+		VectorTileListener currentListener;
+
 		void UpdateBaseLayer(Section section, string selection)
 		{
 			if (section.Type != SectionType.Language)
@@ -158,7 +160,8 @@ namespace AdvancedMap.iOS
 
 			Menu.Hide();
 
-			MapView.InitializeVectorTileListener(VectorLayer);
+			currentListener = null;
+			currentListener = MapView.InitializeVectorTileListener(VectorLayer);
 		}
 
 		void ResetLanguage()

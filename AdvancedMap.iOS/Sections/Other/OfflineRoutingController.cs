@@ -146,6 +146,13 @@ namespace AdvancedMap.iOS
 			Alert("Long-press on map to set route start and finish");
 		}
 
+		public override void ViewDidUnload()
+		{
+			base.ViewDidUnload();
+
+			MapListener = null;
+		}
+
 		public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);

@@ -16,6 +16,8 @@ namespace AdvancedMap.iOS
 
 		LocalVectorDataSource source;
 
+		EditableVectorLayer editLayer;
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
@@ -25,7 +27,7 @@ namespace AdvancedMap.iOS
 			// Initialize source and Edit layer, add it to the map
 			source = new LocalVectorDataSource(MapView.Options.BaseProjection);
 
-			EditableVectorLayer editLayer = new EditableVectorLayer(source);
+			editLayer = new EditableVectorLayer(source);
 			MapView.Layers.Add(editLayer);
 
 			// Convenience methods to add elements to the map, cf. LocalVectorDataSourceExtensions
@@ -47,6 +49,17 @@ namespace AdvancedMap.iOS
 
 			// Add the vector element edit even listener
 			editLayer.VectorEditEventListener = new BasicEditEventListener(source);
+		}
+
+		public override void ViewDidUnload()
+		{
+			base.ViewDidUnload();
+
+			editLayer.VectorElementEventListener = null;
+
+			MapView.MapEventListener = null;
+
+			editLayer.VectorEditEventListener = null;
 		}
 
 		public override void ViewDidAppear(bool animated)

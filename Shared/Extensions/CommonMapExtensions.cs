@@ -153,7 +153,7 @@ namespace Shared
 			map.Zoom = 14;
 		}
 
-		public static void InitializeVectorTileListener(this MapView map, VectorLayer vectorLayer)
+		public static VectorTileListener InitializeVectorTileListener(this MapView map, VectorLayer vectorLayer)
 		{
 			LocalVectorDataSource source = new LocalVectorDataSource(map.Options.BaseProjection);
 			vectorLayer = new VectorLayer(source);
@@ -163,8 +163,12 @@ namespace Shared
 
 			if (layer is VectorTileLayer)
 			{
-				(layer as VectorTileLayer).VectorTileEventListener = new VectorTileListener(vectorLayer);
+				var listener = new VectorTileListener(vectorLayer);
+				(layer as VectorTileLayer).VectorTileEventListener = listener;
+				return listener;
 			}
+
+			return null;
 		}
 	}
 }

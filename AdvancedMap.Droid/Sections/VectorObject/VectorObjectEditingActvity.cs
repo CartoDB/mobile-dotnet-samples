@@ -22,6 +22,8 @@ namespace AdvancedMap.Droid
 	{
 		LocalVectorDataSource source;
 
+		EditableVectorLayer editLayer;
+
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -31,7 +33,7 @@ namespace AdvancedMap.Droid
 			// Initialize source and Edit layer, add it to the map
 			source = new LocalVectorDataSource(MapView.Options.BaseProjection);
 
-			EditableVectorLayer editLayer = new EditableVectorLayer(source);
+			editLayer = new EditableVectorLayer(source);
 			MapView.Layers.Add(editLayer);
 
 			// Convenience methods to add elements to the map, cf. LocalVectorDataSourceExtensions
@@ -57,6 +59,16 @@ namespace AdvancedMap.Droid
 			Alert("Click on object to modify or move it");
 		}
 
+		protected override void OnDestroy()
+		{
+			base.OnDestroy();
+
+			editLayer.VectorElementEventListener = null;
+
+			MapView.MapEventListener = null;
+
+			editLayer.VectorEditEventListener = null;
+		}
 	}
 }
 

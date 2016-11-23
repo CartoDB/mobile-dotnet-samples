@@ -63,6 +63,13 @@ namespace AdvancedMap.iOS
 			MapView.MapRenderer.CaptureRendering(listener, true);
 		}
 
+		public override void ViewDidUnload()
+		{
+			base.ViewDidUnload();
+
+			listener = null;
+		}
+
 		public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);

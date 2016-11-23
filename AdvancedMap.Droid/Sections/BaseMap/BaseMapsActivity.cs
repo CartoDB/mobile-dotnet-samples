@@ -68,6 +68,8 @@ namespace AdvancedMap.Droid
 
 			ContentView.Button.Click -= OnMenuButtonClicked;
 			ContentView.Menu.SelectionChange -= OnMenuSelectionChanged;
+
+			currentListener = null;
 		}
 
 		public override bool OnOptionsItemSelected(IMenuItem item)
@@ -101,6 +103,8 @@ namespace AdvancedMap.Droid
 		string currentOSM;
 		string currentSelection;
 		TileLayer currentLayer;
+
+		VectorTileListener currentListener;
 
 		void UpdateBaseLayer(Section section, string selection)
 		{
@@ -180,7 +184,8 @@ namespace AdvancedMap.Droid
 
 			ContentView.Menu.Hide();
 
-			MapView.InitializeVectorTileListener(VectorLayer);
+			currentListener = null;
+			currentListener = MapView.InitializeVectorTileListener(VectorLayer);
 		}
 
 		void ResetLanguage()

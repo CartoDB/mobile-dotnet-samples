@@ -60,6 +60,13 @@ namespace AdvancedMap.Droid
 			MapView.MapRenderer.CaptureRendering(listener, true);
 		}
 
+		protected override void OnDestroy()
+		{
+			base.OnDestroy();
+
+			listener = null;
+		}
+
 		protected override void OnPause()
 		{
 			base.OnPause();
