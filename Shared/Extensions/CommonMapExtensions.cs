@@ -170,6 +170,22 @@ namespace Shared
 
 			return null;
 		}
+
+		public static TileLayer FindTileLayer(this MapView map)
+		{
+			for (int i = 0; i < map.Layers.Count; i++)
+			{
+				var layer = map.Layers[i];
+
+				if (layer is TileLayer)
+				{
+					return layer as TileLayer;
+				}
+
+			}
+
+			return null;
+		}
 	}
 }
 
