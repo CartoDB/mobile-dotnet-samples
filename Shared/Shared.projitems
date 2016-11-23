@@ -14,12 +14,13 @@
     <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
     <Folder Include="$(MSBuildThisFileDirectory)Listeners\" />
     <Folder Include="$(MSBuildThisFileDirectory)Enums\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Model\" />
     <Folder Include="$(MSBuildThisFileDirectory)Utils\" />
     <Folder Include="$(MSBuildThisFileDirectory)Constants\" />
-    <Folder Include="$(MSBuildThisFileDirectory)BaseMaps\" />
     <Folder Include="$(MSBuildThisFileDirectory)Listeners\GISListeners\" />
     <Folder Include="$(MSBuildThisFileDirectory)EventArgs\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Model\BaseMaps\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Model\Cities\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CartoVisBuilderWithGridEvent.cs" />
@@ -36,7 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\RouteMapEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\RoutingPackageListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\VectorElementListener.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Package.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Package.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapSetup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\BasicCartoVisBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\JsonUtils.cs" />
@@ -45,14 +46,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\CartoMapExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\HelloMapEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Overlays.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BaseMaps\Section.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BaseMaps\Sections.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\LocalVectorDataSourceExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\GISListeners\VectorElementSelectEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\GISListeners\VectorElementDeselectEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\GISListeners\BasicEditEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventArgs\ScreenshotEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\RendererExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\BoundingBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\BoundingBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\BaseMaps\Section.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\BaseMaps\Sections.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Cities\BoundingBoxes.cs" />
   </ItemGroup>
 </Project>

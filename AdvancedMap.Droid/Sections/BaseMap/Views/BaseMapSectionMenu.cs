@@ -9,13 +9,13 @@ using Shared;
 
 namespace AdvancedMap.Droid
 {
-	public class OptionMenu : LinearLayout
+	public class BaseMapSectionMenu : LinearLayout
 	{
 		public EventHandler<OptionEventArgs> SelectionChange;
 
 		public bool IsVisible { get { return Alpha == 1.0f; } }
 
-		List<OptionMenuItem> views = new List<OptionMenuItem>();
+		List<BaseMapSectionMenuItem> views = new List<BaseMapSectionMenuItem>();
 		LinearLayout contentContainer;
 
 		List<Section> items;
@@ -29,7 +29,7 @@ namespace AdvancedMap.Droid
 
 				foreach (Section section in items)
 				{
-					OptionMenuItem view = new OptionMenuItem(context);
+					BaseMapSectionMenuItem view = new BaseMapSectionMenuItem(context);
 					view.Section = section;
 					views.Add(view);
 					contentContainer.AddView(view);
@@ -39,7 +39,7 @@ namespace AdvancedMap.Droid
 
 		Context context;
 
-		public OptionMenu(Context context) : base(context)
+		public BaseMapSectionMenu(Context context) : base(context)
 		{
 			this.context = context;
 
@@ -55,6 +55,28 @@ namespace AdvancedMap.Droid
 
 			Alpha = 0.0f;
 			Visibility = ViewStates.Gone;
+		}
+
+		public bool LanguageChoiceEnabled
+		{
+			set
+			{
+				BaseMapSectionMenuItem language = views.Find(item => item.section.Type == SectionType.Language);
+
+				if (language == null)
+				{
+					return;
+				}
+
+				if (value)
+				{
+					language.Enabled = true;
+				}
+				else
+				{
+					language.Enabled = false;
+				}
+			}
 		}
 
 		public void Show()
@@ -80,8 +102,8 @@ namespace AdvancedMap.Droid
 			}));
 		}
 
-		OptionLabel current;
-		OptionLabel currentLanguage;
+		BaseMapSectionLabel current;
+		BaseMapSectionLabel currentLanguage;
 
 		public override bool OnTouchEvent(MotionEvent e)
 		{
@@ -94,7 +116,7 @@ namespace AdvancedMap.Droid
 			{
 				bool isInBox = false;
 
-				foreach (OptionMenuItem item in views) {
+				foreach (BaseMapSectionMenuItem item in views) {
 
 					Rect outerRect = item.HitRect;
 
@@ -103,7 +125,12 @@ namespace AdvancedMap.Droid
 						isInBox = true;
 						int headerHeight = item.HeaderHeight;
 
-						foreach (OptionLabel option in item.Options) 
+						if (!item.Enabled)
+						{
+							return true;
+						}
+
+						foreach (BaseMapSectionLabel option in item.Options) 
 						{
 							if (option.GetGlobalRect(headerHeight, outerRect).Contains(x, y))
 							{
@@ -150,7 +177,7 @@ namespace AdvancedMap.Droid
 
 		public void SetInitialItem(Section section)
 		{
-			foreach (OptionMenuItem view in views)
+			foreach (BaseMapSectionMenuItem view in views)
 			{
 				if (view.Section.Equals(section))
 				{

@@ -88,9 +88,9 @@
     <Compile Include="Sections\VectorObject\ClusteredMarkersActivityActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\GroundOverlayActivity.cs" />
     <Compile Include="Sections\BaseMap\Views\MenuButton.cs" />
-    <Compile Include="Sections\BaseMap\Views\OptionMenu.cs" />
-    <Compile Include="Sections\BaseMap\Views\OptionMenuItem.cs" />
-    <Compile Include="Sections\BaseMap\Views\OptionLabel.cs" />
+    <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenu.cs" />
+    <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenuItem.cs" />
+    <Compile Include="Sections\BaseMap\Views\BaseMapSectionLabel.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageRow.cs" />
     <Compile Include="Sections\OfflineMap\BasicPackageManagerActivity.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\MenuClickListener.cs" />

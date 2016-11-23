@@ -8,7 +8,7 @@ using UIKit;
 
 namespace AdvancedMap.iOS
 {
-	public class OptionsMenuItem : UIView
+	public class BaseMapSectionMenuItem : UIView
 	{
 		public EventHandler<OptionEventArgs> OptionTapped;
 
@@ -17,7 +17,7 @@ namespace AdvancedMap.iOS
 
 		protected UILabel osmLabel, separator, tileTypeLabel;
 
-		protected List<OptionLabel> optionLabels;
+		protected List<BaseMapSectionLabel> optionLabels;
 
 		public bool IsMultiLine { get { return section.Styles.Count > 3; } }
 
@@ -34,7 +34,7 @@ namespace AdvancedMap.iOS
 
 				foreach (NameValuePair option in section.Styles)
 				{
-					OptionLabel optionLabel = new OptionLabel(option);
+					BaseMapSectionLabel optionLabel = new BaseMapSectionLabel(option);
 
 					optionLabels.Add(optionLabel);
 					contentContainer.AddSubview(optionLabel);
@@ -44,9 +44,9 @@ namespace AdvancedMap.iOS
 			}
 		}
 
-		public OptionsMenuItem()
+		public BaseMapSectionMenuItem()
 		{
-			optionLabels = new List<OptionLabel>();
+			optionLabels = new List<BaseMapSectionLabel>();
 
 			Layer.CornerRadius = 5;
 			Layer.ShadowOpacity = 0.5f;
@@ -125,7 +125,7 @@ namespace AdvancedMap.iOS
 
 				int counter = 0;
 
-				foreach (OptionLabel label in optionLabels)
+				foreach (BaseMapSectionLabel label in optionLabels)
 				{
 					if (counter > 0 && counter % 3 == 0)
 					{
@@ -144,7 +144,7 @@ namespace AdvancedMap.iOS
 				w = (contentContainer.Frame.Width - (padding + optionLabels.Count * padding)) / optionLabels.Count;
 				h = itemHeight;
 
-				foreach (OptionLabel label in optionLabels)
+				foreach (BaseMapSectionLabel label in optionLabels)
 				{
 					label.Frame = new CGRect(x, y, w, h);
 					x += w + padding;
@@ -152,11 +152,36 @@ namespace AdvancedMap.iOS
 			}
 		}
 
+		// All fields enabled by default
+		bool enabled = true;
+
+		public bool Enabled { 
+			get { 
+				return enabled;
+			} set {
+				enabled = value;
+
+				if (enabled)
+				{
+					Alpha = 1f;
+				}
+				else
+				{
+					Alpha = 0.6f;
+				}
+			}
+		}
+
 		void OnContainerTap(UITapGestureRecognizer recognizer)
 		{
+			if (!Enabled)
+			{
+				return;
+			}
+
 			CGPoint point = recognizer.LocationInView(contentContainer);
 
-			foreach (OptionLabel label in optionLabels)
+			foreach (BaseMapSectionLabel label in optionLabels)
 			{
 				if (label.Frame.Contains(point) && OptionTapped != null)
 				{
@@ -165,12 +190,18 @@ namespace AdvancedMap.iOS
 			}
 		}
 
-		public OptionLabel SetFirstItemActive()
+		public BaseMapSectionLabel SetFirstItemActive()
 		{
+			foreach (BaseMapSectionLabel label in optionLabels)
+			{
+				label.Normalize();
+			}
+
 			if (optionLabels.Count > 0)
 			{
-				OptionLabel label = optionLabels[0];
+				BaseMapSectionLabel label = optionLabels[0];
 				label.Highlight();
+
 				return label;
 			}
 

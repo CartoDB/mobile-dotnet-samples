@@ -5,7 +5,7 @@ using UIKit;
 
 namespace AdvancedMap.iOS
 {
-	public class OptionLabel : UILabel
+	public class BaseMapSectionLabel : UILabel
 	{
 		public string Name { get; set; }
 
@@ -13,7 +13,7 @@ namespace AdvancedMap.iOS
 
 		public bool IsActive { get { return BackgroundColor != UIColor.White; } }
 
-		public OptionLabel(NameValuePair option)
+		public BaseMapSectionLabel(NameValuePair option)
 		{
 			Name = option.Name;
 			Value = option.Value;

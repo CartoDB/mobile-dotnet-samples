@@ -15,6 +15,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)DataSources\" />
     <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
     <Folder Include="$(MSBuildThisFileDirectory)BaseControllers\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Services\LocationManager.cs" />
@@ -30,5 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\HeaderController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MapListController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Colors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\BaseMenu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\MenuButton.cs" />
   </ItemGroup>
 </Project>

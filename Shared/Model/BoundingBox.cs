@@ -6,6 +6,8 @@ namespace Shared
 {
 	public class BoundingBox
 	{
+		public string Name { get; set; }
+
 		public double MinLat { get; set; }
 
 		public double MinLon { get; set; }

@@ -138,8 +138,8 @@
     <Folder Include="Resources\mbtiles\" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -174,10 +174,9 @@
     <Compile Include="Sections\BaseMap\BaseMapsController.cs" />
     <Compile Include="Sections\VectorObjects\VectorObjectEditingController.cs" />
     <Compile Include="Sections\VectorObjects\ClusteredMarkersController.cs" />
-    <Compile Include="Sections\BaseMap\Views\MenuButton.cs" />
-    <Compile Include="Sections\BaseMap\Views\OptionsMenu.cs" />
-    <Compile Include="Sections\BaseMap\Views\OptionsMenuItem.cs" />
-    <Compile Include="Sections\BaseMap\Views\OptionLabel.cs" />
+    <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenu.cs" />
+    <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenuItem.cs" />
+    <Compile Include="Sections\BaseMap\Views\BaseMapSectionLabel.cs" />
     <Compile Include="Sections\OfflineMap\BasicPackageManagerController.cs" />
   </ItemGroup>
   <ItemGroup>

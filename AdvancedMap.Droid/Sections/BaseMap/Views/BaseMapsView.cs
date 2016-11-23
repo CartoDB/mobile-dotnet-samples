@@ -15,7 +15,7 @@ namespace AdvancedMap.Droid
 
 		public MenuButton Button { get; set; }
 
-		public OptionMenu Menu { get; set; }
+		public BaseMapSectionMenu Menu { get; set; }
 
 		public BaseMapsView(Context context) : base(context)
 		{
@@ -31,7 +31,7 @@ namespace AdvancedMap.Droid
 			Button = new MenuButton(context);
 			AddView(Button);
 
-			Menu = new OptionMenu(context);
+			Menu = new BaseMapSectionMenu(context);
 			AddView(Menu);
 		}
 	}

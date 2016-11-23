@@ -9,7 +9,7 @@ using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	public class OptionLabel : TextView
+	public class BaseMapSectionLabel : TextView
 	{
 		public string Name { get; set; }
 
@@ -50,7 +50,7 @@ namespace AdvancedMap.Droid
 			return new Rect(left, top, right, bottom);
 		}
 
-		public OptionLabel(Context context, NameValuePair option) : base(context)
+		public BaseMapSectionLabel(Context context, NameValuePair option) : base(context)
 		{
 			Name = option.Name;
 			Value = option.Value;
@@ -135,7 +135,7 @@ namespace AdvancedMap.Droid
 	{
 		public Section Section { get; set; }
 
-		public OptionLabel Option { get; set; }
+		public BaseMapSectionLabel Option { get; set; }
 	}
 }
 

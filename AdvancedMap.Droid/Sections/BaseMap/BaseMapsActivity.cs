@@ -147,6 +147,9 @@ namespace AdvancedMap.Droid
 
 					currentLayer = new VectorTileLayer(source, decoder);
 				}
+
+				ContentView.Menu.LanguageChoiceEnabled = true;
+				ResetLanguage();
 			}
 			else if (section.Type == SectionType.Raster)
 			{
@@ -158,6 +161,9 @@ namespace AdvancedMap.Droid
 
 				TileDataSource source = new HTTPTileDataSource(1, 19, url);
 				currentLayer = new RasterTileLayer(source);
+
+				// Language choice not enabled in raster tiles
+				ContentView.Menu.LanguageChoiceEnabled = false;
 			}
 			else if (section.Type == SectionType.Language)
 			{
@@ -175,6 +181,12 @@ namespace AdvancedMap.Droid
 			ContentView.Menu.Hide();
 
 			MapView.InitializeVectorTileListener(VectorLayer);
+		}
+
+		void ResetLanguage()
+		{
+			ContentView.Menu.SetInitialItem(Sections.Language);
+			UpdateLanguage(Sections.BaseLanguageCode);
 		}
 
 		void UpdateLanguage(string code)

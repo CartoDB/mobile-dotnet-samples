@@ -9,7 +9,7 @@ using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	public class OptionMenuItem : LinearLayout
+	public class BaseMapSectionMenuItem : LinearLayout
 	{
 		LinearLayout headerContainer;
 		RelativeLayout contentContainer;
@@ -18,9 +18,9 @@ namespace AdvancedMap.Droid
 
 		TextView osmLabel, separatorLabel, tileTypeLabel;
 
-		List<OptionLabel> optionLabels = new List<OptionLabel>();
+		List<BaseMapSectionLabel> optionLabels = new List<BaseMapSectionLabel>();
 
-		public List<OptionLabel> Options { get { return optionLabels; } }
+		public List<BaseMapSectionLabel> Options { get { return optionLabels; } }
 
 		public Rect HitRect 
 		{ 
@@ -58,7 +58,7 @@ namespace AdvancedMap.Droid
 
 				foreach (NameValuePair option in section.Styles)
 				{
-					OptionLabel optionLabel = new OptionLabel(context, option);
+					BaseMapSectionLabel optionLabel = new BaseMapSectionLabel(context, option);
 
 					optionLabels.Add(optionLabel);
 					contentContainer.AddView(optionLabel);
@@ -90,7 +90,7 @@ namespace AdvancedMap.Droid
 				int counter = 1;
 				int y = 0;
 
-				foreach (OptionLabel label in optionLabels)
+				foreach (BaseMapSectionLabel label in optionLabels)
 				{
 					label.SetRelativeLayout(contentContainer.MeasuredWidth, rowHeight, optionLabels.Count, counter, y);
 
@@ -123,7 +123,7 @@ namespace AdvancedMap.Droid
 
 		Context context;
 
-		public OptionMenuItem(Context context) : base(context)
+		public BaseMapSectionMenuItem(Context context) : base(context)
 		{
 			Orientation = Orientation.Vertical;
 
@@ -176,17 +176,48 @@ namespace AdvancedMap.Droid
 			return view;
 		}
 
-		public OptionLabel SetFirstItemActive()
+		public BaseMapSectionLabel SetFirstItemActive()
 		{
+			foreach (BaseMapSectionLabel label in optionLabels)
+			{
+				label.Normalize();
+			}
+
 			if (optionLabels.Count > 0)
 			{
-				OptionLabel label = optionLabels[0];
+				BaseMapSectionLabel label = optionLabels[0];
 				label.Highlight();
 				return label;
 			}
 
 			return null;
 		}
+
+
+		// All fields enabled by default
+		bool enabled = true;
+
+		public new bool Enabled
+		{
+			get
+			{
+				return enabled;
+			}
+			set
+			{
+				enabled = value;
+
+				if (enabled)
+				{
+					Alpha = 1f;
+				}
+				else
+				{
+					Alpha = 0.5f;
+				}
+			}
+		}
+
 	}
 }
 

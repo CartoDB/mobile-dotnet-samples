@@ -3,11 +3,12 @@ using System;
 using System.Collections.Generic;
 using CoreGraphics;
 using Shared;
+using Shared.iOS;
 using UIKit;
 
 namespace AdvancedMap.iOS
 {
-	public class OptionsMenu : UIView
+	public class BaseMapSectionMenu : BaseMenu
 	{
 		public EventHandler<OptionEventArgs> OptionTapped;
 
@@ -15,11 +16,7 @@ namespace AdvancedMap.iOS
 
 		static nfloat LargeBoxPadding = 20;
 
-		const double animationDuration = 0.2;
-
-		public bool IsVisible { get { return Alpha == 1; } }
-
-		List<OptionsMenuItem> views;
+		List<BaseMapSectionMenuItem> views;
 
 		List<Section> items;
 		public List<Section> Items
@@ -31,7 +28,7 @@ namespace AdvancedMap.iOS
 
 				foreach (Section section in items)
 				{
-					OptionsMenuItem view = new OptionsMenuItem();
+					BaseMapSectionMenuItem view = new BaseMapSectionMenuItem();
 					view.Section = section;
 					view.AddGestureRecognizer(new UITapGestureRecognizer(OnSubviewTap));
 					views.Add(view);
@@ -42,17 +39,11 @@ namespace AdvancedMap.iOS
 			}
 		}
 
-		public OptionsMenu()
+		public BaseMapSectionMenu()
 		{
 			BackgroundColor = UIColor.FromRGBA(0, 0, 0, 150);
 
-			views = new List<OptionsMenuItem>();
-
-			Alpha = 0;
-
-			AddGestureRecognizer(new UITapGestureRecognizer(OnBackgroundTap));
-
-			Frame = new CGRect(0, 0, UIScreen.MainScreen.Bounds.Size.Width, UIScreen.MainScreen.Bounds.Size.Height);
+			views = new List<BaseMapSectionMenuItem>();
 		}
 
 		public override void LayoutSubviews()
@@ -66,7 +57,7 @@ namespace AdvancedMap.iOS
 
 			int counter = 0;
 
-			foreach (OptionsMenuItem view in views)
+			foreach (BaseMapSectionMenuItem view in views)
 			{
 				// Trivial heights
 				h = view.IsMultiLine ? 120 : 80;
@@ -85,35 +76,18 @@ namespace AdvancedMap.iOS
 			}
 		}
 
-		public void Show()
-		{
-			UIApplication.SharedApplication.KeyWindow.AddSubview(this);
-
-			Animate(animationDuration, delegate { Alpha = 1; });
-		}
-
-		public void Hide()
-		{
-			Animate(animationDuration, delegate { Alpha = 0; }, delegate { RemoveFromSuperview(); });
-		}
-
-		void OnBackgroundTap()
-		{
-			Hide();
-		}
-
 		void OnSubviewTap()
 		{
 			// Do nothing. Just catch taps
 			Console.WriteLine("Subview (box) tapped");
 		}
 
-		OptionLabel current;
-		OptionLabel currentLanguage;
+		BaseMapSectionLabel current;
+		BaseMapSectionLabel currentLanguage;
 
 		void OnOptionTap(object sender, OptionEventArgs e)
 		{
-			OptionLabel option = e.Option;
+			BaseMapSectionLabel option = e.Option;
 
 			if (e.Section.Type == SectionType.Language)
 			{
@@ -146,7 +120,7 @@ namespace AdvancedMap.iOS
 
 		public void SetInitialItem(Section section)
 		{
-			foreach (OptionsMenuItem view in views)
+			foreach (BaseMapSectionMenuItem view in views)
 			{
 				if (view.Section.Equals(section))
 				{
@@ -161,13 +135,34 @@ namespace AdvancedMap.iOS
 				}
 			}
 		}
+
+		public bool LanguageChoiceEnabled 
+		{ 
+			set {
+				BaseMapSectionMenuItem language = views.Find(item => item.section.Type == SectionType.Language);
+
+				if (language == null)
+				{
+					return;
+				}
+
+				if (value)
+				{
+					language.Enabled = true;
+				}
+				else
+				{
+					language.Enabled = false;
+				}
+			}
+		}
 	}
 
 	public class OptionEventArgs : EventArgs
 	{
 		public Section Section { get; set; }
 
-		public OptionLabel Option { get; set; }
+		public BaseMapSectionLabel Option { get; set; }
 	}
 }
 

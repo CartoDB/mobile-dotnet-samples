@@ -17,7 +17,7 @@ namespace AdvancedMap.iOS
 
 		public override string Description { get { return "Overview of base maps offered by CARTO"; } }
 
-		public OptionsMenu Menu { get; set; }
+		public BaseMapSectionMenu Menu { get; set; }
 		MenuButton MenuButton { get; set; }
 
 		VectorLayer VectorLayer { get; set; }
@@ -26,7 +26,7 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
-			Menu = new OptionsMenu();
+			Menu = new BaseMapSectionMenu();
 			Menu.Items = Sections.List;
 
 			MenuButton = new MenuButton();
@@ -124,7 +124,11 @@ namespace AdvancedMap.iOS
 					var decoder = new MBVectorTileDecoder(styleSet);
 
 					currentLayer = new VectorTileLayer(source, decoder);
+				
 				}
+				Menu.LanguageChoiceEnabled = true;
+				ResetLanguage();
+
 		    }
 			else if (section.Type == SectionType.Raster)
 			{
@@ -136,6 +140,9 @@ namespace AdvancedMap.iOS
 
 				TileDataSource source = new HTTPTileDataSource(1, 19, url);
 				currentLayer = new RasterTileLayer(source);
+
+				// Language choice not enabled in raster tiles
+				Menu.LanguageChoiceEnabled = false;
 			} 
 			else if (section.Type == SectionType.Language)
 			{
@@ -152,6 +159,12 @@ namespace AdvancedMap.iOS
 			Menu.Hide();
 
 			MapView.InitializeVectorTileListener(VectorLayer);
+		}
+
+		void ResetLanguage()
+		{
+			Menu.SetInitialItem(Sections.Language);
+			UpdateLanguage(Sections.BaseLanguageCode);
 		}
 
 		void UpdateLanguage(string code)
