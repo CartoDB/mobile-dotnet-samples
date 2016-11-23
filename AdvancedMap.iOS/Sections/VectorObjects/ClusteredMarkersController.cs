@@ -53,20 +53,21 @@ namespace AdvancedMap.iOS
 			// Read features from local asset
 			FeatureCollection features = reader.ReadFeatureCollection(json);
 
+			VectorElementVector elements = new VectorElementVector();
+
 			for (int i = 0; i < features.FeatureCount; i++)
 			{
 				// This data set features point geometry,
 				// however, it can also be LineGeometry or PolygonGeometry
 				PointGeometry geometry = (PointGeometry)features.GetFeature(i).Geometry;
-				source.Add(new Marker(geometry, style));
+				elements.Add(new Marker(geometry, style));
 			}
 
 			// Add the clustered vector layer to the map
+			source.AddAll(elements);
+
 			MapView.Layers.Add(layer);
-
-			Alert("Finished adding Markers to source. Clustering started...");
 		}
-
 	}
 
 	public class MyClusterElementBuilder : ClusterElementBuilder
@@ -81,7 +82,6 @@ namespace AdvancedMap.iOS
 
 		public override VectorElement BuildClusterElement(MapPos pos, VectorElementVector elements)
 		{
-
 			// Try to reuse existing marker styles
 			MarkerStyle style = null;
 

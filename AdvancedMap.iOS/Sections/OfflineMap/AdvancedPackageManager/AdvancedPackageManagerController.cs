@@ -19,13 +19,12 @@ namespace AdvancedMap.iOS
 		public static PackageManagerTileDataSource DataSource;
 
 		CartoPackageManager packageManager;
+		PackageListener packageListener;
 
 		string currentFolder = ""; // Current 'folder' of the package, for example "Asia/"
 		string language = "en"; // Language for the package names. Most major languages are supported
 
 		readonly List<Package> packageList = new List<Package>();
-
-		PackageListener PackageUpdateListener = new PackageListener();
 
 		public List<Package> Packages { get { return packageManager.GetPackages(language, currentFolder); } }
 
@@ -58,10 +57,6 @@ namespace AdvancedMap.iOS
 
 			packageManager = new CartoPackageManager("nutiteq.osm", folder);
 
-			packageManager.PackageManagerListener = PackageUpdateListener;
-
-			packageManager.StartPackageListDownload();
-
 			ContentView = new PackageManagerListView();
 			View = ContentView;
 			ContentView.AddRows(packageList);
@@ -71,16 +66,21 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewWillAppear(animated);
 
-			// Always Attach handlers ViewWillAppear to avoid memory leaks and objects with multple handlers
-			PackageUpdateListener.OnPackageListUpdate += UpdatePackages;
-			PackageUpdateListener.OnPackageListFail += UpdatePackages;
+			packageListener = new PackageListener();
+			packageManager.PackageManagerListener = packageListener;
 
-			PackageUpdateListener.OnPackageCancel += UpdatePackage;
-			PackageUpdateListener.OnPackageUpdate += UpdatePackage;
-			PackageUpdateListener.OnPackageStatusChange += UpdatePackage;
-			PackageUpdateListener.OnPackageFail += UpdatePackage;
+			// Always Attach handlers ViewWillAppear to avoid memory leaks and objects with multple handlers
+			packageListener.OnPackageListUpdate += UpdatePackages;
+			packageListener.OnPackageListFail += UpdatePackages;
+
+			packageListener.OnPackageCancel += UpdatePackage;
+			packageListener.OnPackageUpdate += UpdatePackage;
+			packageListener.OnPackageStatusChange += UpdatePackage;
+			packageListener.OnPackageFail += UpdatePackage;
 
 			ContentView.ListSource.CellActionButtonClicked += OnCellActionButtonClick;
+
+			packageManager.StartPackageListDownload();
 
 			packageManager.Start();
 		}
@@ -90,17 +90,19 @@ namespace AdvancedMap.iOS
 			base.ViewWillDisappear(animated);
 
 			// Always detach handlers ViewWillDisappear to avoid memory leaks and objects with multple handlers
-			PackageUpdateListener.OnPackageListUpdate -= UpdatePackages;
-			PackageUpdateListener.OnPackageListFail -= UpdatePackages;
+			packageListener.OnPackageListUpdate -= UpdatePackages;
+			packageListener.OnPackageListFail -= UpdatePackages;
 
-			PackageUpdateListener.OnPackageCancel -= UpdatePackage;
-			PackageUpdateListener.OnPackageUpdate -= UpdatePackage;
-			PackageUpdateListener.OnPackageStatusChange -= UpdatePackage;
-			PackageUpdateListener.OnPackageFail -= UpdatePackage;
+			packageListener.OnPackageCancel -= UpdatePackage;
+			packageListener.OnPackageUpdate -= UpdatePackage;
+			packageListener.OnPackageStatusChange -= UpdatePackage;
+			packageListener.OnPackageFail -= UpdatePackage;
 
 			ContentView.ListSource.CellActionButtonClicked -= OnCellActionButtonClick;
 
 			packageManager.Stop(true);
+
+			packageListener = null;
 		}
 
 		#region Package update

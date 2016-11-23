@@ -22,7 +22,7 @@ namespace AdvancedMap.iOS
 
 		CartoPackageManager packageManager;
 
-		PackageListener PackageUpdateListener = new PackageListener();
+		PackageListener packageListener;
 
 		UILabel status;
 
@@ -44,7 +44,6 @@ namespace AdvancedMap.iOS
 			SetStatusLabel();
 
 			packageManager = new CartoPackageManager("nutiteq.osm", folder);
-			packageManager.PackageManagerListener = PackageUpdateListener;
 
 			SetBaseLayer();
 		}
@@ -69,10 +68,13 @@ namespace AdvancedMap.iOS
 			MenuButton.Click += OnMenuButtonClick;
 			Menu.CityTapped += OnMenuSelectionChanged;
 
-			PackageUpdateListener.OnPackageCancel += UpdatePackage;
-			PackageUpdateListener.OnPackageUpdate += UpdatePackage;
-			PackageUpdateListener.OnPackageStatusChange += UpdatePackage;
-			PackageUpdateListener.OnPackageFail += UpdatePackage;
+			packageListener = new PackageListener();
+			packageManager.PackageManagerListener = packageListener;
+
+			packageListener.OnPackageCancel += UpdatePackage;
+			packageListener.OnPackageUpdate += UpdatePackage;
+			packageListener.OnPackageStatusChange += UpdatePackage;
+			packageListener.OnPackageFail += UpdatePackage;
 
 			packageManager.Start();
 		}
@@ -86,10 +88,13 @@ namespace AdvancedMap.iOS
 			MenuButton.Click -= OnMenuButtonClick;
 			Menu.CityTapped -= OnMenuSelectionChanged;
 
-			PackageUpdateListener.OnPackageCancel -= UpdatePackage;
-			PackageUpdateListener.OnPackageUpdate -= UpdatePackage;
-			PackageUpdateListener.OnPackageStatusChange -= UpdatePackage;
-			PackageUpdateListener.OnPackageFail -= UpdatePackage;
+			packageListener = new PackageListener();
+			packageManager.PackageManagerListener = packageListener;
+
+			packageListener.OnPackageCancel -= UpdatePackage;
+			packageListener.OnPackageUpdate -= UpdatePackage;
+			packageListener.OnPackageStatusChange -= UpdatePackage;
+			packageListener.OnPackageFail -= UpdatePackage;
 
 			packageManager.Stop(true);
 		}
@@ -109,7 +114,7 @@ namespace AdvancedMap.iOS
 
 			string packaged = bbox.ToString();
 
-			if (packageManager.GetLocalPackage(packaged) == null)
+			if (packageManager.GetLocalPackageStatus(packaged, 1) == null)
 			{
 				packageManager.StartPackageDownload(packaged);
 				Alert("Downloading " + bbox.Name);
