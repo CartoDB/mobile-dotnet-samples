@@ -85,7 +85,7 @@
     <Compile Include="Sections\Other\CaptureActivity.cs" />
     <Compile Include="Sections\Other\CustomPopupActivity.cs" />
     <Compile Include="Sections\VectorObject\VectorObjectEditingActvity.cs" />
-    <Compile Include="Sections\VectorObject\ClusteredMarkersActivityActivity.cs" />
+    <Compile Include="Sections\VectorObject\ClusteredMarkersActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\GroundOverlayActivity.cs" />
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenu.cs" />
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenuItem.cs" />

@@ -82,7 +82,6 @@ namespace AdvancedMap.Droid
 		Dictionary<int, MarkerStyle> markerStyles = new Dictionary<int, MarkerStyle>();
 		Android.Graphics.Bitmap markerBitmap;
 
-
 		public MyClusterElementBuilder(Context context)
 		{
 			markerBitmap = Android.Graphics.BitmapFactory.DecodeResource(context.Resources, Resource.Drawable.marker_black);
