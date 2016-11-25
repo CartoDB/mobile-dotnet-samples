@@ -19,17 +19,7 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			// Create style set
-			PackageManagerTileDataSource source = MenuClickListener.DataSource;
-
-			BinaryData styleBytes = AssetUtils.LoadAsset("nutiteq-dark.zip");
-			var style = new CompiledStyleSet(new ZippedAssetPackage(styleBytes));
-
-			// Create Decoder
-			var decoder = new MBVectorTileDecoder(style);
-
-			var layer = new VectorTileLayer(source, decoder);
-
+			var layer = new CartoOfflineVectorTileLayer(MenuClickListener.Manager, CartoBaseMapStyle.CartoBasemapStyleDefault);
 			MapView.Layers.Add(layer);
 		}
 

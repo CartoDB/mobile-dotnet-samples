@@ -207,17 +207,7 @@ namespace AdvancedMap.iOS
 
 		public void SetBaseLayer()
 		{
-			var source = new PackageManagerTileDataSource(packageManager);
-
-			// Create style set
-			BinaryData styleBytes = AssetUtils.LoadAsset("styles/nutiteq-dark.zip");
-			var style = new CompiledStyleSet(new ZippedAssetPackage(styleBytes));
-
-			// Create Decoder
-			var decoder = new MBVectorTileDecoder(style);
-
-			var layer = new VectorTileLayer(source, decoder);
-
+			var layer = new CartoOfflineVectorTileLayer(packageManager, CartoBaseMapStyle.CartoBasemapStyleDefault);
 			MapView.Layers.Add(layer);
 		}
 	}

@@ -76,17 +76,9 @@ namespace AdvancedMap.Droid
 			MapView.SetZoom(0, 2);
 		}
 
-		public void SetBaseLayer(PackageManagerTileDataSource source)
+		public void SetBaseLayer(Carto.PackageManager.CartoPackageManager manager)
 		{
-			// Create style set
-			BinaryData styleBytes = AssetUtils.LoadAsset("nutiteq-dark.zip");
-			var style = new CompiledStyleSet(new ZippedAssetPackage(styleBytes));
-
-			// Create Decoder
-			var decoder = new MBVectorTileDecoder(style);
-
-			var layer = new VectorTileLayer(source, decoder);
-
+			var layer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CartoBasemapStyleDefault);
 			MapView.Layers.Add(layer);
 		}
 	}

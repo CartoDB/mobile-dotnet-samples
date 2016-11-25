@@ -32,6 +32,7 @@ namespace AdvancedMap.Droid
 
 			// Add our new layer
 			var layer = new VectorTileLayer(source, decoder);
+
 			MapView.Layers.Insert(0, layer);
 
 			// Zoom to the correct location

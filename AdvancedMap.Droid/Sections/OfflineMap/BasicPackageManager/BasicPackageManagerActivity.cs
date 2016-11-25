@@ -46,7 +46,7 @@ namespace AdvancedMap.Droid
 
 			ContentView.Menu.Items = BoundingBoxes.List;
 
-			ContentView.SetBaseLayer(new PackageManagerTileDataSource(manager));
+			ContentView.SetBaseLayer(manager);
 
 			Alert("Choose a city from the menu to download its bounding box");
 		}
