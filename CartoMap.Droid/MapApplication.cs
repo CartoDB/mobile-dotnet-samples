@@ -11,7 +11,7 @@ namespace CartoMap.Droid
 	[Application]
 	public class MapApplication : Application
 	{
-		const string CartoLicense = "XTUN3Q0ZEeHN5b2dXLzM4WWtCQ1lZYU8zVkVOcEU0dUdBaFJYQnJzSFNTQlhqYTNIa2FLTkVRLzJtRzBLUWc9PQoKYXBwVG9rZW49MjEwYzQ4ZTAtNWVjOC00NzQyLWIwY2EtOWU4YjcyNGZmMmYwCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5jYXJ0b21hcC54YW1hcmluLmRyb2lkCm9ubGluZUxpY2Vuc2U9MQpwcm9kdWN0cz1zZGsteGFtYXJpbi1hbmRyb2lkLTQuKgp3YXRlcm1hcms9Y2FydG9kYgo=";
+		const string CartoLicense = "XTUN3Q0ZCQmk4WTVWSWJ1OXpPMkU0RndCK3pQV3ZDczVBaFFCQUw4T2pnWllXb1UzRWJoUkVHOVEzOE9pTmc9PQoKYXBwVG9rZW49NWNkNTVkZGQtMGMwOS00ZmQyLThiYjQtNjM5YzQ4OGMyNDQ5CnBhY2thZ2VOYW1lPWNvbS5jYXJ0by54YW1hcmluLmNhcnRvCm9ubGluZUxpY2Vuc2U9MQpwcm9kdWN0cz1zZGsteGFtYXJpbi1hbmRyb2lkLTQuKgp3YXRlcm1hcms9Y3VzdG9tCg==";
 		public const string HockeyId = "2e7217323aaf4ca48f66a1518497b744";
 
 		public MapApplication(IntPtr a, JniHandleOwnership b) : base (a, b)
