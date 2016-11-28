@@ -21,6 +21,18 @@ namespace AdvancedMap.iOS
 
 		public bool IsMultiLine { get { return section.Styles.Count > 3; } }
 
+		public int LineCount
+		{ 
+			get 
+			{
+				if (section.Styles.Count < 4) return 1;
+
+				if (section.Styles.Count < 7) return 2;
+
+				return 3;
+			} 
+		}
+
 		public Section section;
 		public Section Section
 		{

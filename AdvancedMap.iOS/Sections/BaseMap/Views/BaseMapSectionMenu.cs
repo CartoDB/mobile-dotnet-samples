@@ -60,7 +60,8 @@ namespace AdvancedMap.iOS
 			foreach (BaseMapSectionMenuItem view in views)
 			{
 				// Trivial heights
-				h = view.IsMultiLine ? 120 : 80;
+				h = (view.LineCount * 40) + 40;
+
 				view.Frame = new CGRect(x, y, w, h);
 
 				if (counter == 2)

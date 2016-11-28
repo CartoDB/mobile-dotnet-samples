@@ -48,6 +48,7 @@ namespace Shared
 				});
 
 				List<NameValuePair> languageStyles = new List<NameValuePair> {
+					new NameValuePair { Name = "Default", Value = "" },
 					new NameValuePair { Name = "English", Value = "en" },
 					new NameValuePair { Name = "German", Value = "de" },
 					new NameValuePair { Name = "Spanish", Value = "es" },
@@ -75,7 +76,7 @@ namespace Shared
 
 		public static Section Language { get { return List[List.Count - 1]; } }
 
-		public static string BaseLanguageCode { get { return "en"; } }
+		public static string BaseLanguageCode { get { return ""; } }
 
 		public static string BaseStyleValue { get { return Nutiteq.Styles[0].Value; } }
 	}
