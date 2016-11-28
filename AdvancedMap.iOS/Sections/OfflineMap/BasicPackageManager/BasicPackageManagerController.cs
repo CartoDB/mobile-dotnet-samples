@@ -8,6 +8,7 @@ using Carto.PackageManager;
 using Carto.Styles;
 using Carto.Utils;
 using Carto.VectorTiles;
+using CoreGraphics;
 using Shared;
 using Shared.iOS;
 using UIKit;
@@ -36,7 +37,7 @@ namespace AdvancedMap.iOS
 			Menu = new CityChoiceMenu();
 			Menu.Items = BoundingBoxes.List;
 
-			MenuButton = new MenuButton();
+			MenuButton = new MenuButton("icons/icon_more.png", new CGRect(0, 10, 20, 30));
 			NavigationItem.RightBarButtonItem = MenuButton;
 
 			string folder = CreateFolder("citypackages");

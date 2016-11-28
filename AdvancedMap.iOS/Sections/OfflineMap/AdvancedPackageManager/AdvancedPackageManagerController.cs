@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using Carto.DataSources;
 using Carto.PackageManager;
+using CoreGraphics;
 using Shared;
 using Shared.iOS;
 using UIKit;
@@ -38,9 +39,15 @@ namespace AdvancedMap.iOS
 
 		PackageManagerListView ContentView;
 
+		MenuButton MenuButton { get; set; }
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+
+			// Set packaged map controller button
+			MenuButton = new MenuButton("icons/icon_map.png", new CGRect(0, 0, 30, 30));
+			NavigationItem.RightBarButtonItem = MenuButton;
 
 			// Create PackageManager instance for dealing with offline packages
 			string folder = Utils.GetDocumentDirectory("regionpackages");
@@ -83,6 +90,8 @@ namespace AdvancedMap.iOS
 			packageManager.StartPackageListDownload();
 
 			packageManager.Start();
+
+			MenuButton.Click += OnMenuButtonClick;
 		}
 
 		public override void ViewWillDisappear(bool animated)
@@ -102,6 +111,14 @@ namespace AdvancedMap.iOS
 
 			packageManager.Stop(true);
 			packageListener = null;
+
+			MenuButton.Click -= OnMenuButtonClick;
+		}
+
+		void OnMenuButtonClick(object sender, EventArgs e)
+		{
+			var controller = new PackagedMapController(packageManager);
+			NavigationController.PushViewController(controller, true);
 		}
 
 		#region Package update

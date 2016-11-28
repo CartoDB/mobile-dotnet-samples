@@ -1,5 +1,6 @@
 ﻿
 using System;
+using CoreGraphics;
 using UIKit;
 
 namespace Shared.iOS
@@ -10,11 +11,12 @@ namespace Shared.iOS
 
 		UIImageView image;
 
-		public MenuButton()
+		public MenuButton(string path, CGRect frame)
 		{
 			image = new UIImageView();
-			image.Image = UIImage.FromFile("icons/icon_more.png");
-			image.Frame = new CoreGraphics.CGRect(0, 10, 20, 30);
+			image.Image = UIImage.FromFile(path);
+			image.Frame = frame;
+
 			CustomView = image;
 
 			image.AddGestureRecognizer(new UITapGestureRecognizer(OnImageClick));

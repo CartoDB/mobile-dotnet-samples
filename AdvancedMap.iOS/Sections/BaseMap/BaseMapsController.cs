@@ -6,6 +6,7 @@ using Carto.Layers;
 using Carto.Styles;
 using Carto.Utils;
 using Carto.VectorTiles;
+using CoreGraphics;
 using Shared;
 using Shared.iOS;
 
@@ -29,7 +30,7 @@ namespace AdvancedMap.iOS
 			Menu = new BaseMapSectionMenu();
 			Menu.Items = Sections.List;
 
-			MenuButton = new MenuButton();
+			MenuButton = new MenuButton("icons/icon_more.png", new CGRect(0, 10, 20, 30));
 			NavigationItem.RightBarButtonItem = MenuButton;
 
 			// Set initial style 

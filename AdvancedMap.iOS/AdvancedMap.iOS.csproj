@@ -181,6 +181,7 @@
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionLabel.cs" />
     <Compile Include="Sections\OfflineMap\BasicPackageManager\BasicPackageManagerController.cs" />
     <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\CityChoiceMenu.cs" />
+    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackagedMapController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\fcd_auto.nml" />
@@ -202,6 +203,7 @@
     <BundleResource Include="Resources\icons\marker_black.png" />
     <BundleResource Include="Resources\styles\styles_mapzen.zip" />
     <BundleResource Include="Resources\styles\nutiteq-dark.zip" />
+    <BundleResource Include="Resources\icons\icon_map%402x.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />

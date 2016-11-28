@@ -30,7 +30,7 @@ namespace AdvancedMap.iOS
 				if (section.Styles.Count < 7) return 2;
 
 				return 3;
-			} 
+			}
 		}
 
 		public Section section;
