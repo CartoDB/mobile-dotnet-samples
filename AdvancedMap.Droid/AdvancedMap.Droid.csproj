@@ -156,4 +156,19 @@
   <Import Project="..\Shared.Droid\Shared.Droid.projitems" Label="Shared" Condition="Exists('..\Shared.Droid\Shared.Droid.projitems')" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+
+    <Target Name="BeforeBuild" Condition=" $(SetVersion) == true ">
+        <XmlPoke XmlInputPath="Properties\AndroidManifest.xml" 
+            Namespaces="&lt;Namespace Prefix='android' 
+            Uri='http://schemas.android.com/apk/res/android' /&gt;" 
+            Query="manifest/@android:versionCode" Value="$(BuildNumber)" />
+        <XmlPoke XmlInputPath="Properties\AndroidManifest.xml" 
+            Namespaces="&lt;Namespace Prefix='android' 
+            Uri='http://schemas.android.com/apk/res/android' /&gt;" 
+            Query="manifest/@android:versionName" Value="3.0.$(BuildNumber)" />
+    </Target>
+
 </Project>
+
+
+
