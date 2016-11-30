@@ -219,7 +219,7 @@ namespace AdvancedMap.iOS
 			{
 				InvokeOnMainThread(() =>
 				{
-					string message = "Offline package is not ready, using online routing";
+					string message = "Offline package is not ready. Using online routing";
 					Alert(message);
 				});
 			}
@@ -348,7 +348,6 @@ namespace AdvancedMap.iOS
 			}
 		}
 
-		// Creates Nutiteq line from GraphHopper response
 		protected Line CreatePolyline(MapPos start, MapPos end, RoutingResult result)
 		{
 			LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();

@@ -70,10 +70,7 @@ namespace Shared
 
 					PointGeometry geometry = (PointGeometry)feature.Geometry;
 
-					// TODO listener
 					var point = new Point(geometry, style);
-					point.SetMetaDataElement("properties", feature.Properties);
-
 					source.Add(point);
 				}
 

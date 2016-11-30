@@ -72,7 +72,7 @@ namespace AdvancedMap.iOS
 			{
 				Type = ForceType.Medium;
 			}
-			else 
+			else
 			{
 				Type = ForceType.Weak;
 			}
