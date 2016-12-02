@@ -33,13 +33,6 @@ namespace Shared
 			return configJson;
 		}
 
-
-		static string Sql { get { return "select * from stations_1"; } }
-
-		static string StatTag { get { return "3c6f224a-c6ad-11e5-b17e-0e98b61680bf"; } }
-
-		static string[] Columns { get { return new string[] { "name", "field_9", "slot" }; } }
-
 		static string CartoCSS
 		{
 			get
@@ -53,31 +46,31 @@ namespace Shared
 							"marker-type:ellipse;" +
 							"marker-width:10;" +
 							"marker-allow-overlap:true;" +
-						"}\n" +
-						"#stations_1[status = 'In Service']{marker-fill:#0F3B82;}\n" +
-						"#stations_1[status = 'Not In Service']{marker-fill:#aaaaaa;}\n" +
-						"#stations_1[field_9 = 200]{marker-width:80.0;}\n" +
-						"#stations_1[field_9 <= 49]{marker-width:25.0;}\n" +
-						"#stations_1[field_9 <= 38]{marker-width:22.8;}\n" +
-						"#stations_1[field_9 <= 34]{marker-width:20.6;}\n" +
-						"#stations_1[field_9 <= 29]{marker-width:18.3;}\n" +
-						"#stations_1[field_9 <= 25]{marker-width:16.1;}\n" +
-						"#stations_1[field_9 <= 20.5]{marker-width:13.9;}\n" +
-						"#stations_1[field_9 <= 16]{marker-width:11.7;}\n" +
-						"#stations_1[field_9 <= 12]{marker-width:9.4;}\n" +
-						"#stations_1[field_9 <= 8]{marker-width:7.2;}\n" +
+						"}" +
+						"#stations_1[status = 'In Service']{marker-fill:#0F3B82;}" +
+						"#stations_1[status = 'Not In Service']{marker-fill:#aaaaaa;}" +
+						"#stations_1[field_9 = 200]{marker-width:80.0;}" +
+						"#stations_1[field_9 <= 49]{marker-width:25.0;}" +
+						"#stations_1[field_9 <= 38]{marker-width:22.8;}" +
+						"#stations_1[field_9 <= 34]{marker-width:20.6;}" +
+						"#stations_1[field_9 <= 29]{marker-width:18.3;}" +
+						"#stations_1[field_9 <= 25]{marker-width:16.1;}" +
+						"#stations_1[field_9 <= 20.5]{marker-width:13.9;}" +
+						"#stations_1[field_9 <= 16]{marker-width:11.7;}" +
+						"#stations_1[field_9 <= 12]{marker-width:9.4;}" +
+						"#stations_1[field_9 <= 8]{marker-width:7.2;}" +
 						"#stations_1[field_9 <= 4]{marker-width:5.0;}";
 			}
 		}
 
-		public static JsonValue UTFGridConfigJson
+		public static JsonValue VectorLayerConfigJson
 		{
 			get
 			{
 				JsonObject json = new JsonObject();
 
 				json.Add("version", "1.0.1");
-				json.Add("stat_tag", StatTag);
+				json.Add("stat_tag", "3c6f224a-c6ad-11e5-b17e-0e98b61680bf");
 
 				JsonArray layerArray = new JsonArray();
 				JsonObject layerJson = new JsonObject();
@@ -86,7 +79,7 @@ namespace Shared
 
 				JsonObject optionJson = new JsonObject();
 
-				optionJson.Add("sql", Sql);
+				optionJson.Add("sql", "select * from stations_1");
 				optionJson.Add("cartocss", CartoCSS);
 				optionJson.Add("cartocss_version", "2.1.1");
 
@@ -98,12 +91,7 @@ namespace Shared
 				JsonObject attributesJson = new JsonObject();
 				attributesJson.Add("id", "cartodb_id");
 
-				JsonArray columnJson = new JsonArray();
-
-				foreach (string column in Columns)
-				{
-					columnJson.Add(column);
-				}
+				JsonArray columnJson = new JsonArray { "name", "field_9", "slot" };
 
 				attributesJson.Add("columns", columnJson);
 				optionJson.Add("attributes", attributesJson);

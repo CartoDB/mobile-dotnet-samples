@@ -18,7 +18,7 @@ namespace CartoMap.Droid
 
 			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
 
-			JsonValue config = JsonUtils.UTFGridConfigJson;
+			JsonValue config = JsonUtils.VectorLayerConfigJson;
 
 			MapView.ConfigureAnonymousVectorLayers(config);
 
