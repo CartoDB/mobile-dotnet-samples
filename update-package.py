@@ -11,7 +11,7 @@ from xml.dom import minidom
 # (3) version name/number (semantic)
 
 # Sample usage:
-# python update-package.py projects/mobile-dotnet-samples/AdvancedMap.Droid/AdvancedMap.Droid.csproj projects/mobile-dotnet-samples/AdvancedMap.Droid/packages.config 4.0.0-pre-170
+# python update-package.py AdvancedMap.Droid/AdvancedMap.Droid.csproj AdvancedMap.Droid/packages.config 4.0.0-pre-197
 
 # Disclaimer:
 # This goes hand-in-hand with nuget.exe's package restore, 
@@ -41,7 +41,7 @@ for reference in references:
 
     	base = split[0] + "\\" + split[1] + "\\"
     	end = "\\" + split[3] + "\\" + split[4] + "\\" + split[5]
-    	hintpath.firstChild.nodeValue = base + SDKNAME + version + end
+    	hintpath.firstChild.nodeValue = base + SDKNAME + "." + version + end
 
     	found = True;
 
