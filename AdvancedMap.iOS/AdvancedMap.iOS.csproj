@@ -47,7 +47,7 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
-    <CodesignProvision>fbd4706f-c60c-4a4d-96de-23c59a9eb4a0</CodesignProvision>
+    <CodesignProvision>fb82d2db-12ea-445b-b226-baf99c0f6e95</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <Optimize>true</Optimize>

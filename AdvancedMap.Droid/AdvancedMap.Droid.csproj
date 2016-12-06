@@ -50,14 +50,14 @@
     </Reference>
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Json" />
-    <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.Android.4.0.0-pre-159\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
-    </Reference>
     <Reference Include="HockeySDK">
       <HintPath>..\packages\HockeySDK.Xamarin.4.1.0\lib\MonoAndroid403\HockeySDK.dll</HintPath>
     </Reference>
     <Reference Include="HockeySDK.AndroidBindings">
       <HintPath>..\packages\HockeySDK.Xamarin.4.1.0\lib\MonoAndroid403\HockeySDK.AndroidBindings.dll</HintPath>
+    </Reference>
+    <Reference Include="CartoMobileSDK.Android">
+      <HintPath>..\packages\CartoMobileSDK.Android.4.0.0-pre-201\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -158,14 +158,8 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 
     <Target Name="BeforeBuild" Condition=" $(SetVersion) == true ">
-        <XmlPoke XmlInputPath="Properties\AndroidManifest.xml" 
-            Namespaces="&lt;Namespace Prefix='android' 
-            Uri='http://schemas.android.com/apk/res/android' /&gt;" 
-            Query="manifest/@android:versionCode" Value="$(BuildNumber)" />
-        <XmlPoke XmlInputPath="Properties\AndroidManifest.xml" 
-            Namespaces="&lt;Namespace Prefix='android' 
-            Uri='http://schemas.android.com/apk/res/android' /&gt;" 
-            Query="manifest/@android:versionName" Value="3.0.$(BuildNumber)" />
+        <XmlPoke XmlInputPath="Properties\AndroidManifest.xml" Namespaces="&lt;Namespace Prefix='android' &#xD;&#xA;            Uri='http://schemas.android.com/apk/res/android' /&gt;" Query="manifest/@android:versionCode" Value="$(BuildNumber)" />
+        <XmlPoke XmlInputPath="Properties\AndroidManifest.xml" Namespaces="&lt;Namespace Prefix='android' &#xD;&#xA;            Uri='http://schemas.android.com/apk/res/android' /&gt;" Query="manifest/@android:versionName" Value="3.0.$(BuildNumber)" />
     </Target>
 
 </Project>

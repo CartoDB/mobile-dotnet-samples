@@ -17,6 +17,7 @@ using System.Linq;
 
 using Carto.Ui;
 using Shared.Droid;
+using Android.Support.V4.App;
 
 namespace AdvancedMap.Droid
 {
@@ -24,10 +25,6 @@ namespace AdvancedMap.Droid
 	[ActivityData(Title = "GPS Location Map", Description = "Shows user GPS location on map.")]
 	public class GpsLocationActivity : MapBaseActivity, ILocationListener
 	{
-		TextView messageView;
-
-		Location currentLocation;
-
 		LocationManager manager;
 
 		string locationProvider;
@@ -49,39 +46,53 @@ namespace AdvancedMap.Droid
 
 			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 
-			// Bind the textViewMessage
-			messageView = FindViewById<TextView>(Resource.Id.textViewMessage);
-
 			// Create layer and add object to the layer, finally add layer to the map. 
 			// All overlay layers must be same projection as base layer, so we reuse it
 			markerSource = new LocalVectorDataSource(MapView.Options.BaseProjection);
 			var markerLayer = new VectorLayer(markerSource);
 			MapView.Layers.Add(markerLayer);
 
-			// Initialize the location manager to get the current position
-			InitializeLocationManager();
-
+			if (((int)Build.VERSION.SdkInt) >= Marshmallow)
+			{
+				RequestLocationPermission();
+			}
+			else {
+				// Initialize the location manager to get the current position
+				InitializeLocationManager();
+			}
 		}
 
-		protected override void OnPause()
+		protected override void OnDestroy()
 		{
-			base.OnPause();
+			base.OnDestroy();
 
 			if ((manager != null) && (!string.IsNullOrEmpty(locationProvider)))
 			{
 				manager.RemoveUpdates(this);
 			}
-
 		}
 
-		protected override void OnResume()
-		{
-			base.OnResume();
+		const int RequestCode = 1;
+		const int Marshmallow = 23;
 
-			if ((manager != null) && (!string.IsNullOrEmpty(locationProvider)))
+		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+		{
+			if (requestCode == RequestCode)
 			{
-				manager.RequestLocationUpdates(locationProvider, 0, 0, this);
+				if (grantResults[0] == Android.Content.PM.Permission.Granted)
+				{
+					InitializeLocationManager();
+					return;
+				}
+
+				Finish();
 			}
+		}
+
+		void RequestLocationPermission()
+		{
+			string permission = Android.Manifest.Permission.AccessFineLocation;
+			ActivityCompat.RequestPermissions(this, new string[] { permission }, RequestCode);
 		}
 
 		void AddMarker(string title, string subtitle, float latitude, float longitude)
@@ -129,36 +140,15 @@ namespace AdvancedMap.Droid
 		{
 			manager = (LocationManager)GetSystemService(LocationService);
 
-			Criteria criteria = new Criteria { Accuracy = Accuracy.Coarse };
-
-			IList<string> acceptableProviders = manager.GetProviders(criteria, true);
-
-			if (acceptableProviders.Contains("gps"))
+			foreach (string provider in manager.GetProviders(true))
 			{
-				locationProvider = acceptableProviders[0];
-				manager.RequestLocationUpdates(locationProvider, 0, 0, this);
-
-				messageView.Text = "Using location provider: " + locationProvider;
+				manager.RequestLocationUpdates(provider, 1000, 50, this);
 			}
-			else
-			{
-				locationProvider = string.Empty;
-			}
-
-			messageView.Visibility = ViewStates.Visible;
 		}
 
 		public void OnLocationChanged(Location location)
 		{
-			currentLocation = location;
-			if (currentLocation == null)
-			{
-				UnableToFindLocation();
-			}
-			else
-			{
-				LocationFound(location);
-			}
+			LocationFound(location);
 		}
 
 		public void OnProviderDisabled(string provider)
@@ -202,13 +192,6 @@ namespace AdvancedMap.Droid
 
 			UpdateMarker(title, subtitle, (float)location.Latitude, (float)location.Longitude);
 		}
-
-		void UnableToFindLocation()
-		{
-			// The error message appears on the screen
-			messageView.Visibility = ViewStates.Visible;
-		}
-
 	}
 }
 

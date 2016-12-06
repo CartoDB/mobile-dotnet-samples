@@ -1615,8 +1615,8 @@ namespace AdvancedMap.Droid
 			// aapt resource value: 0x7f0c000a
 			public const int MapListView = 2131492874;
 			
-			// aapt resource value: 0x7f0c0070
-			public const int action0 = 2131492976;
+			// aapt resource value: 0x7f0c006f
+			public const int action0 = 2131492975;
 			
 			// aapt resource value: 0x7f0c0043
 			public const int action_bar = 2131492931;
@@ -1642,8 +1642,8 @@ namespace AdvancedMap.Droid
 			// aapt resource value: 0x7f0c0044
 			public const int action_context_bar = 2131492932;
 			
-			// aapt resource value: 0x7f0c0074
-			public const int action_divider = 2131492980;
+			// aapt resource value: 0x7f0c0073
+			public const int action_divider = 2131492979;
 			
 			// aapt resource value: 0x7f0c0002
 			public const int action_menu_divider = 2131492866;
@@ -1693,14 +1693,14 @@ namespace AdvancedMap.Droid
 			// aapt resource value: 0x7f0c0068
 			public const int button_update = 2131492968;
 			
-			// aapt resource value: 0x7f0c0071
-			public const int cancel_action = 2131492977;
+			// aapt resource value: 0x7f0c0070
+			public const int cancel_action = 2131492976;
 			
 			// aapt resource value: 0x7f0c003b
 			public const int checkbox = 2131492923;
 			
-			// aapt resource value: 0x7f0c0077
-			public const int chronometer = 2131492983;
+			// aapt resource value: 0x7f0c0076
+			public const int chronometer = 2131492982;
 			
 			// aapt resource value: 0x7f0c001e
 			public const int collapseActionView = 2131492894;
@@ -1729,8 +1729,8 @@ namespace AdvancedMap.Droid
 			// aapt resource value: 0x7f0c001b
 			public const int end = 2131492891;
 			
-			// aapt resource value: 0x7f0c007c
-			public const int end_padder = 2131492988;
+			// aapt resource value: 0x7f0c007b
+			public const int end_padder = 2131492987;
 			
 			// aapt resource value: 0x7f0c0027
 			public const int expand_activities_button = 2131492903;
@@ -1753,8 +1753,8 @@ namespace AdvancedMap.Droid
 			// aapt resource value: 0x7f0c0028
 			public const int image = 2131492904;
 			
-			// aapt resource value: 0x7f0c007b
-			public const int info = 2131492987;
+			// aapt resource value: 0x7f0c007a
+			public const int info = 2131492986;
 			
 			// aapt resource value: 0x7f0c0056
 			public const int input_email = 2131492950;
@@ -1792,11 +1792,11 @@ namespace AdvancedMap.Droid
 			// aapt resource value: 0x7f0c0067
 			public const int label_version = 2131492967;
 			
-			// aapt resource value: 0x7f0c0075
-			public const int line1 = 2131492981;
+			// aapt resource value: 0x7f0c0074
+			public const int line1 = 2131492980;
 			
-			// aapt resource value: 0x7f0c0079
-			public const int line3 = 2131492985;
+			// aapt resource value: 0x7f0c0078
+			public const int line3 = 2131492984;
 			
 			// aapt resource value: 0x7f0c000b
 			public const int listMode = 2131492875;
@@ -1813,8 +1813,8 @@ namespace AdvancedMap.Droid
 			// aapt resource value: 0x7f0c006e
 			public const int mapView = 2131492974;
 			
-			// aapt resource value: 0x7f0c0073
-			public const int media_actions = 2131492979;
+			// aapt resource value: 0x7f0c0072
+			public const int media_actions = 2131492978;
 			
 			// aapt resource value: 0x7f0c001c
 			public const int middle = 2131492892;
@@ -1831,17 +1831,17 @@ namespace AdvancedMap.Droid
 			// aapt resource value: 0x7f0c000c
 			public const int normal = 2131492876;
 			
-			// aapt resource value: 0x7f0c0080
-			public const int package_action = 2131492992;
+			// aapt resource value: 0x7f0c007f
+			public const int package_action = 2131492991;
+			
+			// aapt resource value: 0x7f0c007c
+			public const int package_item_row = 2131492988;
 			
 			// aapt resource value: 0x7f0c007d
-			public const int package_item_row = 2131492989;
+			public const int package_name = 2131492989;
 			
 			// aapt resource value: 0x7f0c007e
-			public const int package_name = 2131492990;
-			
-			// aapt resource value: 0x7f0c007f
-			public const int package_status = 2131492991;
+			public const int package_status = 2131492990;
 			
 			// aapt resource value: 0x7f0c002f
 			public const int parentPanel = 2131492911;
@@ -1927,8 +1927,8 @@ namespace AdvancedMap.Droid
 			// aapt resource value: 0x7f0c0019
 			public const int src_over = 2131492889;
 			
-			// aapt resource value: 0x7f0c0072
-			public const int status_bar_latest_event_content = 2131492978;
+			// aapt resource value: 0x7f0c0071
+			public const int status_bar_latest_event_content = 2131492977;
 			
 			// aapt resource value: 0x7f0c004e
 			public const int submit_area = 2131492942;
@@ -1936,23 +1936,20 @@ namespace AdvancedMap.Droid
 			// aapt resource value: 0x7f0c000d
 			public const int tabMode = 2131492877;
 			
-			// aapt resource value: 0x7f0c007a
-			public const int text = 2131492986;
+			// aapt resource value: 0x7f0c0079
+			public const int text = 2131492985;
 			
-			// aapt resource value: 0x7f0c0078
-			public const int text2 = 2131492984;
+			// aapt resource value: 0x7f0c0077
+			public const int text2 = 2131492983;
 			
 			// aapt resource value: 0x7f0c0036
 			public const int textSpacerNoButtons = 2131492918;
 			
-			// aapt resource value: 0x7f0c006f
-			public const int textViewMessage = 2131492975;
-			
 			// aapt resource value: 0x7f0c0062
 			public const int text_headline = 2131492962;
 			
-			// aapt resource value: 0x7f0c0076
-			public const int time = 2131492982;
+			// aapt resource value: 0x7f0c0075
+			public const int time = 2131492981;
 			
 			// aapt resource value: 0x7f0c002c
 			public const int title = 2131492908;

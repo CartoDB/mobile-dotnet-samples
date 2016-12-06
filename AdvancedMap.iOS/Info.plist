@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>Advanced.Xam</string>
+	<string>Advanced Map</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.carto.advancedmap</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -38,8 +38,8 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.1.0</string>
+	<string>3.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>6</string>
+	<string>7</string>
 </dict>
 </plist>
