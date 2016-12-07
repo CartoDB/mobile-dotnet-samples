@@ -16,7 +16,7 @@ using Carto.Geometry;
 namespace AdvancedMap.Droid
 {
 	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
-	[ActivityData(Title = "Clustered Markers", Description = "Read data from .geojson and show as clusters")]
+	[ActivityData(Title = "Clustered Markers", Description = "Show 20000 clustered points from geojson")]
 	public class ClusteredMarkersActivity: MapBaseActivity
 	{
 		protected override void OnCreate (Android.OS.Bundle savedInstanceState)

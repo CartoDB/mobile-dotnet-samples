@@ -20,7 +20,7 @@ namespace AdvancedMap.iOS
 	{
 		public override string Name { get { return "Clustered Markers"; } }
 
-		public override string Description { get { return "Read data from .geojson and show as clusters"; } }
+		public override string Description { get { return "Show 20000 clustered points from geojson"; } }
 
 		public override void ViewDidAppear(bool animated)
 		{

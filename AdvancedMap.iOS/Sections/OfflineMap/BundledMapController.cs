@@ -17,7 +17,7 @@ namespace AdvancedMap.iOS
 	{
 		public override string Name { get { return "Bundled Map"; } }
 
-		public override string Description { get { return "Bundle MBTiles file for offline base map"; } }
+		public override string Description { get { return "Offline map of Rome bundled with the app"; } }
 
 		public string SupportDirectory { get { return Utils.GetDocumentDirectory("packages"); } }
 

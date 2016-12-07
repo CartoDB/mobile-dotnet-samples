@@ -51,12 +51,12 @@ namespace AdvancedMap.iOS
 			MarkerStyle style = builder.BuildStyle();
 
 			// Add marker
-			MapPos berlin = BaseProjection.FromWgs84(new MapPos(13.38933, 52.51704));
-			Marker marker = new Marker(berlin, style);
+			MapPos washington = BaseProjection.FromWgs84(new MapPos(-77.0369, 38.9072));
+			Marker marker = new Marker(washington, style);
 			source.Add(marker);
 
 			// Animate map to the marker
-			MapView.SetFocusPos(berlin, 1);
+			MapView.SetFocusPos(washington, 1);
 			MapView.SetZoom(12, 1);
 
 			listener = new RenderListener(this, MapView);

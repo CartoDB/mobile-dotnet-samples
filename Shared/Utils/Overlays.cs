@@ -136,6 +136,8 @@ namespace Shared
 
 			builder.CornerRadius = 20;
 			builder.PlacementPriority = 1;
+			builder.TitleFontSize = 10;
+			builder.DescriptionFontSize = 10;
 
 			MapPos position = projection.FromWgs84(new MapPos(24.655662, 59.425521));
 			BalloonPopup popup1 = new BalloonPopup(position, builder.BuildStyle(), "Popup with pos", "Images, round");
@@ -160,8 +162,10 @@ namespace Shared
 
 			builder.TitleColor = new Color(255, 255, 255, 255);
 			builder.TitleFontName = "HelveticaNeue-Medium";
+			builder.TitleFontSize = 11;
 			builder.DescriptionColor = new Color(255, 255, 255, 255);
 			builder.DescriptionFontName = "HelveticaNeue-Medium";
+			builder.DescriptionFontSize = 11;
 
 			builder.StrokeColor = new Color(255, 0, 120, 255);
 			builder.StrokeWidth = 0;
@@ -186,6 +190,8 @@ namespace Shared
 			BalloonPopupStyleBuilder builder = new BalloonPopupStyleBuilder();
 			builder.DescriptionWrap = false;
 			builder.PlacementPriority = 1;
+			builder.TitleFontSize = 14;
+			builder.DescriptionFontSize = 12;
 
 			MapPos position = projection.FromWgs84(new MapPos(24.658662, 59.432521));
 			String title = "This title will be wrapped if there's not enough space on the screen.";
