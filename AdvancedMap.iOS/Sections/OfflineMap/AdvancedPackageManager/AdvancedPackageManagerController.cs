@@ -15,7 +15,7 @@ namespace AdvancedMap.iOS
 	{
 		public string Name { get { return "Advanced Package Manager"; } }
 
-		public new string Description { get { return "Download packages from CARTO and manage them offline"; } }
+		public new string Description { get { return "Download countries for offline use"; } }
 
 		public static PackageManagerTileDataSource DataSource;
 
@@ -169,7 +169,7 @@ namespace AdvancedMap.iOS
 						pkg.UpdateStatus(status);
 
 						packageList[i] = pkg;
-						ContentView.ReloadData();
+						ContentView.Update(pkg);
 						break;
 					}
 				}

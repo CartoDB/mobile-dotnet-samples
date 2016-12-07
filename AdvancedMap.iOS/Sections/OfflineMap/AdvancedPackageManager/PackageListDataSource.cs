@@ -58,6 +58,7 @@ namespace Shared.iOS
 				CellActionButtonClicked(sender, e);
 			}
 		}
+
 	}
 }
 

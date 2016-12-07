@@ -19,7 +19,7 @@ namespace AdvancedMap.iOS
 	{
 		public override string Name { get { return "Basic Package Manager"; } }
 
-		public override string Description { get { return "Download cities from an assortment of bounding boxes"; } }
+		public override string Description { get { return "Download city maps for offline use"; } }
 
 		CartoPackageManager packageManager;
 

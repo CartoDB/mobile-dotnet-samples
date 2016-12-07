@@ -21,6 +21,18 @@ namespace AdvancedMap.iOS
 			ListSource = new PackageListDataSource { Items = packages };
 			Source = ListSource;
 		}
+
+		public void Update(Package package)
+		{
+			foreach (UITableViewCell cell in VisibleCells)
+			{
+				var packageCell = (PackageListCell)cell;
+				if (packageCell.Id == package.Id)
+				{
+					packageCell.Update(package);
+				}
+			}
+		}
 	}
 }
 

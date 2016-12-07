@@ -89,6 +89,8 @@ namespace AdvancedMap.iOS
 			}	
 		}
 
+		public string Id { get { return package.Id; } }
+
 		public void Update(Package package)
 		{
 			// Local variable because it's used in Layoutsubviews
