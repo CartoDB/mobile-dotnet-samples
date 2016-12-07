@@ -18,11 +18,11 @@ using Shared.Droid;
 namespace AdvancedMap.Droid
 {
 	[Activity]
-	[ActivityData(Title = "Advanced Package Manager", Description = "Download packages from CARTO and manage them offline")]
+	[ActivityData(Title = "Advanced Package Manager", Description = "Download countries for offline use")]
 	public class AdvancedPackageManagerActivity : ListActivity
 	{
 		public CartoPackageManager packageManager;
-		ArrayAdapter<Package> packageAdapter;
+		PackageManagerAdapter packageAdapter;
 		List<Package> packageArray = new List<Package>();
 
 		string currentFolder = ""; // Current 'folder' of the package, for example "Asia/"
@@ -218,7 +218,7 @@ namespace AdvancedMap.Droid
 						pkg.UpdateStatus(status);
 
 						packageArray[i] = pkg;
-						packageAdapter.NotifyDataSetChanged();
+						packageAdapter.Update(pkg);
 					}
 				}	
 			});
@@ -240,11 +240,11 @@ namespace AdvancedMap.Droid
 			else if (button.Type == PMButtonType.SetPackagePriority)
 			{
 				packageManager.SetPackagePriority(button.PackageId, button.PriorityIndex);
+				UpdatePackages();
 			}
 			else if (button.Type == PMButtonType.StartPackageDownload)
 			{
 				packageManager.StartPackageDownload(button.PackageId);
-
 			}
 			else if (button.Type == PMButtonType.StartRemovePackage)
 			{

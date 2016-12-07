@@ -32,15 +32,25 @@ namespace AdvancedMap.Droid
 			if (row == null)
 			{
 				row = new PackageRow(context);
+				row.Button.Click += Activity.OnAdapterActionButtonClick;
 			}
-
-			// Always Detach handler first to avoid multiple handlers on reuse
-			row.Button.Click -= Activity.OnAdapterActionButtonClick;
-			row.Button.Click += Activity.OnAdapterActionButtonClick;
 
 			row.Update(package);
 
 			return row;
+		}
+
+		public void Update(Package package)
+		{
+			ListView list = (context as AdvancedPackageManagerActivity).ListView;
+			for (int i = 0; i < list.ChildCount; i++)
+			{
+				PackageRow view = (PackageRow)list.GetChildAt(i);
+				if (view.Id == package.Id)
+				{
+					view.Update(package);
+				}
+			}
 		}
 	}
 

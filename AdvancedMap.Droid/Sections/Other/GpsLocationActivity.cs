@@ -27,8 +27,6 @@ namespace AdvancedMap.Droid
 	{
 		LocationManager manager;
 
-		string locationProvider;
-
 		LocalVectorDataSource markerSource;
 
 		bool isMarkerAdded;
@@ -54,6 +52,7 @@ namespace AdvancedMap.Droid
 
 			if (((int)Build.VERSION.SdkInt) >= Marshmallow)
 			{
+				// Ask runtime location permission
 				RequestLocationPermission();
 			}
 			else {
@@ -66,7 +65,7 @@ namespace AdvancedMap.Droid
 		{
 			base.OnDestroy();
 
-			if ((manager != null) && (!string.IsNullOrEmpty(locationProvider)))
+			if (manager != null)
 			{
 				manager.RemoveUpdates(this);
 			}

@@ -18,6 +18,8 @@ namespace AdvancedMap.Droid
 
 		int padding;
 
+		public new string Id { get; private set; }
+
 		public PackageRow(Context context) : base(context)
 		{
 			SetBackgroundColor(Color.Rgb(240, 240, 240));
@@ -64,6 +66,8 @@ namespace AdvancedMap.Droid
 
 		public void Update(Package package)
 		{
+			Id = package.Id;
+
 			nameLabel.Text = package.Name.ToUpper();
 			statusLabel.Text = package.GetStatusText();
 

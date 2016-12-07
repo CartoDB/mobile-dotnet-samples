@@ -21,7 +21,7 @@ using Shared.Droid;
 namespace AdvancedMap.Droid
 {
 	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
-	[ActivityData(Title = "Basic Package Manager", Description = "Download cities from an assortment of bounding boxes")]
+	[ActivityData(Title = "Basic Package Manager", Description = "Download city maps for offline use")]
 	public class BasicPackageManagerActivity : BaseActivity
 	{
 		BasicPackageManagerView ContentView;
