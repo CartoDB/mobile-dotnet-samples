@@ -42,7 +42,7 @@ namespace AdvancedMap.Droid
 			SetContentView(Resource.Layout.MainGPS);
 			MapView = (MapView)FindViewById(Resource.Id.mapView);
 
-			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 
 			// Create layer and add object to the layer, finally add layer to the map. 
 			// All overlay layers must be same projection as base layer, so we reuse it

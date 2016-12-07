@@ -17,7 +17,7 @@ namespace CartoMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
 
 			// You need to change these according to your DB
 			string sql = "select * from table_46g";

@@ -67,7 +67,6 @@
     <Compile Include="MapApplication.cs" />
     <Compile Include="Sections\BaseMap\BaseMapsActivity.cs" />
     <Compile Include="Sections\Other\GpsLocationActivity.cs" />
-    <Compile Include="Sections\Other\OfflineRoutingActivity.cs" />
     <Compile Include="Sections\OfflineMap\BundledMapActivity.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\AdvancedPackageManagerActivity.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackagedMapActivity.cs" />
@@ -95,6 +94,10 @@
     <Compile Include="Sections\OfflineMap\BasicPackageManager\BasicPackageManagerActivity.cs" />
     <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\CityChoiceMenu.cs" />
     <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\BasicPackageManagerView.cs" />
+    <Compile Include="Sections\Routing\OfflineRoutingActivity_New.cs" />
+    <Compile Include="Sections\Routing\OnlineRoutingActivity.cs" />
+    <Compile Include="Sections\_Header\RoutingHeader.cs" />
+    <Compile Include="Sections\Routing\BaseRoutingActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -143,6 +146,7 @@
     <Folder Include="Resources\mipmap-nodpi\" />
     <Folder Include="Sections\OfflineMap\BasicPackageManager\" />
     <Folder Include="Sections\OfflineMap\BasicPackageManager\Views\" />
+    <Folder Include="Sections\Routing\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fcd_auto.nml" />

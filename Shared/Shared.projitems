@@ -21,6 +21,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)EventArgs\" />
     <Folder Include="$(MSBuildThisFileDirectory)Model\BaseMaps\" />
     <Folder Include="$(MSBuildThisFileDirectory)Model\Cities\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Routing\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CartoVisBuilderWithGridEvent.cs" />
@@ -56,5 +57,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\BaseMaps\Section.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\BaseMaps\Sections.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Cities\BoundingBoxes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Routing\Routing.cs" />
   </ItemGroup>
 </Project>

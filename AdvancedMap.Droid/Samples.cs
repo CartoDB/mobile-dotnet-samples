@@ -17,6 +17,10 @@ namespace AdvancedMap.Droid
 			typeof(AdvancedPackageManagerActivity),
 			typeof(BundledMapActivity),
 
+			typeof(RoutingHeader),
+			typeof(OfflineRoutingActivity_New),
+			typeof(OnlineRoutingActivity),
+
 			typeof(OverlayDatasourcesHeader),
 			typeof(CustomRasterDatasourceActivity),
 			typeof(GroundOverlayActivity),
@@ -30,8 +34,7 @@ namespace AdvancedMap.Droid
 			typeof(OtherMapHeader),
 			typeof(CaptureActivity),
 			typeof(CustomPopupActivity),
-			typeof(GpsLocationActivity),
-			typeof(OfflineRoutingActivity)
+			typeof(GpsLocationActivity)
 		});
 
 		public static Type FromPosition(int position) 

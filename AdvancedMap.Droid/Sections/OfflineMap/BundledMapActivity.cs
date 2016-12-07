@@ -19,7 +19,7 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 
 			TileDataSource source = CreateTileDataSource();
 

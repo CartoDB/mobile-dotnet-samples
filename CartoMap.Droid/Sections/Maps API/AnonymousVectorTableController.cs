@@ -16,7 +16,7 @@ namespace CartoMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
 
 			JsonValue config = JsonUtils.VectorLayerConfigJson;
 

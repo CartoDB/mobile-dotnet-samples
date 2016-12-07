@@ -15,6 +15,7 @@ using Carto.Layers;
 using Carto.Projections;
 using Shared.Droid;
 using Android.Text;
+using Carto.PackageManager;
 
 namespace Shared.Droid
 {
@@ -48,10 +49,17 @@ namespace Shared.Droid
 			return BitmapUtils.CreateBitmapFromAndroidBitmap(Android.Graphics.BitmapFactory.DecodeResource(Resources, resource));
 		}
 
-		protected void AddBaseLayer(CartoBaseMapStyle withStyle)
+		protected void AddOnlineBaseLayer(CartoBaseMapStyle style)
 		{
 			// Initialize map
-			var baseLayer = new CartoOnlineVectorTileLayer(withStyle);
+			var baseLayer = new CartoOnlineVectorTileLayer(style);
+			MapView.Layers.Add(baseLayer);
+		}
+
+		protected void AddOfflineBaseLayer(CartoPackageManager manager, CartoBaseMapStyle style)
+		{
+			// Initialize map
+			var baseLayer = new CartoOfflineVectorTileLayer(manager, style);
 			MapView.Layers.Add(baseLayer);
 		}
 	}
