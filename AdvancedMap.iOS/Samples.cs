@@ -18,6 +18,10 @@ namespace AdvancedMap.iOS
 			new GroundOverlayController(),
 			new WmsMapController(),
 
+			new HeaderController { Name = "Routing" },
+			new OfflineRoutingController_New(),
+			new OnlineRoutingController(),
+
 			new HeaderController { Name = "Vector objects" },
 			new VectorObjectEditingController(),
 			new OverlaysController(),
@@ -32,7 +36,6 @@ namespace AdvancedMap.iOS
 			new CaptureController(),
 			new CustomPopupController(),
 			new GpsLocationMapController(),
-			new OfflineRoutingController(),
 		};
 
 		public static List<MapListRowSource> RowSources

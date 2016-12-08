@@ -26,7 +26,7 @@ namespace CartoMap.iOS
 		{
 			base.ViewDidLoad();
 
-			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
 
 			string encoded = JsonUtils.GetTorqueQuery();
 

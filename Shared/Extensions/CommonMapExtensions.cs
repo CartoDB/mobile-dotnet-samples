@@ -29,6 +29,7 @@ namespace Shared
 
 				foreach (string name in names)
 				{
+					Console.WriteLine(name);
 					if (!name.StartsWith(folder))
 					{
 						// Belongs to a different folder,
@@ -82,7 +83,38 @@ namespace Shared
 			}
 
 			return packages;
+		}
+		public static List<Package> GetRoutingPackages(this PackageManager packageManager)
+		{
+			string language = "en";
+			List<Package> packages = new List<Package>();
 
+			foreach (PackageInfo info in packageManager.ServerPackages)
+			{
+				string name = info.GetNames(language)[0];
+				string[] split = name.Split('/');
+
+				// If package id contains -, then it's a subdivision (province, county, oblast etc.) of a country,
+				// add the country as well as the subdivision
+				if (info.PackageId.Contains("-"))
+				{
+					name = split[split.Length - 2] + ", " + split[split.Length - 1];
+				}
+				else {
+					name = split[split.Length - 1];
+				}
+
+				Console.WriteLine(info.PackageId + " - " + name + " (" + info.GetNames(language).Count + ")");
+				PackageStatus status = packageManager.GetLocalPackageStatus(name, -1);
+				var package = new Package(name, info, status);
+
+				packages.Add(package);
+			}
+
+			// Order alphabetically
+			packages = packages.OrderBy(package => package.Name).ToList();
+
+			return packages;
 		}
 
 		public static Marker AddMarkerToPosition(this MapView map, MapPos position)

@@ -1,40 +1,30 @@
 ﻿using System;
-using System.IO;
-
-using Android.App;
-
-using Carto.DataSources;
 using Carto.Layers;
 using Carto.PackageManager;
 using Carto.Routing;
-using Carto.Styles;
-using Carto.VectorElements;
-
 using Shared;
-using Shared.Droid;
 
-namespace AdvancedMap.Droid
+namespace AdvancedMap.iOS
 {
-	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
-	[ActivityData(Title = "Offline routing", Description = "Offline routing with OpenStreetMap data packages")]
-	public class OfflineRoutingActivity_New : BaseRoutingActivity
-	{       
+	public class OfflineRoutingController_New : BaseRoutingController
+	{
+		public override string Name { get { return "Offline Routing"; } }
+
+		public override string Description { get { return "Offline routing with OpenStreetMap data packages"; } }
+
 		internal static string[] downloadablePackages = { "EE-routing", "LV-routing" };
 
 		RoutingPackageListener PackageListener { get; set; }
 
 		CartoPackageManager Manager { get; set; }
 
-		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
+		public override void ViewDidLoad()
 		{
-			base.OnCreate(savedInstanceState);
+			base.ViewDidLoad();
 
 			Manager = Routing.PackageManager;
 
 			PackageListener = new RoutingPackageListener(Manager, downloadablePackages);
-			Manager.PackageManagerListener = PackageListener;
-
-			Manager.Start();
 
 			// Fetch list of available packages from server. 
 			// Note that this is asynchronous operation 
@@ -52,31 +42,28 @@ namespace AdvancedMap.Droid
 			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 		}
 
-		protected override void OnDestroy()
+		public override void ViewWillAppear(bool animated)
 		{
-			base.OnDestroy();
-
-			Manager.Stop(true);
-			PackageListener = null;
-		}
-
-		protected override void OnResume()
-		{
-			base.OnResume();
+			base.ViewWillAppear(animated);
 
 			PackageListener.PackageUpdated += OnPackageUpdated;
+
+			Manager.PackageManagerListener = PackageListener;
+			Manager.Start();
 		}
 
-		protected override void OnPause()
+		public override void ViewWillDisappear(bool animated)
 		{
-			base.OnPause();
+			base.ViewWillDisappear(animated);
 
 			PackageListener.PackageUpdated -= OnPackageUpdated;
-		}
 
+			Manager.Stop(true);
+			Manager.PackageManagerListener = null;
+		}
 		void OnPackageUpdated(object sender, PackageUpdateEventArgs e)
 		{
-			RunOnUiThread(() =>
+			InvokeOnMainThread(() =>
 			{
 				Alert("Offline package downloaded: " + e.Id);
 			});

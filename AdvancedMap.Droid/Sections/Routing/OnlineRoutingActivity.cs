@@ -13,7 +13,7 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			Routing.Service = new CartoOnlineRoutingService(ServiceSource);
+			Routing.Service = new CartoOnlineRoutingService(Shared.Routing.ServiceSource);
 		}
 
 		protected override void SetBaseLayer()

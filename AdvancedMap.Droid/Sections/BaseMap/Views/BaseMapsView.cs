@@ -10,27 +10,14 @@ using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	public class BaseMapsView : RelativeLayout
+	public class BaseMapsView : MapWithMenuButton
 	{
-		public MapView MapView { get; set; }
-
-		public MenuButton Button { get; set; }
-
 		public BaseMapSectionMenu Menu { get; set; }
 
-		public BaseMapsView(Context context) : base(context)
+		public BaseMapsView(Context context) : base(context, Resource.Drawable.icon_menu_round)
 		{
-			MapView = new MapView(context);
-
 			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 			MapView.Layers.Add(baseLayer);
-
-			MapView.LayoutParameters = new ViewGroup.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
-
-			AddView(MapView);
-
-			Button = new MenuButton(Resource.Drawable.icon_menu_round, context);
-			AddView(Button);
 
 			Menu = new BaseMapSectionMenu(context);
 			AddView(Menu);

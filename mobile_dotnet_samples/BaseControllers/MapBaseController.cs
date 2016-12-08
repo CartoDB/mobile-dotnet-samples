@@ -3,6 +3,7 @@ using Carto.Layers;
 using Carto.Projections;
 using Carto.Ui;
 using Carto.Utils;
+using UIKit;
 
 namespace Shared.iOS
 {
@@ -26,7 +27,12 @@ namespace Shared.iOS
 			Title = Name;
 		}
 
-		protected void AddBaseLayer(CartoBaseMapStyle withStyle)
+		protected Carto.Graphics.Bitmap CreateBitmap(string resource)
+		{
+			return BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile(resource));
+		}
+
+		protected void AddOnlineBaseLayer(CartoBaseMapStyle withStyle)
 		{
 			// Initialize map
 			var baseLayer = new CartoOnlineVectorTileLayer(withStyle);

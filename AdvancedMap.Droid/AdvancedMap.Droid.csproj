@@ -94,10 +94,12 @@
     <Compile Include="Sections\OfflineMap\BasicPackageManager\BasicPackageManagerActivity.cs" />
     <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\CityChoiceMenu.cs" />
     <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\BasicPackageManagerView.cs" />
-    <Compile Include="Sections\Routing\OfflineRoutingActivity_New.cs" />
     <Compile Include="Sections\Routing\OnlineRoutingActivity.cs" />
     <Compile Include="Sections\_Header\RoutingHeader.cs" />
     <Compile Include="Sections\Routing\BaseRoutingActivity.cs" />
+    <Compile Include="Sections\Routing\OfflineRouting\OfflineRoutingActivity.cs" />
+    <Compile Include="Sections\Routing\OfflineRouting\CountryChoiceMenu.cs" />
+    <Compile Include="Sections\Routing\OfflineRouting\OfflineRoutingView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -147,6 +149,7 @@
     <Folder Include="Sections\OfflineMap\BasicPackageManager\" />
     <Folder Include="Sections\OfflineMap\BasicPackageManager\Views\" />
     <Folder Include="Sections\Routing\" />
+    <Folder Include="Sections\Routing\OfflineRouting\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fcd_auto.nml" />

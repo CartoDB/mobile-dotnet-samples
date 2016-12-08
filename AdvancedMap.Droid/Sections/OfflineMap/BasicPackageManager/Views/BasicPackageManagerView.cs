@@ -16,22 +16,14 @@ using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	public class BasicPackageManagerView : RelativeLayout
+	public class BasicPackageManagerView : MapWithMenuButton
 	{
-		public MapView MapView { get; private set; }
-
 		public TextView StatusLabel { get; private set; }
-
-		public MenuButton Button { get; set; }
 
 		public CityChoiceMenu Menu { get; set; }
 
-		public BasicPackageManagerView(Context context) : base(context)
+		public BasicPackageManagerView(Context context) : base(context, Resource.Drawable.icon_menu_round)
 		{
-			MapView = new MapView(context);
-			MapView.LayoutParameters = new RelativeLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
-			AddView(MapView);
-
 			// Initialize & style Status label
 			StatusLabel = new TextView(context);
 			StatusLabel.SetTextColor(Color.Black);
@@ -57,9 +49,6 @@ namespace AdvancedMap.Droid
 			parameters.LeftMargin = x;
 
 			AddView(StatusLabel, parameters);
-
-			Button = new MenuButton(Resource.Drawable.icon_menu_round, context);
-			AddView(Button);
 
 			Menu = new CityChoiceMenu(context);
 			AddView(Menu);

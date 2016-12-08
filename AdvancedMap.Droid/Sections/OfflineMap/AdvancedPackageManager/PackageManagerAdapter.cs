@@ -16,8 +16,6 @@ namespace AdvancedMap.Droid
 
 		public override int Count { get { return packages.Count; } }
 
-		AdvancedPackageManagerActivity Activity { get { return Context as AdvancedPackageManagerActivity; } }
-
 		public PackageManagerAdapter(Context context, int resId, List<Package> packages) : base(context, resId, packages)
 		{
 			this.context = context;
@@ -32,7 +30,15 @@ namespace AdvancedMap.Droid
 			if (row == null)
 			{
 				row = new PackageRow(context);
-				row.Button.Click += Activity.OnAdapterActionButtonClick;
+
+				if (Context is AdvancedPackageManagerActivity)
+				{
+					row.Button.Click += (context as AdvancedPackageManagerActivity).OnAdapterActionButtonClick;
+				}
+				else if (Context is OfflineRoutingActivity)
+				{
+					row.Button.Click += (context as OfflineRoutingActivity).OnAdapterActionButtonClick;
+				}
 			}
 
 			row.Update(package);

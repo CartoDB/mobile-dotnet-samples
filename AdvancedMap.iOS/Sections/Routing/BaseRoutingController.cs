@@ -1,26 +1,23 @@
-﻿using System;
+﻿
+using System;
 using Carto.Core;
-using Carto.DataSources;
 using Carto.Graphics;
-using Carto.Layers;
-using Carto.PackageManager;
 using Carto.Routing;
-using Carto.Styles;
-using Carto.VectorElements;
 using Shared;
-using Shared.Droid;
+using Shared.iOS;
+using UIKit;
 
-namespace AdvancedMap.Droid
+namespace AdvancedMap.iOS
 {
-	public class BaseRoutingActivity : MapBaseActivity
+	public class BaseRoutingController : MapBaseController
 	{
 		protected RouteMapEventListener MapListener { get; set; }
 
 		protected Routing Routing;
 
-		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
+		public override void ViewDidLoad()
 		{
-			base.OnCreate(savedInstanceState);
+			base.ViewDidLoad();
 
 			// Virtual method overridden in child classes in order to keep layer order correct
 			SetBaseLayer();
@@ -33,37 +30,41 @@ namespace AdvancedMap.Droid
 
 			Alert("Long-press on map to set route start and finish");
 
-			Bitmap olmarker = CreateBitmap(Resource.Drawable.olmarker);
-			Bitmap directionUp = CreateBitmap(Resource.Drawable.direction_up);
-			Bitmap directionUpLeft = CreateBitmap(Resource.Drawable.direction_upthenleft);
-			Bitmap directionUpRight = CreateBitmap(Resource.Drawable.direction_upthenright);
+			Bitmap olmarker = CreateBitmap("icons/olmarker.png");
+			Bitmap directionUp = CreateBitmap("icons/direction_up.png");
+			Bitmap directionUpLeft = CreateBitmap("icons/direction_upthenleft.png");
+			Bitmap directionUpRight = CreateBitmap("icons/direction_upthenright.png");
 
-			Color green = new Color(Android.Graphics.Color.Green);
-			Color red = new Color(Android.Graphics.Color.Red);
-			Color white = new Color(Android.Graphics.Color.White);
+			Color green = new Color(0, 255, 0, 255);
+			Color red = new Color(255, 0, 0, 255);
+			Color white = new Color(255, 255, 255, 255);
 
 			Routing.SetSourcesAndElements(olmarker, directionUp, directionUpLeft, directionUpRight, green, red, white);
 		}
 
 		protected virtual void SetBaseLayer()
 		{
-			throw new NotImplementedException();	
+			throw new NotImplementedException();
 		}
 
-		protected override void OnResume()
+		public override void ViewWillAppear(bool animated)
 		{
-			base.OnResume();
+			base.ViewWillAppear(animated);
 
 			MapListener.StartPositionClicked += OnStartPositionClick;
 			MapListener.StopPositionClicked += OnStopPositionClick;
+
+			MapView.MapEventListener = MapListener;
 		}
 
-		protected override void OnPause()
+		public override void ViewWillDisappear(bool animated)
 		{
-			base.OnPause();
+			base.ViewWillDisappear(animated);
 
 			MapListener.StartPositionClicked -= OnStartPositionClick;
 			MapListener.StopPositionClicked -= OnStopPositionClick;
+
+			MapView.MapEventListener = null;
 		}
 
 		protected void OnStartPositionClick(object sender, RouteMapEventArgs e)
@@ -82,12 +83,12 @@ namespace AdvancedMap.Droid
 			// Run routing in background
 			System.Threading.Tasks.Task.Run(() =>
 			{
-				long time = Java.Lang.JavaSystem.CurrentTimeMillis();
+				long time = DateTime.Now.Millisecond;
 
 				RoutingResult result = Routing.GetResult(startPos, stopPos);
 
 				// Update response in UI thread
-				RunOnUiThread(() =>
+				InvokeOnMainThread(() =>
 				{
 					if (result == null)
 					{
@@ -95,13 +96,12 @@ namespace AdvancedMap.Droid
 						return;
 					}
 
-					Alert(Routing.GetMessage(result, time, Java.Lang.JavaSystem.CurrentTimeMillis()));
+					Alert(Routing.GetMessage(result, time, DateTime.Now.Millisecond));
 
-					Color darkGray = new Carto.Graphics.Color(Android.Graphics.Color.DarkGray);
+					Color darkGray = new Carto.Graphics.Color(50, 50, 50, 255);
 					Routing.Show(result, darkGray);
 				});
 			});
 		}
-
 	}
 }

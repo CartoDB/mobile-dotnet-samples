@@ -18,7 +18,7 @@ namespace AdvancedMap.Droid
 			typeof(BundledMapActivity),
 
 			typeof(RoutingHeader),
-			typeof(OfflineRoutingActivity_New),
+			typeof(OfflineRoutingActivity),
 			typeof(OnlineRoutingActivity),
 
 			typeof(OverlayDatasourcesHeader),

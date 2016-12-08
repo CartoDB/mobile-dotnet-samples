@@ -34,7 +34,7 @@ namespace AdvancedMap.iOS
 			base.ViewDidLoad();
 
 			// Add default base layer
-			AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 
 			LocalVectorDataSource source = new LocalVectorDataSource(BaseProjection);
 			VectorLayer layer = new VectorLayer(source);

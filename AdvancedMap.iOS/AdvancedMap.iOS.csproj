@@ -138,6 +138,7 @@
     <Folder Include="Resources\mbtiles\" />
     <Folder Include="Sections\OfflineMap\BasicPackageManager\" />
     <Folder Include="Sections\OfflineMap\BasicPackageManager\Views\" />
+    <Folder Include="Sections\Routing\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
@@ -160,7 +161,6 @@
     <Compile Include="ForceTouch\ForceTouchRecognizer.cs" />
     <Compile Include="Sections\OfflineMap\BundledMapController.cs" />
     <Compile Include="Sections\OverlayDataSource\WmsMapController.cs" />
-    <Compile Include="Sections\Other\OfflineRoutingController.cs" />
     <Compile Include="Sections\VectorObjects\OverlaysController.cs" />
     <Compile Include="Sections\Other\GpsLocationMapController.cs" />
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceController.cs" />
@@ -182,6 +182,9 @@
     <Compile Include="Sections\OfflineMap\BasicPackageManager\BasicPackageManagerController.cs" />
     <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\CityChoiceMenu.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackagedMapController.cs" />
+    <Compile Include="Sections\Routing\BaseRoutingController.cs" />
+    <Compile Include="Sections\Routing\OfflineRoutingController_New.cs" />
+    <Compile Include="Sections\Routing\OnlineRoutingController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\fcd_auto.nml" />
