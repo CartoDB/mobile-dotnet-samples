@@ -183,7 +183,7 @@
     <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\CityChoiceMenu.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackagedMapController.cs" />
     <Compile Include="Sections\Routing\BaseRoutingController.cs" />
-    <Compile Include="Sections\Routing\OfflineRoutingController_New.cs" />
+    <Compile Include="Sections\Routing\OfflineRoutingController.cs" />
     <Compile Include="Sections\Routing\OnlineRoutingController.cs" />
   </ItemGroup>
   <ItemGroup>
