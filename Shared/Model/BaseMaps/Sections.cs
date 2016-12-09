@@ -52,9 +52,11 @@ namespace Shared
 					new NameValuePair { Name = "English", Value = "en" },
 					new NameValuePair { Name = "German", Value = "de" },
 					new NameValuePair { Name = "Spanish", Value = "es" },
-					new NameValuePair { Name = "Italian", Value = "it" },
 					new NameValuePair { Name = "French", Value = "fr" },
 					new NameValuePair { Name = "Russian", Value = "ru" },
+
+					// Italian is supported, but removed in our section for brevity
+					//new NameValuePair { Name = "Italian", Value = "it" },
 
 					// Chinese is supported, but disabled in our example, 
 					// as it requires an extra asset package (nutibright-v3-full.zip)

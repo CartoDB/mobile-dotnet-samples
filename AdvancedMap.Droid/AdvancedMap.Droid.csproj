@@ -100,6 +100,7 @@
     <Compile Include="Sections\Routing\OfflineRouting\OfflineRoutingActivity.cs" />
     <Compile Include="Sections\Routing\OfflineRouting\CountryChoiceMenu.cs" />
     <Compile Include="Sections\Routing\OfflineRouting\OfflineRoutingView.cs" />
+    <Compile Include="Sections\BaseMap\Views\MapSwitch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
