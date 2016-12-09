@@ -146,6 +146,19 @@ namespace AdvancedMap.Droid
 			}
 		}
 
+		public void SetAsRoutingPackage()
+		{
+			PackageId = PackageId.Replace(Package.ROUTING, "");
+		}
+
+		public void SetAsMapPackage()
+		{
+			if (!PackageId.Contains(Package.ROUTING))
+			{
+				PackageId = PackageId + Package.ROUTING;
+			}
+		}
+
 		public override bool OnTouchEvent(Android.Views.MotionEvent e)
 		{
 			if (e.Action == Android.Views.MotionEventActions.Down)

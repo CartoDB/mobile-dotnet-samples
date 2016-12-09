@@ -14,38 +14,12 @@ namespace Shared
 		public EventHandler<PackageStatusEventArgs> OnPackageStatusChange;
 		public EventHandler<PackageFailedEventArgs> OnPackageFail;
 
-		public PackageManager PackageManager { get; set; }
-
-		public string DownloadedPackage { get; set; }
-
-		public PackageListener()
-		{
-			
-		}
-
-		public PackageListener (PackageManager packageManager, string downloadedPackage)
-		{
-			PackageManager = packageManager;
-			DownloadedPackage = downloadedPackage;
-		}
-
 		public override void OnPackageListUpdated ()
 		{
-			Console.WriteLine("PackageListener: OnPackageListUpdated");
 			// Called when package list is downloaded.
 			// Now you can start downloading packages
 			if (OnPackageListUpdate != null) {
 				OnPackageListUpdate(this, EventArgs.Empty);	
-			}
-
-			if (DownloadedPackage == null) {
-				return;
-			}
-
-			// To make sure that package list is updated, full package download is called here
-			if (PackageManager.GetLocalPackage(DownloadedPackage) == null)
-			{
-				PackageManager.StartPackageDownload(DownloadedPackage);
 			}
 		}
 
@@ -92,7 +66,7 @@ namespace Shared
 		public override void OnPackageFailed (string id, int version, PackageErrorType errorType)
 		{
 			Console.WriteLine("PackageListener: OnPackageFailed");
-			// Failed to download package " + id + "/" + version
+
 			if (OnPackageFail != null)
 			{
 				OnPackageFail(this, new PackageFailedEventArgs { Id = id, Version = version, ErrorType = errorType });

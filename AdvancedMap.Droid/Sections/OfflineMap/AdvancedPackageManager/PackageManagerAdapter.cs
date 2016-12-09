@@ -14,10 +14,14 @@ namespace AdvancedMap.Droid
 		Context context;
 		List<Package> packages;
 
+		ListView list;
+
 		public override int Count { get { return packages.Count; } }
 
-		public PackageManagerAdapter(Context context, int resId, List<Package> packages) : base(context, resId, packages)
+		public PackageManagerAdapter(Context context, ListView list, int resId, List<Package> packages) : base(context, resId, packages)
 		{
+			this.list = list;
+
 			this.context = context;
 			this.packages = packages;
 		}
@@ -48,10 +52,10 @@ namespace AdvancedMap.Droid
 
 		public void Update(Package package)
 		{
-			ListView list = (context as AdvancedPackageManagerActivity).ListView;
 			for (int i = 0; i < list.ChildCount; i++)
 			{
 				PackageRow view = (PackageRow)list.GetChildAt(i);
+
 				if (view.Id == package.Id)
 				{
 					view.Update(package);

@@ -6,7 +6,7 @@ using Shared;
 
 namespace AdvancedMap.iOS
 {
-	public class OfflineRoutingController_New : BaseRoutingController
+	public class OfflineRoutingController : BaseRoutingController
 	{
 		public override string Name { get { return "Offline Routing"; } }
 

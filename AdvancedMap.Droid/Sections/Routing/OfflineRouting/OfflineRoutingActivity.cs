@@ -18,10 +18,8 @@ namespace AdvancedMap.Droid
 	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "Offline routing", Description = "Offline routing with OpenStreetMap data packages")]
 	public class OfflineRoutingActivity : BaseRoutingActivity
-	{       
-		internal static string[] downloadablePackages = { "EE-routing", "LV-routing" };
-
-		RoutingPackageListener PackageListener { get; set; }
+	{   
+		PackageListener Listener { get; set; }
 
 		CartoPackageManager Manager { get; set; }
 
@@ -36,28 +34,12 @@ namespace AdvancedMap.Droid
 
 			Manager = Routing.PackageManager;
 
-			PackageListener = new RoutingPackageListener(Manager, downloadablePackages);
-			Manager.PackageManagerListener = PackageListener;
-
-			Manager.Start();
-
-			// Fetch list of available packages from server. 
-			// Note that this is asynchronous operation 
-			// and listener will be notified via onPackageListUpdated when this succeeds.        
-			Manager.StartPackageListDownload();
-
 			// Create offline routing service connected to package manager
 			Routing.Service = new PackageManagerRoutingService(Manager);
 
 			Alert("This sample uses an online map, but downloads routing packages");
 
-			// Routing packages are as compact as possible,
-			// so we create a second package manager to download region packages that contain names
-			// This is only necessary for displaying them in a list. Download is by id
-			var packageFolder = new Java.IO.File(ApplicationContext.GetExternalFilesDir(null), "regionpackages");
-			var middleManager = new CartoPackageManager("nutiteq.osm", packageFolder.AbsolutePath);
-
-			ContentView.UpdateList(middleManager.GetRoutingPackages());
+			Alert("Click on the menu to see a list of countries that can be downloaded");
 		}
 
 		public override bool OnOptionsItemSelected(IMenuItem item)
@@ -87,14 +69,24 @@ namespace AdvancedMap.Droid
 			base.OnDestroy();
 
 			Manager.Stop(true);
-			PackageListener = null;
+			Listener = null;
 		}
 
 		protected override void OnResume()
 		{
 			base.OnResume();
 
-			PackageListener.PackageUpdated += OnPackageUpdated;
+			Listener = new PackageListener();
+			Manager.PackageManagerListener = Listener;
+
+			Listener.OnPackageCancel += UpdatePackage;
+			Listener.OnPackageUpdate += UpdatePackage;
+			Listener.OnPackageStatusChange += UpdatePackage;
+			Listener.OnPackageFail += UpdatePackage;
+
+			Listener.OnPackageListUpdate += UpdatePackages;
+
+			Manager.Start();
 
 			ContentView.Button.Click += OnMenuButtonClicked;
 		}
@@ -103,13 +95,48 @@ namespace AdvancedMap.Droid
 		{
 			base.OnPause();
 
-			PackageListener.PackageUpdated -= OnPackageUpdated;
+			Listener.OnPackageCancel -= UpdatePackage;
+			Listener.OnPackageUpdate -= UpdatePackage;
+			Listener.OnPackageStatusChange -= UpdatePackage;
+			Listener.OnPackageFail -= UpdatePackage;
+
+			Listener.OnPackageListUpdate -= UpdatePackages;
+
+			Manager.Stop(true);
+			Listener = null;
 
 			ContentView.Button.Click -= OnMenuButtonClicked;
 		}
 
+		bool menuInitialized;
+
+		void InitializeMenu()
+		{
+			// Fetch list of available packages from server. 
+			// Note that this is asynchronous operation,
+			// listener will be notified via onPackageListUpdated when this succeeds.
+			Manager.StartPackageListDownload();
+
+			// Routing packages are as compact as possible,
+			// so we create a second package manager to download region packages that contain names
+			// This is only necessary for displaying them in a list. Download is by id
+			var packageFolder = new Java.IO.File(ApplicationContext.GetExternalFilesDir(null), "regionpackages");
+			var middleManager = new CartoPackageManager("nutiteq.osm", packageFolder.AbsolutePath);
+
+			ContentView.UpdateList(middleManager.GetPackages());
+
+			menuInitialized = true;
+		}
+
 		void OnMenuButtonClicked(object sender, EventArgs e)
 		{
+			if (!menuInitialized)
+			{
+				// As we want user experience is to be as smooth as possible,
+				// initialize the menu when it is actually clicked
+				InitializeMenu();
+			}
+
 			if (ContentView.Menu.IsVisible)
 			{
 				ContentView.Menu.Hide();
@@ -123,37 +150,60 @@ namespace AdvancedMap.Droid
 		public void OnAdapterActionButtonClick(object sender, EventArgs e)
 		{
 			PMButton button = (PMButton)sender;
-			//Console.WriteLine("Clicked: " + button.PackageId + " - " + button.PackageName + " - " + button.Type);
 
-			//if (button.Type == PMButtonType.CancelPackageTasks)
-			//{
-			//	packageManager.CancelPackageTasks(button.PackageId);
-			//}
-			//else if (button.Type == PMButtonType.SetPackagePriority)
-			//{
-			//	packageManager.SetPackagePriority(button.PackageId, button.PriorityIndex);
-			//	UpdatePackages();
-			//}
-			//else if (button.Type == PMButtonType.StartPackageDownload)
-			//{
-			//	packageManager.StartPackageDownload(button.PackageId);
-			//}
-			//else if (button.Type == PMButtonType.StartRemovePackage)
-			//{
-			//	packageManager.StartPackageRemove(button.PackageId);
-			//}
-			//else if (button.Type == PMButtonType.UpdatePackages)
-			//{
-			//	currentFolder = currentFolder + button.PackageName + "/";
-			//	UpdatePackages();
-			//}
+			button.SetAsMapPackage();
+
+			Console.WriteLine("Clicked: " + button.PackageId + " - " + button.PackageName + " - " + button.Type);
+
+			if (button.Type == PMButtonType.CancelPackageTasks)
+			{
+				Manager.CancelPackageTasks(button.PackageId);
+			}
+			else if (button.Type == PMButtonType.SetPackagePriority)
+			{
+				Manager.SetPackagePriority(button.PackageId, button.PriorityIndex);
+			}
+			else if (button.Type == PMButtonType.StartPackageDownload)
+			{
+				Manager.StartPackageDownload(button.PackageId);
+			}
+			else if (button.Type == PMButtonType.StartRemovePackage)
+			{
+				Manager.StartPackageRemove(button.PackageId);
+			}
+			else if (button.Type == PMButtonType.UpdatePackages)
+			{
+				// Go to subfolder, however, this example has no foldering system.
+			}
 		}
 
-		void OnPackageUpdated(object sender, PackageUpdateEventArgs e)
+		void UpdatePackages(object sender, EventArgs e)
 		{
-			RunOnUiThread(() =>
+			Console.WriteLine("UpdatePackages");
+			ContentView.UpdateListWithRoutingPackages(Manager.GetPackages());
+		}
+
+		void UpdatePackage(object sender, PackageEventArgs e)
+		{
+			UpdatePackage(e.Id);
+		}
+
+		void UpdatePackage(object sender, PackageStatusEventArgs e)
+		{
+			UpdatePackage(e.Id);
+		}
+
+		void UpdatePackage(object sender, PackageFailedEventArgs e)
+		{
+			this.MakeToast("Error: " + e.ErrorType);
+			UpdatePackage(e.Id);
+		}
+
+		void UpdatePackage(string id)
+		{
+			RunOnUiThread(delegate
 			{
-				Alert("Offline package downloaded: " + e.Id);
+				ContentView.UpdatePackage(Manager, id);
 			});
 		}
 	}

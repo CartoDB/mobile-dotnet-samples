@@ -66,7 +66,7 @@ namespace AdvancedMap.Droid
 
 			// Initialize ListView
 			SetContentView(Resource.Layout.List);
-			packageAdapter = new PackageManagerAdapter(this, Resource.Layout.package_item_row, packageArray);
+			packageAdapter = new PackageManagerAdapter(this, ListView, Resource.Layout.package_item_row, packageArray);
 			ListView.Adapter = packageAdapter;
 		}
 

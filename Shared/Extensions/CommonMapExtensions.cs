@@ -84,7 +84,7 @@ namespace Shared
 
 			return packages;
 		}
-		public static List<Package> GetRoutingPackages(this PackageManager packageManager)
+		public static List<Package> GetPackages(this PackageManager packageManager)
 		{
 			string language = "en";
 			List<Package> packages = new List<Package>();
@@ -104,7 +104,7 @@ namespace Shared
 					name = split[split.Length - 1];
 				}
 
-				Console.WriteLine(info.PackageId + " - " + name + " (" + info.GetNames(language).Count + ")");
+				Console.WriteLine("GetPackages: " + info.PackageId + " - " + name + " (" + info.GetNames(language).Count + ")");
 				PackageStatus status = packageManager.GetLocalPackageStatus(name, -1);
 				var package = new Package(name, info, status);
 

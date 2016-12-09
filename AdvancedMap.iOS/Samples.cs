@@ -19,7 +19,7 @@ namespace AdvancedMap.iOS
 			new WmsMapController(),
 
 			new HeaderController { Name = "Routing" },
-			new OfflineRoutingController_New(),
+			new OfflineRoutingController(),
 			new OnlineRoutingController(),
 
 			new HeaderController { Name = "Vector objects" },

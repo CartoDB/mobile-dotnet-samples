@@ -9,8 +9,18 @@ namespace Shared
 	*/
 	public class Package
 	{
+		public const string ROUTING = "-routing";
+
 		public string Name { get; private set; }
 		public string Id { get; private set; }
+
+		public string RoutingId { 
+			get {
+				if (Id.Contains(ROUTING)) return Id;
+
+				return Id + "-routing";
+			} 
+		}
 
 		public PackageInfo Info { get; private set; }
 		public PackageStatus Status { get; private set; }
@@ -29,6 +39,11 @@ namespace Shared
 		public void UpdateStatus(PackageStatus status)
 		{
 			Status = status;
+		}
+
+		public void ToMapPackage()
+		{
+			Id = Id.Replace(ROUTING, "");
 		}
 
 		public string GetStatusText()
