@@ -6,6 +6,7 @@ using Carto.Layers;
 using Carto.PackageManager;
 using Carto.Routing;
 using Carto.Styles;
+using Carto.Ui;
 using Carto.VectorElements;
 using Shared;
 using Shared.Droid;
@@ -18,18 +19,16 @@ namespace AdvancedMap.Droid
 
 		protected Routing Routing;
 
-		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
+		protected void Initialize(MapView map)
 		{
-			base.OnCreate(savedInstanceState);
+			// Set route listener
+			MapListener = new RouteMapEventListener();
+			map.MapEventListener = MapListener;
 
 			// Virtual method overridden in child classes in order to keep layer order correct
 			SetBaseLayer();
 
-			// Set route listener
-			MapListener = new RouteMapEventListener();
-			MapView.MapEventListener = MapListener;
-
-			Routing = new Routing(MapView, BaseProjection);
+			Routing = new Routing(map, BaseProjection);
 
 			Alert("Long-press on map to set route start and finish");
 

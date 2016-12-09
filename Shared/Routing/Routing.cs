@@ -158,10 +158,6 @@ namespace Shared
 			// Style for instruction balloons
 			balloonBuilder = new BalloonPopupStyleBuilder();
 			balloonBuilder.TitleMargins = new BalloonPopupMargins(4, 4, 4, 4);
-
-			// Finally animate map to Estonia
-			MapView.FocusPos = BaseProjection.FromWgs84(new MapPos(25.662893, 58.919365));
-			MapView.Zoom = 7;
 		}
 
 		public void CreateRoutePoint(MapPos pos, RoutingInstruction instruction, LocalVectorDataSource source)

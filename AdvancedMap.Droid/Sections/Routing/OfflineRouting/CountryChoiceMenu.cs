@@ -33,27 +33,18 @@ namespace AdvancedMap.Droid
 			adapter.NotifyDataSetChanged();
 		}
 
-		public void UpdateWithRoutingPackages(List<Package> packages)
+		public void UpdateWithRoutingPackages(List<Package> routingPackages)
 		{
-			Console.WriteLine("UpdateWithRoutingPackages: start");
-			this.packages.Clear();
-			this.packages.AddRange(packages);
-
-			int counter = 0;
-
-			foreach (Package package in this.packages)
+			foreach (Package package in routingPackages)
 			{
-				Package routing = packages.Find(pkg => pkg.RoutingId == package.Id);
+				Package mapPackage = packages.Find(pkg => pkg.RoutingId == package.Id);
 
-				Console.WriteLine("Upading..." + counter);
-				counter++;
-
-				if (routing != null)
+				if (mapPackage != null)
 				{
-					package.UpdateStatus(routing.Status);
+					mapPackage.UpdateStatus(package.Status);
 				}
 			}
-			Console.WriteLine("UpdateWithRoutingPackages: end");
+
 			adapter.NotifyDataSetChanged();
 		}
 
@@ -64,7 +55,7 @@ namespace AdvancedMap.Droid
 			{
 				Package pkg = packages[i];
 
-				if (id.Equals(pkg.Id))
+				if (id.Equals(pkg.RoutingId))
 				{
 					PackageStatus status = manager.GetLocalPackageStatus(id, -1);
 					pkg.UpdateStatus(status);

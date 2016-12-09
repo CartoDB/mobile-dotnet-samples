@@ -14,6 +14,18 @@ namespace Shared
 		public EventHandler<PackageStatusEventArgs> OnPackageStatusChange;
 		public EventHandler<PackageFailedEventArgs> OnPackageFail;
 
+		public PackageListener()
+		{
+			
+		}
+
+		CartoPackageManager manager;
+
+		public PackageListener(CartoPackageManager manager)
+		{
+			this.manager = manager;
+		}
+
 		public override void OnPackageListUpdated ()
 		{
 			// Called when package list is downloaded.

@@ -19,6 +19,12 @@ namespace Shared
 {
 	public static class CommonMapExtensions
 	{
+		public static void AddOnlineBaseLayer(this MapView map, CartoBaseMapStyle style)
+		{
+			var layer = new CartoOnlineVectorTileLayer(style);
+			map.Layers.Add(layer);
+		}
+
 		public static List<Package> GetPackages(this PackageManager packageManager, string language, string folder)
 		{
 			List<Package> packages = new List<Package>();
@@ -95,8 +101,10 @@ namespace Shared
 				string[] split = name.Split('/');
 
 				// If package id contains -, then it's a subdivision (province, county, oblast etc.) of a country,
-				// add the country as well as the subdivision
-				if (info.PackageId.Contains("-"))
+				// add the country as well as the subdivision.
+
+				// Additionally check if it contains 'routing', as routing packages contain '-' are not subdivions
+				if (info.PackageId.Contains("-") && !info.PackageId.Contains("routing"))
 				{
 					name = split[split.Length - 2] + ", " + split[split.Length - 1];
 				}
@@ -105,7 +113,7 @@ namespace Shared
 				}
 
 				Console.WriteLine("GetPackages: " + info.PackageId + " - " + name + " (" + info.GetNames(language).Count + ")");
-				PackageStatus status = packageManager.GetLocalPackageStatus(name, -1);
+				PackageStatus status = packageManager.GetLocalPackageStatus(info.PackageId, -1);
 				var package = new Package(name, info, status);
 
 				packages.Add(package);

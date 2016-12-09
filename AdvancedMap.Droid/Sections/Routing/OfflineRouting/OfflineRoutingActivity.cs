@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-
+using System.Linq;
 using Android.App;
 using Android.Views;
 using Carto.DataSources;
@@ -19,9 +20,11 @@ namespace AdvancedMap.Droid
 	[ActivityData(Title = "Offline routing", Description = "Offline routing with OpenStreetMap data packages")]
 	public class OfflineRoutingActivity : BaseRoutingActivity
 	{   
-		PackageListener Listener { get; set; }
+		PackageListener RoutingPackageListener { get; set; }
+		PackageListener MapPackageListener { get; set; }
 
-		CartoPackageManager Manager { get; set; }
+		CartoPackageManager RoutingPackageManager { get; set; }
+		CartoPackageManager MapPackageManager { get; set; }
 
 		OfflineRoutingView ContentView;
 
@@ -32,10 +35,17 @@ namespace AdvancedMap.Droid
 			ContentView = new OfflineRoutingView(this);
 			SetContentView(ContentView);
 
-			Manager = Routing.PackageManager;
+			Initialize(ContentView.MapView);
+
+			RoutingPackageManager = Routing.PackageManager;
+
+			// Routing packages are as compact as possible,
+			// so we create a second package manager to download region packages that contain names
+			// This is only necessary for displaying them in a list. Download is by id
+			MapPackageManager = new CartoPackageManager("nutiteq.osm", Routing.CreateFolder("regionpackages"));
 
 			// Create offline routing service connected to package manager
-			Routing.Service = new PackageManagerRoutingService(Manager);
+			Routing.Service = new PackageManagerRoutingService(RoutingPackageManager);
 
 			Alert("This sample uses an online map, but downloads routing packages");
 
@@ -59,34 +69,53 @@ namespace AdvancedMap.Droid
 			return base.OnOptionsItemSelected(item);
 		}
 
+		public override void OnBackPressed()
+		{
+			if (ContentView.Menu.IsVisible)
+			{
+				ContentView.Menu.Hide();
+				return;
+			}
+
+			base.OnBackPressed();
+		}
+
 		protected override void SetBaseLayer()
 		{
-			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+			ContentView.MapView.AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 		}
 
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
 
-			Manager.Stop(true);
-			Listener = null;
+			RoutingPackageManager.Stop(true);
+			RoutingPackageListener = null;
 		}
 
 		protected override void OnResume()
 		{
 			base.OnResume();
 
-			Listener = new PackageListener();
-			Manager.PackageManagerListener = Listener;
+			RoutingPackageListener = new PackageListener();
+			RoutingPackageManager.PackageManagerListener = RoutingPackageListener;
 
-			Listener.OnPackageCancel += UpdatePackage;
-			Listener.OnPackageUpdate += UpdatePackage;
-			Listener.OnPackageStatusChange += UpdatePackage;
-			Listener.OnPackageFail += UpdatePackage;
+			RoutingPackageListener.OnPackageCancel += UpdatePackage;
+			RoutingPackageListener.OnPackageUpdate += UpdatePackage;
+			RoutingPackageListener.OnPackageStatusChange += UpdatePackage;
+			RoutingPackageListener.OnPackageFail += UpdatePackage;
 
-			Listener.OnPackageListUpdate += UpdatePackages;
+			MapPackageListener = new PackageListener(MapPackageManager);
+			MapPackageManager.PackageManagerListener = MapPackageListener;
 
-			Manager.Start();
+			// Just get the complete list of names from map package listener
+			RoutingPackageListener.OnPackageListUpdate += UpdateRoutingPackages;
+			RoutingPackageManager.Start();
+
+			MapPackageListener.OnPackageListUpdate += UpdateMapPackages;
+			MapPackageManager.Start();
+			// Start downloading map packages instantly after view has loaded
+			MapPackageManager.StartPackageListDownload();
 
 			ContentView.Button.Click += OnMenuButtonClicked;
 		}
@@ -95,15 +124,20 @@ namespace AdvancedMap.Droid
 		{
 			base.OnPause();
 
-			Listener.OnPackageCancel -= UpdatePackage;
-			Listener.OnPackageUpdate -= UpdatePackage;
-			Listener.OnPackageStatusChange -= UpdatePackage;
-			Listener.OnPackageFail -= UpdatePackage;
+			RoutingPackageListener.OnPackageCancel -= UpdatePackage;
+			RoutingPackageListener.OnPackageUpdate -= UpdatePackage;
+			RoutingPackageListener.OnPackageStatusChange -= UpdatePackage;
+			RoutingPackageListener.OnPackageFail -= UpdatePackage;
 
-			Listener.OnPackageListUpdate -= UpdatePackages;
+			RoutingPackageListener.OnPackageListUpdate -= UpdateRoutingPackages;
 
-			Manager.Stop(true);
-			Listener = null;
+			RoutingPackageManager.Stop(true);
+			RoutingPackageListener = null;
+
+			MapPackageListener.OnPackageListUpdate -= UpdateMapPackages;
+
+			MapPackageManager.Stop(true);
+			MapPackageListener = null;
 
 			ContentView.Button.Click -= OnMenuButtonClicked;
 		}
@@ -115,14 +149,7 @@ namespace AdvancedMap.Droid
 			// Fetch list of available packages from server. 
 			// Note that this is asynchronous operation,
 			// listener will be notified via onPackageListUpdated when this succeeds.
-			Manager.StartPackageListDownload();
-
-			// Routing packages are as compact as possible,
-			// so we create a second package manager to download region packages that contain names
-			// This is only necessary for displaying them in a list. Download is by id
-			var middleManager = new CartoPackageManager("nutiteq.osm", Routing.CreateFolder("regionpackages"));
-
-			ContentView.UpdateList(middleManager.GetPackages());
+			RoutingPackageManager.StartPackageListDownload();
 
 			menuInitialized = true;
 		}
@@ -156,19 +183,19 @@ namespace AdvancedMap.Droid
 
 			if (button.Type == PMButtonType.CancelPackageTasks)
 			{
-				Manager.CancelPackageTasks(button.PackageId);
+				RoutingPackageManager.CancelPackageTasks(button.PackageId);
 			}
 			else if (button.Type == PMButtonType.SetPackagePriority)
 			{
-				Manager.SetPackagePriority(button.PackageId, button.PriorityIndex);
+				RoutingPackageManager.SetPackagePriority(button.PackageId, button.PriorityIndex);
 			}
 			else if (button.Type == PMButtonType.StartPackageDownload)
 			{
-				Manager.StartPackageDownload(button.PackageId);
+				RoutingPackageManager.StartPackageDownload(button.PackageId);
 			}
 			else if (button.Type == PMButtonType.StartRemovePackage)
 			{
-				Manager.StartPackageRemove(button.PackageId);
+				RoutingPackageManager.StartPackageRemove(button.PackageId);
 			}
 			else if (button.Type == PMButtonType.UpdatePackages)
 			{
@@ -176,10 +203,23 @@ namespace AdvancedMap.Droid
 			}
 		}
 
-		void UpdatePackages(object sender, EventArgs e)
+		void UpdateMapPackages(object sender, EventArgs e)
 		{
-			Console.WriteLine("UpdatePackages");
-			ContentView.UpdateListWithRoutingPackages(Manager.GetPackages());
+			RunOnUiThread(delegate
+			{
+				ContentView.UpdateList(MapPackageManager.GetPackages());
+			});
+
+			RoutingPackageManager.StartPackageListDownload();
+		}
+
+		void UpdateRoutingPackages(object sender, EventArgs e)
+		{
+			RunOnUiThread(delegate
+			{
+				List<Package> packages = RoutingPackageManager.GetPackages();
+				ContentView.UpdateListWithRoutingPackages(packages);
+			});
 		}
 
 		void UpdatePackage(object sender, PackageEventArgs e)
@@ -194,7 +234,7 @@ namespace AdvancedMap.Droid
 
 		void UpdatePackage(object sender, PackageFailedEventArgs e)
 		{
-			this.MakeToast("Error: " + e.ErrorType);
+			Alert("Error: " + e.ErrorType);
 			UpdatePackage(e.Id);
 		}
 
@@ -202,7 +242,7 @@ namespace AdvancedMap.Droid
 		{
 			RunOnUiThread(delegate
 			{
-				ContentView.UpdatePackage(Manager, id);
+				ContentView.UpdatePackage(RoutingPackageManager, id);
 			});
 		}
 	}

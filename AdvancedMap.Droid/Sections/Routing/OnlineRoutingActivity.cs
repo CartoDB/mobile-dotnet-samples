@@ -13,6 +13,8 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
+			Initialize(MapView);
+
 			Routing.Service = new CartoOnlineRoutingService(Shared.Routing.ServiceSource);
 		}
 
