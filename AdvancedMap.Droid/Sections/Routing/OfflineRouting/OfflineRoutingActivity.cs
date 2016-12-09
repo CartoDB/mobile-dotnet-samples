@@ -120,8 +120,7 @@ namespace AdvancedMap.Droid
 			// Routing packages are as compact as possible,
 			// so we create a second package manager to download region packages that contain names
 			// This is only necessary for displaying them in a list. Download is by id
-			var packageFolder = new Java.IO.File(ApplicationContext.GetExternalFilesDir(null), "regionpackages");
-			var middleManager = new CartoPackageManager("nutiteq.osm", packageFolder.AbsolutePath);
+			var middleManager = new CartoPackageManager("nutiteq.osm", Routing.CreateFolder("regionpackages"));
 
 			ContentView.UpdateList(middleManager.GetPackages());
 

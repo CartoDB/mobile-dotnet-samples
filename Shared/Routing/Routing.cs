@@ -85,7 +85,7 @@ namespace Shared
 			return CreateFolder("routingpackages");
 		}
 
-		string CreateFolder(string name)
+		public string CreateFolder(string name)
 		{
 			string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), name);
 
