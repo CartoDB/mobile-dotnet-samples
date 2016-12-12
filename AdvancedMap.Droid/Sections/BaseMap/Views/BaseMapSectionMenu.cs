@@ -39,8 +39,8 @@ namespace AdvancedMap.Droid
 				Texts3D = GetSwitch("3D Texts");
 				Buildings3D = GetSwitch("3D Buildings");
 
-				contentContainer.AddView(Texts3D);
-				contentContainer.AddView(Buildings3D);
+				//contentContainer.AddView(Texts3D);
+				//contentContainer.AddView(Buildings3D);
 			}
 		}
 
