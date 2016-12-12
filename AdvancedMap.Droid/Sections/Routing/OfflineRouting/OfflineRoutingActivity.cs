@@ -105,7 +105,7 @@ namespace AdvancedMap.Droid
 			RoutingPackageListener.OnPackageStatusChange += UpdatePackage;
 			RoutingPackageListener.OnPackageFail += UpdatePackage;
 
-			MapPackageListener = new PackageListener(MapPackageManager);
+			MapPackageListener = new PackageListener();
 			MapPackageManager.PackageManagerListener = MapPackageListener;
 
 			// Just get the complete list of names from map package listener

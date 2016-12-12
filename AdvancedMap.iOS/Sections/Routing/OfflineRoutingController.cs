@@ -12,7 +12,7 @@ namespace AdvancedMap.iOS
 
 		public override string Description { get { return "Offline routing with OpenStreetMap data packages"; } }
 
-		internal static string[] downloadablePackages = { "EE-routing", "LV-routing" };
+		internal static string[] packageIds = { "EE-routing", "LV-routing" };
 
 		PackageListener PackageListener { get; set; }
 
@@ -50,6 +50,11 @@ namespace AdvancedMap.iOS
 
 			Manager.PackageManagerListener = PackageListener;
 			Manager.Start();
+
+			foreach (string id in packageIds)
+			{
+				Manager.StartPackageDownload(id);
+			}
 		}
 
 		public override void ViewWillDisappear(bool animated)

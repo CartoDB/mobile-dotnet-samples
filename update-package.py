@@ -20,7 +20,7 @@ from xml.dom import minidom
 # Use at your own risk.
 # Additionally, it changes the spacing of your files
 
-SDKNAME = "CartoMobileSDK.Android"
+SDKNAME = "CartoMobileSDK." + sys.argv[4]
 
 csprojFile = sys.argv[1]
 packageFile = sys.argv[2]
