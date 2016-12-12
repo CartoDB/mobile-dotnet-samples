@@ -23,6 +23,10 @@ namespace AdvancedMap.Droid
 
 		public bool IsChecked { get; private set; }
 
+		public string ParameterName { get; set; }
+
+		public string ParameterValue { get { return IsChecked ? "1" : "0"; } }
+
 		GradientDrawable background;
 
 		public MapSwitch(Context context) : base(context)
@@ -55,12 +59,17 @@ namespace AdvancedMap.Droid
 
 				if (Change != null)
 				{
-					Change(IsChecked, EventArgs.Empty);
+					Change(this, EventArgs.Empty);
 				}
 			}
 
 
 			return true;
+		}
+
+		public override string ToString()
+		{
+			return string.Format("[MapSwitch: Text={0}, IsChecked={1}]", Text, IsChecked);
 		}
 	}
 

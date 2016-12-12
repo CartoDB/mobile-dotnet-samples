@@ -15,7 +15,7 @@ namespace AdvancedMap.Droid
 		public EventHandler<OptionEventArgs> SelectionChange;
 
 		List<BaseMapSectionMenuItem> views = new List<BaseMapSectionMenuItem>();
-		MapSwitch Texts3D, Buildings3D;
+		public MapSwitch Texts3D, Buildings3D;
 
 		LinearLayout contentContainer;
 
@@ -25,7 +25,6 @@ namespace AdvancedMap.Droid
 			get { return items; }
 			set
 			{
-
 				items = value;
 
 				foreach (Section section in items)
@@ -36,15 +35,15 @@ namespace AdvancedMap.Droid
 					contentContainer.AddView(view);
 				}
 
-				Texts3D = GetSwitch("3D Texts");
-				Buildings3D = GetSwitch("3D Buildings");
+				Texts3D = GetSwitch("3D Texts", "texts3d");
+				Buildings3D = GetSwitch("3D Buildings", "buildings3d");
 
-				//contentContainer.AddView(Texts3D);
-				//contentContainer.AddView(Buildings3D);
+				contentContainer.AddView(Texts3D);
+				contentContainer.AddView(Buildings3D);
 			}
 		}
 
-		MapSwitch GetSwitch(string text)
+		MapSwitch GetSwitch(string text, string name)
 		{
 			int screenWidth = context.Resources.DisplayMetrics.WidthPixels;
 
@@ -53,6 +52,7 @@ namespace AdvancedMap.Droid
 
 			MapSwitch view = new MapSwitch(context);
 			view.Text = text;
+			view.ParameterName = name;
 
 			var parameters = new LinearLayout.LayoutParams(width, (int)(width / 5), 1);
 			parameters.LeftMargin = padding;

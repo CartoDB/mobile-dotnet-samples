@@ -14,7 +14,7 @@ namespace AdvancedMap.iOS
 
 		internal static string[] downloadablePackages = { "EE-routing", "LV-routing" };
 
-		RoutingPackageListener PackageListener { get; set; }
+		PackageListener PackageListener { get; set; }
 
 		CartoPackageManager Manager { get; set; }
 
@@ -24,7 +24,7 @@ namespace AdvancedMap.iOS
 
 			Manager = Routing.PackageManager;
 
-			PackageListener = new RoutingPackageListener(Manager, downloadablePackages);
+			PackageListener = new PackageListener();
 
 			// Fetch list of available packages from server. 
 			// Note that this is asynchronous operation 
@@ -46,7 +46,7 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewWillAppear(animated);
 
-			PackageListener.PackageUpdated += OnPackageUpdated;
+			PackageListener.OnPackageUpdate += OnPackageUpdated;
 
 			Manager.PackageManagerListener = PackageListener;
 			Manager.Start();
@@ -56,12 +56,12 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewWillDisappear(animated);
 
-			PackageListener.PackageUpdated -= OnPackageUpdated;
+			PackageListener.OnPackageUpdate -= OnPackageUpdated;
 
 			Manager.Stop(true);
 			Manager.PackageManagerListener = null;
 		}
-		void OnPackageUpdated(object sender, PackageUpdateEventArgs e)
+		void OnPackageUpdated(object sender, PackageEventArgs e)
 		{
 			InvokeOnMainThread(() =>
 			{

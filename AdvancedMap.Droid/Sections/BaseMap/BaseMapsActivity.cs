@@ -35,7 +35,8 @@ namespace AdvancedMap.Droid
 			ContentView = new BaseMapsView(this);
 			SetContentView(ContentView);
 
-			Title = "Base maps";
+			Title = GetType().GetTitle();
+			ActionBar.Subtitle = GetType().GetDescription();
 
 			// Zoom to Central Europe so some texts would be visible
 			MapPos europe = MapView.Options.BaseProjection.FromWgs84(new MapPos(15.2551, 54.5260));
@@ -60,6 +61,9 @@ namespace AdvancedMap.Droid
 
 			ContentView.Button.Click += OnMenuButtonClicked;
 			ContentView.Menu.SelectionChange += OnMenuSelectionChanged;
+
+			ContentView.Menu.Texts3D.Change += OnSwitchChange;
+			ContentView.Menu.Buildings3D.Change += OnSwitchChange;
 		}
 
 		protected override void OnPause()
@@ -68,6 +72,9 @@ namespace AdvancedMap.Droid
 
 			ContentView.Button.Click -= OnMenuButtonClicked;
 			ContentView.Menu.SelectionChange -= OnMenuSelectionChanged;
+
+			ContentView.Menu.Texts3D.Change -= OnSwitchChange;
+			ContentView.Menu.Buildings3D.Change -= OnSwitchChange;
 
 			currentListener = null;
 		}
@@ -98,6 +105,12 @@ namespace AdvancedMap.Droid
 		void OnMenuSelectionChanged(object sender, OptionEventArgs e)
 		{
 			UpdateBaseLayer(e.Section, e.Option.Value);
+		}
+
+		void OnSwitchChange(object sender, EventArgs e)
+		{
+			MapSwitch item = (MapSwitch)sender;
+			UpdateBaseLayer(new Section { OSM = new NameValuePair { Value = currentOSM }, Type = SectionType.None }, currentSelection);
 		}
 
 		string currentOSM;
@@ -178,6 +191,23 @@ namespace AdvancedMap.Droid
 				}
 				UpdateLanguage(selection);
 			}
+			else if (section.Type == SectionType.None)
+			{
+				// Switch was tapped
+			}
+
+			if (currentOSM == "nutiteq.osm")
+			{
+				var decoder = ((currentLayer as CartoOnlineVectorTileLayer).TileDecoder as MBVectorTileDecoder);
+				MapSwitch texts = ContentView.Menu.Texts3D;
+				MapSwitch buildings = ContentView.Menu.Buildings3D;
+
+				decoder.SetStyleParameter(texts.ParameterName, texts.IsChecked.ToString());
+				decoder.SetStyleParameter(buildings.ParameterName, buildings.IsChecked.ToString());
+
+				decoder.SetStyleParameter(texts.ParameterName, texts.ParameterValue);
+				decoder.SetStyleParameter(buildings.ParameterName, texts.ParameterValue);
+			}
 
 			MapView.Layers.Clear();
 			MapView.Layers.Add(currentLayer);
@@ -185,6 +215,10 @@ namespace AdvancedMap.Droid
 			ContentView.Menu.Hide();
 
 			currentListener = null;
+
+			// Random if case to remove "unused variable" warning
+			if (currentListener != null) currentListener.Dispose();
+
 			currentListener = MapView.InitializeVectorTileListener(VectorLayer);
 		}
 
