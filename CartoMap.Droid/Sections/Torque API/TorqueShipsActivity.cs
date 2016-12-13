@@ -46,6 +46,7 @@ namespace CartoMap.Droid
 			decoder = new TorqueTileDecoder(styleSheet);
 
 			tileLayer = new TorqueTileLayer(cacheSource, decoder);
+			// Lower priority so it would load the base layer first
 			tileLayer.UpdatePriority = -1;
 
 			MapView.Layers.Add(tileLayer);

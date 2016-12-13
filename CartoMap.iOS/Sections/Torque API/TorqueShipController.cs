@@ -47,6 +47,9 @@ namespace CartoMap.iOS
 
 			tileLayer = new TorqueTileLayer(cacheSource, decoder);
 
+			// Lower priority so it would load the base layer first
+			tileLayer.UpdatePriority = -1;
+
 			MapView.Layers.Add(tileLayer);
 
 			MapView.SetZoom(1, 0);

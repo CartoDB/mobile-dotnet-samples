@@ -5,6 +5,7 @@ using Carto.Layers;
 using Carto.Projections;
 using Carto.Services;
 using Carto.Styles;
+using Carto.VectorTiles;
 using Shared;
 using Shared.Droid;
 
@@ -22,7 +23,13 @@ namespace CartoMap.Droid
 
 			// Clear the default layer, add a dark one instead
 			MapView.Layers.Clear();
-			MapView.Layers.Add(new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark));
+
+			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark);
+
+			// Remove texts so dots would be more prominent
+			(baseLayer.TileDecoder as MBVectorTileDecoder).SetStyleParameter("lang", "noname");
+
+			MapView.Layers.Add(baseLayer);
 
 			Projection projection = MapView.Options.BaseProjection;
 

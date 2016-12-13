@@ -193,6 +193,12 @@ namespace Shared
 			map.Zoom = 14;
 		}
 
+		public static VectorTileListener InitializeVectorTileListener(this MapView map)
+		{
+			
+			return InitializeVectorTileListener(map, null);	
+		}
+
 		public static VectorTileListener InitializeVectorTileListener(this MapView map, VectorLayer vectorLayer)
 		{
 			LocalVectorDataSource source = new LocalVectorDataSource(map.Options.BaseProjection);
