@@ -90,7 +90,7 @@ namespace Shared
 
 			return packages;
 		}
-		public static List<Package> GetPackages(this PackageManager packageManager)
+		public static List<Package> GetPackages(this PackageManager packageManager, bool withRouting = false)
 		{
 			string language = "en";
 			List<Package> packages = new List<Package>();
@@ -104,7 +104,7 @@ namespace Shared
 				// add the country as well as the subdivision.
 
 				// Additionally check if it contains 'routing', as routing packages contain '-' are not subdivions
-				if (info.PackageId.Contains("-") && !info.PackageId.Contains("routing"))
+				if (info.PackageId.Contains("-") && split.Length > 2)
 				{
 					name = split[split.Length - 2] + ", " + split[split.Length - 1];
 				}

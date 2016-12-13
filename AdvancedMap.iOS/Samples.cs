@@ -30,7 +30,7 @@ namespace AdvancedMap.iOS
 			new HeaderController { Name = "Offline maps" },
 			new BundledMapController(),
 			new BasicPackageManagerController(),
-			new PackageManagerController(),
+			new AdvancedPackageManagerController(),
 
 			new HeaderController { Name = "Other" },
 			new CaptureController(),
@@ -48,10 +48,10 @@ namespace AdvancedMap.iOS
 				{
 					MapListRowSource source = new MapListRowSource { Controller = controller };
 
-					if (controller is PackageManagerController)
+					if (controller is AdvancedPackageManagerController)
 					{
-						source.Title = (controller as PackageManagerController).Name;
-						source.Description = (controller as PackageManagerController).Description;
+						source.Title = (controller as AdvancedPackageManagerController).Name;
+						source.Description = (controller as AdvancedPackageManagerController).Description;
 					}
 					else {
 						source.Title = (controller as BaseController).Name;

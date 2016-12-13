@@ -36,6 +36,5 @@ namespace Shared.iOS
 		{
 			Hide();
 		}
-
 	}
 }

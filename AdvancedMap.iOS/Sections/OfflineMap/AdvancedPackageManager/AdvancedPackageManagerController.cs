@@ -11,7 +11,7 @@ using UIKit;
 
 namespace AdvancedMap.iOS
 {
-	public class PackageManagerController : UIViewController
+	public class AdvancedPackageManagerController : UIViewController
 	{
 		public string Name { get { return "Advanced Package Manager"; } }
 
@@ -29,7 +29,7 @@ namespace AdvancedMap.iOS
 
 		public List<Package> Packages { get { return packageManager.GetPackages(language, currentFolder); } }
 
-		public PackageManagerController(string folder = null)
+		public AdvancedPackageManagerController(string folder = null)
 		{
 			if (folder != null)
 			{
@@ -202,7 +202,7 @@ namespace AdvancedMap.iOS
 			}
 			else if (button.Type == PMButtonType.UpdatePackages)
 			{
-				var controller = new PackageManagerController(currentFolder + button.PackageName + "/");
+				var controller = new AdvancedPackageManagerController(currentFolder + button.PackageName + "/");
 				NavigationController.PushViewController(controller, true);
 			}
 		}
