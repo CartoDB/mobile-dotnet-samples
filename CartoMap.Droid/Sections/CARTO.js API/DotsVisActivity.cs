@@ -7,7 +7,7 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
-	[ActivityData(Title = "Dots Vis", Description = "Vis showing dots on the map")]
+	[ActivityData(Title = "Dots Vis", Description = "Vis showing dots on the map using UTFGrid")]
 	public class DotsVisActivity : BaseVisActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)

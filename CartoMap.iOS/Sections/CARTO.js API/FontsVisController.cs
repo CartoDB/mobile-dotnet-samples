@@ -7,7 +7,7 @@ namespace CartoMap.iOS
 	{
 		public override string Name { get { return "Fonts Vis"; } }
 
-		public override string Description { get { return "Vis displaying text on the map"; } }
+		public override string Description { get { return "Vis displaying text on the map using UTFGrid"; } }
 
 		protected override string Url
 		{

@@ -5,7 +5,7 @@ namespace CartoMap.iOS
 	{
 		public override string Name { get { return "Countries Vis"; } }
 
-		public override string Description { get { return "Vis displaying countries in different colors"; } }
+		public override string Description { get { return "Vis displaying countries in different colors using UTFGrid"; } }
 
 		protected override string Url
 		{

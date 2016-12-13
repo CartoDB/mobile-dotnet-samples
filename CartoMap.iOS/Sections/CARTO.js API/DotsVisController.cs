@@ -5,7 +5,7 @@ namespace CartoMap.iOS
 	{
 		public override string Name { get { return "Dots Vis"; } }
 
-		public override string Description { get { return "Vis showing dots on the map"; } }
+		public override string Description { get { return "Vis showing dots on the map using UTFGrid"; } }
 
 		protected override string Url
 		{
