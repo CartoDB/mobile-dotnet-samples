@@ -162,4 +162,19 @@
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+
+    <PropertyGroup>
+    <CreateIpaDependsOn>
+        $(CreateIpaDependsOn);
+        CopyIpa
+    </CreateIpaDependsOn>
+    </PropertyGroup>
+    
+    <Target Name="CopyIpa" Condition="'$(OutputType)' == 'Exe' And '$(ComputedPlatform)' == 'iPhone' And '$(BuildIpa)' == 'true'">
+        <Copy SourceFiles="$(IpaPackagePath)" DestinationFolder="$(OutputPath)" />
+    </Target>
+
 </Project>
+
+
+
