@@ -9,6 +9,7 @@ from xml.dom import minidom
 # (1) .csproj path
 # (2) packages.config path
 # (3) version name/number (semantic)
+# (4) platform
 
 # Sample usage:
 # python update-package.py AdvancedMap.Droid/AdvancedMap.Droid.csproj AdvancedMap.Droid/packages.config 4.0.0-pre-197
