@@ -117,6 +117,7 @@
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_80.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_114.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_180.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Contents.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -128,7 +129,6 @@
     <Folder Include="Sections\Torque API\" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
