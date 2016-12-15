@@ -75,7 +75,15 @@ namespace Shared.Droid
 				SetBackgroundColor(Color.Rgb(240, 240, 240));
 			}
 
-			topBorder.Background = background;
+			try
+			{               
+				// API came with android 4.1
+				topBorder.Background = background;
+			}
+			catch
+			{
+				topBorder.SetBackgroundColor(Color.Black);
+			}
 		}
 
 	}
