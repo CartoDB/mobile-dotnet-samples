@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\BaseMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MenuButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MapWithMenuButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Memory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
