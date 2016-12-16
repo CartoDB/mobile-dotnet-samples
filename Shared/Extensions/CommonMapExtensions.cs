@@ -217,6 +217,20 @@ namespace Shared
 			return null;
 		}
 
+		public static void InitializeVectorTileListener(this VectorTileLayer tileLayer, MapView map)
+		{
+			LocalVectorDataSource source = new LocalVectorDataSource(map.Options.BaseProjection);
+			var vectorLayer = map.FindVectorLayer();
+
+			if (vectorLayer == null)
+			{
+				vectorLayer = new VectorLayer(source);
+				map.Layers.Add(vectorLayer);
+			}
+
+			tileLayer.VectorTileEventListener = new VectorTileListener(vectorLayer);
+		}
+
 		public static TileLayer FindTileLayer(this MapView map)
 		{
 			for (int i = 0; i < map.Layers.Count; i++)
@@ -226,6 +240,22 @@ namespace Shared
 				if (layer is TileLayer)
 				{
 					return layer as TileLayer;
+				}
+
+			}
+
+			return null;
+		}
+
+		public static VectorLayer FindVectorLayer(this MapView map)
+		{
+			for (int i = 0; i < map.Layers.Count; i++)
+			{
+				var layer = map.Layers[i];
+
+				if (layer is VectorLayer)
+				{
+					return layer as VectorLayer;
 				}
 
 			}

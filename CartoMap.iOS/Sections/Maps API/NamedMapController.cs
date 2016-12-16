@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Carto.Core;
+using Carto.Layers;
 using Carto.Projections;
 using Shared;
 using Shared.iOS;
@@ -12,16 +14,28 @@ namespace CartoMap.iOS
 
 		public override string Description { get { return "CARTO data as vector tiles from a named map using VectorListener"; } }
 
-		VectorTileListener listener;
+		List<VectorTileLayer> VectorLayers { 
+			get {
+				List<VectorTileLayer> layers = new List<VectorTileLayer>();
 
+				for (int i = 0; i < MapView.Layers.Count; i++)
+				{
+					var layer = MapView.Layers[i];
+
+					if (layer is VectorTileLayer)
+					{
+						layers.Add(layer as VectorTileLayer);
+					}
+				}
+				return layers;
+			}
+		}
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
 			// Add base layer so we can attach a vector tile listener to it
-			AddOnlineBaseLayer(Carto.Layers.CartoBaseMapStyle.CartoBasemapStyleGray);
-
-			MapView.ConfigureNamedVectorLayers("tpl_69f3eebe_33b6_11e6_8634_0e5db1731f59");
+			//AddOnlineBaseLayer(Carto.Layers.CartoBaseMapStyle.CartoBasemapStyleGray);
 
 			Projection projection = MapView.Options.BaseProjection;
 
@@ -35,19 +49,25 @@ namespace CartoMap.iOS
 		{
 			base.ViewWillAppear(animated);
 
-			listener = MapView.InitializeVectorTileListener();
+			MapView.ConfigureNamedVectorLayers("tpl_69f3eebe_33b6_11e6_8634_0e5db1731f59", delegate
+			{
+				foreach (VectorTileLayer layer in VectorLayers)
+				{
+					layer.InitializeVectorTileListener(MapView);
+				}
+			});
 		}
 
 		public override void ViewWillDisappear(bool animated)
 		{
 			base.ViewWillDisappear(animated);
 
-			if (listener != null)
+			foreach (VectorTileLayer layer in VectorLayers)
 			{
-				// It'll never be null, if block simply to remove "is never used" warning
-				listener = null;
+				layer.VectorTileEventListener = null;
 			}
 		}
+
 	}
 }
 

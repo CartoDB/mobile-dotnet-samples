@@ -40,7 +40,7 @@ namespace Shared
 			});
 		}
 
-		public static void ConfigureNamedVectorLayers(this MapView map, string name)
+		public static void ConfigureNamedVectorLayers(this MapView map, string name, Action complete)
 		{
 			System.Threading.Tasks.Task.Run(delegate
 			{
@@ -56,6 +56,8 @@ namespace Shared
 				{
 					map.Layers.Add(layers[i]);
 				}
+
+				complete();
 			});
 		}
 

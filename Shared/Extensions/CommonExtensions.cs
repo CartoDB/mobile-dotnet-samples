@@ -7,6 +7,16 @@ namespace Shared
 {
 	public static class CommonExtensions
 	{
+		public static string ToMax300Characters(this string item)
+		{
+			int max = 300;
+			if (item.Length < max)
+			{
+				return item;
+			}
+			return item.Substring(0, max);
+		}
+
 		public static string[] ToStringArray(this List<Type> list)
 		{
 			string[] sampleNames = new string[list.Count];

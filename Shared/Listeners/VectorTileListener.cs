@@ -66,9 +66,9 @@ namespace Shared
 			// Set a higher placement priority so it would always be visible
 			builder.PlacementPriority = 10;
 
-			string message = feature.Properties.ToString();
+			string message = feature.Properties.ToString().ToMax300Characters();
 
-			BalloonPopup popup = new BalloonPopup(clickInfo.ClickPos, builder.BuildStyle(), "Click", message);
+			BalloonPopup popup = new BalloonPopup(clickInfo.ClickPos, builder.BuildStyle(), "", message);
 
 			source.Add(popup);
 
