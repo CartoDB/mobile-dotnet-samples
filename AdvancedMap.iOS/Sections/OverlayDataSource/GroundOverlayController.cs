@@ -18,6 +18,9 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
+			// Add default base layer
+			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+
 			// Load ground overlay bitmap
 			//Bitmap androidMarkerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.jefferson);
 			//com.carto.graphics.Bitmap overlayBitmap = BitmapUtils.createBitmapFromAndroidBitmap(androidMarkerBitmap);
