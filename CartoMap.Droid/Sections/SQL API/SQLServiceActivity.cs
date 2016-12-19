@@ -27,7 +27,7 @@ namespace CartoMap.Droid
 			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark);
 
 			// Remove texts so dots would be more prominent
-			(baseLayer.TileDecoder as MBVectorTileDecoder).SetStyleParameter("lang", "noname");
+			(baseLayer.TileDecoder as MBVectorTileDecoder).SetStyleParameter("lang", "nolang");
 
 			MapView.Layers.Add(baseLayer);
 

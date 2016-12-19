@@ -15,8 +15,6 @@ namespace AdvancedMap.iOS
 
 		public override string Description { get { return "Offline routing with OpenStreetMap data packages"; } }
 
-		internal static string[] packageIds = { "EE-routing", "LV-routing" };
-
 		PackageListener PackageListener { get; set; }
 
 		CartoPackageManager Manager { get; set; }
