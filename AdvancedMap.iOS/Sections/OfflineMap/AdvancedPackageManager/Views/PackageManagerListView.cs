@@ -44,7 +44,7 @@ namespace AdvancedMap.iOS
 			{
 				Package current = packages[i];
 
-				if (id.Equals(current.RoutingId))
+				if (id.Equals(current.Id))
 				{
 					PackageStatus status = manager.GetLocalPackageStatus(id, -1);
 					current.UpdateStatus(status);
