@@ -23,11 +23,6 @@ namespace AdvancedMap.Droid
 			Menu.Update(packages);
 		}
 
-		public void UpdateListWithRoutingPackages(List<Package> packages)
-		{
-			Menu.UpdateWithRoutingPackages(packages);
-		}
-
 		public void UpdatePackage(PackageManager manager, string id)
 		{
 			Menu.Update(manager, id);

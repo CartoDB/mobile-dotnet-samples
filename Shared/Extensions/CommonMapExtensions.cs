@@ -90,21 +90,24 @@ namespace Shared
 
 			return packages;
 		}
-		public static List<Package> GetPackages(this PackageManager packageManager, bool withRouting = false)
+		public static List<Package> GetPackages(this PackageManager manager, bool withRouting = false)
 		{
 			string language = "en";
 			List<Package> packages = new List<Package>();
 
-			foreach (PackageInfo info in packageManager.ServerPackages)
+			foreach (PackageInfo info in manager.ServerPackages)
 			{
 				string name = info.GetNames(language)[0];
 				string[] split = name.Split('/');
 
+				int dashCount = info.PackageId.Split('-').Length - 1;
+
 				// If package id contains -, then it's a subdivision (province, county, oblast etc.) of a country,
 				// add the country as well as the subdivision.
 
-				// Additionally check if it contains 'routing', as routing packages contain '-' are not subdivions
-				if (info.PackageId.Contains("-") && split.Length > 2)
+				// Routing packages also contain a dash (-routing).
+				// Check if it contains two dashes. Then it's a subdivision
+				if (dashCount == 2 && split.Length > 2)
 				{
 					name = split[split.Length - 2] + ", " + split[split.Length - 1];
 				}
@@ -112,8 +115,7 @@ namespace Shared
 					name = split[split.Length - 1];
 				}
 
-				Console.WriteLine("GetPackages: " + info.PackageId + " - " + name + " (" + info.GetNames(language).Count + ")");
-				PackageStatus status = packageManager.GetLocalPackageStatus(info.PackageId, -1);
+				PackageStatus status = manager.GetLocalPackageStatus(info.PackageId, -1);
 				var package = new Package(name, info, status);
 
 				packages.Add(package);

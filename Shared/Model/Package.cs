@@ -14,14 +14,6 @@ namespace Shared
 		public string Name { get; private set; }
 		public string Id { get; private set; }
 
-		public string RoutingId { 
-			get {
-				if (Id.Contains(ROUTING)) return Id;
-
-				return Id + "-routing";
-			} 
-		}
-
 		public PackageInfo Info { get; private set; }
 		public PackageStatus Status { get; private set; }
 

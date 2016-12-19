@@ -33,21 +33,6 @@ namespace AdvancedMap.Droid
 			adapter.NotifyDataSetChanged();
 		}
 
-		public void UpdateWithRoutingPackages(List<Package> routingPackages)
-		{
-			foreach (Package package in routingPackages)
-			{
-				Package mapPackage = packages.Find(pkg => pkg.RoutingId == package.Id);
-
-				if (mapPackage != null)
-				{
-					mapPackage.UpdateStatus(package.Status);
-				}
-			}
-
-			adapter.NotifyDataSetChanged();
-		}
-
 		public void Update(PackageManager manager, string id)
 		{
 			// Try to find the package that needs to be updated
@@ -55,14 +40,12 @@ namespace AdvancedMap.Droid
 			{
 				Package pkg = packages[i];
 
-				if (id.Equals(pkg.RoutingId))
+				if (id.Equals(pkg.Id))
 				{
 					PackageStatus status = manager.GetLocalPackageStatus(id, -1);
 					pkg.UpdateStatus(status);
 
 					packages[i] = pkg;
-
-					pkg.ToMapPackage();
 
 					adapter.Update(pkg);
 				}
