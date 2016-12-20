@@ -51,10 +51,14 @@ namespace AdvancedMap.Droid
 			paint = new Paint();
 		}
 
-		public override Carto.DataSources.Components.TileData LoadTile(MapTile tile)
+		public override TileData LoadTile(MapTile tile)
 		{
 			Carto.Graphics.Bitmap tileBitmap1 = CreateBitmap(source1, tile);
 			Carto.Graphics.Bitmap tileBitmap2 = CreateBitmap(source2, tile);
+
+			int size = Convert.ToInt32(source1.LoadTile(tile).Data.Size);
+			paint.TextSize = 20;
+			paint.Color = Color.Rgb(50, 50, 50);
 
 			Bitmap image1 = BitmapUtils.CreateAndroidBitmapFromBitmap(tileBitmap1);
 			Bitmap image2 = BitmapUtils.CreateAndroidBitmapFromBitmap(tileBitmap2);
@@ -62,7 +66,17 @@ namespace AdvancedMap.Droid
 			Canvas canvas = new Canvas(image1);
 			canvas.DrawBitmap(image2, null, new Rect(0, 0, image1.Height, image1.Width), paint);
 
+			string text = size.ToString();
+			Rect bounds = new Rect();
+
+			paint.GetTextBounds(text, 0, text.Length, bounds);
+			int x = (256 - bounds.Width()) / 2;
+			int y = (image1.Height + bounds.Height()) / 2;
+
+			canvas.DrawText(size.ToString(), x, y, paint);
+
 			BinaryData data = BitmapUtils.CreateBitmapFromAndroidBitmap(image1).CompressToInternal();
+
 			return new TileData(data);
 		}
 

@@ -49,7 +49,7 @@ namespace AdvancedMap.iOS
 			this.source2 = source2;
 		}
 
-		public override Carto.DataSources.Components.TileData LoadTile(MapTile tile)
+		public override TileData LoadTile(MapTile tile)
 		{
 			Carto.Graphics.Bitmap tileBitmap1 = CreateBitmap(source1, tile);
 			Carto.Graphics.Bitmap tileBitmap2 = CreateBitmap(source2, tile);
