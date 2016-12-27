@@ -163,6 +163,14 @@
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+    
+    <Target Name="BeforeBuild" Condition=" $(SetVersion) == true ">
+                <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = 
+        'CFBundleVersion']/following-sibling::string[1]" Value="$(BuildNumber)" />
+                <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = 
+        'CFBundleShortVersionString']/following-sibling::string[1]" Value="1.0.$(BuildNumber)" 
+        />
+    </Target>
 
     <PropertyGroup>
     <CreateIpaDependsOn>
