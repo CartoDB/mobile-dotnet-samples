@@ -56,8 +56,7 @@ namespace AdvancedMap.Droid
 			Carto.Graphics.Bitmap tileBitmap1 = CreateBitmap(source1, tile);
 			Carto.Graphics.Bitmap tileBitmap2 = CreateBitmap(source2, tile);
 
-			int size = Convert.ToInt32(source1.LoadTile(tile).Data.Size);
-			paint.TextSize = 20;
+			paint.TextSize = 18;
 			paint.Color = Color.Rgb(50, 50, 50);
 
 			Bitmap image1 = BitmapUtils.CreateAndroidBitmapFromBitmap(tileBitmap1);
@@ -66,14 +65,14 @@ namespace AdvancedMap.Droid
 			Canvas canvas = new Canvas(image1);
 			canvas.DrawBitmap(image2, null, new Rect(0, 0, image1.Height, image1.Width), paint);
 
-			string text = size.ToString();
+			string text = tile.Zoom + "/" + tile.X + "/" + tile.Y;
 			Rect bounds = new Rect();
 
 			paint.GetTextBounds(text, 0, text.Length, bounds);
 			int x = (256 - bounds.Width()) / 2;
 			int y = (image1.Height + bounds.Height()) / 2;
 
-			canvas.DrawText(size.ToString(), x, y, paint);
+			canvas.DrawText(text, x, y, paint);
 
 			BinaryData data = BitmapUtils.CreateBitmapFromAndroidBitmap(image1).CompressToInternal();
 
