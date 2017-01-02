@@ -102,7 +102,7 @@
       <HintPath>..\packages\HockeySDK.Xamarin.4.1.0\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.iOS">
-      <HintPath>..\packages\CartoMobileSDK.iOS.4.0.0-pre-225\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.iOS.4.0.0\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -165,11 +165,8 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
     
     <Target Name="BeforeBuild" Condition=" $(SetVersion) == true ">
-                <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = 
-        'CFBundleVersion']/following-sibling::string[1]" Value="$(BuildNumber)" />
-                <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = 
-        'CFBundleShortVersionString']/following-sibling::string[1]" Value="1.0.$(BuildNumber)" 
-        />
+                <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = &#xD;&#xA;        'CFBundleVersion']/following-sibling::string[1]" Value="$(BuildNumber)" />
+                <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = &#xD;&#xA;        'CFBundleShortVersionString']/following-sibling::string[1]" Value="1.0.$(BuildNumber)" />
     </Target>
 
     <PropertyGroup>

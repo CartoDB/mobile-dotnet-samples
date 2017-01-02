@@ -22,9 +22,6 @@ namespace CartoMap.Droid
 		{
 			base.OnCreate();
 
-			MapBaseActivity.ViewResource = Resource.Layout.Main;
-			MapBaseActivity.MapViewResource = Resource.Id.mapView;
-
 			Log.ShowError = true;
 			Log.ShowWarn = true;
 

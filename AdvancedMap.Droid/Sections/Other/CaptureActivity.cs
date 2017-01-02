@@ -2,6 +2,7 @@
 using System.IO;
 using Android.App;
 using Android.Content;
+using Android.OS;
 using Carto.Core;
 using Carto.DataSources;
 using Carto.Layers;
@@ -56,7 +57,7 @@ namespace AdvancedMap.Droid
 			MapView.SetFocusPos(washington, 1);
 			MapView.SetZoom(8, 1);
 
-			listener = new RenderListener(this, MapView);
+			listener = new RenderListener();
 			MapView.MapRenderer.CaptureRendering(listener, true);
 		}
 
@@ -71,55 +72,62 @@ namespace AdvancedMap.Droid
 		{
 			base.OnPause();
 
-			listener.ScreenCaptured -= OnScreenCapture;
+			listener.ScreenCaptured -= OnScreenCaptured;
 		}
 
 		protected override void OnResume()
 		{
 			base.OnResume();
 
-			listener.ScreenCaptured += OnScreenCapture;
+			listener.ScreenCaptured += OnScreenCaptured;
 		}
 
-		void OnScreenCapture(object sender, ScreenshotEventArgs e)
+		void OnScreenCaptured(object sender, ScreenshotEventArgs e)
 		{
-			if (e.IsOK)
+			this.bitmap = e.Bitmap;
+
+			if (((int)Build.VERSION.SdkInt) >= Marshmallow)
 			{
-				Alert("Great success! Screenshot saved to: " + e.Path);
+				Android.Support.V4.App.ActivityCompat.RequestPermissions(
+					this,
+					new string[] { Android.Manifest.Permission.WriteExternalStorage, Android.Manifest.Permission.ReadExternalStorage },
+					RequestCode
+				);
 			}
 			else {
-				Alert("Error! " + e.Message);
+				OnPermissionGranted();
 			}
 		}
-	}
 
-	public class RenderListener : RendererCaptureListener
-	{
-		public EventHandler<ScreenshotEventArgs> ScreenCaptured;
+		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+		{
+			if (requestCode == RequestCode)
+			{
+				if (grantResults[0] == Android.Content.PM.Permission.Granted)
+				{
+					OnPermissionGranted();
+					
+					return;
+				}
 
+				Finish();
+			}
+		}
+
+		Carto.Graphics.Bitmap bitmap;
 		MapPos position = new MapPos();
 		int number = 0;
 
-		MapView map;
-
-		Activity context;
-
-		public RenderListener(Activity context, MapView map)
+		void OnPermissionGranted()
 		{
-			this.context = context;
-			this.map = map;
-		}
-
-		public override void OnMapRendered(Carto.Graphics.Bitmap bitmap)
-		{
-			if (!map.FocusPos.Equals(position))
+			if (!MapView.FocusPos.Equals(position))
 			{
-				position = map.FocusPos;
+				position = MapView.FocusPos;
 				number++;
 
 				Android.Graphics.Bitmap image = BitmapUtils.CreateAndroidBitmapFromBitmap(bitmap);
 
-				string folder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+				string folder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
 				string filename = number + ".png";
 
 				string path = Path.Combine(folder, filename);
@@ -133,17 +141,21 @@ namespace AdvancedMap.Droid
 						image.Compress(Android.Graphics.Bitmap.CompressFormat.Jpeg, 100, stream);
 					}
 				}
-				catch(Exception e) {
+				catch (Exception e)
+				{
 					message = e.Message;
 				}
 
-				if (ScreenCaptured != null)
-				{
-					ScreenshotEventArgs args = new ScreenshotEventArgs { Path = path, Message = message };
-					ScreenCaptured(this, args);
-				}
 
 				Share(path);
+
+				if (message == null)
+				{
+					Alert("Great success! Screenshot saved to: " + path);
+				}
+				else {
+					Alert("Error! " + message);
+				}
 			}
 		}
 
@@ -154,9 +166,27 @@ namespace AdvancedMap.Droid
 
 			intent.PutExtra(Intent.ExtraStream, Android.Net.Uri.Parse(path));
 
-			context.StartActivity(Intent.CreateChooser(intent, "Share image"));
+			StartActivity(Intent.CreateChooser(intent, "Share image"));
 		}
+	}
 
+	public class RenderListener : RendererCaptureListener
+	{
+		public EventHandler<ScreenshotEventArgs> ScreenCaptured;
+
+		public override void OnMapRendered(Carto.Graphics.Bitmap bitmap)
+		{
+			if (ScreenCaptured != null)
+			{
+				ScreenshotEventArgs args = new ScreenshotEventArgs { Bitmap = bitmap };
+				ScreenCaptured(this, args);
+			}
+		}
+	}
+
+	public class RenderedEventArgs : EventArgs
+	{
+		Carto.Graphics.Bitmap Bitmap { get; set; }
 	}
 }
 

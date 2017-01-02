@@ -13,7 +13,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MapRowView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Adapters\MapListAdapter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BaseActivities\MapBaseActivity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseActivities\BaseActivity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Colors.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\BaseMenu.cs" />

@@ -48,6 +48,7 @@ namespace AdvancedMap.Droid
 			// All overlay layers must be same projection as base layer, so we reuse it
 			markerSource = new LocalVectorDataSource(MapView.Options.BaseProjection);
 			var markerLayer = new VectorLayer(markerSource);
+
 			MapView.Layers.Add(markerLayer);
 
 			if (((int)Build.VERSION.SdkInt) >= Marshmallow)
@@ -71,9 +72,6 @@ namespace AdvancedMap.Droid
 			}
 		}
 
-		const int RequestCode = 1;
-		const int Marshmallow = 23;
-
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
 		{
 			if (requestCode == RequestCode)
@@ -90,8 +88,9 @@ namespace AdvancedMap.Droid
 
 		void RequestLocationPermission()
 		{
-			string permission = Android.Manifest.Permission.AccessFineLocation;
-			ActivityCompat.RequestPermissions(this, new string[] { permission }, RequestCode);
+			string fine = Android.Manifest.Permission.AccessFineLocation;
+			string coarse = Android.Manifest.Permission.AccessCoarseLocation;
+			ActivityCompat.RequestPermissions(this, new string[] { fine, coarse }, RequestCode);
 		}
 
 		void AddMarker(string title, string subtitle, float latitude, float longitude)

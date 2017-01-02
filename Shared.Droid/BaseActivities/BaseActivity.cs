@@ -8,13 +8,18 @@ namespace Shared.Droid
 {
 	public class BaseActivity : Activity
 	{
+		protected const int RequestCode = 1;
+		protected const int Marshmallow = 23;
+
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			ActionBar.SetDisplayHomeAsUpEnabled(true);
-
-			ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.ActionBar });
+			if (ActionBar != null)
+			{
+				ActionBar.SetDisplayHomeAsUpEnabled(true);
+				ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.ActionBar });
+			}
 		}
 
 		public override bool OnOptionsItemSelected(IMenuItem item)
