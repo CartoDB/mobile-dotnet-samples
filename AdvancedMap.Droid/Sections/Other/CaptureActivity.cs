@@ -88,8 +88,7 @@ namespace AdvancedMap.Droid
 
 			if (((int)Build.VERSION.SdkInt) >= Marshmallow)
 			{
-				Android.Support.V4.App.ActivityCompat.RequestPermissions(
-					this,
+				RequestPermissions(
 					new string[] { Android.Manifest.Permission.WriteExternalStorage, Android.Manifest.Permission.ReadExternalStorage },
 					RequestCode
 				);

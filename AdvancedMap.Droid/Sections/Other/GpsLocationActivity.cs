@@ -90,7 +90,7 @@ namespace AdvancedMap.Droid
 		{
 			string fine = Android.Manifest.Permission.AccessFineLocation;
 			string coarse = Android.Manifest.Permission.AccessCoarseLocation;
-			ActivityCompat.RequestPermissions(this, new string[] { fine, coarse }, RequestCode);
+			RequestPermissions(new string[] { fine, coarse }, RequestCode);
 		}
 
 		void AddMarker(string title, string subtitle, float latitude, float longitude)
