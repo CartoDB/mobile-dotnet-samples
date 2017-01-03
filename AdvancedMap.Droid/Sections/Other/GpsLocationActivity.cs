@@ -76,7 +76,7 @@ namespace AdvancedMap.Droid
 		{
 			if (requestCode == RequestCode)
 			{
-				if (grantResults[0] == Android.Content.PM.Permission.Granted)
+				if (grantResults.Length > 0 && grantResults[0] == Android.Content.PM.Permission.Granted)
 				{
 					InitializeLocationManager();
 					return;
@@ -90,7 +90,7 @@ namespace AdvancedMap.Droid
 		{
 			string fine = Android.Manifest.Permission.AccessFineLocation;
 			string coarse = Android.Manifest.Permission.AccessCoarseLocation;
-			RequestPermissions(new string[] { fine, coarse }, RequestCode);
+			ActivityCompat.RequestPermissions(this, new string[] { fine, coarse }, RequestCode);
 		}
 
 		void AddMarker(string title, string subtitle, float latitude, float longitude)
