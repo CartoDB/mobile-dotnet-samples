@@ -221,11 +221,8 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
     
     <Target Name="BeforeBuild" Condition=" $(SetVersion) == true ">
-                <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = 
-        'CFBundleVersion']/following-sibling::string[1]" Value="$(BuildNumber)" />
-                <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = 
-        'CFBundleShortVersionString']/following-sibling::string[1]" Value="1.0.$(BuildNumber)" 
-        />
+                <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = &#xD;&#xA;        'CFBundleVersion']/following-sibling::string[1]" Value="$(BuildNumber)" />
+                <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = &#xD;&#xA;        'CFBundleShortVersionString']/following-sibling::string[1]" Value="1.0.$(BuildNumber)" />
     </Target>
 
     <PropertyGroup>

@@ -147,8 +147,8 @@
     <Compile Include="Device.cs" />
     <Compile Include="Samples.cs" />
     <Compile Include="Sections\CARTO.js API\BaseVisController.cs" />
-    <Compile Include="Sections\CARTO.js API\CountriesVisController.cs" />
-    <Compile Include="Sections\CARTO.js API\DotsVisController.cs" />
+    <Compile Include="Sections\CARTO.js API\TrainVisController.cs" />
+    <Compile Include="Sections\CARTO.js API\StoresVisController.cs" />
     <Compile Include="Sections\CARTO.js API\FontsVisController.cs" />
     <Compile Include="Sections\Import API\TilePackagerController.cs" />
     <Compile Include="Sections\Maps API\AnonymousRasterTableController.cs" />

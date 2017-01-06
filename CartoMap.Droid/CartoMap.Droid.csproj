@@ -85,8 +85,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples.cs" />
     <Compile Include="MapApplication.cs" />
-    <Compile Include="Sections\CARTO.js API\CountriesVisActivity.cs" />
-    <Compile Include="Sections\CARTO.js API\DotsVisActivity.cs" />
+    <Compile Include="Sections\CARTO.js API\TrainVisActivity.cs" />
+    <Compile Include="Sections\CARTO.js API\StoresVisActivity.cs" />
     <Compile Include="Sections\CARTO.js API\FontsVisActivity.cs" />
     <Compile Include="Sections\_Header\CartoJSHeader.cs" />
     <Compile Include="Sections\_Header\ImportHeader.cs" />

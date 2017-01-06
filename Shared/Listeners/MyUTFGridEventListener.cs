@@ -48,7 +48,7 @@ namespace Shared
 			// Show clicked element variant as JSON string
 			string desc = clickInfo.ElementInfo.ToString();
 
-			clickPopup = new BalloonPopup(clickInfo.ClickPos, styleBuilder.BuildStyle(), "Clicked", desc);
+			clickPopup = new BalloonPopup(clickInfo.ClickPos, styleBuilder.BuildStyle(), "", desc);
 
 			vectorDataSource.Add(clickPopup);
 

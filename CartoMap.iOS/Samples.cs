@@ -10,8 +10,8 @@ namespace CartoMap.iOS
 		public static List<UIViewController> List = new List<UIViewController>
 		{
 			new HeaderController() { Name = "CARTO.js API" },
-			new CountriesVisController(),
-			new DotsVisController(),
+			new TrainVisController(),
+			new StoresVisController(),
 			new FontsVisController(),
 			// TODO: Currently disabled, as the feature is a work in progress
 			//new HeaderController() { Name = "Import API" },

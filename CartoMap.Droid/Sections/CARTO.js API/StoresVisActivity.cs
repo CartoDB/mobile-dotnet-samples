@@ -7,14 +7,14 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
-	[ActivityData(Title = "Dots Vis", Description = "Vis showing dots on the map using UTFGrid")]
+	[ActivityData(Title = "Predicted Store Location", Description = "Vis showing store locations on the map using UTFGrid")]
 	public class DotsVisActivity : BaseVisActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			UpdateVis("https://documentation.cartodb.com/api/v2/viz/236085de-ea08-11e2-958c-5404a6a683d5/viz.json");
+			UpdateVis("https://maps-for-all.cartodb.com/api/v2/viz/78b33d4a-3dd6-11e6-8632-0ea31932ec1d/viz.json");
 		}
 	}
 }
