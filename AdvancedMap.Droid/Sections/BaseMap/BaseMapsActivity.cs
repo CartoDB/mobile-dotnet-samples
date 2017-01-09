@@ -206,7 +206,7 @@ namespace AdvancedMap.Droid
 				decoder.SetStyleParameter(buildings.ParameterName, buildings.IsChecked.ToString());
 
 				decoder.SetStyleParameter(texts.ParameterName, texts.ParameterValue);
-				decoder.SetStyleParameter(buildings.ParameterName, texts.ParameterValue);
+				decoder.SetStyleParameter(buildings.ParameterName, buildings.ParameterValue);
 			}
 
 			MapView.Layers.Clear();
