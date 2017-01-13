@@ -86,7 +86,8 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
-    <CodesignProvision></CodesignProvision>
+    <CodesignProvision>
+    </CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -112,13 +113,27 @@
     <ImageAsset Include="Assets.xcassets\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_120.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_29.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_58.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_80.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_114.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_180.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_120.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_29.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_58.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_80.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_114.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_180.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -163,24 +178,17 @@
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-    
-    <Target Name="BeforeBuild" Condition=" $(SetVersion) == true ">
-                <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = &#xD;&#xA;        'CFBundleVersion']/following-sibling::string[1]" Value="$(BuildNumber)" />
-                <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = &#xD;&#xA;        'CFBundleShortVersionString']/following-sibling::string[1]" Value="1.0.$(BuildNumber)" />
-    </Target>
-
-    <PropertyGroup>
+  <Target Name="BeforeBuild" Condition=" $(SetVersion) == true ">
+    <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = &#xD;&#xA;        'CFBundleVersion']/following-sibling::string[1]" Value="$(BuildNumber)" />
+    <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = &#xD;&#xA;        'CFBundleShortVersionString']/following-sibling::string[1]" Value="1.0.$(BuildNumber)" />
+  </Target>
+  <PropertyGroup>
     <CreateIpaDependsOn>
         $(CreateIpaDependsOn);
         CopyIpa
     </CreateIpaDependsOn>
-    </PropertyGroup>
-    
-    <Target Name="CopyIpa" Condition="'$(OutputType)' == 'Exe' And '$(ComputedPlatform)' == 'iPhone' And '$(BuildIpa)' == 'true'">
-        <Copy SourceFiles="$(IpaPackagePath)" DestinationFolder="$(OutputPath)" />
-    </Target>
-
+  </PropertyGroup>
+  <Target Name="CopyIpa" Condition="'$(OutputType)' == 'Exe' And '$(ComputedPlatform)' == 'iPhone' And '$(BuildIpa)' == 'true'">
+    <Copy SourceFiles="$(IpaPackagePath)" DestinationFolder="$(OutputPath)" />
+  </Target>
 </Project>
-
-
-

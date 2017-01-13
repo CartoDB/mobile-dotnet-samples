@@ -10,6 +10,9 @@ using Carto.Projections;
 #if __ANDROID__
 using Xamarin.Forms.Platform.Android;
 using HelloMap.Forms.Droid;
+#elif WINDOWS_PHONE
+using Xamarin.Forms.Platform.UWP;
+using HelloMap.Forms.WP;
 #else
 using Xamarin.Forms.Platform.iOS;
 #endif
@@ -24,16 +27,22 @@ namespace HelloMap.Forms
 
 		public MainPage()
 		{
-			// Be sure to register your license in native code or in an #if case.
-			// Even if your package names are identical, licenses are platform-specific.
-			// This sample register's license in App.xaml.cs
+            // Be sure to register your license in native code or in an #if case.
+            // Even if your package names are identical, licenses are platform-specific.
+            // This sample register's license in App.xaml.cs
 
 			AbsoluteLayout view = new AbsoluteLayout();
 
 #if __ANDROID__
 			MapView = new MapView(Xamarin.Forms.Forms.Context);
+#elif WINDOWS_PHONE
+            MapView = new MapView();
+
+            Windows.Foundation.Rect bounds = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().VisibleBounds;
+            MapView.Width = bounds.Width;
+            MapView.Height = bounds.Height;
 #else
-			MapView = new MapView();
+            MapView = new MapView();
 			// Set ScreenBounds in AppDelegate so they would be conveniently available here
 			MapView.Frame = iOS.AppDelegate.ScreenBounds;
 #endif
