@@ -46,7 +46,7 @@ namespace HelloMap.Forms
 			// Set ScreenBounds in AppDelegate so they would be conveniently available here
 			MapView.Frame = iOS.AppDelegate.ScreenBounds;
 #endif
-			view.Children.Add(MapView);
+			view.Children.Add(MapView.ToView());
 			Content = view;
 
 			// Add default base layer
