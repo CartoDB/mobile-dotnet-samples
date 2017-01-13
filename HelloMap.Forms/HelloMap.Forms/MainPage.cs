@@ -7,13 +7,14 @@ using Carto.VectorElements;
 using Carto.Core;
 using Carto.Projections;
 
+// minimal platform-specific code to reference MapView
 #if __ANDROID__
 using Xamarin.Forms.Platform.Android;
 using HelloMap.Forms.Droid;
 #elif WINDOWS_PHONE
 using Xamarin.Forms.Platform.UWP;
 using HelloMap.Forms.WP;
-#else
+#elif __IOS__
 using Xamarin.Forms.Platform.iOS;
 #endif
 
@@ -33,6 +34,9 @@ namespace HelloMap.Forms
 
 			AbsoluteLayout view = new AbsoluteLayout();
 
+
+			// minimal platform-specific code is needed to create MapView
+
 #if __ANDROID__
 			MapView = new MapView(Xamarin.Forms.Forms.Context);
 #elif WINDOWS_PHONE
@@ -41,11 +45,14 @@ namespace HelloMap.Forms
             Windows.Foundation.Rect bounds = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().VisibleBounds;
             MapView.Width = bounds.Width;
             MapView.Height = bounds.Height;
-#else
+#elif __IOS__
             MapView = new MapView();
 			// Set ScreenBounds in AppDelegate so they would be conveniently available here
 			MapView.Frame = iOS.AppDelegate.ScreenBounds;
 #endif
+
+
+			// all the remaining usage of MapView is cross-platform
 			view.Children.Add(MapView.ToView());
 			Content = view;
 
