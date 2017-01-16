@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Carto.VectorElements;
 using Carto.Core;
 using Carto.Projections;
+using Carto.DataSources;
 
 #if __ANDROID__
 using Xamarin.Forms.Platform.Android;
@@ -23,8 +24,6 @@ namespace HelloMap.Forms
 	{
 		MapView MapView { get; set; }
 
-		Marker marker;
-
 		public MainPage()
 		{
             // Be sure to register your license in native code or in an #if case.
@@ -32,6 +31,8 @@ namespace HelloMap.Forms
             // This sample register's license in App.xaml.cs
 
 			AbsoluteLayout view = new AbsoluteLayout();
+
+			// Since MapView is a native element, initialize and set its size natively
 
 #if __ANDROID__
 			MapView = new MapView(Xamarin.Forms.Forms.Context);
@@ -63,12 +64,77 @@ namespace HelloMap.Forms
 			MapView.SetZoom(10, 0);
 
 			// Custom extension method. cf Extensions.cs
-			marker = MapView.AddMarkerToPosition(berlin);
+			MapView.AddMarkerToPosition(berlin);
+
+			// Good place to set the sizes and positions of Children, 
+			// similar to LayoutSubviews of iOS and OnLayout of Android
+			view.SizeChanged += OnSizeChanged;
+
+			Button button = new Button();
+			button.BackgroundColor = Color.FromRgb(117, 58, 97);
+			button.TextColor = Color.White;
+			button.Text = "Hide Marker";
+
+			button.VerticalOptions = LayoutOptions.EndAndExpand;
+			button.HorizontalOptions = LayoutOptions.EndAndExpand;
+
+			view.Children.Add(button);
+
+			button.Clicked += OnButtonClick;
+		}
+
+		void OnSizeChanged(object sender, EventArgs e)
+		{
+			AbsoluteLayout view = sender as AbsoluteLayout;
+			// In our case, we know the first element of the view is the map and second is the button
+			Button button = (Button)view.Children[1];
+
+			int margin = 5;
+
+			button.WidthRequest = 150;
+			button.HeightRequest = 60;
+			button.Margin = new Thickness(5, 5, 5, 5);
+
+			// Set button to bottom right corner, with some margin as well
+			button.Margin = new Thickness(
+				view.Width - (button.WidthRequest + margin), 
+				view.Height - (button.HeightRequest + margin), 
+				margin, 
+				margin
+			);
+		}
+
+		void OnButtonClick(object sender, EventArgs e)
+		{
+			Button button = (Button)sender;
+
+			// We know that the second layer is a Vectorlayer and its DataSource is a LocalVectorDataSource
+			// cf. Methods in Extensions.cs
+			var source = ((MapView.Layers[1] as VectorLayer).DataSource as LocalVectorDataSource);
+			// This method gets all the elements, and this sample only contains one Marker
+			var marker = (Marker)source.GetAll()[0];
+
+			if (button.Text.Equals("Hide Marker"))
+			{
+				button.Text = "Show Marker";
+				marker.Visible = false;
+			}
+			else
+			{
+				button.Text = "Hide Marker";
+				marker.Visible = true;
+			}
 		}
 
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
+
+			// We know that the second layer is a Vectorlayer and its DataSource is a LocalVectorDataSource
+			// cf. Methods in Extensions.cs
+			var source = ((MapView.Layers[1] as VectorLayer).DataSource as LocalVectorDataSource);
+			// This method gets all the elements, and this sample only contains one Marker
+			var marker = (Marker)source.GetAll()[0];
 
 			// Add simple event listener that changes size and/or color on map click
 			MapView.MapEventListener = new MapListener(marker);

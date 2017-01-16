@@ -23,12 +23,12 @@ namespace HelloMap.Forms
             Carto.Utils.Log.ShowInfo = true;
 
             MainPage = new MainPage();
+			NavigationPage.SetHasNavigationBar(MainPage, true);
 
 #if __ANDROID__
 			MapView.RegisterLicense(License, Xamarin.Forms.Forms.Context);
 #else
-            bool result = MapView.RegisterLicense(License);
-            System.Diagnostics.Debug.WriteLine(result);
+            MapView.RegisterLicense(License);
 #endif
 		}
 
