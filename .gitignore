@@ -1,6 +1,6 @@
 */bin/*
 */obj/*
-packages/*
+*packages/*
 *.userprefs
 
-.DS_Store
+*.DS_Store
