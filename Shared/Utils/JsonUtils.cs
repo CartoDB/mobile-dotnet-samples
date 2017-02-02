@@ -37,7 +37,7 @@ namespace Shared
 		{
 			get
 			{
-				return "#stations_1{" +
+				return "#stations_1 {" +
 							"marker-fill-opacity:0.9;" +
 							"marker-line-color:#FFF;" +
 							"marker-line-width:2;" +
