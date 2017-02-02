@@ -22,9 +22,7 @@ namespace CartoMap.WindowsPhone
 {
     partial class App : Application
     {
-        const string LICENSE = "XTUN3Q0ZFMmhzUWEwdlZwNlJNVW5kL1hMRExMYXNYVUxBaFFhKzlSK2drYjEzNnBhSTJzY1c5aDBkL2licFE9PQo" +
-            "KcHJvZHVjdHM9c2RrLXhhbWFyaW4tYW5kcm9pZC00LioKcGFja2FnZU5hbWU9Y29tLmNhcnRvLmFkdmFuY2VkbWFwLnhhbWFyaW4uZHJvaW" +
-            "QKd2F0ZXJtYXJrPWRldmVsb3BtZW50CnZhbGlkVW50aWw9MjAxNi0wOS0xOApvbmxpbmVMaWNlbnNlPTEK";
+        const string LICENSE = "XTUMwQ0ZGbzdnUXpoUndLSjcvYUZrdkZFaFpaUzVyVE1BaFVBb0RFM2lVQjYwdGhWSUdRU05PWnkrS3RTRUMwPQoKYXBwVG9rZW49MWM2YWQ0MDUtODg1Yi00NWI3LTg5ZTktZDZiNTU2NGRmMjgwCnByb2R1Y3RJZD1hZTgxZGZkNS01NDk3LTRiYzAtOWUyMC00MjEwNDRiNjFjNTkKcHJvZHVjdHM9c2RrLXdpbnBob25lLTQuKgpvbmxpbmVMaWNlbnNlPTEKd2F0ZXJtYXJrPWNhcnRvZGIK";
 
         public App()
         {
