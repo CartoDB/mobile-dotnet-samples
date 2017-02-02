@@ -96,7 +96,7 @@
     <Compile Include="Sections\Torque API\TorqueShipsActivity.cs" />
     <Compile Include="Sections\Import API\TilePackagerActivity.cs" />
     <Compile Include="Sections\Maps API\AnonymousRasterTableActivity.cs" />
-    <Compile Include="Sections\Maps API\AnonymousVectorTableController.cs" />
+    <Compile Include="Sections\Maps API\AnonymousVectorTableActivity.cs" />
     <Compile Include="Sections\Maps API\NamedMapActivity.cs" />
     <Compile Include="Sections\SQL API\SQLServiceActivity.cs" />
     <Compile Include="LauncherListActivity.cs" />

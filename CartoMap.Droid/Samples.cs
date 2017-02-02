@@ -21,7 +21,7 @@ namespace CartoMap.Droid
 
 			typeof(MapsHeader),
 			typeof(AnonymousRasterTableActivity),
-			typeof(AnonymousVectorTableController),
+			typeof(AnonymousVectorTableActivity),
 			typeof(NamedMapActivity),
 
 			typeof(SQLHeader),

@@ -8,7 +8,7 @@ using Carto.Core;
 using Carto.Projections;
 using Carto.DataSources;
 
-// minimal platform-specific code to reference MapView
+// Minimal platform-specific code to reference MapView
 #if __ANDROID__
 using Xamarin.Forms.Platform.Android;
 using HelloMap.Forms.Droid;
@@ -49,8 +49,6 @@ namespace HelloMap.Forms
 			// Set ScreenBounds in AppDelegate so they would be conveniently available here
 			MapView.Frame = iOS.AppDelegate.ScreenBounds;
 #endif
-
-
 			// all the remaining usage of MapView is cross-platform
 			view.Children.Add(MapView.ToView());
 			Content = view;
