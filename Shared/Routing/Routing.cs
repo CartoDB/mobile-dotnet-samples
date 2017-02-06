@@ -50,13 +50,13 @@ namespace Shared
 			BaseProjection = projection;
 		}
 
-		public void Show(RoutingResult result, Color darkGray)
+		public void Show(RoutingResult result, Color lineColor)
 		{
 			routeDataSource.Clear();
 
 			startMarker.Visible = false;
 
-			Line line = CreatePolyline(startMarker.Geometry.CenterPos, stopMarker.Geometry.CenterPos, result, darkGray);
+			Line line = CreatePolyline(startMarker.Geometry.CenterPos, stopMarker.Geometry.CenterPos, result, lineColor);
 			routeDataSource.Add(line);
 
 			// Add instruction markers
@@ -223,11 +223,11 @@ namespace Shared
 		}
 
 		// Creates a line from GraphHopper response
-		protected Line CreatePolyline(MapPos start, MapPos end, RoutingResult result, Color darkGray)
+		protected Line CreatePolyline(MapPos start, MapPos end, RoutingResult result, Color color)
 		{
 			LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();
-			lineStyleBuilder.Color = darkGray;
-			lineStyleBuilder.Width = 12;
+			lineStyleBuilder.Color = color;
+			lineStyleBuilder.Width = 7;
 
 			return new Line(result.Points, lineStyleBuilder.BuildStyle());
 		}

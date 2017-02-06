@@ -21,7 +21,7 @@ namespace CartoMap.Droid
 
 			// You need to change these according to your DB
 			string sql = "select * from table_46g";
-			string cartoCSS = "#table_46g {raster-opacity: 0.5;}";
+			string cartoCSS = "#table_46g { raster-opacity: 0.5; }";
 
 			string config = JsonUtils.GetRasterLayerConfigJson(sql, cartoCSS).ToString();
 

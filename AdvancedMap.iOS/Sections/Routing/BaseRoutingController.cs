@@ -98,8 +98,8 @@ namespace AdvancedMap.iOS
 
 					Alert(Routing.GetMessage(result, time, DateTime.Now.Millisecond));
 
-					Color darkGray = new Carto.Graphics.Color(50, 50, 50, 255);
-					Routing.Show(result, darkGray);
+					Color lineColor = new Color(0, 122, 255, 255);
+					Routing.Show(result, lineColor);
 				});
 			});
 		}

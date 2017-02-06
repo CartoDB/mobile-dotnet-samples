@@ -182,6 +182,7 @@
     <AndroidAsset Include="Assets\jefferson-building-ground-floor.jpg" />
     <AndroidAsset Include="Assets\styles_mapzen.zip" />
     <AndroidAsset Include="Assets\nutiteq-dark.zip" />
+    <AndroidAsset Include="Assets\world_zoom5.mbtiles" />
   </ItemGroup>
   <Import Project="..\Shared.Droid\Shared.Droid.projitems" Label="Shared" Condition="Exists('..\Shared.Droid\Shared.Droid.projitems')" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
