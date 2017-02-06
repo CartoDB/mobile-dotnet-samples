@@ -16,9 +16,7 @@ namespace HelloMap.WindowsPhone
     sealed partial class App : Application
     {
         // TODO: Correct License key
-        const string License = "XTUN3Q0ZHNTVGeWdNakFxZXRyM1F4NlFCV3NPQ3BJZjlBaFFBemJjd1AzT3d4Tk9WekN6MmRVTHltSW0zV2c9PQoKcHJ" + 
-            "vZHVjdHM9c2RrLXdpbnBob25lLTMuKgpwcm9kdWN0SWQ9Yzg4MmQzOGEtNWMwOS00OTk0LTg3ZjAtODk4NzVjZGVlNTM5CndhdGVybWFyaz1udX" +
-            "RpdGVxCnVzZXJLZXk9MTVjZDkxMzEwNzJkNmRmNjhiOGE1NGZlZGE1YjA0OTYK";
+        const string License = "XTUMwQ0ZEWWNiSEh4emREL1dSU3hjTHh5MlVlTTlmZzJBaFVBalRUeHR2bjRYWDhDdU9kQ2wrRTJlV0tqclNJPQoKYXBwVG9rZW49NzNiMjVhZWYtN2M5OS00ZGY0LTk0ODMtODQ0YzcwNWI1YzUwCnByb2R1Y3RJZD1iNjQ0ZWY4NC02ZDQ2LTQxYzEtYWFiYy0zZjU1YzA4YTU3MzUKcHJvZHVjdHM9c2RrLXdpbnBob25lLTQuKgpvbmxpbmVMaWNlbnNlPTEKd2F0ZXJtYXJrPWN1c3RvbQo=";
 
         MapView MapView { get; set; }
 

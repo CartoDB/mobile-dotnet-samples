@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "CartoMobileSDK.WinPhone10": "4.0.0-devel-1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
     "Xamarin.Forms": "2.3.3.180"
   },
