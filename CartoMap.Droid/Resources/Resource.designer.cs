@@ -1690,10 +1690,16 @@ namespace CartoMap.Droid
 			public const int abc_vector_test = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int hockeyapp_btn_background = 2130837587;
+			public const int button_pause = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int notification_template_icon_bg = 2130837588;
+			public const int button_play = 2130837588;
+			
+			// aapt resource value: 0x7f020055
+			public const int hockeyapp_btn_background = 2130837589;
+			
+			// aapt resource value: 0x7f020056
+			public const int notification_template_icon_bg = 2130837590;
 			
 			static Drawable()
 			{
