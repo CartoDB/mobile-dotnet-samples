@@ -103,9 +103,9 @@
     <Compile Include="LauncherListActivity.cs" />
     <Compile Include="Sections\CARTO.js API\BaseVisActivity.cs" />
     <Compile Include="MapBaseActivity.cs" />
-    <Compile Include="Sections\Torque API\PlayButton.cs" />
-    <Compile Include="Sections\Torque API\TorqueCounter.cs" />
     <Compile Include="Sections\Torque API\TorqueView.cs" />
+    <Compile Include="Sections\Torque API\Subviews\PlayButton.cs" />
+    <Compile Include="Sections\Torque API\Subviews\TorqueCounter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -139,6 +139,7 @@
     <Folder Include="Sections\Torque API\" />
     <Folder Include="Resources\mipmap-nodpi\" />
     <Folder Include="Resources\drawable-nodpi\" />
+    <Folder Include="Sections\Torque API\Subviews\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\carto-fonts.zip" />

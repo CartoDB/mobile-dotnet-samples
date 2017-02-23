@@ -103,7 +103,7 @@
       <HintPath>..\packages\HockeySDK.Xamarin.4.1.0\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.iOS">
-      <HintPath>..\packages\CartoMobileSDK.iOS.4.0.0-pre-243\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.iOS.4.0.1-dev-300\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +143,7 @@
     <Folder Include="Sections\Maps API\" />
     <Folder Include="Sections\SQL API\" />
     <Folder Include="Sections\Torque API\" />
+    <Folder Include="Sections\Torque API\Subviews\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
@@ -169,11 +170,16 @@
     <Compile Include="Sections\Maps API\AnonymousRasterTableController.cs" />
     <Compile Include="Sections\Maps API\AnonymousVectorTableController.cs" />
     <Compile Include="Sections\Maps API\NamedMapController.cs" />
-    <Compile Include="Sections\Torque API\TorqueShipController.cs" />
+    <Compile Include="Sections\Torque API\TorqueController.cs" />
     <Compile Include="Sections\SQL API\SQLServiceController.cs" />
+    <Compile Include="Sections\Torque API\TorqueView.cs" />
+    <Compile Include="Sections\Torque API\Subviews\TorqueCounter.cs" />
+    <Compile Include="Sections\Torque API\Subviews\PlayButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\carto-fonts.zip" />
+    <BundleResource Include="Resources\button_pause.png" />
+    <BundleResource Include="Resources\button_play.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />
