@@ -12,9 +12,9 @@ namespace CartoMap.iOS
 {
 	public class TorqueShipController : MapBaseController
 	{
-		public override string Name { get { return "Carto Torque Map"; } }
+		public override string Name { get { return "Torque Ship"; } }
 
-		public override string Description { get { return "Torque tiles of WWII ship movement"; } }
+		public override string Description { get { return "Indoor movement throughout the day"; } }
 
 		const long FRAMETIME = 100;
 
