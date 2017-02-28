@@ -14,7 +14,7 @@ namespace CartoMap.iOS
 	{
 		public override string Name { get { return "Torque Ship"; } }
 
-		public override string Description { get { return "Indoor movement throughout the day"; } }
+		public override string Description { get { return "Indoor movement of shoppers throughout the day"; } }
 
 		const long FRAMETIME = 100;
 
