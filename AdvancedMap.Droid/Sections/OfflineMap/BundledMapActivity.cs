@@ -28,15 +28,16 @@ namespace AdvancedMap.Droid
 			// Remove default baselayer
 			MapView.Layers.Clear();
 
-			// Add our new layer
-
+			// Do the actual copying and source creation on another thread so it wouldn't block the main thread
 			System.Threading.Tasks.Task.Run(delegate
 			{
 				TileDataSource source = CreateTileDataSource();
 
 				var layer = new VectorTileLayer(source, decoder);
+
 				RunOnUiThread(delegate
 				{
+					// However, actual layer insertion should be done on the main thread
 					MapView.Layers.Insert(0, layer);
 				});
 			});
