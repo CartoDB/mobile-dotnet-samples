@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
@@ -9,14 +10,9 @@ namespace CartoMap.Droid
 {
 	public class TorqueCounter : TextView
 	{
-		public static Color TransparentGray = Color.Argb(160, 50, 50, 50);
-
 		public TorqueCounter(Context context) : base(context)
 		{
 			Gravity = Android.Views.GravityFlags.Center;
-
-			int width = 180;
-			int height = (int)(width / 2.2f);
 
 			Typeface = Typeface.Create("sans-serif-thin", TypefaceStyle.Bold);
 			TextSize = 17f;
@@ -24,26 +20,37 @@ namespace CartoMap.Droid
 
 			GradientDrawable drawable = new GradientDrawable();
 			drawable.SetCornerRadius(5);
-			drawable.SetColor(TransparentGray);
+			drawable.SetColor(TorqueHistogram.BackgroundColor);
 			Background = drawable;
-
-			var parameters = new RelativeLayout.LayoutParams(width, height);
-			int padding = 30;
-
-			parameters.SetMargins(0, padding, padding, 0);
-			parameters.AddRule(LayoutRules.AlignParentTop);
-			parameters.AddRule(LayoutRules.AlignParentEnd);
-			LayoutParameters = parameters;
 
 			if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
 			{
 				Elevation = 10;
 			}
-
 		}
+
+		List<string> timestamps;
+		const int incrementBy = 15;
 
 		public void Update(int frameNumber, int frameCount)
 		{
+			if (timestamps == null)
+			{
+				timestamps = new List<string>();
+
+				var date = new DateTime(2016, 9, 15, 12, 14, 0);
+
+				for (int i = 0; i < 256; i++)
+				{
+					string timestamp = date.ToString("HH:mm dd/MM/yyyy");
+					timestamps.Add("  " + timestamp + "  ");
+					date = date.AddMinutes(incrementBy);
+				}
+			}
+
+			Text = timestamps[frameNumber];
+			return;
+
 			string number = "";
 
 			if (frameCount > 100)
@@ -63,6 +70,25 @@ namespace CartoMap.Droid
 			}
 
 			Text = number + "/" + frameCount;
+		}
+
+		public void Update(int frameNumber)
+		{
+			if (!Text.Contains("/"))
+			{
+				return;
+			}
+
+			int frameCount = 0;
+
+			bool success = int.TryParse(Text.Split('/')[1], out frameCount);
+
+			if (!success)
+			{
+				return;
+			}
+
+			Update(frameNumber, frameCount);
 		}
 	}
 }

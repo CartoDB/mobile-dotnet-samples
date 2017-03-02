@@ -80,7 +80,7 @@ namespace Shared
 			});	
 		}
 
-		public static void InitializeMapsService(this MapView map, string username, string mapname, bool isVector)
+		public static void InitializeMapsService(this MapView map, string username, string mapname, bool isVector, Action success = null)
 		{
 			CartoMapsService service = new CartoMapsService();
 			service.Username = username;
@@ -103,6 +103,10 @@ namespace Shared
 					map.Layers.Add(layer);
 				}
 
+				if (success != null)
+				{
+					success();
+				}
 			});
 
 		}

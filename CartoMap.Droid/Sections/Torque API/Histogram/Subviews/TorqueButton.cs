@@ -1,6 +1,5 @@
 ﻿using System;
 using Android.Content;
-using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Views;
@@ -8,10 +7,8 @@ using Android.Widget;
 
 namespace CartoMap.Droid
 {
-	public class PlayButton : RelativeLayout
+	public class TorqueButton : RelativeLayout
 	{
-		public static Color Carto = Color.Rgb(215, 82, 75);
-
 		public new EventHandler<EventArgs> Click;
 
 		const int RESOURCE_PLAY = Resource.Drawable.button_play;
@@ -42,7 +39,7 @@ namespace CartoMap.Droid
 
 				GradientDrawable drawable = new GradientDrawable();
 				drawable.SetCornerRadius(value.Width / 2);
-				drawable.SetColor(Carto);
+				drawable.SetColor(TorqueHistogram.ButtonColor);
 				Background = drawable;
 			}
 		}
@@ -51,27 +48,14 @@ namespace CartoMap.Droid
 			get { return imageResource == RESOURCE_PLAY; } 
 		}
 
-		public PlayButton(Context context) : base(context)
+		public TorqueButton(Context context) : base(context)
 		{
 			imageView = new ImageView(context);
 			AddView(imageView);
 
-			var parameters = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.MatchParent, 
-				RelativeLayout.LayoutParams.MatchParent
-			);
+			var parameters = LayoutUtils.RelativeMatchParent();
 			parameters.SetMargins(10, 10, 10, 10);
 			imageView.LayoutParameters = parameters;
-
-			int buttonSize = 105;
-			int buttonPadding = 30;
-
-			parameters = new RelativeLayout.LayoutParams(buttonSize, buttonSize);
-			parameters.AddRule(LayoutRules.AlignParentRight);
-			parameters.AddRule(LayoutRules.AlignParentBottom);
-			parameters.SetMargins(0, 0, buttonPadding, buttonPadding);
-
-			LayoutParameters = parameters;
 
 			ImageResource = RESOURCE_PAUSE;
 
@@ -122,6 +106,11 @@ namespace CartoMap.Droid
 		ViewPropertyAnimator AnimateToScale(float scale)
 		{
 			return Animate().ScaleY(scale).ScaleX(scale).SetDuration(100);
+		}
+
+		public void Pause()
+		{
+			ImageResource = RESOURCE_PLAY;
 		}
 	}
 }

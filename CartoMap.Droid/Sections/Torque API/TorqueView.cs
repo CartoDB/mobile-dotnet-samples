@@ -10,9 +10,9 @@ namespace CartoMap.Droid
 	{
 		public MapView MapView { get; private set; }
 
-		public PlayButton Button { get; private set; }
+		public TorqueHistogram Histogram { get; private set; }
 
-		public TorqueCounter Counter { get; private set; }
+		int HistogramMargin { get { return (int)(5f * Context.Resources.DisplayMetrics.Density); } }
 
 		public TorqueView(Context context) : base(context)
 		{
@@ -24,11 +24,20 @@ namespace CartoMap.Droid
 				RelativeLayout.LayoutParams.MatchParent
 			);
 
-			Button = new PlayButton(context);
-			AddView(Button);
+			Histogram = new TorqueHistogram(context);
+			AddView(Histogram);
+		}
 
-			Counter = new TorqueCounter(context);
-			AddView(Counter);
+		public new void Dispose()
+		{
+			MapView.Dispose();
+			GC.Collect(0);
+			base.Dispose();
+		}
+
+		public void InitializeHistogram(int frameCount)
+		{
+			Histogram.Initialize(frameCount, HistogramMargin);
 		}
 	}
 }

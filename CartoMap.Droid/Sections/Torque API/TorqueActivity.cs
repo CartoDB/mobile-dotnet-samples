@@ -2,6 +2,7 @@
 using System;
 using System.Threading;
 using Android.App;
+using Android.Content.PM;
 using Carto.Core;
 using Carto.DataSources;
 using Carto.Layers;
@@ -13,7 +14,7 @@ using Shared.Droid;
 
 namespace CartoMap.Droid
 {
-	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
+	[Activity(ScreenOrientation = ScreenOrientation.Landscape | ScreenOrientation.ReverseLandscape)]
 	[ActivityData(Title = "Torque Ship", Description = "Indoor movement throughout the day")]
 	public class TorqueShipsActivity : BaseActivity
 	{
@@ -61,31 +62,58 @@ namespace CartoMap.Droid
 			ContentView = new TorqueView(this);
 			SetContentView(ContentView);
 
-			ContentView.MapView.InitializeMapsService(username, mapname, isVector);
+			ContentView.MapView.InitializeMapsService(username, mapname, isVector, delegate {
+
+				RunOnUiThread(delegate
+				{
+					System.Console.WriteLine("Success: " + TorqueLayer);
+					ContentView.InitializeHistogram(decoder.FrameCount);
+				});
+			});
 
 			MapPos center = ContentView.MapView.Options.BaseProjection.FromWgs84(new MapPos(0.0013, 0.0013));
 			ContentView.MapView.FocusPos = center;
 			ContentView.MapView.Zoom = 18.0f;
 		}
 
-		protected override void OnStart()
+		protected override void OnDestroy()
 		{
-			base.OnStart();
+			base.OnDestroy();
 
-			timer = new Timer(new TimerCallback(UpdateTorque), null, FRAMETIME, FRAMETIME);
+			ContentView.Dispose();
 		}
 
-		protected override void OnStop()
+		protected override void OnResume()
 		{
-			base.OnStop();
+			base.OnResume();
+
+			timer = new Timer(new TimerCallback(UpdateTorque), null, FRAMETIME, FRAMETIME);
+
+			ContentView.Histogram.Click += OnHistogramClicked;
+		}
+
+		protected override void OnPause()
+		{
+			base.OnPause();
 
 			timer.Dispose();
 			timer = null;
+
+			ContentView.Histogram.Click -= OnHistogramClicked;
 		}
+
+		void OnHistogramClicked(object sender, HistogramEventArgs e)
+		{
+			ContentView.Histogram.Button.Pause();
+			ContentView.Histogram.Counter.Update(e.FrameNumber);
+			TorqueLayer.FrameNr = e.FrameNumber;
+		}
+
+		int max;
 
 		void UpdateTorque(object state)
 		{
-			if (ContentView.Button.IsPaused)
+			if (ContentView.Histogram.Button.IsPaused)
 			{
 				return;
 			}
@@ -102,7 +130,19 @@ namespace CartoMap.Droid
 
 				RunOnUiThread(delegate
 				{
-					ContentView.Counter.Update(frameNumber, decoder.FrameCount);
+					int count = TorqueLayer.CountVisibleFeatures(frameNumber);
+
+					if (count > max)
+					{
+						max = count;
+						ContentView.Histogram.UpdateAll(max);
+					}
+					else
+					{
+						ContentView.Histogram.UpdateElement(frameNumber, count, max);
+					}
+
+					ContentView.Histogram.Counter.Update(frameNumber, decoder.FrameCount);
 				});
 			});
 		}
