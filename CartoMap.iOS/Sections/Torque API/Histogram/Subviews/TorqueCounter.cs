@@ -12,9 +12,10 @@ namespace CartoMap.iOS
 			Font = UIFont.FromName("Helvetica Neue", 14);
 			TextAlignment = UITextAlignment.Center;
 
-			BackgroundColor = UIColor.FromRGBA(50, 50, 50, 160);
+			BackgroundColor = TorqueHistogram.Color;
 
-			Layer.CornerRadius = 5;
+			Layer.CornerRadius = 3;
+			ClipsToBounds = true;
 		}
 
 		public void Update(int frameNumber, int frameCount)

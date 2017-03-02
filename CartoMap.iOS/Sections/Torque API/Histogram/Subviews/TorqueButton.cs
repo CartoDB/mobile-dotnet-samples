@@ -1,10 +1,11 @@
-﻿using System;
+﻿
+using System;
 using CoreGraphics;
 using UIKit;
 
 namespace CartoMap.iOS
 {
-	public class PlayButton : UIView
+	public class TorqueButton : UIView
 	{
 		public EventHandler<EventArgs> Click;
 
@@ -15,7 +16,7 @@ namespace CartoMap.iOS
 
 		public bool IsPaused { get; private set; }
 
-		public PlayButton()
+		public TorqueButton()
 		{
 			imageView = new UIImageView();
 			imageView.Image = PauseImage;

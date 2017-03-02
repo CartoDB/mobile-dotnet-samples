@@ -7,6 +7,7 @@ using Carto.Styles;
 using Carto.VectorTiles;
 using Shared;
 using Shared.iOS;
+using UIKit;
 
 namespace CartoMap.iOS
 {
@@ -60,7 +61,14 @@ namespace CartoMap.iOS
 			ContentView = new TorqueView();
 			View = ContentView;
 
-			ContentView.MapView.InitializeMapsService(username, mapname, isVector);
+			ContentView.MapView.InitializeMapsService(username, mapname, isVector, delegate
+			{
+				InvokeOnMainThread(delegate
+				{
+					System.Console.WriteLine("Success: " + TorqueLayer);
+					ContentView.Histogram.Initialize(decoder.FrameCount);
+				});
+			});
 
 			MapPos center = ContentView.MapView.Options.BaseProjection.FromWgs84(new MapPos(0.0013, 0.0013));
 			ContentView.MapView.FocusPos = center;
@@ -82,9 +90,16 @@ namespace CartoMap.iOS
 			timer = null;
 		}
 
+		public override void DidRotate(UIInterfaceOrientation fromInterfaceOrientation)
+		{
+			ContentView.Histogram.OnOrientationChange();
+		}
+
+		int max;
+
 		void UpdateTorque(object state)
 		{
-			if (ContentView.Button.IsPaused)
+			if (ContentView.Histogram.Button.IsPaused)
 			{
 				return;
 			}
@@ -101,7 +116,19 @@ namespace CartoMap.iOS
 
 				InvokeOnMainThread(delegate
 				{
-					ContentView.Counter.Update(frameNumber, decoder.FrameCount);
+					int count = TorqueLayer.CountVisibleFeatures(frameNumber);
+
+					if (count > max)
+					{
+						max = count;
+						ContentView.Histogram.UpdateAll(max);
+					}
+					else
+					{
+						ContentView.Histogram.UpdateElement(frameNumber, count, max);
+					}
+
+					ContentView.Histogram.Counter.Update(frameNumber, decoder.FrameCount);
 				});
 			});
 

@@ -143,7 +143,8 @@
     <Folder Include="Sections\Maps API\" />
     <Folder Include="Sections\SQL API\" />
     <Folder Include="Sections\Torque API\" />
-    <Folder Include="Sections\Torque API\Subviews\" />
+    <Folder Include="Sections\Torque API\Histogram\" />
+    <Folder Include="Sections\Torque API\Histogram\Subviews\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
@@ -173,8 +174,12 @@
     <Compile Include="Sections\Torque API\TorqueController.cs" />
     <Compile Include="Sections\SQL API\SQLServiceController.cs" />
     <Compile Include="Sections\Torque API\TorqueView.cs" />
-    <Compile Include="Sections\Torque API\Subviews\TorqueCounter.cs" />
-    <Compile Include="Sections\Torque API\Subviews\PlayButton.cs" />
+    <Compile Include="Sections\Torque API\Histogram\Subviews\TorqueButton.cs" />
+    <Compile Include="Sections\Torque API\Histogram\Subviews\TorqueCounter.cs" />
+    <Compile Include="Sections\Torque API\Histogram\TorqueHistogram.cs" />
+    <Compile Include="Sections\Torque API\Histogram\Subviews\TorqueIndicator.cs" />
+    <Compile Include="Sections\Torque API\Histogram\Subviews\TorqueInterval.cs" />
+    <Compile Include="Sections\Torque API\Histogram\Subviews\HistogramView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\carto-fonts.zip" />
