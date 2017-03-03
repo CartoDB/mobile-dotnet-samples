@@ -88,9 +88,10 @@ namespace CartoMap.iOS
 			}
 		}
 
-		CGPoint GetPoint(UIEvent evt)
+		public void Pause()
 		{
-			return (evt.AllTouches.AnyObject as UITouch).LocationInView(this);
+			imageView.Image = PlayImage;
+			IsPaused = true;
 		}
 	}
 }

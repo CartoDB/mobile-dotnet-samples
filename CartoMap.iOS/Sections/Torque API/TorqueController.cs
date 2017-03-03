@@ -80,6 +80,8 @@ namespace CartoMap.iOS
 			base.ViewWillAppear(animated);
 
 			timer = new Timer(new TimerCallback(UpdateTorque), null, FRAMETIME, FRAMETIME);
+
+			ContentView.Histogram.Click += OnHistogramClicked;
 		}
 
 		public override void ViewWillDisappear(bool animated)
@@ -88,6 +90,15 @@ namespace CartoMap.iOS
 
 			timer.Dispose();
 			timer = null;
+
+			ContentView.Histogram.Click -= OnHistogramClicked;
+		}
+
+		void OnHistogramClicked(object sender, HistogramEventArgs e)
+		{
+			ContentView.Histogram.Button.Pause();
+			ContentView.Histogram.Counter.Update(e.FrameNumber);
+			TorqueLayer.FrameNr = e.FrameNumber;
 		}
 
 		public override void DidRotate(UIInterfaceOrientation fromInterfaceOrientation)

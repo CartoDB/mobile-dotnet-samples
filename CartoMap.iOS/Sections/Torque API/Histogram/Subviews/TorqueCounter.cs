@@ -40,5 +40,24 @@ namespace CartoMap.iOS
 
 			Text = number + "/" + frameCount;
 		}
+
+		public void Update(int frameNumber)
+		{
+			if (!Text.Contains("/"))
+			{
+				return;
+			}
+
+			int frameCount = 0;
+
+			bool success = int.TryParse(Text.Split('/')[1], out frameCount);
+
+			if (!success)
+			{
+				return;
+			}
+
+			Update(frameNumber, frameCount);
+		}
 	}
 }

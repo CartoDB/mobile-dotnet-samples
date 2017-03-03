@@ -89,6 +89,20 @@ namespace CartoMap.iOS
 			Indicator.Frame = new CGRect(0, CounterHeight + Margin / 2, Histogram.IntervalWidth, BarHeight + Margin);
 		}
 
+		public override void TouchesBegan(Foundation.NSSet touches, UIEvent evt)
+		{
+			UITouch touch = (UITouch)evt.AllTouches.AnyObject;
+			int x = (int)touch.LocationInView(Histogram).X;
+
+			int frameNumber = (int)(x / Histogram.IntervalWidth);
+
+			if (Click != null)
+			{
+				Click(this, new HistogramEventArgs { FrameNumber = frameNumber });
+				Indicator.Update(frameNumber);
+			}
+		}
+
 		public void UpdateElement(int frameNumber, int elementCount, int maxElements)
 		{
 			if (Histogram.Count == 0)
