@@ -27,8 +27,6 @@ namespace Shared
 		{
 			LocalVectorDataSource source = (LocalVectorDataSource)layer.DataSource;
 
-			source.Clear();
-
 			Color color = new Color(0, 100, 200, 150);
 
 			Feature feature = clickInfo.Feature;
@@ -85,7 +83,7 @@ namespace Shared
 				message = "Admin level (osm_id: " + id + "): " + level; 
 			}
 
-			message += " | Force: " + Force + "";
+			message += " | Force: " + Force;
 
 			BalloonPopup popup = new BalloonPopup(clickInfo.ClickPos, builder.BuildStyle(), "", message);
 

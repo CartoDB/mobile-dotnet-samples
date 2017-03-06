@@ -23,6 +23,8 @@ namespace AdvancedMap.iOS
 
 		VectorLayer VectorLayer { get; set; }
 
+		ForceTouchRecognizer recognizer = new ForceTouchRecognizer();
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
@@ -46,10 +48,8 @@ namespace AdvancedMap.iOS
 			MapView.Zoom = 5;
 
 			recognizer = new ForceTouchRecognizer();
-			recognizer.CancelsTouchesInView = false;
 			MapView.AddGestureRecognizer(recognizer);
 		}
-		ForceTouchRecognizer recognizer = new ForceTouchRecognizer();
 
 		public override void ViewWillAppear(bool animated)
 		{

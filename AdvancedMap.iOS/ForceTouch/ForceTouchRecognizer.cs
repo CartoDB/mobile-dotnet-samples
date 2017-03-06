@@ -31,14 +31,18 @@ namespace AdvancedMap.iOS
 		{
 			forces.Clear();
 
+			// Base call is important, else this recognizer consumes the event and the SDK won't receive it
 			base.TouchesBegan(touches, evt);
 		}
 
 		public override void TouchesMoved(NSSet touches, UIEvent evt)
 		{
+			// Touches moved captures the actual force of it, 
+			// shouldn't be caught on TouchesEnded as that catches force during the end of the touch
 			UITouch touch = (UITouch)touches.AnyObject;
 			forces.Add(touch.Force);
 
+			// Base call is important, else this recognizer consumes the event and the SDK won't receive it
 			base.TouchesMoved(touches, evt);
 		}
 
@@ -48,9 +52,11 @@ namespace AdvancedMap.iOS
 
 			if (ForceTouch != null)
 			{
+				// Be sure to grab the average force of the entire touch event to determine full force
 				ForceTouch(View, new ForceEventArgs(AverageForce));
 			}
 
+			// Base call is important, else this recognizer consumes the event and the SDK won't receive it
 			base.TouchesEnded(touches, evt);
 		}
 

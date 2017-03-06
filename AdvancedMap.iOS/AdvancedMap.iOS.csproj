@@ -203,7 +203,6 @@
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceController.cs" />
     <Compile Include="Sections\Other\CaptureController.cs" />
     <Compile Include="Sections\OverlayDataSource\GroundOverlayController.cs" />
-    <Compile Include="ForceTouch\ForceTouchExampleController.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\AdvancedPackageManagerController.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageListCell.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageManagerButton.cs" />
