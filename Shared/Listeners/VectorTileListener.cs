@@ -12,6 +12,10 @@ namespace Shared
 {
 	public class VectorTileListener : VectorTileEventListener
 	{
+		public bool IsForce { get; set; } = false;
+
+		public double Force { get; set; }
+
 		VectorLayer layer;
 
 		public VectorTileListener(VectorLayer layer)
@@ -66,12 +70,34 @@ namespace Shared
 			// Set a higher placement priority so it would always be visible
 			builder.PlacementPriority = 10;
 
-			string message = feature.Properties.ToString().ToMax300Characters();
+			string message = feature.Properties.ToString().ToMax200Characters();
+			string name = feature.Properties.GetObjectElement("name").String;
+			string id = feature.Properties.GetObjectElement("osm_id").String;
+
+			if (!name.Equals("null"))
+			{
+				
+				message = "Name (osm_id: " + id + "): " + name;
+			}
+			else
+			{
+				string level = feature.Properties.GetObjectElement("admin_level").String;
+				message = "Admin level (osm_id: " + id + "): " + level; 
+			}
+
+			message += " | Force: " + Force + "";
 
 			BalloonPopup popup = new BalloonPopup(clickInfo.ClickPos, builder.BuildStyle(), "", message);
 
 			source.Add(popup);
 
+			if (IsForce)
+			{
+				Console.WriteLine("Force touch");
+				return false;
+			}
+
+			Console.WriteLine("Non-force");
 			return true;
 		}
 	}

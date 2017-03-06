@@ -44,7 +44,12 @@ namespace AdvancedMap.iOS
 			MapPos europe = BaseProjection.FromWgs84(new MapPos(15.2551, 54.5260));
 			MapView.SetFocusPos(europe, 0);
 			MapView.Zoom = 5;
+
+			recognizer = new ForceTouchRecognizer();
+			recognizer.CancelsTouchesInView = false;
+			MapView.AddGestureRecognizer(recognizer);
 		}
+		ForceTouchRecognizer recognizer = new ForceTouchRecognizer();
 
 		public override void ViewWillAppear(bool animated)
 		{
@@ -52,6 +57,8 @@ namespace AdvancedMap.iOS
 
 			MenuButton.Click += OnMenuButtonClick;
 			Menu.OptionTapped += OnMenuSelectionChanged;
+
+			recognizer.ForceTouch += OnForceTouch;
 		}
 
 		public override void ViewWillDisappear(bool animated)
@@ -60,6 +67,14 @@ namespace AdvancedMap.iOS
 
 			MenuButton.Click -= OnMenuButtonClick;
 			Menu.OptionTapped -= OnMenuSelectionChanged;
+
+			recognizer.ForceTouch -= OnForceTouch;
+		}
+
+		void OnForceTouch(object sender, ForceEventArgs e)
+		{
+			currentListener.Force = e.RoundedForce;
+			currentListener.IsForce = e.IsForce;
 		}
 
 		void OnMenuButtonClick(object sender, EventArgs e)

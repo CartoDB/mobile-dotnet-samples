@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using Carto.Ui;
 using CoreGraphics;
 using Foundation;
@@ -9,43 +10,54 @@ namespace AdvancedMap.iOS
 {
 	public class ForceTouchRecognizer : UITapGestureRecognizer
 	{
-		bool isEventHandled;
-
 		public EventHandler<ForceEventArgs> ForceTouch;
+
+		List<nfloat> forces = new List<nfloat>();
+
+		public nfloat AverageForce { 
+			get {
+				nfloat total = 0;
+
+				foreach (nfloat force in forces)
+				{
+					total += force;
+				}
+
+				return total / forces.Count;
+			}
+		}
+
+		public override void TouchesBegan(NSSet touches, UIEvent evt)
+		{
+			forces.Clear();
+
+			base.TouchesBegan(touches, evt);
+		}
 
 		public override void TouchesMoved(NSSet touches, UIEvent evt)
 		{
 			UITouch touch = (UITouch)touches.AnyObject;
-
-			// Arbitrary number; let's say at least 1 to differentiate it from a normal touch
-			if (touch.Force > 1) 
-			{
-				if (ForceTouch != null && !isEventHandled) 
-				{
-					isEventHandled = true;
-					ForceTouch(View, new ForceEventArgs(touch.Force));
-				}
-			}
+			forces.Add(touch.Force);
 
 			base.TouchesMoved(touches, evt);
 		}
 
 		public override void TouchesEnded(NSSet touches, UIEvent evt)
 		{
-			isEventHandled = false;
+			UITouch touch = (UITouch)touches.AnyObject;
+
+			if (ForceTouch != null)
+			{
+				ForceTouch(View, new ForceEventArgs(AverageForce));
+			}
+
 			base.TouchesEnded(touches, evt);
 		}
 
-		public override void TouchesCancelled(NSSet touches, UIEvent evt)
-		{
-			isEventHandled = false;
-			base.TouchesCancelled(touches, evt);
-		}
 	}
 
 	public enum ForceType
 	{
-		None,
 		Weak,
 		Medium,
 		Strong
@@ -53,6 +65,8 @@ namespace AdvancedMap.iOS
 
 	public class ForceEventArgs : EventArgs
 	{
+		public bool IsForce { get { return Type != ForceType.Weak; } }
+
 		public nfloat Force { get; set; }
 
 		public double RoundedForce { get { return Math.Round(Force, 2); } }
@@ -63,7 +77,7 @@ namespace AdvancedMap.iOS
 		{
 			Force = force;
 
-			// TODO These numbers may need to be tweaked
+			// TODO Tweak these numbers
 			if (force > 5)
 			{
 				Type = ForceType.Strong;
