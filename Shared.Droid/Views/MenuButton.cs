@@ -46,7 +46,7 @@ namespace Shared.Droid
 
 			if (Build.VERSION.SdkInt > BuildVersionCodes.Lollipop)
 			{
-				Elevation = 10;
+				Elevation = 3;
 			}
 			else
 			{

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Android.Content;
+using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Carto.PackageManager;
@@ -23,6 +24,17 @@ namespace AdvancedMap.Droid
 
 			adapter = new PackageManagerAdapter(context, list, Resource.Layout.package_item_row, packages);
 			list.Adapter = adapter;
+
+			SetBackgroundColor(Android.Graphics.Color.White);
+
+			if (Build.VERSION.SdkInt > BuildVersionCodes.Lollipop)
+			{
+				Elevation = 11;
+			}
+			else
+			{
+				// No elevation for you, my friend
+			}
 		}
 
 		public void Update(List<Package> packages)
@@ -51,5 +63,6 @@ namespace AdvancedMap.Droid
 				}
 			}
 		}
+
 	}
 }

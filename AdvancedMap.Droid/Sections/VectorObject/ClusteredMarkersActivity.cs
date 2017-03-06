@@ -68,10 +68,12 @@ namespace AdvancedMap.Droid
 				}
 
 				source.AddAll(elements);
-				Alert("Finished adding Markers to source. Clustering started");
+				Alert("Clustering started. Please wait...");
 
 				// Add the clustered vector layer to the map
 				MapView.Layers.Add(layer);
+
+
 
 			}).Start();
 		}
