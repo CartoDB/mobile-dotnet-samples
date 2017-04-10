@@ -18,6 +18,9 @@ namespace CartoMap.Droid
 	[ActivityData(Title = "Torque Ship", Description = "Indoor movement throughout the day")]
 	public class TorqueShipsActivity : BaseActivity
 	{
+	
+	// Loads and shows Torque map: https://team.carto.com/u/solutions/builder/a108ee2b-6699-43bc-aa71-3b0bc962acf9/embed
+	
 		const long FRAMETIME = 100;
 
 		TorqueTileDecoder decoder;
