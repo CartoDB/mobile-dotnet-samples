@@ -30,6 +30,8 @@ namespace CartoMap.Droid
 		}
 
 		List<string> timestamps;
+		
+		// map data timespan / 256  - timestep for one torque animation frame 
 		const int incrementBy = 15;
 
 		public void Update(int frameNumber, int frameCount)
@@ -38,6 +40,7 @@ namespace CartoMap.Droid
 			{
 				timestamps = new List<string>();
 
+	// hardcoded timestamp from https://team.carto.com/u/solutions/builder/a108ee2b-6699-43bc-aa71-3b0bc962acf9/embed
 				var date = new DateTime(2016, 9, 15, 12, 14, 0);
 
 				for (int i = 0; i < 256; i++)
