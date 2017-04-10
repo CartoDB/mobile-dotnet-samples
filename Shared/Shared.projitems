@@ -56,5 +56,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\BaseMaps\Sections.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Cities\BoundingBoxes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Routing\Routing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\TorqueUtils.cs" />
   </ItemGroup>
 </Project>

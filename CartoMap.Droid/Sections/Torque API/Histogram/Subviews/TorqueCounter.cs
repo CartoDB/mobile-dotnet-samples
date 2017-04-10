@@ -5,6 +5,7 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Widget;
+using Shared;
 
 namespace CartoMap.Droid
 {
@@ -15,7 +16,7 @@ namespace CartoMap.Droid
 			Gravity = Android.Views.GravityFlags.Center;
 
 			Typeface = Typeface.Create("sans-serif-thin", TypefaceStyle.Bold);
-			TextSize = 17f;
+			TextSize = 30f / context.Resources.DisplayMetrics.Density;
 			SetTextColor(Color.White);
 
 			GradientDrawable drawable = new GradientDrawable();
@@ -29,47 +30,14 @@ namespace CartoMap.Droid
 			}
 		}
 
-		List<string> timestamps;
-		const int incrementBy = 15;
-
 		public void Update(int frameNumber, int frameCount)
 		{
-			if (timestamps == null)
+			if (!TorqueUtils.Initialized)
 			{
-				timestamps = new List<string>();
-
-				var date = new DateTime(2016, 9, 15, 12, 14, 0);
-
-				for (int i = 0; i < 256; i++)
-				{
-					string timestamp = date.ToString("HH:mm dd/MM/yyyy");
-					timestamps.Add("  " + timestamp + "  ");
-					date = date.AddMinutes(incrementBy);
-				}
+				TorqueUtils.Initialize();
 			}
 
-			Text = timestamps[frameNumber];
-			return;
-
-			string number = "";
-
-			if (frameCount > 100)
-			{
-				if (frameNumber < 10)
-				{
-					number = "00" + frameNumber;
-				}
-				else if (frameNumber < 100)
-				{
-					number = "0" + frameNumber;
-				}
-				else
-				{
-					number = frameNumber.ToString();
-				}
-			}
-
-			Text = number + "/" + frameCount;
+			Text = TorqueUtils.GetText(frameNumber);
 		}
 
 		public void Update(int frameNumber)

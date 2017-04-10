@@ -14,7 +14,7 @@ using Shared.Droid;
 
 namespace CartoMap.Droid
 {
-	[Activity(ScreenOrientation = ScreenOrientation.Landscape | ScreenOrientation.ReverseLandscape)]
+	[Activity(ScreenOrientation = ScreenOrientation.Landscape)]
 	[ActivityData(Title = "Torque Ship", Description = "Indoor movement throughout the day")]
 	public class TorqueShipsActivity : BaseActivity
 	{

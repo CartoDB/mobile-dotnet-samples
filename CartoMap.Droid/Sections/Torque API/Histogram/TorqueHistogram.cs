@@ -24,9 +24,10 @@ namespace CartoMap.Droid
 
 		List<TorqueInterval> intervals;
 
-		const int BarHeight = 120;
-		const int CounterHeight = 45;
-		const int TotalHeight = BarHeight + CounterHeight;
+		int BarHeight { get { return (int)(60 * Context.Resources.DisplayMetrics.Density); } }
+		int CounterHeight { get { return (int)(22 * Context.Resources.DisplayMetrics.Density); } }
+
+		int TotalHeight{ get { return BarHeight + CounterHeight; } }
 
 		public TorqueCounter Counter { get; private set; }
 
