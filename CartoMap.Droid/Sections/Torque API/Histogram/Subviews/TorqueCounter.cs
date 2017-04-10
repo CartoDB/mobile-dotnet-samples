@@ -30,6 +30,9 @@ namespace CartoMap.Droid
 			}
 		}
 
+		// Map data timespan / 256  - timestep for one torque animation frame 
+		const int incrementBy = 15;
+
 		public void Update(int frameNumber, int frameCount)
 		{
 			if (!TorqueUtils.Initialized)
