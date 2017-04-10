@@ -59,6 +59,13 @@ namespace CartoMap.iOS
 			nfloat w = CounterHeight * 4;
 			nfloat h = CounterHeight;
 
+			int min = 150;
+
+			if (w < min)
+			{
+				w = min;
+			}
+
 			Counter.Frame = new CGRect(x, y, w, h);
 
 			y = CounterHeight + Margin;

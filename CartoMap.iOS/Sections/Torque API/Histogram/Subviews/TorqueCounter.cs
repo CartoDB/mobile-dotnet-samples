@@ -1,5 +1,6 @@
 ﻿
 using System;
+using Shared;
 using UIKit;
 
 namespace CartoMap.iOS
@@ -20,25 +21,12 @@ namespace CartoMap.iOS
 
 		public void Update(int frameNumber, int frameCount)
 		{
-			string number = "";
-
-			if (frameCount > 100)
+			if (!TorqueUtils.Initialized)
 			{
-				if (frameNumber < 10)
-				{
-					number = "00" + frameNumber;
-				}
-				else if (frameNumber < 100)
-				{
-					number = "0" + frameNumber;
-				}
-				else
-				{
-					number = frameNumber.ToString();
-				}
+				TorqueUtils.Initialize();
 			}
 
-			Text = number + "/" + frameCount;
+			Text = TorqueUtils.GetText(frameNumber);
 		}
 
 		public void Update(int frameNumber)
