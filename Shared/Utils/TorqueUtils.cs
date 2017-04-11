@@ -18,6 +18,8 @@ namespace Shared
 			/*
 			 * Hardcoded (pretty) timestamp in accordance with the web UI.
 			 * Non-hardcoded currently only available via external api
+			 * 
+			 * We know the start date, count and interval - just loop over it and create pretty timestamps
 			 */
 			var date = new DateTime(2016, 9, 15, 12, 14, 0);
 
