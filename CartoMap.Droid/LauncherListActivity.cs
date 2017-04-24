@@ -29,7 +29,7 @@ namespace CartoMap.Droid
 			ListView.Adapter = new MapListAdapter(this, Samples.List);
 			ListView.SetBackgroundColor(Color.Black);
 
-			UpdateManager.Register(this, MapApplication.HockeyId);
+			//UpdateManager.Register(this, MapApplication.HockeyId);
 		}
 
 		protected override void OnListItemClick(ListView l, View v, int position, long id)
