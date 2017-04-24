@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.carto.xamarin.cartomap" android:versionName="3.2.1" android:versionCode="11">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.carto.xamarin.cartomap" android:versionName="3.2.1" android:versionCode="12">
 	<uses-sdk android:minSdkVersion="11" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<application android:allowBackup="true" android:icon="@mipmap/icon180" android:label="Carto Map"></application>
