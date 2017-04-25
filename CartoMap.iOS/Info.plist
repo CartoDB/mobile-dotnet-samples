@@ -7,14 +7,12 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>8.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
 		<integer>2</integer>
 	</array>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -31,9 +29,9 @@
 	<string>Carto Map</string>
 	<key>CFBundleShortVersionString</key>
 	<string>3.1.3</string>
-	<key>XSLaunchImageAssets</key>
-	<string>Assets.xcassets/LaunchImage-1.launchimage</string>
 	<key>CFBundleVersion</key>
 	<string>10</string>
+	<key>XSLaunchImageAssets</key>
+	<string>Assets.xcassets/LaunchImage-1.launchimage</string>
 </dict>
 </plist>
