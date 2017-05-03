@@ -30,7 +30,18 @@ namespace CartoMap.iOS
 
 			MapView.RegisterLicense(License);
 
-			Controller = new UINavigationController(new MapListController("CARTO Mobile Samples", Samples.RowSources));
+			//Controller = new UINavigationController(new MapListController("CARTO Mobile Samples", Samples.RowSources));
+			Controller = new UINavigationController(new MapListController("CARTO MOBILE SAMPLES", Samples.List));
+
+			// Navigation bar background color
+			Controller.NavigationBar.BarTintColor = Colors.CartoNavy;
+			// Back button color
+			Controller.NavigationBar.TintColor = UIColor.White;
+			// Title color
+			Controller.NavigationBar.TitleTextAttributes = new UIStringAttributes { 
+				ForegroundColor = UIColor.White, Font = 
+					UIFont.FromName("HelveticaNeue", 15)
+				};
 
 			NavigationBarHeight = Controller.NavigationBar.Frame.Height;
 			StatusBarHeight = UIApplication.SharedApplication.StatusBarFrame.Height;

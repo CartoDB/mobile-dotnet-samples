@@ -13,7 +13,7 @@ namespace Shared.iOS
 
 		public MapGalleryView()
 		{
-			BackgroundColor = UIColor.White;
+			BackgroundColor = Colors.CartoRedLight;
 		}
 
 		public override void LayoutSubviews()
@@ -49,7 +49,6 @@ namespace Shared.iOS
 
 				row.Frame = new CGRect(x, y, w, h);
 
-				Console.WriteLine(counter + ": " + row.Frame);
 				if (!isEven)
 				{
 					y += h + padding;
@@ -98,29 +97,43 @@ namespace Shared.iOS
 			BackgroundColor = Colors.CartoRed;
 
 			image = new UIImageView();
-			//image.Image = UIImage.FromFile(source.ImageResource);
+			image.Image = UIImage.FromFile(source.ImageResource);
+			image.ContentMode = UIViewContentMode.ScaleToFill;
 
 			label = new UILabel();
-			label.Text = source.Title;
+			label.Text = source.Title.ToUpper();
+			label.Font = UIFont.FromName("HelveticaNeue", 10);
 			label.TextColor = UIColor.White;
 			label.TextAlignment = UITextAlignment.Center;
+
+			AddSubviews(image, label);
+
 		}
 
 		public override void LayoutSubviews()
 		{
 			base.LayoutSubviews();
 
-			nfloat padding = 10;
+			UIBezierPath path = UIBezierPath.FromRect(Bounds);
+			Layer.MasksToBounds = false;
+			Layer.ShadowColor = Colors.CartoNavy.CGColor;
+			Layer.ShadowOffset = new CGSize(2.0f, 2.0f);
+			Layer.ShadowOpacity = 0.5f;
+			Layer.ShadowPath = path.CGPath;
+
+			nfloat padding = 5;
+
+			nfloat labelHeight = (Frame.Height - 3 * padding) / 4;
 
 			nfloat x = padding;
 			nfloat y = padding;
 			nfloat w = Frame.Width - 2 * padding;
-			nfloat h = (Frame.Height - 3 * padding) / 3 * 2;
+			nfloat h = Frame.Height - labelHeight;
 
 			image.Frame = new CGRect(x, y, w, h);
 
-			y += h + padding;
-			h = (Frame.Height - 3 * padding) / 3;
+			y += h - padding / 2;
+			h = labelHeight;
 
 			label.Frame = new CGRect(x, y, w, h);
 		}

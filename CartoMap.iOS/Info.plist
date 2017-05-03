@@ -33,5 +33,12 @@
 	<string>10</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Assets.xcassets/LaunchImage-1.launchimage</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>Startusbar</key>
+	<string>
+    </string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 </dict>
 </plist>
