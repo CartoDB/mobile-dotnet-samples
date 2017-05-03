@@ -17,6 +17,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)BaseControllers\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\List\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Gallery\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Services\LocationManager.cs" />
@@ -34,5 +35,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\List\MapListCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\List\MapListHeaderCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\List\MapListView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\MapGalleryView.cs" />
   </ItemGroup>
 </Project>
