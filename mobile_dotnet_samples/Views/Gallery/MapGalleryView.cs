@@ -40,6 +40,20 @@ namespace Shared.iOS
 
 			int itemsInRow = 2;
 
+			if (Frame.Width > Frame.Height)
+			{
+				itemsInRow = 3;
+
+				if (Frame.Width > 1000)
+				{
+					itemsInRow = 4;
+				}
+			}
+			else if (Frame.Width > 700)
+			{
+				itemsInRow = 3;
+			}
+
 			nfloat padding = 5;
 			int counter = 0;
 
@@ -50,40 +64,17 @@ namespace Shared.iOS
 
 			foreach (GalleryRow row in rows)
 			{
-				bool isEven = counter % itemsInRow == 0;
+				x = (counter % itemsInRow * w) + ((counter % itemsInRow + 1) * padding);
 
-				if (!isEven)
-				{
-					x = w + 2 * padding;
-				}
-				else
-				{
-					x = padding;
-				}
-
+				y = h * ((int)(counter / itemsInRow));
 				row.Frame = new CGRect(x, y, w, h);
-
-				if (!isEven)
-				{
-					y += h + padding;
-				}
 
 				counter++;
 
 				if (counter == rows.Count)
 				{
-					if (rows.Count % itemsInRow != 0)
-					{
-						// If row count is uneven, make sure final item fills the screen
-						row.Frame = new CGRect(padding, y, Frame.Width - 2 * padding, h);
-
-						// y is increased on odd rows, need to increase it here again if the final row is even
-						y += h + padding;
-					}
-
 					// Set content size after final item has been set
-					ContentSize = new CGSize(Frame.Width, y);
-
+					ContentSize = new CGSize(Frame.Width, y + h + padding);
 				}
 			}
 
