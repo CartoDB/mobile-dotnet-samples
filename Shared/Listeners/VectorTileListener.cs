@@ -84,7 +84,14 @@ namespace Shared
 				}
 				else
 				{
-					message = "Building";
+					if (feature.Properties.ArraySize == 0)
+					{
+						message = "Nothing to see here";
+					}
+					else
+					{
+						message = "Building";
+					}
 				}
 			}
 			else
