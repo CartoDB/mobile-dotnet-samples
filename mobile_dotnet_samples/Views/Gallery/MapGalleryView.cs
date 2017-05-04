@@ -38,17 +38,19 @@ namespace Shared.iOS
 		{
 			base.LayoutSubviews();
 
+			int itemsInRow = 2;
+
 			nfloat padding = 5;
 			int counter = 0;
 
 			nfloat x = padding;
 			nfloat y = padding;
-			nfloat w = (Frame.Width - 3 * padding) / 2;
+			nfloat w = (Frame.Width - (itemsInRow + 1) * padding) / itemsInRow;
 			nfloat h = w;
 
 			foreach (GalleryRow row in rows)
 			{
-				bool isEven = counter % 2 == 0;
+				bool isEven = counter % itemsInRow == 0;
 
 				if (!isEven)
 				{
@@ -70,7 +72,7 @@ namespace Shared.iOS
 
 				if (counter == rows.Count)
 				{
-					if (rows.Count % 2 != 0)
+					if (rows.Count % itemsInRow != 0)
 					{
 						// If row count is uneven, make sure final item fills the screen
 						row.Frame = new CGRect(padding, y, Frame.Width - 2 * padding, h);
