@@ -36,5 +36,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\List\MapListHeaderCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\List\MapListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\MapGalleryView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\GalleryRow.cs" />
   </ItemGroup>
 </Project>
