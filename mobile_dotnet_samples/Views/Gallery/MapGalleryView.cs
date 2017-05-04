@@ -7,24 +7,36 @@ namespace Shared.iOS
 {
 	public class MapGalleryView : UIScrollView
 	{
-		List<GalleryRow> rows = new List<GalleryRow>();
+		public EventHandler<EventArgs> RowClick;
 
-		bool initialized;
+		List<GalleryRow> rows = new List<GalleryRow>();
 
 		public MapGalleryView()
 		{
 			BackgroundColor = Colors.CartoRedLight;
+
+			AddGestureRecognizer(new UITapGestureRecognizer(OnClick));
+		}
+
+		void OnClick(UITapGestureRecognizer recognizer)
+		{
+			CGPoint point = recognizer.LocationInView(this);
+
+			foreach (GalleryRow row in rows)
+			{
+				if (row.Frame.Contains(point))
+				{
+					if (RowClick != null)
+					{
+						RowClick(row, EventArgs.Empty);
+					}	
+				}
+			}
 		}
 
 		public override void LayoutSubviews()
 		{
 			base.LayoutSubviews();
-
-			if (initialized)
-			{
-				// LayoutSubviews() is called on scroll, but we don't want ot set frame every time
-				return;
-			}
 
 			nfloat padding = 5;
 			int counter = 0;
@@ -73,7 +85,6 @@ namespace Shared.iOS
 				}
 			}
 
-			initialized = true;
 		}
 
 		public void AddRows(List<MapListRowSource> sources)

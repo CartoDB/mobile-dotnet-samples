@@ -9,8 +9,12 @@ namespace Shared.iOS
 		UIImageView image;
 		UILabel label;
 
+		public MapListRowSource Source { get; private set; }
+
 		public GalleryRow(MapListRowSource source)
 		{
+			Source = source;
+
 			BackgroundColor = Colors.CartoRed;
 
 			image = new UIImageView();
