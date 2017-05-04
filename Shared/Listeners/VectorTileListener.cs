@@ -27,6 +27,8 @@ namespace Shared
 		{
 			LocalVectorDataSource source = (LocalVectorDataSource)layer.DataSource;
 
+			source.Clear();
+
 			Color color = new Color(0, 100, 200, 150);
 
 			Feature feature = clickInfo.Feature;
@@ -68,22 +70,32 @@ namespace Shared
 			// Set a higher placement priority so it would always be visible
 			builder.PlacementPriority = 10;
 
-			string message = feature.Properties.ToString().ToMax200Characters();
+			string message;
 			string name = feature.Properties.GetObjectElement("name").String;
-			string id = feature.Properties.GetObjectElement("osm_id").String;
+			string description = feature.Properties.GetObjectElement("description").String.ToMax200Characters();
 
-			if (!name.Equals("null"))
+			if (name.Equals("null"))
 			{
-				
-				message = "Name (osm_id: " + id + "): " + name;
+				string facility = feature.Properties.GetObjectElement("facility").String;
+
+				if (!facility.Equals("null"))
+				{
+					message = facility;
+				}
+				else
+				{
+					message = "Building";
+				}
 			}
 			else
 			{
-				string level = feature.Properties.GetObjectElement("admin_level").String;
-				message = "Admin level (osm_id: " + id + "): " + level; 
-			}
+				message = name;
 
-			message += " | Force: " + Force;
+				if (!description.Equals("null"))
+				{
+					message += "\n" + description;
+				}
+			}
 
 			BalloonPopup popup = new BalloonPopup(clickInfo.ClickPos, builder.BuildStyle(), "", message);
 
