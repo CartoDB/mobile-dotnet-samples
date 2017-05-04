@@ -69,63 +69,78 @@ namespace AdvancedMap.iOS
 		{
 			new MapListRowSource {
 				Controller = new BaseMapsController(),
-				Title = "CARTO Base Maps"
+				Title = "CARTO Base Maps",
+				ImageResource = "gallery/image_base_maps.png"
 			},
 			new MapListRowSource {
 				Controller = new CustomRasterDatasourceController(),
-				Title = "Custom Raster Data Source"
+				Title = "Custom Raster Data Source",
+				ImageResource = "gallery/image_custom_raster.png"
 			},
 			new MapListRowSource {
 				Controller = new GroundOverlayController(),
-				Title = "Ground Overlays"
+				Title = "Ground Overlays",
+				ImageResource = "gallery/image_ground_overlays.png"
 			},
 			new MapListRowSource {
 				Controller = new WmsMapController(),
-				Title = "WMS Map"
+				Title = "WMS Map",
+				ImageResource = "gallery/image_wms.png"
 			},
 			new MapListRowSource {
 				Controller = new OfflineRoutingController(),
-				Title = "Offline Routing"
+				Title = "Offline Routing",
+				ImageResource = "gallery/image_offline_routing.png"
 			},
 			new MapListRowSource {
 				Controller = new OnlineRoutingController(),
-				Title = "Online Routing"
+				Title = "Online Routing",
+				ImageResource = "gallery/image_online_routing.png"
 			},
 			new MapListRowSource {
 				Controller = new VectorObjectEditingController(),
-				Title = "Vector Object Editing"
+				Title = "Vector Object Editing",
+				ImageResource = "gallery/image_object_editing.png"
 			},
 			new MapListRowSource {
 				Controller = new OverlaysController(),
-				Title = "2D & 3D Overlays"
+				Title = "2D & 3D Overlays",
+				ImageResource = "gallery/image_overlays.png"
 			},
 			new MapListRowSource {
 				Controller = new ClusteredMarkersController(),
-				Title = "Clustered Markers"
+				Title = "Clustered Markers",
+				ImageResource = "gallery/image_clustered_markers.png"
 			},
 			new MapListRowSource {
 				Controller = new BundledMapController(),
-				Title = "Offline Bundled Map"
+				Title = "Offline Bundled Map",
+				ImageResource = "gallery/image_bundled.png"
 			},
 			new MapListRowSource {
 				Controller = new BasicPackageManagerController(),
-				Title = "City Package Download"
+				Title = "City Package Download",
+				ImageResource = "gallery/image_city_package.png"
 			},
 			new MapListRowSource {
 				Controller = new AdvancedPackageManagerController(),
-				Title = "Country Package Download"
+				Title = "Country Package Download",
+				ImageResource = "gallery/image_country_packages.png"
 			},
 			new MapListRowSource {
 				Controller = new CaptureController(),
-				Title = "Screencapture"
+				Title = "Screencapture",
+				ImageResource = "gallery/image_screencapture.png"
 			},
 			new MapListRowSource {
 				Controller = new CustomPopupController(),
-				Title = "Custom Popup"
+				Title = "Custom Popup",
+				ImageResource = "gallery/image_custom_popup.png"
 			},
 			new MapListRowSource {
 				Controller = new GpsLocationMapController(),
-				Title = "GPS Location"
+				Title = "GPS Location",
+				ImageResource = "gallery/image_gps_location.png"
 			}
 		};
 	}
