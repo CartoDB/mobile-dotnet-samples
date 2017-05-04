@@ -65,8 +65,8 @@ namespace Shared.iOS
 			foreach (GalleryRow row in rows)
 			{
 				x = (counter % itemsInRow * w) + ((counter % itemsInRow + 1) * padding);
+				y = h * ((int)(counter / itemsInRow)) + padding * ((int)(counter / itemsInRow)) + padding;
 
-				y = h * ((int)(counter / itemsInRow));
 				row.Frame = new CGRect(x, y, w, h);
 
 				counter++;

@@ -18,9 +18,13 @@ namespace Shared.iOS
 			BackgroundColor = Colors.CartoRed;
 
 			image = new UIImageView();
-			image.Image = UIImage.FromFile(source.ImageResource);
-			image.ContentMode = UIViewContentMode.ScaleAspectFill;
-			image.ClipsToBounds = true;
+
+			if (source.ImageResource != null)
+			{
+				image.Image = UIImage.FromFile(source.ImageResource);
+				image.ContentMode = UIViewContentMode.ScaleAspectFill;
+				image.ClipsToBounds = true;
+			}
 
 			label = new UILabel();
 			label.Text = source.Title.ToUpper();
