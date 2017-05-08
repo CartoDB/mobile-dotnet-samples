@@ -105,7 +105,7 @@
       <HintPath>..\packages\HockeySDK.Xamarin.4.1.0\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.iOS">
-      <HintPath>..\packages\CartoMobileSDK.iOS.4.0.0-pre-225\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.iOS.4.0.1\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -115,19 +115,19 @@
     <ImageAsset Include="Assets.xcassets\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_114.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-60x60@2x.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_120.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-60x60@2x.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_58.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-57x57@1x.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_80.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-40x40@2x.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_180.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-76x76@2x.png">
       <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json">
@@ -203,7 +203,6 @@
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceController.cs" />
     <Compile Include="Sections\Other\CaptureController.cs" />
     <Compile Include="Sections\OverlayDataSource\GroundOverlayController.cs" />
-    <Compile Include="ForceTouch\ForceTouchExampleController.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\AdvancedPackageManagerController.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageListCell.cs" />
     <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageManagerButton.cs" />

@@ -21,8 +21,6 @@ namespace AdvancedMap.Droid
 
 			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
 
-			TileDataSource source = CreateTileDataSource();
-
 			// Get decoder from current layer,
 			// so we wouldn't need a style asset to create a decoder from scratch
 			MBVectorTileDecoder decoder = (MBVectorTileDecoder)(MapView.Layers[0] as VectorTileLayer).TileDecoder;
@@ -30,10 +28,19 @@ namespace AdvancedMap.Droid
 			// Remove default baselayer
 			MapView.Layers.Clear();
 
-			// Add our new layer
-			var layer = new VectorTileLayer(source, decoder);
+			// Do the actual copying and source creation on another thread so it wouldn't block the main thread
+			System.Threading.Tasks.Task.Run(delegate
+			{
+				TileDataSource source = CreateTileDataSource();
 
-			MapView.Layers.Insert(0, layer);
+				var layer = new VectorTileLayer(source, decoder);
+
+				RunOnUiThread(delegate
+				{
+					// However, actual layer insertion should be done on the main thread
+					MapView.Layers.Insert(0, layer);
+				});
+			});
 
 			// Zoom to the correct location
 			MapPos rome = BaseProjection.FromWgs84(new MapPos(12.4807, 41.8962));
@@ -55,8 +62,8 @@ namespace AdvancedMap.Droid
 				Log.Debug("Copy done to " + path);
 
 				MBTilesTileDataSource source = new MBTilesTileDataSource(0, 14, path);
-				
-				return source;
+
+				return new MemoryCacheTileDataSource(source);
 			}
 			catch (IOException e)
 			{

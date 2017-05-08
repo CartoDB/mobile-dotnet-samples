@@ -23,7 +23,7 @@ namespace AdvancedMap.Droid
 {
 	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "GPS Location Map", Description = "Shows user GPS location on map.")]
-	public class GpsLocationActivity : MapBaseActivity, ILocationListener
+	public class GpsLocationActivity : MapBaseActivity, ILocationListener, ActivityCompat.IOnRequestPermissionsResultCallback
 	{
 		LocationManager manager;
 

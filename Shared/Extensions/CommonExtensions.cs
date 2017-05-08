@@ -7,10 +7,10 @@ namespace Shared
 {
 	public static class CommonExtensions
 	{
-		public static string ToMax300Characters(this string item)
+		public static string ToMax200Characters(this string item)
 		{
-			int max = 300;
-			if (item.Length < max)
+			int max = 200;
+			if (item.Length <= max)
 			{
 				return item;
 			}

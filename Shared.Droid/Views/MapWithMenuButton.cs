@@ -22,7 +22,7 @@ namespace Shared.Droid
 
 			Button = new MenuButton(resource, context);
 			AddView(Button);
-
 		}
+
 	}
 }

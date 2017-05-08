@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>HelloMap.Droid</RootNamespace>
     <AssemblyName>HelloMap.Droid</AssemblyName>
-    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -16,6 +16,7 @@
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <AndroidTlsProvider></AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,7 +52,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Json" />
     <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.Android.4.0.0-pre-157\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.Android.4.0.1\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

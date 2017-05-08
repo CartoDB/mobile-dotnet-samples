@@ -103,7 +103,7 @@
       <HintPath>..\packages\HockeySDK.Xamarin.4.1.0\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.iOS">
-      <HintPath>..\packages\CartoMobileSDK.iOS.4.0.0-pre-243\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.iOS.4.0.1\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -113,25 +113,49 @@
     <ImageAsset Include="Assets.xcassets\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_120.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-60x60@2x.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_29.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-60x60@2x.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_58.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-57x57@1x.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_80.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-40x40@2x.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_114.png">
-      <InProject>false</InProject>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon_180.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-76x76@2x.png">
       <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default-Landscape-736h%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default-Portrait-736h%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default-Portrait.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default-Portrait%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default-568h%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default-Landscape%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default-Landscape.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default-667h%402x.png">
       <InProject>false</InProject>
     </ImageAsset>
   </ItemGroup>
@@ -143,6 +167,8 @@
     <Folder Include="Sections\Maps API\" />
     <Folder Include="Sections\SQL API\" />
     <Folder Include="Sections\Torque API\" />
+    <Folder Include="Sections\Torque API\Histogram\" />
+    <Folder Include="Sections\Torque API\Histogram\Subviews\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
@@ -169,11 +195,20 @@
     <Compile Include="Sections\Maps API\AnonymousRasterTableController.cs" />
     <Compile Include="Sections\Maps API\AnonymousVectorTableController.cs" />
     <Compile Include="Sections\Maps API\NamedMapController.cs" />
-    <Compile Include="Sections\Torque API\TorqueShipController.cs" />
+    <Compile Include="Sections\Torque API\TorqueController.cs" />
     <Compile Include="Sections\SQL API\SQLServiceController.cs" />
+    <Compile Include="Sections\Torque API\TorqueView.cs" />
+    <Compile Include="Sections\Torque API\Histogram\Subviews\TorqueButton.cs" />
+    <Compile Include="Sections\Torque API\Histogram\Subviews\TorqueCounter.cs" />
+    <Compile Include="Sections\Torque API\Histogram\TorqueHistogram.cs" />
+    <Compile Include="Sections\Torque API\Histogram\Subviews\TorqueIndicator.cs" />
+    <Compile Include="Sections\Torque API\Histogram\Subviews\TorqueInterval.cs" />
+    <Compile Include="Sections\Torque API\Histogram\Subviews\HistogramView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\carto-fonts.zip" />
+    <BundleResource Include="Resources\button_pause.png" />
+    <BundleResource Include="Resources\button_play.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />

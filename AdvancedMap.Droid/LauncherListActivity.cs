@@ -33,7 +33,7 @@ namespace AdvancedMap.Droid
 			ListView.SetBackgroundColor(Color.Black);
 			ListView.Adapter = new MapListAdapter(this, Samples.List);
 
-			UpdateManager.Register(this, MapApplication.HockeyId);
+			//UpdateManager.Register(this, MapApplication.HockeyId);
 		}
 
 		protected override void OnListItemClick(ListView l, View v, int position, long id)

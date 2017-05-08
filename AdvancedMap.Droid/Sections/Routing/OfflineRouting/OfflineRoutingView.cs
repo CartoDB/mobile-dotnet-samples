@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Android.Content;
+using Android.OS;
+using Android.Views;
 using Android.Widget;
 using Carto.PackageManager;
 using Shared;
@@ -27,5 +29,6 @@ namespace AdvancedMap.Droid
 		{
 			Menu.Update(manager, id);
 		}
-}
+
+	}
 }

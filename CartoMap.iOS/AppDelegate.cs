@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Carto.Ui;
 using Foundation;
 using HockeyApp.iOS;
@@ -17,6 +18,9 @@ namespace CartoMap.iOS
 
 		public UINavigationController Controller { get; set; }
 
+		public static nfloat NavigationBarHeight;
+		public static nfloat StatusBarHeight;
+
 		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
 		{
 			BITHockeyManager manager = BITHockeyManager.SharedHockeyManager;
@@ -27,6 +31,9 @@ namespace CartoMap.iOS
 			MapView.RegisterLicense(License);
 
 			Controller = new UINavigationController(new MapListController("CARTO Mobile Samples", Samples.RowSources));
+
+			NavigationBarHeight = Controller.NavigationBar.Frame.Height;
+			StatusBarHeight = UIApplication.SharedApplication.StatusBarFrame.Height;
 
 			Controller.NavigationBarHidden = false;
 

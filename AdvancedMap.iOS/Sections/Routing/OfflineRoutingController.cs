@@ -15,12 +15,12 @@ namespace AdvancedMap.iOS
 
 		public override string Description { get { return "Offline routing with OpenStreetMap data packages"; } }
 
-		PackageListener PackageListener { get; set; }
+		protected PackageListener PackageListener { get; set; }
 
-		CartoPackageManager Manager { get; set; }
+		protected CartoPackageManager Manager { get; set; }
 
 		public PackageManagerMenu Menu { get; set; }
-		MenuButton MenuButton { get; set; }
+		protected MenuButton MenuButton { get; set; }
 
 		public override void ViewDidLoad()
 		{

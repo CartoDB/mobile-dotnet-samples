@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using Carto.Ui;
 using CoreGraphics;
 using Foundation;
@@ -9,43 +10,60 @@ namespace AdvancedMap.iOS
 {
 	public class ForceTouchRecognizer : UITapGestureRecognizer
 	{
-		bool isEventHandled;
-
 		public EventHandler<ForceEventArgs> ForceTouch;
+
+		List<nfloat> forces = new List<nfloat>();
+
+		public nfloat AverageForce { 
+			get {
+				nfloat total = 0;
+
+				foreach (nfloat force in forces)
+				{
+					total += force;
+				}
+
+				return total / forces.Count;
+			}
+		}
+
+		public override void TouchesBegan(NSSet touches, UIEvent evt)
+		{
+			forces.Clear();
+
+			// Base call is important, else this recognizer consumes the event and the SDK won't receive it
+			base.TouchesBegan(touches, evt);
+		}
 
 		public override void TouchesMoved(NSSet touches, UIEvent evt)
 		{
+			// Touches moved captures the actual force of it, 
+			// shouldn't be caught on TouchesEnded as that catches force during the end of the touch
 			UITouch touch = (UITouch)touches.AnyObject;
+			forces.Add(touch.Force);
 
-			// Arbitrary number; let's say at least 1 to differentiate it from a normal touch
-			if (touch.Force > 1) 
-			{
-				if (ForceTouch != null && !isEventHandled) 
-				{
-					isEventHandled = true;
-					ForceTouch(View, new ForceEventArgs(touch.Force));
-				}
-			}
-
+			// Base call is important, else this recognizer consumes the event and the SDK won't receive it
 			base.TouchesMoved(touches, evt);
 		}
 
 		public override void TouchesEnded(NSSet touches, UIEvent evt)
 		{
-			isEventHandled = false;
+			UITouch touch = (UITouch)touches.AnyObject;
+
+			if (ForceTouch != null)
+			{
+				// Be sure to grab the average force of the entire touch event to determine full force
+				ForceTouch(View, new ForceEventArgs(AverageForce));
+			}
+
+			// Base call is important, else this recognizer consumes the event and the SDK won't receive it
 			base.TouchesEnded(touches, evt);
 		}
 
-		public override void TouchesCancelled(NSSet touches, UIEvent evt)
-		{
-			isEventHandled = false;
-			base.TouchesCancelled(touches, evt);
-		}
 	}
 
 	public enum ForceType
 	{
-		None,
 		Weak,
 		Medium,
 		Strong
@@ -53,6 +71,8 @@ namespace AdvancedMap.iOS
 
 	public class ForceEventArgs : EventArgs
 	{
+		public bool IsForce { get { return Type != ForceType.Weak; } }
+
 		public nfloat Force { get; set; }
 
 		public double RoundedForce { get { return Math.Round(Force, 2); } }
@@ -63,7 +83,7 @@ namespace AdvancedMap.iOS
 		{
 			Force = force;
 
-			// TODO These numbers may need to be tweaked
+			// TODO Tweak these numbers
 			if (force > 5)
 			{
 				Type = ForceType.Strong;

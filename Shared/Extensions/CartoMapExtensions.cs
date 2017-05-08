@@ -79,6 +79,37 @@ namespace Shared
 
 			});	
 		}
+
+		public static void InitializeMapsService(this MapView map, string username, string mapname, bool isVector, Action success = null)
+		{
+			CartoMapsService service = new CartoMapsService();
+			service.Username = username;
+
+			service.DefaultVectorLayerMode = isVector;
+
+			System.Threading.Tasks.Task.Run(delegate
+			{
+				LayerVector layers = service.BuildNamedMap(mapname, new StringVariantMap());
+
+				// NB! This update priority only works for the map tpl_a108ee2b_6699_43bc_aa71_3b0bc962acf9 (TorqueActivity)
+				// It may make loading worse or even break it when tried with other maps
+				layers[0].UpdatePriority = 2;
+				layers[1].UpdatePriority = 1;
+				layers[2].UpdatePriority = 0;
+
+				for (int i = 0; i < layers.Count; i++)
+				{
+					Layer layer = layers[i];
+					map.Layers.Add(layer);
+				}
+
+				if (success != null)
+				{
+					success();
+				}
+			});
+
+		}
 	}
 
 }
