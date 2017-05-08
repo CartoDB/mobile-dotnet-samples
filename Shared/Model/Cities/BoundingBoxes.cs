@@ -34,11 +34,24 @@ namespace Shared
 				var london = new BoundingBox { Name = "London", MinLon = -0.5036, MaxLon = 0.3276, MinLat = 51.2871, MaxLat = 51.6939 };
 				list.Add(london);
 
+				// Mecio city : -99.329453, 19.251515, -98.937378, 19.608956
+				var mexico = new BoundingBox { Name = "Mexico City", MinLon = -99.329453, MaxLon = -98.937378, MinLat = 19.251515, MaxLat = 19.608956};
+				list.Add(mexico);
+
 				var tartu = new BoundingBox { Name = "Tartu", MinLon = 26.6548, MaxLon = 26.7901, MinLat = 58.3404, MaxLat = 58.3964 };
 				list.Add(tartu);
 
+				var tallinn = new BoundingBox { Name = "Tallinn", MinLon = 24.616532024193475, MaxLon = 24.874023975807631, MinLat = 59.324084340299663, MaxLat = 59.556941535360664 };
+				list.Add(tallinn);
+
 				var newDelhi = new BoundingBox { Name = "New Delhi", MinLon = 77.1477, MaxLon = 77.2757, MinLat = 28.5361, MaxLat = 28.6368 };
 				list.Add(newDelhi);
+
+				var saoPaolo = new BoundingBox { Name = "Sao Paolo", MinLon = -46.947327, MaxLon = -46.277847, MinLat = -23.782203, MaxLat = -23.407806 };
+				list.Add(saoPaolo);
+
+				var rioJanero = new BoundingBox { Name = "Rio de Janeiro", MinLon = -43.496590, MaxLon = -43.100739, MinLat = -22.962187, MaxLat = -22.721090 };
+				list.Add(rioJanero);
 
 				return list;
 			}
