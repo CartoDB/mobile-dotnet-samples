@@ -82,7 +82,7 @@ namespace Shared
 
 		public string CreateFolder()
 		{
-			return CreateFolder("routingpackages");
+			return CreateFolder("routingpackages_");
 		}
 
 		public string CreateFolder(string name)
