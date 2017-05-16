@@ -85,7 +85,16 @@ namespace AdvancedMap.iOS
 			{
 				long time = DateTime.Now.Millisecond;
 
-				RoutingResult result = Routing.GetResult(startPos, stopPos);
+				RoutingResult result = null;
+
+				try
+				{
+					result = Routing.GetResult(startPos, stopPos);
+				}
+				catch(Exception e)
+				{
+					Console.WriteLine(e.Message);
+				}
 
 				// Update response in UI thread
 				InvokeOnMainThread(() =>
