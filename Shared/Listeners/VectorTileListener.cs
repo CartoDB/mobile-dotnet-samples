@@ -70,7 +70,8 @@ namespace Shared
 			// Set a higher placement priority so it would always be visible
 			builder.PlacementPriority = 10;
 
-			string message;
+			string id = clickInfo.FeatureId.ToString();
+			string message = "(Id: " + id + ") ";
 			string name = feature.Properties.GetObjectElement("name").String;
 			string description = feature.Properties.GetObjectElement("description").String.ToMax200Characters();
 
@@ -80,23 +81,16 @@ namespace Shared
 
 				if (!facility.Equals("null"))
 				{
-					message = facility;
+					message += facility;
 				}
 				else
 				{
-					if (feature.Properties.ArraySize == 0)
-					{
-						message = "Nothing to see here";
-					}
-					else
-					{
-						message = "Building";
-					}
+					message += feature.Properties.ToString();
 				}
 			}
 			else
 			{
-				message = name;
+				message += name;
 
 				if (!description.Equals("null"))
 				{
