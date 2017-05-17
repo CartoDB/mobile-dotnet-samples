@@ -51,8 +51,14 @@ namespace Shared.Droid
 			int itemsInRow = 2;
 
 			int width = Context.Resources.DisplayMetrics.WidthPixels;
+			int height = Context.Resources.DisplayMetrics.HeightPixels;
 
-			int padding = width / 30;
+			if (width > height)
+			{
+				itemsInRow = 3;
+			}
+
+			int padding = width / 50;
 
 			int x = padding;
 			int y = padding;
@@ -75,7 +81,7 @@ namespace Shared.Droid
 					RowClick(sender, e);
 				};
 
-				if (x == w + (itemsInRow * padding))
+				if (x == ((w * (itemsInRow - 1)) + padding * itemsInRow))
 				{
 					y += h + padding;
 					x = padding;
