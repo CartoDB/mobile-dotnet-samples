@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Android.OS;
 using Android.Widget;
 
 namespace Shared.Droid
@@ -47,9 +48,15 @@ namespace Shared.Droid
 
 		public void AddRows(List<MapGallerySource> sources)
 		{
-			int x = 0;
-			int y = 0;
-			int w = Context.Resources.DisplayMetrics.WidthPixels / 2;
+			int itemsInRow = 2;
+
+			int width = Context.Resources.DisplayMetrics.WidthPixels;
+
+			int padding = width / 30;
+
+			int x = padding;
+			int y = padding;
+			int w = (width - ((itemsInRow + 1) * padding)) / itemsInRow;
 			int h = w;
 
 			foreach (MapGallerySource source in sources)
@@ -68,14 +75,14 @@ namespace Shared.Droid
 					RowClick(sender, e);
 				};
 
-				if (x == w)
+				if (x == w + (itemsInRow * padding))
 				{
-					y += h;
-					x = 0;
+					y += h + padding;
+					x = padding;
 				}
 				else
 				{
-					x += w;
+					x += w + padding;
 				}
 			}
 		}

@@ -4,6 +4,8 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.OS;
 using Android.Widget;
 
 namespace Shared.Droid
@@ -27,6 +29,8 @@ namespace Shared.Droid
 
 		public GalleryRow(Context context, MapGallerySource source) : base(context)
 		{
+			Background = new ColorDrawable(Colors.CartoRed);
+
 			Activity = source.Type;
 
 			label = new TextView(context);
@@ -41,8 +45,12 @@ namespace Shared.Droid
 			image.SetScaleType(ImageView.ScaleType.CenterCrop);
 
 			AddView(image);
-		}
 
+			if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+			{
+				Elevation = 5;
+			}
+		}
 
 		public bool Contains(int x, int y)
 		{

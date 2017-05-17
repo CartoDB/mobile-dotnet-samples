@@ -9,7 +9,7 @@ namespace Shared.Droid
 
 		public static Color ActiveMenuItem = Color.Rgb(180, 82, 75);
 
-		public static Color CartoRedLight = Color.Rgb(215, 82, 75);
+		public static Color CartoRedLight = Color.Rgb(225, 92, 85);
 
 		public static Color CartoRed = Color.Rgb(215, 82, 75);
 
