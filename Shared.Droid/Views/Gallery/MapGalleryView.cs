@@ -20,6 +20,8 @@ namespace Shared.Droid
 		{
 			Background = new ColorDrawable(Colors.CartoRedLight);
 
+			rows = new List<GalleryRow>();
+
 			container = new RelativeLayout(context);
 			container.LayoutParameters = new RelativeLayout.LayoutParams(
 				RelativeLayout.LayoutParams.MatchParent, 
@@ -27,15 +29,6 @@ namespace Shared.Droid
 			);
 
 			AddView(container);
-		}
-
-		public override bool OnTouchEvent(Android.Views.MotionEvent e)
-		{
-			if (e.Action == Android.Views.MotionEventActions.Up)
-			{
-				OnClick((int)e.GetX(), (int)e.GetY());
-			}
-			return base.OnTouchEvent(e);
 		}
 
 		void OnClick(int x, int y)
@@ -70,6 +63,10 @@ namespace Shared.Droid
 				parameters.TopMargin = y;
 
 				row.LayoutParameters = parameters;
+
+				row.Click += (sender, e) => {
+					RowClick(sender, e);
+				};
 
 				if (x == w)
 				{

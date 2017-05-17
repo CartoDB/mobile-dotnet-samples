@@ -16,36 +16,46 @@ using Shared.Droid;
 namespace AdvancedMap.Droid
 {
 	[Activity(MainLauncher = true)]
-	public class LauncherListActivity : ListActivity
+	public class LauncherListActivity : Activity
 	{
+		MapGalleryView ContentView;
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
 			Title = "Advanced Samples";
 
-			ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.ActionBar });
+			ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.CartoNavy });
 
-			SetContentView(Resource.Layout.List);
+			ContentView = new MapGalleryView(this);
+			SetContentView(ContentView);
 
-			MapRowView.RowId = Resource.Id.MapListCell;
-			ListView.Id = Resource.Id.MapListView;
-			ListView.SetBackgroundColor(Color.Black);
-			ListView.Adapter = new MapListAdapter(this, Samples.List);
+			ContentView.AddRows(Samples.Items);
 
 			//UpdateManager.Register(this, MapApplication.HockeyId);
 		}
 
-		protected override void OnListItemClick(ListView l, View v, int position, long id)
+		protected override void OnResume()
 		{
-			Type sample = Samples.FromPosition(position);
+			base.OnResume();
 
-			if (sample.IsHeader()) {
-				// Group headers aren't clickable
-				return;
-			}
+			ContentView.RowClick += OnRowClicked;
+		}
 
-			StartActivity(new Intent(this, sample));
+		protected override void OnPause()
+		{
+			base.OnPause();
+
+			ContentView.RowClick -= OnRowClicked;
+		}
+
+
+		void OnRowClicked(object sender, EventArgs e)
+		{
+			GalleryRow row = (GalleryRow)sender;
+
+			StartActivity(new Intent(this, row.Activity));
 		}
 	}
 }

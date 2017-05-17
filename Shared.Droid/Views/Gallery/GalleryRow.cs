@@ -10,7 +10,6 @@ namespace Shared.Droid
 {
 	public class GalleryRow : RelativeLayout
 	{
-
 		public override Android.Views.ViewGroup.LayoutParams LayoutParameters
 		{
 			get { return base.LayoutParameters; }
@@ -24,19 +23,33 @@ namespace Shared.Droid
 		TextView label;
 		ImageView image;
 
-		public Activity Activity { get; private set; }
+		public Type Activity { get; private set; }
 
 		public GalleryRow(Context context, MapGallerySource source) : base(context)
 		{
+			Activity = source.Type;
+
 			label = new TextView(context);
 			label.Text = source.Title.ToUpper();
 			label.SetTextColor(Color.White);
+			label.Gravity = Android.Views.GravityFlags.Center;
 
 			AddView(label);
 
 			image = new ImageView(context);
-			image.SetBackgroundColor(Color.Blue);
+			image.SetImageResource(source.ImageResource);
+			image.SetScaleType(ImageView.ScaleType.CenterCrop);
+
 			AddView(image);
+		}
+
+
+		public bool Contains(int x, int y)
+		{
+			Rect rect = new Rect();
+			GetHitRect(rect);
+
+			return rect.Contains(x, y);
 		}
 
 		public void LayoutSubviews()
@@ -65,7 +78,6 @@ namespace Shared.Droid
 			parameters.TopMargin = y;
 
 			label.LayoutParameters = parameters;
-
 		}
 	}
 }

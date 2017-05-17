@@ -229,16 +229,61 @@ namespace AdvancedMap.Droid
 			public const int icon_menu_round = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int info = 2130837511;
+			public const int image_base_maps = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int marker = 2130837512;
+			public const int image_bundled = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int marker_black = 2130837513;
+			public const int image_city_package = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int olmarker = 2130837514;
+			public const int image_clustered_markers = 2130837514;
+			
+			// aapt resource value: 0x7f02000b
+			public const int image_country_packages = 2130837515;
+			
+			// aapt resource value: 0x7f02000c
+			public const int image_custom_popup = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int image_custom_raster = 2130837517;
+			
+			// aapt resource value: 0x7f02000e
+			public const int image_gps_location = 2130837518;
+			
+			// aapt resource value: 0x7f02000f
+			public const int image_ground_overlays = 2130837519;
+			
+			// aapt resource value: 0x7f020010
+			public const int image_object_editing = 2130837520;
+			
+			// aapt resource value: 0x7f020011
+			public const int image_offline_routing = 2130837521;
+			
+			// aapt resource value: 0x7f020012
+			public const int image_online_routing = 2130837522;
+			
+			// aapt resource value: 0x7f020013
+			public const int image_overlays = 2130837523;
+			
+			// aapt resource value: 0x7f020014
+			public const int image_screencapture = 2130837524;
+			
+			// aapt resource value: 0x7f020015
+			public const int image_wms = 2130837525;
+			
+			// aapt resource value: 0x7f020016
+			public const int info = 2130837526;
+			
+			// aapt resource value: 0x7f020017
+			public const int marker = 2130837527;
+			
+			// aapt resource value: 0x7f020018
+			public const int marker_black = 2130837528;
+			
+			// aapt resource value: 0x7f020019
+			public const int olmarker = 2130837529;
 			
 			static Drawable()
 			{
