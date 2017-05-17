@@ -52,14 +52,6 @@ namespace Shared.Droid
 			}
 		}
 
-		public bool Contains(int x, int y)
-		{
-			Rect rect = new Rect();
-			GetHitRect(rect);
-
-			return rect.Contains(x, y);
-		}
-
 		public void LayoutSubviews()
 		{
 			int width = LayoutParameters.Width;
@@ -86,6 +78,33 @@ namespace Shared.Droid
 			parameters.TopMargin = y;
 
 			label.LayoutParameters = parameters;
+		}
+
+
+		public bool Contains(int x, int y)
+		{
+			Rect rect = new Rect();
+			GetHitRect(rect);
+
+			return rect.Contains(x, y);
+		}
+
+		public override bool OnTouchEvent(Android.Views.MotionEvent e)
+		{
+			if (e.Action == Android.Views.MotionEventActions.Down)
+			{
+				Alpha = 0.6f;
+			}
+			else if (e.Action == Android.Views.MotionEventActions.Up)
+			{
+				Alpha = 1.0f;	
+			}
+			else if (e.Action == Android.Views.MotionEventActions.Cancel)
+			{
+				Alpha = 1.0f;	
+			}
+
+			return base.OnTouchEvent(e);
 		}
 	}
 }

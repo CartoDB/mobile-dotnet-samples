@@ -56,6 +56,15 @@ namespace Shared.Droid
 			if (width > height)
 			{
 				itemsInRow = 3;
+
+				if (IsLargeTablet)
+				{
+					itemsInRow = 4;
+				}
+			}
+			else if (IsLargeTablet)
+			{
+				itemsInRow = 3;
 			}
 
 			int padding = width / 50;
@@ -90,6 +99,27 @@ namespace Shared.Droid
 				{
 					x += w + padding;
 				}
+			}
+		}
+
+		public bool IsLargeTablet
+		{
+			get
+			{
+				int width = Context.Resources.DisplayMetrics.WidthPixels;
+				int height = Context.Resources.DisplayMetrics.HeightPixels;
+
+				int greater = height > width ? height : width;
+				int lesser = height > width ? width : height;
+
+				bool isTrue = greater > 1920 && lesser > 1080;
+
+				if (Context.Resources.DisplayMetrics.Density > 2.5)
+				{
+					// If density is too large, it'll be a phone
+					return false;
+				}
+				return isTrue;
 			}
 		}
 	}
