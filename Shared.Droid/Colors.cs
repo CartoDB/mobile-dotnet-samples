@@ -8,6 +8,8 @@ namespace Shared.Droid
 		public static Color ActionBar = Color.Rgb(215, 82, 75);
 
 		public static Color ActiveMenuItem = Color.Rgb(180, 82, 75);
+
+		public static Color CartoRedLight = Color.Rgb(215, 82, 75);
 	}
 }
 

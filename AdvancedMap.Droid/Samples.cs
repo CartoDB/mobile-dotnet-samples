@@ -37,10 +37,20 @@ namespace AdvancedMap.Droid
 			typeof(GpsLocationActivity)
 		});
 
+		public static List<MapGallerySource> Items = new List<MapGallerySource>
+		{
+
+		};
+
 		public static Type FromPosition(int position) 
 		{
 			return List[position];
 		}
+	}
+
+	public class MapGallerySource
+	{
+		
 	}
 }
 
