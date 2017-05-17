@@ -131,6 +131,14 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\icon180.png" />
     <AndroidResource Include="Resources\drawable-nodpi\button_pause.png" />
     <AndroidResource Include="Resources\drawable-nodpi\button_play.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_anon_raster.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_anon_vector.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_named.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_sql.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_torque.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_viz_fonts.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_viz_store.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_viz_subway.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sections\" />
