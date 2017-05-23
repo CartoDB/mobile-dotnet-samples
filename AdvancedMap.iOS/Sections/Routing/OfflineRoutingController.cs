@@ -68,8 +68,6 @@ namespace AdvancedMap.iOS
 			Menu.List.AddRows(Manager.GetPackages());
 			Menu.BackgroundClick += OnMenuBackgroundClicked;
 			MenuButton.Click += OnMenuButtonClick;
-
-			Menu.List.ListSource.CellActionButtonClicked += OnCellActionButtonClick;
 		}
 
 		public override void ViewWillDisappear(bool animated)
@@ -87,8 +85,6 @@ namespace AdvancedMap.iOS
 			Manager.PackageManagerListener = null;
 			Menu.BackgroundClick -= OnMenuBackgroundClicked;
 			MenuButton.Click -= OnMenuButtonClick;
-
-			Menu.List.ListSource.CellActionButtonClicked -= OnCellActionButtonClick;
 		}
 		
         void UpdateRoutingPackages(object sender, EventArgs e)
@@ -110,9 +106,11 @@ namespace AdvancedMap.iOS
 			if (Menu.IsVisible)
 			{
 				Menu.Hide();
+				Menu.List.ListSource.CellActionButtonClicked -= OnCellActionButtonClick;
 			}
 			else {
-				Menu.Show();
+                Menu.Show();
+                Menu.List.ListSource.CellActionButtonClicked += OnCellActionButtonClick;
 			}
 		}
 
