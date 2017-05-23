@@ -25,5 +25,19 @@ namespace AdvancedMap.iOS
 
 			List.Frame = new CGRect(0, navbarHeight, width, height - navbarHeight);
 		}
+
+        public override void OnBackgroundTap(UITapGestureRecognizer recognizer)
+        {
+            CGPoint point = recognizer.LocationInView(this);
+
+            if (List.Frame.Contains((point)))
+            {
+                Console.WriteLine("Clicked list. return!");
+            }
+            else
+            {
+                base.OnBackgroundTap(recognizer);
+            }
+        }
 	}
 }
