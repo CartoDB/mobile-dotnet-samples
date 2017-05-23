@@ -7,7 +7,7 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
-	[ActivityData(Title = "Predicted Store Location", Description = "Vis showing store locations on the map using UTFGrid")]
+	[ActivityData(Title = "Predicted Store Location", Description = "Store location predictions")]
 	public class DotsVisActivity : BaseVisActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)

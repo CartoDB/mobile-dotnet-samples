@@ -103,7 +103,7 @@ namespace AdvancedMap.iOS
 				{
 					if (result == null)
 					{
-						Alert("Routing failed");
+						Alert("Routing failed. Have you downloaded offline package for the region?");
 						return;
 					}
 

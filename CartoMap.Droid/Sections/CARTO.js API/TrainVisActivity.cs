@@ -7,7 +7,7 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
-	[ActivityData(Title = "NYCity Subway Vis", Description = "Vis displaying thes subway in different colors using UTFGrid")]
+	[ActivityData(Title = "NYCity Subway Vis", Description = "NYC subway line area area")]
 	public class CountriesVisActivity : BaseVisActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)

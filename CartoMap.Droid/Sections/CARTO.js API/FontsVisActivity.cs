@@ -6,7 +6,7 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
-	[ActivityData(Title = "Fonts", Description = "Vis displaying text on the map using UTFGrid")]
+	[ActivityData(Title = "Fonts", Description = "All fonts supported by CARTO Builder")]
 	public class FontsVisActivity : BaseVisActivity
 	{
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
