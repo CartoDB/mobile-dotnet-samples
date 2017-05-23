@@ -33,7 +33,7 @@ namespace AdvancedMap.iOS
 
 			AddSubviews(nameLabel, statusLabel, Button);
 
-			SelectionStyle = UITableViewCellSelectionStyle.None;
+            SelectionStyle = UITableViewCellSelectionStyle.None;
 
 			Button.TouchUpInside += OnButtonClick;
 		}
