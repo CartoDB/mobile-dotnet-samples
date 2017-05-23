@@ -8,7 +8,7 @@ namespace Shared.iOS
 {
 	public class MapListController : UIViewController
 	{
-		MapListView ContentView { get; set; }
+		MapGalleryView ContentView { get; set; }
 
 		List<MapListRowSource> sources;
 
@@ -23,7 +23,7 @@ namespace Shared.iOS
 		{
 			base.ViewDidLoad();
 
-			ContentView = new MapListView();
+			ContentView = new MapGalleryView();
 			View = ContentView;
 
 			ContentView.AddRows(sources);
@@ -33,20 +33,22 @@ namespace Shared.iOS
 		{
 			base.ViewWillAppear(animated);
 
-			ContentView.ListSource.MapSelected += OnMapSelected;
+			ContentView.RowClick += OnRowClick;
 		}
 
 		public override void ViewWillDisappear(bool animated)
 		{
 			base.ViewWillDisappear(animated);
 
-			ContentView.ListSource.MapSelected -= OnMapSelected;
+			ContentView.RowClick -= OnRowClick;
 		}
 
-		void OnMapSelected(object sender, ControllerEventArgs e)
+		void OnRowClick(object sender, EventArgs e)
 		{
-			NavigationController.PushViewController(e.Controller, true);
+			GalleryRow row = (GalleryRow)sender;
+			NavigationController.PushViewController(row.Source.Controller, true);
 		}
+
 	}
 }
 

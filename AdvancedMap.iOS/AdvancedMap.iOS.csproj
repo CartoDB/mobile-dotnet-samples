@@ -22,8 +22,6 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchFastDev>true</MtouchFastDev>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>i386</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
@@ -39,8 +37,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Distribution: CARTODB ESTONIA OU</CodesignKey>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
@@ -58,8 +54,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Distribution</CodesignKey>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>i386</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
@@ -79,14 +73,13 @@
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchFastDev>true</MtouchFastDev>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <CodesignProvision></CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -180,6 +173,7 @@
     <Folder Include="Sections\OfflineMap\BasicPackageManager\Views\" />
     <Folder Include="Sections\Routing\" />
     <Folder Include="Sections\Routing\OfflineRouting\" />
+    <Folder Include="Resources\gallery\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -244,6 +238,21 @@
     <BundleResource Include="Resources\styles\styles_mapzen.zip" />
     <BundleResource Include="Resources\styles\nutiteq-dark.zip" />
     <BundleResource Include="Resources\icons\icon_map%402x.png" />
+    <BundleResource Include="Resources\gallery\image_gps_location.png" />
+    <BundleResource Include="Resources\gallery\image_custom_popup.png" />
+    <BundleResource Include="Resources\gallery\image_screencapture.png" />
+    <BundleResource Include="Resources\gallery\image_country_packages.png" />
+    <BundleResource Include="Resources\gallery\image_city_package.png" />
+    <BundleResource Include="Resources\gallery\image_bundled.png" />
+    <BundleResource Include="Resources\gallery\image_clustered_markers.png" />
+    <BundleResource Include="Resources\gallery\image_object_editing.png" />
+    <BundleResource Include="Resources\gallery\image_overlays.png" />
+    <BundleResource Include="Resources\gallery\image_online_routing.png" />
+    <BundleResource Include="Resources\gallery\image_offline_routing.png" />
+    <BundleResource Include="Resources\gallery\image_wms.png" />
+    <BundleResource Include="Resources\gallery\image_ground_overlays.png" />
+    <BundleResource Include="Resources\gallery\image_custom_raster.png" />
+    <BundleResource Include="Resources\gallery\image_base_maps.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />

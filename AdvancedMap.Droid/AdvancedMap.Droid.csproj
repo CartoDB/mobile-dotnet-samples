@@ -132,6 +132,21 @@
     <AndroidResource Include="Resources\drawable-nodpi\info.png" />
     <AndroidResource Include="Resources\drawable-nodpi\marker_black.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_menu_round.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_base_maps.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_bundled.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_city_package.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_clustered_markers.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_country_packages.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_custom_popup.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_custom_raster.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_gps_location.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_ground_overlays.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_object_editing.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_offline_routing.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_online_routing.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_overlays.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_screencapture.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\image_wms.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />

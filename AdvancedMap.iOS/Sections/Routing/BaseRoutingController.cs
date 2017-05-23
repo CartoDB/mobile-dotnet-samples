@@ -85,9 +85,20 @@ namespace AdvancedMap.iOS
 			{
 				long time = DateTime.Now.Millisecond;
 
-				RoutingResult result = Routing.GetResult(startPos, stopPos);
+				RoutingResult result = null;
+
+				try
+				{
+					result = Routing.GetResult(startPos, stopPos);
+				}
+				catch(Exception e)
+				{
+					Console.WriteLine(e.Message);
+				}
 
 				// Update response in UI thread
+				long now = DateTime.Now.Millisecond;
+
 				InvokeOnMainThread(() =>
 				{
 					if (result == null)
@@ -96,7 +107,7 @@ namespace AdvancedMap.iOS
 						return;
 					}
 
-					Alert(Routing.GetMessage(result, time, DateTime.Now.Millisecond));
+					Alert(Routing.GetMessage(result, time, now));
 
 					Color lineColor = new Color(0, 122, 255, 255);
 					Routing.Show(result, lineColor);

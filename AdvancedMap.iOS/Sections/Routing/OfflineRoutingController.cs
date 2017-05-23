@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Carto.Layers;
 using Carto.PackageManager;
 using Carto.Routing;
@@ -53,6 +54,9 @@ namespace AdvancedMap.iOS
 			PackageListener.OnPackageStatusChange += UpdatePackage;
 			PackageListener.OnPackageFail += UpdatePackage;
 
+			// Just get the complete list of names from map package listener
+			PackageListener.OnPackageListUpdate += UpdateRoutingPackages;
+
 			Manager.PackageManagerListener = PackageListener;
 			Manager.Start();
 
@@ -76,6 +80,8 @@ namespace AdvancedMap.iOS
 			PackageListener.OnPackageUpdate -= UpdatePackage;
 			PackageListener.OnPackageStatusChange -= UpdatePackage;
 			PackageListener.OnPackageFail -= UpdatePackage;
+               
+            PackageListener.OnPackageListUpdate -= UpdateRoutingPackages;
 
 			Manager.Stop(true);
 			Manager.PackageManagerListener = null;
@@ -83,6 +89,15 @@ namespace AdvancedMap.iOS
 			MenuButton.Click -= OnMenuButtonClick;
 
 			Menu.List.ListSource.CellActionButtonClicked -= OnCellActionButtonClick;
+		}
+		
+        void UpdateRoutingPackages(object sender, EventArgs e)
+		{
+            InvokeOnMainThread(delegate
+			{
+                List<Package> packages = Manager.GetPackages();
+				Menu.List.AddRows(packages);
+			});
 		}
 
 		void OnMenuBackgroundClicked(object sender, EventArgs e)

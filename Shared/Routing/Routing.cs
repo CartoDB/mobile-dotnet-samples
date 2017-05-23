@@ -75,14 +75,14 @@ namespace Shared
 
 			string distance = "The route is " + (int)(result.TotalDistance / 100) / 10f + "km";
 			string time = "(" + result.TotalTime.ConvertFromSecondsToHours() + ")";
-			string calculation = " | Calculation: " + (current - start) + " ms";
+			string calculation = " | Calculation: " + (start - current) + " ms";
 
 			return distance + time + calculation;
 		}
 
 		public string CreateFolder()
 		{
-			return CreateFolder("routingpackages");
+			return CreateFolder("routingpackages_");
 		}
 
 		public string CreateFolder(string name)

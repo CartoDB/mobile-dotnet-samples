@@ -19,10 +19,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MenuButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MapWithMenuButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Memory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\MapGalleryView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\GalleryRow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\MapGallerySource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)Adapters\" />
     <Folder Include="$(MSBuildThisFileDirectory)BaseActivities\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Gallery\" />
   </ItemGroup>
 </Project>

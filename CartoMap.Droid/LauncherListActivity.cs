@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content;
 using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -11,37 +12,46 @@ using Shared.Droid;
 namespace CartoMap.Droid
 {
 	[Activity(MainLauncher = true)]
-	public class LauncherListActivity : ListActivity
+	public class LauncherListActivity : Activity
 	{
+		MapGalleryView ContentView;
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			Title = "CARTO Samples";
+			Title = "Carto Samples";
 
-			SetContentView(Resource.Layout.List);
+			ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.CartoNavy });
 
-			if (ActionBar != null)
-			{
-				ActionBar.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable { Color = Colors.ActionBar });
-			}
+			ContentView = new MapGalleryView(this);
+			SetContentView(ContentView);
 
-			ListView.Adapter = new MapListAdapter(this, Samples.List);
-			ListView.SetBackgroundColor(Color.Black);
+			ContentView.AddRows(Samples.Items);
 
 			//UpdateManager.Register(this, MapApplication.HockeyId);
 		}
 
-		protected override void OnListItemClick(ListView l, View v, int position, long id)
+		protected override void OnResume()
 		{
-			Type sample = Samples.FromPosition(position);
+			base.OnResume();
 
-			if (sample.IsHeader()) {
-				// Group headers aren't clickable
-				return;
-			}
+			ContentView.RowClick += OnRowClicked;
+		}
 
-			StartActivity(new Intent(this, sample));
+		protected override void OnPause()
+		{
+			base.OnPause();
+
+			ContentView.RowClick -= OnRowClicked;
+		}
+
+
+		void OnRowClicked(object sender, EventArgs e)
+		{
+			GalleryRow row = (GalleryRow)sender;
+
+			StartActivity(new Intent(this, row.Activity));
 		}
 	}
 }
