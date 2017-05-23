@@ -38,6 +38,10 @@ namespace Shared
 				var mexico = new BoundingBox { Name = "Mexico City", MinLon = -99.329453, MaxLon = -98.937378, MinLat = 19.251515, MaxLat = 19.608956};
 				list.Add(mexico);
 
+				// Barcelona: 2.098732,41.345629,2.249451,41.454049
+				var barcelona = new BoundingBox { Name = "Barcelona", MinLon = 2.098732, MaxLon = 2.249451, MinLat = 41.345629, MaxLat = 41.454049 };
+				list.Add(barcelona);
+
 				var tartu = new BoundingBox { Name = "Tartu", MinLon = 26.6548, MaxLon = 26.7901, MinLat = 58.3404, MaxLat = 58.3964 };
 				list.Add(tartu);
 
