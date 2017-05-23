@@ -28,7 +28,7 @@ namespace Shared.iOS
 
 		public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			
+            
 		}
 
 		public override UITableViewCell GetCell(UITableView tableView, Foundation.NSIndexPath indexPath)

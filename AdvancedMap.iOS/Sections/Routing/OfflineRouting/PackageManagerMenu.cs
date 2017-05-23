@@ -16,13 +16,6 @@ namespace AdvancedMap.iOS
 		{
 			List = new PackageManagerListView();
 			AddSubview(List);
-
-			AddGestureRecognizer(new UITapGestureRecognizer(OnBackgroundClick));
-		}
-
-		void OnBackgroundClick(UITapGestureRecognizer recognizer)
-		{
-			if (BackgroundClick != null) BackgroundClick(new object(), EventArgs.Empty);
 		}
 
 		public void SetFrameWithNavigationBar(nfloat navbarHeight)
