@@ -65,6 +65,8 @@ namespace AdvancedMap.Droid
 			Canvas canvas = new Canvas(image1);
 			canvas.DrawBitmap(image2, null, new Rect(0, 0, image1.Height, image1.Width), paint);
 
+			// DrawFilter tile coordinates as text on map
+			/*
 			string text = tile.Zoom + "/" + tile.X + "/" + tile.Y;
 			Rect bounds = new Rect();
 
@@ -73,6 +75,7 @@ namespace AdvancedMap.Droid
 			int y = (image1.Height + bounds.Height()) / 2;
 
 			canvas.DrawText(text, x, y, paint);
+            */
 
 			BinaryData data = BitmapUtils.CreateBitmapFromAndroidBitmap(image1).CompressToInternal();
 
