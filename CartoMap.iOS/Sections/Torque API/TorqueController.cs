@@ -11,11 +11,11 @@ using UIKit;
 
 namespace CartoMap.iOS
 {
-	public class TorqueShipController : MapBaseController
+    public class TorqueShipController : UIViewController
 	{
-		public override string Name { get { return "Torque Ship"; } }
+		//public override string Name { get { return "Torque Ship"; } }
 
-		public override string Description { get { return "Indoor movement of shoppers throughout the day"; } }
+		//public override string Description { get { return "Indoor movement of shoppers throughout the day"; } }
 
 		const long FRAMETIME = 100;
 
@@ -73,6 +73,8 @@ namespace CartoMap.iOS
 			MapPos center = ContentView.MapView.Options.BaseProjection.FromWgs84(new MapPos(0.0013, 0.0013));
 			ContentView.MapView.FocusPos = center;
 			ContentView.MapView.Zoom = 18.0f;
+
+            Title = "Indoor Torque";
 		}
 
 		public override void ViewWillAppear(bool animated)

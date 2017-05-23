@@ -86,7 +86,7 @@ namespace CartoMap.iOS
 			},
 			new MapListRowSource {
 				Controller = new TorqueShipController(),
-				Title = "Torque Ship",
+				Title = "Indoor Torque",
 				ImageResource = "image_torque.png",
 			}
 		};
