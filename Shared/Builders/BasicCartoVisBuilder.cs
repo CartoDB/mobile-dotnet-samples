@@ -17,6 +17,7 @@ namespace Shared
 
 		public override void SetCenter(MapPos mapPos)
 		{
+            // Translate position from WGS84 to Mercator first
 			mapView.SetFocusPos(mapView.Options.BaseProjection.FromWgs84(mapPos), 1.0f);
 		}
 

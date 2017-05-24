@@ -18,12 +18,12 @@ namespace CartoMap.iOS
 
 		protected virtual string Url { get { return null; } }
 
-		public override void ViewDidLoad()
-		{
-			base.ViewDidLoad();
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
 
-			MapView.UpdateVisWithGridEvent(Url, OnError);
-		}
+            MapView.UpdateVisWithGridEvent(Url, OnError);
+        }
 
 		void OnError(string message)
 		{
