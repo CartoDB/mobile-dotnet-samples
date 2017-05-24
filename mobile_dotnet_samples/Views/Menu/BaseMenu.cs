@@ -32,7 +32,7 @@ namespace Shared.iOS
 			Animate(animationDuration, delegate { Alpha = 0; }, delegate { RemoveFromSuperview(); });
 		}
 
-		void OnBackgroundTap()
+        public virtual void OnBackgroundTap(UITapGestureRecognizer recognizer)
 		{
 			Hide();
 		}
