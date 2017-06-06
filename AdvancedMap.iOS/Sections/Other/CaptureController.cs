@@ -161,6 +161,7 @@ namespace AdvancedMap.iOS
 				UIActivityType.AssignToContact,
 				UIActivityType.SaveToCameraRoll
 			};
+
 			alertController.PopoverPresentationController.SourceView = controller.View;
 
 			controller.PresentViewController(alertController, true, null);
