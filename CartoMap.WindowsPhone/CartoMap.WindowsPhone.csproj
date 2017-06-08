@@ -145,11 +145,6 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="CartoMobileSDK.WinPhone10, Version=1.0">
-      <Name>Carto Mobile SDK for Windows Phone 10</Name>
-    </SDKReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
