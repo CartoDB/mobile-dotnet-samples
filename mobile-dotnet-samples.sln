@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared.iOS", "mobile_dotnet_samples\Shared.iOS.shproj", "{1A7F279C-E528-42E0-B1EA-A1068502115E}"
 EndProject
@@ -18,9 +18,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloMap.Droid", "HelloMap.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloMap.iOS", "HelloMap.iOS\HelloMap.iOS.csproj", "{5B58A78C-04E0-4D47-8EF6-ED3C317B8AD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloMap.WindowsPhone", "HelloMap.WindowsPhone\HelloMap.WindowsPhone.csproj", "{5B9C538B-DFAD-4883-B526-33FCD546FB71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloMap.UWP", "HelloMap.UWP\HelloMap.UWP.csproj", "{5B9C538B-DFAD-4883-B526-33FCD546FB71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartoMap.WindowsPhone", "CartoMap.WindowsPhone\CartoMap.WindowsPhone.csproj", "{57B4D0C7-2804-4E4D-914F-FB68598051EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartoMap.UWP", "CartoMap.UWP\CartoMap.UWP.csproj", "{57B4D0C7-2804-4E4D-914F-FB68598051EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITest.AdvancedMap", "UITest.AdvancedMap\UITest.AdvancedMap.csproj", "{B106B2F1-F48A-4C21-BCFE-77F31DF6E258}"
 EndProject
@@ -294,6 +294,8 @@ Global
 		{5B9C538B-DFAD-4883-B526-33FCD546FB71}.Release|x86.Build.0 = Release|x86
 		{5B9C538B-DFAD-4883-B526-33FCD546FB71}.Release|x86.Deploy.0 = Release|x86
 		{57B4D0C7-2804-4E4D-914F-FB68598051EE}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{57B4D0C7-2804-4E4D-914F-FB68598051EE}.Debug|Any CPU.Build.0 = Debug|x86
+		{57B4D0C7-2804-4E4D-914F-FB68598051EE}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{57B4D0C7-2804-4E4D-914F-FB68598051EE}.Debug|ARM.ActiveCfg = Debug|ARM
 		{57B4D0C7-2804-4E4D-914F-FB68598051EE}.Debug|ARM.Build.0 = Debug|ARM
 		{57B4D0C7-2804-4E4D-914F-FB68598051EE}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -336,7 +338,6 @@ Global
 		{57B4D0C7-2804-4E4D-914F-FB68598051EE}.Release|x86.Build.0 = Release|x86
 		{57B4D0C7-2804-4E4D-914F-FB68598051EE}.Release|x86.Deploy.0 = Release|x86
 		{B106B2F1-F48A-4C21-BCFE-77F31DF6E258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B106B2F1-F48A-4C21-BCFE-77F31DF6E258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B106B2F1-F48A-4C21-BCFE-77F31DF6E258}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{B106B2F1-F48A-4C21-BCFE-77F31DF6E258}.Debug|ARM.Build.0 = Debug|Any CPU
 		{B106B2F1-F48A-4C21-BCFE-77F31DF6E258}.Debug|iPhone.ActiveCfg = Debug|Any CPU

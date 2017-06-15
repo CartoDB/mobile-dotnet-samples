@@ -7,8 +7,8 @@
     <ProjectGuid>{0793FDF1-275B-476A-8D17-08D3A10DD10F}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HelloMap.Forms.WP</RootNamespace>
-    <AssemblyName>HelloMap.Forms.WP</AssemblyName>
+    <RootNamespace>HelloMap.Forms.UWP</RootNamespace>
+    <AssemblyName>HelloMap.Forms.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>

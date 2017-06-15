@@ -7,8 +7,8 @@
     <ProjectGuid>{57B4D0C7-2804-4E4D-914F-FB68598051EE}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CartoMap.WindowsPhone</RootNamespace>
-    <AssemblyName>CartoMap.WindowsPhone</AssemblyName>
+    <RootNamespace>CartoMap.UWP</RootNamespace>
+    <AssemblyName>CartoMap.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
@@ -144,11 +144,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="CartoMobileSDK.WinPhone10, Version=1.0">
-      <Name>Carto Mobile SDK for Windows Phone 10</Name>
-    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
