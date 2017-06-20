@@ -166,7 +166,7 @@ namespace Shared
 
 				// Create VIS loader
 				CartoVisLoader loader = new CartoVisLoader();
-				loader.DefaultVectorLayerMode = true;
+                loader.DefaultVectorLayerMode = true;
 				CartoVisBuilderWithGridEvent builder = new CartoVisBuilderWithGridEvent(map, layer);
 
 				BinaryData fontData = AssetUtils.LoadAsset("carto-fonts.zip");
