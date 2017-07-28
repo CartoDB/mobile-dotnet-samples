@@ -55,7 +55,7 @@
       <HintPath>..\packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.Android.4.1.0-alpha-9\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.Android.4.1.0-alpha-95\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

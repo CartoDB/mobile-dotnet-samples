@@ -22,6 +22,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Model\BaseMaps\" />
     <Folder Include="$(MSBuildThisFileDirectory)Model\Cities\" />
     <Folder Include="$(MSBuildThisFileDirectory)Routing\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Geocoding\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CartoVisBuilderWithGridEvent.cs" />
@@ -57,5 +58,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Cities\BoundingBoxes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Routing\Routing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\TorqueUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Geocoding\Geocoding.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Geocoding\GeocodingExtensions.cs" />
   </ItemGroup>
 </Project>
