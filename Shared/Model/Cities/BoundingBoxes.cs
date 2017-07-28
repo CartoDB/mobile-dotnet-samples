@@ -35,7 +35,7 @@ namespace Shared
 				list.Add(london);
 
 				// Mecio city : -99.329453, 19.251515, -98.937378, 19.608956
-				var mexico = new BoundingBox { Name = "Mexico City", MinLon = -99.329453, MaxLon = -98.937378, MinLat = 19.251515, MaxLat = 19.608956};
+				var mexico = new BoundingBox { Name = "Mexico City", MinLon = -99.329453, MaxLon = -98.937378, MinLat = 19.251515, MaxLat = 19.608956 };
 				list.Add(mexico);
 
 				// Barcelona: 2.098732,41.345629,2.249451,41.454049
