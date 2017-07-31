@@ -11,7 +11,7 @@ namespace Shared
 {
 	public class Geocoding
 	{
-		public const string Source = "geocoding:carto.geocode";
+		public const string Source = "geocoding:carto.streets";
 
 		public PackageManagerGeocodingService Service { get; private set; }
 
@@ -26,7 +26,7 @@ namespace Shared
 
 		public Geocoding(string path)
 		{
-            string folder = Path.Combine(path, "gecodingpackages");
+            string folder = Path.Combine(path, "geocodingpackages");
 
 			if (!Directory.Exists(folder))
 			{
