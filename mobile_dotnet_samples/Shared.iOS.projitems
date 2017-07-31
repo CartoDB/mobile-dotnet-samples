@@ -18,6 +18,8 @@
     <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\List\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Gallery\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\Content\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Services\LocationManager.cs" />
@@ -37,5 +39,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\List\MapListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\MapGalleryView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\GalleryRow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\PopupButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\PopupHeader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\SlideInPopup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\PopupView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\Device.cs" />
   </ItemGroup>
 </Project>
