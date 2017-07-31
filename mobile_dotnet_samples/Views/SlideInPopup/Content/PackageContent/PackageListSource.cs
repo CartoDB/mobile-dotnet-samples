@@ -14,10 +14,6 @@ namespace Shared.iOS
 
 		public readonly List<Package> Packages = new List<Package>();
 
-        public PackageListSource()
-        {
-        }
-
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             Package package = Packages[indexPath.Row];

@@ -1,8 +1,6 @@
 ﻿﻿
-using System;
 using System.Collections.Generic;
 using Carto.PackageManager;
-using Foundation;
 using UIKit;
 
 namespace Shared.iOS

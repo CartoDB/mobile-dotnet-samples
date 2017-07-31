@@ -1,5 +1,6 @@
 ﻿
 using System;
+using Carto.PackageManager;
 using UIKit;
 
 namespace Shared.iOS
@@ -18,6 +19,16 @@ namespace Shared.iOS
         }
 
         public void Update(Package package)
+        {
+            
+        }
+
+        public void Update(PackageStatus status)
+        {
+            
+        }
+
+        public void Update(Package package, float progress)
         {
             
         }
