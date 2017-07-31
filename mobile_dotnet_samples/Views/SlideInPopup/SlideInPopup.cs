@@ -106,5 +106,11 @@ namespace Shared.iOS
         {
             
         }
+
+        public void SlidePopupTo()
+        {
+            
+        }
+
     }
 }

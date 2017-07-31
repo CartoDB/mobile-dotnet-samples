@@ -44,5 +44,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\SlideInPopup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\PopupView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Device.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ViewExtensions.cs" />
   </ItemGroup>
 </Project>

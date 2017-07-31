@@ -35,7 +35,6 @@ namespace Shared
 
 				foreach (string name in names)
 				{
-					Console.WriteLine(name);
 					if (!name.StartsWith(folder))
 					{
 						// Belongs to a different folder,

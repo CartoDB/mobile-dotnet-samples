@@ -1,5 +1,6 @@
 ﻿﻿
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Shared;
 using Shared.iOS;
@@ -45,18 +46,18 @@ namespace AdvancedMap.iOS
 
 		void GeocodingPackageListUpdated(object sender, EventArgs e)
 		{
-			var sorted = Geocoding.Manager.ServerPackages.Where(package => package.PackageId.Contains("EE")).ToList();
-			Geocoding.Manager.StartPackageDownload("EE");
+			List<Package> packages = Geocoding.GetPackages(ContentView.Folder);
+			ContentView.UpdatePackages(packages);
 		}
 
 		void GeocodingPackageStatusChanged(object sender, PackageStatusEventArgs e)
 		{
-
+            
 		}
 
 		void GeocodingPackageUpdated(object sender, PackageEventArgs e)
 		{
-
+            
 		}
 
 	}

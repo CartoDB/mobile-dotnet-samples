@@ -141,6 +141,11 @@ namespace AdvancedMap.iOS
 				Controller = new GpsLocationMapController(),
 				Title = "GPS Location",
 				ImageResource = "gallery/image_gps_location.png"
+			},
+			new MapListRowSource {
+                Controller = new ReverseGeocodingController(),
+				Title = "REVERSE GEOCODING",
+				ImageResource = "gallery/icon_sample_reverse_geocoding.png"
 			}
 		};
 	}

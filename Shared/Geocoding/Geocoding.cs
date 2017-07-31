@@ -69,5 +69,11 @@ namespace Shared
 				complete();
 			});
 		}
+
+        public List<Package> GetPackages(string folder)
+        {
+            var language = "";
+            return Manager.GetPackages(language, folder);
+        }
 	}
 }

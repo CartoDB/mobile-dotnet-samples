@@ -8,6 +8,7 @@ namespace AdvancedMap.iOS
         public ReverseGeocodingController()
         {
             ContentView = new ReverseGeocodingView();
+            View = ContentView;
         }
     }
 }
