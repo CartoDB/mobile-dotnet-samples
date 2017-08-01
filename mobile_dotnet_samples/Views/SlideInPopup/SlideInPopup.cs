@@ -76,7 +76,7 @@ namespace Shared.iOS
             if (content != null)
             {
                 x = 0;
-                w = popup.HeaderHeight;
+                y = popup.HeaderHeight;
                 w = popup.Frame.Width;
                 h = popup.Frame.Height - popup.HeaderHeight;
 
@@ -99,17 +99,40 @@ namespace Shared.iOS
 
         public void Show()
         {
-            
+            Superview.BringSubviewToFront(this);
+            SlidePopupTo(visibleY);
         }
 
         public void Hide()
         {
-            
+            SlidePopupTo(hiddenY);
         }
 
-        public void SlidePopupTo()
+        const double Duration = 0.3;
+
+        public void SlidePopupTo(nfloat y)
         {
-            
+            UIView.Animate(Duration, delegate
+            {
+
+                popup.UpdateY(y);
+
+                if (y.Equals(hiddenY))
+                {
+                    transparentArea.Alpha = 0;
+                }
+                else
+                {
+                    transparentArea.Alpha = 0.5f;
+                }
+
+            }, delegate
+            {
+                if (y.Equals(hiddenY))
+                {
+                    Superview.SendSubviewToBack(this);
+                }
+            });
         }
 
     }

@@ -20,6 +20,8 @@ namespace AdvancedMap.iOS
     {
         public MapView MapView { get; private set; }
 
+        public SlideInPopup Popup { get; private set; }
+
         LocalVectorDataSource source;
 
         PopupButton PackageButton;
@@ -28,6 +30,8 @@ namespace AdvancedMap.iOS
         {
             get { return MapView.Options.BaseProjection; }
         }
+
+        public PackagePopupContent PackageContent { get; private set; }
 
         public BaseGeocodingView()
         {
@@ -43,6 +47,20 @@ namespace AdvancedMap.iOS
 
             PackageButton = new PopupButton("icons/icon_global.png");
             AddButton(PackageButton);
+
+            PackageContent = new PackagePopupContent();
+
+            PackageButton.AddGestureRecognizer(new UITapGestureRecognizer(PackageButtonTapped));
+
+            Popup = new SlideInPopup();
+            AddSubview(Popup);
+            SendSubviewToBack(Popup);
+        }
+
+        void PackageButtonTapped()
+        {
+            Popup.SetContent(PackageContent);
+            Popup.Show();
         }
 
         nfloat bottomLabelHeight = 40;
@@ -53,6 +71,7 @@ namespace AdvancedMap.iOS
             base.LayoutSubviews();
 
             MapView.Frame = Bounds;
+            Popup.Frame = Bounds;
 
             int count = buttons.Count;
 
@@ -84,7 +103,7 @@ namespace AdvancedMap.iOS
 
         public void UpdatePackages(List<Package> packages)
         {
-            Console.WriteLine(packages);
+            PackageContent.AddPackages(packages);
         }
     }
 }

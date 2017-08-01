@@ -18,7 +18,7 @@ namespace Shared.iOS
         {
             table = new UITableView();
             table.RegisterClassForCellReuse(typeof(PackageCell), PackageListSource.Identifier);
-            table.Source = new PackageListDataSource();
+            table.Source = new PackageListSource();
             AddSubview(table);
         }
 

@@ -47,7 +47,9 @@ namespace AdvancedMap.iOS
 		void GeocodingPackageListUpdated(object sender, EventArgs e)
 		{
 			List<Package> packages = Geocoding.GetPackages(ContentView.Folder);
-			ContentView.UpdatePackages(packages);
+            InvokeOnMainThread(delegate {
+               ContentView.UpdatePackages(packages); 
+            });
 		}
 
 		void GeocodingPackageStatusChanged(object sender, PackageStatusEventArgs e)

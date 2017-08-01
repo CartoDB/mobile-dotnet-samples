@@ -20,6 +20,11 @@ namespace Shared
 		public bool IsSmallerThan1MB { get { return Info.Size.ToLong() < 1024 * 1024; } }
 		public bool HasInfo { get { return Info != null; } }
 
+        public bool IsGroup
+        {
+            get { return Status == null && Info == null; }
+        }
+
 		public Package(string name, PackageInfo info, PackageStatus status)
 		{
 			Name = name;
@@ -128,6 +133,45 @@ namespace Shared
 			}
 			return info;
 		}
+
+        public const string ACTION_DOWNLOAD = "DOWNLOAD";
+        public const string ACTION_REMOVE = "REMOVE";
+        public const string ACTION_CANCEL = "CANCEL";
+        public const string ACTION_RESUME = "RESUME";
+        public const string ACTION_PAUSE = "PAUSE";
+
+        public string ActionText
+        {
+            get
+            {
+                if (Info == null)
+                {
+                    return "NONE";
+                }
+
+                if (Status == null)
+                {
+                    return ACTION_DOWNLOAD;
+                }
+
+                if (Status.CurrentAction == PackageAction.PackageActionReady)
+                {
+                    return ACTION_REMOVE;
+                } 
+
+                if (Status.CurrentAction == PackageAction.PackageActionWaiting)
+                {
+                    return ACTION_CANCEL;
+                }
+
+                if (Status.Paused)
+                {
+                    return ACTION_RESUME;
+                }
+
+                return ACTION_PAUSE;
+            }
+        }
 	}
 
 	public class ButtonInfo

@@ -15,5 +15,10 @@ namespace Shared.iOS
             view.Layer.MasksToBounds = false;
             view.Layer.CornerRadius = view.Frame.Width / 2;
         }
+
+        public static void UpdateY(this UIView view, nfloat y)
+        {
+            view.Frame = new CGRect(view.Frame.X, y, view.Frame.Width, view.Frame.Height);
+        }
     }
 }
