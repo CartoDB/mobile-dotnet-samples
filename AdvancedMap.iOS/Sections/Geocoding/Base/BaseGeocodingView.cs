@@ -105,5 +105,10 @@ namespace AdvancedMap.iOS
         {
             PackageContent.AddPackages(packages);
         }
+
+        public void UpdateFolder(Package package)
+        {
+            Folder += package.Name + "/";
+        }
     }
 }

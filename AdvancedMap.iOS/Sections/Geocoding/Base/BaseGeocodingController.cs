@@ -31,6 +31,8 @@ namespace AdvancedMap.iOS
 
 			Geocoding.Manager.Start();
 			Geocoding.Manager.StartPackageListDownload();
+
+			ContentView.PackageContent.Source.CellSelected += OnCellSelected;
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -42,9 +44,22 @@ namespace AdvancedMap.iOS
 			Geocoding.Listener.OnPackageStatusChange -= GeocodingPackageStatusChanged;
 
 			Geocoding.Manager.Stop(false);
+
+            ContentView.PackageContent.Source.CellSelected -= OnCellSelected;
         }
 
-		void GeocodingPackageListUpdated(object sender, EventArgs e)
+        void OnCellSelected(object sender, EventArgs e)
+        {
+            ContentView.UpdateFolder(sender as Package);
+
+			List<Package> packages = Geocoding.GetPackages(ContentView.Folder);
+			InvokeOnMainThread(delegate
+			{
+				ContentView.UpdatePackages(packages);
+			});
+        }
+
+        void GeocodingPackageListUpdated(object sender, EventArgs e)
 		{
 			List<Package> packages = Geocoding.GetPackages(ContentView.Folder);
             InvokeOnMainThread(delegate {

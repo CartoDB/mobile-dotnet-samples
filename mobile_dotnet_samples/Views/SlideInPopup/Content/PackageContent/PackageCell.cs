@@ -53,7 +53,7 @@ namespace Shared.iOS
 			AddSubview(statusIndicator);
 
 			forwardIcon = new UIImageView();
-			forwardIcon.Image = UIImage.FromFile("icon_forward_blue.png");
+			forwardIcon.Image = UIImage.FromFile("icons/icon_forward_blue.png");
 			AddSubview(forwardIcon);
 
 			progressIndicator = new UIView();
