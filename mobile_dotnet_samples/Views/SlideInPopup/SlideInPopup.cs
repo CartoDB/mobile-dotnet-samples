@@ -20,6 +20,16 @@ namespace Shared.iOS
             get { return transparentArea.Alpha >= 0.5f; }
         }
 
+        public void ShowBackButton()
+        {
+            Header.BackButton.Hidden = false;    
+        }
+
+        public void ShowTitle()
+        {
+            Header.BackButton.Hidden = true;    
+        }
+
         public SlideInPopup()
         {
             transparentArea = new UIView();

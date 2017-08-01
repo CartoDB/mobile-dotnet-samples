@@ -14,6 +14,8 @@ namespace Shared.iOS
 		public static UIColor CartoNavy = UIColor.FromRGB(22, 41, 69);
 
 		public static UIColor CartoNavyTransparent = UIColor.FromRGBA(22, 41, 69, 150);
+
+        public static UIColor TransparentGray = UIColor.FromRGBA(50, 50, 50, 150);
 	}
 }
 

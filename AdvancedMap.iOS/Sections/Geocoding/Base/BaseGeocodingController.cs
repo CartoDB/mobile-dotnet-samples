@@ -50,13 +50,30 @@ namespace AdvancedMap.iOS
 
         void OnCellSelected(object sender, EventArgs e)
         {
-            ContentView.UpdateFolder(sender as Package);
+            var package = sender as Package;
 
-			List<Package> packages = Geocoding.GetPackages(ContentView.Folder);
-			InvokeOnMainThread(delegate
-			{
-				ContentView.UpdatePackages(packages);
-			});
+            if (package.IsGroup)
+            {
+                ContentView.UpdateFolder(package);
+
+                List<Package> packages = Geocoding.GetPackages(ContentView.Folder);
+
+                InvokeOnMainThread(delegate
+                {
+                    ContentView.UpdatePackages(packages);
+                });
+            }
+            else 
+            {
+                if (package.ActionText == Package.ACTION_DOWNLOAD)
+                {
+                    InvokeOnMainThread(delegate {
+                       ContentView.ProgressLabel.Show(); 
+                    });
+                }
+
+                Geocoding.HandlePackageStatusChange(package);
+            }
         }
 
         void GeocodingPackageListUpdated(object sender, EventArgs e)
@@ -69,7 +86,28 @@ namespace AdvancedMap.iOS
 
 		void GeocodingPackageStatusChanged(object sender, PackageStatusEventArgs e)
 		{
-            
+			int progress = (int)e.Status.Progress;
+			Package current = Geocoding.CurrentDownload;
+
+            InvokeOnMainThread(delegate {
+
+                string text = "DOWNLOAD PACKAGE: " + progress + "%";
+
+                if (current != null)
+                {
+                    string name = current.Name;
+                    text = "DOWNLOADING " + name.ToUpper() + ": " + progress + "%";
+                }
+
+                ContentView.ProgressLabel.Update(text, progress);
+
+                if (current != null)
+                {
+                    string id = current.Id;
+                    ContentView.PackageContent.FindAndUpdate(id, e.Status);
+                }
+
+            });
 		}
 
 		void GeocodingPackageUpdated(object sender, PackageEventArgs e)

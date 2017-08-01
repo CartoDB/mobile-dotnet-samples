@@ -49,5 +49,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\Content\PackageContent\PackagePopupContent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\Content\PackageContent\PackageCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\Content\PackageContent\PackageListSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ProgressLabel.cs" />
   </ItemGroup>
 </Project>

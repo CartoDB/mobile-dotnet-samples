@@ -33,6 +33,8 @@ namespace AdvancedMap.iOS
 
         public PackagePopupContent PackageContent { get; private set; }
 
+        public ProgressLabel ProgressLabel { get; private set; }
+
         public BaseGeocodingView()
         {
             MapView = new MapView();
@@ -55,6 +57,9 @@ namespace AdvancedMap.iOS
             Popup = new SlideInPopup();
             AddSubview(Popup);
             SendSubviewToBack(Popup);
+
+            ProgressLabel = new ProgressLabel();
+            AddSubview(ProgressLabel);
         }
 
         void PackageButtonTapped()
@@ -90,6 +95,13 @@ namespace AdvancedMap.iOS
                 button.Frame = new CGRect(x, y, w, h);
                 x += w + innerPadding;
             }
+
+            w = Frame.Width;
+            h = bottomLabelHeight;
+            x = 0;
+            y = Frame.Height - h;
+
+            ProgressLabel.Frame = new CGRect(x, y, w, h);
         }
 
         readonly List<PopupButton> buttons = new List<PopupButton>();

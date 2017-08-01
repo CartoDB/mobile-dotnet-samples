@@ -9,7 +9,8 @@ namespace Shared.iOS
     {
         public static readonly nfloat Height = 40;
 
-        PopupBackButton backButton;
+        public PopupBackButton BackButton { get; private set; }
+
         public UILabel Label { get; private set; }
 
         PopupCloseButton closeButton;
@@ -22,16 +23,16 @@ namespace Shared.iOS
             Label.TextColor = Colors.CartoNavy;
             AddSubview(Label);
 
-            backButton = new PopupBackButton();
-            backButton.Label.Font = Label.Font;
-            backButton.Label.TextColor = Label.TextColor;
-            backButton.BackgroundColor = UIColor.White;
-            AddSubview(backButton);
+            BackButton = new PopupBackButton();
+            BackButton.Label.Font = Label.Font;
+            BackButton.Label.TextColor = Label.TextColor;
+            BackButton.BackgroundColor = UIColor.White;
+            AddSubview(BackButton);
 
             closeButton = new PopupCloseButton();
             AddSubview(closeButton);
 
-            backButton.Hidden = true;
+            BackButton.Hidden = true;
 
 			var recognizer = new UITapGestureRecognizer((obj) =>
 			{
@@ -53,7 +54,7 @@ namespace Shared.iOS
             nfloat h = Frame.Height;
 
             Label.Frame = new CGRect(x, y, w, h);
-            backButton.Frame = new CGRect(x, y, w, h);
+            BackButton.Frame = new CGRect(x, y, w, h);
 
             w = h;
             x = Frame.Width - w;

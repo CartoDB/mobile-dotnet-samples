@@ -172,6 +172,35 @@ namespace Shared
                 return ACTION_PAUSE;
             }
         }
+
+        public bool IsDownloading
+        {
+            get
+            {
+                if (Status == null)
+                {
+                    return false;
+                }
+
+                PackageAction action = Status.CurrentAction;
+                return action == PackageAction.PackageActionDownloading && !Status.Paused;
+            }
+        }
+
+		public bool IsQueued
+		{
+			get
+			{
+				if (Status == null)
+				{
+					return false;
+				}
+
+				PackageAction action = Status.CurrentAction;
+                return action == PackageAction.PackageActionWaiting && !Status.Paused;
+			}
+		}
+
 	}
 
 	public class ButtonInfo
