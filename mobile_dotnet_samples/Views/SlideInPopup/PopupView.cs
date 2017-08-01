@@ -14,6 +14,8 @@ namespace Shared.iOS
 
         public PopupView()
         {
+            BackgroundColor = UIColor.White;
+
             Header = new PopupHeader();
             AddSubview(Header);
 

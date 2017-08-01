@@ -13,6 +13,8 @@ namespace Shared.iOS
 
         nfloat hiddenY, visibleY;
 
+        public PopupHeader Header { get { return popup.Header; } }
+
         public bool IsVisible
         {
             get { return transparentArea.Alpha >= 0.5f; }

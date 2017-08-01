@@ -44,6 +44,21 @@ namespace Shared.iOS
         public override void LayoutSubviews()
         {
             base.LayoutSubviews();
+
+            nfloat padding = 15.0f;
+
+            nfloat x = padding;
+            nfloat y = 0;
+            nfloat w = Label.Frame.Width;
+            nfloat h = Frame.Height;
+
+            Label.Frame = new CGRect(x, y, w, h);
+            backButton.Frame = new CGRect(x, y, w, h);
+
+            w = h;
+            x = Frame.Width - w;
+
+            closeButton.Frame = new CGRect(x, y, w, h);
         }
 
         public void SetText(string text)
@@ -61,7 +76,7 @@ namespace Shared.iOS
         public PopupCloseButton()
         {
             image = new UIImageView();
-            image.Image = UIImage.FromFile("icon_close.png");
+            image.Image = UIImage.FromFile("icons/icon_close_dark.png");
 
             AddSubview(image);
         }
@@ -86,7 +101,7 @@ namespace Shared.iOS
         public PopupBackButton()
         {
             button = new UIImageView();
-            button.Image = UIImage.FromFile("icon_back_blue.png");
+            button.Image = UIImage.FromFile("icons/icon_back_blue.png");
             AddSubview(button);
 
             Label = new UILabel();

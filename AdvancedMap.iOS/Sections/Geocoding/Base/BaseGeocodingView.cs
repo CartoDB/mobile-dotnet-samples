@@ -59,6 +59,7 @@ namespace AdvancedMap.iOS
 
         void PackageButtonTapped()
         {
+            Popup.Header.SetText("SELECT A PACKAGE TO DOWNLOAD");
             Popup.SetContent(PackageContent);
             Popup.Show();
         }
