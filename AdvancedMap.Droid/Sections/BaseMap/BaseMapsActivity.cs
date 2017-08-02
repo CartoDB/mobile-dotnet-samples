@@ -130,23 +130,23 @@ namespace AdvancedMap.Droid
 			if (section.Type == SectionType.Vector)
 			{
 
-				if (currentOSM == "nutiteq.osm")
+                if (currentOSM == Sources.CartoVector)
 				{
 					// Nutiteq styles are bundled with the SDK, we can initialize them via constuctor
-					if (currentSelection == "default")
+					if (currentSelection == "voyager")
 					{
-						currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+                        currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
 					}
-					else if (currentSelection == "gray")
+					else if (currentSelection == "positron")
 					{
-						currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+                        currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStylePositron);
 					}
 					else
 					{
-						currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark);
+                        currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDarkmatter);
 					}
 				}
-				else if (currentOSM == "mapzen.osm")
+                else if (currentOSM == Sources.Mapzen)
 				{
 					// Mapzen styles are all bundled in one .zip file.
 					// Selection contains both the style name and file name (cf. Sections.cs in Shared)
@@ -196,7 +196,7 @@ namespace AdvancedMap.Droid
 				// Switch was tapped
 			}
 
-			if (currentOSM == "nutiteq.osm")
+			if (currentOSM == Sources.CartoVector)
 			{
 				var decoder = ((currentLayer as CartoOnlineVectorTileLayer).TileDecoder as MBVectorTileDecoder);
 				MapSwitch texts = ContentView.Menu.Texts3D;

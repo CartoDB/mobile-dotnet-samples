@@ -62,5 +62,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)PackageManagerClient\Geocoding\Geocoding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PackageManagerClient\Geocoding\GeocodingExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PackageManagerClient\BasePackageManagerClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources.cs" />
   </ItemGroup>
 </Project>

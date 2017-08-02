@@ -1,5 +1,6 @@
 ﻿using System;
 using Carto.Routing;
+using Shared;
 
 namespace AdvancedMap.iOS
 {
@@ -13,7 +14,7 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
-			Routing.Service = new CartoOnlineRoutingService(Shared.Routing.ServiceSource);
+            Routing.Service = new CartoOnlineRoutingService(Sources.OnlineRouting + Sources.TransportMode_Car);
 		}
 
 		protected override void SetBaseLayer()

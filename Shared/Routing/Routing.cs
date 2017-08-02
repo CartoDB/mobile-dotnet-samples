@@ -15,10 +15,6 @@ namespace Shared
 {
 	public class Routing
 	{
-		public const string ServiceSource = "nutiteq.osm.car";
-
-		const string ManagerSource = "routing:nutiteq.osm.car";
-
 		protected Marker startMarker, stopMarker;
 
 		public RoutingService Service { get; set; }
@@ -36,7 +32,7 @@ namespace Shared
 			{
 				// Create PackageManager instance for dealing with offline packages
 				string folder = CreateFolder();
-				CartoPackageManager manager = new CartoPackageManager(ManagerSource, folder);
+                CartoPackageManager manager = new CartoPackageManager(Sources.RoutingTag + Sources.OfflineRouting, folder);
 				return manager;
 			}
 		}
@@ -82,7 +78,7 @@ namespace Shared
 
 		public string CreateFolder()
 		{
-			return CreateFolder("routingpackages_");
+			return CreateFolder("routingpackages");
 		}
 
 		public string CreateFolder(string name)

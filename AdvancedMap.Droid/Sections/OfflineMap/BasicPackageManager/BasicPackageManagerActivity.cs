@@ -42,7 +42,7 @@ namespace AdvancedMap.Droid
 
 			string folder = CreateFolder("citypackages");
 
-			manager = new CartoPackageManager("nutiteq.osm", folder);
+			manager = new CartoPackageManager(Sources.CartoVector, folder);
 
 			ContentView.Menu.Items = BoundingBoxes.List;
 

@@ -9,7 +9,7 @@ namespace Shared
 	*/
 	public class Package
 	{
-		public const string ROUTING = "-routing";
+		public const string ROUTING = "";
 
 		public string Name { get; private set; }
 		public string Id { get; private set; }

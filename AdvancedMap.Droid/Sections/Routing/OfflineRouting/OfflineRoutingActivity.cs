@@ -38,7 +38,7 @@ namespace AdvancedMap.Droid
 			RoutingPackageManager = Routing.PackageManager;
 
 			// Create offline routing service connected to package manager
-			Routing.Service = new PackageManagerRoutingService(RoutingPackageManager);
+            Routing.Service = new PackageManagerValhallaRoutingService(RoutingPackageManager);
 
 			Alert("This sample uses an online map, but downloads routing packages");
 

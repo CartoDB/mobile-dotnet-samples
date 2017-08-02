@@ -35,7 +35,7 @@ namespace AdvancedMap.iOS
 			Manager = Routing.PackageManager;
 
 			// Create offline routing service connected to package manager
-			Routing.Service = new PackageManagerRoutingService(Manager);
+			Routing.Service = new PackageManagerValhallaRoutingService(Manager);
 
 			Alert("This sample uses an online map, but downloads routing packages");
 

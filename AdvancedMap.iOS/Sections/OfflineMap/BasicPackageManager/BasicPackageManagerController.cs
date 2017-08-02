@@ -44,7 +44,7 @@ namespace AdvancedMap.iOS
 
 			SetStatusLabel();
 
-			packageManager = new CartoPackageManager("nutiteq.osm", folder);
+			packageManager = new CartoPackageManager(Sources.CartoVector, folder);
 
 			SetBaseLayer();
 		}

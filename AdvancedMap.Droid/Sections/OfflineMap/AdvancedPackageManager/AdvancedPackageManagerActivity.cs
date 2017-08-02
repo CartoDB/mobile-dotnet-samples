@@ -56,7 +56,7 @@ namespace AdvancedMap.Droid
 
 			try
 			{
-				packageManager = new CartoPackageManager("nutiteq.osm", packageFolder.AbsolutePath);
+                packageManager = new CartoPackageManager(Sources.CartoVector, packageFolder.AbsolutePath);
 			}
 			catch (IOException e)
 			{

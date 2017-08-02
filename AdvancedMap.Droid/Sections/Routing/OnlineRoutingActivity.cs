@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.App;
 using Carto.Routing;
+using Shared;
 using Shared.Droid;
 
 namespace AdvancedMap.Droid
@@ -15,7 +16,7 @@ namespace AdvancedMap.Droid
 
 			Initialize(MapView);
 
-			Routing.Service = new CartoOnlineRoutingService(Shared.Routing.ServiceSource);
+			Routing.Service = new CartoOnlineRoutingService(Sources.OnlineRouting + Sources.TransportMode_Car);
 		}
 
 		protected override void SetBaseLayer()

@@ -141,9 +141,9 @@ namespace Shared
         {
 			string directory = Path.Combine(path, folder);
 
-			if (!Directory.Exists(folder))
+			if (!Directory.Exists(directory))
 			{
-				Directory.CreateDirectory(folder);
+				Directory.CreateDirectory(directory);
 			}
 
             return directory;
