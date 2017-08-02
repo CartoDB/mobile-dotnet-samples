@@ -22,11 +22,11 @@ namespace AdvancedMap.iOS
 
         public SlideInPopup Popup { get; private set; }
 
-        LocalVectorDataSource source;
+        public LocalVectorDataSource ObjectSource { get; private set; }
 
         PopupButton PackageButton;
 
-        Projection Projection
+        public Projection Projection
         {
             get { return MapView.Options.BaseProjection; }
         }
@@ -43,8 +43,8 @@ namespace AdvancedMap.iOS
             var layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
             MapView.Layers.Add(layer);
 
-            source = new LocalVectorDataSource(Projection);
-            var objectLayer = new VectorLayer(source);
+            ObjectSource = new LocalVectorDataSource(Projection);
+            var objectLayer = new VectorLayer(ObjectSource);
             MapView.Layers.Add(objectLayer);
 
             PackageButton = new PopupButton("icons/icon_global.png");

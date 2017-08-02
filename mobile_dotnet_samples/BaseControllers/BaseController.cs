@@ -13,7 +13,9 @@ namespace Shared.iOS
 
 		protected async void Alert(string message)
 		{
-			await ShowToast(message);
+            InvokeOnMainThread(async () => {
+                await ShowToast(message);    
+            });
 		}
 
 		async Task ShowToast(string message, UIAlertView toast = null)

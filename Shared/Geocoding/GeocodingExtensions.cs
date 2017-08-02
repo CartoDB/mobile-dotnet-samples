@@ -92,6 +92,7 @@ namespace Shared
 			builder.CornerRadius = 5;
 			// Make sure this label is shown on top of all other labels
 			builder.PlacementPriority = 10;
+            builder.DescriptionColor = new Carto.Graphics.Color(255, 255, 255, 255);
 
 			FeatureCollection collection = result.FeatureCollection;
 			int count = collection.FeatureCount;
