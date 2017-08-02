@@ -42,8 +42,6 @@ namespace AdvancedMap.iOS
 
 			Window.MakeKeyAndVisible();
 
-			Device.NavigationBarHeight = Controller.NavigationBar.Frame.Height;
-
 			#if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
 			#endif

@@ -13,7 +13,21 @@ namespace AdvancedMap.iOS
 			}
 		}
 
-		public static nfloat NavigationBarHeight;
+        public static nfloat TrueY0
+        {
+            get
+            {
+                return NavigationBarHeight + StatusBarHeight;   
+            }
+        }
+
+		public static nfloat NavigationBarHeight
+        {
+            get {
+                var appdelegate = UIApplication.SharedApplication.Delegate as AppDelegate;
+                return appdelegate.Controller.NavigationBar.Frame.Height;
+            }
+        }
 
 		public static nfloat StatusBarHeight
 		{
