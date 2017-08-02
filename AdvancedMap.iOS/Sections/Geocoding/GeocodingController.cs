@@ -18,6 +18,8 @@ namespace AdvancedMap.iOS
             View = ContentView;
 
             Geocoding.Projection = ContentView.Projection;
+
+			Title = "GEOCODING";
         }
 
         public override void ViewWillAppear(bool animated)

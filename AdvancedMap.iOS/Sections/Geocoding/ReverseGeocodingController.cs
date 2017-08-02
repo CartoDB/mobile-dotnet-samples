@@ -22,6 +22,8 @@ namespace AdvancedMap.iOS
 			Listener.Service = new PackageManagerReverseGeocodingService(Geocoding.Manager);
 
             Geocoding.Projection = ContentView.Projection;
+
+            Title = "REVERSE GEOCODING";
         }
 
         public override void ViewWillAppear(bool animated)
