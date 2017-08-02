@@ -25,6 +25,8 @@ namespace AdvancedMap.iOS
         {
             base.ViewWillAppear(animated);
 
+            Geocoding.AttachListener();
+
 			Geocoding.Listener.OnPackageListUpdate += GeocodingPackageListUpdated;
 			Geocoding.Listener.OnPackageUpdate += GeocodingPackageUpdated;
 			Geocoding.Listener.OnPackageStatusChange += GeocodingPackageStatusChanged;
@@ -42,6 +44,8 @@ namespace AdvancedMap.iOS
 			Geocoding.Listener.OnPackageListUpdate -= GeocodingPackageListUpdated;
 			Geocoding.Listener.OnPackageUpdate -= GeocodingPackageUpdated;
 			Geocoding.Listener.OnPackageStatusChange -= GeocodingPackageStatusChanged;
+
+            Geocoding.RemoveListener();
 
 			Geocoding.Manager.Stop(false);
 

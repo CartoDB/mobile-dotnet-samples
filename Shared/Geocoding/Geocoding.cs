@@ -21,6 +21,12 @@ namespace Shared
 		public Projection Projection { get; set; }
 
 		public bool IsInProgress { get; set; }
+
+        public bool HasAddress
+        {
+            get { return Addresses.Count > 0; }
+        }
+
 		public List<GeocodingResult> Addresses { get; private set; } = new List<GeocodingResult>();
 
 		public PackageListener Listener { get; private set; }
@@ -39,8 +45,17 @@ namespace Shared
 			Service = new PackageManagerGeocodingService(Manager);
 
 			Listener = new PackageListener();
-			Manager.PackageManagerListener = Listener;
 		}
+
+        public void AttachListener()
+        {
+			Manager.PackageManagerListener = Listener;
+        }
+
+        public void RemoveListener()
+        {
+			Manager.PackageManagerListener = null;
+        }
 
 		public void MakeRequest(string text, Action complete)
 		{
@@ -55,7 +70,7 @@ namespace Shared
 			{
 				var request = new GeocodingRequest(Projection, text);
 				GeocodingResultVector results = Service.CalculateAddresses(request);
-				int count = results.Count;
+                int count = results.Count;
 
 				Addresses.Clear();
 

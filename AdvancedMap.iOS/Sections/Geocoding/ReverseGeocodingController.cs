@@ -11,13 +11,17 @@ namespace AdvancedMap.iOS
 
         public ReverseGeocodingEventListener Listener { get; set; }
 
-        public ReverseGeocodingController()
+        public override void ViewDidLoad()
         {
+            base.ViewDidLoad();
+			
             ContentView = new ReverseGeocodingView();
-            View = ContentView;
+			View = ContentView;
 
-            Listener = new ReverseGeocodingEventListener(ContentView.Projection);
-            Listener.Service = new PackageManagerReverseGeocodingService(Geocoding.Manager);
+			Listener = new ReverseGeocodingEventListener(ContentView.Projection);
+			Listener.Service = new PackageManagerReverseGeocodingService(Geocoding.Manager);
+
+            Geocoding.Projection = ContentView.Projection;
         }
 
         public override void ViewWillAppear(bool animated)
