@@ -13,7 +13,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Services\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)DataSources\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
     <Folder Include="$(MSBuildThisFileDirectory)BaseControllers\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\List\" />
@@ -21,6 +20,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\Content\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\Content\PackageContent\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Services\LocationManager.cs" />
@@ -50,5 +50,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\Content\PackageContent\PackageCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\Content\PackageContent\PackageListSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ProgressLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\MapBaseView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\DownloadBaseView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\PackageDownloadBaseView.cs" />
   </ItemGroup>
 </Project>
