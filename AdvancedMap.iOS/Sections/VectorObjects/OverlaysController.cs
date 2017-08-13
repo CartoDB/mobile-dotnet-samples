@@ -30,7 +30,7 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
-			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+            AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStylePositron);
 			             
 			Projection projection = BaseProjection;
 

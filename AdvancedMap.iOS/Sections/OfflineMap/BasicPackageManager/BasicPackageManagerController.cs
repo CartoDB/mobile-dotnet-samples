@@ -208,7 +208,7 @@ namespace AdvancedMap.iOS
 
 		public void SetBaseLayer()
 		{
-			var layer = new CartoOfflineVectorTileLayer(packageManager, CartoBaseMapStyle.CartoBasemapStyleDefault);
+			var layer = new CartoOfflineVectorTileLayer(packageManager, CartoBaseMapStyle.CartoBasemapStyleVoyager);
 			MapView.Layers.Add(layer);
 		}
 	}

@@ -26,7 +26,7 @@ namespace AdvancedMap.iOS
 			base.ViewDidLoad();
 
 			// Add default base layer
-			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+            AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
 
 			Projection projection = MapView.Options.BaseProjection;
 

@@ -116,7 +116,7 @@ namespace AdvancedMap.iOS
 
 		protected override void SetBaseLayer()
 		{
-			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
 		}
 
 

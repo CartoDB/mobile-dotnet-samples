@@ -32,7 +32,7 @@ namespace AdvancedMap.iOS
 			base.ViewDidLoad();
 
 			// Add default base layer
-			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+            AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
 
 			LocationManager = new LocationManager();
 			LocationManager.Start();
