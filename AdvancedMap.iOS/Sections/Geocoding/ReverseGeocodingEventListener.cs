@@ -5,7 +5,7 @@ using Carto.Geocoding;
 using Carto.Projections;
 using Carto.Ui;
 
-namespace AdvancedMap.iOS
+namespace Shared
 {
     public class ReverseGeocodingEventListener : MapEventListener
 	{

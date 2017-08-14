@@ -24,6 +24,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Routing\" />
     <Folder Include="$(MSBuildThisFileDirectory)PackageManagerClient\" />
     <Folder Include="$(MSBuildThisFileDirectory)PackageManagerClient\Geocoding\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Geocoding\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CartoVisBuilderWithGridEvent.cs" />
