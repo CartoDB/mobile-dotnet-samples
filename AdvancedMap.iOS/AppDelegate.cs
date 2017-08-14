@@ -53,7 +53,12 @@ namespace AdvancedMap.iOS
 			manager.DisableUpdateManager = false;
 			manager.StartManager();
 
-			return true;
+            Carto.Utils.Log.ShowInfo = true;
+            Carto.Utils.Log.ShowWarn = true;
+            Carto.Utils.Log.ShowDebug = true;
+            Carto.Utils.Log.ShowError = true;
+
+            return true;
 		}
 
 	}
