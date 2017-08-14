@@ -46,7 +46,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Json" />
     <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.Android.4.1.0-alpha-96\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.Android.4.1.0-rc1\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

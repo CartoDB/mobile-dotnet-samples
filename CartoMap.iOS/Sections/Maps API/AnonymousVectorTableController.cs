@@ -23,7 +23,7 @@ namespace CartoMap.iOS
 		{
 			base.ViewDidLoad();
 
-			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+            AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStylePositron);
 
 			JsonValue config = JsonUtils.VectorLayerConfigJson;
 

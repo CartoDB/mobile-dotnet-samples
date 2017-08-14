@@ -29,7 +29,7 @@ namespace HelloMap.iOS
 			MapView = View as MapView;
 
 			// Add base map
-			CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+            CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
 			MapView.Layers.Add(baseLayer);
 
 			// Set projection
