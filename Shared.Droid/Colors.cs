@@ -14,6 +14,8 @@ namespace Shared.Droid
 		public static Color CartoRed = Color.Rgb(215, 82, 75);
 
 		public static Color CartoNavy = Color.Rgb(22, 41, 69);
+
+        public static Color TransparentGray = Color.Argb(150, 0, 0, 0);
 	}
 }
 

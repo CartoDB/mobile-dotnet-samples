@@ -96,7 +96,7 @@ namespace AdvancedMap.Droid
 			}
 			else {
 				ContentView.Menu.Show();
-				ContentView.Button.BringToFront();
+
 			}
 		}
 
