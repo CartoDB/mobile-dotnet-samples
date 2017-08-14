@@ -19,7 +19,7 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			var layer = new CartoOfflineVectorTileLayer(MenuClickListener.Manager, CartoBaseMapStyle.CartoBasemapStyleDefault);
+            var layer = new CartoOfflineVectorTileLayer(MenuClickListener.Manager, CartoBaseMapStyle.CartoBasemapStyleVoyager);
 			MapView.Layers.Add(layer);
 		}
 

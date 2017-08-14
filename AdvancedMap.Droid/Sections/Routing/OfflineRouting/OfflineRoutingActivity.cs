@@ -75,7 +75,7 @@ namespace AdvancedMap.Droid
 
 		protected override void SetBaseLayer()
 		{
-			ContentView.MapView.AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+            ContentView.MapView.AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
 		}
 
 		protected override void OnDestroy()

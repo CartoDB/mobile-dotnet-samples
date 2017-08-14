@@ -21,7 +21,7 @@ namespace AdvancedMap.Droid
 
 		protected override void SetBaseLayer()
 		{
-			AddOnlineBaseLayer(Carto.Layers.CartoBaseMapStyle.CartoBasemapStyleDefault);
+            AddOnlineBaseLayer(Carto.Layers.CartoBaseMapStyle.CartoBasemapStyleVoyager);
 		}
 	}
 }

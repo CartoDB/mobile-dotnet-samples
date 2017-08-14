@@ -16,7 +16,7 @@ namespace AdvancedMap.Droid
 
 		public BaseMapsView(Context context) : base(context, Resource.Drawable.icon_menu_round)
 		{
-			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+            var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
 			MapView.Layers.Add(baseLayer);
 
 			Menu = new BaseMapSectionMenu(context);
