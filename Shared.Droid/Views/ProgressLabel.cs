@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Timers;
 using Android.Animation;
 using Android.Content;
 using Android.Graphics;
@@ -48,6 +49,27 @@ namespace Shared.Droid
             }
 
             label.Text = text.ToUpper();
+        }
+
+        public void Complete(string text)
+        {
+            Update(text);
+
+            var timer = new Timer();
+            timer.Interval = 500;
+            timer.Start();
+
+            timer.Elapsed += delegate {
+
+                (Context as BaseActivity).RunOnUiThread(delegate
+                {
+                    Hide();
+                });
+
+                timer.Stop();
+                timer.Dispose();
+                timer = null;
+            };
         }
 
         public void UpdateProgress(float progress)
