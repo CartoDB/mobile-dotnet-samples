@@ -16,7 +16,7 @@ namespace Shared.Droid
 
         public override void LayoutSubviews()
         {
-            Header.SetFrame(0, 0, Frame.W, Header.TotalHeight);
+            Header.Frame = new CGRect(0, 0, Frame.W, Header.TotalHeight);
         }
 	}
 }

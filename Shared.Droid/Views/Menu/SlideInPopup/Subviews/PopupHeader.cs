@@ -40,12 +40,12 @@ namespace Shared.Droid
             int h = Frame.H;
 
             label.SetFrame(x, y, w, h);
-            BackButton.SetFrame(x, y, w, h);
+            BackButton.Frame = new CGRect(x, y, w, h);
 
             w = h;
             x = Frame.W - w;
 
-            CloseButton.SetFrame(x, y, w, h);
+            CloseButton.Frame = new CGRect(x, y, w, h);
         }
     }
 }

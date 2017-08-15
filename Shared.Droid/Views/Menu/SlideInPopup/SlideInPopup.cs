@@ -57,7 +57,7 @@ namespace Shared.Droid
             }
 
             y = visibleY;
-            popup.SetFrame(x, y, w, h);
+            popup.Frame = new CGRect(x, y, w, h);
 
             Hide(0);
         }
