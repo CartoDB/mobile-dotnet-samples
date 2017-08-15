@@ -9,15 +9,15 @@ namespace Shared
 {
     public class BasePackageManagerClient
     {
-		public CartoPackageManager Manager { get; protected set; }
+        public CartoPackageManager Manager { get; protected set; }
 
         public PackageListener Listener { get; protected set; }
 
         public Projection Projection { get; set; }
 
-		public BasePackageManagerClient()
-		{
-			Listener = new PackageListener();
+        public BasePackageManagerClient()
+        {
+            Listener = new PackageListener();
         }
 
         public void AttachListener()
@@ -73,7 +73,7 @@ namespace Shared
 
         void Dequeue(Package package)
         {
-            downloadQueue.Remove(package);    
+            downloadQueue.Remove(package);
         }
 
         readonly List<Package> downloadQueue = new List<Package>();
@@ -82,7 +82,8 @@ namespace Shared
         {
             get
             {
-                if (downloadQueue.Count > 0) {
+                if (downloadQueue.Count > 0)
+                {
                     var downloading = downloadQueue.FirstOrDefault(p => p.IsDownloading);
                     if (downloading != null)
                     {

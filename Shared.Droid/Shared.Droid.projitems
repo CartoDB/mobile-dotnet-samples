@@ -37,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Base\Map\MapBaseView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Base\Map\PackageDownloadBaseView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ProgressLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\FileUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
@@ -51,5 +52,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Content\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Base\Base\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Base\Map\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Utils\" />
   </ItemGroup>
 </Project>
