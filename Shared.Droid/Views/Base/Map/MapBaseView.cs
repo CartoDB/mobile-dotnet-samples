@@ -18,24 +18,29 @@ namespace Shared.Droid
 			get { return MapView.Options.BaseProjection; }
 		}
 
-		public MapBaseView(Context context, int backIcon, int closeIcon) : base(context)
+		protected int BottomLabelHeight
+		{
+			get { return (int)(40 * Density); }
+		}
+
+		protected int SmallPadding
+		{
+			get { return (int)(5 * Density); }
+		}
+
+		public ActionButton InfoButton { get; set; }
+
+		public MapBaseView(Context context, int infoIcon, int backIcon, int closeIcon) : base(context)
         {
 			Popup = new SlideInPopup(context, backIcon, closeIcon);
 			AddView(Popup);
 
 			MapView = new MapView(context);
             AddView(MapView);
-        }
 
-		protected int BottomLabelHeight
-        {
-            get { return (int)(40 * Density); }
+            InfoButton = new ActionButton(context, infoIcon);
+            AddButton(InfoButton);
         }
-
-		protected int SmallPadding
-		{
-			get { return (int)(5 * Density); }
-		}
 
 		public override void LayoutSubviews()
         {

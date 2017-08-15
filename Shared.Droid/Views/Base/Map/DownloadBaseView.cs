@@ -12,7 +12,8 @@ namespace Shared.Droid
 
         public SwitchButton OnlineSwitch { get; private set; }
 
-        public DownloadBaseView(Context context, int backIcon, int closeIcon, int wifiOnIcon, int wifiOffIcon) : base(context, backIcon, closeIcon)
+        public DownloadBaseView(Context context, int infoIcon, int backIcon, int closeIcon, int wifiOnIcon, int wifiOffIcon) 
+            : base(context, infoIcon, backIcon, closeIcon)
         {
             ProgressLabel = new ProgressLabel(context);
             AddView(ProgressLabel);
@@ -65,7 +66,7 @@ namespace Shared.Droid
 
             if (offlineLayer == null)
             {
-                offlineLayer = new CartoOfflineVectorTileLayer(Manager, CartoBaseMapStyle.CartoBasemapStyleVoyager);
+                offlineLayer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CartoBasemapStyleVoyager);
                 offlineLayer.Preloading = true;
             }
 
