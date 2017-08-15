@@ -8,7 +8,8 @@ namespace Shared.Droid
     {
         public ActionButton Packagebutton { get; private set; }
 
-        public PackageDownloadBaseView(Context context, int backIcon, int closeIcon, int globalIcon) : base(context, backIcon, closeIcon)
+        public PackageDownloadBaseView(Context context, int backIcon, int closeIcon, int globalIcon, int wifiOnIcon, int wifiOffIcon) 
+            : base(context, backIcon, closeIcon, wifiOnIcon, wifiOffIcon)
         {
             Packagebutton = new ActionButton(context, globalIcon);
             AddButton(Packagebutton);

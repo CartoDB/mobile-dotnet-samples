@@ -1,6 +1,8 @@
 ﻿
 using System;
 using Android.Content;
+using Carto.Layers;
+using Carto.PackageManager;
 
 namespace Shared.Droid
 {
@@ -8,10 +10,17 @@ namespace Shared.Droid
     {
         public ProgressLabel ProgressLabel { get; private set; }
 
-        public DownloadBaseView(Context context, int backIcon, int closeIcon) : base(context, backIcon, closeIcon)
+        public SwitchButton OnlineSwitch { get; private set; }
+
+        public DownloadBaseView(Context context, int backIcon, int closeIcon, int wifiOnIcon, int wifiOffIcon) : base(context, backIcon, closeIcon)
         {
             ProgressLabel = new ProgressLabel(context);
             AddView(ProgressLabel);
+
+            OnlineSwitch = new SwitchButton(context, wifiOnIcon, wifiOffIcon);
+            AddButton(OnlineSwitch);
+
+            SetOnlineMode();
         }
 
         public override void LayoutSubviews()
@@ -20,6 +29,47 @@ namespace Shared.Droid
 
             var height = BottomLabelHeight;
             ProgressLabel.Frame = new CGRect(0, Frame.H - height, Frame.W, height);
+        }
+
+		CartoOnlineVectorTileLayer onlineLayer;
+		CartoOfflineVectorTileLayer offlineLayer;
+
+        public CartoPackageManager Manager { get; set; }
+
+		public void SetOnlineMode()
+        {
+            if (onlineLayer == null)
+            {
+                onlineLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
+            }
+
+            if (offlineLayer != null)
+            {
+                MapView.Layers.Remove(offlineLayer);
+            }
+
+            MapView.Layers.Add(onlineLayer);
+        }
+
+        public void SetOfflineMode()
+        {
+            SetOfflineMode(Manager);    
+        }
+
+        public void SetOfflineMode(CartoPackageManager manager)
+        {
+            if (onlineLayer != null)
+            {
+                MapView.Layers.Remove((onlineLayer));    
+            }
+
+            if (offlineLayer == null)
+            {
+                offlineLayer = new CartoOfflineVectorTileLayer(Manager, CartoBaseMapStyle.CartoBasemapStyleVoyager);
+                offlineLayer.Preloading = true;
+            }
+
+            MapView.Layers.Add(offlineLayer);
         }
     }
 }
