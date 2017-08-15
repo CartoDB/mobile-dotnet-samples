@@ -52,11 +52,14 @@
     <Reference Include="HockeySDK">
       <HintPath>..\packages\HockeySDK.Xamarin.4.1.3\lib\MonoAndroid403\HockeySDK.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
-    </Reference>
     <Reference Include="CartoMobileSDK.Android">
       <HintPath>..\packages\CartoMobileSDK.Android.4.1.0-rc1\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Crosslight.Xamarin.Android.Support.v4.23.1.1\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\packages\Crosslight.Xamarin.Android.Support.v7.AppCompat.23.1.1\lib\MonoAndroid10\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +104,8 @@
     <Compile Include="Sections\Routing\OfflineRouting\OfflineRoutingView.cs" />
     <Compile Include="Sections\BaseMap\Views\MapSwitch.cs" />
     <Compile Include="MapBaseActivity.cs" />
+    <Compile Include="Sections\Geocoding\BaseGeocodingView.cs" />
+    <Compile Include="Sections\Geocoding\ReverseGeocodingActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -149,6 +154,15 @@
     <AndroidResource Include="Resources\drawable-nodpi\image_screencapture.png" />
     <AndroidResource Include="Resources\drawable-nodpi\image_wms.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_info.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_back_blue.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_close.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_global.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_wifi_off.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_wifi_on.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_sample_reverse_geocoding.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_info_blue.png" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />

@@ -19,7 +19,7 @@ namespace Shared.Droid
         public PopupHeader(Context context, int backIcon, int closeIcon) : base(context)
         {
 			label = new TextView(context);
-			AddView(BackButton);
+			AddView(label);
 
             BackButton = new PopupBackButton(context, backIcon);
             AddView(BackButton);

@@ -20,7 +20,7 @@ namespace Shared.Droid
         public override void LayoutSubviews()
         {
             var padding = Frame.W / 3;
-            image.SetFrame(padding, padding, Frame.W - 2 * padding, Frame.H - 2 * padding;);
+            image.SetFrame(padding, padding, Frame.W - 2 * padding, Frame.H - 2 * padding);
         }
 	}
 }

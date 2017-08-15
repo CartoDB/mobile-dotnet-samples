@@ -38,8 +38,8 @@ namespace Shared.Droid
 			MapView = new MapView(context);
             AddView(MapView);
 
-            InfoButton = new ActionButton(context, infoIcon);
-            AddButton(InfoButton);
+            //InfoButton = new ActionButton(context, infoIcon);
+            //AddButton(InfoButton);
         }
 
 		public override void LayoutSubviews()

@@ -37,7 +37,7 @@ namespace Shared.Droid
             get
             {
                 int total = Resources.DisplayMetrics.HeightPixels;
-                return total - (NavigationBarHeight + StatusBarHeight + ActionBarHeight);
+                return total - (NavigationBarHeight + StatusBarHeight /*+ ActionBarHeight*/);
             }
         }
 
