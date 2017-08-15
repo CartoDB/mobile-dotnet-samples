@@ -22,11 +22,20 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\MapGalleryView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\GalleryRow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\MapGallerySource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\Buttons\ActionButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\Banner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\BaseView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\CGRect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\Buttons\SwitchButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\ViewExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)Adapters\" />
     <Folder Include="$(MSBuildThisFileDirectory)BaseActivities\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Gallery\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\Buttons\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Base\" />
   </ItemGroup>
 </Project>

@@ -148,6 +148,7 @@
     <AndroidResource Include="Resources\drawable-nodpi\image_overlays.png" />
     <AndroidResource Include="Resources\drawable-nodpi\image_screencapture.png" />
     <AndroidResource Include="Resources\drawable-nodpi\image_wms.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_info.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />
@@ -166,6 +167,7 @@
     <Folder Include="Sections\OfflineMap\BasicPackageManager\Views\" />
     <Folder Include="Sections\Routing\" />
     <Folder Include="Sections\Routing\OfflineRouting\" />
+    <Folder Include="Sections\Geocoding\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fcd_auto.nml" />

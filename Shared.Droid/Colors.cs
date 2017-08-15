@@ -5,6 +5,8 @@ namespace Shared.Droid
 {
 	public class Colors
 	{
+		public static readonly Color AppleBlue = Color.Rgb(14, 122, 254);
+
 		public static Color ActionBar = Color.Rgb(215, 82, 75);
 
 		public static Color ActiveMenuItem = Color.Rgb(180, 82, 75);

@@ -222,7 +222,6 @@
     <Compile Include="Sections\Geocoding\ReverseGeocodingView.cs" />
     <Compile Include="Sections\Geocoding\GeocodingController.cs" />
     <Compile Include="Sections\Geocoding\GeocodingView.cs" />
-    <Compile Include="Sections\Geocoding\ReverseGeocodingEventListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\fcd_auto.nml" />
