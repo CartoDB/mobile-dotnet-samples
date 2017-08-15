@@ -7,10 +7,8 @@ using Shared.Droid;
 namespace AdvancedMap.Droid
 {
     [Activity]
-    public class ReverseGeocodingActivity : Activity
+    public class ReverseGeocodingActivity : PackageDownloadBaseActivity
     {
-        MapBaseView ContentView { get; set; }
-
         protected override void OnCreate(Android.OS.Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

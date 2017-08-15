@@ -106,6 +106,7 @@
     <Compile Include="MapBaseActivity.cs" />
     <Compile Include="Sections\Geocoding\BaseGeocodingView.cs" />
     <Compile Include="Sections\Geocoding\ReverseGeocodingActivity.cs" />
+    <Compile Include="Sections\Geocoding\Base\PackageDownloadBaseActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -182,6 +183,7 @@
     <Folder Include="Sections\Routing\" />
     <Folder Include="Sections\Routing\OfflineRouting\" />
     <Folder Include="Sections\Geocoding\" />
+    <Folder Include="Sections\Geocoding\Base\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fcd_auto.nml" />
