@@ -69,6 +69,42 @@ namespace Shared.Droid
 			}
 		}
 
+        public DisplayMetrics Metrics
+        {
+            get { return Context.Resources.DisplayMetrics; }
+        }
+
+        public bool IsLandscape
+        {
+            get { return Metrics.WidthPixels > Metrics.HeightPixels; }
+        }
+
+        public bool IsLargeTablet
+        {
+            get
+            {
+                var width = Metrics.WidthPixels;
+                var height = Metrics.HeightPixels;
+
+                var greater = height;
+                var lesser = width;
+
+                if (IsLandscape)
+                {
+                    greater = width;
+                    lesser = height;
+                }
+
+                if (Density > 2.5f)
+                {
+                    // If density is too large, it'll be a phone
+                    return false;
+                }
+
+                return greater > 1920 && lesser > 1080;
+            }
+        }
+
 		public BaseView(Context context) : base(context) { }
 
         public virtual void LayoutSubviews() { }

@@ -1,13 +1,51 @@
 ﻿
 using System;
 using Android.Content;
+using Android.Widget;
 
 namespace Shared.Droid
 {
     public class PopupHeader : BaseView
     {
-        public PopupHeader(Context context) : base(context)
+        public int TotalHeight
         {
+            get { return (int)(Density * 40); }
+        }
+
+        public PopupBackButton BackButton { get; private set; }
+        TextView label;
+        public PopupCloseButton CloseButton { get; private set; }
+
+        public PopupHeader(Context context, int backIcon, int closeIcon) : base(context)
+        {
+			label = new TextView(context);
+			AddView(BackButton);
+
+            BackButton = new PopupBackButton(context, backIcon);
+            AddView(BackButton);
+
+            CloseButton = new PopupCloseButton(context, closeIcon);
+            AddView(CloseButton);
+        }
+
+        public override void LayoutSubviews()
+        {
+            var padding = (int)(10 * Density);
+
+            label.Measure(0, 0);
+
+            int x = padding;
+            int y = 0;
+            int w = label.MeasuredWidth;
+            int h = Frame.H;
+
+            label.SetFrame(x, y, w, h);
+            BackButton.SetFrame(x, y, w, h);
+
+            w = h;
+            x = Frame.W - w;
+
+            CloseButton.SetFrame(x, y, w, h);
         }
     }
 }
