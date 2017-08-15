@@ -24,15 +24,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\MapGallerySource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\Buttons\ActionButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\Banner.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\BaseView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\CGRect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\Buttons\SwitchButton.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\ViewExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Subviews\PopupBackButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Subviews\PopupCloseButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Subviews\PopupView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Subviews\PopupHeader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\SlideInPopup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\Base\BaseView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\Base\CGRect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\Base\ViewExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\Map\DownloadBaseView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\Map\MapBaseView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\Map\PackageDownloadBaseView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ProgressLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
@@ -45,5 +49,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Subviews\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Content\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Base\Base\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Base\Map\" />
   </ItemGroup>
 </Project>
