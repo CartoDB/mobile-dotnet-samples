@@ -28,6 +28,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Base\CGRect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\Buttons\SwitchButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Base\ViewExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Subviews\PopupBackButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Subviews\PopupCloseButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Subviews\PopupView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Subviews\PopupHeader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\SlideInPopup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
@@ -37,5 +42,8 @@
     <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\Buttons\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Base\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Subviews\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Content\" />
   </ItemGroup>
 </Project>
