@@ -5,6 +5,7 @@ using Shared;
 using Android.App;
 using System.Collections.Generic;
 using Android.Widget;
+using Java.IO;
 
 namespace AdvancedMap.Droid
 {
@@ -13,6 +14,18 @@ namespace AdvancedMap.Droid
         protected PackageDownloadBaseView ContentView { get; set; }
 
         protected BasePackageManagerClient Client { get; set; }
+
+        public string GetPackageFolder(string folder)
+        {
+            var directory = new File(GetExternalFilesDir(null), folder);
+
+            if (!directory.Exists())
+            {
+                directory.Mkdir();
+            }
+
+            return directory.AbsolutePath;
+        }
 
         protected override void OnCreate(Android.OS.Bundle savedInstanceState)
         {

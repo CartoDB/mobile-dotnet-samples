@@ -19,8 +19,9 @@ namespace AdvancedMap.Droid
             ContentView = new BaseGeocodingView(this);
             SetContentView(ContentView);
 
-            string path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
-            Client = new Geocoding(path);
+            string folder = GetPackageFolder(Geocoding.PackageFolder);
+            bool isFullDirectory = true;
+            Client = new Geocoding(folder, isFullDirectory);
         }        
 
         protected override void OnResume()
