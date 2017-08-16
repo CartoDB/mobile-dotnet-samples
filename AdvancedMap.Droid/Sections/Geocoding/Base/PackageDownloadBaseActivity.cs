@@ -84,7 +84,7 @@ namespace AdvancedMap.Droid
         private void OnPopupBackClicked(object sender, EventArgs e)
         {
             ContentView.Folder = ContentView.Folder.Substring(0, ContentView.Folder.Length - 1);
-            var lastSlash = ContentView.Folder.LastIndexOf("/");
+            var lastSlash = ContentView.Folder.LastIndexOf("/", StringComparison.Ordinal);
 
             if (lastSlash == -1)
             {
@@ -151,29 +151,7 @@ namespace AdvancedMap.Droid
             {
                 RunOnBackgroundThread(delegate
                 {
-                    string action = package.ActionText;
-                    string id = package.Id;
-
-                    if (action.Equals(Package.ACTION_DOWNLOAD))
-                    {
-                        Client.Manager.StartPackageDownload(id);
-                    }
-                    else if (action.Equals(Package.ACTION_PAUSE))
-                    {
-                        Client.Manager.SetPackagePriority(id, -1);
-                    }
-                    else if (action.Equals(Package.ACTION_RESUME))
-                    {
-                        Client.Manager.SetPackagePriority(id, 0);
-                    }
-                    else if (action.Equals(Package.ACTION_CANCEL))
-                    {
-                        Client.Manager.CancelPackageTasks(id);
-                    }
-                    else if (action.Equals(Package.ACTION_REMOVE))
-                    {
-                        Client.Manager.StartPackageRemove(id);
-                    }
+                    Client.HandlePackageStatusChange(package);
                 });
             }
         }
@@ -195,9 +173,26 @@ namespace AdvancedMap.Droid
 
         void OnPackageStatusChanged(object sender, PackageStatusEventArgs e)
         {
+            Package current = Client.CurrentDownload;
+            int progress = (int)e.Status.Progress;
+
 			RunOnUiThread(delegate
 			{
-                ContentView.OnStatusChanged(e.Id, e.Status);
+				string text = "DOWNLOAD PACKAGE: " + progress + "%";
+
+				if (current != null)
+				{
+					string name = current.Name;
+					text = "DOWNLOADING " + name.ToUpper() + ": " + progress + "%";
+				}
+
+				ContentView.ProgressLabel.Update(text, progress);
+
+				if (current != null)
+				{
+					string id = current.Id;
+					ContentView.PackageContent.FindAndUpdate(id, e.Status);
+				}
 			});
         }
 

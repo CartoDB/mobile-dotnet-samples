@@ -42,7 +42,8 @@ namespace Shared.Droid
                 if (child is PackageCell)
                 {
                     var cell = child as PackageCell;
-                    if (cell.Package.Id.Equals(id))
+                    // Package groups don't have ids
+                    if (!cell.Package.IsGroup && cell.Package.Id.Equals(id))
                     {
                         return cell;
                     }

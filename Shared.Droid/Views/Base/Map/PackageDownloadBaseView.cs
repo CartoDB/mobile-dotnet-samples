@@ -43,14 +43,9 @@ namespace Shared.Droid
             
         }
 
-        public void OnStatusChanged(string id, PackageStatus status)
-        {
-            
-        }
-
         public void OnDownloadComplete(string id)
         {
-            
-        }
+			
+		}
     }
 }
