@@ -25,7 +25,7 @@ namespace Shared
 
 		public Geocoding(string path)
 		{
-            string folder = CreateDirectory(path, "com.carto.advancedmap.geocodingpackages");
+            string folder = CreateDirectory(path, "com.carto.geocodingpackages");
 
 			Manager = new CartoPackageManager(Source, folder);
 

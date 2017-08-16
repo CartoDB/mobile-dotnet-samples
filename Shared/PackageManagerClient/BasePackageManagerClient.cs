@@ -140,7 +140,17 @@ namespace Shared
 
         public string CreateDirectory(string path, string folder)
         {
-			string directory = Path.Combine(path, folder);
+#if __ANDROID__
+            var directory = new Java.IO.File(Android.OS.Environment.ExternalStorageDirectory, folder);
+
+            if (!directory.Exists())
+            {
+                directory.Mkdir();
+            }
+
+            return directory.AbsolutePath;
+#elif __IOS__
+            string directory = Path.Combine(path, folder);
 
 			if (!Directory.Exists(directory))
 			{
@@ -148,6 +158,7 @@ namespace Shared
 			}
 
             return directory;
+#endif
 		}
     }
 }

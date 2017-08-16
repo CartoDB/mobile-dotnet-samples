@@ -109,7 +109,7 @@ namespace Shared.Droid
 
         void AnimateAlpha(float to, long duration = 200)
         {
-            var animator = ObjectAnimator.OfFloat(transparentArea, "alpha", to);
+            var animator = ObjectAnimator.OfFloat(transparentArea, "Alpha", to);
             animator.SetDuration(duration);
             animator.Start();
         }

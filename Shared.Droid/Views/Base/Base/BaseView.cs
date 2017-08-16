@@ -108,12 +108,5 @@ namespace Shared.Droid
 		public BaseView(Context context) : base(context) { }
 
         public virtual void LayoutSubviews() { }
-
-        public override bool OnTouchEvent(MotionEvent e)
-        {
-            return true;
-        }
-
-
     }
 }

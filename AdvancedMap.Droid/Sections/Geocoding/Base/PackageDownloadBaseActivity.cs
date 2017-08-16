@@ -34,7 +34,7 @@ namespace AdvancedMap.Droid
 
             ContentView.OnlineSwitch.Clicked += OnSwitchChanged;
 
-            ContentView.Packagebutton.Click += OnPackageButtonClicked;
+            ContentView.Packagebutton.Clicked += OnPackageButtonClicked;
         }
 
         protected override void OnPause()
@@ -53,7 +53,7 @@ namespace AdvancedMap.Droid
 
             ContentView.OnlineSwitch.Clicked += OnSwitchChanged;
 
-            ContentView.Packagebutton.Click -= OnPackageButtonClicked;
+            ContentView.Packagebutton.Clicked -= OnPackageButtonClicked;
         }
 
         void OnSwitchChanged(object sender, EventArgs e)
