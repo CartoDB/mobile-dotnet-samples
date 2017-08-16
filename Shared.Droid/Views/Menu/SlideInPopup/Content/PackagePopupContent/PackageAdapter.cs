@@ -31,6 +31,9 @@ namespace Shared.Droid
             if (convertView == null)
             {
                 cell = new PackageCell(Context, icon_forward);
+                int height = (int)(45 * Context.Resources.DisplayMetrics.Density);
+                cell.LayoutParameters = new AbsListView.LayoutParams(Width, height);
+                cell.SetInternalFrame(0, 0, Width, height);
             }
             else
             {
@@ -38,6 +41,7 @@ namespace Shared.Droid
             }
 
             cell.Update(package);
+            cell.LayoutSubviews();
 
             return cell;
         }

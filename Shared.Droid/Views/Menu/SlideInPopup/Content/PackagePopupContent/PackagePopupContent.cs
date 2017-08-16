@@ -10,22 +10,22 @@ namespace Shared.Droid
     public class PackagePopupContent : BaseView
     {
         public ListView List { get; private set; }
-        PackageAdapter adapter;
+        public PackageAdapter Adapter { get; private set; }
 
         public PackagePopupContent(Context context, int icon_forward) : base(context)
         {
-            adapter = new PackageAdapter(context, icon_forward);
+            Adapter = new PackageAdapter(context, icon_forward);
             List = new ListView(context);
-            List.Adapter = adapter;
+            List.Adapter = Adapter;
 
             AddView(List);
         }
 
         public void AddPackages(List<Package> packages)
         {
-            adapter.Packages.Clear();
-            adapter.Packages.AddRange(packages);
-            adapter.NotifyDataSetChanged();
+            Adapter.Packages.Clear();
+            Adapter.Packages.AddRange(packages);
+            Adapter.NotifyDataSetChanged();
         }
 
         public void FindAndUpdate(string id, PackageStatus status)

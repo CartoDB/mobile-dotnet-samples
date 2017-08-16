@@ -164,6 +164,7 @@
     <AndroidResource Include="Resources\drawable-nodpi\icon_info_blue.png" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_forward_blue.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />

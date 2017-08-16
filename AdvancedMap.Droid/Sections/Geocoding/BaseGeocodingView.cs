@@ -24,7 +24,8 @@ namespace AdvancedMap.Droid
                                                          Resource.Drawable.icon_close, 
                                                          Resource.Drawable.icon_global, 
                                                          Resource.Drawable.icon_wifi_on, 
-                                                         Resource.Drawable.icon_wifi_off
+                                                         Resource.Drawable.icon_wifi_off,
+                                                         Resource.Drawable.icon_forward_blue
                                                         )
         {
             GeocodingSource = new LocalVectorDataSource(Projection);

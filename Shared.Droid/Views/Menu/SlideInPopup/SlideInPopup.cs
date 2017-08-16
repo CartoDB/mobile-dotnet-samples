@@ -16,6 +16,8 @@ namespace Shared.Droid
 
         BaseView content;
 
+        public PopupHeader Header { get { return popup.Header; } }
+
         public SlideInPopup(Context context, int backIcon, int closeIcon) : base(context)
         {
             transparentArea = new BaseView(context);

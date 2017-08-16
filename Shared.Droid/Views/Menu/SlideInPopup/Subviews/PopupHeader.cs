@@ -16,6 +16,12 @@ namespace Shared.Droid
         TextView label;
         public PopupCloseButton CloseButton { get; private set; }
 
+        public string Text
+        {
+            get { return label.Text; }
+            set { label.Text = value; LayoutSubviews(); }
+        }
+
         public PopupHeader(Context context, int backIcon, int closeIcon) : base(context)
         {
 			label = new TextView(context);

@@ -23,7 +23,7 @@ namespace Shared.Droid
             textLabel = new TextView(context);
             textLabel.TextSize = titleSize;
             textLabel.SetTextColor(titleColor);
-            textLabel.Gravity = Android.Views.GravityFlags.Center;
+            textLabel.Gravity = Android.Views.GravityFlags.CenterVertical;
             textLabel.Typeface = Typeface.DefaultBold;
             AddView(textLabel);
 
@@ -117,7 +117,6 @@ namespace Shared.Droid
             if (package.IsGroup)
             {
                 // It's a package group. These are displayed with a single label
-
                 textLabel.Text = package.Name.ToUpper();
                 forwardIcon.Visibility = Android.Views.ViewStates.Visible;
                 return;

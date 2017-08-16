@@ -10,16 +10,29 @@ namespace Shared.Droid
     {
         public ActionButton Packagebutton { get; private set; }
 
-        public PackageDownloadBaseView(Context context, int infoIcon, int backIcon, int closeIcon, int globalIcon, int wifiOnIcon, int wifiOffIcon) 
+        public PackagePopupContent PackageContent { get; private set; }
+
+        public PackageDownloadBaseView(Context context, int infoIcon, int backIcon, int closeIcon, int globalIcon, int wifiOnIcon, int wifiOffIcon, int forwardIcon) 
             : base(context, infoIcon, backIcon, closeIcon, wifiOnIcon, wifiOffIcon)
         {
             Packagebutton = new ActionButton(context, globalIcon);
             AddButton(Packagebutton);
+
+            PackageContent = new PackagePopupContent(context, forwardIcon);
+        }
+
+        public override void LayoutSubviews()
+        {
+            base.LayoutSubviews();
+
+            PackageContent.Adapter.Width = Frame.W;
         }
 
         public void ShowPackagePopup(List<Package> packages)
         {
-            Folder = "";
+            PackageContent.AddPackages(packages);
+            Popup.SetPopupContent(PackageContent);
+            Popup.Header.Text = "SELECT A PACKAGE";
             Popup.Show();
         }
 

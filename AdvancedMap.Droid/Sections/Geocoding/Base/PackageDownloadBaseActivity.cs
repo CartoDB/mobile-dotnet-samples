@@ -32,8 +32,10 @@ namespace AdvancedMap.Droid
 			Client.Listener.OnPackageUpdate += OnPackageUpdated;
 			Client.Listener.OnPackageFail += OnPackageFailed;
 
-            ContentView.OnlineSwitch.Clicked += OnSwitchChanged;
+            Client.Manager.Start();
+            Client.Manager.StartPackageListDownload();
 
+            ContentView.OnlineSwitch.Clicked += OnSwitchChanged;
             ContentView.Packagebutton.Clicked += OnPackageButtonClicked;
         }
 
@@ -51,8 +53,9 @@ namespace AdvancedMap.Droid
             Client.Listener.OnPackageUpdate -= OnPackageUpdated;
             Client.Listener.OnPackageFail -= OnPackageFailed;
 
-            ContentView.OnlineSwitch.Clicked += OnSwitchChanged;
+            Client.Manager.Stop(false);
 
+            ContentView.OnlineSwitch.Clicked += OnSwitchChanged;
             ContentView.Packagebutton.Clicked -= OnPackageButtonClicked;
         }
 
@@ -80,7 +83,7 @@ namespace AdvancedMap.Droid
 
         void OnPackageButtonClicked(object sender, EventArgs e)
         {
-            ContentView.ShowPackagePopup(Client.GetPackages(""));    
+            ContentView.ShowPackagePopup(Client.GetPackages(ContentView.Folder));    
         }
 
         void OnPackageListUpdated(object sender, EventArgs e)
