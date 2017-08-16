@@ -43,7 +43,9 @@ namespace Shared.Droid
             statusIndicator.Gravity = Android.Views.GravityFlags.Center;
             statusIndicator.TextSize = titleSize - 1;
             statusIndicator.Typeface = Typeface.DefaultBold;
-            statusIndicator.SetBackground(Colors.AppleBlue);
+            statusIndicator.SetBackground(Color.Transparent);
+            statusIndicator.SetBorder(1, Colors.AppleBlue);
+            statusIndicator.SetCornerRadius((int)(3 * Density));
             AddView(statusIndicator);
 
             forwardIcon = new ImageView(context);
@@ -140,7 +142,7 @@ namespace Shared.Droid
                 width = (int)(1.2 * Density);
             }
 
-            statusIndicator.SetCornerRadius(width);
+            statusIndicator.SetBorder(width, Colors.AppleBlue);
 
             if (package.Status == null)
             {

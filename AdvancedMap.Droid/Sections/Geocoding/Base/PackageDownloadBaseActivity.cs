@@ -4,6 +4,7 @@ using Shared.Droid;
 using Shared;
 using Android.App;
 using System.Collections.Generic;
+using Android.Widget;
 
 namespace AdvancedMap.Droid
 {
@@ -37,6 +38,8 @@ namespace AdvancedMap.Droid
 
             ContentView.OnlineSwitch.Clicked += OnSwitchChanged;
             ContentView.Packagebutton.Clicked += OnPackageButtonClicked;
+
+            ContentView.PackageContent.List.ItemClick += OnListItemClick;
         }
 
         protected override void OnPause()
@@ -57,6 +60,8 @@ namespace AdvancedMap.Droid
 
             ContentView.OnlineSwitch.Clicked += OnSwitchChanged;
             ContentView.Packagebutton.Clicked -= OnPackageButtonClicked;
+
+            ContentView.PackageContent.List.ItemClick -= OnListItemClick;
         }
 
         void OnSwitchChanged(object sender, EventArgs e)
@@ -85,6 +90,58 @@ namespace AdvancedMap.Droid
         {
             ContentView.ShowPackagePopup(Client.GetPackages(ContentView.Folder));    
         }
+
+
+        void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            var package = ContentView.PackageContent.Adapter.Packages[e.Position];
+
+            if (package.IsGroup)
+            {
+                ContentView.Folder = ContentView.Folder + package.Name + "/";
+
+                RunOnBackgroundThread(delegate
+                {
+                    List<Package> packages = Client.GetPackages(ContentView.Folder);
+                    RunOnUiThread(delegate
+                    {
+                        ContentView.PackageContent.AddPackages(packages);
+                        ContentView.Popup.ShowBackButton();
+                    });
+                });
+
+            }
+            else
+            {
+                RunOnBackgroundThread(delegate
+                {
+                    string action = package.ActionText;
+                    string id = package.Id;
+
+                    if (action.Equals(Package.ACTION_DOWNLOAD))
+                    {
+                        Client.Manager.StartPackageDownload(id);
+                    }
+                    else if (action.Equals(Package.ACTION_PAUSE))
+                    {
+                        Client.Manager.SetPackagePriority(id, -1);
+                    }
+                    else if (action.Equals(Package.ACTION_RESUME))
+                    {
+                        Client.Manager.SetPackagePriority(id, 0);
+                    }
+                    else if (action.Equals(Package.ACTION_CANCEL))
+                    {
+                        Client.Manager.CancelPackageTasks(id);
+                    }
+                    else if (action.Equals(Package.ACTION_REMOVE))
+                    {
+                        Client.Manager.StartPackageRemove(id);
+                    }
+                });
+            }
+        }
+
 
         void OnPackageListUpdated(object sender, EventArgs e)
         {
@@ -120,5 +177,10 @@ namespace AdvancedMap.Droid
         {
 			// TODO Alert
 		}
+
+        public void RunOnBackgroundThread(Action action)
+        {
+            System.Threading.Tasks.Task.Run(action);
+        }
     }
 }

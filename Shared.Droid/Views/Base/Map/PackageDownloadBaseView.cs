@@ -36,7 +36,7 @@ namespace Shared.Droid
             Popup.Show();
         }
 
-        public string Folder { get; private set; } = "";
+        public string Folder { get; set; } = "";
 
         public void UpdatePackages(List<Package> packages)
         {

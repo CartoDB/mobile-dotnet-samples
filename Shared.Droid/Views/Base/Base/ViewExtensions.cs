@@ -1,5 +1,6 @@
 ﻿
 using System;
+using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Views;
@@ -54,5 +55,12 @@ namespace Shared.Droid
             }
 		}
 
+        public static void SetBorder(this View view, int width, Color color)
+        {
+			if (view.Background is GradientDrawable)
+			{
+                (view.Background as GradientDrawable).SetStroke(width, color);
+			}
+        }
 	}
 }

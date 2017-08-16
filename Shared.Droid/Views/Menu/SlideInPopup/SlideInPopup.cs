@@ -18,6 +18,16 @@ namespace Shared.Droid
 
         public PopupHeader Header { get { return popup.Header; } }
 
+        public void ShowBackButton()
+        {
+            Header.BackButton.Visibility = Android.Views.ViewStates.Visible;
+        }
+
+		public void HideBackButton()
+		{
+            Header.BackButton.Visibility = Android.Views.ViewStates.Gone;
+		}
+
         public SlideInPopup(Context context, int backIcon, int closeIcon) : base(context)
         {
             transparentArea = new BaseView(context);
