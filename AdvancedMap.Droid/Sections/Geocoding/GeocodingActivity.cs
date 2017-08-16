@@ -24,6 +24,8 @@ namespace AdvancedMap.Droid
             SetContentView(base.ContentView);
 
             GeocodingClient.Projection = ContentView.Projection;
+            GeocodingClient.ApiKey = ApiKey;
+            SetOnlineMode();
 
             Window.SetSoftInputMode(SoftInput.StateHidden | SoftInput.AdjustNothing);
         }
@@ -50,12 +52,12 @@ namespace AdvancedMap.Droid
 
         protected override void SetOnlineMode()
         {
-            base.SetOnlineMode();
+            GeocodingClient.SetOnlineMode();
         }
 
         protected override void SetOfflineMode()
         {
-            base.SetOfflineMode();
+            GeocodingClient.SetOfflineMode();
         }
 
         void OnResultClick(object sender, AdapterView.ItemClickEventArgs e)

@@ -14,7 +14,9 @@ namespace Shared
 
 		public const string Source = "geocoding:carto.streets";
 
-		public PackageManagerGeocodingService Service { get; private set; }
+        public string ApiKey { get; set; }
+
+        public GeocodingService Service { get; private set; }
 
 		public bool IsInProgress { get; set; }
 
@@ -36,9 +38,17 @@ namespace Shared
                 string folder = CreateDirectory(path, PackageFolder);
                 Manager = new CartoPackageManager(Source, folder);
             }
-
-			Service = new PackageManagerGeocodingService(Manager);
 		}
+
+        public void SetOnlineMode()
+        {
+            Service = new PeliasOnlineGeocodingService(ApiKey);    
+        }
+
+        public void SetOfflineMode()
+        {
+            Service = new PackageManagerGeocodingService(Manager);
+        }
 
 		public void MakeRequest(string text, Action complete)
 		{
