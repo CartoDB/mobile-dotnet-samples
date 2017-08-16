@@ -1,9 +1,11 @@
 ﻿using System;
+using Android.App;
 using Android.Content;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Util;
 using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
 
 namespace Shared.Droid
@@ -113,5 +115,22 @@ namespace Shared.Droid
 		public BaseView(Context context) : base(context) { }
 
         public virtual void LayoutSubviews() { }
+
+        public void CloseKeyboard()
+        {
+            if (!(Context is Activity))
+            {
+                return;   
+            }
+
+            View view = (Context as Activity).CurrentFocus;
+
+            if (view != null)
+            {
+                var service = Context.GetSystemService(Context.InputMethodService);
+                var manager = service as InputMethodManager;
+                manager.HideSoftInputFromWindow(view.WindowToken, 0);
+            }
+        }
     }
 }

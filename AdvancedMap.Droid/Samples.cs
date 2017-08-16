@@ -18,6 +18,11 @@ namespace AdvancedMap.Droid
                 Title = "Reverse Geocoding",
                 ImageResource = Resource.Drawable.icon_sample_reverse_geocoding
             },
+			new MapGallerySource {
+                Type = typeof(GeocodingActivity),
+				Title = "Geocoding",
+				ImageResource = Resource.Drawable.icon_sample_geocoding
+			},
             new MapGallerySource {
                 Type = typeof(CustomRasterDatasourceActivity),
                 Title = "Custom Raster Data Source",

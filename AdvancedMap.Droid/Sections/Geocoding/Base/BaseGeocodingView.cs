@@ -31,8 +31,6 @@ namespace AdvancedMap.Droid
             GeocodingSource = new LocalVectorDataSource(Projection);
             var layer = new VectorLayer(GeocodingSource);
             MapView.Layers.Add(layer);
-
-            Frame = new CGRect(0, 0, Metrics.WidthPixels, UsableHeight);
         }
 
     }

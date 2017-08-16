@@ -104,10 +104,15 @@
     <Compile Include="Sections\Routing\OfflineRouting\OfflineRoutingView.cs" />
     <Compile Include="Sections\BaseMap\Views\MapSwitch.cs" />
     <Compile Include="MapBaseActivity.cs" />
-    <Compile Include="Sections\Geocoding\BaseGeocodingView.cs" />
     <Compile Include="Sections\Geocoding\ReverseGeocodingActivity.cs" />
     <Compile Include="Sections\Geocoding\Base\PackageDownloadBaseActivity.cs" />
     <Compile Include="Sections\Geocoding\Base\BaseGeocodingActivity.cs" />
+    <Compile Include="Sections\Geocoding\Base\BaseGeocodingView.cs" />
+    <Compile Include="Sections\Geocoding\GeocodingActivity.cs" />
+    <Compile Include="Sections\Geocoding\GeocodingView.cs" />
+    <Compile Include="Sections\Geocoding\ReverseGeocodingView.cs" />
+    <Compile Include="Sections\Geocoding\ResultTable\ResultCell.cs" />
+    <Compile Include="Sections\Geocoding\ResultTable\ResultTableAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -166,6 +171,7 @@
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_forward_blue.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_sample_geocoding.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />
@@ -186,6 +192,7 @@
     <Folder Include="Sections\Routing\OfflineRouting\" />
     <Folder Include="Sections\Geocoding\" />
     <Folder Include="Sections\Geocoding\Base\" />
+    <Folder Include="Sections\Geocoding\ResultTable\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fcd_auto.nml" />

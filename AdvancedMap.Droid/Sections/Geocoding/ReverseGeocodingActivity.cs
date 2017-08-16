@@ -17,7 +17,7 @@ namespace AdvancedMap.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            ContentView = new BaseGeocodingView(this);
+            ContentView = new ReverseGeocodingView(this);
             SetContentView(ContentView);
 
             Listener = new ReverseGeocodingEventListener(ContentView.Projection);
