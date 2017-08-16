@@ -198,8 +198,10 @@ namespace AdvancedMap.Droid
 
         void OnPackageUpdated(object sender, PackageEventArgs e)
         {
+            var packages = Client.GetPackages(ContentView.Folder);
+
             RunOnUiThread(delegate {
-                ContentView.OnDownloadComplete(e.Id);    
+                ContentView.PackageContent.AddPackages(packages);
             });
 
         }
