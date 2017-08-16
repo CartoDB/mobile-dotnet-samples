@@ -27,6 +27,11 @@ namespace Shared.Droid
             }
         }
 
+        public void SetInternalFrame(int x, int y, int width, int height)
+        {
+            frame = new CGRect(x, y, width, height);
+        }
+
         public float Density 
         { 
             get { return Context.Resources.DisplayMetrics.Density; } 
