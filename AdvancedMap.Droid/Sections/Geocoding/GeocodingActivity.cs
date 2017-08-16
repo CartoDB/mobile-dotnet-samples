@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.App;
 using Android.Text;
+using Android.Views;
 using Android.Widget;
 using Carto.Geocoding;
 using Shared;
@@ -20,6 +21,11 @@ namespace AdvancedMap.Droid
             base.OnCreate(savedInstanceState);
 
             base.ContentView = new GeocodingView(this);
+            SetContentView(base.ContentView);
+
+            GeocodingClient.Projection = ContentView.Projection;
+
+            Window.SetSoftInputMode(SoftInput.StateHidden | SoftInput.AdjustNothing);
         }
 
         protected override void OnResume()
@@ -63,7 +69,7 @@ namespace AdvancedMap.Droid
 		{
             string text = e.Text.ToString();
 
-            if (string.IsNullOrWhiteSpace(""))
+            if (string.IsNullOrWhiteSpace(text))
             {
                 return;
             }
@@ -72,7 +78,10 @@ namespace AdvancedMap.Droid
             text = ContentView.Field.Text;
 
             GeocodingClient.MakeRequest(text, delegate {
-                ContentView.UpdateList(GeocodingClient.Addresses);
+                RunOnUiThread(delegate
+                {
+                    ContentView.UpdateList(GeocodingClient.Addresses);    
+                });
             });
 		}
 

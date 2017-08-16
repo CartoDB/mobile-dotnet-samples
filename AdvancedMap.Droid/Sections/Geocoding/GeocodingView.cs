@@ -33,6 +33,8 @@ namespace AdvancedMap.Droid
             ResultTable.Adapter = Adapter;
 
 			Frame = new CGRect(0, 0, Metrics.WidthPixels, UsableHeight);
+
+            HideTable();
         }
 
 		public override void LayoutSubviews()

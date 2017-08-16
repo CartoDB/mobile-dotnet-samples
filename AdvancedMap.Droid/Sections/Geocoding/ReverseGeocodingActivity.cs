@@ -20,6 +20,8 @@ namespace AdvancedMap.Droid
             ContentView = new ReverseGeocodingView(this);
             SetContentView(ContentView);
 
+            GeocodingClient.Projection = ContentView.Projection;
+
             Listener = new ReverseGeocodingEventListener(ContentView.Projection);
             SetOnlineMode();
         }        
