@@ -1,6 +1,7 @@
 ﻿
 using System;
 using Android.Content;
+using Android.Graphics;
 
 namespace Shared.Droid
 {
@@ -10,6 +11,7 @@ namespace Shared.Droid
 
 		public PopupView(Context context, int backIcon, int closeIcon) : base(context)
 		{
+            SetBackgroundColor(Color.White);
             Header = new PopupHeader(context, backIcon, closeIcon);
             AddView(Header);
 		}
