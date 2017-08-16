@@ -52,7 +52,9 @@ namespace AdvancedMap.Droid
             ContentView.OnlineSwitch.Clicked += OnSwitchChanged;
             ContentView.Packagebutton.Clicked += OnPackageButtonClicked;
 
-            ContentView.PackageContent.List.ItemClick += OnListItemClick;
+            ContentView.PackageContent.List.ItemClick += OnListItemClicked;
+
+            ContentView.Popup.Header.BackButton.Click += OnPopupBackClicked;
         }
 
         protected override void OnPause()
@@ -74,7 +76,28 @@ namespace AdvancedMap.Droid
             ContentView.OnlineSwitch.Clicked += OnSwitchChanged;
             ContentView.Packagebutton.Clicked -= OnPackageButtonClicked;
 
-            ContentView.PackageContent.List.ItemClick -= OnListItemClick;
+            ContentView.PackageContent.List.ItemClick -= OnListItemClicked;
+
+            ContentView.Popup.Header.BackButton.Click -= OnPopupBackClicked;
+        }
+
+        private void OnPopupBackClicked(object sender, EventArgs e)
+        {
+            ContentView.Folder = ContentView.Folder.Substring(0, ContentView.Folder.Length - 1);
+            var lastSlash = ContentView.Folder.LastIndexOf("/");
+
+            if (lastSlash == -1)
+            {
+                ContentView.Folder = "";
+                ContentView.Popup.HideBackButton();
+            }
+            else
+            {
+                ContentView.Folder = ContentView.Folder.Substring(0, lastSlash + 1); 
+            }
+
+            List<Package> packages = Client.GetPackages(ContentView.Folder);
+            ContentView.PackageContent.AddPackages(packages);
         }
 
         void OnSwitchChanged(object sender, EventArgs e)
@@ -105,7 +128,7 @@ namespace AdvancedMap.Droid
         }
 
 
-        void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        void OnListItemClicked(object sender, AdapterView.ItemClickEventArgs e)
         {
             var package = ContentView.PackageContent.Adapter.Packages[e.Position];
 

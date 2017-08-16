@@ -25,6 +25,9 @@ namespace Shared.Droid
         public PopupHeader(Context context, int backIcon, int closeIcon) : base(context)
         {
 			label = new TextView(context);
+            label.Gravity = Android.Views.GravityFlags.Center;
+            label.TextSize = 11.0f;
+            label.SetTextColor(Colors.CartoNavy);
 			AddView(label);
 
             BackButton = new PopupBackButton(context, backIcon);
