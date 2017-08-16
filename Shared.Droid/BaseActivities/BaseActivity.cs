@@ -41,6 +41,10 @@ namespace Shared.Droid
 			});
 		}
 
+		public void RunOnBackgroundThread(Action action)
+		{
+			System.Threading.Tasks.Task.Run(action);
+		}
 	}
 }
 

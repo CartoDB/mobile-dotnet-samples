@@ -11,7 +11,7 @@ namespace Shared
 	{
         public EventHandler<EventArgs> ResultFound;
 
-		public PackageManagerReverseGeocodingService Service { get; set; }
+        public ReverseGeocodingService Service { get; set; }
 
 		Projection projection;
 

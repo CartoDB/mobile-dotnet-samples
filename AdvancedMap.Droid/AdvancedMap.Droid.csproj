@@ -107,6 +107,7 @@
     <Compile Include="Sections\Geocoding\BaseGeocodingView.cs" />
     <Compile Include="Sections\Geocoding\ReverseGeocodingActivity.cs" />
     <Compile Include="Sections\Geocoding\Base\PackageDownloadBaseActivity.cs" />
+    <Compile Include="Sections\Geocoding\Base\BaseGeocodingActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

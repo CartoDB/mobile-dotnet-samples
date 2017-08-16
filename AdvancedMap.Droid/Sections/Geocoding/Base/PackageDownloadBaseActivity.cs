@@ -9,7 +9,7 @@ using Java.IO;
 
 namespace AdvancedMap.Droid
 {
-    public class PackageDownloadBaseActivity : Activity
+    public class PackageDownloadBaseActivity : BaseActivity
     {
         protected PackageDownloadBaseView ContentView { get; set; }
 
@@ -211,9 +211,5 @@ namespace AdvancedMap.Droid
 			// TODO Alert
 		}
 
-        public void RunOnBackgroundThread(Action action)
-        {
-            System.Threading.Tasks.Task.Run(action);
-        }
     }
 }
