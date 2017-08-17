@@ -65,5 +65,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)PackageManagerClient\BasePackageManagerClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sources.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Geocoding\ReverseGeocodingEventListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RouteSearch.cs" />
   </ItemGroup>
 </Project>

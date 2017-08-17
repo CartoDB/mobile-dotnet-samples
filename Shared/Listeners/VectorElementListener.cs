@@ -6,6 +6,7 @@ using Carto.Styles;
 using Carto.Utils;
 using System.Linq;
 using Carto.Core;
+using Shared.iOS;
 
 namespace Shared
 {
@@ -38,6 +39,16 @@ namespace Shared
 			builder.LeftMargins = new BalloonPopupMargins(0, 0, 0, 0);
 			builder.RightMargins = new BalloonPopupMargins(6, 3, 6, 3);
 			builder.PlacementPriority = 10;
+            builder.CornerRadius = 5;
+            builder.TitleFontSize = 12;
+            builder.DescriptionFontSize = 10;
+			builder.TitleColor = Colors.CartoNavy.ToCartoColor();
+			builder.DescriptionColor = Colors.CartoNavy.ToCartoColor();
+
+            var animationBuilder = new AnimationStyleBuilder();
+            animationBuilder.RelativeSpeed = 2.0f;
+            animationBuilder.SizeAnimationType = AnimationType.AnimationTypeSpring;
+            builder.AnimationStyle = animationBuilder.BuildStyle();
 
 			BalloonPopupStyle style = builder.BuildStyle();
 
