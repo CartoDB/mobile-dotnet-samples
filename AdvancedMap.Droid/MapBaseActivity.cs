@@ -13,7 +13,7 @@ namespace AdvancedMap.Droid
 	{
 		protected MapView MapView { get; set; }
 		internal Projection BaseProjection { get; set; }
-		protected TileLayer BaseLayer { get; set; }
+		protected VectorTileLayer BaseLayer { get; set; }
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -40,13 +40,12 @@ namespace AdvancedMap.Droid
 		protected void AddOnlineBaseLayer(CartoBaseMapStyle style)
 		{
 			// Initialize map
-			var baseLayer = new CartoOnlineVectorTileLayer(style);
-			MapView.Layers.Add(baseLayer);
+			BaseLayer = new CartoOnlineVectorTileLayer(style);
+			MapView.Layers.Add(BaseLayer);
 		}
 
 		protected void AddOfflineBaseLayer(CartoPackageManager manager, CartoBaseMapStyle style)
 		{
-			// Initialize map
 			var baseLayer = new CartoOfflineVectorTileLayer(manager, style);
 			MapView.Layers.Add(baseLayer);
 		}

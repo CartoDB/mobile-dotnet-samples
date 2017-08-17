@@ -98,9 +98,11 @@ namespace AdvancedMap.Droid
 
 					Color lineColor = new Color(Colors.ActionBar);
 					Routing.Show(result, lineColor);
+                    RoutingComplete();
 				});
 			});
 		}
 
+        public virtual void RoutingComplete() { }
 	}
 }

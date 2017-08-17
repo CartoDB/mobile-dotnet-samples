@@ -3,10 +3,9 @@ using Carto.Layers;
 using Carto.DataSources;
 using Carto.VectorElements;
 using Carto.Styles;
-using Carto.Utils;
 using System.Linq;
 using Carto.Core;
-using Shared.iOS;
+using Carto.Graphics;
 
 namespace Shared
 {
@@ -42,8 +41,10 @@ namespace Shared
             builder.CornerRadius = 5;
             builder.TitleFontSize = 12;
             builder.DescriptionFontSize = 10;
-			builder.TitleColor = Colors.CartoNavy.ToCartoColor();
-			builder.DescriptionColor = Colors.CartoNavy.ToCartoColor();
+
+            var navy = new Color(22, 41, 69, 255);
+            builder.TitleColor = navy;
+            builder.DescriptionColor = navy;
 
             var animationBuilder = new AnimationStyleBuilder();
             animationBuilder.RelativeSpeed = 2.0f;

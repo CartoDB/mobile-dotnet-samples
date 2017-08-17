@@ -113,6 +113,7 @@
     <Compile Include="Sections\Geocoding\ReverseGeocodingView.cs" />
     <Compile Include="Sections\Geocoding\ResultTable\ResultCell.cs" />
     <Compile Include="Sections\Geocoding\ResultTable\ResultTableAdapter.cs" />
+    <Compile Include="Sections\Routing\RouteSearchActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -172,6 +173,7 @@
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_forward_blue.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_sample_geocoding.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_sample_route_search.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />

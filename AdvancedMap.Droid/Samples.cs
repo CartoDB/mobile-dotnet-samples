@@ -28,6 +28,11 @@ namespace AdvancedMap.Droid
                 Title = "Custom Raster Data Source",
                 ImageResource = Resource.Drawable.image_custom_raster
             },
+			new MapGallerySource {
+                Type = typeof(RouteSearchActivity),
+				Title = "Route Search ",
+                ImageResource = Resource.Drawable.icon_sample_route_search
+			},
             new MapGallerySource {
                 Type = typeof(GroundOverlayActivity),
                 Title = "Ground Overlays",
