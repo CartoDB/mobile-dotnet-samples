@@ -5,10 +5,12 @@ using Android.Views;
 using Android.Widget;
 using Carto.Geocoding;
 using Shared;
+using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
     [Activity]
+    [ActivityData(Title = "Geocoding", Description = "Type in an address and go to that location")]
     public class GeocodingActivity : BaseGeocodingActivity
     {
         public new GeocodingView ContentView 

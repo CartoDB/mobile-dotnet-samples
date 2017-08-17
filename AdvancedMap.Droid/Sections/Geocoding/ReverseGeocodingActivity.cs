@@ -9,6 +9,7 @@ using Carto.Geocoding;
 namespace AdvancedMap.Droid
 {
     [Activity]
+    [ActivityData(Title = "Reverse Geocoding", Description = "Click an area on the map to find out more about it")]
     public class ReverseGeocodingActivity : BaseGeocodingActivity
     {
         public ReverseGeocodingEventListener Listener { get; set; }

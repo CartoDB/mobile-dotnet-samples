@@ -48,13 +48,14 @@ namespace Shared
 			BaseProjection = projection;
 		}
 
-		public void Show(RoutingResult result, Color lineColor)
+		public void Show(RoutingResult result)
 		{
 			routeDataSource.Clear();
 
 			startMarker.Visible = false;
 
-			Line line = CreatePolyline(startMarker.Geometry.CenterPos, stopMarker.Geometry.CenterPos, result, lineColor);
+            var color = new Color(0, 122, 255, 150);
+			Line line = CreatePolyline(startMarker.Geometry.CenterPos, stopMarker.Geometry.CenterPos, result, color);
 			routeDataSource.Add(line);
 
 			// Add instruction markers

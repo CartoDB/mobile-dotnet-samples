@@ -109,7 +109,7 @@ namespace AdvancedMap.iOS
 					Alert(Routing.GetMessage(result, time, now));
 
 					Color lineColor = new Color(0, 122, 255, 255);
-					Routing.Show(result, lineColor);
+					Routing.Show(result);
                     RoutingComplete();
 				});
 			});

@@ -96,8 +96,7 @@ namespace AdvancedMap.Droid
 
 					Alert(Routing.GetMessage(result, time, Java.Lang.JavaSystem.CurrentTimeMillis()));
 
-					Color lineColor = new Color(Colors.ActionBar);
-					Routing.Show(result, lineColor);
+					Routing.Show(result);
                     RoutingComplete();
 				});
 			});
