@@ -24,8 +24,7 @@ namespace AdvancedMap.iOS
 
 			// Set route listener
 			MapListener = new RouteMapEventListener();
-			MapView.MapEventListener = MapListener;
-
+			
 			Routing = new Routing(MapView, BaseProjection);
 
 			Alert("Long-press on map to set route start and finish");
@@ -111,8 +110,15 @@ namespace AdvancedMap.iOS
 
 					Color lineColor = new Color(0, 122, 255, 255);
 					Routing.Show(result, lineColor);
+                    RoutingComplete();
 				});
 			});
 		}
+
+        public virtual void RoutingComplete()
+        {
+            // Implementation in RouteSearchController 
+            // where attractions are added after the route is calculated
+        }
 	}
 }

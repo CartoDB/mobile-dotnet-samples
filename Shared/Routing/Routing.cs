@@ -40,6 +40,8 @@ namespace Shared
 		MapView MapView;
 		Projection BaseProjection;
 
+        public bool ShowTurns { get; set; } = true;
+
 		public Routing(MapView map, Projection projection)
 		{
 			MapView = map;
@@ -58,12 +60,15 @@ namespace Shared
 			// Add instruction markers
 			RoutingInstructionVector instructions = result.Instructions;
 
-			for (int i = 0; i < instructions.Count; i++)
-			{
-				RoutingInstruction instruction = instructions[i];
-				MapPos position = result.Points[instruction.PointIndex];
-				CreateRoutePoint(position, instruction, routeDataSource);
-			}
+            if (ShowTurns)
+            {
+				for (int i = 0; i < instructions.Count; i++)
+				{
+					RoutingInstruction instruction = instructions[i];
+					MapPos position = result.Points[instruction.PointIndex];
+					CreateRoutePoint(position, instruction, routeDataSource);
+				}    
+            }
 		}
 
 		public string GetMessage(RoutingResult result, long start, long current)

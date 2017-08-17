@@ -15,7 +15,7 @@ namespace AdvancedMap.iOS
         // as GeocodingView or ReverseGeocodingView, respectively
         public BaseGeocodingView ContentView { get; set; }
 
-        public BaseGeocodingController()
+		public BaseGeocodingController()
         {
             string baseFolder = Utils.GetDocumentDirectory();
             Geocoding = new Geocoding(baseFolder);
@@ -34,7 +34,7 @@ namespace AdvancedMap.iOS
 			Geocoding.Manager.Start();
 			Geocoding.Manager.StartPackageListDownload();
 
-			ContentView.PackageContent.Source.CellSelected += OnCellSelected;
+            ContentView.PackageContent.Source.CellSelected += OnCellSelected;
         }
 
         public override void ViewWillDisappear(bool animated)

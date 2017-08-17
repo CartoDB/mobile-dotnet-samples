@@ -16,10 +16,16 @@ namespace Shared
 
 		public EventHandler<RouteMapEventArgs> StartPositionClicked;
 		public EventHandler<RouteMapEventArgs> StopPositionClicked;
+        public EventHandler<EventArgs> SingleTapped;
 
 		// Map View manipulation handlers
 		public override void OnMapClicked(MapClickInfo mapClickInfo)
 		{
+            if (mapClickInfo.ClickType == ClickType.ClickTypeSingle)
+            {
+                SingleTapped?.Invoke(this, EventArgs.Empty);
+            }
+
 			if (mapClickInfo.ClickType == ClickType.ClickTypeLong)
 			{
 				MapPos clickPos = mapClickInfo.ClickPos;

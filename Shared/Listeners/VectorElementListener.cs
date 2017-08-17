@@ -11,6 +11,11 @@ namespace Shared
 {
 	public class VectorElementListener : VectorElementEventListener
 	{
+        public const string NullString = "null";
+
+        public const string RouteSearchTitle = "route_search_title";
+        public const string RouteSearchDescription = "route_search_description";
+
 		LocalVectorDataSource source;
 
 		BalloonPopup previous;
@@ -39,11 +44,21 @@ namespace Shared
 			string title = element.GetMetaDataElement("ClickText").String;
 			string description = "";
 
-			for (int i = 0; i < element.MetaData.Count; i++)
-			{
-				string key = element.MetaData.Keys.ToList()[i];
-				description += key + " = " + element.GetMetaDataElement(key) + "; ";
-			}
+            if (!element.GetMetaDataElement(RouteSearchTitle).String.Equals(NullString))
+            {
+                // Route search has a special click text
+                title = element.GetMetaDataElement(RouteSearchTitle).String;
+                description = element.GetMetaDataElement(RouteSearchDescription).String;
+            }
+            else
+            {
+				for (int i = 0; i < element.MetaData.Count; i++)
+				{
+					string key = element.MetaData.Keys.ToList()[i];
+					description += key + " = " + element.GetMetaDataElement(key) + "; ";
+				}    
+            }
+			
 
 			BalloonPopup popup;
 
