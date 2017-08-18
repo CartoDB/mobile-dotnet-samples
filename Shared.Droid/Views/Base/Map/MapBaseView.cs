@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Android.Content;
+using Carto.Layers;
 using Carto.Projections;
 using Carto.Ui;
 
@@ -78,5 +79,11 @@ namespace Shared.Droid
             AddView(button);
         }
 
+        public CartoOnlineVectorTileLayer AddBaseLayer(CartoBaseMapStyle style)
+        {
+            var layer = new CartoOnlineVectorTileLayer(style);
+            MapView.Layers.Add(layer);
+            return layer;
+        }
     }
 }

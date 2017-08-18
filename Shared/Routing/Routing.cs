@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.IO;
 using Carto.Core;
 using Carto.DataSources;
@@ -52,8 +53,6 @@ namespace Shared
 		{
 			routeDataSource.Clear();
 
-			startMarker.Visible = false;
-
             var color = new Color(0, 122, 255, 150);
 			Line line = CreatePolyline(startMarker.Geometry.CenterPos, stopMarker.Geometry.CenterPos, result, color);
 			routeDataSource.Add(line);
@@ -98,17 +97,28 @@ namespace Shared
 			return path;
 		}
 
-		public RoutingResult GetResult(MapPos startPos, MapPos stopPos)
-		{
-			MapPosVector poses = new MapPosVector();
+        public RoutingResult GetResult(MapPos startPos, MapPos stopPos)
+        {
+            MapPosVector poses = new MapPosVector();
 
-			poses.Add(startPos);
-			poses.Add(stopPos);
+            poses.Add(startPos);
+            poses.Add(stopPos);
 
-			RoutingRequest request = new RoutingRequest(BaseProjection, poses);
+            RoutingRequest request = new RoutingRequest(BaseProjection, poses);
 
-			return Service.CalculateRoute(request);
-		}
+            RoutingResult result = null;
+
+            try
+            {
+                result = Service.CalculateRoute(request);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception calculating route: " + e.Message);
+            }
+
+            return result;
+        }
 
 		public void SetSourcesAndElements(Bitmap olmarker, Bitmap up, Bitmap upleft, Bitmap upright, Color green, Color red, Color white)
 		{

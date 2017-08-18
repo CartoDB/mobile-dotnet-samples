@@ -9,7 +9,7 @@ namespace Shared
 {
     public class BasePackageManagerClient
     {
-        public CartoPackageManager Manager { get; protected set; }
+        public CartoPackageManager Manager { get; set; }
 
         public PackageListener Listener { get; protected set; }
 

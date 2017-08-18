@@ -12,7 +12,7 @@ namespace Shared.Droid
 
         public SwitchButton OnlineSwitch { get; private set; }
 
-        public DownloadBaseView(Context context, int infoIcon, int backIcon, int closeIcon, int wifiOnIcon, int wifiOffIcon) 
+        public DownloadBaseView(Context context, int infoIcon, int backIcon, int closeIcon, int wifiOnIcon, int wifiOffIcon, bool withBaseLayer = true) 
             : base(context, infoIcon, backIcon, closeIcon)
         {
             ProgressLabel = new ProgressLabel(context);
@@ -21,7 +21,10 @@ namespace Shared.Droid
             OnlineSwitch = new SwitchButton(context, wifiOnIcon, wifiOffIcon);
             AddButton(OnlineSwitch);
 
-            SetOnlineMode();
+            if (withBaseLayer) 
+            {
+                SetOnlineMode();   
+            }
         }
 
         public override void LayoutSubviews()

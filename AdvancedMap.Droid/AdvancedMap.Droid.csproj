@@ -114,6 +114,8 @@
     <Compile Include="Sections\Geocoding\ResultTable\ResultCell.cs" />
     <Compile Include="Sections\Geocoding\ResultTable\ResultTableAdapter.cs" />
     <Compile Include="Sections\Routing\RouteSearchActivity.cs" />
+    <Compile Include="Sections\Routing\RouteSearchView.cs" />
+    <Compile Include="Sections\Routing\RoutingExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

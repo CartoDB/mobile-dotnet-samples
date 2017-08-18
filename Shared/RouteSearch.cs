@@ -13,39 +13,41 @@ namespace Shared
 {
     public class RouteSearch
     {
+        MapView mapView;
+
+        Projection Projection;
+
 		LocalVectorDataSource overlaySource;
 		VectorLayer overlayLayer;
 
 		LocalVectorDataSource popupSource;
 		VectorLayer popupLayer;
 
-		VectorTileSearchService searchService;
+        VectorTileSearchService Service;
 
 		VectorElementListener poiListener;
-
-        Projection Projection;
-
-        public RouteSearch(MapView MapView, VectorTileLayer BaseLayer)
+		
+        public RouteSearch(MapView mapView, VectorTileLayer baseLayer)
         {
-            Projection = MapView.Options.BaseProjection;
+            this.mapView = mapView;
+            Projection = mapView.Options.BaseProjection;
 
             MapPos washingtonDC = Projection.FromWgs84(new MapPos(-77.0369, 38.9072));
-            MapView.FocusPos = washingtonDC;
-            MapView.Zoom = 13.0f;
+            mapView.FocusPos = washingtonDC;
+            mapView.Zoom = 13.0f;
 
             overlaySource = new LocalVectorDataSource(Projection);
             overlayLayer = new VectorLayer(overlaySource);
-            MapView.Layers.Add(overlayLayer);
+            mapView.Layers.Add(overlayLayer);
 
             popupSource = new LocalVectorDataSource(Projection);
             popupLayer = new VectorLayer(popupSource);
-            MapView.Layers.Add(popupLayer);
+            mapView.Layers.Add(popupLayer);
 
             poiListener = new VectorElementListener(popupSource);
 
-            searchService = new VectorTileSearchService(BaseLayer.DataSource, BaseLayer.TileDecoder);
+            Service = new VectorTileSearchService(baseLayer.DataSource, baseLayer.TileDecoder);
         }
-
 
         public void FindAttractions(FeatureCollection collection)
         {
@@ -70,7 +72,7 @@ namespace Shared
             request.SearchRadius = 500.0f;
             request.FilterExpression = "class='attraction'";
 
-            var results = searchService.FindFeatures(request);
+            var results = Service.FindFeatures(request);
 
             for (int i = 0; i < results.FeatureCount; i++)
             {
@@ -97,19 +99,20 @@ namespace Shared
             overlaySource.Add(point);
         }
 
-        public void AddListeners()
-        {
-            overlayLayer.VectorElementEventListener = poiListener;
-        }
-
-        public void RemoveListeners()
-        {
-            overlayLayer.VectorElementEventListener = null;
-        }
-
         public void ClearPopups()
         {
             popupSource.Clear();
         }
+
+        public void AddListeners()
+        {
+            overlayLayer.VectorElementEventListener = poiListener;
+		}
+
+        public void RemoveListeners()
+        {
+            overlayLayer.VectorElementEventListener = null;
+		}
+
 	}
 }

@@ -1,8 +1,9 @@
 ﻿
 using System;
 using Android.App;
+using Carto.Core;
 using Carto.Geometry;
-using Carto.Layers;
+using Carto.Routing;
 using Shared;
 using Shared.Droid;
 
@@ -10,51 +11,113 @@ namespace AdvancedMap.Droid
 {
     [Activity]
     [ActivityData(Title = "Route Search", Description = "Finds points of interest near your route")]
-    public class RouteSearchActivity : OnlineRoutingActivity
+    public class RouteSearchActivity : PackageDownloadBaseActivity
     {
         RouteSearch Search { get; set; }
 
-        protected override void OnCreate(Android.OS.Bundle savedInstanceState)
+        Routing Routing { get; set; }
+		
+        protected RouteMapEventListener MapListener { get; set; }
+
+		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-			Routing.ShowTurns = false;
+            ContentView = new RouteSearchView(this);
+            SetContentView(ContentView);
 
-			Search = new RouteSearch(MapView, BaseLayer);
+            Client = new BasePackageManagerClient();
+
+            Routing = new Routing(ContentView.MapView, ContentView.Projection);
+			Routing.ShowTurns = false;
+            Routing.SetSourcesAndElements(this);
+
+            ContentView.Manager = Routing.PackageManager;
+            Client.Manager = Routing.PackageManager;
+
+            Search = new RouteSearch(ContentView.MapView, (ContentView as RouteSearchView).BaseLayer);
+
+            MapListener = new RouteMapEventListener();
+
+            SetOnlineMode();
         }
 
         protected override void OnResume()
         {
             base.OnResume();
 
-			MapListener.SingleTapped += OnSingleTap;
-
 			Search.AddListeners();
+
+            ContentView.MapView.MapEventListener = MapListener;
+            MapListener.StartPositionClicked += OnStartPositionClick;
+            MapListener.StopPositionClicked += OnStopPositionClick;
+            MapListener.SingleTapped += OnSingleTap;
         }
 
         protected override void OnPause()
         {
             base.OnPause();
 
-			MapListener.SingleTapped += OnSingleTap;
-
 			Search.RemoveListeners();
+
+            ContentView.MapView.MapEventListener = null;
+			MapListener.StartPositionClicked -= OnStartPositionClick;
+			MapListener.StopPositionClicked -= OnStopPositionClick;
+			MapListener.SingleTapped -= OnSingleTap;
         }
 
-        void OnSingleTap(object sender, EventArgs e)
+        protected override void SetOnlineMode()
         {
-            Search.ClearPopups();
+            var source = Sources.OnlineRouting + Sources.TransportMode_Car;
+            Routing.Service = new CartoOnlineRoutingService(source);
         }
 
-        public override void RoutingComplete()
+        protected override void SetOfflineMode()
         {
-            FeatureCollection collection = Routing.routeDataSource.GetFeatureCollection();
-            Search.FindAttractions(collection);
+            Routing.Service = new PackageManagerValhallaRoutingService(ContentView.Manager);
         }
 
-        protected override void SetBaseLayer()
-        {
-            AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStylePositron);
-        }
-    }
+		void OnSingleTap(object sender, EventArgs e)
+		{
+			Search.ClearPopups();
+		}
+		protected void OnStartPositionClick(object sender, RouteMapEventArgs e)
+		{
+			Routing.SetStartMarker(e.ClickPosition);
+		}
+
+		protected void OnStopPositionClick(object sender, RouteMapEventArgs e)
+		{
+			Routing.SetStopMarker(e.ClickPosition);
+			ShowRoute(e.StartPosition, e.StopPosition);
+		}
+
+		public void ShowRoute(MapPos startPos, MapPos stopPos)
+		{
+			// Run routing in background
+			System.Threading.Tasks.Task.Run(() =>
+			{
+				long time = Java.Lang.JavaSystem.CurrentTimeMillis();
+
+				RoutingResult result = Routing.GetResult(startPos, stopPos);
+
+				// Update response in UI thread
+				RunOnUiThread(() =>
+				{
+					if (result == null)
+					{
+						Alert("Routing failed");
+						return;
+					}
+
+					Alert(Routing.GetMessage(result, time, Java.Lang.JavaSystem.CurrentTimeMillis()));
+
+					Routing.Show(result);
+					
+                    FeatureCollection collection = Routing.routeDataSource.GetFeatureCollection();
+                    Search.FindAttractions(collection);
+				});
+			});
+		}
+	}
 }
