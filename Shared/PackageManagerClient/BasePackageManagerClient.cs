@@ -11,7 +11,7 @@ namespace Shared
     {
         public CartoPackageManager Manager { get; set; }
 
-        public PackageListener Listener { get; protected set; }
+        public PackageListener Listener { get; set; }
 
         public Projection Projection { get; set; }
 

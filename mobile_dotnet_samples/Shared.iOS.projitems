@@ -53,5 +53,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Base\MapBaseView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Base\DownloadBaseView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Base\PackageDownloadBaseView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\PackageDownloadBaseController.cs" />
   </ItemGroup>
 </Project>

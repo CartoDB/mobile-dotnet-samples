@@ -95,8 +95,8 @@ namespace AdvancedMap.iOS
 					Console.WriteLine(e.Message);
 				}
 
-				// Update response in UI thread
-				long now = DateTime.Now.Millisecond;
+                var watch = new System.Diagnostics.Stopwatch();
+                watch.Start();
 
 				InvokeOnMainThread(() =>
 				{
@@ -106,7 +106,8 @@ namespace AdvancedMap.iOS
 						return;
 					}
 
-					Alert(Routing.GetMessage(result, time, now));
+                    Alert(Routing.GetMessage(result, watch.ElapsedMilliseconds));
+                    watch.Stop();
 
 					Color lineColor = new Color(0, 122, 255, 255);
 					Routing.Show(result);

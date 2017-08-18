@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Carto.Layers;
 using Carto.Projections;
 using Carto.Ui;
 using CoreGraphics;
@@ -64,5 +65,11 @@ namespace Shared.iOS
             AddSubview(button);
         }
 
+        public CartoOnlineVectorTileLayer AddBaseLayer(CartoBaseMapStyle style)
+        {
+            var layer = new CartoOnlineVectorTileLayer(style);
+            MapView.Layers.Add(layer);
+            return layer;
+        }
     }
 }
