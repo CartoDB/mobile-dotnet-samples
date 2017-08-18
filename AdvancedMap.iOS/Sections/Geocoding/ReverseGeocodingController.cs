@@ -24,6 +24,8 @@ namespace AdvancedMap.iOS
             Geocoding.Projection = ContentView.Projection;
 
             Title = "REVERSE GEOCODING";
+
+            SetOnlineMode();
         }
 
         public override void ViewWillAppear(bool animated)
@@ -49,6 +51,7 @@ namespace AdvancedMap.iOS
             if (result == null)
             {
                 Alert("Couldn't find any addresses. Are you sure you have downloaded the region you're trying to reverse geocode?");
+                return;
             }
 
             string title = "";

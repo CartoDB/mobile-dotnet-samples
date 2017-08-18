@@ -20,6 +20,8 @@ namespace AdvancedMap.iOS
             Geocoding.Projection = ContentView.Projection;
 
 			Title = "GEOCODING";
+
+            SetOnlineMode();
         }
 
         public override void ViewWillAppear(bool animated)
