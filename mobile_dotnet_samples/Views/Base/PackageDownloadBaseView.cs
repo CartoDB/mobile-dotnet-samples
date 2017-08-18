@@ -9,7 +9,7 @@ namespace Shared.iOS
     {
         protected PopupButton PackageButton { get; private set; }
 
-        protected PopupSwitchButton OnlineButton { get; private set; }
+        public PopupSwitchButton OnlineButton { get; private set; }
 
 		public PackagePopupContent PackageContent { get; private set; }
 

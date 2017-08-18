@@ -33,6 +33,8 @@ namespace Shared.iOS
 			Client.Manager.StartPackageListDownload();
 
 			ContentView.PackageContent.Source.CellSelected += OnCellSelected;
+
+            ContentView.OnlineButton.Switched += OnSwitchChanged;
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -47,6 +49,20 @@ namespace Shared.iOS
 			Client.Manager.Stop(false);
 
 			ContentView.PackageContent.Source.CellSelected -= OnCellSelected;
+
+            ContentView.OnlineButton.Switched -= OnSwitchChanged;
+        }
+
+        void OnSwitchChanged(object sender, EventArgs e)
+        {
+            if (ContentView.OnlineButton.IsOn)
+            {
+                SetOnlineMode();
+            }
+            else
+            {
+                SetOfflineMode();
+            }
         }
 
 		void OnCellSelected(object sender, EventArgs e)
