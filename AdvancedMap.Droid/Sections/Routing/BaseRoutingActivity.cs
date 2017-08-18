@@ -81,7 +81,8 @@ namespace AdvancedMap.Droid
 			// Run routing in background
 			System.Threading.Tasks.Task.Run(() =>
 			{
-				long time = Java.Lang.JavaSystem.CurrentTimeMillis();
+				var watch = new System.Diagnostics.Stopwatch();
+				watch.Start();
 
 				RoutingResult result = Routing.GetResult(startPos, stopPos);
 
@@ -94,7 +95,8 @@ namespace AdvancedMap.Droid
 						return;
 					}
 
-					Alert(Routing.GetMessage(result, time, Java.Lang.JavaSystem.CurrentTimeMillis()));
+					Alert(Routing.GetMessage(result, watch.ElapsedMilliseconds));
+					watch.Stop();
 
 					Routing.Show(result);
                     RoutingComplete();

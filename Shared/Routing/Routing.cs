@@ -71,12 +71,12 @@ namespace Shared
             }
 		}
 
-		public string GetMessage(RoutingResult result, long start, long current)
+		public string GetMessage(RoutingResult result, long ms)
 		{
 
 			string distance = "The route is " + (int)(result.TotalDistance / 100) / 10f + "km";
 			string time = "(" + result.TotalTime.ConvertFromSecondsToHours() + ")";
-			string calculation = " | Calculation: " + (start - current) + " ms";
+			string calculation = " | Calculation: " + ms + " ms";
 
 			return distance + time + calculation;
 		}
