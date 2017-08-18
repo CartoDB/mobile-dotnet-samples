@@ -9,12 +9,17 @@ namespace Shared.iOS
     {
         protected PopupButton PackageButton { get; private set; }
 
+        protected PopupSwitchButton OnlineButton { get; private set; }
+
 		public PackagePopupContent PackageContent { get; private set; }
 
 		public PackageDownloadBaseView()
         {
             PackageButton = new PopupButton("icons/icon_global.png");
             AddButton(PackageButton);
+
+            OnlineButton = new PopupSwitchButton("icons/icon_wifi_on.png", "icons/icon_wifi_off.png");
+			AddButton(OnlineButton);
 
             PackageContent = new PackagePopupContent();
 

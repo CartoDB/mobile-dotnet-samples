@@ -54,5 +54,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Base\DownloadBaseView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Base\PackageDownloadBaseView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\PackageDownloadBaseController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\PopupSwitchButton.cs" />
   </ItemGroup>
 </Project>

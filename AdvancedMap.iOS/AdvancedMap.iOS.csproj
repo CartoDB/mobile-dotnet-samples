@@ -269,6 +269,8 @@
     <BundleResource Include="Resources\gallery\icon_sample_geocoding.png" />
     <BundleResource Include="Resources\gallery\icon_sample_reverse_geocoding.png" />
     <BundleResource Include="Resources\gallery\icon_sample_route_search.png" />
+    <BundleResource Include="Resources\icons\icon_wifi_off.png" />
+    <BundleResource Include="Resources\icons\icon_wifi_on.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />

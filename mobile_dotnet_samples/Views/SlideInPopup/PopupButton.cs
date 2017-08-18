@@ -7,10 +7,8 @@ namespace Shared.iOS
 {
     public class PopupButton : UIView
     {
-        double duration = 200;
-
-        UIImageView imageView;
-        UIImage image;
+        protected UIImageView imageView;
+        protected UIImage image;
 
         public PopupButton(string imageUrl)
         {
