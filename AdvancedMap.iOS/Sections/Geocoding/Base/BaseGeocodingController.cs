@@ -15,10 +15,13 @@ namespace AdvancedMap.iOS
         // as GeocodingView or ReverseGeocodingView, respectively
         public BaseGeocodingView ContentView { get; set; }
 
+        protected const string ApiKey = "mapzen-e2gmwsC";
+
 		public BaseGeocodingController()
         {
             string baseFolder = Utils.GetDocumentDirectory();
             Geocoding = new Geocoding(baseFolder);
+            Geocoding.ApiKey = ApiKey;
         }
 
         public override void ViewWillAppear(bool animated)
@@ -35,6 +38,8 @@ namespace AdvancedMap.iOS
 			Geocoding.Manager.StartPackageListDownload();
 
             ContentView.PackageContent.Source.CellSelected += OnCellSelected;
+
+            ContentView.OnlineButton.Switched += OnSwitchChanged;
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -50,6 +55,8 @@ namespace AdvancedMap.iOS
 			Geocoding.Manager.Stop(false);
 
             ContentView.PackageContent.Source.CellSelected -= OnCellSelected;
+
+            ContentView.OnlineButton.Switched -= OnSwitchChanged;
         }
 
         void OnCellSelected(object sender, EventArgs e)
@@ -119,5 +126,20 @@ namespace AdvancedMap.iOS
             
 		}
 
+        void OnSwitchChanged(object sender, EventArgs e)
+        {
+            if (ContentView.OnlineButton.IsOn)
+            {
+                SetOnlineMode();
+            }
+            else
+            {
+                SetOfflineMode();
+            }
+        }
+
+		public virtual void SetOnlineMode() { }
+
+		public virtual void SetOfflineMode() { }
 	}
 }

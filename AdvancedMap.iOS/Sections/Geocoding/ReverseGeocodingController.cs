@@ -57,5 +57,15 @@ namespace AdvancedMap.iOS
 
             ContentView.ObjectSource.ShowResult(ContentView.MapView, result, title, description, goToPosition);
         }
+
+		public override void SetOnlineMode()
+		{
+            Listener.Service = new PeliasOnlineReverseGeocodingService(Geocoding.ApiKey);
+		}
+
+		public override void SetOfflineMode()
+		{
+            Listener.Service = new PackageManagerReverseGeocodingService(Geocoding.Manager);
+		}
     }
 }

@@ -123,6 +123,16 @@ namespace AdvancedMap.iOS
             var goToPosition = true;
 
             ContentView.ObjectSource.ShowResult(ContentView.MapView, result, title, description, goToPosition);
-        }   
+        }
+
+		public override void SetOnlineMode()
+		{
+			Geocoding.SetOnlineMode();
+		}
+
+		public override void SetOfflineMode()
+		{
+            Geocoding.SetOfflineMode();
+		}
 	}
 }
