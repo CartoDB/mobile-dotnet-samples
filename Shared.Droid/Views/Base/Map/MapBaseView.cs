@@ -69,6 +69,7 @@ namespace Shared.Droid
 				button.Frame = new CGRect(x, y, w, h);
 				x += w + innerPadding;
 			}
+
         }
 
         readonly List<ActionButton> buttons = new List<ActionButton>();

@@ -19,8 +19,6 @@ namespace AdvancedMap.iOS
 
 		public override string Description { get { return "Offline map of Rome bundled with the app"; } }
 
-		public string SupportDirectory { get { return Utils.GetDocumentDirectory("packages"); } }
-
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
@@ -30,7 +28,7 @@ namespace AdvancedMap.iOS
 
 			Projection projection = MapView.Options.BaseProjection;
 
-			TileDataSource source = CreateTileDataSource();
+			TileDataSource source = FileUtils.CreateTileDataSource("rome_ntvt", "mbtiles");
 
 			// Get decoder from current layer,
 			// so we wouldn't need a style asset to create a decoder from scratch
@@ -49,43 +47,6 @@ namespace AdvancedMap.iOS
 			MapView.SetZoom(13, 0);
 		}
 
-		protected TileDataSource CreateTileDataSource()
-		{
-			string name = "rome_ntvt";
-			string extension = "mbtiles";
-
-			string packageDirectory = SupportDirectory;
-			string fullWritePath = Path.Combine(packageDirectory, name + "." + extension);
-			string resourceDirectory = NSBundle.MainBundle.PathForResource("mbtiles/" + name, extension);
-
-			if (!Directory.Exists(packageDirectory))
-			{
-				Directory.CreateDirectory(packageDirectory);
-				Console.WriteLine("Directory: Does not exist... Creating");
-			}
-			else
-			{
-				Console.WriteLine("Directory: Exists");
-			}
-
-			try
-			{
-				// Copy bundled tile data to file system
-				using (var input = new FileStream(resourceDirectory, FileMode.Open, FileAccess.Read))
-				{
-					using (var output = new FileStream(fullWritePath, FileMode.Create, FileAccess.Write))
-					{
-						input.CopyTo(output);
-					}
-				}
-
-				return new MBTilesTileDataSource(0, 14, fullWritePath);
-			}
-			catch
-			{
-				return null;
-			}
-		}
 
 	}
 }

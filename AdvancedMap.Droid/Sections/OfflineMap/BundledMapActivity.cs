@@ -31,7 +31,7 @@ namespace AdvancedMap.Droid
 			// Do the actual copying and source creation on another thread so it wouldn't block the main thread
 			System.Threading.Tasks.Task.Run(delegate
 			{
-				TileDataSource source = CreateTileDataSource();
+				TileDataSource source = FileUtils.CreateTileDataSource(this, "rome_ntvt.mbtiles");
 
 				var layer = new VectorTileLayer(source, decoder);
 
@@ -48,31 +48,6 @@ namespace AdvancedMap.Droid
 			MapView.SetZoom(13, 0);
 		}
 
-		TileDataSource CreateTileDataSource()
-		{
-			// offline map data source
-			string fileName = "rome_ntvt.mbtiles";
-
-			try
-			{
-				string directory = GetExternalFilesDir(null).ToString();
-				string path = directory + "/" + fileName;
-
-				Assets.CopyAssetToSDCard(fileName, path);
-				Log.Debug("Copy done to " + path);
-
-				MBTilesTileDataSource source = new MBTilesTileDataSource(0, 14, path);
-
-				return new MemoryCacheTileDataSource(source);
-			}
-			catch (IOException e)
-			{
-				Log.Debug("MbTileFile cannot be copied: " + fileName);
-				Log.Debug("Message" + e.LocalizedMessage);
-			}
-
-			return null;
-		}
 	}
 }
 

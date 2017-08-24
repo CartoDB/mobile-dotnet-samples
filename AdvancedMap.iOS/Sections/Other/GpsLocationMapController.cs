@@ -31,9 +31,9 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
-			// Add default base layer
-            AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
-
+            // Add default base layer
+            //AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
+            MapView.BackgroundColor = UIColor.Yellow;
 			LocationManager = new LocationManager();
 			LocationManager.Start();
 

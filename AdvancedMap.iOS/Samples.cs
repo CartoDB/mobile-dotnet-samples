@@ -99,6 +99,11 @@ namespace AdvancedMap.iOS
                 Controller = new ReverseGeocodingController(),
 				Title = "REVERSE GEOCODING",
 				ImageResource = "gallery/icon_sample_reverse_geocoding.png"
+			},
+			new MapListRowSource {
+                Controller = new BundledUserDataController(),
+				Title = "USER DATA",
+				ImageResource = "gallery/icon_sample_user_data.png"
 			}
 		};
 	}

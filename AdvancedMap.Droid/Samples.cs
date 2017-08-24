@@ -97,7 +97,12 @@ namespace AdvancedMap.Droid
                 Type = typeof(GpsLocationActivity),
                 Title = "GPS Location",
                 ImageResource = Resource.Drawable.image_gps_location
-            }
+            },
+			new MapGallerySource {
+                Type = typeof(BundledUserDataActivity),
+				Title = "User Data",
+                ImageResource = Resource.Drawable.icon_sample_user_data
+			}
         };
 	}
 }

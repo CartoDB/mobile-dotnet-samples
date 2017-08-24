@@ -1624,70 +1624,73 @@ namespace AdvancedMap.Droid
 			public const int icon_sample_route_search = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int icon_wifi_off = 2130837589;
+			public const int icon_sample_user_data = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int icon_wifi_on = 2130837590;
+			public const int icon_wifi_off = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int image_base_maps = 2130837591;
+			public const int icon_wifi_on = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int image_bundled = 2130837592;
+			public const int image_base_maps = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int image_city_package = 2130837593;
+			public const int image_bundled = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int image_clustered_markers = 2130837594;
+			public const int image_city_package = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int image_country_packages = 2130837595;
+			public const int image_clustered_markers = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int image_custom_popup = 2130837596;
+			public const int image_country_packages = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int image_custom_raster = 2130837597;
+			public const int image_custom_popup = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int image_gps_location = 2130837598;
+			public const int image_custom_raster = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int image_ground_overlays = 2130837599;
+			public const int image_gps_location = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int image_object_editing = 2130837600;
+			public const int image_ground_overlays = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int image_offline_routing = 2130837601;
+			public const int image_object_editing = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int image_online_routing = 2130837602;
+			public const int image_offline_routing = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int image_overlays = 2130837603;
+			public const int image_online_routing = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int image_screencapture = 2130837604;
+			public const int image_overlays = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int image_wms = 2130837605;
+			public const int image_screencapture = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int info = 2130837606;
+			public const int image_wms = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int marker = 2130837607;
+			public const int info = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int marker_black = 2130837608;
-			
-			// aapt resource value: 0x7f02006a
-			public const int notification_template_icon_bg = 2130837610;
+			public const int marker = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int olmarker = 2130837609;
+			public const int marker_black = 2130837609;
+			
+			// aapt resource value: 0x7f02006b
+			public const int notification_template_icon_bg = 2130837611;
+			
+			// aapt resource value: 0x7f02006a
+			public const int olmarker = 2130837610;
 			
 			static Drawable()
 			{

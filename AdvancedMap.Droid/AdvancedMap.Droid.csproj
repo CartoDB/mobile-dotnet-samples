@@ -116,6 +116,7 @@
     <Compile Include="Sections\Routing\RouteSearchActivity.cs" />
     <Compile Include="Sections\Routing\RouteSearchView.cs" />
     <Compile Include="Sections\Routing\RoutingExtensions.cs" />
+    <Compile Include="Sections\Other\BundledUserDataActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -176,6 +177,7 @@
     <AndroidResource Include="Resources\drawable-nodpi\icon_forward_blue.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_sample_geocoding.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_sample_route_search.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_sample_user_data.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />
@@ -207,6 +209,8 @@
     <AndroidAsset Include="Assets\styles_mapzen.zip" />
     <AndroidAsset Include="Assets\nutiteq-dark.zip" />
     <AndroidAsset Include="Assets\world_zoom5.mbtiles" />
+    <AndroidAsset Include="Assets\offline-packages.mbtiles" />
+    <AndroidAsset Include="Assets\carto-fonts.zip" />
   </ItemGroup>
   <Import Project="..\Shared.Droid\Shared.Droid.projitems" Label="Shared" Condition="Exists('..\Shared.Droid\Shared.Droid.projitems')" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
