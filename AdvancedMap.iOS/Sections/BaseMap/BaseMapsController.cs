@@ -77,6 +77,13 @@ namespace AdvancedMap.iOS
 			currentListener.IsForce = e.IsForce;
 		}
 
+        public override void ViewDidLayoutSubviews()
+        {
+            base.ViewDidLayoutSubviews();
+
+            Menu.Frame = View.Bounds;
+        }
+
 		void OnMenuButtonClick(object sender, EventArgs e)
 		{
 			if (Menu.IsVisible)
