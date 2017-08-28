@@ -25,7 +25,22 @@ namespace AdvancedMap.Droid
 
 		public string ParameterName { get; set; }
 
-		public string ParameterValue { get { return IsChecked ? "1" : "0"; } }
+		public string ParameterValue
+        { 
+            get 
+            {
+                if (ParameterName.Equals("buildings"))
+                {
+                    // The buildings switch has three options:
+                    // 0: no buildings
+                    // 1: 2D buildings
+                    // 2: 3D buildings
+                    return IsChecked ? "2" : "1";    
+                }
+
+                return IsChecked ? "1" : "0";
+            }
+        }
 
 		GradientDrawable background;
 
@@ -33,6 +48,7 @@ namespace AdvancedMap.Droid
 		{
 			textView = new TextView(context);
 			textView.Gravity = Android.Views.GravityFlags.CenterVertical;
+            textView.SetTextColor(Color.White);
 			textView.SetPadding(10, 0, 0, 0);
 			AddView(textView);
 			textView.LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent, 1);
