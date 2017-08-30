@@ -63,7 +63,7 @@ namespace AdvancedMap.Droid
 
         protected override void SetOnlineMode()
         {
-            Listener.Service = new PeliasOnlineReverseGeocodingService(ApiKey);
+			Listener.Service = new PeliasOnlineReverseGeocodingService(Sources.MapzenApiKey);
         }
 
         protected override void SetOfflineMode()

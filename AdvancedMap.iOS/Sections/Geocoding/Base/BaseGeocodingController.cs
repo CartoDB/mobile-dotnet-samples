@@ -15,7 +15,7 @@ namespace AdvancedMap.iOS
         // as GeocodingView or ReverseGeocodingView, respectively
         public BaseGeocodingView ContentView { get; set; }
 
-        protected const string ApiKey = "mapzen-e2gmwsC";
+		protected const string ApiKey = Sources.MapzenApiKey;
 
 		public BaseGeocodingController()
         {

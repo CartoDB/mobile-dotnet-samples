@@ -26,7 +26,7 @@ namespace AdvancedMap.Droid
             SetContentView(base.ContentView);
 
             GeocodingClient.Projection = ContentView.Projection;
-            GeocodingClient.ApiKey = ApiKey;
+			GeocodingClient.ApiKey = Sources.MapzenApiKey;
             SetOnlineMode();
 
             Window.SetSoftInputMode(SoftInput.StateHidden | SoftInput.AdjustNothing);

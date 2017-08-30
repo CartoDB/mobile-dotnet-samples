@@ -78,8 +78,7 @@ namespace AdvancedMap.iOS
 
 		public override void SetOnlineMode()
 		{
-			var source = Sources.OnlineRouting + Sources.TransportMode_Car;
-			Routing.Service = new CartoOnlineRoutingService(source);
+			Routing.Service = new ValhallaOnlineRoutingService(Sources.MapzenApiKey);
 		}
 
 		public override void SetOfflineMode()

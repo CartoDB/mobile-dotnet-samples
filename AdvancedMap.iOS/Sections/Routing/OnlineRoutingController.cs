@@ -14,7 +14,7 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
-            Routing.Service = new CartoOnlineRoutingService(Sources.OnlineRouting + Sources.TransportMode_Car);
+            Routing.Service = new ValhallaOnlineRoutingService(Sources.MapzenApiKey);
 		}
 
 		protected override void SetBaseLayer()

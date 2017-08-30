@@ -68,8 +68,7 @@ namespace AdvancedMap.Droid
 
         protected override void SetOnlineMode()
         {
-            var source = Sources.OnlineRouting + Sources.TransportMode_Car;
-            Routing.Service = new CartoOnlineRoutingService(source);
+			Routing.Service = new ValhallaOnlineRoutingService(Sources.MapzenApiKey);
         }
 
         protected override void SetOfflineMode()
