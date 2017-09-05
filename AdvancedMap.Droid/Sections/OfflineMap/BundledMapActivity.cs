@@ -27,7 +27,7 @@ namespace AdvancedMap.Droid
 			// Do the actual copying and source creation on another thread so it wouldn't block the main thread
 			System.Threading.Tasks.Task.Run(delegate
 			{
-				TileDataSource source = FileUtils.CreateTileDataSource(this, "rome_cartostreets.mbtiles");
+				TileDataSource source = FileUtils.CreateTileDataSource(this, "rome_carto-streets.mbtiles");
 
 				var layer = new VectorTileLayer(source, decoder);
 

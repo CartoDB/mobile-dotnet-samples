@@ -240,7 +240,6 @@
     <BundleResource Include="Resources\icons\icon_more%402x.png" />
     <BundleResource Include="Resources\icons\info.png" />
     <BundleResource Include="Resources\icons\olmarker.png" />
-    <BundleResource Include="Resources\mbtiles\rome_ntvt.mbtiles" />
     <BundleResource Include="Resources\mbtiles\world_ntvt_0_4.mbtiles" />
     <BundleResource Include="Resources\mbtiles\world_zoom5.mbtiles" />
     <BundleResource Include="Resources\icons\marker.png" />
@@ -275,6 +274,7 @@
     <BundleResource Include="Resources\carto-fonts.zip" />
     <BundleResource Include="Resources\mbtiles\offline-packages.mbtiles" />
     <BundleResource Include="Resources\gallery\icon_sample_user_data.png" />
+    <BundleResource Include="Resources\mbtiles\rome_carto-streets.mbtiles" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />

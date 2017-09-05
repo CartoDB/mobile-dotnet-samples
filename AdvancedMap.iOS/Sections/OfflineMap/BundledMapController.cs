@@ -28,7 +28,7 @@ namespace AdvancedMap.iOS
 
 			Projection projection = MapView.Options.BaseProjection;
 
-			TileDataSource source = FileUtils.CreateTileDataSource("rome_ntvt", "mbtiles");
+			TileDataSource source = FileUtils.CreateTileDataSource("rome_carto-streets", "mbtiles");
 
 			// Get decoder from current layer,
 			// so we wouldn't need a style asset to create a decoder from scratch

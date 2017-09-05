@@ -210,7 +210,7 @@
     <AndroidAsset Include="Assets\world_zoom5.mbtiles" />
     <AndroidAsset Include="Assets\offline-packages.mbtiles" />
     <AndroidAsset Include="Assets\carto-fonts.zip" />
-    <AndroidAsset Include="Assets\rome_cartostreets.mbtiles" />
+    <AndroidAsset Include="Assets\rome_carto-streets.mbtiles" />
   </ItemGroup>
   <Import Project="..\Shared.Droid\Shared.Droid.projitems" Label="Shared" Condition="Exists('..\Shared.Droid\Shared.Droid.projitems')" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
