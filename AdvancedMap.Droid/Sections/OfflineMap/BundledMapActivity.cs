@@ -19,14 +19,10 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-            AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
-
-			// Get decoder from current layer,
-			// so we wouldn't need a style asset to create a decoder from scratch
-			MBVectorTileDecoder decoder = (MBVectorTileDecoder)(MapView.Layers[0] as VectorTileLayer).TileDecoder;
-
 			// Remove default baselayer
 			MapView.Layers.Clear();
+
+            var decoder = CartoVectorTileLayer.CreateTileDecoder(CartoBaseMapStyle.CartoBasemapStyleVoyager);
 
 			// Do the actual copying and source creation on another thread so it wouldn't block the main thread
 			System.Threading.Tasks.Task.Run(delegate
