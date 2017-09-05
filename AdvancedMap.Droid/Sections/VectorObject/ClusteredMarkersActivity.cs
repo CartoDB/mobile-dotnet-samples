@@ -42,7 +42,6 @@ namespace AdvancedMap.Droid
 
 			new System.Threading.Thread((obj) =>
 			{
-
 				// Create a basic style, as the ClusterElementBuilder will set the real style
 				MarkerStyle style = new MarkerStyleBuilder().BuildStyle();
 
@@ -72,9 +71,6 @@ namespace AdvancedMap.Droid
 
 				// Add the clustered vector layer to the map
 				MapView.Layers.Add(layer);
-
-
-
 			}).Start();
 		}
 	}
