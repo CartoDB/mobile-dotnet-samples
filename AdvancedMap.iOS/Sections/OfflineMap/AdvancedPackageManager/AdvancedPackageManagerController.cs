@@ -62,7 +62,7 @@ namespace AdvancedMap.iOS
 				Console.WriteLine("Directory: Exists");
 			}
 
-			packageManager = new CartoPackageManager("nutiteq.osm", folder);
+			packageManager = new CartoPackageManager(Sources.CartoVector, folder);
 
 			ContentView = new PackageManagerListView();
 			View = ContentView;

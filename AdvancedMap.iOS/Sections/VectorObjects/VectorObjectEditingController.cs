@@ -22,7 +22,7 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
-			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
 
 			// Initialize source and Edit layer, add it to the map
 			source = new LocalVectorDataSource(MapView.Options.BaseProjection);

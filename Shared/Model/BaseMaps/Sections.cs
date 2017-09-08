@@ -13,12 +13,12 @@ namespace Shared
 
 				sections.Add(new Section
 				{
-					OSM = new NameValuePair { Name = "Nutiteq", Value = "nutiteq.osm" },
+                    OSM = new NameValuePair { Name = "CARTO VECTOR", Value = Sources.CartoVector },
 					Type = SectionType.Vector,
 					Styles = new List<NameValuePair> {
-						new NameValuePair { Name = "Bright", Value = "default" },
-						new NameValuePair { Name = "Gray", Value = "gray" },
-						new NameValuePair { Name = "Dark", Value = "dark" }
+						new NameValuePair { Name = "Voyager", Value = "voyager" },
+						new NameValuePair { Name = "Positron", Value = "positron" },
+						new NameValuePair { Name = "Darkmatter", Value = "darkmatter" }
 					}
 				});
 
@@ -35,14 +35,14 @@ namespace Shared
 
 				sections.Add(new Section
 				{
-					OSM = new NameValuePair { Name = "MapZen", Value = "mapzen.osm" },
+					OSM = new NameValuePair { Name = "MAPZEN", Value = Sources.Mapzen },
 					Type = SectionType.Vector,
 					Styles = mapzenStyles
 				});
 
 				sections.Add(new Section
 				{
-					OSM = new NameValuePair { Name = "CARTO", Value = "carto.osm" },
+					OSM = new NameValuePair { Name = "CARTO RASTER", Value = Sources.CartoRaster },
 					Type = SectionType.Raster,
 					Styles = cartoStyles
 				});

@@ -43,6 +43,8 @@ namespace AdvancedMap.Droid
 		{
 			this.context = context;
 
+            SetBackgroundColor(Colors.TransparentGray);
+
 			contentContainer = new LinearLayout(context);
 			contentContainer.LayoutParameters = new ViewGroup.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
 			contentContainer.Orientation = Orientation.Vertical;
@@ -112,15 +114,15 @@ namespace AdvancedMap.Droid
 		public CityLabel(Context context) : base(context)
 		{
 			text = new TextView(context);
-			text.Gravity = GravityFlags.Center;
+            text.Gravity = GravityFlags.CenterVertical;
 
-			text.SetTextColor(Color.Black);
+            text.SetTextColor(Colors.CartoNavy);
 			text.SetBackgroundColor(Color.Rgb(240, 240, 240));
 
 			int width = (int)(context.Resources.DisplayMetrics.WidthPixels * 0.5);
 			int padding = width / 12;
 
-			text.SetPadding(0, padding, 0, padding);
+            text.SetPadding(padding, padding, 0, padding);
 
 			var textParams = new RelativeLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.WrapContent);
 			text.LayoutParameters = textParams;

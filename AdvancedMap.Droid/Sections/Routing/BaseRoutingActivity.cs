@@ -1,15 +1,9 @@
 ﻿using System;
 using Carto.Core;
-using Carto.DataSources;
 using Carto.Graphics;
-using Carto.Layers;
-using Carto.PackageManager;
 using Carto.Routing;
-using Carto.Styles;
 using Carto.Ui;
-using Carto.VectorElements;
 using Shared;
-using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
@@ -81,7 +75,8 @@ namespace AdvancedMap.Droid
 			// Run routing in background
 			System.Threading.Tasks.Task.Run(() =>
 			{
-				long time = Java.Lang.JavaSystem.CurrentTimeMillis();
+				var watch = new System.Diagnostics.Stopwatch();
+				watch.Start();
 
 				RoutingResult result = Routing.GetResult(startPos, stopPos);
 
@@ -94,13 +89,15 @@ namespace AdvancedMap.Droid
 						return;
 					}
 
-					Alert(Routing.GetMessage(result, time, Java.Lang.JavaSystem.CurrentTimeMillis()));
+					Alert(Routing.GetMessage(result, watch.ElapsedMilliseconds));
+					watch.Stop();
 
-					Color lineColor = new Color(Colors.ActionBar);
-					Routing.Show(result, lineColor);
+					Routing.Show(result);
+                    RoutingComplete();
 				});
 			});
 		}
 
+        public virtual void RoutingComplete() { }
 	}
 }

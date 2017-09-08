@@ -36,7 +36,7 @@ namespace AdvancedMap.Droid
 				}
 
 				Texts3D = GetSwitch("3D Texts", "texts3d");
-				Buildings3D = GetSwitch("3D Buildings", "buildings3d");
+				Buildings3D = GetSwitch("3D Buildings", "buildings");
 
 				contentContainer.AddView(Texts3D);
 				contentContainer.AddView(Buildings3D);
@@ -48,7 +48,7 @@ namespace AdvancedMap.Droid
 			int screenWidth = context.Resources.DisplayMetrics.WidthPixels;
 
 			int padding = (int)(screenWidth * 0.05);
-			int width = (int)(screenWidth / 2);
+            int width = (int)(180 * Resources.DisplayMetrics.Density);
 
 			MapSwitch view = new MapSwitch(context);
 			view.Text = text;

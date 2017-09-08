@@ -3,6 +3,7 @@ using Android.App;
 using Android.Graphics.Drawables;
 using Android.Views;
 using Android.Widget;
+using Carto.Utils;
 
 namespace Shared.Droid
 {
@@ -39,6 +40,11 @@ namespace Shared.Droid
 			{
 				Toast.MakeText(this, message, ToastLength.Short).Show();
 			});
+		}
+
+		public void RunOnBackgroundThread(Action action)
+		{
+			System.Threading.Tasks.Task.Run(action);
 		}
 
 	}

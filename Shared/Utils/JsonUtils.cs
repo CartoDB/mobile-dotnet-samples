@@ -33,7 +33,7 @@ namespace Shared
 			return configJson;
 		}
 
-		static string CartoCSS
+        static string StationsCartoCSS
 		{
 			get
 			{
@@ -80,7 +80,7 @@ namespace Shared
 				JsonObject optionJson = new JsonObject();
 
 				optionJson.Add("sql", "select * from stations_1");
-				optionJson.Add("cartocss", CartoCSS);
+				optionJson.Add("cartocss", StationsCartoCSS);
 				optionJson.Add("cartocss_version", "2.1.1");
 
 				JsonArray interactivityJson = new JsonArray();
@@ -181,6 +181,36 @@ namespace Shared
 
 			return encoded;
 		}
+
+		public static string OfflinePackageCartoCSS
+		{
+			get
+			{
+				return
+					"#offlinepackages {\n" +
+					"  polygon-fill: #374C70;\n" +
+					"  polygon-opacity: 0.9;\n" +
+					"  polygon-gamma: 0.5;\n" +
+						" ::outline {" +
+						" line-color: #FFF;\n" +
+						"}" +
+						"#offlinepackages::labels {\n" +
+							"  text-name: [package_id];\n" +
+							"  text-face-name: 'DejaVu Sans Book';\n" +
+							"  text-size: 10;\n" +
+							"  text-fill: #130505;\n" +
+							"  text-label-position-tolerance: 0;\n" +
+							"  text-halo-radius: 1;\n" +
+							"  text-halo-fill: #dee3e7;\n" +
+							"  text-dy: -10;\n" +
+							"  text-allow-overlap: false;\n" +
+							"  text-placement: nutibillboard;\n" +
+							"  text-placement-type: dummy;\n" +
+						"}" +
+					"}";
+			}
+		}
+
 	}
 }
 

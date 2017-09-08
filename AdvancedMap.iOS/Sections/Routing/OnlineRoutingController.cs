@@ -1,5 +1,6 @@
 ﻿using System;
 using Carto.Routing;
+using Shared;
 
 namespace AdvancedMap.iOS
 {
@@ -13,12 +14,12 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
-			Routing.Service = new CartoOnlineRoutingService(Shared.Routing.ServiceSource);
+            Routing.Service = new ValhallaOnlineRoutingService(Sources.MapzenApiKey);
 		}
 
 		protected override void SetBaseLayer()
 		{
-			AddOnlineBaseLayer(Carto.Layers.CartoBaseMapStyle.CartoBasemapStyleDefault);
+            AddOnlineBaseLayer(Carto.Layers.CartoBaseMapStyle.CartoBasemapStyleVoyager);
 		}
 	}
 }

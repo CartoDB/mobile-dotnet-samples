@@ -67,7 +67,7 @@ namespace AdvancedMap.Droid
 
 		public void SetBaseLayer(Carto.PackageManager.CartoPackageManager manager)
 		{
-			var layer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CartoBasemapStyleDefault);
+            var layer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CartoBasemapStyleVoyager);
 			MapView.Layers.Add(layer);
 		}
 	}

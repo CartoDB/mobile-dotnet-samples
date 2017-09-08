@@ -20,7 +20,7 @@ namespace AdvancedMap.iOS
 
 			Title = "Packaged map";
 
-			var layer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CartoBasemapStyleDefault);
+			var layer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CartoBasemapStyleVoyager);
 			MapView.Layers.Add(layer);
 		}
 	}

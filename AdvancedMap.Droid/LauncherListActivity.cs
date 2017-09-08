@@ -8,6 +8,7 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using HockeyApp.Android;
@@ -16,7 +17,7 @@ using Shared.Droid;
 namespace AdvancedMap.Droid
 {
 	[Activity(MainLauncher = true)]
-	public class LauncherListActivity : Activity
+    public class LauncherListActivity : Activity
 	{
 		MapGalleryView ContentView;
 
@@ -26,7 +27,7 @@ namespace AdvancedMap.Droid
 
 			Title = "Advanced Samples";
 
-			ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.CartoNavy });
+            ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.CartoNavy });
 
 			ContentView = new MapGalleryView(this);
 			SetContentView(ContentView);

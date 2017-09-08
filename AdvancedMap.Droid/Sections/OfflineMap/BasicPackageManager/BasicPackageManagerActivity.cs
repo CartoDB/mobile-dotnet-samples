@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 using System;
 using System.IO;
 using Android.App;
@@ -42,7 +42,7 @@ namespace AdvancedMap.Droid
 
 			string folder = CreateFolder("citypackages");
 
-			manager = new CartoPackageManager("nutiteq.osm", folder);
+			manager = new CartoPackageManager(Sources.CartoVector, folder);
 
 			ContentView.Menu.Items = BoundingBoxes.List;
 
@@ -96,7 +96,7 @@ namespace AdvancedMap.Droid
 			}
 			else {
 				ContentView.Menu.Show();
-				ContentView.Button.BringToFront();
+
 			}
 		}
 

@@ -15,10 +15,6 @@ namespace Shared
 {
 	public class Routing
 	{
-		public const string ServiceSource = "nutiteq.osm.car";
-
-		const string ManagerSource = "routing:nutiteq.osm.car";
-
 		protected Marker startMarker, stopMarker;
 
 		public RoutingService Service { get; set; }
@@ -36,7 +32,7 @@ namespace Shared
 			{
 				// Create PackageManager instance for dealing with offline packages
 				string folder = CreateFolder();
-				CartoPackageManager manager = new CartoPackageManager(ManagerSource, folder);
+                CartoPackageManager manager = new CartoPackageManager(Sources.RoutingTag + Sources.OfflineRouting, folder);
 				return manager;
 			}
 		}
@@ -44,45 +40,49 @@ namespace Shared
 		MapView MapView;
 		Projection BaseProjection;
 
+        public bool ShowTurns { get; set; } = true;
+
 		public Routing(MapView map, Projection projection)
 		{
 			MapView = map;
 			BaseProjection = projection;
 		}
 
-		public void Show(RoutingResult result, Color lineColor)
+		public void Show(RoutingResult result)
 		{
 			routeDataSource.Clear();
 
-			startMarker.Visible = false;
-
-			Line line = CreatePolyline(startMarker.Geometry.CenterPos, stopMarker.Geometry.CenterPos, result, lineColor);
+            var color = new Color(0, 122, 255, 150);
+			Line line = CreatePolyline(startMarker.Geometry.CenterPos, stopMarker.Geometry.CenterPos, result, color);
 			routeDataSource.Add(line);
 
 			// Add instruction markers
 			RoutingInstructionVector instructions = result.Instructions;
 
-			for (int i = 0; i < instructions.Count; i++)
-			{
-				RoutingInstruction instruction = instructions[i];
-				MapPos position = result.Points[instruction.PointIndex];
-				CreateRoutePoint(position, instruction, routeDataSource);
-			}
+            if (ShowTurns)
+            {
+				for (int i = 0; i < instructions.Count; i++)
+				{
+					RoutingInstruction instruction = instructions[i];
+					MapPos position = result.Points[instruction.PointIndex];
+					CreateRoutePoint(position, instruction, routeDataSource);
+				}    
+            }
 		}
 
-		public string GetMessage(RoutingResult result, long start, long current)
+		public string GetMessage(RoutingResult result, long ms)
 		{
 
 			string distance = "The route is " + (int)(result.TotalDistance / 100) / 10f + "km";
 			string time = "(" + result.TotalTime.ConvertFromSecondsToHours() + ")";
-			string calculation = " | Calculation: " + (start - current) + " ms";
+			string calculation = " | Calculation: " + ms + " ms";
 
 			return distance + time + calculation;
 		}
 
 		public string CreateFolder()
 		{
-			return CreateFolder("routingpackages_");
+			return CreateFolder("routingpackages");
 		}
 
 		public string CreateFolder(string name)
@@ -96,17 +96,28 @@ namespace Shared
 			return path;
 		}
 
-		public RoutingResult GetResult(MapPos startPos, MapPos stopPos)
-		{
-			MapPosVector poses = new MapPosVector();
+        public RoutingResult GetResult(MapPos startPos, MapPos stopPos)
+        {
+            MapPosVector poses = new MapPosVector();
 
-			poses.Add(startPos);
-			poses.Add(stopPos);
+            poses.Add(startPos);
+            poses.Add(stopPos);
 
-			RoutingRequest request = new RoutingRequest(BaseProjection, poses);
+            RoutingRequest request = new RoutingRequest(BaseProjection, poses);
 
-			return Service.CalculateRoute(request);
-		}
+            RoutingResult result = null;
+
+            try
+            {
+                result = Service.CalculateRoute(request);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception calculating route: " + e.Message);
+            }
+
+            return result;
+        }
 
 		public void SetSourcesAndElements(Bitmap olmarker, Bitmap up, Bitmap upleft, Bitmap upright, Color green, Color red, Color white)
 		{

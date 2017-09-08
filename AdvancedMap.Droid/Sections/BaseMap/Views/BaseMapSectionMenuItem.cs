@@ -105,7 +105,7 @@ namespace AdvancedMap.Droid
 				{
 					(LayoutParameters as LinearLayout.LayoutParams).TopMargin = Padding * 2;
 				}
-				else if (Section.OSM.Value == "nutiteq.osm")
+				else if (Section.OSM.Value == Sources.CartoVector)
 				{
 					// Initial item, set additional padding
 					(LayoutParameters as LinearLayout.LayoutParams).TopMargin = Padding;

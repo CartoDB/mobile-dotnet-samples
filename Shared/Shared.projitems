@@ -22,6 +22,8 @@
     <Folder Include="$(MSBuildThisFileDirectory)Model\BaseMaps\" />
     <Folder Include="$(MSBuildThisFileDirectory)Model\Cities\" />
     <Folder Include="$(MSBuildThisFileDirectory)Routing\" />
+    <Folder Include="$(MSBuildThisFileDirectory)PackageManagerClient\" />
+    <Folder Include="$(MSBuildThisFileDirectory)PackageManagerClient\Geocoding\" />
     <Folder Include="$(MSBuildThisFileDirectory)Geocoding\" />
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +60,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Cities\BoundingBoxes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Routing\Routing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\TorqueUtils.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Geocoding\Geocoding.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Geocoding\GeocodingExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PackageManagerClient\Geocoding\Geocoding.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PackageManagerClient\Geocoding\GeocodingExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PackageManagerClient\BasePackageManagerClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Geocoding\ReverseGeocodingEventListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RouteSearch.cs" />
   </ItemGroup>
 </Project>

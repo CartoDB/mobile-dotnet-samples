@@ -5,7 +5,7 @@ using UIKit;
 
 namespace Shared.iOS
 {
-	public class BaseController : GLKit.GLKViewController
+	public class BaseController : UIViewController // TODO Throws exception on ViewWillDisappear GLKit.GLKViewController
 	{
 		public virtual string Name { get; set; }
 
@@ -13,7 +13,9 @@ namespace Shared.iOS
 
 		protected async void Alert(string message)
 		{
-			await ShowToast(message);
+            InvokeOnMainThread(async () => {
+                await ShowToast(message);    
+            });
 		}
 
 		async Task ShowToast(string message, UIAlertView toast = null)

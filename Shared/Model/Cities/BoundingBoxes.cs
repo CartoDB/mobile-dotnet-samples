@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 using System.Collections.Generic;
 
 namespace Shared
@@ -27,7 +27,7 @@ namespace Shared
 				list.Add(paris);
 
 				// San Francisco|{"north":37.856965020544393,"south":37.602264255657843,"east":-122.33688354492188,"west":-122.56210327148436}
-				var sanFrancisco = new BoundingBox { Name = "San Francisco", MinLon = -122.3368, MaxLon = -122.56210, MinLat = 37.6022, MaxLat = 37.6022 };
+				var sanFrancisco = new BoundingBox { Name = "San Francisco", MinLon = -122.54210, MaxLon = -122.3368, MinLat = 37.6622, MaxLat = 37.8173 };
 				list.Add(sanFrancisco);
 
 				// London|{"north":51.6939004971554,"south":51.2871004967765,"east":0.32760048286911569,"west":-0.503699517905261}

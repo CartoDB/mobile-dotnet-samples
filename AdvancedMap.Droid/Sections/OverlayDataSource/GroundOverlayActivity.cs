@@ -17,7 +17,7 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+            AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
 
 			// Load ground overlay bitmap
 			//Bitmap androidMarkerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.jefferson);
