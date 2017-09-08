@@ -47,7 +47,6 @@ namespace AdvancedMap.iOS
 			MapView.SetZoom(13, 0);
 		}
 
-
 	}
 }
 

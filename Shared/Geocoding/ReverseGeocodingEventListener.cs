@@ -23,6 +23,7 @@ namespace Shared
         public override void OnMapClicked(MapClickInfo mapClickInfo)
         {
             MapPos position = mapClickInfo.ClickPos;
+
             var request = new ReverseGeocodingRequest(projection, position);
 
             var meters = 125.0f;
