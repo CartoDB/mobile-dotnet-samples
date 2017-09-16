@@ -82,7 +82,7 @@
       <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.25.3.1\lib\MonoAndroid70\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.Android.4.1.0-rc1\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.Android.4.1.0-rc2\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
