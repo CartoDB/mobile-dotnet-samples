@@ -1,6 +1,8 @@
 ## .NET samples for CARTO Mobile SDK
 
-* Official docs: https://carto.com/docs/carto-engine/mobile-sdk/
+Here are samples of CARTO Mobile SDK for Xamarin Framework for iOS and Android, and directly with Visual Studio in Universial Windows Platform (UWP).
+
+* Official SDK docs: https://carto.com/docs/carto-engine/mobile-sdk/
 
 ## Sample structure
 
