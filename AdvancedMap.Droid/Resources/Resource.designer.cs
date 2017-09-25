@@ -1686,11 +1686,44 @@ namespace AdvancedMap.Droid
 			// aapt resource value: 0x7f020069
 			public const int marker_black = 2130837609;
 			
-			// aapt resource value: 0x7f02006b
-			public const int notification_template_icon_bg = 2130837611;
+			// aapt resource value: 0x7f020076
+			public const int notification_template_icon_bg = 2130837622;
 			
 			// aapt resource value: 0x7f02006a
 			public const int olmarker = 2130837610;
+			
+			// aapt resource value: 0x7f02006b
+			public const int style_image_carto_darkmatter = 2130837611;
+			
+			// aapt resource value: 0x7f02006c
+			public const int style_image_carto_positron = 2130837612;
+			
+			// aapt resource value: 0x7f02006d
+			public const int style_image_mapzen_bright = 2130837613;
+			
+			// aapt resource value: 0x7f02006e
+			public const int style_image_mapzen_darkmatter = 2130837614;
+			
+			// aapt resource value: 0x7f02006f
+			public const int style_image_mapzen_positron = 2130837615;
+			
+			// aapt resource value: 0x7f020070
+			public const int style_image_nutiteq_bright = 2130837616;
+			
+			// aapt resource value: 0x7f020071
+			public const int style_image_nutiteq_dark = 2130837617;
+			
+			// aapt resource value: 0x7f020072
+			public const int style_image_nutiteq_darkmatter = 2130837618;
+			
+			// aapt resource value: 0x7f020073
+			public const int style_image_nutiteq_gray = 2130837619;
+			
+			// aapt resource value: 0x7f020074
+			public const int style_image_nutiteq_positron = 2130837620;
+			
+			// aapt resource value: 0x7f020075
+			public const int style_image_nutiteq_voyager = 2130837621;
 			
 			static Drawable()
 			{

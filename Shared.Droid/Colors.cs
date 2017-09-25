@@ -22,6 +22,8 @@ namespace Shared.Droid
         public static readonly Color DarkTransparentNavy = Color.Argb(200, 22, 41, 69);
 
         public static readonly Color LightTransparentNavy = Color.Argb(150, 22, 41, 69);
+
+        public static Color NearWhite = Color.Rgb(245, 245, 245);
 	}
 }
 

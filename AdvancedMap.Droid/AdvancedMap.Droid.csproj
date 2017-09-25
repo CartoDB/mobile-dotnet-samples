@@ -74,17 +74,12 @@
     <Compile Include="Sections\VectorObject\OverlaysActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\WmsMapActivity.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapsView.cs" />
     <Compile Include="Sections\Other\CaptureActivity.cs" />
     <Compile Include="Sections\Other\CustomPopupActivity.cs" />
     <Compile Include="Sections\VectorObject\VectorObjectEditingActvity.cs" />
     <Compile Include="Sections\VectorObject\ClusteredMarkersActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\GroundOverlayActivity.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenu.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenuItem.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapSectionLabel.cs" />
     <Compile Include="Sections\Routing\BaseRoutingActivity.cs" />
-    <Compile Include="Sections\BaseMap\Views\MapSwitch.cs" />
     <Compile Include="MapBaseActivity.cs" />
     <Compile Include="Sections\Geocoding\ReverseGeocodingActivity.cs" />
     <Compile Include="Sections\Geocoding\Base\BaseGeocodingActivity.cs" />
@@ -103,6 +98,15 @@
     <Compile Include="Sections\Routing\OfflineRoutingView.cs" />
     <Compile Include="Sections\OfflineMap\OfflineMapActivity.cs" />
     <Compile Include="Sections\OfflineMap\OfflineMapView.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\_deprecated\BaseMapSectionLabel.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\_deprecated\BaseMapSectionMenu.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\_deprecated\BaseMapSectionMenuItem.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\_deprecated\BaseMapsView.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\_deprecated\MapSwitch.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\StylePopupContentSectionItem.cs" />
+    <Compile Include="Sections\BaseMap\BaseMapsView.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\StylePopupContentSection.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\StylePopupContent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -164,6 +168,17 @@
     <AndroidResource Include="Resources\drawable-nodpi\icon_sample_geocoding.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_sample_route_search.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_sample_user_data.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_carto_darkmatter.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_carto_positron.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_mapzen_bright.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_mapzen_darkmatter.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_mapzen_positron.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_bright.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_dark.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_darkmatter.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_gray.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_positron.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_voyager.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />
@@ -173,13 +188,14 @@
     <Folder Include="Sections\Other\" />
     <Folder Include="Sections\OverlayDataSource\" />
     <Folder Include="Sections\VectorObject\" />
-    <Folder Include="Sections\BaseMap\Views\" />
+    <Folder Include="Sections\BaseMap\Subviews\" />
     <Folder Include="Resources\mipmap-nodpi\" />
     <Folder Include="Sections\Routing\" />
     <Folder Include="Sections\Geocoding\" />
     <Folder Include="Sections\Geocoding\Base\" />
     <Folder Include="Sections\Geocoding\ResultTable\" />
     <Folder Include="BaseClasses\" />
+    <Folder Include="Sections\BaseMap\Subviews\_deprecated\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fcd_auto.nml" />

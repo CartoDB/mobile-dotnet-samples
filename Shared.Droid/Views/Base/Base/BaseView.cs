@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Util;
@@ -39,6 +40,16 @@ namespace Shared.Droid
             get { return Context.Resources.DisplayMetrics.Density; } 
         }
 
+        public Rect HitRect
+        {
+            get
+            {
+                var rect = new Rect();
+                GetHitRect(rect);
+                return rect;
+            }
+        }
+
         public int UsableHeight
         {
             get
@@ -75,6 +86,25 @@ namespace Shared.Droid
                 return Resources.GetDimensionPixelSize(tv.ResourceId);
 			}
 		}
+
+        public bool IsJellybeanOrHigher
+        {
+            get { return Build.VERSION.SdkInt >= BuildVersionCodes.JellyBean; }
+        }
+
+        public override void SetBackgroundColor(Android.Graphics.Color color)
+        {
+            var drawable = new GradientDrawable();
+            drawable.SetColor(color);
+            Background = drawable;
+        }
+
+        public void SetBorderColor(int width, Color color)
+        {
+            if (Background is GradientDrawable) {
+                (Background as GradientDrawable).SetStroke(width, color);
+            }
+        }
 
         public DisplayMetrics Metrics
         {
