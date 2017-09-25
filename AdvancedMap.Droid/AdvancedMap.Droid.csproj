@@ -102,6 +102,9 @@
     <Compile Include="Sections\BaseMap\BaseMapsView.cs" />
     <Compile Include="Sections\BaseMap\Subviews\StylePopupContentSection.cs" />
     <Compile Include="Sections\BaseMap\Subviews\StylePopupContent.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\LanguageAdapter.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\LanguageCell.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\LanguagePopupContent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -175,6 +178,7 @@
     <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_positron.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_voyager.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_basemap.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_language.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />

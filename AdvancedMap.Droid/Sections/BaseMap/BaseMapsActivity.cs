@@ -13,6 +13,8 @@ using Carto.Utils;
 using Carto.Styles;
 using AdvancedMap.Droid.Sections.BaseMap.Views;
 using AdvancedMap.Droid.Sections.BaseMap.Subviews;
+using Shared.Model;
+using Android.Widget;
 
 namespace AdvancedMap.Droid
 {
@@ -41,6 +43,8 @@ namespace AdvancedMap.Droid
 
             ContentView.CurrentLayer = ContentView.AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
             ContentView.StyleContent.HighlightDefault();
+            ContentView.LanguageContent.Adapter.Languages = Languages.List;
+            ContentView.LanguageContent.Adapter.NotifyDataSetChanged();
 		}
 
 		protected override void OnResume()
@@ -48,6 +52,7 @@ namespace AdvancedMap.Droid
 			base.OnResume();
 
             ContentView.BasemapButton.Clicked += OnBasemapButtonClick;
+            ContentView.LanguageButton.Clicked += OnLanguageButtonClick;
 
             foreach (var section in ContentView.StyleContent.Sections)
             {
@@ -58,6 +63,8 @@ namespace AdvancedMap.Droid
             }
 
             ContentView.InitializeVectorTileListener();
+
+            ContentView.LanguageContent.List.ItemClick += OnLanguageClick;
 		}
 
         protected override void OnPause()
@@ -65,6 +72,7 @@ namespace AdvancedMap.Droid
 			base.OnPause();
 
             ContentView.BasemapButton.Clicked -= OnBasemapButtonClick;
+            ContentView.LanguageButton.Clicked -= OnLanguageButtonClick;
 
             foreach (var section in ContentView.StyleContent.Sections)
             {
@@ -79,13 +87,29 @@ namespace AdvancedMap.Droid
                 (ContentView.CurrentLayer as VectorTileLayer).VectorTileEventListener = null;    
             }
 
+            ContentView.LanguageContent.List.ItemClick -= OnLanguageClick;
+
 		}
+
+        void OnLanguageClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            ContentView.Popup.Hide();
+
+            Language language = ContentView.LanguageContent.Adapter.Languages[e.Position];
+            ContentView.UpdateLanguage(language);
+        }
 
         void OnBasemapButtonClick(object sender, EventArgs e)
         {
             ContentView.Popup.SetPopupContent(ContentView.StyleContent);
             ContentView.Popup.Show();
         }
+
+		void OnLanguageButtonClick(object sender, EventArgs e)
+		{
+            ContentView.Popup.SetPopupContent(ContentView.LanguageContent);
+			ContentView.Popup.Show();
+		}
 
 		void OnStyleItemClick(object sender, EventArgs e)
 		{

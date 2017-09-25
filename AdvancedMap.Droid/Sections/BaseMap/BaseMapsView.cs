@@ -9,6 +9,7 @@ using Carto.Utils;
 using Carto.VectorTiles;
 using Shared;
 using Shared.Droid;
+using Shared.Model;
 
 namespace AdvancedMap.Droid.Sections.BaseMap.Views
 {
@@ -17,6 +18,9 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Views
         public ActionButton BasemapButton;
         public StylePopupContent StyleContent;
 
+        public ActionButton LanguageButton;
+        public LanguagePopupContent LanguageContent;
+
 		public BaseMapsView(Context context) : base(context,
 													Resource.Drawable.icon_info_blue,
 													Resource.Drawable.icon_back_blue,
@@ -24,8 +28,11 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Views
 		{
             BasemapButton = new ActionButton(context, Resource.Drawable.icon_basemap);
             AddButton(BasemapButton);
-
             StyleContent = new StylePopupContent(context);
+
+            LanguageButton = new ActionButton(context, Resource.Drawable.icon_language);
+            AddButton(LanguageButton);
+            LanguageContent = new LanguagePopupContent(context);
 
             Frame = new CGRect(0, 0, Metrics.WidthPixels, UsableHeight);
 		}
@@ -105,10 +112,28 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Views
                 //ContentView.Menu.LanguageChoiceEnabled = false;
             }
 
+            if (source.Equals(StylePopupContent.CartoRasterSource))
+            {
+                LanguageButton.Disable();
+            }
+            else
+            {
+                LanguageButton.Enable();
+            }
+
             MapView.Layers.Clear();
             MapView.Layers.Add(CurrentLayer);
 
             InitializeVectorTileListener();
+        }
+
+        public void UpdateLanguage(Language language)
+        {
+            if (CurrentLayer is VectorTileLayer)
+            {
+                var decoder = (CurrentLayer as VectorTileLayer).TileDecoder as MBVectorTileDecoder;
+                decoder.SetStyleParameter("lang", language.Value);
+            }
         }
 
         public void InitializeVectorTileListener()

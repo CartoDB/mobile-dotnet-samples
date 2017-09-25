@@ -68,5 +68,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)RouteSearch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PackageManagerClient\Routing\Routing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PackageManagerClient\Mapping\Mapping.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Languages.cs" />
   </ItemGroup>
 </Project>
