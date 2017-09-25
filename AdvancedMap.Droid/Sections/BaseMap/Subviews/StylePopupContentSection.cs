@@ -83,7 +83,9 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Subviews
 
             foreach (var item in List)
             {
-                item.SetFrame(x, y, w, h);
+                item.Frame = new CGRect(x, y, w, h);
+
+                x += w + padding;
 
                 if (x == Frame.W)
                 {

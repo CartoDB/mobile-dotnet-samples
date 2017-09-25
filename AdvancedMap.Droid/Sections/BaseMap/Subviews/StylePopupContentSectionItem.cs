@@ -9,7 +9,7 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Views
     public class StylePopupContentSectionItem : BaseView
     {
         ImageView imageView;
-        TextView label;
+        public TextView Label { get; private set; }
 
         int borderWidth;
 
@@ -22,11 +22,11 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Views
             imageView.SetImageResource(resource);
             AddView(imageView);
 
-            label = new TextView(context);
-            label.Text = text;
-            label.SetTextColor(Colors.AppleBlue);
-            label.TextSize = 11.0f;
-            AddView(label);
+            Label = new TextView(context);
+            Label.Text = text;
+            Label.SetTextColor(Colors.AppleBlue);
+            Label.TextSize = 11.0f;
+            AddView(Label);
 
             borderWidth = (int)(2 * Density);
         }
@@ -44,12 +44,12 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Views
 
             imageView.SetFrame(x, y, w, h);
 
-            label.Measure(0, 0);
+            Label.Measure(0, 0);
 
             y += h + padding;
-            h = label.MeasuredHeight;
+            h = Label.MeasuredHeight;
 
-            label.SetFrame(x, y, w, h);
+            Label.SetFrame(x, y, w, h);
         }
 
         public void Highlight()

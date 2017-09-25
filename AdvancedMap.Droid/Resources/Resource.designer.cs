@@ -1597,133 +1597,136 @@ namespace AdvancedMap.Droid
 			public const int icon_back_blue = 2130837579;
 			
 			// aapt resource value: 0x7f02004c
-			public const int icon_close = 2130837580;
+			public const int icon_basemap = 2130837580;
 			
 			// aapt resource value: 0x7f02004d
-			public const int icon_forward_blue = 2130837581;
+			public const int icon_close = 2130837581;
 			
 			// aapt resource value: 0x7f02004e
-			public const int icon_global = 2130837582;
+			public const int icon_forward_blue = 2130837582;
 			
 			// aapt resource value: 0x7f02004f
-			public const int icon_info = 2130837583;
+			public const int icon_global = 2130837583;
 			
 			// aapt resource value: 0x7f020050
-			public const int icon_info_blue = 2130837584;
+			public const int icon_info = 2130837584;
 			
 			// aapt resource value: 0x7f020051
-			public const int icon_menu_round = 2130837585;
+			public const int icon_info_blue = 2130837585;
 			
 			// aapt resource value: 0x7f020052
-			public const int icon_sample_geocoding = 2130837586;
+			public const int icon_menu_round = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int icon_sample_reverse_geocoding = 2130837587;
+			public const int icon_sample_geocoding = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int icon_sample_route_search = 2130837588;
+			public const int icon_sample_reverse_geocoding = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int icon_sample_user_data = 2130837589;
+			public const int icon_sample_route_search = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int icon_wifi_off = 2130837590;
+			public const int icon_sample_user_data = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int icon_wifi_on = 2130837591;
+			public const int icon_wifi_off = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int image_base_maps = 2130837592;
+			public const int icon_wifi_on = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int image_bundled = 2130837593;
+			public const int image_base_maps = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int image_city_package = 2130837594;
+			public const int image_bundled = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int image_clustered_markers = 2130837595;
+			public const int image_city_package = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int image_country_packages = 2130837596;
+			public const int image_clustered_markers = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int image_custom_popup = 2130837597;
+			public const int image_country_packages = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int image_custom_raster = 2130837598;
+			public const int image_custom_popup = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int image_gps_location = 2130837599;
+			public const int image_custom_raster = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int image_ground_overlays = 2130837600;
+			public const int image_gps_location = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int image_object_editing = 2130837601;
+			public const int image_ground_overlays = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int image_offline_routing = 2130837602;
+			public const int image_object_editing = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int image_online_routing = 2130837603;
+			public const int image_offline_routing = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int image_overlays = 2130837604;
+			public const int image_online_routing = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int image_screencapture = 2130837605;
+			public const int image_overlays = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int image_wms = 2130837606;
+			public const int image_screencapture = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int info = 2130837607;
+			public const int image_wms = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int marker = 2130837608;
+			public const int info = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int marker_black = 2130837609;
-			
-			// aapt resource value: 0x7f020076
-			public const int notification_template_icon_bg = 2130837622;
+			public const int marker = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int olmarker = 2130837610;
+			public const int marker_black = 2130837610;
+			
+			// aapt resource value: 0x7f020077
+			public const int notification_template_icon_bg = 2130837623;
 			
 			// aapt resource value: 0x7f02006b
-			public const int style_image_carto_darkmatter = 2130837611;
+			public const int olmarker = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int style_image_carto_positron = 2130837612;
+			public const int style_image_carto_darkmatter = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int style_image_mapzen_bright = 2130837613;
+			public const int style_image_carto_positron = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int style_image_mapzen_darkmatter = 2130837614;
+			public const int style_image_mapzen_bright = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int style_image_mapzen_positron = 2130837615;
+			public const int style_image_mapzen_darkmatter = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int style_image_nutiteq_bright = 2130837616;
+			public const int style_image_mapzen_positron = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int style_image_nutiteq_dark = 2130837617;
+			public const int style_image_nutiteq_bright = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int style_image_nutiteq_darkmatter = 2130837618;
+			public const int style_image_nutiteq_dark = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int style_image_nutiteq_gray = 2130837619;
+			public const int style_image_nutiteq_darkmatter = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int style_image_nutiteq_positron = 2130837620;
+			public const int style_image_nutiteq_gray = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int style_image_nutiteq_voyager = 2130837621;
+			public const int style_image_nutiteq_positron = 2130837621;
+			
+			// aapt resource value: 0x7f020076
+			public const int style_image_nutiteq_voyager = 2130837622;
 			
 			static Drawable()
 			{

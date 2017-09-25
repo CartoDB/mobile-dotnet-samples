@@ -11,6 +11,8 @@ using Carto.VectorTiles;
 using Carto.DataSources;
 using Carto.Utils;
 using Carto.Styles;
+using AdvancedMap.Droid.Sections.BaseMap.Views;
+using AdvancedMap.Droid.Sections.BaseMap.Subviews;
 
 namespace AdvancedMap.Droid
 {
@@ -18,7 +20,7 @@ namespace AdvancedMap.Droid
 	[ActivityData(Title = "Base maps", Description = "Overview of base maps offered by CARTO")]
 	public class BaseMapsActivity : BaseActivity
 	{
-		BaseMapsView ContentView { get; set; }
+		Sections.BaseMap.Views.BaseMapsView ContentView { get; set; }
 
 		MapView MapView { get { return ContentView.MapView; } }
 
@@ -28,7 +30,7 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			ContentView = new BaseMapsView(this);
+			ContentView = new Sections.BaseMap.Views.BaseMapsView(this);
 			SetContentView(ContentView);
 
 			Title = GetType().GetTitle();
@@ -39,74 +41,66 @@ namespace AdvancedMap.Droid
 			MapView.SetFocusPos(europe, 0);
 			MapView.Zoom = 5;
 
-			Alert("Click the menu to choose between different styles and languages");
-
-			ContentView.Menu.Items = Shared.Sections.List;
-
-			// Set initial style 
-			ContentView.Menu.SetInitialItem(Shared.Sections.Nutiteq);
-			ContentView.Menu.SetInitialItem(Shared.Sections.Language);
-
-			UpdateBaseLayer(Shared.Sections.Nutiteq, Shared.Sections.BaseStyleValue);
-			UpdateLanguage(Shared.Sections.BaseLanguageCode);
+            currentLayer = ContentView.AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
+            ContentView.StyleContent.HighlightDefault();
 		}
 
 		protected override void OnResume()
 		{
 			base.OnResume();
 
-			ContentView.Button.Click += OnMenuButtonClicked;
-			ContentView.Menu.SelectionChange += OnMenuSelectionChanged;
+            ContentView.BasemapButton.Clicked += OnBasemapButtonClick;
 
-			ContentView.Menu.Texts3D.Change += OnSwitchChange;
-			ContentView.Menu.Buildings3D.Change += OnSwitchChange;
+            foreach (var section in ContentView.StyleContent.Sections)
+            {
+                foreach (var item in section.List)
+                {
+                    item.Click += OnStyleItemClick;
+                }    
+            }
+
 		}
 
-		protected override void OnPause()
+        protected override void OnPause()
 		{
 			base.OnPause();
 
-			ContentView.Button.Click -= OnMenuButtonClicked;
-			ContentView.Menu.SelectionChange -= OnMenuSelectionChanged;
+            ContentView.BasemapButton.Clicked -= OnBasemapButtonClick;
 
-			ContentView.Menu.Texts3D.Change -= OnSwitchChange;
-			ContentView.Menu.Buildings3D.Change -= OnSwitchChange;
+            foreach (var section in ContentView.StyleContent.Sections)
+            {
+                foreach (var item in section.List)
+                {
+                    item.Click -= OnStyleItemClick;
+                }    
+            }
 
 			currentListener = null;
 		}
 
-		public override bool OnOptionsItemSelected(IMenuItem item)
-		{
-			if (item.ItemId == Android.Resource.Id.Home)
-			{
-				OnBackPressed();
-				return true;
-			}
+        void OnBasemapButtonClick(object sender, EventArgs e)
+        {
+            ContentView.Popup.SetPopupContent(ContentView.StyleContent);
+            ContentView.Popup.Show();
+        }
 
-			return base.OnOptionsItemSelected(item);
-		}
-
-		void OnMenuButtonClicked(object sender, EventArgs e)
+		void OnStyleItemClick(object sender, EventArgs e)
 		{
-			if (ContentView.Menu.IsVisible)
-			{
-				ContentView.Menu.Hide();
-			}
-			else {
-				ContentView.Menu.Show();
-				ContentView.Button.BringToFront();
-			}
-		}
+            ContentView.Popup.Hide();
 
-		void OnMenuSelectionChanged(object sender, OptionEventArgs e)
-		{
-			UpdateBaseLayer(e.Section, e.Option.Value);
-		}
+            if (ContentView.StyleContent.Previous != null)
+            {
+                ContentView.StyleContent.Previous.Normalize();
+            }
 
-		void OnSwitchChange(object sender, EventArgs e)
-		{
-			MapSwitch item = (MapSwitch)sender;
-			UpdateBaseLayer(new Section { OSM = new NameValuePair { Value = currentOSM }, Type = SectionType.None }, currentSelection);
+            var item = (StylePopupContentSectionItem)sender;
+            item.Highlight();
+
+            string selection = item.Label.Text;
+            string source = (item.Parent as StylePopupContentSection).Source;
+            UpdateBaseLayer(selection, source);
+
+            ContentView.StyleContent.Previous = item;
 		}
 
 		string currentOSM;
@@ -115,112 +109,93 @@ namespace AdvancedMap.Droid
 
 		VectorTileListener currentListener;
 
-		void UpdateBaseLayer(Section section, string selection)
-		{
-			if (section.Type != SectionType.Language)
-			{
-				currentOSM = section.OSM.Value;
-				currentSelection = selection;
-			}
+        void UpdateBaseLayer(string selection, string source)
+        {
+            if (source.Equals(StylePopupContent.CartoVectorSource))
+            {
+                // Nutiteq styles are bundled with the SDK, we can initialize them via constuctor
+                if (selection.Equals(StylePopupContent.Voyager))
+                {
+                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
+                }
+                else if (selection.Equals(StylePopupContent.Positron))
+                {
+                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStylePositron);
+                }
+                else
+                {
+                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDarkmatter);
+                }
+            }
+            else if (source.Equals(StylePopupContent.MapzenSource))
+            {
+                // Mapzen styles are all bundled in one .zip file.
+                // Selection contains both the style name and file name (cf. Sections.cs in Shared)
 
-			if (section.Type == SectionType.Vector)
-			{
+                // Create a style set from the file and style
+                BinaryData styleAsset = AssetUtils.LoadAsset("styles_mapzen.zip");
+                var package = new ZippedAssetPackage(styleAsset);
 
-                if (currentOSM == Sources.CartoVector)
-				{
-					// Nutiteq styles are bundled with the SDK, we can initialize them via constuctor
-					if (currentSelection == "voyager")
-					{
-                        currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
-					}
-					else if (currentSelection == "positron")
-					{
-                        currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStylePositron);
-					}
-					else
-					{
-                        currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDarkmatter);
-					}
-				}
-                else if (currentOSM == Sources.Mapzen)
-				{
-					// Mapzen styles are all bundled in one .zip file.
-					// Selection contains both the style name and file name (cf. Sections.cs in Shared)
-					string fileName = currentSelection.Split(':')[0];
-					string styleName = currentSelection.Split(':')[1];
+                string name = "";
 
-					// Create a style set from the file and style
-					BinaryData styleAsset = AssetUtils.LoadAsset(fileName + ".zip");
-					var package = new ZippedAssetPackage(styleAsset);
-					CompiledStyleSet styleSet = new CompiledStyleSet(package, styleName);
+                if (selection.Equals(StylePopupContent.Bright))
+                {
+                    // The name of the actual style is "bright", as it's displayed in the UI,
+                    // but in the style file it's a default "style", change the name
+                    name = "style";    
+                } 
+                else if (selection.Equals(StylePopupContent.Positron))
+                {
+                    name = "positron";
+                }
+                else if (selection.Equals(StylePopupContent.DarkMatter))
+                {
+                    name = "positron_dark";
+                }
 
-					// Create datasource and style decoder
-					var source = new CartoOnlineTileDataSource(currentOSM);
-					var decoder = new MBVectorTileDecoder(styleSet);
+                CompiledStyleSet styleSet = new CompiledStyleSet(package, name);
 
-					currentLayer = new VectorTileLayer(source, decoder);
-				}
+                // Create datasource and style decoder
+                var ds = new CartoOnlineTileDataSource(source);
+                var decoder = new MBVectorTileDecoder(styleSet);
 
-				ContentView.Menu.LanguageChoiceEnabled = true;
-				ResetLanguage();
-			}
-			else if (section.Type == SectionType.Raster)
-			{
-				// We know that the value of raster will be Positron or Darkmatter,
-				// as Nutiteq and Mapzen use vector tiles
+                currentLayer = new VectorTileLayer(ds, decoder);
 
-				// Additionally, raster tiles do not support language choice
-				string url = (currentSelection == "positron") ? Urls.Positron : Urls.DarkMatter;
+                //ContentView.Menu.LanguageChoiceEnabled = true;
+                //ResetLanguage();
 
-				TileDataSource source = new HTTPTileDataSource(1, 19, url);
-				currentLayer = new RasterTileLayer(source);
+            }
+            else if (source.Equals(StylePopupContent.CartoRasterSource))
+            {
+                // We know that the value of raster will be Positron or Darkmatter,
+                // as Nutiteq and Mapzen use vector tiles
 
-				// Language choice not enabled in raster tiles
-				ContentView.Menu.LanguageChoiceEnabled = false;
-			}
-			else if (section.Type == SectionType.Language)
-			{
-				if (currentLayer is RasterTileLayer)
-				{
-					// Raster tile language chance is not supported
-					return;
-				}
-				UpdateLanguage(selection);
-			}
-			else if (section.Type == SectionType.None)
-			{
-				// Switch was tapped
-			}
+                // Additionally, raster tiles do not support language choice
+                string url = (selection == StylePopupContent.Positron) ? Urls.Positron : Urls.DarkMatter;
 
-			if (currentOSM == Sources.CartoVector)
-			{
-				var decoder = ((currentLayer as CartoOnlineVectorTileLayer).TileDecoder as MBVectorTileDecoder);
-				MapSwitch texts = ContentView.Menu.Texts3D;
-				MapSwitch buildings = ContentView.Menu.Buildings3D;
+                TileDataSource ds = new HTTPTileDataSource(1, 19, url);
+                currentLayer = new RasterTileLayer(ds);
 
-				decoder.SetStyleParameter(texts.ParameterName, texts.IsChecked.ToString());
-				decoder.SetStyleParameter(buildings.ParameterName, buildings.IsChecked.ToString());
+                // Language choice not enabled in raster tiles
+                //ContentView.Menu.LanguageChoiceEnabled = false;
+            }
 
-				decoder.SetStyleParameter(texts.ParameterName, texts.ParameterValue);
-				decoder.SetStyleParameter(buildings.ParameterName, buildings.ParameterValue);
-			}
+            MapView.Layers.Clear();
+            MapView.Layers.Add(currentLayer);
 
-			MapView.Layers.Clear();
-			MapView.Layers.Add(currentLayer);
+            //ContentView.Menu.Hide();
 
-			ContentView.Menu.Hide();
+            currentListener = null;
 
-			currentListener = null;
+            // Random if case to remove "unused variable" warning
+            if (currentListener != null) currentListener.Dispose();
 
-			// Random if case to remove "unused variable" warning
-			if (currentListener != null) currentListener.Dispose();
-
-			currentListener = MapView.InitializeVectorTileListener(VectorLayer);
-		}
+            currentListener = MapView.InitializeVectorTileListener(VectorLayer);
+        }
 
 		void ResetLanguage()
 		{
-			ContentView.Menu.SetInitialItem(Shared.Sections.Language);
+			//ContentView.Menu.SetInitialItem(Shared.Sections.Language);
 			UpdateLanguage(Shared.Sections.BaseLanguageCode);
 		}
 

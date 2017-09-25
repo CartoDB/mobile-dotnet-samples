@@ -179,6 +179,7 @@
     <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_gray.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_positron.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_voyager.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_basemap.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />

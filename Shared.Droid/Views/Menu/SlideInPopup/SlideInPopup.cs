@@ -90,7 +90,7 @@ namespace Shared.Droid
             int w = popup.Frame.W;
             int h = popup.Frame.H - popup.Header.TotalHeight;
 
-            content.SetFrame(x, y, w, h);
+            content.Frame = new CGRect(x, y, w, h);
         }
 
         public void Show()

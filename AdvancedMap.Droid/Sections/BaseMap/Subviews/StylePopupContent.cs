@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AdvancedMap.Droid.Sections.BaseMap.Views;
 using Android.Content;
 using Android.Views;
@@ -9,20 +10,20 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Subviews
 {
     public class StylePopupContent : BaseView
     {
-        const string CartoVectorSource = "carto.streets";
-        const string MapzenSource = "mapzen.osm";
-        const string CartoRasterSource = "carto.osm";
+        public const string CartoVectorSource = "carto.streets";
+        public const string MapzenSource = "mapzen.osm";
+        public const string CartoRasterSource = "carto.osm";
 
-        const string Bright = "BRIGHT";
-        const string Gray = "GRAY";
-        const string Dark = "DARK";
+        public const string Bright = "BRIGHT";
+        public const string Gray = "GRAY";
+        public const string Dark = "DARK";
 
-        const string Positron = "POSITRON";
-        const string DarkMatter = "DARKMATTER";
-        const string Voyager = "VOYAGER";
+        public const string Positron = "POSITRON";
+        public const string DarkMatter = "DARKMATTER";
+        public const string Voyager = "VOYAGER";
 
-        const string PositronUrl = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
-        const string DarkMatterUrl = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";
+        public const string PositronUrl = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
+        public const string DarkMatterUrl = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";
 
         BaseView container;
         ScrollView scrollContainer;
@@ -31,9 +32,23 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Subviews
         public StylePopupContentSection Mapzen { get; private set; }
         public StylePopupContentSection CartoRaster { get; private set; }
 
+        public List<StylePopupContentSection> Sections
+        {
+            get
+            {
+                return new List<StylePopupContentSection>
+                {
+                    CartoVector, Mapzen, CartoRaster
+                };
+            }
+        }
+
         public StylePopupContent(Context context) : base(context)
         {
+            scrollContainer = new ScrollView(context);
             AddView(scrollContainer);
+
+            container = new BaseView(context);
             scrollContainer.AddView(container);
 
             CartoVector = new StylePopupContentSection(context);
@@ -70,70 +85,27 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Subviews
             int w = Frame.W - 2 * padding;
             int h = CartoVector.CalculatedHeight;
 
-            CartoVector.SetFrame(x, y, w, h);
+            CartoVector.Frame = new CGRect(x, y, w, h);
 
             y += h + headerPadding;
             h = Mapzen.CalculatedHeight;
 
-            Mapzen.SetFrame(x, y, w, h);
+            Mapzen.Frame = new CGRect(x, y, w, h);
 
             y += h + headerPadding;
             h = CartoRaster.CalculatedHeight + headerPadding;
 
-            CartoRaster.SetFrame(x, y, w, h);
+            CartoRaster.Frame = new CGRect(x, y, w, h);
         }
 
-        public EventHandler<EventArgs> ItemClicked;
-
-        public override bool OnTouchEvent(MotionEvent e)
-        {
-            if (e.Action != MotionEventActions.Up)
-            {
-                return base.OnTouchEvent(e);
-            }
-
-            int x = (int)e.GetX();
-            int y = (int)e.GetY();
-
-            if (CartoVector.HitRect.Contains(x, y))
-            {
-                StylePopupContentSectionItem item = CartoVector.FindClickedItem(x, y);
-
-                if (item != null)
-                {
-                    ItemClicked?.Invoke(item, EventArgs.Empty);
-                }
-            }
-            else if (Mapzen.HitRect.Contains(x, y))
-            {
-                StylePopupContentSectionItem item = Mapzen.FindClickedItem(x, y);
-
-				if (item != null)
-				{
-					ItemClicked?.Invoke(item, EventArgs.Empty);
-				}
-            }
-            else if (CartoRaster.HitRect.Contains(x, y))
-            {
-                StylePopupContentSectionItem item = CartoRaster.FindClickedItem(x, y);
-
-				if (item != null)
-				{
-					ItemClicked?.Invoke(item, EventArgs.Empty);
-				}
-            }
-
-            return base.OnTouchEvent(e);
-        }
-
-        StylePopupContentSectionItem previous;
+        public StylePopupContentSectionItem Previous { get; set; }
 
         public void HighlightDefault()
         {
             var item = CartoVector.List[0];
 
             item.Highlight();
-            previous = item;
+            Previous = item;
         }
     }
 }
