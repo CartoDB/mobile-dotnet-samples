@@ -36,6 +36,11 @@ namespace AdvancedMap.Droid
         {
             base.OnResume();
 
+            if (!Client.IsManagerAttached)
+            {
+                return;
+            }
+
             Client.AttachListener();
 
 			Client.Listener.OnPackageListUpdate += OnPackageListUpdated;
@@ -60,6 +65,11 @@ namespace AdvancedMap.Droid
         protected override void OnPause()
         {
             base.OnPause();
+
+			if (!Client.IsManagerAttached)
+			{
+				return;
+			}
 
             Client.RemoveListener();
 

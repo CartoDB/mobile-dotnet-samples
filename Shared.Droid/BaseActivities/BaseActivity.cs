@@ -47,6 +47,11 @@ namespace Shared.Droid
 			System.Threading.Tasks.Task.Run(action);
 		}
 
+        protected Carto.Graphics.Bitmap CreateBitmap(int resource)
+        {
+            return BitmapUtils.CreateBitmapFromAndroidBitmap(Android.Graphics.BitmapFactory.DecodeResource(Resources, resource));
+        }
+
 	}
 }
 

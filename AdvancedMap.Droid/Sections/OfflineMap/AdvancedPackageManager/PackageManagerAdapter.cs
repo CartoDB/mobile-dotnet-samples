@@ -41,7 +41,7 @@ namespace AdvancedMap.Droid
 				}
 				else if (Context is OfflineRoutingActivity)
 				{
-					row.Button.Click += (context as OfflineRoutingActivity).OnAdapterActionButtonClick;
+					//row.Button.Click += (context as OfflineRoutingActivity).OnAdapterActionButtonClick;
 				}
 			}
 

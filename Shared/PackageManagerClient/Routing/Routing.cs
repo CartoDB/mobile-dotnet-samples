@@ -15,6 +15,13 @@ namespace Shared
 {
     public class Routing : BasePackageManagerClient
 	{
+		public override string Source
+		{
+            get { return "routing:" + Sources.CartoVector; }
+		}
+
+		public const string PackageFolder = "com.carto.routingpackages";
+
 		protected Marker startMarker, stopMarker;
 
 		public RoutingService Service { get; set; }
@@ -25,27 +32,14 @@ namespace Shared
 		public LocalVectorDataSource routeStartStopDataSource;
 		public BalloonPopupStyleBuilder balloonBuilder;
 
-		// Package manager is only used in offline routing
-		public virtual CartoPackageManager PackageManager
-		{
-			get
-			{
-				// Create PackageManager instance for dealing with offline packages
-				string folder = CreateFolder();
-                CartoPackageManager manager = new CartoPackageManager(Sources.RoutingTag + Sources.OfflineRouting, folder);
-				return manager;
-			}
-		}
-
 		MapView MapView;
-		Projection BaseProjection;
-
+		
         public bool ShowTurns { get; set; } = true;
 
-		public Routing(MapView map, Projection projection)
+        public Routing(MapView map, string path) : base(path)
 		{
 			MapView = map;
-			BaseProjection = projection;
+            Projection = map.Options.BaseProjection;
 		}
 
 		public void Show(RoutingResult result)
@@ -66,18 +60,16 @@ namespace Shared
 					RoutingInstruction instruction = instructions[i];
 					MapPos position = result.Points[instruction.PointIndex];
 					CreateRoutePoint(position, instruction, routeDataSource);
-				}    
+				}
             }
 		}
 
 		public string GetMessage(RoutingResult result, long ms)
 		{
-
 			string distance = "The route is " + (int)(result.TotalDistance / 100) / 10f + "km";
 			string time = "(" + result.TotalTime.ConvertFromSecondsToHours() + ")";
-			string calculation = " | Calculation: " + ms + " ms";
 
-			return distance + time + calculation;
+			return distance + time;
 		}
 
 		public string CreateFolder()
@@ -103,7 +95,7 @@ namespace Shared
             poses.Add(startPos);
             poses.Add(stopPos);
 
-            RoutingRequest request = new RoutingRequest(BaseProjection, poses);
+            RoutingRequest request = new RoutingRequest(Projection, poses);
 
             RoutingResult result = null;
 
@@ -122,12 +114,12 @@ namespace Shared
 		public void SetSourcesAndElements(Bitmap olmarker, Bitmap up, Bitmap upleft, Bitmap upright, Color green, Color red, Color white)
 		{
 			// Define layer and datasource for route line and instructions
-			routeDataSource = new LocalVectorDataSource(BaseProjection);
+			routeDataSource = new LocalVectorDataSource(Projection);
 			VectorLayer routeLayer = new VectorLayer(routeDataSource);
 			MapView.Layers.Add(routeLayer);
 
 			// Define layer and datasource for route start and stop markers
-			routeStartStopDataSource = new LocalVectorDataSource(BaseProjection);
+			routeStartStopDataSource = new LocalVectorDataSource(Projection);
 
 			// Initialize a vector layer with the previous data source
 			VectorLayer vectorLayer = new VectorLayer(routeStartStopDataSource);

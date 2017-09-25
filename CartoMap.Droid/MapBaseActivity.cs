@@ -42,11 +42,6 @@ namespace CartoMap.Droid
 			}
 		}
 
-		protected Carto.Graphics.Bitmap CreateBitmap(int resource)
-		{
-			return BitmapUtils.CreateBitmapFromAndroidBitmap(Android.Graphics.BitmapFactory.DecodeResource(Resources, resource));
-		}
-
 		protected void AddOnlineBaseLayer(CartoBaseMapStyle style)
 		{
 			// Initialize map

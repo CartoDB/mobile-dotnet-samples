@@ -9,18 +9,39 @@ namespace Shared
 {
     public class BasePackageManagerClient
     {
+        // Should be overridden in child class
+        public virtual string Source 
+        { 
+            get { throw new NotImplementedException(); } 
+        }
+
         public CartoPackageManager Manager { get; set; }
 
         public PackageListener Listener { get; set; }
 
         public Projection Projection { get; set; }
 
-        public BasePackageManagerClient()
+        public bool IsManagerAttached
         {
-            Listener = new PackageListener();
+            get { return Manager != null; }
         }
 
-        public void AttachListener()
+		public BasePackageManagerClient(string path)
+		{
+            Listener = new PackageListener();
+
+            if (path == null)
+            {
+                // Path can be null when we don't want to use the package manager,
+                // such as in Online Routing and Route Search,
+                // but they still utilize a Routing.cs, that inherits from this class
+                return;
+            }
+
+		    Manager = new CartoPackageManager(Source, path);
+		}
+
+		public void AttachListener()
         {
             Manager.PackageManagerListener = Listener;
         }

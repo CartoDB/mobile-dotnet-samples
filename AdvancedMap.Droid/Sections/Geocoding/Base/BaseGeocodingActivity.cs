@@ -13,8 +13,7 @@ namespace AdvancedMap.Droid
             base.OnCreate(savedInstanceState);
 
 			string folder = GetPackageFolder(Geocoding.PackageFolder);
-			bool isFullDirectory = true;
-			Client = new Geocoding(folder, isFullDirectory);
+			Client = new Geocoding(folder);
 		}
     }
 }

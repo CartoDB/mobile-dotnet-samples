@@ -56,11 +56,6 @@ namespace AdvancedMap.Droid
                 ImageResource = Resource.Drawable.image_offline_routing
             },
             new MapGallerySource {
-                Type = typeof(OnlineRoutingActivity),
-                Title = "Online Routing",
-                ImageResource = Resource.Drawable.image_online_routing
-            },
-            new MapGallerySource {
                 Type = typeof(VectorObjectEditingActvity),
                 Title = "Vector Object Editing",
                 Description = "Shows usage of an editable vector layer",

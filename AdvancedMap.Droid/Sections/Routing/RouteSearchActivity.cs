@@ -15,7 +15,7 @@ namespace AdvancedMap.Droid
     {
         RouteSearch Search { get; set; }
 
-        Routing Routing { get; set; }
+        Routing Routing { get { return Client as Routing; } }
 		
         protected RouteMapEventListener MapListener { get; set; }
 
@@ -26,14 +26,9 @@ namespace AdvancedMap.Droid
             ContentView = new RouteSearchView(this);
             SetContentView(ContentView);
 
-            Client = new BasePackageManagerClient();
-
-            Routing = new Routing(ContentView.MapView, ContentView.Projection);
+            Client = new Routing(ContentView.MapView, null);
 			Routing.ShowTurns = false;
             Routing.SetSourcesAndElements(this);
-
-            ContentView.Manager = Routing.PackageManager;
-            Client.Manager = Routing.PackageManager;
 
             Search = new RouteSearch(ContentView.MapView, (ContentView as RouteSearchView).BaseLayer);
 

@@ -10,9 +10,12 @@ namespace Shared
 {
     public class Geocoding : BasePackageManagerClient
 	{
-        public const string PackageFolder = "com.carto.geocodingpackages";
+        public override string Source
+        {
+            get { return "geocoding:" + Sources.CartoVector; }
+        }
 
-		public const string Source = "geocoding:carto.streets";
+        public const string PackageFolder = "com.carto.geocodingpackages";
 
         public string ApiKey { get; set; }
 
@@ -25,20 +28,12 @@ namespace Shared
             get { return Addresses.Count > 0; }
         }
 
-		public List<GeocodingResult> Addresses { get; private set; } = new List<GeocodingResult>();
+        public Geocoding(string path) : base(path)
+        {
+            
+        }
 
-        public Geocoding(string path, bool isFullDirectory = false)
-		{
-            if (isFullDirectory)
-            {
-                Manager = new CartoPackageManager(Source, path);
-            }
-            else
-            {
-                string folder = CreateDirectory(path, PackageFolder);
-                Manager = new CartoPackageManager(Source, folder);
-            }
-		}
+		public List<GeocodingResult> Addresses { get; private set; } = new List<GeocodingResult>();
 
         public void SetOnlineMode()
         {

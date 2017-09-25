@@ -91,15 +91,10 @@
     <Compile Include="Sections\OfflineMap\BasicPackageManager\BasicPackageManagerActivity.cs" />
     <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\CityChoiceMenu.cs" />
     <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\BasicPackageManagerView.cs" />
-    <Compile Include="Sections\Routing\OnlineRoutingActivity.cs" />
     <Compile Include="Sections\Routing\BaseRoutingActivity.cs" />
-    <Compile Include="Sections\Routing\OfflineRouting\OfflineRoutingActivity.cs" />
-    <Compile Include="Sections\Routing\OfflineRouting\CountryChoiceMenu.cs" />
-    <Compile Include="Sections\Routing\OfflineRouting\OfflineRoutingView.cs" />
     <Compile Include="Sections\BaseMap\Views\MapSwitch.cs" />
     <Compile Include="MapBaseActivity.cs" />
     <Compile Include="Sections\Geocoding\ReverseGeocodingActivity.cs" />
-    <Compile Include="Sections\Geocoding\Base\PackageDownloadBaseActivity.cs" />
     <Compile Include="Sections\Geocoding\Base\BaseGeocodingActivity.cs" />
     <Compile Include="Sections\Geocoding\Base\BaseGeocodingView.cs" />
     <Compile Include="Sections\Geocoding\GeocodingActivity.cs" />
@@ -111,6 +106,9 @@
     <Compile Include="Sections\Routing\RouteSearchView.cs" />
     <Compile Include="Sections\Routing\RoutingExtensions.cs" />
     <Compile Include="Sections\Other\BundledPackageDataActivity.cs" />
+    <Compile Include="BaseClasses\PackageDownloadBaseActivity.cs" />
+    <Compile Include="Sections\Routing\OfflineRoutingActivity.cs" />
+    <Compile Include="Sections\Routing\OfflineRoutingView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -188,10 +186,10 @@
     <Folder Include="Sections\OfflineMap\BasicPackageManager\" />
     <Folder Include="Sections\OfflineMap\BasicPackageManager\Views\" />
     <Folder Include="Sections\Routing\" />
-    <Folder Include="Sections\Routing\OfflineRouting\" />
     <Folder Include="Sections\Geocoding\" />
     <Folder Include="Sections\Geocoding\Base\" />
     <Folder Include="Sections\Geocoding\ResultTable\" />
+    <Folder Include="BaseClasses\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fcd_auto.nml" />
