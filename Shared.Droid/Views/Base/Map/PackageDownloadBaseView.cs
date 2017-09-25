@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Android.Content;
+using Carto.Layers;
 using Carto.PackageManager;
 
 namespace Shared.Droid
@@ -12,8 +13,8 @@ namespace Shared.Droid
 
         public PackagePopupContent PackageContent { get; private set; }
 
-        public PackageDownloadBaseView(Context context, int infoIcon, int backIcon, int closeIcon, int globalIcon, int wifiOnIcon, int wifiOffIcon, int forwardIcon, bool withBaseLayer = true) 
-            : base(context, infoIcon, backIcon, closeIcon, wifiOnIcon, wifiOffIcon, withBaseLayer)
+        public PackageDownloadBaseView(Context context, int infoIcon, int backIcon, int closeIcon, int globalIcon, int wifiOnIcon, int wifiOffIcon, int forwardIcon) 
+            : base(context, infoIcon, backIcon, closeIcon, wifiOnIcon, wifiOffIcon)
         {
             Packagebutton = new ActionButton(context, globalIcon);
             AddButton(Packagebutton);
@@ -36,6 +37,12 @@ namespace Shared.Droid
             Popup.Show();
         }
 
+        public void HidePackageDownloadButtons()
+        {
+            RemoveButton(Packagebutton);
+            RemoveButton(OnlineSwitch);
+        }
+
         public string Folder { get; set; } = "";
 
         public void UpdatePackages(List<Package> packages)
@@ -47,5 +54,39 @@ namespace Shared.Droid
         {
 			
 		}
+
+        CartoOnlineVectorTileLayer onlineLayer;
+        CartoOfflineVectorTileLayer offlineLayer;
+
+        public void SetOnlineMode()
+        {
+            if (onlineLayer == null)
+            {
+                onlineLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
+            }
+
+            if (offlineLayer != null)
+            {
+                MapView.Layers.Remove(offlineLayer);
+            }
+
+            MapView.Layers.Add(onlineLayer);
+        }
+
+        public void SetOfflineMode(CartoPackageManager manager)
+        {
+            if (onlineLayer != null)
+            {
+                MapView.Layers.Remove((onlineLayer));    
+            }
+
+            if (offlineLayer == null)
+            {
+                offlineLayer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CartoBasemapStyleVoyager);
+                offlineLayer.Preloading = true;
+            }
+
+            MapView.Layers.Add(offlineLayer);
+        }
     }
 }

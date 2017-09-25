@@ -27,7 +27,9 @@ namespace AdvancedMap.Droid
 
             GeocodingClient.Projection = ContentView.Projection;
 			GeocodingClient.ApiKey = Sources.MapzenApiKey;
+
             SetOnlineMode();
+            ContentView.SetOnlineMode();
 
             Window.SetSoftInputMode(SoftInput.StateHidden | SoftInput.AdjustNothing);
         }

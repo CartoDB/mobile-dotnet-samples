@@ -35,6 +35,7 @@ namespace AdvancedMap.Droid
             MapListener = new RouteMapEventListener();
 
             SetOnlineMode();
+            ContentView.HidePackageDownloadButtons();
         }
 
         protected override void OnResume()
@@ -63,12 +64,7 @@ namespace AdvancedMap.Droid
 
         protected override void SetOnlineMode()
         {
-			Routing.Service = new ValhallaOnlineRoutingService(Sources.MapzenApiKey);
-        }
-
-        protected override void SetOfflineMode()
-        {
-            Routing.Service = new PackageManagerValhallaRoutingService(ContentView.Manager);
+            Routing.Service = new ValhallaOnlineRoutingService(Sources.MapzenApiKey);
         }
 
 		void OnSingleTap(object sender, EventArgs e)

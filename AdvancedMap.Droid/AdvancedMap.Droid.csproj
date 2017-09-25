@@ -70,9 +70,6 @@
     <Compile Include="Sections\BaseMap\BaseMapsActivity.cs" />
     <Compile Include="Sections\Other\GpsLocationActivity.cs" />
     <Compile Include="Sections\OfflineMap\BundledMapActivity.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\AdvancedPackageManagerActivity.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackagedMapActivity.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackageManagerAdapter.cs" />
     <Compile Include="LauncherListActivity.cs" />
     <Compile Include="Sections\VectorObject\OverlaysActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceActivity.cs" />
@@ -86,11 +83,6 @@
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenu.cs" />
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenuItem.cs" />
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionLabel.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageRow.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\MenuClickListener.cs" />
-    <Compile Include="Sections\OfflineMap\BasicPackageManager\BasicPackageManagerActivity.cs" />
-    <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\CityChoiceMenu.cs" />
-    <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\BasicPackageManagerView.cs" />
     <Compile Include="Sections\Routing\BaseRoutingActivity.cs" />
     <Compile Include="Sections\BaseMap\Views\MapSwitch.cs" />
     <Compile Include="MapBaseActivity.cs" />
@@ -109,6 +101,8 @@
     <Compile Include="BaseClasses\PackageDownloadBaseActivity.cs" />
     <Compile Include="Sections\Routing\OfflineRoutingActivity.cs" />
     <Compile Include="Sections\Routing\OfflineRoutingView.cs" />
+    <Compile Include="Sections\OfflineMap\OfflineMapActivity.cs" />
+    <Compile Include="Sections\OfflineMap\OfflineMapView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -179,12 +173,8 @@
     <Folder Include="Sections\Other\" />
     <Folder Include="Sections\OverlayDataSource\" />
     <Folder Include="Sections\VectorObject\" />
-    <Folder Include="Sections\OfflineMap\AdvancedPackageManager\" />
-    <Folder Include="Sections\OfflineMap\AdvancedPackageManager\Views\" />
     <Folder Include="Sections\BaseMap\Views\" />
     <Folder Include="Resources\mipmap-nodpi\" />
-    <Folder Include="Sections\OfflineMap\BasicPackageManager\" />
-    <Folder Include="Sections\OfflineMap\BasicPackageManager\Views\" />
     <Folder Include="Sections\Routing\" />
     <Folder Include="Sections\Geocoding\" />
     <Folder Include="Sections\Geocoding\Base\" />

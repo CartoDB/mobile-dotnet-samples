@@ -80,6 +80,12 @@ namespace Shared.Droid
             AddView(button);
         }
 
+        public void RemoveButton(ActionButton button)
+        {
+            buttons.Remove(button);
+            RemoveView(button);
+        }
+
         public CartoOnlineVectorTileLayer AddBaseLayer(CartoBaseMapStyle style)
         {
             var layer = new CartoOnlineVectorTileLayer(style);

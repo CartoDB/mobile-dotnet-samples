@@ -29,6 +29,7 @@ namespace AdvancedMap.Droid
 			Alert("Click on the menu to see a list of countries that can be downloaded");
 
             SetOnlineMode();
+            ContentView.SetOnlineMode();
 		}
 
         protected override void SetOnlineMode()

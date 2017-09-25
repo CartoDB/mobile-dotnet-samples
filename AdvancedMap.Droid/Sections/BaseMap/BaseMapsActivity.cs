@@ -4,10 +4,6 @@ using Android.App;
 using Shared.Droid;
 using Shared;
 using Android.Views;
-using Android.Widget;
-using Android.Content;
-using Android.Graphics.Drawables;
-using System.Collections.Generic;
 using Carto.Ui;
 using Carto.Layers;
 using Carto.Core;
@@ -45,14 +41,14 @@ namespace AdvancedMap.Droid
 
 			Alert("Click the menu to choose between different styles and languages");
 
-			ContentView.Menu.Items = Sections.List;
+			ContentView.Menu.Items = Shared.Sections.List;
 
 			// Set initial style 
-			ContentView.Menu.SetInitialItem(Sections.Nutiteq);
-			ContentView.Menu.SetInitialItem(Sections.Language);
+			ContentView.Menu.SetInitialItem(Shared.Sections.Nutiteq);
+			ContentView.Menu.SetInitialItem(Shared.Sections.Language);
 
-			UpdateBaseLayer(Sections.Nutiteq, Sections.BaseStyleValue);
-			UpdateLanguage(Sections.BaseLanguageCode);
+			UpdateBaseLayer(Shared.Sections.Nutiteq, Shared.Sections.BaseStyleValue);
+			UpdateLanguage(Shared.Sections.BaseLanguageCode);
 		}
 
 		protected override void OnResume()
@@ -224,8 +220,8 @@ namespace AdvancedMap.Droid
 
 		void ResetLanguage()
 		{
-			ContentView.Menu.SetInitialItem(Sections.Language);
-			UpdateLanguage(Sections.BaseLanguageCode);
+			ContentView.Menu.SetInitialItem(Shared.Sections.Language);
+			UpdateLanguage(Shared.Sections.BaseLanguageCode);
 		}
 
 		void UpdateLanguage(string code)

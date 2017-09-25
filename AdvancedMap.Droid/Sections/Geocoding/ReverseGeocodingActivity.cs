@@ -24,7 +24,9 @@ namespace AdvancedMap.Droid
             GeocodingClient.Projection = ContentView.Projection;
 
             Listener = new ReverseGeocodingEventListener(ContentView.Projection);
+
             SetOnlineMode();
+            ContentView.SetOnlineMode();
         }        
 
         protected override void OnResume()

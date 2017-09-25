@@ -53,6 +53,7 @@ namespace AdvancedMap.Droid
             new MapGallerySource {
                 Type = typeof(OfflineRoutingActivity),
                 Title = "Offline Routing",
+                Description = "Routing package download",
                 ImageResource = Resource.Drawable.image_offline_routing
             },
             new MapGallerySource {
@@ -80,14 +81,10 @@ namespace AdvancedMap.Droid
                 ImageResource = Resource.Drawable.image_bundled
             },
             new MapGallerySource {
-                Type = typeof(BasicPackageManagerActivity),
-                Title = "City Package Download",
+                Type = typeof(OfflineMapActivity),
+                Title = "Offline Map",
+                Description = "Map package download",
                 ImageResource = Resource.Drawable.image_city_package
-            },
-            new MapGallerySource {
-                Type = typeof(AdvancedPackageManagerActivity),
-                Title = "Country Package Download",
-                ImageResource = Resource.Drawable.image_country_packages
             },
             new MapGallerySource {
                 Type = typeof(CaptureActivity),
