@@ -13,7 +13,7 @@ using Carto.VectorElements;
 
 namespace Shared
 {
-	public class Routing
+    public class Routing : BasePackageManagerClient
 	{
 		protected Marker startMarker, stopMarker;
 

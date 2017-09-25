@@ -21,10 +21,10 @@
     <Folder Include="$(MSBuildThisFileDirectory)EventArgs\" />
     <Folder Include="$(MSBuildThisFileDirectory)Model\BaseMaps\" />
     <Folder Include="$(MSBuildThisFileDirectory)Model\Cities\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Routing\" />
     <Folder Include="$(MSBuildThisFileDirectory)PackageManagerClient\" />
     <Folder Include="$(MSBuildThisFileDirectory)PackageManagerClient\Geocoding\" />
     <Folder Include="$(MSBuildThisFileDirectory)Geocoding\" />
+    <Folder Include="$(MSBuildThisFileDirectory)PackageManagerClient\Routing\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CartoVisBuilderWithGridEvent.cs" />
@@ -58,7 +58,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\BaseMaps\Section.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\BaseMaps\Sections.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Cities\BoundingBoxes.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Routing\Routing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\TorqueUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PackageManagerClient\Geocoding\Geocoding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PackageManagerClient\Geocoding\GeocodingExtensions.cs" />
@@ -66,5 +65,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sources.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Geocoding\ReverseGeocodingEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RouteSearch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PackageManagerClient\Routing\Routing.cs" />
   </ItemGroup>
 </Project>

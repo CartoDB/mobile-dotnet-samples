@@ -81,7 +81,7 @@ namespace AdvancedMap.Droid
             ContentView.Popup.Header.BackButton.Click -= OnPopupBackClicked;
         }
 
-        private void OnPopupBackClicked(object sender, EventArgs e)
+        void OnPopupBackClicked(object sender, EventArgs e)
         {
             ContentView.Folder = ContentView.Folder.Substring(0, ContentView.Folder.Length - 1);
             var lastSlash = ContentView.Folder.LastIndexOf("/", StringComparison.Ordinal);

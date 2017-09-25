@@ -77,11 +77,6 @@
     <Compile Include="Sections\VectorObject\OverlaysActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\WmsMapActivity.cs" />
-    <Compile Include="Sections\_Header\BaseMapsHeader.cs" />
-    <Compile Include="Sections\_Header\OfflineMapsHeader.cs" />
-    <Compile Include="Sections\_Header\OtherMapHeader.cs" />
-    <Compile Include="Sections\_Header\OverlayDatasourcesHeader.cs" />
-    <Compile Include="Sections\_Header\VectorObjectsHeader.cs" />
     <Compile Include="Sections\BaseMap\Views\BaseMapsView.cs" />
     <Compile Include="Sections\Other\CaptureActivity.cs" />
     <Compile Include="Sections\Other\CustomPopupActivity.cs" />
@@ -97,7 +92,6 @@
     <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\CityChoiceMenu.cs" />
     <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\BasicPackageManagerView.cs" />
     <Compile Include="Sections\Routing\OnlineRoutingActivity.cs" />
-    <Compile Include="Sections\_Header\RoutingHeader.cs" />
     <Compile Include="Sections\Routing\BaseRoutingActivity.cs" />
     <Compile Include="Sections\Routing\OfflineRouting\OfflineRoutingActivity.cs" />
     <Compile Include="Sections\Routing\OfflineRouting\CountryChoiceMenu.cs" />
@@ -182,7 +176,6 @@
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />
     <Folder Include="Sections\" />
-    <Folder Include="Sections\_Header\" />
     <Folder Include="Sections\BaseMap\" />
     <Folder Include="Sections\OfflineMap\" />
     <Folder Include="Sections\Other\" />
