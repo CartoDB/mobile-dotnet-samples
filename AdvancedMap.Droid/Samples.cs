@@ -63,21 +63,25 @@ namespace AdvancedMap.Droid
             new MapGallerySource {
                 Type = typeof(VectorObjectEditingActvity),
                 Title = "Vector Object Editing",
+                Description = "Shows usage of an editable vector layer",
                 ImageResource = Resource.Drawable.image_object_editing
             },
             new MapGallerySource {
                 Type = typeof(OverlaysActivity),
                 Title = "2D & 3D Overlays",
+                Description = "Shows lines, points, polygons, texts, pop-ups and a NMLModel",
                 ImageResource = Resource.Drawable.image_overlays
             },
             new MapGallerySource {
                 Type = typeof(ClusteredMarkersActivity),
                 Title = "Clustered Markers",
+                Description = "Shows 20,000 points from bundled geojson",
                 ImageResource = Resource.Drawable.image_clustered_markers
             },
             new MapGallerySource {
                 Type = typeof(BundledMapActivity),
-                Title = "Offline Bundled Map",
+                Title = "Bundled Map",
+                Description = "Offline map of Rome bundled with the app",
                 ImageResource = Resource.Drawable.image_bundled
             },
             new MapGallerySource {
@@ -93,21 +97,25 @@ namespace AdvancedMap.Droid
             new MapGallerySource {
                 Type = typeof(CaptureActivity),
                 Title = "Screencapture",
+                Description = "Capture rendered mapView as a Bitmap",
                 ImageResource = Resource.Drawable.image_screencapture
             },
             new MapGallerySource {
                 Type = typeof(CustomPopupActivity),
                 Title = "Custom Popup",
+                Description = "Creates a Custom Popup",
                 ImageResource = Resource.Drawable.image_custom_popup
             },
             new MapGallerySource {
                 Type = typeof(GpsLocationActivity),
                 Title = "GPS Location",
+                Description = "Shows user GPS location on the map",
                 ImageResource = Resource.Drawable.image_gps_location
             },
 			new MapGallerySource {
                 Type = typeof(BundledPackageDataActivity),
-				Title = "User Data",
+				Title = "Package Data",
+                Description = "Displays available CARTO Mobile packages",
                 ImageResource = Resource.Drawable.icon_sample_user_data
 			}
         };
