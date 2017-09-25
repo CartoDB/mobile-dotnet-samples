@@ -25,7 +25,7 @@ namespace AdvancedMap.iOS
 			// Set route listener
 			MapListener = new RouteMapEventListener();
 			
-			Routing = new Routing(MapView, BaseProjection);
+			Routing = new Routing(MapView, null);
 
 			Alert("Long-press on map to set route start and finish");
 

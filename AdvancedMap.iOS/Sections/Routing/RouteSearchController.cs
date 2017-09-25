@@ -21,7 +21,7 @@ namespace AdvancedMap.iOS
 
 		RouteSearch Search { get; set; }
 
-		Routing Routing { get; set; }
+        Routing Routing { get { return Client as Routing; } }
 
 		protected RouteMapEventListener MapListener { get; set; }
 
@@ -32,13 +32,10 @@ namespace AdvancedMap.iOS
 			ContentView = new RouteSearchView();
 			View = ContentView;
 
-			Client = new BasePackageManagerClient();
-
-			Routing = new Routing(ContentView.MapView, ContentView.Projection);
+            Client = new Routing(ContentView.MapView, null);
+                
 			Routing.ShowTurns = false;
 			Routing.SetSourcesAndElements();
-
-			Client.Manager = Routing.PackageManager;
 
 			Search = new RouteSearch(ContentView.MapView, (ContentView as RouteSearchView).BaseLayer);
 

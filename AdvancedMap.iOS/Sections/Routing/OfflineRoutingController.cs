@@ -32,7 +32,7 @@ namespace AdvancedMap.iOS
 			MenuButton = new MenuButton("icons/icon_more.png", new CGRect(0, 10, 20, 30));
 			NavigationItem.RightBarButtonItem = MenuButton;
 
-			Manager = Routing.PackageManager;
+            Manager = Routing.Manager;
 
 			// Create offline routing service connected to package manager
 			Routing.Service = new PackageManagerValhallaRoutingService(Manager);

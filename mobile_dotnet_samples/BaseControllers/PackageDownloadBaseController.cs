@@ -14,10 +14,6 @@ namespace Shared.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-            Client = new BasePackageManagerClient();
-
-            Client.Listener = new PackageListener();
         }
 
         public override void ViewWillAppear(bool animated)
