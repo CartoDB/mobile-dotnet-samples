@@ -21,8 +21,6 @@ namespace AdvancedMap.iOS
 		public BaseMapSectionMenu Menu { get; set; }
 		MenuButton MenuButton { get; set; }
 
-		VectorLayer VectorLayer { get; set; }
-
 		ForceTouchRecognizer recognizer = new ForceTouchRecognizer();
 
 		public override void ViewDidLoad()
@@ -183,8 +181,10 @@ namespace AdvancedMap.iOS
 
 			Menu.Hide();
 
-			currentListener = null;
-			currentListener = MapView.InitializeVectorTileListener(VectorLayer);
+            if (currentLayer is VectorTileLayer)
+            {
+                MapView.InitializeVectorTileListener(currentLayer as VectorTileLayer);    
+            }
 		}
 
 		void ResetLanguage()
