@@ -195,28 +195,14 @@ namespace Shared
 			map.Zoom = 14;
 		}
 
-		public static VectorTileListener InitializeVectorTileListener(this MapView map)
-		{
-			
-			return InitializeVectorTileListener(map, null);	
-		}
-
-		public static VectorTileListener InitializeVectorTileListener(this MapView map, VectorLayer vectorLayer)
+        public static void InitializeVectorTileListener(this MapView map, VectorTileLayer layer)
 		{
 			LocalVectorDataSource source = new LocalVectorDataSource(map.Options.BaseProjection);
-			vectorLayer = new VectorLayer(source);
-			map.Layers.Add(vectorLayer);
+            VectorLayer popupLayer = new VectorLayer(source);
+			map.Layers.Add(popupLayer);
 
-			Layer layer = map.Layers[0];
-
-			if (layer is VectorTileLayer)
-			{
-				var listener = new VectorTileListener(vectorLayer);
-				(layer as VectorTileLayer).VectorTileEventListener = listener;
-				return listener;
-			}
-
-			return null;
+			var listener = new VectorTileListener(popupLayer);
+			(layer as VectorTileLayer).VectorTileEventListener = listener;
 		}
 
 		public static void InitializeVectorTileListener(this VectorTileLayer tileLayer, MapView map)

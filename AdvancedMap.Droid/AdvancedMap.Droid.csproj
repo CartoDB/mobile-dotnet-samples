@@ -98,11 +98,6 @@
     <Compile Include="Sections\Routing\OfflineRoutingView.cs" />
     <Compile Include="Sections\OfflineMap\OfflineMapActivity.cs" />
     <Compile Include="Sections\OfflineMap\OfflineMapView.cs" />
-    <Compile Include="Sections\BaseMap\Subviews\_deprecated\BaseMapSectionLabel.cs" />
-    <Compile Include="Sections\BaseMap\Subviews\_deprecated\BaseMapSectionMenu.cs" />
-    <Compile Include="Sections\BaseMap\Subviews\_deprecated\BaseMapSectionMenuItem.cs" />
-    <Compile Include="Sections\BaseMap\Subviews\_deprecated\BaseMapsView.cs" />
-    <Compile Include="Sections\BaseMap\Subviews\_deprecated\MapSwitch.cs" />
     <Compile Include="Sections\BaseMap\Subviews\StylePopupContentSectionItem.cs" />
     <Compile Include="Sections\BaseMap\BaseMapsView.cs" />
     <Compile Include="Sections\BaseMap\Subviews\StylePopupContentSection.cs" />
@@ -196,7 +191,6 @@
     <Folder Include="Sections\Geocoding\Base\" />
     <Folder Include="Sections\Geocoding\ResultTable\" />
     <Folder Include="BaseClasses\" />
-    <Folder Include="Sections\BaseMap\Subviews\_deprecated\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fcd_auto.nml" />

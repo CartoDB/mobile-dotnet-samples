@@ -20,17 +20,15 @@ namespace AdvancedMap.Droid
 	[ActivityData(Title = "Base maps", Description = "Overview of base maps offered by CARTO")]
 	public class BaseMapsActivity : BaseActivity
 	{
-		Sections.BaseMap.Views.BaseMapsView ContentView { get; set; }
+		BaseMapsView ContentView { get; set; }
 
 		MapView MapView { get { return ContentView.MapView; } }
-
-		VectorLayer VectorLayer { get; set; }
 
 		protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			ContentView = new Sections.BaseMap.Views.BaseMapsView(this);
+			ContentView = new BaseMapsView(this);
 			SetContentView(ContentView);
 
 			Title = GetType().GetTitle();
@@ -41,7 +39,7 @@ namespace AdvancedMap.Droid
 			MapView.SetFocusPos(europe, 0);
 			MapView.Zoom = 5;
 
-            currentLayer = ContentView.AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
+            ContentView.CurrentLayer = ContentView.AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
             ContentView.StyleContent.HighlightDefault();
 		}
 
@@ -59,6 +57,7 @@ namespace AdvancedMap.Droid
                 }    
             }
 
+            ContentView.InitializeVectorTileListener();
 		}
 
         protected override void OnPause()
@@ -75,7 +74,11 @@ namespace AdvancedMap.Droid
                 }    
             }
 
-			currentListener = null;
+            if (ContentView.CurrentLayer is VectorTileLayer)
+            {
+                (ContentView.CurrentLayer as VectorTileLayer).VectorTileEventListener = null;    
+            }
+
 		}
 
         void OnBasemapButtonClick(object sender, EventArgs e)
@@ -98,116 +101,9 @@ namespace AdvancedMap.Droid
 
             string selection = item.Label.Text;
             string source = (item.Parent as StylePopupContentSection).Source;
-            UpdateBaseLayer(selection, source);
+            ContentView.UpdateBaseLayer(selection, source);
 
             ContentView.StyleContent.Previous = item;
-		}
-
-		string currentOSM;
-		string currentSelection;
-		TileLayer currentLayer;
-
-		VectorTileListener currentListener;
-
-        void UpdateBaseLayer(string selection, string source)
-        {
-            if (source.Equals(StylePopupContent.CartoVectorSource))
-            {
-                // Nutiteq styles are bundled with the SDK, we can initialize them via constuctor
-                if (selection.Equals(StylePopupContent.Voyager))
-                {
-                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
-                }
-                else if (selection.Equals(StylePopupContent.Positron))
-                {
-                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStylePositron);
-                }
-                else
-                {
-                    currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDarkmatter);
-                }
-            }
-            else if (source.Equals(StylePopupContent.MapzenSource))
-            {
-                // Mapzen styles are all bundled in one .zip file.
-                // Selection contains both the style name and file name (cf. Sections.cs in Shared)
-
-                // Create a style set from the file and style
-                BinaryData styleAsset = AssetUtils.LoadAsset("styles_mapzen.zip");
-                var package = new ZippedAssetPackage(styleAsset);
-
-                string name = "";
-
-                if (selection.Equals(StylePopupContent.Bright))
-                {
-                    // The name of the actual style is "bright", as it's displayed in the UI,
-                    // but in the style file it's a default "style", change the name
-                    name = "style";    
-                } 
-                else if (selection.Equals(StylePopupContent.Positron))
-                {
-                    name = "positron";
-                }
-                else if (selection.Equals(StylePopupContent.DarkMatter))
-                {
-                    name = "positron_dark";
-                }
-
-                CompiledStyleSet styleSet = new CompiledStyleSet(package, name);
-
-                // Create datasource and style decoder
-                var ds = new CartoOnlineTileDataSource(source);
-                var decoder = new MBVectorTileDecoder(styleSet);
-
-                currentLayer = new VectorTileLayer(ds, decoder);
-
-                //ContentView.Menu.LanguageChoiceEnabled = true;
-                //ResetLanguage();
-
-            }
-            else if (source.Equals(StylePopupContent.CartoRasterSource))
-            {
-                // We know that the value of raster will be Positron or Darkmatter,
-                // as Nutiteq and Mapzen use vector tiles
-
-                // Additionally, raster tiles do not support language choice
-                string url = (selection == StylePopupContent.Positron) ? Urls.Positron : Urls.DarkMatter;
-
-                TileDataSource ds = new HTTPTileDataSource(1, 19, url);
-                currentLayer = new RasterTileLayer(ds);
-
-                // Language choice not enabled in raster tiles
-                //ContentView.Menu.LanguageChoiceEnabled = false;
-            }
-
-            MapView.Layers.Clear();
-            MapView.Layers.Add(currentLayer);
-
-            //ContentView.Menu.Hide();
-
-            currentListener = null;
-
-            // Random if case to remove "unused variable" warning
-            if (currentListener != null) currentListener.Dispose();
-
-            currentListener = MapView.InitializeVectorTileListener(VectorLayer);
-        }
-
-		void ResetLanguage()
-		{
-			//ContentView.Menu.SetInitialItem(Shared.Sections.Language);
-			UpdateLanguage(Shared.Sections.BaseLanguageCode);
-		}
-
-		void UpdateLanguage(string code)
-		{
-			if (currentLayer == null)
-			{
-				return;
-			}
-
-			MBVectorTileDecoder decoder = (currentLayer as VectorTileLayer).TileDecoder as MBVectorTileDecoder;
-			decoder.SetStyleParameter("lang", code);
 		}
 
 	}
