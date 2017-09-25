@@ -14,8 +14,8 @@ using Shared.Droid;
 namespace AdvancedMap.Droid
 {
     [Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
-    [ActivityData(Title = "User Data", Description = "Bundled user data displayed on the map with CartoCSS")]
-    public class BundledUserDataActivity : MapBaseActivity
+    [ActivityData(Title = "User Data", Description = "Bundled package data displayed on the map with CartoCSS")]
+    public class BundledPackageDataActivity : MapBaseActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {

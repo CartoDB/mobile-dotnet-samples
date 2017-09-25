@@ -10,37 +10,44 @@ namespace AdvancedMap.Droid
         {
             new MapGallerySource {
                 Type = typeof(BaseMapsActivity),
-                Title = "CARTO Base Maps",
+                Title = "Base Maps",
+                Description = "Choice between different base maps, styles, languages",
                 ImageResource = Resource.Drawable.image_base_maps
             },
             new MapGallerySource {
                 Type = typeof(ReverseGeocodingActivity),
                 Title = "Reverse Geocoding",
+                Description = "Coding of a point location to a readable address",
                 ImageResource = Resource.Drawable.icon_sample_reverse_geocoding
             },
 			new MapGallerySource {
                 Type = typeof(GeocodingActivity),
 				Title = "Geocoding",
+                Description = "Converting addresses into geographic coordinates",
 				ImageResource = Resource.Drawable.icon_sample_geocoding
 			},
             new MapGallerySource {
                 Type = typeof(CustomRasterDatasourceActivity),
                 Title = "Custom Raster Data Source",
+                Description = "Customized raster tile data source",
                 ImageResource = Resource.Drawable.image_custom_raster
             },
 			new MapGallerySource {
                 Type = typeof(RouteSearchActivity),
-				Title = "Route Search ",
+				Title = "Search API",
+                Description = "Finds points of interest near a route",
                 ImageResource = Resource.Drawable.icon_sample_route_search
 			},
             new MapGallerySource {
                 Type = typeof(GroundOverlayActivity),
                 Title = "Ground Overlays",
+                Description = "Shows a non-tiled Bitmap on ground",
                 ImageResource = Resource.Drawable.image_ground_overlays
             },
             new MapGallerySource {
                 Type = typeof(WmsMapActivity),
                 Title = "WMS Map",
+                Description = "Use external WMS service for raster tile overlay",
                 ImageResource = Resource.Drawable.image_wms
             },
             new MapGallerySource {
@@ -99,7 +106,7 @@ namespace AdvancedMap.Droid
                 ImageResource = Resource.Drawable.image_gps_location
             },
 			new MapGallerySource {
-                Type = typeof(BundledUserDataActivity),
+                Type = typeof(BundledPackageDataActivity),
 				Title = "User Data",
                 ImageResource = Resource.Drawable.icon_sample_user_data
 			}

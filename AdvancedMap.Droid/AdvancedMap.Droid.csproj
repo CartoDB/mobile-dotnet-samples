@@ -116,7 +116,7 @@
     <Compile Include="Sections\Routing\RouteSearchActivity.cs" />
     <Compile Include="Sections\Routing\RouteSearchView.cs" />
     <Compile Include="Sections\Routing\RoutingExtensions.cs" />
-    <Compile Include="Sections\Other\BundledUserDataActivity.cs" />
+    <Compile Include="Sections\Other\BundledPackageDataActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
