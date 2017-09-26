@@ -5,7 +5,7 @@ using UIKit;
 
 namespace Shared.iOS
 {
-	public class MapListDataSource : UITableViewSource
+	public class GalleryDataSource : UITableViewSource
 	{
 		static nfloat maxRowHeight = 50;
 		static nfloat headerHeight = 40;
@@ -29,11 +29,11 @@ namespace Shared.iOS
 
 		public EventHandler<ControllerEventArgs> MapSelected { get; set; }
 
-		public List<MapListRowSource> Items = new List<MapListRowSource>();
+		public List<Sample> Items = new List<Sample>();
 
 		public override nfloat GetHeightForRow(UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			MapListRowSource data = Items[indexPath.Row];
+			Sample data = Items[indexPath.Row];
 			if (data.IsHeader) {
 				return headerHeight;
 			}
@@ -47,7 +47,7 @@ namespace Shared.iOS
 
 		public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			MapListRowSource item = Items[indexPath.Row];
+			Sample item = Items[indexPath.Row];
 
 			if (item.IsHeader) {
 				return;
@@ -62,7 +62,7 @@ namespace Shared.iOS
 
 		public override UITableViewCell GetCell(UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			MapListRowSource data = Items[indexPath.Row];
+			Sample data = Items[indexPath.Row];
 
 			BaseCell cell = (BaseCell)tableView.DequeueReusableCell(identifier);
 

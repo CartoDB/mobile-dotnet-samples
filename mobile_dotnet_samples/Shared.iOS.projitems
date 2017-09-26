@@ -12,7 +12,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Utils\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
-    <Folder Include="$(MSBuildThisFileDirectory)DataSources\" />
     <Folder Include="$(MSBuildThisFileDirectory)BaseControllers\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\List\" />
@@ -25,8 +24,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Services\LocationManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Utils.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataSources\MapListDataSource.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataSources\MapListRowSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\MapBaseController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\BaseController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\HeaderController.cs" />
@@ -56,5 +53,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\PackageDownloadBaseController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\PopupSwitchButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FileUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\GalleryDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\Sample.cs" />
   </ItemGroup>
 </Project>

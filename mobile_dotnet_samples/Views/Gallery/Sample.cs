@@ -4,7 +4,7 @@ using UIKit;
 
 namespace Shared.iOS
 {
-	public class MapListRowSource
+	public class Sample
 	{
 		public string Title { get; set; }
 

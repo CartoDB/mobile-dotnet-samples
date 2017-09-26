@@ -47,44 +47,44 @@ namespace CartoMap.iOS
 		//}
 
 
-		public static List<MapListRowSource> List = new List<MapListRowSource>
+		public static List<Sample> List = new List<Sample>
 		{
-			new MapListRowSource {
+			new Sample {
 				Controller = new TrainVisController(),
 				Title = "NYCity Subway Vis",
 				ImageResource = "image_viz_subway.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new StoresVisController(),
 				Title = "Predicted Store Locations",
 				ImageResource = "image_viz_store.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new FontsVisController(),
 				Title = "Fonts Vis",
 				ImageResource = "image_viz_fonts.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new AnonymousRasterTableController(),
 				Title = "Anonymous Raster Tile",
 				ImageResource = "image_anon_raster.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new AnonymousVectorTableController(),
 				Title = "Anonymous Vector Tile",
 				ImageResource = "image_anon_vector.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new NamedMapController(),
 				Title = "Named map",
 				ImageResource = "image_named.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new SQLServiceController(),
 				Title = "SQL Service",
 				ImageResource = "image_sql.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new TorqueShipController(),
 				Title = "Indoor Torque",
 				ImageResource = "image_torque.png",

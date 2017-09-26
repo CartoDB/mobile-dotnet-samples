@@ -9,9 +9,9 @@ namespace Shared.iOS
 		UIImageView image;
 		UILabel label;
 
-		public MapListRowSource Source { get; private set; }
+		public Sample Source { get; private set; }
 
-		public GalleryRow(MapListRowSource source)
+		public GalleryRow(Sample source)
 		{
 			Source = source;
 

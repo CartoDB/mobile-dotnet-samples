@@ -80,9 +80,9 @@ namespace Shared.iOS
 
 		}
 
-		public void AddRows(List<MapListRowSource> sources)
+		public void AddRows(List<Sample> sources)
 		{
-			foreach (MapListRowSource source in sources)
+			foreach (Sample source in sources)
 			{
 				GalleryRow row = new GalleryRow(source);
 				AddSubview(row);

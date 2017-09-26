@@ -10,9 +10,9 @@ namespace Shared.iOS
 	{
 		MapGalleryView ContentView { get; set; }
 
-		List<MapListRowSource> sources;
+		List<Sample> sources;
 
-		public MapListController(string title, List<MapListRowSource> sources)
+		public MapListController(string title, List<Sample> sources)
 		{
 			Title = title;
 
