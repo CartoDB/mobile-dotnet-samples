@@ -24,7 +24,13 @@ namespace Shared
 
         public bool IsGroup
         {
-            get { return Status == null && Info == null; }
+            get { return Status == null && Info == null && !IsCustomRegionPackage; }
+        }
+
+        public Package(string name, string id)
+        {
+            Name = name;
+            Id = id;
         }
 
 		public Package(string name, PackageInfo info, PackageStatus status)

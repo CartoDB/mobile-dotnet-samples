@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Carto.PackageManager;
 using Carto.Projections;
+using Shared.Model;
 
 namespace Shared
 {
@@ -159,5 +160,27 @@ namespace Shared
             return packages;
         }
 
+        Package GetCustomRegionFolder()
+        {
+            return new Package(Package.CUSTOM_REGION_FOLDER_NAME, "NONE");
+        }
+
+        List<Package> GetCustomRegionPackages()
+        {
+            var packages = new List<Package>();
+
+            foreach (City city in Cities.List)
+            {
+                var id = city.BoundingBox.ToString();
+                var status = Manager.GetLocalPackageStatus(id, -1);
+
+                var package = new Package(id, city.Name);
+                package.UpdateStatus(status);
+
+                packages.Add(package);
+            }
+
+            return packages;
+        }
     }
 }
