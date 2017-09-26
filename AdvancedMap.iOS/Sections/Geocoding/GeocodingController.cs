@@ -124,7 +124,8 @@ namespace AdvancedMap.iOS
             var description = result.GetPrettyAddress();
             var goToPosition = true;
 
-            ContentView.ObjectSource.ShowResult(ContentView.MapView, result, title, description, goToPosition);
+            var source = (ContentView as GeocodingView).ObjectSource;
+            source.ShowResult(ContentView.MapView, result, title, description, goToPosition);
         }
 
 		public override void SetOnlineMode()

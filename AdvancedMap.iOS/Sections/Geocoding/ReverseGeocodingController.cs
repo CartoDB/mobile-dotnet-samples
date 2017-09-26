@@ -58,7 +58,8 @@ namespace AdvancedMap.iOS
             string description = result.ToString();
             bool goToPosition = false;
 
-            ContentView.ObjectSource.ShowResult(ContentView.MapView, result, title, description, goToPosition);
+            var source = (ContentView as ReverseGeocodingView).ObjectSource;
+            source.ShowResult(ContentView.MapView, result, title, description, goToPosition);
         }
 
 		public override void SetOnlineMode()
