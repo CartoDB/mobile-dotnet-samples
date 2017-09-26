@@ -154,7 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="ForceTouch\" />
     <Folder Include="Sections\" />
     <Folder Include="Sections\BaseMap\" />
     <Folder Include="Sections\OfflineMap\" />
@@ -174,6 +173,7 @@
     <Folder Include="Resources\gallery\" />
     <Folder Include="Sections\Geocoding\" />
     <Folder Include="Sections\Geocoding\Base\" />
+    <Folder Include="Main\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -183,13 +183,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Samples.cs" />
     <Compile Include="Device.cs" />
-    <Compile Include="ForceTouch\ForceTouchRecognizer.cs" />
     <Compile Include="Sections\OfflineMap\BundledMapController.cs" />
     <Compile Include="Sections\OverlayDataSource\WmsMapController.cs" />
     <Compile Include="Sections\VectorObjects\OverlaysController.cs" />
@@ -226,6 +220,7 @@
     <Compile Include="Sections\Routing\RouteSearchView.cs" />
     <Compile Include="Sections\Routing\RoutingExtensions.cs" />
     <Compile Include="Sections\Other\BundledUserDataController.cs" />
+    <Compile Include="Main\Samples.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\fcd_auto.nml" />

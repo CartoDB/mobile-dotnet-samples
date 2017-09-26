@@ -33,7 +33,6 @@ namespace Shared.iOS
 			label.TextAlignment = UITextAlignment.Center;
 
 			AddSubviews(image, label);
-
 		}
 
 		public override void LayoutSubviews()
