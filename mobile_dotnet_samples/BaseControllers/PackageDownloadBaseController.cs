@@ -41,6 +41,8 @@ namespace Shared.iOS
 			ContentView.PackageContent.Source.CellSelected += OnCellSelected;
 
             ContentView.OnlineButton.Switched += OnSwitchChanged;
+
+            ContentView.PackageButton.Click += PackageButtonTapped;
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -63,7 +65,7 @@ namespace Shared.iOS
 
             ContentView.OnlineButton.Switched -= OnSwitchChanged;
 
-            ContentView.PackageButton.Click += PackageButtonTapped;
+            ContentView.PackageButton.Click -= PackageButtonTapped;
         }
 
         void PackageButtonTapped(object sender, EventArgs e)
@@ -152,7 +154,7 @@ namespace Shared.iOS
 
         void PackageUpdated(object sender, PackageEventArgs e)
 		{
-
+            // TODO
 		}
 
 		public virtual void SetOnlineMode() { }

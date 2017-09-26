@@ -52,13 +52,70 @@ namespace Shared
             Manager.PackageManagerListener = null;
         }
 
+
         public List<Package> GetPackages(string folder)
         {
-            var language = "";
-            return Manager.GetPackages(language, folder);
+            List<Package> packages = new List<Package>();
+
+            foreach (PackageInfo info in Manager.ServerPackages)
+            {
+                string name = info.Name;
+                if (!name.StartsWith(folder, StringComparison.Ordinal))
+                {
+                    // Belongs to a different folder,
+                    // should not be added if name is e.g. Asia/, while folder is /Europe
+                    continue;
+                }
+
+                string modified = name.Substring(folder.Length);
+                int index = modified.IndexOf('/');
+                Package package;
+
+                if (index == -1)
+                {
+                    // This is an actual package
+                    PackageStatus packageStatus = Manager.GetLocalPackageStatus(info.PackageId, -1);
+                    package = new Package(modified, info, packageStatus);
+                }
+                else
+                {
+                    // This is a package group
+                    modified = modified.Substring(0, index);
+
+                    // Try n' find an existing package from the list.
+                    List<Package> existing = packages.Where(i => i.Name == modified).ToList();
+
+                    if (existing.Count == 0)
+                    {
+                        // If there are none, add a package group if we don't have an existing list item
+                        package = new Package(modified, null, null);
+                    }
+                    else if (existing.Count == 1 && existing[0].Info != null)
+                    {
+                        // Sometimes we need to add two labels with the same name.
+                        // One a downloadable package and the other pointing to a list of said country's counties,
+                        // such as with Spain, Germany, France, Great Britain
+
+                        // If there is one existing package and its info isn't null,
+                        // we will add a "parent" package containing subpackages (or package group)
+                        package = new Package(modified, null, null);
+                    }
+                    else
+                    {
+                        // Shouldn't be added, as both cases are accounted for
+                        continue;
+                    }
+
+                }
+
+                packages.Add(package);
+
+            }
+
+            return packages;
         }
 
-        public void HandlePackageStatusChange(Package package)
+		public void HandlePackageStatusChange(Package package)
         {
             string action = package.ActionText;
             string id = package.Id;
