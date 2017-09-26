@@ -25,6 +25,11 @@ namespace Shared.iOS
         {
             base.ViewWillAppear(animated);
 
+            if (Client.Manager == null)
+            {
+                return;
+            }
+
             Client.Manager.PackageManagerListener = Client.Listener;
 			Client.Listener.OnPackageListUpdate += PackageListUpdated;
 			Client.Listener.OnPackageUpdate += PackageUpdated;
@@ -41,6 +46,11 @@ namespace Shared.iOS
         public override void ViewWillDisappear(bool animated)
         {
             base.ViewWillDisappear(animated);
+
+			if (Client.Manager == null)
+			{
+				return;
+			}
 
             Client.Manager.PackageManagerListener = null;
 			Client.Listener.OnPackageListUpdate -= PackageListUpdated;
