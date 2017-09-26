@@ -1,25 +1,17 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Android.App;
 using Android.Content;
-using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.App;
-using Android.Views;
-using Android.Widget;
-using HockeyApp.Android;
 using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
 	[Activity(MainLauncher = true)]
-    public class LauncherListActivity : Activity
+    public class MainActivity : Activity
 	{
-		MapGalleryView ContentView;
+		MainView ContentView;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -27,9 +19,9 @@ namespace AdvancedMap.Droid
 
 			Title = "Advanced Samples";
 
-            ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.CartoNavy });
+            ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.CartoRed });
 
-			ContentView = new MapGalleryView(this);
+			ContentView = new MainView(this);
 			SetContentView(ContentView);
 
 			ContentView.AddRows(Samples.Items);

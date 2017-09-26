@@ -9,7 +9,7 @@ using Android.Widget;
 
 namespace Shared.Droid
 {
-	public class MapGalleryView : ScrollView
+	public class MainView : ScrollView
 	{
 		List<GalleryRow> rows;
 
@@ -17,10 +17,8 @@ namespace Shared.Droid
 
 		RelativeLayout container;
 
-		public MapGalleryView(Context context) : base(context)
+		public MainView(Context context) : base(context)
 		{
-			Background = new ColorDrawable(Colors.CartoRedLight);
-
 			rows = new List<GalleryRow>();
 
 			container = new RelativeLayout(context);
@@ -46,7 +44,7 @@ namespace Shared.Droid
 			}
 		}
 
-		public void AddRows(List<MapGallerySource> sources)
+		public void AddRows(List<Sample> sources)
 		{
 			int itemsInRow = 2;
 
@@ -74,17 +72,13 @@ namespace Shared.Droid
 			int w = (width - ((itemsInRow + 1) * padding)) / itemsInRow;
 			int h = w;
 
-			foreach (MapGallerySource source in sources)
+			foreach (Sample source in sources)
 			{
 				GalleryRow row = new GalleryRow(Context, source);
 				container.AddView(row);
 				rows.Add(row);
 
-				var parameters = new RelativeLayout.LayoutParams(w, h);
-				parameters.LeftMargin = x;
-				parameters.TopMargin = y;
-
-				row.LayoutParameters = parameters;
+                row.Frame = new CGRect(x, y, w, h);
 
 				row.Click += (sender, e) => {
 					RowClick(sender, e);

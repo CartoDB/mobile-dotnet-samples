@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Shared.Droid
 {
-	public class MapGallerySource
+	public class Sample
 	{
 		public string Title { get; set; }
 

@@ -32,44 +32,44 @@ namespace CartoMap.Droid
 			typeof(TorqueShipsActivity),
 		});
 
-		public static List<MapGallerySource> Items = new List<MapGallerySource>
+		public static List<Sample> Items = new List<Sample>
 		{
-			new MapGallerySource {
+			new Sample {
 				Type = typeof(CountriesVisActivity),
 				Title = "NYCity Subway Vis",
 				ImageResource = Resource.Drawable.image_viz_subway
 			},
-			new MapGallerySource {
+			new Sample {
 				Type = typeof(DotsVisActivity),
 				Title = "Predicted Store Locations",
 				ImageResource = Resource.Drawable.image_viz_store
 			},
-			new MapGallerySource {
+			new Sample {
 				Type = typeof(FontsVisActivity),
 				Title = "Fonts Vis",
 				ImageResource = Resource.Drawable.image_viz_fonts
 			},
-			new MapGallerySource {
+			new Sample {
 				Type = typeof(AnonymousRasterTableActivity),
 				Title = "Anonymous Raster Tile",
 				ImageResource = Resource.Drawable.image_anon_raster
 			},
-			new MapGallerySource {
+			new Sample {
 				Type = typeof(AnonymousVectorTableActivity),
 				Title = "Anonymous Vector Tile",
 				ImageResource = Resource.Drawable.image_anon_vector
 			},
-			new MapGallerySource {
+			new Sample {
 				Type = typeof(NamedMapActivity),
 				Title = "Named map",
 				ImageResource = Resource.Drawable.image_named
 			},
-			new MapGallerySource {
+			new Sample {
 				Type = typeof(SQLServiceActivity),
 				Title = "SQL Service",
 				ImageResource = Resource.Drawable.image_sql
 			},
-			new MapGallerySource {
+			new Sample {
 				Type = typeof(TorqueShipsActivity),
 				Title = "Torque Ship",
 				ImageResource = Resource.Drawable.image_torque

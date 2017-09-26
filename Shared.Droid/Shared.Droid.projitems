@@ -19,9 +19,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MenuButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MapWithMenuButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Memory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\MapGalleryView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\MainView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\GalleryRow.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\MapGallerySource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\Sample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\Buttons\ActionButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\Banner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\Buttons\SwitchButton.cs" />

@@ -10,41 +10,37 @@ using Android.Widget;
 
 namespace Shared.Droid
 {
-	public class GalleryRow : RelativeLayout
+    public class GalleryRow : BaseView
 	{
-		public override Android.Views.ViewGroup.LayoutParams LayoutParameters
-		{
-			get { return base.LayoutParameters; }
-			set
-			{
-				base.LayoutParameters = value;
-				LayoutSubviews();
-			}
-		}
-
-		TextView label;
+        TextView title, description;
 		ImageView image;
 
 		public Type Activity { get; private set; }
 
-		public GalleryRow(Context context, MapGallerySource source) : base(context)
+		public GalleryRow(Context context, Sample source) : base(context)
 		{
-			Background = new ColorDrawable(Colors.CartoRed);
+            SetBackgroundColor(Color.White);
 
 			Activity = source.Type;
-
-			label = new TextView(context);
-			label.Text = source.Title.ToUpper();
-			label.SetTextColor(Color.White);
-			label.Gravity = Android.Views.GravityFlags.Center;
-
-			AddView(label);
 
 			image = new ImageView(context);
 			image.SetImageResource(source.ImageResource);
 			image.SetScaleType(ImageView.ScaleType.CenterCrop);
-
 			AddView(image);
+
+			title = new TextView(context);
+			title.Text = source.Title.ToUpper();
+            title.SetTextColor(Colors.AppleBlue);
+            title.Typeface = Typeface.DefaultBold;
+            title.TextSize = 14.0f;
+            title.Measure(0, 0);
+			AddView(title);
+
+            description = new TextView(context);
+            description.SetTextColor(Colors.DarkGray);
+            description.TextSize = 12.0f;
+            description.Text = source.Description;
+            AddView(description);
 
 			if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
 			{
@@ -52,32 +48,27 @@ namespace Shared.Droid
 			}
 		}
 
-		public void LayoutSubviews()
+		public override void LayoutSubviews()
 		{
-			int width = LayoutParameters.Width;
-			int height = LayoutParameters.Height;
-
-			int padding = width / 30;
+			int padding = 5;
+            int imageHeight = Frame.H / 5 * 3;
 
 			int x = padding;
 			int y = padding;
-			int w = width - 2 * padding;
-			int h = (height - 3 * padding) / 4 * 3;
+            int w = Frame.W - 2 * padding;
+			int h = imageHeight;
 
-			var parameters = new RelativeLayout.LayoutParams(w, h);
-			parameters.LeftMargin = x;
-			parameters.TopMargin = y;
-
-			image.LayoutParameters = parameters;
+			image.SetFrame(x, y, w, h);
 
 			y += h + padding;
-			h = (height - 3 * padding) / 4;
+            h = title.MeasuredHeight;
 
-			parameters = new RelativeLayout.LayoutParams(w, h);
-			parameters.LeftMargin = x;
-			parameters.TopMargin = y;
+			title.SetFrame(x, y, w, h);
 
-			label.LayoutParameters = parameters;
+			y += h + padding;
+            h = Frame.H - (imageHeight + h + 2 * padding);
+
+			description.SetFrame(x, y, w, h);
 		}
 
 

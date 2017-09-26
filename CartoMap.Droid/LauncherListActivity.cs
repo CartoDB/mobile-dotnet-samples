@@ -14,7 +14,7 @@ namespace CartoMap.Droid
 	[Activity(MainLauncher = true)]
 	public class LauncherListActivity : Activity
 	{
-		MapGalleryView ContentView;
+		MainView ContentView;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -24,7 +24,7 @@ namespace CartoMap.Droid
 
 			ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.CartoNavy });
 
-			ContentView = new MapGalleryView(this);
+			ContentView = new MainView(this);
 			SetContentView(ContentView);
 
 			ContentView.AddRows(Samples.Items);

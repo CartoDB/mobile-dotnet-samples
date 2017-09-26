@@ -65,12 +65,10 @@
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Samples.cs" />
     <Compile Include="MapApplication.cs" />
     <Compile Include="Sections\BaseMap\BaseMapsActivity.cs" />
     <Compile Include="Sections\Other\GpsLocationActivity.cs" />
     <Compile Include="Sections\OfflineMap\BundledMapActivity.cs" />
-    <Compile Include="LauncherListActivity.cs" />
     <Compile Include="Sections\VectorObject\OverlaysActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\WmsMapActivity.cs" />
@@ -80,7 +78,6 @@
     <Compile Include="Sections\VectorObject\ClusteredMarkersActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\GroundOverlayActivity.cs" />
     <Compile Include="Sections\Routing\BaseRoutingActivity.cs" />
-    <Compile Include="MapBaseActivity.cs" />
     <Compile Include="Sections\Geocoding\ReverseGeocodingActivity.cs" />
     <Compile Include="Sections\Geocoding\Base\BaseGeocodingActivity.cs" />
     <Compile Include="Sections\Geocoding\Base\BaseGeocodingView.cs" />
@@ -105,6 +102,9 @@
     <Compile Include="Sections\BaseMap\Subviews\LanguageAdapter.cs" />
     <Compile Include="Sections\BaseMap\Subviews\LanguageCell.cs" />
     <Compile Include="Sections\BaseMap\Subviews\LanguagePopupContent.cs" />
+    <Compile Include="BaseClasses\MapBaseActivity.cs" />
+    <Compile Include="Main\MainActivity.cs" />
+    <Compile Include="Main\Samples.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -195,6 +195,7 @@
     <Folder Include="Sections\Geocoding\Base\" />
     <Folder Include="Sections\Geocoding\ResultTable\" />
     <Folder Include="BaseClasses\" />
+    <Folder Include="Main\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fcd_auto.nml" />
