@@ -14,7 +14,10 @@ namespace Shared.iOS
 				return documents;
 			}
 
-			return Path.Combine(documents, withFolder + "/");
+            string path = Path.Combine(documents, withFolder + "/");
+
+            Directory.CreateDirectory(path);
+            return path;
 		}
 
 	}

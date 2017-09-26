@@ -26,17 +26,17 @@ namespace AdvancedMap.iOS
 			base.ViewDidLoad();
 
 			Menu = new BaseMapSectionMenu();
-			Menu.Items = Sections.List;
+			Menu.Items = Shared.Sections.List;
 
 			MenuButton = new MenuButton("icons/icon_more.png", new CGRect(0, 10, 20, 30));
 			NavigationItem.RightBarButtonItem = MenuButton;
 
 			// Set initial style 
-			Menu.SetInitialItem(Sections.Nutiteq);
-			Menu.SetInitialItem(Sections.Language);
+			Menu.SetInitialItem(Shared.Sections.Nutiteq);
+			Menu.SetInitialItem(Shared.Sections.Language);
 
-			UpdateBaseLayer(Sections.Nutiteq, Sections.BaseStyleValue);
-			UpdateLanguage(Sections.BaseLanguageCode);
+			UpdateBaseLayer(Shared.Sections.Nutiteq, Shared.Sections.BaseStyleValue);
+			UpdateLanguage(Shared.Sections.BaseLanguageCode);
 
 			// Zoom to Central Europe so some texts would be visible
 			MapPos europe = BaseProjection.FromWgs84(new MapPos(15.2551, 54.5260));
@@ -174,8 +174,8 @@ namespace AdvancedMap.iOS
 
 		void ResetLanguage()
 		{
-			Menu.SetInitialItem(Sections.Language);
-			UpdateLanguage(Sections.BaseLanguageCode);
+			Menu.SetInitialItem(Shared.Sections.Language);
+			UpdateLanguage(Shared.Sections.BaseLanguageCode);
 		}
 
 		void UpdateLanguage(string code)

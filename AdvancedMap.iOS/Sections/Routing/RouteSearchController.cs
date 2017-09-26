@@ -42,6 +42,7 @@ namespace AdvancedMap.iOS
 			MapListener = new RouteMapEventListener();
 
             SetOnlineMode();
+            ContentView.HidePackageDownloadButtons();
         }
 
         public override void ViewWillAppear(bool animated)

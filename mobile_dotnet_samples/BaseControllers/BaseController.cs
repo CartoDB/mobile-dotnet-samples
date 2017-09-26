@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Threading.Tasks;
+using Carto.Utils;
 using UIKit;
 
 namespace Shared.iOS
@@ -35,6 +36,12 @@ namespace Shared.iOS
 			UIView.CommitAnimations();
 			toast.DismissWithClickedButtonIndex(0, true);
 		}
+
+		protected Carto.Graphics.Bitmap CreateBitmap(string resource)
+		{
+			return BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile(resource));
+		}
+
 	}
 
 	public class AlertDelegate : UIAlertViewDelegate

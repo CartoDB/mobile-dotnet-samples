@@ -1,6 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using Carto.Layers;
+using Carto.PackageManager;
 using UIKit;
 
 namespace Shared.iOS
@@ -49,5 +51,46 @@ namespace Shared.iOS
         {
             Folder += package.Name + "/";
         }
-    }
+
+		CartoOnlineVectorTileLayer onlineLayer;
+		CartoOfflineVectorTileLayer offlineLayer;
+
+		public void SetOnlineMode()
+		{
+			if (onlineLayer == null)
+			{
+				onlineLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
+			}
+
+			if (offlineLayer != null)
+			{
+				MapView.Layers.Remove(offlineLayer);
+			}
+
+			MapView.Layers.Add(onlineLayer);
+		}
+
+		public void SetOfflineMode(CartoPackageManager manager)
+		{
+			if (onlineLayer != null)
+			{
+				MapView.Layers.Remove((onlineLayer));
+			}
+
+			if (offlineLayer == null)
+			{
+				offlineLayer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CartoBasemapStyleVoyager);
+				offlineLayer.Preloading = true;
+			}
+
+			MapView.Layers.Add(offlineLayer);
+		}
+
+		public void HidePackageDownloadButtons()
+		{
+            RemoveButton(PackageButton);
+            RemoveButton(OnlineButton);
+		}
+
+	}
 }

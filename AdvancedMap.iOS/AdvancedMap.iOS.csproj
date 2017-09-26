@@ -160,21 +160,15 @@
     <Folder Include="Sections\Other\" />
     <Folder Include="Sections\OverlayDataSource\" />
     <Folder Include="Sections\VectorObjects\" />
-    <Folder Include="Sections\OfflineMap\AdvancedPackageManager\" />
-    <Folder Include="Sections\OfflineMap\AdvancedPackageManager\Views\" />
     <Folder Include="Sections\BaseMap\Views\" />
     <Folder Include="Resources\icons\" />
     <Folder Include="Resources\styles\" />
     <Folder Include="Resources\mbtiles\" />
-    <Folder Include="Sections\OfflineMap\BasicPackageManager\" />
-    <Folder Include="Sections\OfflineMap\BasicPackageManager\Views\" />
     <Folder Include="Sections\Routing\" />
-    <Folder Include="Sections\Routing\OfflineRouting\" />
     <Folder Include="Resources\gallery\" />
     <Folder Include="Sections\Geocoding\" />
     <Folder Include="Sections\Geocoding\Base\" />
     <Folder Include="Main\" />
-    <Folder Include="BaseClasses\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -192,11 +186,6 @@
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceController.cs" />
     <Compile Include="Sections\Other\CaptureController.cs" />
     <Compile Include="Sections\OverlayDataSource\GroundOverlayController.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\AdvancedPackageManagerController.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageListCell.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageManagerButton.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageManagerListView.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackageListDataSource.cs" />
     <Compile Include="Sections\Other\CustomPopupController.cs" />
     <Compile Include="Sections\BaseMap\BaseMapsController.cs" />
     <Compile Include="Sections\VectorObjects\VectorObjectEditingController.cs" />
@@ -204,13 +193,8 @@
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenu.cs" />
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenuItem.cs" />
     <Compile Include="Sections\BaseMap\Views\BaseMapSectionLabel.cs" />
-    <Compile Include="Sections\OfflineMap\BasicPackageManager\BasicPackageManagerController.cs" />
-    <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\CityChoiceMenu.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackagedMapController.cs" />
     <Compile Include="Sections\Routing\BaseRoutingController.cs" />
     <Compile Include="Sections\Routing\OfflineRoutingController.cs" />
-    <Compile Include="Sections\Routing\OnlineRoutingController.cs" />
-    <Compile Include="Sections\Routing\OfflineRouting\PackageManagerMenu.cs" />
     <Compile Include="Sections\Geocoding\ReverseGeocodingController.cs" />
     <Compile Include="Sections\Geocoding\Base\BaseGeocodingView.cs" />
     <Compile Include="Sections\Geocoding\Base\BaseGeocodingController.cs" />
@@ -222,7 +206,8 @@
     <Compile Include="Sections\Routing\RoutingExtensions.cs" />
     <Compile Include="Sections\Other\BundledUserDataController.cs" />
     <Compile Include="Main\Samples.cs" />
-    <Compile Include="BaseClasses\PackageDownloadBaseController.cs" />
+    <Compile Include="Sections\OfflineMap\OfflineMapController.cs" />
+    <Compile Include="Sections\OfflineMap\OfflineMapView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\fcd_auto.nml" />

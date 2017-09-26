@@ -31,9 +31,6 @@ namespace AdvancedMap.Droid
 
 			MapListener = new RouteMapEventListener();
 
-            var layer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
-            ContentView.MapView.Layers.Add(layer);
-
 			Alert("Long-press on map to set route start and finish");
 
 			Bitmap olmarker = CreateBitmap(Resource.Drawable.olmarker);

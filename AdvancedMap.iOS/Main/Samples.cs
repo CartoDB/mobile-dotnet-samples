@@ -1,6 +1,7 @@
 ﻿
 
 using System.Collections.Generic;
+using AdvancedMap.iOS.Sections.OfflineMap;
 using Shared.iOS;
 using UIKit;
 
@@ -43,13 +44,8 @@ namespace AdvancedMap.iOS
 			new Sample {
 				Controller = new OfflineRoutingController(),
 				Title = "Offline Routing",
-                Description = "Routing package download",
+                Description = "Routing and Routing package download",
 				ImageResource = "gallery/image_offline_routing.png"
-			},
-			new Sample {
-				Controller = new OnlineRoutingController(),
-				Title = "Online Routing",
-				ImageResource = "gallery/image_online_routing.png"
 			},
 			new Sample {
 				Controller = new VectorObjectEditingController(),
@@ -76,14 +72,9 @@ namespace AdvancedMap.iOS
 				ImageResource = "gallery/image_bundled.png"
 			},
 			new Sample {
-				Controller = new BasicPackageManagerController(),
-				Title = "City Package Download",
-				ImageResource = "gallery/image_city_package.png"
-			},
-			new Sample {
-				Controller = new AdvancedPackageManagerController(),
-				Title = "Country Package Download",
-                Description = "Map package download",
+				Controller = new OfflineMapController(),
+				Title = "Offline Map",
+                Description = "Download existing map packages for offline use",
 				ImageResource = "gallery/image_country_packages.png"
 			},
 			new Sample {

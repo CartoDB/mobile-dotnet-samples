@@ -9,24 +9,28 @@ using UIKit;
 
 namespace AdvancedMap.iOS
 {
-	public class BaseRoutingController : MapBaseController
+    public class BaseRoutingController : PackageDownloadBaseController
 	{
 		protected RouteMapEventListener MapListener { get; set; }
 
-		protected Routing Routing;
+		protected Routing Routing
+		{
+			get { return Client as Routing; }
+		}
 
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
-			// Virtual method overridden in child classes in order to keep layer order correct
-			SetBaseLayer();
+            ContentView = new PackageDownloadBaseView();
+            View = ContentView;
+
+			string folder = GetPackageFolder(Routing.PackageFolder);
+			Client = new Routing(ContentView.MapView, folder);
 
 			// Set route listener
 			MapListener = new RouteMapEventListener();
 			
-			Routing = new Routing(MapView, null);
-
 			Alert("Long-press on map to set route start and finish");
 
 			Bitmap olmarker = CreateBitmap("icons/olmarker.png");
@@ -39,11 +43,8 @@ namespace AdvancedMap.iOS
 			Color white = new Color(255, 255, 255, 255);
 
 			Routing.SetSourcesAndElements(olmarker, directionUp, directionUpLeft, directionUpRight, green, red, white);
-		}
 
-		protected virtual void SetBaseLayer()
-		{
-			throw new NotImplementedException();
+            ContentView.SetOnlineMode();
 		}
 
 		public override void ViewWillAppear(bool animated)
@@ -53,7 +54,7 @@ namespace AdvancedMap.iOS
 			MapListener.StartPositionClicked += OnStartPositionClick;
 			MapListener.StopPositionClicked += OnStopPositionClick;
 
-			MapView.MapEventListener = MapListener;
+			ContentView.MapView.MapEventListener = MapListener;
 		}
 
 		public override void ViewWillDisappear(bool animated)
@@ -63,7 +64,7 @@ namespace AdvancedMap.iOS
 			MapListener.StartPositionClicked -= OnStartPositionClick;
 			MapListener.StopPositionClicked -= OnStopPositionClick;
 
-			MapView.MapEventListener = null;
+            ContentView.MapView.MapEventListener = null;
 		}
 
 		protected void OnStartPositionClick(object sender, RouteMapEventArgs e)

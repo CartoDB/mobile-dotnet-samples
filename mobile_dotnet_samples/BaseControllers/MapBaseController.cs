@@ -27,11 +27,6 @@ namespace Shared.iOS
 			Title = Name;
 		}
 
-		protected Carto.Graphics.Bitmap CreateBitmap(string resource)
-		{
-			return BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile(resource));
-		}
-
 		protected void AddOnlineBaseLayer(CartoBaseMapStyle withStyle)
 		{
             // Initialize map

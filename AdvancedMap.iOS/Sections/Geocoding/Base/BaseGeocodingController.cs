@@ -16,7 +16,7 @@ namespace AdvancedMap.iOS
 		public BaseGeocodingController()
         {
             string baseFolder = Utils.GetDocumentDirectory();
-
+            string folder = GetPackageFolder(Geocoding.PackageFolder);
             Client = new Geocoding(baseFolder);
             Geocoding.ApiKey = ApiKey;
         }

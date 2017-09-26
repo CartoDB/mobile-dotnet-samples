@@ -11,7 +11,12 @@ namespace Shared.iOS
 
         public BasePackageManagerClient Client { get; set; }
 
-        public override void ViewDidLoad()
+		public string GetPackageFolder(string folder)
+		{
+			return Utils.GetDocumentDirectory(folder);
+		}
+
+		public override void ViewDidLoad()
         {
             base.ViewDidLoad();
         }

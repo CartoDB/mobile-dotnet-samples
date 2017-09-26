@@ -65,6 +65,12 @@ namespace Shared.iOS
             AddSubview(button);
         }
 
+        public void RemoveButton(PopupButton button)
+        {
+            buttons.Remove(button);
+            button.RemoveFromSuperview();
+        }
+
         public CartoOnlineVectorTileLayer AddBaseLayer(CartoBaseMapStyle style)
         {
             var layer = new CartoOnlineVectorTileLayer(style);
