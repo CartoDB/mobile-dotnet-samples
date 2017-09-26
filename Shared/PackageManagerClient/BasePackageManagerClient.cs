@@ -159,27 +159,5 @@ namespace Shared
             return packages;
         }
 
-        public string CreateDirectory(string path, string folder)
-        {
-#if __ANDROID__
-            var directory = new Java.IO.File(Android.OS.Environment.ExternalStorageDirectory, folder);
-
-            if (!directory.Exists())
-            {
-                directory.Mkdir();
-            }
-
-            return directory.AbsolutePath;
-#elif __IOS__
-            string directory = Path.Combine(path, folder);
-
-			if (!Directory.Exists(directory))
-			{
-				Directory.CreateDirectory(directory);
-			}
-
-            return directory;
-#endif
-		}
     }
 }

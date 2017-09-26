@@ -17,8 +17,10 @@ namespace Shared
 		public PackageInfo Info { get; private set; }
 		public PackageStatus Status { get; private set; }
 
-		public bool IsSmallerThan1MB { get { return Info.Size.ToLong() < 1024 * 1024; } }
-		public bool HasInfo { get { return Info != null; } }
+		public bool IsSmallerThan1MB { get { return SizeInMb < 1; } }
+        public double SizeInMb { get { return Info.Size.ToLong() * 1024 * 1024; } }
+		
+        public bool HasInfo { get { return Info != null; } }
 
         public bool IsGroup
         {
@@ -32,6 +34,26 @@ namespace Shared
 			Info = info;
 			Status = status;
 		}
+
+        public const string BBOX_IDENTIFIER = "bbox(";
+        public bool IsCustomRegionPackage
+        {
+            get
+            {
+				if (Id == null)
+				{
+					return false;
+				}
+
+                return Id.Contains(BBOX_IDENTIFIER);
+			}
+        }
+
+        public const string CUSTOM_REGION_FOLDER_NAME = "CUSTOM REGIONS";
+        public bool IsCustomRegionFolder
+        {
+            get { return Name.Equals(CUSTOM_REGION_FOLDER_NAME); }
+        }
 
 		public void UpdateStatus(PackageStatus status)
 		{
@@ -52,13 +74,7 @@ namespace Shared
 
 			string status = "available";
 
-			if (IsSmallerThan1MB)
-			{
-				status += " v." + Info.Version + " (<1MB)";
-			}
-			else {
-				status += " v." + Info.Version + " (" + Info.Size.ToLong() / 1024 / 1024 + "MB)";
-			}
+            status += GetVersionAndSize();
 
 			// Check if the package is downloaded/is being downloaded (so that status is not null)
 			if (Status != null)
@@ -92,47 +108,23 @@ namespace Shared
 			return status;
 		}
 
-		public ButtonInfo GetButtonInfo()
-		{
-			if (Info == null)
-			{
-				return new ButtonInfo { Text = ">", Type = PMButtonType.UpdatePackages, PackageName = Name };
+        string GetVersionAndSize()
+        {
+            if (IsCustomRegionPackage)
+            {
+                return "";
+            }
+
+            string version = Info.Version.ToString();
+            string size = SizeInMb.ToString("F");
+
+            if (IsSmallerThan1MB)
+            {
+				return " v." + version + " (<1MB)";
 			}
 
-			if (Status == null) 
-			{
-				return new ButtonInfo { Text = "Download", Type = PMButtonType.StartPackageDownload, PackageName = Name, PackageId = Info.PackageId };
-			}
-
-			ButtonInfo info = new ButtonInfo();
-			info.PackageId = Info.PackageId;
-
-			if (Status.CurrentAction == PackageAction.PackageActionReady)
-			{
-				info.Text = "Remove";
-				info.Type = PMButtonType.StartRemovePackage;
-			}
-			else if (Status.CurrentAction == PackageAction.PackageActionWaiting)
-			{
-				info.Text = "Cancel";
-				info.Type = PMButtonType.CancelPackageTasks;
-			}
-			else {
-
-				if (Status.Paused)
-				{
-					info.Text = "Resume";
-					info.Type = PMButtonType.SetPackagePriority;
-					info.PriorityIndex = 0;
-				}
-				else {
-					info.Text = "Pause";
-					info.Type = PMButtonType.SetPackagePriority;
-					info.PriorityIndex = -1;
-				}
-			}
-			return info;
-		}
+            return " v." + version + " (" + size + " MB)";
+        }
 
         public const string ACTION_DOWNLOAD = "DOWNLOAD";
         public const string ACTION_REMOVE = "REMOVE";
@@ -201,19 +193,6 @@ namespace Shared
 			}
 		}
 
-	}
-
-	public class ButtonInfo
-	{
-		public string Text { get; set; }
-
-		public string PackageName { get; set; }
-
-		public string PackageId { get; set; }
-
-		public PMButtonType Type { get; set; }
-		
-		public int PriorityIndex { get; set; }
 	}
 }
 
