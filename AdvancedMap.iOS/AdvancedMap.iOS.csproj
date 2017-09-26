@@ -160,7 +160,6 @@
     <Folder Include="Sections\Other\" />
     <Folder Include="Sections\OverlayDataSource\" />
     <Folder Include="Sections\VectorObjects\" />
-    <Folder Include="Sections\BaseMap\Views\" />
     <Folder Include="Resources\icons\" />
     <Folder Include="Resources\styles\" />
     <Folder Include="Resources\mbtiles\" />
@@ -192,9 +191,6 @@
     <Compile Include="Sections\BaseMap\BaseMapsController.cs" />
     <Compile Include="Sections\VectorObjects\VectorObjectEditingController.cs" />
     <Compile Include="Sections\VectorObjects\ClusteredMarkersController.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenu.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenuItem.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapSectionLabel.cs" />
     <Compile Include="Sections\Routing\BaseRoutingController.cs" />
     <Compile Include="Sections\Routing\OfflineRoutingController.cs" />
     <Compile Include="Sections\Geocoding\ReverseGeocodingController.cs" />

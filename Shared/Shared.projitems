@@ -19,7 +19,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Constants\" />
     <Folder Include="$(MSBuildThisFileDirectory)Listeners\GISListeners\" />
     <Folder Include="$(MSBuildThisFileDirectory)EventArgs\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Model\BaseMaps\" />
     <Folder Include="$(MSBuildThisFileDirectory)Model\Cities\" />
     <Folder Include="$(MSBuildThisFileDirectory)PackageManagerClient\" />
     <Folder Include="$(MSBuildThisFileDirectory)PackageManagerClient\Geocoding\" />
@@ -56,8 +55,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)EventArgs\ScreenshotEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\RendererExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\BoundingBox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\BaseMaps\Section.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\BaseMaps\Sections.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Cities\BoundingBoxes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\TorqueUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PackageManagerClient\Geocoding\Geocoding.cs" />
