@@ -22,12 +22,12 @@ namespace AdvancedMap.Droid
             SetOnlineMode();
         }
 
-        public override void SetOnlineMode()
+        protected override void SetOnlineMode()
         {
             ContentView.SetOnlineMode();
         }
 
-        public override void SetOfflineMode()
+        protected override void SetOfflineMode()
         {
             ContentView.SetOfflineMode(Client.Manager);
         }

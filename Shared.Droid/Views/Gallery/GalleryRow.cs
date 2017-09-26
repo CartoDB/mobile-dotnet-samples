@@ -50,7 +50,7 @@ namespace Shared.Droid
 
 		public override void LayoutSubviews()
 		{
-			int padding = 5;
+            int padding = (int)(5 * Density);
             int imageHeight = Frame.H / 5 * 3;
 
 			int x = padding;

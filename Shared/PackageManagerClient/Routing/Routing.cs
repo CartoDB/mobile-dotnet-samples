@@ -150,6 +150,7 @@ namespace Shared
 
 			markerBuilder.Color = white;
 			markerBuilder.Bitmap = up;
+            markerBuilder.Size = 20;
 			instructionUp = markerBuilder.BuildStyle();
 
 			markerBuilder.Bitmap = upleft;
@@ -157,73 +158,24 @@ namespace Shared
 
 			markerBuilder.Bitmap = upright;
 			instructionRight = markerBuilder.BuildStyle();
-
-			// Style for instruction balloons
-			balloonBuilder = new BalloonPopupStyleBuilder();
-			balloonBuilder.TitleMargins = new BalloonPopupMargins(4, 4, 4, 4);
 		}
 
-		public void CreateRoutePoint(MapPos pos, RoutingInstruction instruction, LocalVectorDataSource source)
-		{
-			MarkerStyle style = instructionUp;
-			string str = "";
+        public void CreateRoutePoint(MapPos pos, RoutingInstruction instruction, LocalVectorDataSource source)
+        {
+            MarkerStyle style = instructionUp;
 
-			switch (instruction.Action)
-			{
-				case RoutingAction.RoutingActionHeadOn:
-					str = "head on";
-					break;
-				case RoutingAction.RoutingActionFinish:
-					str = "finish";
-					break;
-				case RoutingAction.RoutingActionTurnLeft:
-					style = instructionLeft;
-					str = "turn left";
-					break;
-				case RoutingAction.RoutingActionTurnRight:
-					style = instructionRight;
-					str = "turn right";
-					break;
-				case RoutingAction.RoutingActionUturn:
-					str = "u turn";
-					break;
-				case RoutingAction.RoutingActionNoTurn:
-				case RoutingAction.RoutingActionGoStraight:
-					//style = instructionUp;
-					//str = "continue";
-					break;
-				case RoutingAction.RoutingActionReachViaLocation:
-					style = instructionUp;
-					str = "stopover";
-					break;
-				case RoutingAction.RoutingActionEnterAgainstAllowedDirection:
-					str = "enter against allowed direction";
-					break;
-				case RoutingAction.RoutingActionLeaveAgainstAllowedDirection:
-					break;
-				case RoutingAction.RoutingActionEnterRoundabout:
-					str = "enter roundabout";
-					break;
-				case RoutingAction.RoutingActionStayOnRoundabout:
-					str = "stay on roundabout";
-					break;
-				case RoutingAction.RoutingActionLeaveRoundabout:
-					str = "leave roundabout";
-					break;
-				case RoutingAction.RoutingActionStartAtEndOfStreet:
-					str = "start at end of street";
-					break;
-			}
+            if (instruction.Action == RoutingAction.RoutingActionTurnRight)
+            {
+                style = instructionRight;
+            }
+            else if (instruction.Action == RoutingAction.RoutingActionTurnLeft)
+            {
+                style = instructionLeft;
+            }
 
-			if (str != "")
-			{
-				Marker marker = new Marker(pos, style);
-				BalloonPopup popup2 = new BalloonPopup(marker, balloonBuilder.BuildStyle(), str, "");
-
-				source.Add(popup2);
-				source.Add(marker);
-			}
-		}
+            Marker marker = new Marker(pos, style);
+            source.Add(marker);
+        }
 
 		// Creates a line from GraphHopper response
 		protected Line CreatePolyline(MapPos start, MapPos end, RoutingResult result, Color color)
