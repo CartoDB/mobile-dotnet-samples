@@ -1,18 +1,14 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
-using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
-using Android.Views;
-using Android.Widget;
-using HockeyApp.Android;
 using Shared.Droid;
 
 namespace CartoMap.Droid
 {
 	[Activity(MainLauncher = true)]
-	public class LauncherListActivity : Activity
+	public class MainActivity : Activity
 	{
 		MainView ContentView;
 
@@ -22,7 +18,7 @@ namespace CartoMap.Droid
 
 			Title = "Carto Samples";
 
-			ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.CartoNavy });
+            ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.CartoRed });
 
 			ContentView = new MainView(this);
 			SetContentView(ContentView);

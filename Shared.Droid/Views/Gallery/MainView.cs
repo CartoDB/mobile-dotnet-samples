@@ -19,6 +19,8 @@ namespace Shared.Droid
 
 		public MainView(Context context) : base(context)
 		{
+            Background = new ColorDrawable(Colors.NearWhite);
+
 			rows = new List<GalleryRow>();
 
 			container = new RelativeLayout(context);

@@ -71,7 +71,6 @@ namespace Shared.Droid
 			description.SetFrame(x, y, w, h);
 		}
 
-
 		public bool Contains(int x, int y)
 		{
 			Rect rect = new Rect();
