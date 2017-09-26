@@ -18,7 +18,7 @@ namespace Shared
 		public PackageStatus Status { get; private set; }
 
 		public bool IsSmallerThan1MB { get { return SizeInMb < 1; } }
-        public double SizeInMb { get { return Info.Size.ToLong() * 1024 * 1024; } }
+        public double SizeInMb { get { return Info.Size.ToLong() / (1024 * 1024); } }
 		
         public bool HasInfo { get { return Info != null; } }
 

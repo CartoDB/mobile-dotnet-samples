@@ -154,7 +154,11 @@ namespace Shared.iOS
 
         void PackageUpdated(object sender, PackageEventArgs e)
 		{
-            // TODO
+            List<Package> packages = Client.GetPackages(ContentView.Folder);
+			InvokeOnMainThread(delegate
+            {
+	            ContentView.UpdatePackages(packages);
+            });
 		}
 
 		public virtual void SetOnlineMode() { }
