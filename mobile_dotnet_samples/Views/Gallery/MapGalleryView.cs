@@ -13,7 +13,7 @@ namespace Shared.iOS
 
 		public MapGalleryView()
 		{
-			BackgroundColor = Colors.CartoRedLight;
+			BackgroundColor = Colors.NearWhite;
 
 			AddGestureRecognizer(new UITapGestureRecognizer(OnClick));
 		}

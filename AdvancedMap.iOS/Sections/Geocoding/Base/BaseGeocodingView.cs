@@ -1,18 +1,8 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using Carto.Core;
 using Carto.DataSources;
-using Carto.Geocoding;
-using Carto.Geometry;
 using Carto.Layers;
-using Carto.Projections;
-using Carto.Styles;
 using Carto.Ui;
-using CoreGraphics;
-using Shared;
 using Shared.iOS;
-using UIKit;
 
 namespace AdvancedMap.iOS
 {

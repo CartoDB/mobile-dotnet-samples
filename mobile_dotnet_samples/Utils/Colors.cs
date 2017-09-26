@@ -9,7 +9,7 @@ namespace Shared.iOS
 	{
 		public static UIColor AppleBlue = UIColor.FromRGB(0, 122, 255);
 
-		public static UIColor CartoRed = UIColor.FromRGB(215, 82, 75);
+		public static UIColor CartoRed = UIColor.FromRGB(242, 68, 64);
 
 		public static UIColor CartoRedLight = UIColor.FromRGB(215, 82, 75);
 
@@ -22,6 +22,8 @@ namespace Shared.iOS
         public static UIColor DarkTransparentGray = UIColor.FromRGBA(50, 50, 50, 200);
 
         public static UIColor LightTransparentGray = UIColor.FromRGBA(50, 50, 50, 100);
+
+        public static UIColor NearWhite = UIColor.FromRGB(245, 245, 245);
 	}
 
     public static class ColorExtensions

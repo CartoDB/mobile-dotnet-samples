@@ -21,11 +21,11 @@ namespace AdvancedMap.iOS
 		{
 			MapView.RegisterLicense(CartoLicense);
 
-			UIViewController initial = new MapListController("Advanced Map Samples", Samples.List);
+			UIViewController initial = new MapListController("Advanced Samples", Samples.List);
 			Controller = new UINavigationController(initial);
 
 			// Navigation bar background color
-			Controller.NavigationBar.BarTintColor = Colors.CartoNavy;
+            Controller.NavigationBar.BarTintColor = Colors.CartoRed;
 			// Back button color
 			Controller.NavigationBar.TintColor = UIColor.White;
 			// Title color
