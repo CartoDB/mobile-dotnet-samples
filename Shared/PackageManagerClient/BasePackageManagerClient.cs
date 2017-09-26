@@ -57,6 +57,16 @@ namespace Shared
         {
             List<Package> packages = new List<Package>();
 
+    //        if (folder.Equals(Package.CUSTOM_REGION_FOLDER_NAME + "/"))
+    //        {
+				//return GetCustomRegionPackages();
+            //}
+
+            //if (folder.Equals(""))
+            //{
+            //    packages.Add(GetCustomRegionFolder());    
+            //}
+
             foreach (PackageInfo info in Manager.ServerPackages)
             {
                 string name = info.Name;
@@ -231,7 +241,7 @@ namespace Shared
                 var id = city.BoundingBox.ToString();
                 var status = Manager.GetLocalPackageStatus(id, -1);
 
-                var package = new Package(id, city.Name);
+                var package = new Package(city.Name, id);
                 package.UpdateStatus(status);
 
                 packages.Add(package);
