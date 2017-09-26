@@ -1,192 +1,129 @@
 ﻿
 using System;
+using AdvancedMap.iOS.Sections.BaseMap;
+using AdvancedMap.iOS.Sections.BaseMap.Subviews;
 using Carto.Core;
 using Carto.DataSources;
 using Carto.Layers;
 using Carto.Styles;
+using Carto.Ui;
 using Carto.Utils;
 using Carto.VectorTiles;
 using CoreGraphics;
+using Foundation;
 using Shared;
 using Shared.iOS;
+using Shared.Model;
+using UIKit;
 
 namespace AdvancedMap.iOS
 {
-	public class BaseMapsController : MapBaseController
+    public class BaseMapsController : BaseController, IUITableViewDelegate
 	{
 		public override string Name { get { return "Choice of different Base Maps"; } }
 
 		public override string Description { get { return "Overview of base maps offered by CARTO"; } }
+		
+        BaseMapsView ContentView { get; set; }
 
-		public BaseMapSectionMenu Menu { get; set; }
-		MenuButton MenuButton { get; set; }
+		MapView MapView { get { return ContentView.MapView; } }
 
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
-			Menu = new BaseMapSectionMenu();
-			Menu.Items = Shared.Sections.List;
-
-			MenuButton = new MenuButton("icons/icon_more.png", new CGRect(0, 10, 20, 30));
-			NavigationItem.RightBarButtonItem = MenuButton;
-
-			// Set initial style 
-			Menu.SetInitialItem(Shared.Sections.Nutiteq);
-			Menu.SetInitialItem(Shared.Sections.Language);
-
-			UpdateBaseLayer(Shared.Sections.Nutiteq, Shared.Sections.BaseStyleValue);
-			UpdateLanguage(Shared.Sections.BaseLanguageCode);
+			ContentView = new BaseMapsView();
+            View = ContentView;
 
 			// Zoom to Central Europe so some texts would be visible
-			MapPos europe = BaseProjection.FromWgs84(new MapPos(15.2551, 54.5260));
+			MapPos europe = MapView.Options.BaseProjection.FromWgs84(new MapPos(15.2551, 54.5260));
 			MapView.SetFocusPos(europe, 0);
 			MapView.Zoom = 5;
+
+			ContentView.CurrentLayer = ContentView.AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
+			ContentView.StyleContent.HighlightDefault();
+            ContentView.LanguageContent.AddLanguages(Languages.List);
 		}
 
 		public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
 
-			MenuButton.Click += OnMenuButtonClick;
-			Menu.OptionTapped += OnMenuSelectionChanged;
+            ContentView.BasemapButton.Click += OnBasemapButtonClick;
+            ContentView.LanguageButton.Click += OnLanguageButtonClick;
+
+			foreach (var section in ContentView.StyleContent.Sections)
+			{
+				foreach (var item in section.List)
+				{
+					item.Click += OnStyleItemClick;
+				}
+			}
+
+            ContentView.LanguageContent.Table.Delegate = this;
 		}
 
 		public override void ViewWillDisappear(bool animated)
 		{
 			base.ViewWillDisappear(animated);
 
-			MenuButton.Click -= OnMenuButtonClick;
-			Menu.OptionTapped -= OnMenuSelectionChanged;
+			ContentView.BasemapButton.Click -= OnBasemapButtonClick;
+			ContentView.LanguageButton.Click -= OnLanguageButtonClick;
+
+			foreach (var section in ContentView.StyleContent.Sections)
+			{
+				foreach (var item in section.List)
+				{
+					item.Click -= OnStyleItemClick;
+				}
+			}
+
+			if (ContentView.CurrentLayer is VectorTileLayer)
+			{
+				(ContentView.CurrentLayer as VectorTileLayer).VectorTileEventListener = null;
+			}
+
+            ContentView.LanguageContent.Table.Delegate = null;
 		}
 
-        public override void ViewDidLayoutSubviews()
+        [Export("tableView:didSelectRowAtIndexPath:")]
+        public void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
         {
-            base.ViewDidLayoutSubviews();
+			ContentView.Popup.Hide();
 
-            Menu.Frame = View.Bounds;
+            Language language = ContentView.LanguageContent.Languages[indexPath.Row];
+			ContentView.UpdateLanguage(language);
         }
 
-		void OnMenuButtonClick(object sender, EventArgs e)
+		void OnBasemapButtonClick(object sender, EventArgs e)
 		{
-			if (Menu.IsVisible)
-			{
-				Menu.Hide();
-			}
-			else {
-				Menu.Show();
-			}
+            ContentView.Popup.SetContent(ContentView.StyleContent);
+			ContentView.Popup.Show();
 		}
 
-		void OnMenuSelectionChanged(object sender, OptionEventArgs e)
+		void OnLanguageButtonClick(object sender, EventArgs e)
 		{
-			UpdateBaseLayer(e.Section, e.Option.Value);
+            ContentView.Popup.SetContent(ContentView.LanguageContent);
+			ContentView.Popup.Show();
 		}
 
-		string currentOSM;
-		string currentSelection;
-		TileLayer currentLayer;
-
-		VectorTileListener currentListener;
-
-		void UpdateBaseLayer(Section section, string selection)
+		void OnStyleItemClick(object sender, EventArgs e)
 		{
-			if (section.Type != SectionType.Language)
+			ContentView.Popup.Hide();
+
+			if (ContentView.StyleContent.Previous != null)
 			{
-				currentOSM = section.OSM.Value;
-				currentSelection = selection;
+				ContentView.StyleContent.Previous.Normalize();
 			}
 
-			if (section.Type == SectionType.Vector)
-			{
-                if (currentOSM == Sources.CartoVector)
-				{
-					// Nutiteq styles are bundled with the SDK, we can initialize them via constuctor
-					if (currentSelection == "voyager")
-					{
-                        currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
-					}
-					else if (currentSelection == "positron")
-					{
-                        currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStylePositron);
-					}
-					else
-					{
-                        currentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDarkmatter);
-					}
-				}
-                else if (currentOSM == Sources.Mapzen)
-				{
-					// Mapzen styles are all bundled in one .zip file.
-					// Selection contains both the style name and file name (cf. Sections.cs in Shared)
-					string fileName = currentSelection.Split(':')[0];
-					string styleName = currentSelection.Split(':')[1];
+			var item = (StylePopupContentSectionItem)sender;
+			item.Highlight();
 
-					// Create a style set from the file and style
-					BinaryData styleAsset = AssetUtils.LoadAsset("styles/" + fileName + ".zip");
-					var package = new ZippedAssetPackage(styleAsset);
-					CompiledStyleSet styleSet = new CompiledStyleSet(package, styleName);
+			string selection = item.Label.Text;
+            string source = (item.Superview as StylePopupContentSection).Source;
+			ContentView.UpdateBaseLayer(selection, source);
 
-					// Create datasource and style decoder
-					var source = new CartoOnlineTileDataSource(currentOSM);
-					var decoder = new MBVectorTileDecoder(styleSet);
-
-					currentLayer = new VectorTileLayer(source, decoder);
-				
-				}
-				Menu.LanguageChoiceEnabled = true;
-				ResetLanguage();
-
-		    }
-			else if (section.Type == SectionType.Raster)
-			{
-				// We know that the value of raster will be Positron or Darkmatter,
-				// as Nutiteq and Mapzen use vector tiles
-
-				// Additionally, raster tiles do not support language choice
-				string url = (currentSelection == "positron") ? Urls.Positron : Urls.DarkMatter;
-
-				TileDataSource source = new HTTPTileDataSource(1, 19, url);
-				currentLayer = new RasterTileLayer(source);
-
-				// Language choice not enabled in raster tiles
-				Menu.LanguageChoiceEnabled = false;
-			} 
-			else if (section.Type == SectionType.Language)
-			{
-				if (currentLayer is RasterTileLayer) {
-					// Raster tile language chance is not supported
-					return;
-				}
-				UpdateLanguage(selection);
-			}
-
-			MapView.Layers.Clear();
-			MapView.Layers.Add(currentLayer);
-
-			Menu.Hide();
-
-            if (currentLayer is VectorTileLayer)
-            {
-                MapView.InitializeVectorTileListener(currentLayer as VectorTileLayer);    
-            }
-		}
-
-		void ResetLanguage()
-		{
-			Menu.SetInitialItem(Shared.Sections.Language);
-			UpdateLanguage(Shared.Sections.BaseLanguageCode);
-		}
-
-		void UpdateLanguage(string code)
-		{
-			if (currentLayer == null) 
-			{
-				return;
-			}
-
-			MBVectorTileDecoder decoder = (currentLayer as VectorTileLayer).TileDecoder as MBVectorTileDecoder;
-			decoder.SetStyleParameter("lang", code);
+			ContentView.StyleContent.Previous = item;
 		}
 	}
 }

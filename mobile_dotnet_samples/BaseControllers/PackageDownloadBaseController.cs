@@ -62,9 +62,18 @@ namespace Shared.iOS
 			ContentView.PackageContent.Source.CellSelected -= OnCellSelected;
 
             ContentView.OnlineButton.Switched -= OnSwitchChanged;
+
+            ContentView.PackageButton.Click += PackageButtonTapped;
         }
 
-        void OnSwitchChanged(object sender, EventArgs e)
+        void PackageButtonTapped(object sender, EventArgs e)
+		{
+			ContentView.Popup.Header.SetText("SELECT A PACKAGE TO DOWNLOAD");
+			ContentView.Popup.SetContent(ContentView.PackageContent);
+			ContentView.Popup.Show();
+		}
+
+		void OnSwitchChanged(object sender, EventArgs e)
         {
             if (ContentView.OnlineButton.IsOn)
             {

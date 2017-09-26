@@ -169,6 +169,8 @@
     <Folder Include="Sections\Geocoding\" />
     <Folder Include="Sections\Geocoding\Base\" />
     <Folder Include="Main\" />
+    <Folder Include="Sections\BaseMap\Subviews\" />
+    <Folder Include="Resources\basemaps\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -208,6 +210,11 @@
     <Compile Include="Main\Samples.cs" />
     <Compile Include="Sections\OfflineMap\OfflineMapController.cs" />
     <Compile Include="Sections\OfflineMap\OfflineMapView.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\StylePopupContentSectionItem.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\StylePopupContentSection.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\StylePopuPContent.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\LanguagePopupContent.cs" />
+    <Compile Include="Sections\BaseMap\BaseMapsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\fcd_auto.nml" />
@@ -257,6 +264,19 @@
     <BundleResource Include="Resources\mbtiles\offline-packages.mbtiles" />
     <BundleResource Include="Resources\gallery\icon_sample_user_data.png" />
     <BundleResource Include="Resources\mbtiles\rome_carto-streets.mbtiles" />
+    <BundleResource Include="Resources\icons\icon_basemap.png" />
+    <BundleResource Include="Resources\icons\icon_language.png" />
+    <BundleResource Include="Resources\basemaps\style_image_carto_darkmatter.png" />
+    <BundleResource Include="Resources\basemaps\style_image_carto_positron.png" />
+    <BundleResource Include="Resources\basemaps\style_image_mapzen_bright.png" />
+    <BundleResource Include="Resources\basemaps\style_image_mapzen_darkmatter.png" />
+    <BundleResource Include="Resources\basemaps\style_image_mapzen_positron.png" />
+    <BundleResource Include="Resources\basemaps\style_image_nutiteq_bright.png" />
+    <BundleResource Include="Resources\basemaps\style_image_nutiteq_dark.png" />
+    <BundleResource Include="Resources\basemaps\style_image_nutiteq_darkmatter.png" />
+    <BundleResource Include="Resources\basemaps\style_image_nutiteq_gray.png" />
+    <BundleResource Include="Resources\basemaps\style_image_nutiteq_positron.png" />
+    <BundleResource Include="Resources\basemaps\style_image_nutiteq_voyager.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />

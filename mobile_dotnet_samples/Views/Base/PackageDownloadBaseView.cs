@@ -9,7 +9,7 @@ namespace Shared.iOS
 {
     public class PackageDownloadBaseView : DownloadBaseView
     {
-        protected PopupButton PackageButton { get; private set; }
+        public PopupButton PackageButton { get; private set; }
 
         public PopupSwitchButton OnlineButton { get; private set; }
 
@@ -24,15 +24,6 @@ namespace Shared.iOS
 			AddButton(OnlineButton);
 
             PackageContent = new PackagePopupContent();
-
-            PackageButton.AddGestureRecognizer(new UITapGestureRecognizer(PackageButtonTapped));
-        }
-
-        void PackageButtonTapped()
-        {
-            Popup.Header.SetText("SELECT A PACKAGE TO DOWNLOAD");
-            Popup.SetContent(PackageContent);
-            Popup.Show();
         }
 
         public override void LayoutSubviews()
