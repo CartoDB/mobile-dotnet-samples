@@ -15,10 +15,12 @@ namespace Shared.Droid
         ImageView forwardIcon;
         BaseView progressIndicator;
 
+        Color titleColor;
+
         public PackageCell(Context context, int icon_forward) : base(context)
         {
             float titleSize = 13.0f;
-            Color titleColor = Colors.CartoNavy;
+            titleColor = Colors.CartoNavy;
 
             textLabel = new TextView(context);
             textLabel.TextSize = titleSize;
@@ -121,6 +123,16 @@ namespace Shared.Droid
                 // It's a package group. These are displayed with a single label
                 textLabel.Text = package.Name.ToUpper();
                 forwardIcon.Visibility = Android.Views.ViewStates.Visible;
+
+				if (package.IsCustomRegionFolder)
+				{
+                    textLabel.SetTextColor(Colors.AppleBlue);
+				}
+				else
+				{
+                    textLabel.SetTextColor(titleColor);
+				}
+
                 return;
             }
 

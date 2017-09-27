@@ -132,8 +132,7 @@ namespace Shared.iOS
 
 			InvokeOnMainThread(delegate
 			{
-
-				string text = "DOWNLOAD PACKAGE: " + progress + "%";
+				string text = "DOWNLOADING PACKAGE: " + progress + "%";
 
 				if (current != null)
 				{

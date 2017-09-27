@@ -142,11 +142,6 @@ namespace Shared
         {
             get
             {
-                if (Info == null)
-                {
-                    return "NONE";
-                }
-
                 if (Status == null)
                 {
                     return ACTION_DOWNLOAD;

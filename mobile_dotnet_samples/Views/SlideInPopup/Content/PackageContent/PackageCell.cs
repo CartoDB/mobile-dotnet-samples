@@ -24,12 +24,14 @@ namespace Shared.iOS
             Initialize();
         }
 
+        UIColor titleColor;
+
         void Initialize()
         {
 			SelectionStyle = UITableViewCellSelectionStyle.None;
 
 			var titleFont = UIFont.FromName("HelveticaNeue-Bold", 13);
-			var titleColor = Colors.CartoNavy;
+			titleColor = Colors.CartoNavy;
 
 			TextLabel.Font = titleFont;
 			TextLabel.TextColor = titleColor;
@@ -127,6 +129,16 @@ namespace Shared.iOS
                 // It's a package group. These are displayed with a single label
                 TextLabel.Text = package.Name.ToUpper();
                 forwardIcon.Hidden = false;
+
+                if (package.IsCustomRegionFolder)
+                {
+                    TextLabel.TextColor = Colors.AppleBlue;    
+                } 
+                else
+                {
+                    TextLabel.TextColor = titleColor;
+                }
+
                 return;
 			}
 

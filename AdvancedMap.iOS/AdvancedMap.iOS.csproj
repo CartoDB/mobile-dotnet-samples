@@ -208,7 +208,7 @@
     <Compile Include="Sections\OfflineMap\OfflineMapView.cs" />
     <Compile Include="Sections\BaseMap\Subviews\StylePopupContentSectionItem.cs" />
     <Compile Include="Sections\BaseMap\Subviews\StylePopupContentSection.cs" />
-    <Compile Include="Sections\BaseMap\Subviews\StylePopuPContent.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\StylePopupContent.cs" />
     <Compile Include="Sections\BaseMap\Subviews\LanguagePopupContent.cs" />
     <Compile Include="Sections\BaseMap\BaseMapsView.cs" />
   </ItemGroup>

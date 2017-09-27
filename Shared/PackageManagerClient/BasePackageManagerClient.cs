@@ -57,15 +57,15 @@ namespace Shared
         {
             List<Package> packages = new List<Package>();
 
-    //        if (folder.Equals(Package.CUSTOM_REGION_FOLDER_NAME + "/"))
-    //        {
-				//return GetCustomRegionPackages();
-            //}
+            if (folder.Equals(Package.CUSTOM_REGION_FOLDER_NAME + "/"))
+            {
+				return GetCustomRegionPackages();
+            }
 
-            //if (folder.Equals(""))
-            //{
-            //    packages.Add(GetCustomRegionFolder());    
-            //}
+            if (folder.Equals(""))
+            {
+                packages.Add(GetCustomRegionFolder());    
+            }
 
             foreach (PackageInfo info in Manager.ServerPackages)
             {
@@ -181,7 +181,8 @@ namespace Shared
                 }
 
                 downloadQueue.Clear();
-                downloadQueue.AddRange(GetAllPackages());
+                var local = GetAllPackages().Where(p => p.IsDownloading || p.IsQueued).ToList();
+                downloadQueue.AddRange(local);
 
                 if (downloadQueue.Count > 0)
                 {
