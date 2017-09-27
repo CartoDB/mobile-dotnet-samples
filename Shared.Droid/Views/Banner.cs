@@ -16,6 +16,8 @@ namespace Shared.Droid
 
         public Banner(Context context, int resource) : base(context)
         {
+            SetBackgroundColor(Colors.DarkTransparentNavy);
+
             leftImage = new ImageView(context);
             leftImage.SetScaleType(ImageView.ScaleType.CenterInside);
             leftImage.SetAdjustViewBounds(true);
