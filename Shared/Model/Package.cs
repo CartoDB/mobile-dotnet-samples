@@ -27,16 +27,21 @@ namespace Shared
             get { return Status == null && Info == null && !IsCustomRegionPackage; }
         }
 
+        public Package(string name)
+        {
+            Name = name;
+        }
+
         public Package(string name, string id)
         {
             Name = name;
             Id = id;
         }
 
-		public Package(string name, PackageInfo info, PackageStatus status)
+		public Package(string id, string name, PackageInfo info, PackageStatus status)
 		{
+            Id = id;
 			Name = name;
-			Id = (info != null ? info.PackageId : null);
 			Info = info;
 			Status = status;
 		}
@@ -65,6 +70,11 @@ namespace Shared
 		{
 			Status = status;
 		}
+
+        public void UpdateInfo(PackageInfo info)
+        {
+            Info = info;
+        }
 
 		public void ToMapPackage()
 		{

@@ -84,8 +84,9 @@ namespace Shared
                 if (index == -1)
                 {
                     // This is an actual package
-                    PackageStatus packageStatus = Manager.GetLocalPackageStatus(info.PackageId, -1);
-                    package = new Package(modified, info, packageStatus);
+                    PackageStatus status = Manager.GetLocalPackageStatus(info.PackageId, -1);
+                    string id = info.PackageId;
+                    package = new Package(id, modified, info, status);
                 }
                 else
                 {
@@ -98,7 +99,7 @@ namespace Shared
                     if (existing.Count == 0)
                     {
                         // If there are none, add a package group if we don't have an existing list item
-                        package = new Package(modified, null, null);
+                        package = new Package(modified);
                     }
                     else if (existing.Count == 1 && existing[0].Info != null)
                     {
@@ -108,7 +109,7 @@ namespace Shared
 
                         // If there is one existing package and its info isn't null,
                         // we will add a "parent" package containing subpackages (or package group)
-                        package = new Package(modified, null, null);
+                        package = new Package(modified);
                     }
                     else
                     {
@@ -180,9 +181,26 @@ namespace Shared
                     }
                 }
 
-                downloadQueue.Clear();
                 var local = GetAllPackages().Where(p => p.IsDownloading || p.IsQueued).ToList();
-                downloadQueue.AddRange(local);
+
+                foreach (Package element in local)
+                {
+                    bool found = false;
+					foreach (Package existing in downloadQueue)
+					{
+                        if (existing.Id == element.Id)
+                        {
+                            existing.UpdateStatus(element.Status);
+                            existing.UpdateInfo(element.Info);
+                            found = true;
+                        }
+					}
+
+                    if (!found)
+                    {
+                        downloadQueue.Add(element);
+                    }
+				}
 
                 if (downloadQueue.Count > 0)
                 {
@@ -220,7 +238,8 @@ namespace Shared
 
                 string id = info.PackageId;
                 PackageStatus status = Manager.GetLocalPackageStatus(id, -1);
-                var package = new Package(modified, info, status);
+
+                var package = new Package(id, modified, info, status);
 
                 packages.Add(package);
             }
