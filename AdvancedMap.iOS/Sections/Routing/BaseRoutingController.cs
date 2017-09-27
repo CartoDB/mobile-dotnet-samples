@@ -96,9 +96,6 @@ namespace AdvancedMap.iOS
 					Console.WriteLine(e.Message);
 				}
 
-                var watch = new System.Diagnostics.Stopwatch();
-                watch.Start();
-
 				InvokeOnMainThread(() =>
 				{
 					if (result == null)
@@ -107,8 +104,7 @@ namespace AdvancedMap.iOS
 						return;
 					}
 
-                    Alert(Routing.GetMessage(result, watch.ElapsedMilliseconds));
-                    watch.Stop();
+                    Alert(Routing.GetMessage(result));
 
 					Color lineColor = new Color(0, 122, 255, 255);
 					Routing.Show(result);

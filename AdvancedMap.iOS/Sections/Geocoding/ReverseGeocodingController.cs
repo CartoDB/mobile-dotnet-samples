@@ -72,6 +72,8 @@ namespace AdvancedMap.iOS
 
 		public override void SetOfflineMode()
 		{
+			string text = "Click the globa icon to download geocoding packages";
+			ContentView.Banner.Show(text);
             Listener.Service = new PackageManagerReverseGeocodingService(Geocoding.Manager);
 		}
     }

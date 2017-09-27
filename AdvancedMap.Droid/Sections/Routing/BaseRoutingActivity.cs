@@ -92,7 +92,7 @@ namespace AdvancedMap.Droid
 						return;
 					}
 
-					Alert(Routing.GetMessage(result, 0));
+					Alert(Routing.GetMessage(result));
 					
 					Routing.Show(result);
                     RoutingComplete();

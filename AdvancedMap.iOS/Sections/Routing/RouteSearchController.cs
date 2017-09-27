@@ -100,9 +100,6 @@ namespace AdvancedMap.iOS
 			// Run routing in background
 			System.Threading.Tasks.Task.Run(() =>
 			{
-				var watch = new System.Diagnostics.Stopwatch();
-				watch.Start();
-
 				RoutingResult result = Routing.GetResult(startPos, stopPos);
 
 				// Update response in UI thread
@@ -110,13 +107,13 @@ namespace AdvancedMap.iOS
 				{
 					if (result == null)
 					{
-						Alert("Routing failed");
+                        ContentView.Banner.Show("Routing failed");
 						return;
 					}
 
-					Alert(Routing.GetMessage(result, watch.ElapsedMilliseconds));
-					watch.Stop();
-
+                    string text = Routing.GetMessage(result);
+					ContentView.Banner.Show(text);
+					
 					Routing.Show(result);
 
 					FeatureCollection collection = Routing.routeDataSource.GetFeatureCollection();

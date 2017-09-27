@@ -20,9 +20,8 @@ namespace AdvancedMap.iOS
 		{
 			base.ViewDidLoad();
 
-            Alert("This sample uses an online map, but downloads routing packages");
-
-            Alert("Click on the menu to see a list of countries that can be downloaded");
+            string text = "Long click on the map to set route start point";
+            ContentView.Banner.Show(text);
 
 			SetOnlineMode();
 			ContentView.SetOnlineMode();
@@ -35,7 +34,8 @@ namespace AdvancedMap.iOS
 
 		public override void SetOfflineMode()
 		{
-			// Create offline routing service connected to package manager
+			string text = "Click the globa icon to download routing packages";
+			ContentView.Banner.Show(text);
 			Routing.Service = new PackageManagerValhallaRoutingService(Routing.Manager);
 		}
 	}

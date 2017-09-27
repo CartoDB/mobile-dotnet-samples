@@ -37,8 +37,8 @@ namespace Shared.iOS
                 return (UIApplication.SharedApplication.Delegate as CartoMap.iOS.AppDelegate)
                     .Controller.NavigationBar.Frame.Height;
 #elif HELLO_IOS
-                // TODO return (UIApplication.SharedApplication.Delegate as HelloMap.iOS.AppDelegate)
-                    .Controller.NavigationBar.Frame.Height;
+                //return (UIApplication.SharedApplication.Delegate as HelloMap.iOS.AppDelegate)
+                    //.Controller.NavigationBar.Frame.Height;
 #endif
 
 				return -1;
