@@ -24,13 +24,17 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			Alert("This sample uses an online map, but downloads routing packages");
-
-			Alert("Click on the menu to see a list of countries that can be downloaded");
-
             SetOnlineMode();
             ContentView.SetOnlineMode();
 		}
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            string text = "Long click on the map to set your route start point";
+            ContentView.Banner.Show(text);
+        }
 
         protected override void SetOnlineMode()
         {

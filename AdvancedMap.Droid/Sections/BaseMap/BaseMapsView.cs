@@ -22,9 +22,10 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Views
         public LanguagePopupContent LanguageContent;
 
 		public BaseMapsView(Context context) : base(context,
-													Resource.Drawable.icon_info_blue,
-													Resource.Drawable.icon_back_blue,
-												    Resource.Drawable.icon_close)
+                                                    Resource.Drawable.icon_info_blue,
+                                                    Resource.Drawable.icon_back_blue,
+                                                    Resource.Drawable.icon_close,
+                                                    Resource.Drawable.icon_info_white)
 		{
             BasemapButton = new ActionButton(context, Resource.Drawable.icon_basemap);
             AddButton(BasemapButton);

@@ -1,4 +1,4 @@
-﻿﻿
+﻿﻿﻿
 using System;
 using System.Timers;
 using Android.App;
@@ -7,19 +7,19 @@ using Android.Graphics;
 using Android.Widget;
 using Shared.Droid;
 
-namespace AdvancedMap.Droid
+namespace Shared.Droid
 {
     public class Banner : BaseView
     {
         ImageView leftImage;
         TextView label;
 
-        public Banner(Context context) : base(context)
+        public Banner(Context context, int resource) : base(context)
         {
             leftImage = new ImageView(context);
             leftImage.SetScaleType(ImageView.ScaleType.CenterInside);
             leftImage.SetAdjustViewBounds(true);
-            leftImage.SetImageResource(Resource.Drawable.icon_info_white);
+            leftImage.SetImageResource(resource);
             AddView(leftImage);
 
             label = new TextView(context);

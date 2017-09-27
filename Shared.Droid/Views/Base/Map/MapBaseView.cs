@@ -10,6 +10,8 @@ namespace Shared.Droid
 {
     public class MapBaseView : BaseView
     {
+        public Banner Banner { get; private set; }
+
 		public MapView MapView { get; private set; }
 
 		public SlideInPopup Popup { get; private set; }
@@ -31,7 +33,7 @@ namespace Shared.Droid
 
 		public ActionButton InfoButton { get; set; }
 
-		public MapBaseView(Context context, int infoIcon, int backIcon, int closeIcon) : base(context)
+		public MapBaseView(Context context, int infoIcon, int backIcon, int closeIcon, int bannerIcon) : base(context)
         {
 			Popup = new SlideInPopup(context, backIcon, closeIcon);
 			AddView(Popup);
@@ -41,6 +43,9 @@ namespace Shared.Droid
 
             //InfoButton = new ActionButton(context, infoIcon);
             //AddButton(InfoButton);
+
+            Banner = new Banner(context, bannerIcon);
+            AddView(Banner);
         }
 
 		public override void LayoutSubviews()
@@ -70,6 +75,7 @@ namespace Shared.Droid
 				x += w + innerPadding;
 			}
 
+            Banner.Frame = new CGRect(0, 0, Frame.W, (int)(50 * Density));
         }
 
         readonly List<ActionButton> buttons = new List<ActionButton>();

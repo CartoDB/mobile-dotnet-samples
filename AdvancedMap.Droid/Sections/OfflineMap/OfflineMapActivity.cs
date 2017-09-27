@@ -22,6 +22,14 @@ namespace AdvancedMap.Droid
             SetOnlineMode();
         }
 
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            string text = "Click on the globe icon to browse map packages";
+            ContentView.Banner.Show(text);
+        }
+
         protected override void SetOnlineMode()
         {
             ContentView.SetOnlineMode();

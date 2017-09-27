@@ -17,7 +17,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\GalleryRow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\Sample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\Buttons\ActionButton.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\Banner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\Buttons\SwitchButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Subviews\PopupBackButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Subviews\PopupCloseButton.cs" />
@@ -35,6 +34,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Content\PackagePopupContent\PackageAdapter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Content\PackagePopupContent\PackageCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Menu\SlideInPopup\Content\PackagePopupContent\PackagePopupContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Banner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />

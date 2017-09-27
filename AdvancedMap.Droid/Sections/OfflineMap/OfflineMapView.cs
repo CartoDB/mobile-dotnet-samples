@@ -13,7 +13,8 @@ namespace AdvancedMap.Droid.Sections.OfflineMap
 														 Resource.Drawable.icon_global,
 														 Resource.Drawable.icon_wifi_on,
 														 Resource.Drawable.icon_wifi_off,
-														 Resource.Drawable.icon_forward_blue
+														 Resource.Drawable.icon_forward_blue,
+                                                         Resource.Drawable.icon_info_white
 														)
 		{
             Frame = new CGRect(0, 0, Metrics.WidthPixels, UsableHeight);

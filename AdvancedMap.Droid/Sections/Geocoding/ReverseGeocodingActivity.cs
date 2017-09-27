@@ -35,6 +35,9 @@ namespace AdvancedMap.Droid
 
             ContentView.MapView.MapEventListener = Listener;
             Listener.ResultFound += OnGeocodingResultFound;
+
+			string text = "Click on the map to find out more about a location";
+			ContentView.Banner.Show(text);
         }
 
         protected override void OnPause()
@@ -51,7 +54,8 @@ namespace AdvancedMap.Droid
 
 			if (result == null)
 			{
-				Alert("Couldn't find any addresses. Are you sure you have downloaded the region you're trying to reverse geocode?");
+                string text = "Couldn't find any addresses. Please try again";
+                ContentView.Banner.Show(text);
                 return;
 			}
 

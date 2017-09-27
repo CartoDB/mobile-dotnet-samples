@@ -12,8 +12,10 @@ namespace Shared.Droid
 
         public SwitchButton OnlineSwitch { get; private set; }
 
-        public DownloadBaseView(Context context, int infoIcon, int backIcon, int closeIcon, int wifiOnIcon, int wifiOffIcon) 
-            : base(context, infoIcon, backIcon, closeIcon)
+        public DownloadBaseView(Context context, 
+                                int infoIcon, int backIcon, int closeIcon, 
+                                int wifiOnIcon, int wifiOffIcon, int bannerIcon) 
+            : base(context, infoIcon, backIcon, closeIcon, bannerIcon)
         {
             ProgressLabel = new ProgressLabel(context);
             AddView(ProgressLabel);

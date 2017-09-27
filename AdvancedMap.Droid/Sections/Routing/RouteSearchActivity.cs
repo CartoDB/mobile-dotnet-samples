@@ -48,6 +48,9 @@ namespace AdvancedMap.Droid
             MapListener.StartPositionClicked += OnStartPositionClick;
             MapListener.StopPositionClicked += OnStopPositionClick;
             MapListener.SingleTapped += OnSingleTap;
+
+			string text = "Long click on the map to set your route start point";
+			ContentView.Banner.Show(text);
         }
 
         protected override void OnPause()
@@ -94,7 +97,7 @@ namespace AdvancedMap.Droid
 				{
 					if (result == null)
 					{
-						Alert("Routing failed");
+                        ContentView.Banner.Show("Routing failed");
 						return;
 					}
 

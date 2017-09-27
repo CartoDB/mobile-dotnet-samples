@@ -13,8 +13,10 @@ namespace Shared.Droid
 
         public PackagePopupContent PackageContent { get; private set; }
 
-        public PackageDownloadBaseView(Context context, int infoIcon, int backIcon, int closeIcon, int globalIcon, int wifiOnIcon, int wifiOffIcon, int forwardIcon) 
-            : base(context, infoIcon, backIcon, closeIcon, wifiOnIcon, wifiOffIcon)
+        public PackageDownloadBaseView(Context context, 
+                                       int infoIcon, int backIcon, int closeIcon, int globalIcon, 
+                                       int wifiOnIcon, int wifiOffIcon, int forwardIcon, int bannerIcon) 
+            : base(context, infoIcon, backIcon, closeIcon, wifiOnIcon, wifiOffIcon, bannerIcon)
         {
             Packagebutton = new ActionButton(context, globalIcon);
             AddButton(Packagebutton);

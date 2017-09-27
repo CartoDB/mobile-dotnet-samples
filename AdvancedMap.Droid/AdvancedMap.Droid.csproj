@@ -105,7 +105,6 @@
     <Compile Include="BaseClasses\MapBaseActivity.cs" />
     <Compile Include="Main\MainActivity.cs" />
     <Compile Include="Main\Samples.cs" />
-    <Compile Include="BaseClasses\Banner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
