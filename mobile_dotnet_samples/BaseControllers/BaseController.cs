@@ -6,7 +6,7 @@ using UIKit;
 
 namespace Shared.iOS
 {
-	public class BaseController : UIViewController // TODO Throws exception on ViewWillDisappear GLKit.GLKViewController
+	public class BaseController : UIViewController
 	{
 		public virtual string Name { get; set; }
 

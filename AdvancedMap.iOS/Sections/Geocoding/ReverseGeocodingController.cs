@@ -34,6 +34,9 @@ namespace AdvancedMap.iOS
 
             ContentView.MapView.MapEventListener = Listener;
             Listener.ResultFound += OnFoundResult;
+
+            string text = "Click on a location to find out more about it";
+            ContentView.Banner.Show(text);
         }
 
         public override void ViewWillDisappear(bool animated)

@@ -56,5 +56,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\GalleryDataSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\Sample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Base\ClickView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Banner.cs" />
   </ItemGroup>
 </Project>

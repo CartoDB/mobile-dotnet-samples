@@ -4,12 +4,15 @@ using Carto.Layers;
 using Carto.Projections;
 using Carto.Ui;
 using CoreGraphics;
+using Shared.iOS.Views;
 using UIKit;
 
 namespace Shared.iOS
 {
     public class MapBaseView : UIView
     {
+        public Banner Banner { get; private set; }
+
 		public MapView MapView { get; private set; }
 
 		public SlideInPopup Popup { get; private set; }
@@ -23,6 +26,9 @@ namespace Shared.iOS
         {
 			MapView = new MapView();
 			AddSubview(MapView);
+			
+            Banner = new Banner();
+			AddSubview(Banner);
 
 			Popup = new SlideInPopup();
 			AddSubview(Popup);
@@ -55,6 +61,8 @@ namespace Shared.iOS
 				button.Frame = new CGRect(x, y, w, h);
 				x += w + innerPadding;
 			}
+
+            Banner.Frame = new CGRect(0, Device.TrueY0, Frame.Width, 45);
 		}
 
         readonly List<PopupButton> buttons = new List<PopupButton>();

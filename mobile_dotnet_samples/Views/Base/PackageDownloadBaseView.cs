@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Carto.Layers;
 using Carto.PackageManager;
+using Shared.iOS.Views;
 using UIKit;
 
 namespace Shared.iOS
@@ -34,11 +35,6 @@ namespace Shared.iOS
 			AddButton(OnlineButton);
 
             PackageContent = new PackagePopupContent();
-        }
-
-        public override void LayoutSubviews()
-        {
-            base.LayoutSubviews();
         }
 
         public string Folder { get; set; } = "";

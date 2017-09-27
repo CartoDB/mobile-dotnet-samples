@@ -273,6 +273,7 @@
     <BundleResource Include="Resources\basemaps\style_image_nutiteq_gray.png" />
     <BundleResource Include="Resources\basemaps\style_image_nutiteq_positron.png" />
     <BundleResource Include="Resources\basemaps\style_image_nutiteq_voyager.png" />
+    <BundleResource Include="Resources\icons\banner_icon_info.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />

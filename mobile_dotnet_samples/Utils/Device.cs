@@ -6,6 +6,11 @@ namespace Shared.iOS
 {
     public class Device
     {
+        public static nfloat TrueY0
+        {
+            get { return NavBarHeight + StatusBarHeight; }
+        }
+
         public static bool IsLandscape
         {
             get
@@ -26,15 +31,17 @@ namespace Shared.iOS
             {
 
 #if ADVANCED_IOS
-                return (UIApplication.SharedApplication.Delegate as AdvancedMap.iOS.AppDelegate).Controller.NavigationBar.Frame.Height;
+                return (UIApplication.SharedApplication.Delegate as AdvancedMap.iOS.AppDelegate)
+                    .Controller.NavigationBar.Frame.Height;
 #elif CARTO_IOS
-                return (UIApplication.SharedApplication.Delegate as CartoMap.iOS.AppDelegate).Controller.NavigationBar.Frame.Height;
+                return (UIApplication.SharedApplication.Delegate as CartoMap.iOS.AppDelegate)
+                    .Controller.NavigationBar.Frame.Height;
 #elif HELLO_IOS
-                // TODO return (UIApplication.SharedApplication.Delegate as HelloMap.iOS.AppDelegate).Controller.NavigationBar.Frame.Height;
+                // TODO return (UIApplication.SharedApplication.Delegate as HelloMap.iOS.AppDelegate)
+                    .Controller.NavigationBar.Frame.Height;
 #endif
 
 				return -1;
-
             }
         }
 
