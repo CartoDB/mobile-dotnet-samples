@@ -1,4 +1,5 @@
 ﻿using System;
+using Android.Animation;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -162,5 +163,13 @@ namespace Shared.Droid
                 manager.HideSoftInputFromWindow(view.WindowToken, 0);
             }
         }
-    }
+
+		public void AnimateAlpha(float to, long duration = 200)
+		{
+			var animator = ObjectAnimator.OfFloat(this, "alpha", to);
+			animator.SetDuration(duration);
+			animator.Start();
+		}
+
+	}
 }
