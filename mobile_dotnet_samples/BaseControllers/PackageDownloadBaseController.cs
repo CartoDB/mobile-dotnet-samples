@@ -43,6 +43,8 @@ namespace Shared.iOS
             ContentView.OnlineButton.Switched += OnSwitchChanged;
 
             ContentView.PackageButton.Click += PackageButtonTapped;
+
+			ContentView.Popup.Header.BackButton.Click += OnPopupBackClicked;
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -66,11 +68,32 @@ namespace Shared.iOS
             ContentView.OnlineButton.Switched -= OnSwitchChanged;
 
             ContentView.PackageButton.Click -= PackageButtonTapped;
+
+            ContentView.Popup.Header.BackButton.Click -= OnPopupBackClicked;
         }
+
+		void OnPopupBackClicked(object sender, EventArgs e)
+		{
+			ContentView.Folder = ContentView.Folder.Substring(0, ContentView.Folder.Length - 1);
+			var lastSlash = ContentView.Folder.LastIndexOf("/", StringComparison.Ordinal);
+
+			if (lastSlash == -1)
+			{
+				ContentView.Folder = "";
+				ContentView.HideBackButton();
+			}
+			else
+			{
+				ContentView.Folder = ContentView.Folder.Substring(0, lastSlash + 1);
+			}
+
+			List<Package> packages = Client.GetPackages(ContentView.Folder);
+			ContentView.PackageContent.AddPackages(packages);
+		}
 
         void PackageButtonTapped(object sender, EventArgs e)
 		{
-			ContentView.Popup.Header.SetText("SELECT A PACKAGE TO DOWNLOAD");
+			ContentView.Popup.Header.SetText("SELECT A PACKAGE");
 			ContentView.Popup.SetContent(ContentView.PackageContent);
 			ContentView.Popup.Show();
 		}
@@ -100,6 +123,7 @@ namespace Shared.iOS
 				InvokeOnMainThread(delegate
 				{
 					ContentView.UpdatePackages(packages);
+                    ContentView.Popup.ShowBackButton();
 				});
 			}
 			else

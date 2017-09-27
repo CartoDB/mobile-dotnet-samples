@@ -115,6 +115,28 @@ namespace Shared.iOS
 
             AddGestureRecognizer(recognizer);
         }
+
+        public override void LayoutSubviews()
+        {
+            base.LayoutSubviews();
+
+            nfloat padding = 3;
+            nfloat imagePadding = Frame.Height / 4;
+
+            nfloat x = 0;
+            nfloat y = imagePadding;
+            nfloat h = Frame.Height - 2 * imagePadding;
+            nfloat w = h / 2;
+
+            button.Frame = new CGRect(x, y, w, h);
+
+            x = button.Frame.Width + imagePadding;
+            y = 0;
+            w = Frame.Width - (x + padding);
+            h = Frame.Height;
+
+            Label.Frame = new CGRect(x, y, w, h);
+        }
     }
 
 }

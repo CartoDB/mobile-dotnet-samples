@@ -244,6 +244,8 @@ namespace Shared
                 packages.Add(package);
             }
 
+            packages.AddRange(GetCustomRegionPackages());
+
             return packages;
         }
 

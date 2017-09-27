@@ -15,6 +15,16 @@ namespace Shared.iOS
 
 		public PackagePopupContent PackageContent { get; private set; }
 
+        public void ShowBackButton()
+        {
+            Popup.Header.BackButton.Hidden = false;
+        }
+
+        public void HideBackButton()
+        {
+            Popup.Header.BackButton.Hidden = true;    
+        }
+
 		public PackageDownloadBaseView()
         {
             PackageButton = new PopupButton("icons/icon_global.png");
