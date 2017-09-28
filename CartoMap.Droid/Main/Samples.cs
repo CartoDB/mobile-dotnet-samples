@@ -42,14 +42,14 @@ namespace CartoMap.Droid
 			},
 			new Sample {
 				Type = typeof(NamedMapActivity),
-				Title = "Indoor map",
-                Description = "Names map via CARTO maps service",
+				Title = "Indoor Map",
+                Description = "Named map via CARTO maps service",
 				ImageResource = Resource.Drawable.image_named
 			},
 			new Sample {
 				Type = typeof(SQLServiceActivity),
 				Title = "Large Cities",
-                Description = "Largest cities via CARTO sql service",
+                Description = "Largest cities via CARTO SQL Service",
 				ImageResource = Resource.Drawable.image_sql
 			},
 			new Sample {
