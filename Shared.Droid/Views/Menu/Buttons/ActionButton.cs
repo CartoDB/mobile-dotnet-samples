@@ -43,7 +43,7 @@ namespace Shared.Droid
         public void Enable()
 		{
 			Alpha = 1.0f;
-			isEnabled = false;
+            isEnabled = true;
 		}
 
         public void Disable()

@@ -93,10 +93,6 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Views
                 var decoder = new MBVectorTileDecoder(styleSet);
 
                 CurrentLayer = new VectorTileLayer(ds, decoder);
-
-                //ContentView.Menu.LanguageChoiceEnabled = true;
-                //ResetLanguage();
-
             }
             else if (source.Equals(StylePopupContent.CartoRasterSource))
             {
@@ -108,9 +104,6 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Views
 
                 TileDataSource ds = new HTTPTileDataSource(1, 19, url);
                 CurrentLayer = new RasterTileLayer(ds);
-
-                // Language choice not enabled in raster tiles
-                //ContentView.Menu.LanguageChoiceEnabled = false;
             }
 
             if (source.Equals(StylePopupContent.CartoRasterSource))
