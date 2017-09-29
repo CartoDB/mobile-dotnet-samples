@@ -7,15 +7,15 @@ namespace Shared.iOS
 	public class GalleryRow : UIView
 	{
 		UIImageView image;
-		UILabel label;
+        UILabel title, description;
 
-		public MapListRowSource Source { get; private set; }
+		public Sample Source { get; private set; }
 
-		public GalleryRow(MapListRowSource source)
+		public GalleryRow(Sample source)
 		{
 			Source = source;
 
-			BackgroundColor = Colors.CartoRed;
+            BackgroundColor = UIColor.White;
 
 			image = new UIImageView();
 
@@ -26,14 +26,21 @@ namespace Shared.iOS
 				image.ClipsToBounds = true;
 			}
 
-			label = new UILabel();
-			label.Text = source.Title.ToUpper();
-			label.Font = UIFont.FromName("HelveticaNeue", 10);
-			label.TextColor = UIColor.White;
-			label.TextAlignment = UITextAlignment.Center;
+			AddSubviews(image);
 
-			AddSubviews(image, label);
+			title = new UILabel();
+			title.Text = source.Title;
+			title.Font = UIFont.FromName("HelveticaNeue-Bold", 14);
+            title.TextColor = Colors.AppleBlue;
+            AddSubview(title);
 
+            description = new UILabel();
+            description.Text = source.Description;
+            description.TextColor = UIColor.LightGray;
+            description.Font = UIFont.FromName("HelveticaNeue", 12);
+            description.LineBreakMode = UILineBreakMode.WordWrap;
+            description.Lines = 0;
+            AddSubview(description);
 		}
 
 		public override void LayoutSubviews()
@@ -43,20 +50,27 @@ namespace Shared.iOS
 			AddShadow();
 
 			nfloat padding = 5;
+            nfloat imageHeight = Frame.Height / 5 * 3;
 
-			nfloat labelHeight = (Frame.Height - 3 * padding) / 4;
+            title.SizeToFit();
+            description.SizeToFit();
 
 			nfloat x = padding;
 			nfloat y = padding;
 			nfloat w = Frame.Width - 2 * padding;
-			nfloat h = Frame.Height - labelHeight;
+			nfloat h = imageHeight;
 
 			image.Frame = new CGRect(x, y, w, h);
 
-			y += h - padding / 2;
-			h = labelHeight;
+            y += h + padding;
+            h = title.Frame.Height;
 
-			label.Frame = new CGRect(x, y, w, h);
+			title.Frame = new CGRect(x, y, w, h);
+
+            y += h + padding;
+            h = description.Frame.Height;
+
+            description.Frame = new CGRect(x, y, w, h);
 		}
 
 		void AddShadow()

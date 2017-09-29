@@ -7,60 +7,50 @@ namespace AdvancedMap.iOS
 	{
 		public static bool IsAtLeastiOS8
 		{
-			get
-			{
-				return UIDevice.CurrentDevice.CheckSystemVersion(8, 0);
-			}
+			get { return UIDevice.CurrentDevice.CheckSystemVersion(8, 0); }
 		}
 
-		public static nfloat NavigationBarHeight;
+        public static nfloat TrueY0
+        {
+            get { return NavigationBarHeight + StatusBarHeight; }
+        }
+
+		public static nfloat NavigationBarHeight
+        {
+            get {
+                var appdelegate = UIApplication.SharedApplication.Delegate as AppDelegate;
+                return appdelegate.Controller.NavigationBar.Frame.Height;
+            }
+        }
 
 		public static nfloat StatusBarHeight
 		{
-			get
-			{
-				return UIApplication.SharedApplication.StatusBarFrame.Height;
-			}
+			get { return UIApplication.SharedApplication.StatusBarFrame.Height; }
 		}
 
 		public static nfloat ScreenWidth
 		{
-			get
-			{
-				return UIScreen.MainScreen.Bounds.Size.Width;
-			}
+			get { return UIScreen.MainScreen.Bounds.Size.Width; }
 		}
 
 		public static nfloat ScreenHeight
 		{
-			get
-			{
-				return UIScreen.MainScreen.Bounds.Size.Height;
-			}
+			get { return UIScreen.MainScreen.Bounds.Size.Height; }
 		}
 
 		public static bool IsWidePhone
 		{
-			get
-			{
-				return ScreenHeight / ScreenWidth <= 1.5f;
-			}
+			get { return ScreenHeight / ScreenWidth <= 1.5f; }
 		}
 
 		public static bool IsFullHD
 		{
-			get
-			{
-				return ScreenHeight == 736;
-			}
+			get { return ScreenHeight == 736; }
 		}
 
 		public static nfloat TrueScreenHeight
 		{
-			get
-			{
-				return ScreenHeight - (NavigationBarHeight + StatusBarHeight);
-			}
+			get { return ScreenHeight - (NavigationBarHeight + StatusBarHeight); }
 		}
 
 		public static bool IsLandscape
@@ -83,18 +73,12 @@ namespace AdvancedMap.iOS
 
 		public static string AppVersion
 		{
-			get
-			{
-				return Foundation.NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString();
-			}
+			get { return Foundation.NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString(); }
 		}
 
 		public static string OsVersion
 		{
-			get
-			{
-				return "iOS " + UIDevice.CurrentDevice.SystemVersion;
-			}
+			get { return "iOS " + UIDevice.CurrentDevice.SystemVersion; }
 		}
 
 		public static bool IsIOS8OrHigher
@@ -102,19 +86,14 @@ namespace AdvancedMap.iOS
 			get
 			{
 				float result;
-
 				float.TryParse(UIDevice.CurrentDevice.SystemVersion, out result);
-
 				return result >= 8.0f;
 			}
 		}
 
 		public static bool IsTablet
 		{
-			get
-			{
-				return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad;
-			}
+			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad; }
 		}
 
 	}

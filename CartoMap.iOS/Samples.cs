@@ -7,86 +7,54 @@ namespace CartoMap.iOS
 {
 	public class Samples
 	{
-		//public static List<UIViewController> List = new List<UIViewController>
-		//{
-		//	new HeaderController() { Name = "CARTO.js API" },
-		//	new TrainVisController(),
-		//	new StoresVisController(),
-		//	new FontsVisController(),
-		//	// TODO: Currently disabled, as the feature is a work in progress
-		//	//new HeaderController() { Name = "Import API" },
-		//	//new TilePackagerController(),
-		//	new HeaderController() { Name = "Maps API" },
-		//	new AnonymousRasterTableController(),
-		//	new AnonymousVectorTableController(),
-		//	new NamedMapController(),
-		//	new HeaderController() { Name = "SQL API" },
-		//	new SQLServiceController(),
-		//	new HeaderController() { Name = "Torque API" },
-		//	new TorqueShipController()
-		//};
-
-		//public static List<MapListRowSource> RowSources
-		//{
-		//	get
-		//	{
-		//		List<MapListRowSource> sources = new List<MapListRowSource>();
-
-		//		foreach (UIViewController controller in List)
-		//		{
-		//			MapListRowSource source = new MapListRowSource { Controller = controller };
-
-		//			source.Title = (controller as BaseController).Name;
-		//			source.Description = (controller as BaseController).Description;
-
-		//			sources.Add(source);
-		//		}
-
-		//		return sources;
-		//	}
-		//}
-
-
-		public static List<MapListRowSource> List = new List<MapListRowSource>
+		public static List<Sample> List = new List<Sample>
 		{
-			new MapListRowSource {
+			new Sample {
 				Controller = new TrainVisController(),
-				Title = "NYCity Subway Vis",
+				Title = "Subway Vis",
+                Description = "Vis.json of New York subway routes",
 				ImageResource = "image_viz_subway.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new StoresVisController(),
-				Title = "Predicted Store Locations",
+				Title = "Store Locations",
+                Description = "Vis.json of predicted store locations",
 				ImageResource = "image_viz_store.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new FontsVisController(),
 				Title = "Fonts Vis",
+                Description = "Vis.json displaying different fonts",
 				ImageResource = "image_viz_fonts.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new AnonymousRasterTableController(),
-				Title = "Anonymous Raster Tile",
+				Title = "Raster Tile",
+                Description = "Anonymous raster tiles via CARTO Maps Service",
 				ImageResource = "image_anon_raster.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new AnonymousVectorTableController(),
-				Title = "Anonymous Vector Tile",
+				Title = "Vector Tile",
+                Description = "Anonymous vector tiles via CARTO Maps Service",
 				ImageResource = "image_anon_vector.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new NamedMapController(),
-				Title = "Named map",
+				Title = "Indoor Map",
+                Description = "Names map via CARTO Maps Service",
 				ImageResource = "image_named.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new SQLServiceController(),
-				Title = "SQL Service",
+				Title = "Large Cities",
+                Description = "Largest cities via CARTO Sql Service",
 				ImageResource = "image_sql.png",
 			},
-			new MapListRowSource {
+			new Sample {
 				Controller = new TorqueShipController(),
 				Title = "Indoor Torque",
+                Description = "Torque map of movement in a shopping mall",
 				ImageResource = "image_torque.png",
 			}
 		};

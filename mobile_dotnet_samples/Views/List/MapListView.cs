@@ -7,7 +7,7 @@ namespace Shared.iOS
 {
 	public class MapListView : UITableView
 	{
-		public MapListDataSource ListSource { get; set; }
+		public GalleryDataSource ListSource { get; set; }
 
 		public MapListView()
 		{
@@ -19,9 +19,9 @@ namespace Shared.iOS
 			base.LayoutSubviews();
 		}
 
-		public void AddRows(List<MapListRowSource> sources)
+		public void AddRows(List<Sample> sources)
 		{
-			ListSource = new MapListDataSource { Items = sources };
+			ListSource = new GalleryDataSource { Items = sources };
 			Source = ListSource;
 		}
 

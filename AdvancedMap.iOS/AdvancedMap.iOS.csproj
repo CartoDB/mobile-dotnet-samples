@@ -15,7 +15,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
-    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;ENABLE_TEST_CLOUD;ADVANCED_IOS;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -31,25 +31,23 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhone\Release</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;ADVANCED_IOS;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Distribution: CARTODB ESTONIA OU</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
-    <CodesignProvision>fb82d2db-12ea-445b-b226-baf99c0f6e95</CodesignProvision>
+    <CodesignProvision></CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;ADVANCED_IOS;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -58,14 +56,14 @@
     <MtouchArch>i386</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
-    <CodesignProvision>fbd4706f-c60c-4a4d-96de-23c59a9eb4a0</CodesignProvision>
+    <CodesignProvision></CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhone\Debug</OutputPath>
-    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;ENABLE_TEST_CLOUD;ADVANCED_IOS;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -88,17 +86,17 @@
     <Reference Include="Xamarin.iOS" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Json" />
-    <Reference Include="Calabash">
-      <HintPath>..\packages\Xamarin.TestCloud.Agent.0.20.3\lib\Xamarin.iOS10\Calabash.dll</HintPath>
-    </Reference>
     <Reference Include="CartoMobileSDK.iOS">
-      <HintPath>..\packages\CartoMobileSDK.iOS.4.0.2\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.iOS.4.1.0-rc3\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
     </Reference>
     <Reference Include="HockeySDK">
-      <HintPath>..\packages\HockeySDK.Xamarin.4.1.3\lib\Xamarin.iOS10\HockeySDK.dll</HintPath>
+      <HintPath>..\packages\HockeySDK.Xamarin.5.0.0\lib\Xamarin.iOS10\HockeySDK.dll</HintPath>
     </Reference>
     <Reference Include="HockeySDK.iOSBindings">
-      <HintPath>..\packages\HockeySDK.Xamarin.4.1.3\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
+      <HintPath>..\packages\HockeySDK.Xamarin.5.0.0\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Calabash">
+      <HintPath>..\packages\Xamarin.TestCloud.Agent.0.21.1\lib\Xamarin.iOS\Calabash.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -156,24 +154,22 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="ForceTouch\" />
     <Folder Include="Sections\" />
     <Folder Include="Sections\BaseMap\" />
     <Folder Include="Sections\OfflineMap\" />
     <Folder Include="Sections\Other\" />
     <Folder Include="Sections\OverlayDataSource\" />
     <Folder Include="Sections\VectorObjects\" />
-    <Folder Include="Sections\OfflineMap\AdvancedPackageManager\" />
-    <Folder Include="Sections\OfflineMap\AdvancedPackageManager\Views\" />
-    <Folder Include="Sections\BaseMap\Views\" />
     <Folder Include="Resources\icons\" />
     <Folder Include="Resources\styles\" />
     <Folder Include="Resources\mbtiles\" />
-    <Folder Include="Sections\OfflineMap\BasicPackageManager\" />
-    <Folder Include="Sections\OfflineMap\BasicPackageManager\Views\" />
     <Folder Include="Sections\Routing\" />
-    <Folder Include="Sections\Routing\OfflineRouting\" />
     <Folder Include="Resources\gallery\" />
+    <Folder Include="Sections\Geocoding\" />
+    <Folder Include="Sections\Geocoding\Base\" />
+    <Folder Include="Main\" />
+    <Folder Include="Sections\BaseMap\Subviews\" />
+    <Folder Include="Resources\basemaps\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -183,13 +179,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Samples.cs" />
     <Compile Include="Device.cs" />
-    <Compile Include="ForceTouch\ForceTouchRecognizer.cs" />
     <Compile Include="Sections\OfflineMap\BundledMapController.cs" />
     <Compile Include="Sections\OverlayDataSource\WmsMapController.cs" />
     <Compile Include="Sections\VectorObjects\OverlaysController.cs" />
@@ -197,25 +187,30 @@
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceController.cs" />
     <Compile Include="Sections\Other\CaptureController.cs" />
     <Compile Include="Sections\OverlayDataSource\GroundOverlayController.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\AdvancedPackageManagerController.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageListCell.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageManagerButton.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageManagerListView.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackageListDataSource.cs" />
     <Compile Include="Sections\Other\CustomPopupController.cs" />
     <Compile Include="Sections\BaseMap\BaseMapsController.cs" />
     <Compile Include="Sections\VectorObjects\VectorObjectEditingController.cs" />
     <Compile Include="Sections\VectorObjects\ClusteredMarkersController.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenu.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenuItem.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapSectionLabel.cs" />
-    <Compile Include="Sections\OfflineMap\BasicPackageManager\BasicPackageManagerController.cs" />
-    <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\CityChoiceMenu.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackagedMapController.cs" />
     <Compile Include="Sections\Routing\BaseRoutingController.cs" />
     <Compile Include="Sections\Routing\OfflineRoutingController.cs" />
-    <Compile Include="Sections\Routing\OnlineRoutingController.cs" />
-    <Compile Include="Sections\Routing\OfflineRouting\PackageManagerMenu.cs" />
+    <Compile Include="Sections\Geocoding\ReverseGeocodingController.cs" />
+    <Compile Include="Sections\Geocoding\Base\BaseGeocodingView.cs" />
+    <Compile Include="Sections\Geocoding\Base\BaseGeocodingController.cs" />
+    <Compile Include="Sections\Geocoding\ReverseGeocodingView.cs" />
+    <Compile Include="Sections\Geocoding\GeocodingController.cs" />
+    <Compile Include="Sections\Geocoding\GeocodingView.cs" />
+    <Compile Include="Sections\Routing\RouteSearchController.cs" />
+    <Compile Include="Sections\Routing\RouteSearchView.cs" />
+    <Compile Include="Sections\Routing\RoutingExtensions.cs" />
+    <Compile Include="Sections\Other\BundledUserDataController.cs" />
+    <Compile Include="Main\Samples.cs" />
+    <Compile Include="Sections\OfflineMap\OfflineMapController.cs" />
+    <Compile Include="Sections\OfflineMap\OfflineMapView.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\StylePopupContentSectionItem.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\StylePopupContentSection.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\StylePopupContent.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\LanguagePopupContent.cs" />
+    <Compile Include="Sections\BaseMap\BaseMapsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\fcd_auto.nml" />
@@ -230,7 +225,6 @@
     <BundleResource Include="Resources\icons\icon_more%402x.png" />
     <BundleResource Include="Resources\icons\info.png" />
     <BundleResource Include="Resources\icons\olmarker.png" />
-    <BundleResource Include="Resources\mbtiles\rome_ntvt.mbtiles" />
     <BundleResource Include="Resources\mbtiles\world_ntvt_0_4.mbtiles" />
     <BundleResource Include="Resources\mbtiles\world_zoom5.mbtiles" />
     <BundleResource Include="Resources\icons\marker.png" />
@@ -253,6 +247,33 @@
     <BundleResource Include="Resources\gallery\image_ground_overlays.png" />
     <BundleResource Include="Resources\gallery\image_custom_raster.png" />
     <BundleResource Include="Resources\gallery\image_base_maps.png" />
+    <BundleResource Include="Resources\icons\icon_close_dark.png" />
+    <BundleResource Include="Resources\icons\icon_back_blue.png" />
+    <BundleResource Include="Resources\icons\icon_forward_blue.png" />
+    <BundleResource Include="Resources\icons\icon_global.png" />
+    <BundleResource Include="Resources\gallery\icon_sample_geocoding.png" />
+    <BundleResource Include="Resources\gallery\icon_sample_reverse_geocoding.png" />
+    <BundleResource Include="Resources\gallery\icon_sample_route_search.png" />
+    <BundleResource Include="Resources\icons\icon_wifi_off.png" />
+    <BundleResource Include="Resources\icons\icon_wifi_on.png" />
+    <BundleResource Include="Resources\carto-fonts.zip" />
+    <BundleResource Include="Resources\mbtiles\offline-packages.mbtiles" />
+    <BundleResource Include="Resources\gallery\icon_sample_user_data.png" />
+    <BundleResource Include="Resources\mbtiles\rome_carto-streets.mbtiles" />
+    <BundleResource Include="Resources\icons\icon_basemap.png" />
+    <BundleResource Include="Resources\icons\icon_language.png" />
+    <BundleResource Include="Resources\basemaps\style_image_carto_darkmatter.png" />
+    <BundleResource Include="Resources\basemaps\style_image_carto_positron.png" />
+    <BundleResource Include="Resources\basemaps\style_image_mapzen_bright.png" />
+    <BundleResource Include="Resources\basemaps\style_image_mapzen_darkmatter.png" />
+    <BundleResource Include="Resources\basemaps\style_image_mapzen_positron.png" />
+    <BundleResource Include="Resources\basemaps\style_image_nutiteq_bright.png" />
+    <BundleResource Include="Resources\basemaps\style_image_nutiteq_dark.png" />
+    <BundleResource Include="Resources\basemaps\style_image_nutiteq_darkmatter.png" />
+    <BundleResource Include="Resources\basemaps\style_image_nutiteq_gray.png" />
+    <BundleResource Include="Resources\basemaps\style_image_nutiteq_positron.png" />
+    <BundleResource Include="Resources\basemaps\style_image_nutiteq_voyager.png" />
+    <BundleResource Include="Resources\icons\banner_icon_info.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />

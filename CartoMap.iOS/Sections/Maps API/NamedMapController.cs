@@ -49,7 +49,9 @@ namespace CartoMap.iOS
 		{
 			base.ViewWillAppear(animated);
 
-			MapView.ConfigureNamedVectorLayers("tpl_69f3eebe_33b6_11e6_8634_0e5db1731f59", delegate
+            string name = "tpl_69f3eebe_33b6_11e6_8634_0e5db1731f59";
+             
+			MapView.ConfigureNamedVectorLayers(name, delegate
 			{
 				foreach (VectorTileLayer layer in VectorLayers)
 				{

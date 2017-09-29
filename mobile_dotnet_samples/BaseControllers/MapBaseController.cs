@@ -13,7 +13,7 @@ namespace Shared.iOS
 
 		protected Projection BaseProjection { get; private set; }
 
-		protected TileLayer BaseLayer { get; set; }
+		protected VectorTileLayer BaseLayer { get; set; }
 
 		public override void ViewDidLoad()
 		{
@@ -27,16 +27,16 @@ namespace Shared.iOS
 			Title = Name;
 		}
 
-		protected Carto.Graphics.Bitmap CreateBitmap(string resource)
-		{
-			return BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile(resource));
-		}
-
 		protected void AddOnlineBaseLayer(CartoBaseMapStyle withStyle)
 		{
-			// Initialize map
-			var baseLayer = new CartoOnlineVectorTileLayer(withStyle);
-			MapView.Layers.Add(baseLayer);
+            // Initialize map
+            if (BaseLayer != null)
+            {
+                MapView.Layers.Remove(BaseLayer);
+            }
+
+			BaseLayer = new CartoOnlineVectorTileLayer(withStyle);
+			MapView.Layers.Add(BaseLayer);
 		}
 	}
 }

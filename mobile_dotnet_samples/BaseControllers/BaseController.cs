@@ -1,11 +1,12 @@
 ﻿
 using System;
 using System.Threading.Tasks;
+using Carto.Utils;
 using UIKit;
 
 namespace Shared.iOS
 {
-	public class BaseController : GLKit.GLKViewController
+	public class BaseController : UIViewController
 	{
 		public virtual string Name { get; set; }
 
@@ -13,7 +14,9 @@ namespace Shared.iOS
 
 		protected async void Alert(string message)
 		{
-			await ShowToast(message);
+            InvokeOnMainThread(async () => {
+                await ShowToast(message);    
+            });
 		}
 
 		async Task ShowToast(string message, UIAlertView toast = null)
@@ -33,6 +36,12 @@ namespace Shared.iOS
 			UIView.CommitAnimations();
 			toast.DismissWithClickedButtonIndex(0, true);
 		}
+
+		protected Carto.Graphics.Bitmap CreateBitmap(string resource)
+		{
+			return BitmapUtils.CreateBitmapFromUIImage(UIImage.FromFile(resource));
+		}
+
 	}
 
 	public class AlertDelegate : UIAlertViewDelegate

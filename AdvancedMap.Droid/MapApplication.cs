@@ -26,6 +26,7 @@ namespace AdvancedMap.Droid
 			Log.ShowInfo = true;
 			Log.ShowError = true;
 			Log.ShowWarn = true;
+            Log.ShowDebug = true;
 
 			// Register license
 			MapView.RegisterLicense(CartoLicense, ApplicationContext);

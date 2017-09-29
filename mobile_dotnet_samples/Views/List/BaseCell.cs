@@ -23,7 +23,7 @@ namespace Shared.iOS
 			AddSubviews(title, description);
 		}
 
-		public virtual void Update(MapListRowSource item) 
+		public virtual void Update(Sample item) 
 		{
 			title.Text = item.Title;
 		}

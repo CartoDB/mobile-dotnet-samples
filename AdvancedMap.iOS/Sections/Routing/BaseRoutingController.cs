@@ -9,25 +9,28 @@ using UIKit;
 
 namespace AdvancedMap.iOS
 {
-	public class BaseRoutingController : MapBaseController
+    public class BaseRoutingController : PackageDownloadBaseController
 	{
 		protected RouteMapEventListener MapListener { get; set; }
 
-		protected Routing Routing;
+		protected Routing Routing
+		{
+			get { return Client as Routing; }
+		}
 
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
-			// Virtual method overridden in child classes in order to keep layer order correct
-			SetBaseLayer();
+            ContentView = new PackageDownloadBaseView();
+            View = ContentView;
+
+			string folder = GetPackageFolder(Routing.PackageFolder);
+			Client = new Routing(ContentView.MapView, folder);
 
 			// Set route listener
 			MapListener = new RouteMapEventListener();
-			MapView.MapEventListener = MapListener;
-
-			Routing = new Routing(MapView, BaseProjection);
-
+			
 			Alert("Long-press on map to set route start and finish");
 
 			Bitmap olmarker = CreateBitmap("icons/olmarker.png");
@@ -40,11 +43,8 @@ namespace AdvancedMap.iOS
 			Color white = new Color(255, 255, 255, 255);
 
 			Routing.SetSourcesAndElements(olmarker, directionUp, directionUpLeft, directionUpRight, green, red, white);
-		}
 
-		protected virtual void SetBaseLayer()
-		{
-			throw new NotImplementedException();
+            ContentView.SetOnlineMode();
 		}
 
 		public override void ViewWillAppear(bool animated)
@@ -54,7 +54,7 @@ namespace AdvancedMap.iOS
 			MapListener.StartPositionClicked += OnStartPositionClick;
 			MapListener.StopPositionClicked += OnStopPositionClick;
 
-			MapView.MapEventListener = MapListener;
+			ContentView.MapView.MapEventListener = MapListener;
 		}
 
 		public override void ViewWillDisappear(bool animated)
@@ -64,7 +64,7 @@ namespace AdvancedMap.iOS
 			MapListener.StartPositionClicked -= OnStartPositionClick;
 			MapListener.StopPositionClicked -= OnStopPositionClick;
 
-			MapView.MapEventListener = null;
+            ContentView.MapView.MapEventListener = null;
 		}
 
 		protected void OnStartPositionClick(object sender, RouteMapEventArgs e)
@@ -96,9 +96,6 @@ namespace AdvancedMap.iOS
 					Console.WriteLine(e.Message);
 				}
 
-				// Update response in UI thread
-				long now = DateTime.Now.Millisecond;
-
 				InvokeOnMainThread(() =>
 				{
 					if (result == null)
@@ -107,12 +104,19 @@ namespace AdvancedMap.iOS
 						return;
 					}
 
-					Alert(Routing.GetMessage(result, time, now));
+                    Alert(Routing.GetMessage(result));
 
 					Color lineColor = new Color(0, 122, 255, 255);
-					Routing.Show(result, lineColor);
+					Routing.Show(result);
+                    RoutingComplete();
 				});
 			});
 		}
+
+        public virtual void RoutingComplete()
+        {
+            // Implementation in RouteSearchController 
+            // where attractions are added after the route is calculated
+        }
 	}
 }

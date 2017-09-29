@@ -22,7 +22,7 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+            AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStylePositron);
 
 			Projection projection = BaseProjection;
 

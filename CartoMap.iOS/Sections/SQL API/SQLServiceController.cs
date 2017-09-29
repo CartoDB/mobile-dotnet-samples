@@ -25,7 +25,7 @@ namespace CartoMap.iOS
 
 			// Clear the default layer, add a dark one instead
 			MapView.Layers.Clear();
-			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDark);
+            var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDarkmatter);
 
 			// Remove texts so dots would be more prominent
 			(baseLayer.TileDecoder as MBVectorTileDecoder).SetStyleParameter("lang", "nolang");

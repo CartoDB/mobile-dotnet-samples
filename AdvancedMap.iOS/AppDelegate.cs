@@ -21,11 +21,11 @@ namespace AdvancedMap.iOS
 		{
 			MapView.RegisterLicense(CartoLicense);
 
-			UIViewController initial = new MapListController("Advanced Map Samples", Samples.List);
+			UIViewController initial = new MapListController("Advanced Samples", Samples.List);
 			Controller = new UINavigationController(initial);
 
 			// Navigation bar background color
-			Controller.NavigationBar.BarTintColor = Colors.CartoNavy;
+            Controller.NavigationBar.BarTintColor = Colors.CartoRed;
 			// Back button color
 			Controller.NavigationBar.TintColor = UIColor.White;
 			// Title color
@@ -42,8 +42,6 @@ namespace AdvancedMap.iOS
 
 			Window.MakeKeyAndVisible();
 
-			Device.NavigationBarHeight = Controller.NavigationBar.Frame.Height;
-
 			#if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
 			#endif
@@ -53,7 +51,12 @@ namespace AdvancedMap.iOS
 			manager.DisableUpdateManager = false;
 			manager.StartManager();
 
-			return true;
+            Carto.Utils.Log.ShowInfo = true;
+            Carto.Utils.Log.ShowWarn = true;
+            Carto.Utils.Log.ShowDebug = true;
+            Carto.Utils.Log.ShowError = true;
+
+            return true;
 		}
 
 	}

@@ -36,6 +36,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
@@ -52,54 +53,58 @@
       <HintPath>..\packages\HockeySDK.Xamarin.4.1.3\lib\MonoAndroid403\HockeySDK.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+      <HintPath>..\packages\Crosslight.Xamarin.Android.Support.v4.23.1.1\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\packages\Crosslight.Xamarin.Android.Support.v7.AppCompat.23.1.1\lib\MonoAndroid10\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.Android.4.1.0-alpha-9\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.Android.4.1.0-rc3\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Samples.cs" />
     <Compile Include="MapApplication.cs" />
     <Compile Include="Sections\BaseMap\BaseMapsActivity.cs" />
     <Compile Include="Sections\Other\GpsLocationActivity.cs" />
     <Compile Include="Sections\OfflineMap\BundledMapActivity.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\AdvancedPackageManagerActivity.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackagedMapActivity.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\PackageManagerAdapter.cs" />
-    <Compile Include="LauncherListActivity.cs" />
     <Compile Include="Sections\VectorObject\OverlaysActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\CustomRasterDatasourceActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\WmsMapActivity.cs" />
-    <Compile Include="Sections\_Header\BaseMapsHeader.cs" />
-    <Compile Include="Sections\_Header\OfflineMapsHeader.cs" />
-    <Compile Include="Sections\_Header\OtherMapHeader.cs" />
-    <Compile Include="Sections\_Header\OverlayDatasourcesHeader.cs" />
-    <Compile Include="Sections\_Header\VectorObjectsHeader.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapsView.cs" />
     <Compile Include="Sections\Other\CaptureActivity.cs" />
     <Compile Include="Sections\Other\CustomPopupActivity.cs" />
     <Compile Include="Sections\VectorObject\VectorObjectEditingActvity.cs" />
     <Compile Include="Sections\VectorObject\ClusteredMarkersActivity.cs" />
     <Compile Include="Sections\OverlayDataSource\GroundOverlayActivity.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenu.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapSectionMenuItem.cs" />
-    <Compile Include="Sections\BaseMap\Views\BaseMapSectionLabel.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\Views\PackageRow.cs" />
-    <Compile Include="Sections\OfflineMap\AdvancedPackageManager\MenuClickListener.cs" />
-    <Compile Include="Sections\OfflineMap\BasicPackageManager\BasicPackageManagerActivity.cs" />
-    <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\CityChoiceMenu.cs" />
-    <Compile Include="Sections\OfflineMap\BasicPackageManager\Views\BasicPackageManagerView.cs" />
-    <Compile Include="Sections\Routing\OnlineRoutingActivity.cs" />
-    <Compile Include="Sections\_Header\RoutingHeader.cs" />
     <Compile Include="Sections\Routing\BaseRoutingActivity.cs" />
-    <Compile Include="Sections\Routing\OfflineRouting\OfflineRoutingActivity.cs" />
-    <Compile Include="Sections\Routing\OfflineRouting\CountryChoiceMenu.cs" />
-    <Compile Include="Sections\Routing\OfflineRouting\OfflineRoutingView.cs" />
-    <Compile Include="Sections\BaseMap\Views\MapSwitch.cs" />
-    <Compile Include="MapBaseActivity.cs" />
+    <Compile Include="Sections\Geocoding\ReverseGeocodingActivity.cs" />
+    <Compile Include="Sections\Geocoding\Base\BaseGeocodingActivity.cs" />
+    <Compile Include="Sections\Geocoding\Base\BaseGeocodingView.cs" />
+    <Compile Include="Sections\Geocoding\GeocodingActivity.cs" />
+    <Compile Include="Sections\Geocoding\GeocodingView.cs" />
+    <Compile Include="Sections\Geocoding\ReverseGeocodingView.cs" />
+    <Compile Include="Sections\Geocoding\ResultTable\ResultCell.cs" />
+    <Compile Include="Sections\Geocoding\ResultTable\ResultTableAdapter.cs" />
+    <Compile Include="Sections\Routing\RouteSearchActivity.cs" />
+    <Compile Include="Sections\Routing\RouteSearchView.cs" />
+    <Compile Include="Sections\Routing\RoutingExtensions.cs" />
+    <Compile Include="Sections\Other\BundledPackageDataActivity.cs" />
+    <Compile Include="BaseClasses\PackageDownloadBaseActivity.cs" />
+    <Compile Include="Sections\Routing\OfflineRoutingActivity.cs" />
+    <Compile Include="Sections\Routing\OfflineRoutingView.cs" />
+    <Compile Include="Sections\OfflineMap\OfflineMapActivity.cs" />
+    <Compile Include="Sections\OfflineMap\OfflineMapView.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\StylePopupContentSectionItem.cs" />
+    <Compile Include="Sections\BaseMap\BaseMapsView.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\StylePopupContentSection.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\StylePopupContent.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\LanguageAdapter.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\LanguageCell.cs" />
+    <Compile Include="Sections\BaseMap\Subviews\LanguagePopupContent.cs" />
+    <Compile Include="BaseClasses\MapBaseActivity.cs" />
+    <Compile Include="Main\MainActivity.cs" />
+    <Compile Include="Main\Samples.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -147,34 +152,63 @@
     <AndroidResource Include="Resources\drawable-nodpi\image_overlays.png" />
     <AndroidResource Include="Resources\drawable-nodpi\image_screencapture.png" />
     <AndroidResource Include="Resources\drawable-nodpi\image_wms.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_info.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_back_blue.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_close.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_global.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_wifi_off.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_wifi_on.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_sample_reverse_geocoding.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_info_blue.png" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_forward_blue.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_sample_geocoding.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_sample_route_search.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_sample_user_data.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_carto_darkmatter.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_carto_positron.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_mapzen_bright.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_mapzen_darkmatter.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_mapzen_positron.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_bright.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_dark.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_darkmatter.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_gray.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_positron.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_voyager.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_basemap.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_language.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\icon_info_white.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />
     <Folder Include="Sections\" />
-    <Folder Include="Sections\_Header\" />
     <Folder Include="Sections\BaseMap\" />
     <Folder Include="Sections\OfflineMap\" />
     <Folder Include="Sections\Other\" />
     <Folder Include="Sections\OverlayDataSource\" />
     <Folder Include="Sections\VectorObject\" />
-    <Folder Include="Sections\OfflineMap\AdvancedPackageManager\" />
-    <Folder Include="Sections\OfflineMap\AdvancedPackageManager\Views\" />
-    <Folder Include="Sections\BaseMap\Views\" />
+    <Folder Include="Sections\BaseMap\Subviews\" />
     <Folder Include="Resources\mipmap-nodpi\" />
-    <Folder Include="Sections\OfflineMap\BasicPackageManager\" />
-    <Folder Include="Sections\OfflineMap\BasicPackageManager\Views\" />
     <Folder Include="Sections\Routing\" />
-    <Folder Include="Sections\Routing\OfflineRouting\" />
+    <Folder Include="Sections\Geocoding\" />
+    <Folder Include="Sections\Geocoding\Base\" />
+    <Folder Include="Sections\Geocoding\ResultTable\" />
+    <Folder Include="BaseClasses\" />
+    <Folder Include="Main\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fcd_auto.nml" />
-    <AndroidAsset Include="Assets\rome_ntvt.mbtiles" />
     <AndroidAsset Include="Assets\cities15000.geojson" />
     <AndroidAsset Include="Assets\milktruck.nml" />
     <AndroidAsset Include="Assets\jefferson-building-ground-floor.jpg" />
     <AndroidAsset Include="Assets\styles_mapzen.zip" />
     <AndroidAsset Include="Assets\nutiteq-dark.zip" />
     <AndroidAsset Include="Assets\world_zoom5.mbtiles" />
+    <AndroidAsset Include="Assets\offline-packages.mbtiles" />
+    <AndroidAsset Include="Assets\carto-fonts.zip" />
+    <AndroidAsset Include="Assets\rome_carto-streets.mbtiles" />
   </ItemGroup>
   <Import Project="..\Shared.Droid\Shared.Droid.projitems" Label="Shared" Condition="Exists('..\Shared.Droid\Shared.Droid.projitems')" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />

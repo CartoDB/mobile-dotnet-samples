@@ -12,18 +12,18 @@
     <Folder Include="$(MSBuildThisFileDirectory)Utils\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
-    <Folder Include="$(MSBuildThisFileDirectory)DataSources\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
     <Folder Include="$(MSBuildThisFileDirectory)BaseControllers\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Menu\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\List\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Gallery\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\Content\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\Content\PackageContent\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Services\LocationManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Utils.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataSources\MapListDataSource.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataSources\MapListRowSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\MapBaseController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\BaseController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\HeaderController.cs" />
@@ -37,5 +37,25 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\List\MapListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\MapGalleryView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\GalleryRow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\PopupButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\PopupHeader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\SlideInPopup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\PopupView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\Device.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ViewExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\Content\PackageContent\PackagePopupContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\Content\PackageContent\PackageCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\Content\PackageContent\PackageListSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ProgressLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\MapBaseView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\DownloadBaseView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\PackageDownloadBaseView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseControllers\PackageDownloadBaseController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SlideInPopup\PopupSwitchButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FileUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\GalleryDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Gallery\Sample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Base\ClickView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Banner.cs" />
   </ItemGroup>
 </Project>

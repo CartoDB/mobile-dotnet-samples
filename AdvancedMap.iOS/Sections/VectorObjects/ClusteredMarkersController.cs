@@ -27,7 +27,7 @@ namespace AdvancedMap.iOS
 			base.ViewDidAppear(animated);
 
 			// Add default base layer
-			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+            AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStylePositron);
 
 			// Initialize a local vector data source
 			LocalVectorDataSource source = new LocalVectorDataSource(BaseProjection);

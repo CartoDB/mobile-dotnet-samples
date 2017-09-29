@@ -22,7 +22,7 @@ namespace Shared.iOS
 			SelectionStyle = UITableViewCellSelectionStyle.None;
 		}
 
-		public override void Update(MapListRowSource item)
+		public override void Update(Sample item)
 		{
 			base.Update(item);
 			description.Text = item.Description;

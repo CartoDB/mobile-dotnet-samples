@@ -47,10 +47,10 @@ namespace Shared
 				CartoMapsService service = new CartoMapsService();
 				service.Username = "nutiteq";
 
-				// Use VectorLayers
-				service.DefaultVectorLayerMode = true;
+                // Use VectorLayers
+                service.DefaultVectorLayerMode = true;
 
-				LayerVector layers = service.BuildNamedMap(name, new StringVariantMap());
+                LayerVector layers = service.BuildNamedMap(name, new StringVariantMap());
 
 				for (int i = 0; i < layers.Count; i++)
 				{

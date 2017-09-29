@@ -1,34 +1,35 @@
 ﻿using System;
+using Android.OS;
 using Carto.Core;
-using Carto.DataSources;
 using Carto.Graphics;
 using Carto.Layers;
-using Carto.PackageManager;
 using Carto.Routing;
-using Carto.Styles;
 using Carto.Ui;
-using Carto.VectorElements;
 using Shared;
 using Shared.Droid;
 
 namespace AdvancedMap.Droid
 {
-	public class BaseRoutingActivity : MapBaseActivity
+    public class BaseRoutingActivity : PackageDownloadBaseActivity
 	{
 		protected RouteMapEventListener MapListener { get; set; }
 
-		protected Routing Routing;
+		protected Routing Routing
+        {
+            get { return Client as Routing; }
+        }
 
-		protected void Initialize(MapView map)
-		{
-			// Set route listener
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+
+            ContentView = new OfflineRoutingView(this);
+            SetContentView(ContentView);
+			
+            string folder = GetPackageFolder(Routing.PackageFolder);
+            Client = new Routing(ContentView.MapView, folder);
+
 			MapListener = new RouteMapEventListener();
-			map.MapEventListener = MapListener;
-
-			// Virtual method overridden in child classes in order to keep layer order correct
-			SetBaseLayer();
-
-			Routing = new Routing(map, BaseProjection);
 
 			Alert("Long-press on map to set route start and finish");
 
@@ -42,16 +43,13 @@ namespace AdvancedMap.Droid
 			Color white = new Color(Android.Graphics.Color.White);
 
 			Routing.SetSourcesAndElements(olmarker, directionUp, directionUpLeft, directionUpRight, green, red, white);
-		}
-
-		protected virtual void SetBaseLayer()
-		{
-			throw new NotImplementedException();	
-		}
+        }
 
 		protected override void OnResume()
 		{
 			base.OnResume();
+
+			ContentView.MapView.MapEventListener = MapListener;
 
 			MapListener.StartPositionClicked += OnStartPositionClick;
 			MapListener.StopPositionClicked += OnStopPositionClick;
@@ -60,6 +58,8 @@ namespace AdvancedMap.Droid
 		protected override void OnPause()
 		{
 			base.OnPause();
+
+			ContentView.MapView.MapEventListener = null;
 
 			MapListener.StartPositionClicked -= OnStartPositionClick;
 			MapListener.StopPositionClicked -= OnStopPositionClick;
@@ -81,8 +81,6 @@ namespace AdvancedMap.Droid
 			// Run routing in background
 			System.Threading.Tasks.Task.Run(() =>
 			{
-				long time = Java.Lang.JavaSystem.CurrentTimeMillis();
-
 				RoutingResult result = Routing.GetResult(startPos, stopPos);
 
 				// Update response in UI thread
@@ -94,13 +92,14 @@ namespace AdvancedMap.Droid
 						return;
 					}
 
-					Alert(Routing.GetMessage(result, time, Java.Lang.JavaSystem.CurrentTimeMillis()));
-
-					Color lineColor = new Color(Colors.ActionBar);
-					Routing.Show(result, lineColor);
+					Alert(Routing.GetMessage(result));
+					
+					Routing.Show(result);
+                    RoutingComplete();
 				});
 			});
 		}
 
+        public virtual void RoutingComplete() { }
 	}
 }

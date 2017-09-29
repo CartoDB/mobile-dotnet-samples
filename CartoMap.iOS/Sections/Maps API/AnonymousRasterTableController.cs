@@ -18,7 +18,7 @@ namespace CartoMap.iOS
 		{
 			base.ViewDidLoad();
 
-			AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleGray);
+            AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStylePositron);
 
 			// You need to change these according to your DB
 			string sql = "select * from table_46g";
