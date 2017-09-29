@@ -29,6 +29,8 @@ namespace Shared.Droid
             label.SetTextColor(Color.White);
             label.TextSize = 12.0f;
             AddView(label);
+
+            Alpha = 0.0f;
         }
 
         public override void LayoutSubviews()
