@@ -2,7 +2,7 @@
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
-      "CartoMobileSDK.WinPhone10/4.1.0-devel": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
         "type": "package",
         "compile": {
           "lib/uap10.0/CartoMobileSDK.WinPhone.dll": {},
@@ -1964,7 +1964,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
-      "CartoMobileSDK.WinPhone10/4.1.0-devel": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
         "type": "package",
         "compile": {
           "runtimes/win10-arm/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
@@ -3723,7 +3723,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
-      "CartoMobileSDK.WinPhone10/4.1.0-devel": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
         "type": "package",
         "compile": {
           "runtimes/win10-arm/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
@@ -5439,7 +5439,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
-      "CartoMobileSDK.WinPhone10/4.1.0-devel": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
         "type": "package",
         "compile": {
           "runtimes/win10-x64/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
@@ -7207,7 +7207,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
-      "CartoMobileSDK.WinPhone10/4.1.0-devel": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
         "type": "package",
         "compile": {
           "runtimes/win10-x64/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
@@ -8923,7 +8923,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
-      "CartoMobileSDK.WinPhone10/4.1.0-devel": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
         "type": "package",
         "compile": {
           "runtimes/win10-x86/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
@@ -10691,7 +10691,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
-      "CartoMobileSDK.WinPhone10/4.1.0-devel": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
         "type": "package",
         "compile": {
           "runtimes/win10-x86/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
@@ -12408,13 +12408,13 @@
     }
   },
   "libraries": {
-    "CartoMobileSDK.WinPhone10/4.1.0-devel": {
-      "sha512": "fDu5WIwQafkMLkSATIU27ViDo+ld8+yKOTfGYRTn1ldd2+sVq1B5tuUM01IHx7reWRD3QswTQM6gyxJPCsUNOQ==",
+    "CartoMobileSDK.UWP/4.1.0-rc3": {
+      "sha512": "AYhujd+azJSYNWDR9bh9xtg+Eg9V0AcOtsDFacQiOPzZBLewfMEFHQW99AurANVqrsgJgolCAhmAWzDX1vAotQ==",
       "type": "package",
-      "path": "cartomobilesdk.winphone10/4.1.0-devel",
+      "path": "cartomobilesdk.uwp/4.1.0-rc3",
       "files": [
-        "cartomobilesdk.winphone10.4.1.0-devel.nupkg.sha512",
-        "cartomobilesdk.winphone10.nuspec",
+        "cartomobilesdk.uwp.4.1.0-rc3.nupkg.sha512",
+        "cartomobilesdk.uwp.nuspec",
         "lib/uap10.0/CartoMobileSDK.WinPhone.dll",
         "lib/uap10.0/CartoMobileSDK.WinPhone.xml",
         "lib/uap10.0/carto_mobile_sdk.winmd",
@@ -15816,7 +15816,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "CartoMobileSDK.WinPhone10 >= 4.1.0-devel",
+      "CartoMobileSDK.UWP >= 4.1.0-rc3",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0"
     ],
     "UAP,Version=v10.0": []
@@ -15833,7 +15833,7 @@
       "projectStyle": "ProjectJson"
     },
     "dependencies": {
-      "CartoMobileSDK.WinPhone10": "[4.1.0-devel, )",
+      "CartoMobileSDK.UWP": "4.1.0-rc3",
       "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
     },
     "frameworks": {

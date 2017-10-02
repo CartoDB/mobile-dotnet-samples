@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "CartoMobileSDK.WinPhone10": "4.1.0-devel",
+    "CartoMobileSDK.UWP": "4.1.0-rc3",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
   },
   "frameworks": {
