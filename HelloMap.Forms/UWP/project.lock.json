@@ -2,6 +2,91 @@
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/CartoMobileSDK.WinPhone.dll": {},
+          "lib/uap10.0/carto_mobile_sdk.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/CartoMobileSDK.WinPhone.dll": {},
+          "lib/uap10.0/carto_mobile_sdk.winmd": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win10-arm/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {
+            "assetType": "runtime",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/native/carto_mobile_sdk.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/native/carto_mobile_sdk.pri": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/native/carto_mobile_sdk.winmd": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/native/libEGL.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/native/libGLESv2.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-x64/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {
+            "assetType": "runtime",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/carto_mobile_sdk.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/carto_mobile_sdk.pri": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/carto_mobile_sdk.winmd": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/libEGL.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/libGLESv2.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x86/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {
+            "assetType": "runtime",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/carto_mobile_sdk.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/carto_mobile_sdk.pri": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/carto_mobile_sdk.winmd": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/libEGL.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/libGLESv2.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          }
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -1897,6 +1982,22 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
+        "type": "package",
+        "compile": {
+          "runtimes/win10-arm/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
+        },
+        "runtime": {
+          "runtimes/win10-arm/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
+        },
+        "native": {
+          "runtimes/win10-arm/native/carto_mobile_sdk.dll": {},
+          "runtimes/win10-arm/native/carto_mobile_sdk.pri": {},
+          "runtimes/win10-arm/native/carto_mobile_sdk.winmd": {},
+          "runtimes/win10-arm/native/libEGL.dll": {},
+          "runtimes/win10-arm/native/libGLESv2.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -3658,6 +3759,22 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
+        "type": "package",
+        "compile": {
+          "runtimes/win10-arm/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
+        },
+        "runtime": {
+          "runtimes/win10-arm/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
+        },
+        "native": {
+          "runtimes/win10-arm/native/carto_mobile_sdk.dll": {},
+          "runtimes/win10-arm/native/carto_mobile_sdk.pri": {},
+          "runtimes/win10-arm/native/carto_mobile_sdk.winmd": {},
+          "runtimes/win10-arm/native/libEGL.dll": {},
+          "runtimes/win10-arm/native/libGLESv2.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -5376,6 +5493,22 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
+        "type": "package",
+        "compile": {
+          "runtimes/win10-x64/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
+        },
+        "runtime": {
+          "runtimes/win10-x64/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
+        },
+        "native": {
+          "runtimes/win10-x64/native/carto_mobile_sdk.dll": {},
+          "runtimes/win10-x64/native/carto_mobile_sdk.pri": {},
+          "runtimes/win10-x64/native/carto_mobile_sdk.winmd": {},
+          "runtimes/win10-x64/native/libEGL.dll": {},
+          "runtimes/win10-x64/native/libGLESv2.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -7146,6 +7279,22 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
+        "type": "package",
+        "compile": {
+          "runtimes/win10-x64/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
+        },
+        "runtime": {
+          "runtimes/win10-x64/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
+        },
+        "native": {
+          "runtimes/win10-x64/native/carto_mobile_sdk.dll": {},
+          "runtimes/win10-x64/native/carto_mobile_sdk.pri": {},
+          "runtimes/win10-x64/native/carto_mobile_sdk.winmd": {},
+          "runtimes/win10-x64/native/libEGL.dll": {},
+          "runtimes/win10-x64/native/libGLESv2.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -8864,6 +9013,22 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
+        "type": "package",
+        "compile": {
+          "runtimes/win10-x86/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
+        },
+        "runtime": {
+          "runtimes/win10-x86/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
+        },
+        "native": {
+          "runtimes/win10-x86/native/carto_mobile_sdk.dll": {},
+          "runtimes/win10-x86/native/carto_mobile_sdk.pri": {},
+          "runtimes/win10-x86/native/carto_mobile_sdk.winmd": {},
+          "runtimes/win10-x86/native/libEGL.dll": {},
+          "runtimes/win10-x86/native/libGLESv2.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -10634,6 +10799,22 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "CartoMobileSDK.UWP/4.1.0-rc3": {
+        "type": "package",
+        "compile": {
+          "runtimes/win10-x86/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
+        },
+        "runtime": {
+          "runtimes/win10-x86/lib/uap10.0/CartoMobileSDK.WinPhone.dll": {}
+        },
+        "native": {
+          "runtimes/win10-x86/native/carto_mobile_sdk.dll": {},
+          "runtimes/win10-x86/native/carto_mobile_sdk.pri": {},
+          "runtimes/win10-x86/native/carto_mobile_sdk.winmd": {},
+          "runtimes/win10-x86/native/libEGL.dll": {},
+          "runtimes/win10-x86/native/libGLESv2.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -12353,6 +12534,36 @@
     }
   },
   "libraries": {
+    "CartoMobileSDK.UWP/4.1.0-rc3": {
+      "sha512": "AYhujd+azJSYNWDR9bh9xtg+Eg9V0AcOtsDFacQiOPzZBLewfMEFHQW99AurANVqrsgJgolCAhmAWzDX1vAotQ==",
+      "type": "package",
+      "path": "cartomobilesdk.uwp/4.1.0-rc3",
+      "files": [
+        "cartomobilesdk.uwp.4.1.0-rc3.nupkg.sha512",
+        "cartomobilesdk.uwp.nuspec",
+        "lib/uap10.0/CartoMobileSDK.WinPhone.dll",
+        "lib/uap10.0/CartoMobileSDK.WinPhone.xml",
+        "lib/uap10.0/carto_mobile_sdk.winmd",
+        "runtimes/win10-arm/lib/uap10.0/CartoMobileSDK.WinPhone.dll",
+        "runtimes/win10-arm/native/carto_mobile_sdk.dll",
+        "runtimes/win10-arm/native/carto_mobile_sdk.pri",
+        "runtimes/win10-arm/native/carto_mobile_sdk.winmd",
+        "runtimes/win10-arm/native/libEGL.dll",
+        "runtimes/win10-arm/native/libGLESv2.dll",
+        "runtimes/win10-x64/lib/uap10.0/CartoMobileSDK.WinPhone.dll",
+        "runtimes/win10-x64/native/carto_mobile_sdk.dll",
+        "runtimes/win10-x64/native/carto_mobile_sdk.pri",
+        "runtimes/win10-x64/native/carto_mobile_sdk.winmd",
+        "runtimes/win10-x64/native/libEGL.dll",
+        "runtimes/win10-x64/native/libGLESv2.dll",
+        "runtimes/win10-x86/lib/uap10.0/CartoMobileSDK.WinPhone.dll",
+        "runtimes/win10-x86/native/carto_mobile_sdk.dll",
+        "runtimes/win10-x86/native/carto_mobile_sdk.pri",
+        "runtimes/win10-x86/native/carto_mobile_sdk.winmd",
+        "runtimes/win10-x86/native/libEGL.dll",
+        "runtimes/win10-x86/native/libGLESv2.dll"
+      ]
+    },
     "Microsoft.CSharp/4.0.0": {
       "sha512": "oWqeKUxHXdK6dL2CFjgMcaBISbkk+AqEg+yvJHE4DElNzS4QaTsCflgkkqZwVlWby1Dg9zo9n+iCAMFefFdJ/A==",
       "type": "package",
@@ -15894,6 +16105,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "CartoMobileSDK.UWP >= 4.1.0-rc3",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
       "Xamarin.Forms >= 2.3.3.180"
     ],
@@ -15911,6 +16123,7 @@
       "projectStyle": "ProjectJson"
     },
     "dependencies": {
+      "CartoMobileSDK.UWP": "4.1.0-rc3",
       "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
       "Xamarin.Forms": "2.3.3.180"
     },
