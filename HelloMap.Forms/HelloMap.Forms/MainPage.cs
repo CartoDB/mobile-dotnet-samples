@@ -54,7 +54,7 @@ namespace HelloMap.Forms
 			Content = view;
 
 			// Add default base layer
-			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDefault);
+			var baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
 			MapView.Layers.Add(baseLayer);
 
 			// Set projection
