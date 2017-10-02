@@ -72,6 +72,13 @@ namespace Shared.Droid
 			Show();
 			label.Text = text;
 
+            if (timer != null)
+            {
+                timer.Stop();
+                timer.Dispose();
+                timer = null;
+            }
+
 			timer = new Timer();
 			timer.AutoReset = false;
 			timer.Interval = 5000;
