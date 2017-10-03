@@ -95,6 +95,11 @@ namespace Shared.Droid
 				{
 					x += w + padding;
 				}
+
+                if (sources.IndexOf(source) == sources.Count - 1)
+                {
+                    (row.LayoutParameters as RelativeLayout.LayoutParams).BottomMargin = padding;
+                }
 			}
 		}
 

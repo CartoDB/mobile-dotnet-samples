@@ -22,12 +22,6 @@ namespace CartoMap.iOS
 				ImageResource = "image_viz_store.png",
 			},
 			new Sample {
-				Controller = new FontsVisController(),
-				Title = "Fonts Vis",
-                Description = "Vis.json displaying different fonts",
-				ImageResource = "image_viz_fonts.png",
-			},
-			new Sample {
 				Controller = new AnonymousRasterTableController(),
 				Title = "Raster Tile",
                 Description = "Anonymous raster tiles via CARTO Maps Service",

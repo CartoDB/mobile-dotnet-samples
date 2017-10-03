@@ -23,12 +23,6 @@ namespace CartoMap.Droid
 				ImageResource = Resource.Drawable.image_viz_store
 			},
 			new Sample {
-				Type = typeof(FontsVisActivity),
-				Title = "Fonts Vis",
-                Description = "Vis.json displaying different fonts",
-				ImageResource = Resource.Drawable.image_viz_fonts
-			},
-			new Sample {
 				Type = typeof(AnonymousRasterTableActivity),
 				Title = "Raster Tile",
                 Description = "Anonymous raster tiles via CARTO maps service",
