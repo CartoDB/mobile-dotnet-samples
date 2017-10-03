@@ -61,7 +61,25 @@ namespace HelloMap.WindowsPhone
 
                 // Create marker and add it to the source
                 Marker marker = new Marker(position, style);
+
+
+                // Add text element to same location
+                TextStyleBuilder MyStyleBuilder = new TextStyleBuilder
+                {
+                    OrientationMode = BillboardOrientation.BillboardOrientationGround,
+                    FontSize = 12.0f,
+                    CausesOverlap = false,
+                    Color = new Carto.Graphics.Color(255, 0, 0, 255),
+                    ScalingMode = BillboardScaling.BillboardScalingWorldSize,
+                    Flippable = false,
+                    HideIfOverlapped = false,
+                    RenderScale = 8.0f
+                };
+
+                Text text = new Text(position, MyStyleBuilder.BuildStyle(), "TEXT");
+
                 datasource.Add(marker);
+                datasource.Add(text);
             });
         }
     }

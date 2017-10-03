@@ -41,7 +41,7 @@ namespace HelloMap.WindowsPhone
             // Add base map
 
             // TODO: Crashes here for some reason
-            CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDarkmatter);
+            CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
             MapView.Layers.Add(baseLayer);
 
             // Set default location and zoom
@@ -51,7 +51,9 @@ namespace HelloMap.WindowsPhone
             MapView.AddMarkerToPosition(tallinn);
 
             MapView.SetFocusPos(tallinn, 0);
-            MapView.SetZoom(3, 0);
+            MapView.SetZoom(13, 0);
+
+            MapView.Options.DPI = 240; 
 
             Window.Current.Content = MapView;
             Window.Current.Activate();
