@@ -180,7 +180,6 @@
     <Compile Include="Sections\CARTO.js API\BaseVisController.cs" />
     <Compile Include="Sections\CARTO.js API\TrainVisController.cs" />
     <Compile Include="Sections\CARTO.js API\StoresVisController.cs" />
-    <Compile Include="Sections\CARTO.js API\FontsVisController.cs" />
     <Compile Include="Sections\Import API\TilePackagerController.cs" />
     <Compile Include="Sections\Maps API\AnonymousRasterTableController.cs" />
     <Compile Include="Sections\Maps API\AnonymousVectorTableController.cs" />

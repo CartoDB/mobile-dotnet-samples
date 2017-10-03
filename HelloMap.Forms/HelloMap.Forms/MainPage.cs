@@ -44,6 +44,9 @@ namespace HelloMap.Forms
             Windows.Foundation.Rect bounds = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().VisibleBounds;
             MapView.Width = bounds.Width;
             MapView.Height = bounds.Height;
+
+            // Double the default DPI in UWP applications
+            MapView.Options.DPI = 2 * MapView.Options.DPI;
 #elif __IOS__
             MapView = new MapView();
 			// Set ScreenBounds in AppDelegate so they would be conveniently available here
