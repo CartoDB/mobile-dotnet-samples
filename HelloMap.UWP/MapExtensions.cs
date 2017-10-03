@@ -54,7 +54,7 @@ namespace HelloMap.WindowsPhone
                 map.Layers.Add(layer);
 
                 MarkerStyleBuilder builder = new MarkerStyleBuilder();
-                builder.Size = 15;
+                builder.Size = 20;
                 builder.Color = new Carto.Graphics.Color(0, 255, 0, 255);
                 
                 MarkerStyle style = builder.BuildStyle();
