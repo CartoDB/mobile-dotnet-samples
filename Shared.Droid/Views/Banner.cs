@@ -16,7 +16,7 @@ namespace Shared.Droid
 
         public Banner(Context context, int resource) : base(context)
         {
-            SetBackgroundColor(Colors.DarkTransparentNavy);
+            SetBackgroundColor(Colors.DarkTransparentGray);
 
             leftImage = new ImageView(context);
             leftImage.SetScaleType(ImageView.ScaleType.CenterInside);
@@ -37,6 +37,7 @@ namespace Shared.Droid
         {
             base.LayoutSubviews();
 
+            int padding = (int)(5 * Density);
             int imagePadding = Frame.H / 4;
             int imageSize = Frame.H - 2 * imagePadding;
 
@@ -49,6 +50,8 @@ namespace Shared.Droid
 
             x += w + imagePadding;
             w = Frame.W - (2 * w + 4 * imagePadding);
+            y = padding;
+            h = Frame.H - 2 * padding;
 
             label.SetFrame(x, y, w, h);
         }

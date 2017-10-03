@@ -62,33 +62,39 @@ namespace Shared.Droid
 
         public void SetOnlineMode()
         {
-            if (onlineLayer == null)
+            System.Threading.Tasks.Task.Run(delegate
             {
-                onlineLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
-            }
+                if (onlineLayer == null)
+                {
+                    onlineLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
+                }
 
-            if (offlineLayer != null)
-            {
-                MapView.Layers.Remove(offlineLayer);
-            }
+                if (offlineLayer != null)
+                {
+                    MapView.Layers.Remove(offlineLayer);
+                }
 
-            MapView.Layers.Add(onlineLayer);
+                MapView.Layers.Add(onlineLayer);
+            });
         }
 
         public void SetOfflineMode(CartoPackageManager manager)
         {
-            if (onlineLayer != null)
+            System.Threading.Tasks.Task.Run(delegate
             {
-                MapView.Layers.Remove((onlineLayer));    
-            }
+                if (onlineLayer != null)
+                {
+                    MapView.Layers.Remove((onlineLayer));
+                }
 
-            if (offlineLayer == null)
-            {
-                offlineLayer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CartoBasemapStyleVoyager);
-                offlineLayer.Preloading = true;
-            }
+                if (offlineLayer == null)
+                {
+                    offlineLayer = new CartoOfflineVectorTileLayer(manager, CartoBaseMapStyle.CartoBasemapStyleVoyager);
+                    offlineLayer.Preloading = true;
+                }
 
-            MapView.Layers.Add(offlineLayer);
+                MapView.Layers.Add(offlineLayer);
+            });
         }
     }
 }
