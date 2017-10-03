@@ -1,4 +1,5 @@
 {
+  "locked": false,
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
@@ -12411,10 +12412,9 @@
     "CartoMobileSDK.UWP/4.1.0-rc3": {
       "sha512": "AYhujd+azJSYNWDR9bh9xtg+Eg9V0AcOtsDFacQiOPzZBLewfMEFHQW99AurANVqrsgJgolCAhmAWzDX1vAotQ==",
       "type": "package",
-      "path": "cartomobilesdk.uwp/4.1.0-rc3",
       "files": [
-        "cartomobilesdk.uwp.4.1.0-rc3.nupkg.sha512",
-        "cartomobilesdk.uwp.nuspec",
+        "CartoMobileSDK.UWP.4.1.0-rc3.nupkg.sha512",
+        "CartoMobileSDK.UWP.nuspec",
         "lib/uap10.0/CartoMobileSDK.WinPhone.dll",
         "lib/uap10.0/CartoMobileSDK.WinPhone.xml",
         "lib/uap10.0/carto_mobile_sdk.winmd",
@@ -15820,44 +15820,5 @@
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0"
     ],
     "UAP,Version=v10.0": []
-  },
-  "packageFolders": {
-    "C:\\Users\\Aare\\.nuget\\packages\\": {}
-  },
-  "project": {
-    "restore": {
-      "projectUniqueName": "C:\\Projects\\mobile-dotnet-samples\\HelloMap.UWP\\HelloMap.UWP.csproj",
-      "projectName": "HelloMap.UWP",
-      "projectPath": "C:\\Projects\\mobile-dotnet-samples\\HelloMap.UWP\\HelloMap.UWP.csproj",
-      "projectJsonPath": "C:\\Projects\\mobile-dotnet-samples\\HelloMap.UWP\\project.json",
-      "projectStyle": "ProjectJson"
-    },
-    "dependencies": {
-      "CartoMobileSDK.UWP": "4.1.0-rc3",
-      "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
-    },
-    "frameworks": {
-      "uap10.0": {}
-    },
-    "runtimes": {
-      "win10-arm": {
-        "#import": []
-      },
-      "win10-arm-aot": {
-        "#import": []
-      },
-      "win10-x64": {
-        "#import": []
-      },
-      "win10-x64-aot": {
-        "#import": []
-      },
-      "win10-x86": {
-        "#import": []
-      },
-      "win10-x86-aot": {
-        "#import": []
-      }
-    }
   }
 }
