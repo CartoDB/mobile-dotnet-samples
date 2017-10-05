@@ -3,9 +3,9 @@ namespace CartoMap.iOS
 {
 	public class TrainVisController : BaseVisController
 	{
-		public override string Name { get { return "NYCity Subway Vis"; } }
+		public override string Name { get { return "NYC L-train Vis"; } }
 
-		public override string Description { get { return "Vis displaying thes subway in different colors using UTFGrid"; } }
+		public override string Description { get { return "L-train travel area analysis visualisation"; } }
 
 		protected override string Url
 		{

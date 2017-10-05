@@ -11,44 +11,44 @@ namespace CartoMap.iOS
 		{
 			new Sample {
 				Controller = new TrainVisController(),
-				Title = "Subway Vis",
-                Description = "Vis.json of New York subway routes",
+				Title = "L-train area Vis",
+                Description = "L-train travel area analysis visualisation",
 				ImageResource = "image_viz_subway.png",
 			},
 			new Sample {
 				Controller = new StoresVisController(),
-				Title = "Store Locations",
-                Description = "Vis.json of predicted store locations",
+				Title = "Store Locations Vis",
+                Description = "Predicted store locations analysis",
 				ImageResource = "image_viz_store.png",
 			},
 			new Sample {
 				Controller = new AnonymousRasterTableController(),
-				Title = "Raster Tile",
-                Description = "Anonymous raster tiles via CARTO Maps Service",
+				Title = "Raster Map in CARTO",
+                Description = "Raster tiles from CARTO Maps API",
 				ImageResource = "image_anon_raster.png",
 			},
 			new Sample {
 				Controller = new AnonymousVectorTableController(),
 				Title = "Vector Tile",
-                Description = "Anonymous vector tiles via CARTO Maps Service",
+                Description = "Anonymous vector tiles via CARTO Maps API",
 				ImageResource = "image_anon_vector.png",
 			},
 			new Sample {
 				Controller = new NamedMapController(),
 				Title = "Indoor Map",
-                Description = "Names map via CARTO Maps Service",
+                Description = "Interactive indoor map via CARTO Maps API",
 				ImageResource = "image_named.png",
 			},
 			new Sample {
 				Controller = new SQLServiceController(),
 				Title = "Large Cities",
-                Description = "Largest cities via CARTO Sql Service",
+                Description = "Largest cities via CARTO SQL API",
 				ImageResource = "image_sql.png",
 			},
 			new Sample {
 				Controller = new TorqueShipController(),
-				Title = "Indoor Torque",
-                Description = "Torque map of movement in a shopping mall",
+				Title = "Indoor Animation",
+                Description = "Torque map with indoor positioning in a shopping mall",
 				ImageResource = "image_torque.png",
 			}
 		};

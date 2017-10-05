@@ -14,8 +14,8 @@ namespace CartoMap.iOS
 {
 	public class SQLServiceController : MapBaseController
 	{
-		public override string Name { get { return "SQL Service"; } }
-		public override string Description { get { return "Displays cities on the map via SQL query"; }}
+		public override string Name { get { return "CARTO SQL API"; } }
+		public override string Description { get { return "Displays cities on the map via SQL API"; }}
 
 		const string query = "SELECT * FROM cities15000 WHERE population > 100000";
 

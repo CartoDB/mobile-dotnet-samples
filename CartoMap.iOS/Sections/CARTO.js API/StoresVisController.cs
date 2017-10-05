@@ -5,7 +5,7 @@ namespace CartoMap.iOS
 	{
 		public override string Name { get { return "Predicted Store Location"; } }
 
-		public override string Description { get { return "Vis showing store locations on the map using UTFGrid"; } }
+		public override string Description { get { return "Store location prediction analysis from CARTO.com webpage "; } }
 
 		protected override string Url
 		{
