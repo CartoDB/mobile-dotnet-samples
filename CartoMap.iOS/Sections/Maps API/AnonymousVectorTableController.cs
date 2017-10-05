@@ -11,7 +11,7 @@ namespace CartoMap.iOS
 {
 	public class AnonymousVectorTableController : MapBaseController
 	{
-		public override string Name { get { return "Anonymous Vector Tile"; } }
+		public override string Name { get { return "Vector Tile Maps API"; } }
 
 		public override string Description { 
 			get { 
