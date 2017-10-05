@@ -28,3 +28,5 @@ Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 ^Resources/Resource.designer.cs
+
+Resource.designer.cs
