@@ -3388,8 +3388,7 @@ namespace HelloMap.Droid
 		public partial class Styleable
 		{
 			
-			public static int[] ActionBar = new int[]
-			{
+			public static int[] ActionBar = new int[] {
 					2130771969,
 					2130771971,
 					2130771972,
@@ -3507,15 +3506,13 @@ namespace HelloMap.Droid
 			// aapt resource value: 5
 			public const int ActionBar_titleTextStyle = 5;
 			
-			public static int[] ActionBarLayout = new int[]
-			{
+			public static int[] ActionBarLayout = new int[] {
 					16842931};
 			
 			// aapt resource value: 0
 			public const int ActionBarLayout_android_layout_gravity = 0;
 			
-			public static int[] ActionMenuItemView = new int[]
-			{
+			public static int[] ActionMenuItemView = new int[] {
 					16843071};
 			
 			// aapt resource value: 0
@@ -3523,8 +3520,7 @@ namespace HelloMap.Droid
 			
 			public static int[] ActionMenuView;
 			
-			public static int[] ActionMode = new int[]
-			{
+			public static int[] ActionMode = new int[] {
 					2130771969,
 					2130771975,
 					2130771976,
@@ -3550,8 +3546,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 1
 			public const int ActionMode_titleTextStyle = 1;
 			
-			public static int[] ActivityChooserView = new int[]
-			{
+			public static int[] ActivityChooserView = new int[] {
 					2130771999,
 					2130772000};
 			
@@ -3561,8 +3556,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 0
 			public const int ActivityChooserView_initialActivityCount = 0;
 			
-			public static int[] AlertDialog = new int[]
-			{
+			public static int[] AlertDialog = new int[] {
 					16842994,
 					2130772001,
 					2130772002,
@@ -3592,8 +3586,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 4
 			public const int AlertDialog_singleChoiceItemLayout = 4;
 			
-			public static int[] AppCompatImageView = new int[]
-			{
+			public static int[] AppCompatImageView = new int[] {
 					16843033,
 					2130772007,
 					2130772008,
@@ -3611,8 +3604,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 3
 			public const int AppCompatImageView_tintMode = 3;
 			
-			public static int[] AppCompatSeekBar = new int[]
-			{
+			public static int[] AppCompatSeekBar = new int[] {
 					16843074,
 					2130772010,
 					2130772011,
@@ -3630,8 +3622,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 3
 			public const int AppCompatSeekBar_tickMarkTintMode = 3;
 			
-			public static int[] AppCompatTextHelper = new int[]
-			{
+			public static int[] AppCompatTextHelper = new int[] {
 					16842804,
 					16843117,
 					16843118,
@@ -3661,8 +3652,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 0
 			public const int AppCompatTextHelper_android_textAppearance = 0;
 			
-			public static int[] AppCompatTextView = new int[]
-			{
+			public static int[] AppCompatTextView = new int[] {
 					16842804,
 					2130772013};
 			
@@ -3672,8 +3662,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 1
 			public const int AppCompatTextView_textAllCaps = 1;
 			
-			public static int[] AppCompatTheme = new int[]
-			{
+			public static int[] AppCompatTheme = new int[] {
 					16842839,
 					16842926,
 					2130772014,
@@ -4139,15 +4128,13 @@ namespace HelloMap.Droid
 			// aapt resource value: 3
 			public const int AppCompatTheme_windowNoTitle = 3;
 			
-			public static int[] ButtonBarLayout = new int[]
-			{
+			public static int[] ButtonBarLayout = new int[] {
 					2130772128};
 			
 			// aapt resource value: 0
 			public const int ButtonBarLayout_allowStacking = 0;
 			
-			public static int[] ColorStateListItem = new int[]
-			{
+			public static int[] ColorStateListItem = new int[] {
 					16843173,
 					16843551,
 					2130772129};
@@ -4161,8 +4148,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 0
 			public const int ColorStateListItem_android_color = 0;
 			
-			public static int[] CompoundButton = new int[]
-			{
+			public static int[] CompoundButton = new int[] {
 					16843015,
 					2130772130,
 					2130772131};
@@ -4176,8 +4162,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 2
 			public const int CompoundButton_buttonTintMode = 2;
 			
-			public static int[] DrawerArrowToggle = new int[]
-			{
+			public static int[] DrawerArrowToggle = new int[] {
 					2130772132,
 					2130772133,
 					2130772134,
@@ -4211,8 +4196,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 7
 			public const int DrawerArrowToggle_thickness = 7;
 			
-			public static int[] LinearLayoutCompat = new int[]
-			{
+			public static int[] LinearLayoutCompat = new int[] {
 					16842927,
 					16842948,
 					16843046,
@@ -4250,8 +4234,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 7
 			public const int LinearLayoutCompat_showDividers = 7;
 			
-			public static int[] LinearLayoutCompat_Layout = new int[]
-			{
+			public static int[] LinearLayoutCompat_Layout = new int[] {
 					16842931,
 					16842996,
 					16842997,
@@ -4269,8 +4252,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 1
 			public const int LinearLayoutCompat_Layout_android_layout_width = 1;
 			
-			public static int[] ListPopupWindow = new int[]
-			{
+			public static int[] ListPopupWindow = new int[] {
 					16843436,
 					16843437};
 			
@@ -4280,8 +4262,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 1
 			public const int ListPopupWindow_android_dropDownVerticalOffset = 1;
 			
-			public static int[] MenuGroup = new int[]
-			{
+			public static int[] MenuGroup = new int[] {
 					16842766,
 					16842960,
 					16843156,
@@ -4307,8 +4288,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 2
 			public const int MenuGroup_android_visible = 2;
 			
-			public static int[] MenuItem = new int[]
-			{
+			public static int[] MenuItem = new int[] {
 					16842754,
 					16842766,
 					16842960,
@@ -4378,8 +4358,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 13
 			public const int MenuItem_showAsAction = 13;
 			
-			public static int[] MenuView = new int[]
-			{
+			public static int[] MenuView = new int[] {
 					16842926,
 					16843052,
 					16843053,
@@ -4417,8 +4396,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 8
 			public const int MenuView_subMenuArrow = 8;
 			
-			public static int[] PopupWindow = new int[]
-			{
+			public static int[] PopupWindow = new int[] {
 					16843126,
 					16843465,
 					2130772149};
@@ -4432,15 +4410,13 @@ namespace HelloMap.Droid
 			// aapt resource value: 2
 			public const int PopupWindow_overlapAnchor = 2;
 			
-			public static int[] PopupWindowBackgroundState = new int[]
-			{
+			public static int[] PopupWindowBackgroundState = new int[] {
 					2130772150};
 			
 			// aapt resource value: 0
 			public const int PopupWindowBackgroundState_state_above_anchor = 0;
 			
-			public static int[] RecycleListView = new int[]
-			{
+			public static int[] RecycleListView = new int[] {
 					2130772151,
 					2130772152};
 			
@@ -4450,8 +4426,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 1
 			public const int RecycleListView_paddingTopNoTitle = 1;
 			
-			public static int[] SearchView = new int[]
-			{
+			public static int[] SearchView = new int[] {
 					16842970,
 					16843039,
 					16843296,
@@ -4521,8 +4496,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 12
 			public const int SearchView_voiceIcon = 12;
 			
-			public static int[] Spinner = new int[]
-			{
+			public static int[] Spinner = new int[] {
 					16842930,
 					16843126,
 					16843131,
@@ -4544,8 +4518,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 4
 			public const int Spinner_popupTheme = 4;
 			
-			public static int[] SwitchCompat = new int[]
-			{
+			public static int[] SwitchCompat = new int[] {
 					16843044,
 					16843045,
 					16843074,
@@ -4603,8 +4576,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 7
 			public const int SwitchCompat_trackTintMode = 7;
 			
-			public static int[] TextAppearance = new int[]
-			{
+			public static int[] TextAppearance = new int[] {
 					16842901,
 					16842902,
 					16842903,
@@ -4646,8 +4618,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 9
 			public const int TextAppearance_textAllCaps = 9;
 			
-			public static int[] Toolbar = new int[]
-			{
+			public static int[] Toolbar = new int[] {
 					16842927,
 					16843072,
 					2130771971,
@@ -4765,8 +4736,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 27
 			public const int Toolbar_titleTextColor = 27;
 			
-			public static int[] View = new int[]
-			{
+			public static int[] View = new int[] {
 					16842752,
 					16842970,
 					2130772194,
@@ -4788,8 +4758,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 4
 			public const int View_theme = 4;
 			
-			public static int[] ViewBackgroundHelper = new int[]
-			{
+			public static int[] ViewBackgroundHelper = new int[] {
 					16842964,
 					2130772197,
 					2130772198};
@@ -4803,8 +4772,7 @@ namespace HelloMap.Droid
 			// aapt resource value: 2
 			public const int ViewBackgroundHelper_backgroundTintMode = 2;
 			
-			public static int[] ViewStubCompat = new int[]
-			{
+			public static int[] ViewStubCompat = new int[] {
 					16842960,
 					16842994,
 					16842995};
