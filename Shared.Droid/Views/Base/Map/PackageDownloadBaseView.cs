@@ -60,7 +60,7 @@ namespace Shared.Droid
         CartoOnlineVectorTileLayer onlineLayer;
         CartoOfflineVectorTileLayer offlineLayer;
 
-        public void SetOnlineMode()
+        public void SetOnlineMode(Action complete = null)
         {
             System.Threading.Tasks.Task.Run(delegate
             {
@@ -75,6 +75,11 @@ namespace Shared.Droid
                 }
 
                 MapView.Layers.Add(onlineLayer);
+
+                if (complete != null)
+                {
+                    complete();
+                }
             });
         }
 

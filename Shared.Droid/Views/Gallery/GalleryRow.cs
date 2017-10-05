@@ -15,13 +15,15 @@ namespace Shared.Droid
         TextView title, description;
 		ImageView image;
 
-		public Type Activity { get; private set; }
+        public Type Activity { get { return Sample.Type; } }
+
+        public Sample Sample { get; private set; }
 
 		public GalleryRow(Context context, Sample source) : base(context)
 		{
             SetBackgroundColor(Color.White);
 
-			Activity = source.Type;
+            Sample = source;
 
 			image = new ImageView(context);
 			image.SetImageResource(source.ImageResource);

@@ -174,17 +174,18 @@ namespace Shared
             }
 
             Marker marker = new Marker(pos, style);
+
             source.Add(marker);
         }
 
 		// Creates a line from GraphHopper response
 		protected Line CreatePolyline(MapPos start, MapPos end, RoutingResult result, Color color)
 		{
-			LineStyleBuilder lineStyleBuilder = new LineStyleBuilder();
-			lineStyleBuilder.Color = color;
-			lineStyleBuilder.Width = 7;
+			LineStyleBuilder builder = new LineStyleBuilder();
+			builder.Color = color;
+            builder.Width = 7;
 
-			return new Line(result.Points, lineStyleBuilder.BuildStyle());
+			return new Line(result.Points, builder.BuildStyle());
 		}
 
 		public void SetStartMarker(MapPos startPos)

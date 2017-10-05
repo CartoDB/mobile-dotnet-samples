@@ -56,7 +56,6 @@ namespace Shared.Droid
             label.SetFrame(x, y, w, h);
         }
 
-
 		void Show()
 		{
             BringToFront();
