@@ -33,13 +33,6 @@ namespace CartoMap.Droid
 			SetContentView(MapView);
 
 			BaseProjection = MapView.Options.BaseProjection;
-
-			Title = GetType().GetTitle();
-
-			if (ActionBar != null)
-			{
-				ActionBar.Subtitle = GetType().GetDescription();
-			}
 		}
 
 		protected void AddOnlineBaseLayer(CartoBaseMapStyle style)
