@@ -65,12 +65,6 @@
     <Compile Include="MapApplication.cs" />
     <Compile Include="Sections\CARTO.js API\TrainVisActivity.cs" />
     <Compile Include="Sections\CARTO.js API\StoresVisActivity.cs" />
-    <Compile Include="Sections\CARTO.js API\FontsVisActivity.cs" />
-    <Compile Include="Sections\_Header\CartoJSHeader.cs" />
-    <Compile Include="Sections\_Header\ImportHeader.cs" />
-    <Compile Include="Sections\_Header\MapsHeader.cs" />
-    <Compile Include="Sections\_Header\SQLHeader.cs" />
-    <Compile Include="Sections\_Header\TorqueHeader.cs" />
     <Compile Include="Sections\Torque API\TorqueActivity.cs" />
     <Compile Include="Sections\Import API\TilePackagerActivity.cs" />
     <Compile Include="Sections\Maps API\AnonymousRasterTableActivity.cs" />
@@ -120,7 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sections\" />
-    <Folder Include="Sections\_Header\" />
     <Folder Include="Sections\CARTO.js API\" />
     <Folder Include="Sections\Import API\" />
     <Folder Include="Sections\Maps API\" />

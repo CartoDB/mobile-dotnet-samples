@@ -101,12 +101,22 @@ namespace AdvancedMap.Droid
 						return;
 					}
 
-                    Alert(Routing.GetMessage(result));
+                    string text = Routing.GetMessage(result);
+                    ContentView.Banner.Show(text);
+
 
 					Routing.Show(result);
 					
                     FeatureCollection collection = Routing.routeDataSource.GetFeatureCollection();
-                    Search.FindAttractions(collection);
+                    Search.FindAttractions(collection, delegate 
+                    {
+                        RunOnUiThread(delegate
+                        {
+							text = "Found " + collection.FeatureCount + " attractions. ";
+							text += "Click on one to find out more about it";
+                            ContentView.Banner.Show(text);
+						});					
+                    });
 				});
 			});
 		}

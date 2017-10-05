@@ -17,10 +17,8 @@ namespace AdvancedMap.Droid
         protected override void OnCreate(Android.OS.Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             ContentView = new ReverseGeocodingView(this);
             SetContentView(ContentView);
-
             GeocodingClient.Projection = ContentView.Projection;
 
             Listener = new ReverseGeocodingEventListener(ContentView.Projection);

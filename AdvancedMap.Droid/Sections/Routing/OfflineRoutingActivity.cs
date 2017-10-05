@@ -25,7 +25,6 @@ namespace AdvancedMap.Droid
 			base.OnCreate(savedInstanceState);
 
             SetOnlineMode();
-            ContentView.SetOnlineMode();
 		}
 
         protected override void OnResume()

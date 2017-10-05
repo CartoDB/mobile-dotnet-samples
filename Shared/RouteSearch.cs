@@ -49,19 +49,22 @@ namespace Shared
             Service = new VectorTileSearchService(baseLayer.DataSource, baseLayer.TileDecoder);
         }
 
-        public void FindAttractions(FeatureCollection collection)
+        public void FindAttractions(FeatureCollection collection, Action complete)
         {
-            for (int i = 0; i < collection.FeatureCount; i++)
-            {
-                Feature feature = collection.GetFeature(i);
+            System.Threading.Tasks.Task.Run(delegate
+	        {
+	            for (int i = 0; i < collection.FeatureCount; i++)
+	            {
+	                Feature feature = collection.GetFeature(i);
 
-                if (feature.Geometry is LineGeometry)
-                {
-                    System.Threading.Tasks.Task.Run(delegate {
-                        ShowAttractions(feature.Geometry);   
-                    });
-                }
-            }
+	                if (feature.Geometry is LineGeometry)
+	                {
+	                    ShowAttractions(feature.Geometry);
+	                }
+	            }
+
+                complete();
+	        });
         }
 
         public void ShowAttractions(Geometry geometry)

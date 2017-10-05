@@ -28,7 +28,7 @@ namespace AdvancedMap.Droid
 			},
             new Sample {
                 Type = typeof(CustomRasterDatasourceActivity),
-                Title = "Custom Raster Data Source",
+                Title = "Custom Raster Data",
                 Description = "Customized raster tile data source",
                 ImageResource = Resource.Drawable.image_custom_raster
             },
