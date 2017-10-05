@@ -4,3 +4,4 @@
 *.userprefs
 
 *.DS_Store
+^Resources/Resource.designer.cs
