@@ -96,14 +96,14 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Views
             }
             else if (source.Equals(StylePopupContent.CartoRasterSource))
             {
-                // We know that the value of raster will be Positron or Darkmatter,
-                // as Nutiteq and Mapzen use vector tiles
-
-                // Additionally, raster tiles do not support language choice
-                string url = (selection == StylePopupContent.Positron) ? Urls.Positron : Urls.DarkMatter;
-
-                TileDataSource ds = new HTTPTileDataSource(1, 19, url);
-                CurrentLayer = new RasterTileLayer(ds);
+                if (selection.Equals(StylePopupContent.HereSatelliteDaySource))
+				{
+					CurrentLayer = new CartoOnlineRasterTileLayer("here.satellite.day@2x");
+				}
+                else if (selection.Equals(StylePopupContent.HereNormalDaySource))
+				{
+					CurrentLayer = new CartoOnlineRasterTileLayer("here.normal.day@2x");
+				}
             }
 
             if (source.Equals(StylePopupContent.CartoRasterSource))

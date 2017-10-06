@@ -158,20 +158,17 @@
     <AndroidResource Include="Resources\drawable-nodpi\icon_sample_geocoding.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_sample_route_search.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_sample_user_data.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\style_image_carto_darkmatter.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\style_image_carto_positron.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_mapzen_bright.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_mapzen_darkmatter.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_mapzen_positron.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_bright.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_dark.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_darkmatter.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_gray.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_positron.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_voyager.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_basemap.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_language.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_info_white.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_here_normal.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_here_satellite.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />
