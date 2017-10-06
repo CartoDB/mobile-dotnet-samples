@@ -38,10 +38,6 @@ namespace AdvancedMap.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			// Set our view from the "mainGPS" layout resource, reload MapView
-			SetContentView(Resource.Layout.MainGPS);
-			MapView = (MapView)FindViewById(Resource.Id.mapView);
-
             AddOnlineBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
 
 			// Create layer and add object to the layer, finally add layer to the map. 
