@@ -19,8 +19,8 @@ namespace AdvancedMap.iOS.Sections.BaseMap.Subviews
 		public const string DarkMatter = "DARKMATTER";
 		public const string Voyager = "VOYAGER";
 
-		public const string PositronUrl = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
-		public const string DarkMatterUrl = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";
+		public const string HereSatelliteDaySource = "SATELLITE DAY";
+		public const string HereNormalDaySource = "NORMAL DAY";
 
 		UIScrollView container;
 		
@@ -64,9 +64,9 @@ namespace AdvancedMap.iOS.Sections.BaseMap.Subviews
 
 			CartoRaster = new StylePopupContentSection();
 			CartoRaster.Source = CartoRasterSource;
-			CartoRaster.Header.Text = "CARTO RASTER";
-			CartoRaster.AddItem(Positron, basefolder + "style_image_carto_positron.png");
-			CartoRaster.AddItem(DarkMatter, basefolder + "style_image_carto_darkmatter.png");
+			CartoRaster.Header.Text = "HERE RASTER";
+            CartoRaster.AddItem(HereSatelliteDaySource, basefolder + "style_image_here_satellite.png");
+            CartoRaster.AddItem(HereNormalDaySource, basefolder + "style_image_here_normal.png");
 			container.AddSubview(CartoRaster);
 		}
 
