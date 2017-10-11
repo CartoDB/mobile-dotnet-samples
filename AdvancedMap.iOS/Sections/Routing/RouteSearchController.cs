@@ -117,7 +117,15 @@ namespace AdvancedMap.iOS
 					Routing.Show(result);
 
 					FeatureCollection collection = Routing.routeDataSource.GetFeatureCollection();
-                    Search.FindAttractions(collection, delegate {});
+					Search.FindAttractions(collection, (count) =>
+					{
+						text = "Found " + count + " attractions. ";
+						text += "Click on one to find out more about it";
+                        InvokeOnMainThread(delegate
+						{
+							ContentView.Banner.Show(text);
+						});
+					});
 				});
 			});
 		}
