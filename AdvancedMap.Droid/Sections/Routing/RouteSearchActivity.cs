@@ -108,16 +108,17 @@ namespace AdvancedMap.Droid
 					Routing.Show(result);
 					
                     FeatureCollection collection = Routing.routeDataSource.GetFeatureCollection();
-                    Search.FindAttractions(collection, delegate 
+                    Search.FindAttractions(collection, (count) => 
                     {
-                        RunOnUiThread(delegate
-                        {
-							text = "Found " + collection.FeatureCount + " attractions. ";
-							text += "Click on one to find out more about it";
-                            ContentView.Banner.Show(text);
-						});					
-                    });
+						text = "Found " + count + " attractions. ";
+						text += "Click on one to find out more about it";
+						RunOnUiThread(delegate
+						{
+							ContentView.Banner.Show(text);
+						});
+					});
 				});
+
 			});
 		}
 	}

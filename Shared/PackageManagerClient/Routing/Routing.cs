@@ -67,7 +67,7 @@ namespace Shared
 		public string GetMessage(RoutingResult result)
 		{
 			string distance = "Your route is " + (int)(result.TotalDistance / 100) / 10f + "km";
-			string time = "(" + result.TotalTime.ConvertFromSecondsToHours() + ")";
+			string time = " (" + result.TotalTime.ConvertFromSecondsToHours() + ")";
 
 			return distance + time;
 		}
