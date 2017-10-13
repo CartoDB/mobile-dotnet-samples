@@ -22,6 +22,9 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Subviews
         public const string DarkMatter = "DARKMATTER";
         public const string Voyager = "VOYAGER";
 
+        public const string HereSatelliteDaySource = "SATELLITE DAY";
+        public const string HereNormalDaySource = "NORMAL DAY";
+
         public const string PositronUrl = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
         public const string DarkMatterUrl = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";
 
@@ -69,9 +72,9 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Subviews
 
             CartoRaster = new StylePopupContentSection(context);
             CartoRaster.Source = CartoRasterSource;
-            CartoRaster.Header.Text = "CARTO RASTER";
-            CartoRaster.AddItem(Positron, Resource.Drawable.style_image_carto_positron);
-            CartoRaster.AddItem(DarkMatter, Resource.Drawable.style_image_carto_darkmatter);
+            CartoRaster.Header.Text = "HERE RASTER";
+            CartoRaster.AddItem(HereSatelliteDaySource, Resource.Drawable.style_image_here_satellite);
+            CartoRaster.AddItem(HereNormalDaySource, Resource.Drawable.style_image_here_normal);
             container.AddView(CartoRaster);
         }
 
