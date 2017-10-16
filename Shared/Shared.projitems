@@ -66,5 +66,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Languages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Cities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\ClearMapListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\LocationMarker.cs" />
   </ItemGroup>
 </Project>
