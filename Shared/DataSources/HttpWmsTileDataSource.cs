@@ -49,7 +49,7 @@ public class HttpWmsTileDataSource : HTTPTileDataSource
 			this.layer = layer;
 			this.format = format;
 			this.wgsWms = wgsWms;
-			this.projection = proj;
+			projection = proj;
 		}
 
 		protected override string BuildTileURL(string baseURL, MapTile tile)
@@ -62,12 +62,13 @@ public class HttpWmsTileDataSource : HTTPTileDataSource
 				srs = "EPSG:4326";
 			}
 
-			// Example Uri:
-			// http://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WmsServer?
-			// LAYERS=0&FORMAT=image%2Fpng8&SERVICE=WMS&VERSION=1.1.0&REQUEST=GetMap&STYLES=
-			// &EXCEPTIONS=application%2Fvnd.ogc.se_inimage&SRS=EPSG%3A3857&WIDTH=256&HEIGHT=256
-			// &BBOX=-20037508.3427892%2C0%2C0%2C20037508.3427892
-
+			/*
+			 * Example Uri:
+    			http://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WmsServer?
+    			LAYERS=0&FORMAT=image%2Fpng8&SERVICE=WMS&VERSION=1.1.0&REQUEST=GetMap&STYLES=
+    			&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&SRS=EPSG%3A3857&WIDTH=256&HEIGHT=256
+    			&BBOX=-20037508.3427892%2C0%2C0%2C20037508.3427892
+             */
 			string url = baseUrl;
 
 			// Extension method; cf. iOS Extensions class
