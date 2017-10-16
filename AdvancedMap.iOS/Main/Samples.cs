@@ -13,7 +13,7 @@ namespace AdvancedMap.iOS
 		{
 			new Sample {
 				Controller = new BaseMapsController(),
-				Title = "Base Maps",
+				Title = "Online Base Maps",
                 Description = "Choice between different base maps, styles, languages",
 				ImageResource = "gallery/image_base_maps.png"
 			},
@@ -44,7 +44,7 @@ namespace AdvancedMap.iOS
 			new Sample {
 				Controller = new OfflineRoutingController(),
 				Title = "Offline Routing",
-                Description = "Routing and Routing package download",
+                Description = "Pelias routing and Route Package download",
 				ImageResource = "gallery/image_offline_routing.png"
 			},
 			new Sample {

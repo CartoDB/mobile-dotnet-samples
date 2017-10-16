@@ -54,7 +54,9 @@ namespace CartoMap.Droid
 			AddView(imageView);
 
 			var parameters = LayoutUtils.RelativeMatchParent();
-			parameters.SetMargins(10, 10, 10, 10);
+
+            int margin = (int)(10 * Resources.DisplayMetrics.Density);
+			parameters.SetMargins(margin, margin, margin, margin);
 			imageView.LayoutParameters = parameters;
 
 			ImageResource = RESOURCE_PAUSE;

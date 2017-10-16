@@ -9,6 +9,9 @@ namespace Shared.Droid
 {
 	public class BaseActivity : Activity
 	{
+        public const string MapTitle = "map_title";
+        public const string MapDescription = "map_description";
+
 		protected const int RequestCode = 1;
 		protected const int Marshmallow = 23;
 
@@ -21,6 +24,13 @@ namespace Shared.Droid
 				ActionBar.SetDisplayHomeAsUpEnabled(true);
 				ActionBar.SetBackgroundDrawable(new ColorDrawable { Color = Colors.ActionBar });
 			}
+
+            string title = Intent.GetStringExtra(MapTitle);
+            if (title != "")
+            {
+				ActionBar.Title = title;
+				ActionBar.Subtitle = Intent.GetStringExtra(MapDescription);    
+            }
 		}
 
 		public override bool OnOptionsItemSelected(IMenuItem item)

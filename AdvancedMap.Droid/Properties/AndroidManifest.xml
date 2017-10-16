@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.carto.xamarin.advanced" android:versionName="4.0.2" android:versionCode="18">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.carto.xamarin.advanced" android:versionName="4.1.0.3" android:versionCode="21">
 	<uses-sdk android:minSdkVersion="11" android:targetSdkVersion="24" />
-	<application android:label="Advanced Map" android:icon="@mipmap/icon180">&gt;</application>
+	<application android:label="Advanced Map" android:icon="@mipmap/icon180"></application>
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 </manifest>

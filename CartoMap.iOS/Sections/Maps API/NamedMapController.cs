@@ -12,7 +12,7 @@ namespace CartoMap.iOS
 	{
 		public override string Name { get { return "Named map"; } }
 
-		public override string Description { get { return "CARTO data as vector tiles from a named map using VectorListener"; } }
+		public override string Description { get { return "CARTO data as vector tiles from a named map, plus VectorListener"; } }
 
 		List<VectorTileLayer> VectorLayers { 
 			get {

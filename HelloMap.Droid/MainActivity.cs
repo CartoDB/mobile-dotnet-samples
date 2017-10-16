@@ -15,7 +15,7 @@ using Android.Support.V7.App;
 namespace HelloMap.Droid
 {
 	[Activity(Label = "HelloMap", MainLauncher = true, Icon = "@mipmap/icon")]
-	public class MainActivity : AppCompatActivity
+	public class MainActivity : Activity
 	{
 		const string LICENSE = "XTUN3Q0ZIaGlMNGZFOU5OcmNYUVVoSHhYMDM1dXdmd1hBaFFKR2FDa1puc2RTdk5PWDVqT1FyL2JhU0c4MVE9PQoKYXBwVG9rZW49ZGU3N2ZlYzgtN2MyNC00NWI0LWEwZDItODM0Yjc4ODAwNjAyCnBhY2thZ2VOYW1lPWNvbS5jYXJ0by5oZWxsb21hcApvbmxpbmVMaWNlbnNlPTEKcHJvZHVjdHM9c2RrLXhhbWFyaW4tYW5kcm9pZC00LioKd2F0ZXJtYXJrPWN1c3RvbQo=";
 

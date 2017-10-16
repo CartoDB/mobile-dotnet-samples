@@ -49,26 +49,30 @@ namespace Shared
             Service = new VectorTileSearchService(baseLayer.DataSource, baseLayer.TileDecoder);
         }
 
-        public void FindAttractions(FeatureCollection collection, Action complete)
+        public void FindAttractions(FeatureCollection collection, Action<int> complete)
         {
             System.Threading.Tasks.Task.Run(delegate
 	        {
+                int result = 0;
+
 	            for (int i = 0; i < collection.FeatureCount; i++)
 	            {
 	                Feature feature = collection.GetFeature(i);
 
 	                if (feature.Geometry is LineGeometry)
 	                {
-	                    ShowAttractions(feature.Geometry);
+	                    result += ShowAttractions(feature.Geometry);
 	                }
 	            }
 
-                complete();
+                complete(result);
 	        });
         }
 
-        public void ShowAttractions(Geometry geometry)
+        public int ShowAttractions(Geometry geometry)
         {
+            int result = 0;
+
             var request = new SearchRequest();
             request.Projection = Projection;
             request.Geometry = geometry;
@@ -83,8 +87,11 @@ namespace Shared
                 if (item.Geometry is PointGeometry)
                 {
                     AddPointOfInterest(item);
+                    result += 1;
                 }
             }
+
+            return result;
         }
 
         public void AddPointOfInterest(VectorTileFeature item)

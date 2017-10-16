@@ -23,7 +23,7 @@
     <MtouchDebug>true</MtouchDebug>
     <MtouchFastDev>true</MtouchFastDev>
     <MtouchLink>SdkOnly</MtouchLink>
-    <MtouchArch>i386</MtouchArch>
+    <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
@@ -86,9 +86,6 @@
     <Reference Include="Xamarin.iOS" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Json" />
-    <Reference Include="CartoMobileSDK.iOS">
-      <HintPath>..\packages\CartoMobileSDK.iOS.4.1.0-rc3\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="HockeySDK">
       <HintPath>..\packages\HockeySDK.Xamarin.5.0.0\lib\Xamarin.iOS10\HockeySDK.dll</HintPath>
     </Reference>
@@ -97,6 +94,9 @@
     </Reference>
     <Reference Include="Calabash">
       <HintPath>..\packages\Xamarin.TestCloud.Agent.0.21.1\lib\Xamarin.iOS\Calabash.dll</HintPath>
+    </Reference>
+    <Reference Include="CartoMobileSDK.iOS">
+      <HintPath>..\packages\CartoMobileSDK.iOS.4.1.0\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -262,18 +262,15 @@
     <BundleResource Include="Resources\mbtiles\rome_carto-streets.mbtiles" />
     <BundleResource Include="Resources\icons\icon_basemap.png" />
     <BundleResource Include="Resources\icons\icon_language.png" />
-    <BundleResource Include="Resources\basemaps\style_image_carto_darkmatter.png" />
-    <BundleResource Include="Resources\basemaps\style_image_carto_positron.png" />
     <BundleResource Include="Resources\basemaps\style_image_mapzen_bright.png" />
     <BundleResource Include="Resources\basemaps\style_image_mapzen_darkmatter.png" />
     <BundleResource Include="Resources\basemaps\style_image_mapzen_positron.png" />
-    <BundleResource Include="Resources\basemaps\style_image_nutiteq_bright.png" />
-    <BundleResource Include="Resources\basemaps\style_image_nutiteq_dark.png" />
     <BundleResource Include="Resources\basemaps\style_image_nutiteq_darkmatter.png" />
-    <BundleResource Include="Resources\basemaps\style_image_nutiteq_gray.png" />
     <BundleResource Include="Resources\basemaps\style_image_nutiteq_positron.png" />
     <BundleResource Include="Resources\basemaps\style_image_nutiteq_voyager.png" />
     <BundleResource Include="Resources\icons\banner_icon_info.png" />
+    <BundleResource Include="Resources\basemaps\style_image_here_normal.png" />
+    <BundleResource Include="Resources\basemaps\style_image_here_satellite.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />

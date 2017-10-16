@@ -83,11 +83,6 @@ namespace Shared
 
 		public string GetStatusText()
 		{
-			if (Info == null)
-			{
-				return "";
-			}
-
 			string status = "available";
 
             status += GetVersionAndSize();

@@ -10,7 +10,7 @@ namespace AdvancedMap.Droid
         {
             new Sample {
                 Type = typeof(BaseMapsActivity),
-                Title = "Base Maps",
+                Title = "Online Base Maps",
                 Description = "Choice between different base maps, styles, languages",
                 ImageResource = Resource.Drawable.image_base_maps
             },
@@ -28,7 +28,7 @@ namespace AdvancedMap.Droid
 			},
             new Sample {
                 Type = typeof(CustomRasterDatasourceActivity),
-                Title = "Custom Raster Data Source",
+                Title = "Custom Raster Data",
                 Description = "Customized raster tile data source",
                 ImageResource = Resource.Drawable.image_custom_raster
             },
@@ -53,7 +53,7 @@ namespace AdvancedMap.Droid
             new Sample {
                 Type = typeof(OfflineRoutingActivity),
                 Title = "Offline Routing",
-                Description = "Routing package download",
+                Description = "Pelias Routing and Route Package download",
                 ImageResource = Resource.Drawable.image_offline_routing
             },
             new Sample {

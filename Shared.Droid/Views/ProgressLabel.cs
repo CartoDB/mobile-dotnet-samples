@@ -20,6 +20,8 @@ namespace Shared.Droid
 
         public ProgressLabel(Context context) : base(context)
         {
+            SetBackgroundColor(Colors.DarkTransparentGray);
+
             label = new TextView(context);
             label.Gravity = Android.Views.GravityFlags.Center;
             label.SetTextColor(Color.White);
@@ -28,6 +30,8 @@ namespace Shared.Droid
             progressBar = new BaseView(context);
             progressBar.SetBackgroundColor(Colors.AppleBlue);
             AddView(progressBar);
+
+            Alpha = 0.0f;
         }
 
         public override void LayoutSubviews()

@@ -47,7 +47,10 @@ namespace CartoMap.Droid
 		{
 			GalleryRow row = (GalleryRow)sender;
 
-			StartActivity(new Intent(this, row.Activity));
+			var intent = new Intent(this, row.Activity);
+			intent.PutExtra(BaseActivity.MapTitle, row.Sample.Title);
+			intent.PutExtra(BaseActivity.MapDescription, row.Sample.Description);
+			StartActivity(intent);
 		}
 	}
 }

@@ -155,7 +155,6 @@ namespace AdvancedMap.Droid
                         ContentView.Popup.ShowBackButton();
                     });
                 });
-
             }
             else
             {

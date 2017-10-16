@@ -25,24 +25,27 @@ namespace AdvancedMap.Droid
 
             ContentView = new OfflineRoutingView(this);
             SetContentView(ContentView);
-			
+
             string folder = GetPackageFolder(Routing.PackageFolder);
             Client = new Routing(ContentView.MapView, folder);
 
-			MapListener = new RouteMapEventListener();
+            MapListener = new RouteMapEventListener();
 
-			Alert("Long-press on map to set route start and finish");
+            Alert("Long-press on map to set route start and finish");
 
-			Bitmap olmarker = CreateBitmap(Resource.Drawable.olmarker);
-			Bitmap directionUp = CreateBitmap(Resource.Drawable.direction_up);
-			Bitmap directionUpLeft = CreateBitmap(Resource.Drawable.direction_upthenleft);
-			Bitmap directionUpRight = CreateBitmap(Resource.Drawable.direction_upthenright);
+            Bitmap olmarker = CreateBitmap(Resource.Drawable.olmarker);
+            Bitmap directionUp = CreateBitmap(Resource.Drawable.direction_up);
+            Bitmap directionUpLeft = CreateBitmap(Resource.Drawable.direction_upthenleft);
+            Bitmap directionUpRight = CreateBitmap(Resource.Drawable.direction_upthenright);
 
-			Color green = new Color(Android.Graphics.Color.Green);
-			Color red = new Color(Android.Graphics.Color.Red);
-			Color white = new Color(Android.Graphics.Color.White);
+            Color green = new Color(Android.Graphics.Color.Green);
+            Color red = new Color(Android.Graphics.Color.Red);
+            Color white = new Color(Android.Graphics.Color.White);
 
-			Routing.SetSourcesAndElements(olmarker, directionUp, directionUpLeft, directionUpRight, green, red, white);
+            ContentView.SetOnlineMode(delegate
+            {
+                Routing.SetSourcesAndElements(olmarker, directionUp, directionUpLeft, directionUpRight, green, red, white);
+            });
         }
 
 		protected override void OnResume()

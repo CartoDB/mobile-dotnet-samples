@@ -59,7 +59,7 @@
       <HintPath>..\packages\Crosslight.Xamarin.Android.Support.v7.AppCompat.23.1.1\lib\MonoAndroid10\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.Android.4.1.0-rc3\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.Android.4.1.0\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -113,8 +113,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Main.axml" />
-    <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\mipmap-hdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
@@ -126,10 +124,6 @@
     <AndroidResource Include="Resources\drawable-nodpi\direction_upthenright.png" />
     <AndroidResource Include="Resources\drawable-nodpi\marker.png" />
     <AndroidResource Include="Resources\drawable-nodpi\olmarker.png" />
-    <AndroidResource Include="Resources\layout\List.axml" />
-    <AndroidResource Include="Resources\layout\MainGPS.axml" />
-    <AndroidResource Include="Resources\layout\package_item_row.xml" />
-    <AndroidResource Include="Resources\values\ids.xml" />
     <AndroidResource Include="Resources\mipmap-nodpi\icon180.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\icon180.png" />
     <AndroidResource Include="Resources\mipmap-xhdpi\icon180.png" />
@@ -160,26 +154,21 @@
     <AndroidResource Include="Resources\drawable-nodpi\icon_wifi_on.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_sample_reverse_geocoding.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_info_blue.png" />
-    <AndroidResource Include="Resources\values\styles.xml" />
-    <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_forward_blue.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_sample_geocoding.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_sample_route_search.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_sample_user_data.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\style_image_carto_darkmatter.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\style_image_carto_positron.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_mapzen_bright.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_mapzen_darkmatter.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_mapzen_positron.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_bright.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_dark.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_darkmatter.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_gray.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_positron.png" />
     <AndroidResource Include="Resources\drawable-nodpi\style_image_nutiteq_voyager.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_basemap.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_language.png" />
     <AndroidResource Include="Resources\drawable-nodpi\icon_info_white.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_here_normal.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\style_image_here_satellite.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />

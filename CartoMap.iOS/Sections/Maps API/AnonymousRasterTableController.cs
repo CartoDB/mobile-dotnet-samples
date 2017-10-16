@@ -10,9 +10,9 @@ namespace CartoMap.iOS
 {
 	public class AnonymousRasterTableController : MapBaseController
 	{
-		public override string Name { get { return "Anonymous Raster Tile"; } }
+		public override string Name { get { return "Raster Layer from CARTO"; } }
 
-		public override string Description { get { return "Using Carto PostGIS Raster data"; } }
+		public override string Description { get { return "PostGIS Raster data from Maps API"; } }
 
 		public override void ViewDidLoad()
 		{
