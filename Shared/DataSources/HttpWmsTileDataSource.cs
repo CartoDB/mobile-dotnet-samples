@@ -119,7 +119,6 @@ public class HttpWmsTileDataSource : HTTPTileDataSource
 			double boundWidth = bounds.Max.X - bounds.Min.X;
 			double boundHeight = bounds.Max.Y - bounds.Min.Y;
 
-				
 			int xCount = Math.Max(1, (int)Math.Round(boundWidth / boundHeight));
 			int yCount = Math.Max(1, (int)Math.Round(boundHeight / boundWidth));
 
