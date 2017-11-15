@@ -9,7 +9,7 @@ namespace HelloMap.iOS
 	[Register("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
-		const string License = "XTUMwQ0ZRQzh2bG5QUTgxUkd1RUIrT2xNT2J4R0thNU1FUUlVZE43dllEMGI5Y0R1QldYSllXdmN4M21mNUljPQoKYXBwVG9rZW49ODVkZDM5ZTMtYjkyZS00MWM0LThkMWYtY2VlMWQ0ZWNiZmVjCmJ1bmRsZUlkZW50aWZpZXI9Y29tLmNhcnRvLmhlbGxvbWFwCm9ubGluZUxpY2Vuc2U9MQpwcm9kdWN0cz1zZGsteGFtYXJpbi1pb3MtNC4qCndhdGVybWFyaz1jYXJ0b2RiCg==";
+        const string License = "XTUN3Q0ZCbStWd1B2RWpCekJndE5EelFQSmtKWWg5UGpBaFFDNmgyTGt3S1EwUHgwWXlVbk8weEY4RXF5VHc9PQoKYXBwVG9rZW49MTA2MjhjYTUtNjkzYi00NTFhLTgyY2QtNjE2OWNkZmU0ZWQwCmJ1bmRsZUlkZW50aWZpZXI9Y29tLmNhcnRvLmhlbGxvLnhhbQpvbmxpbmVMaWNlbnNlPTEKcHJvZHVjdHM9c2RrLXhhbWFyaW4taW9zLTQuKgp3YXRlcm1hcms9Y3VzdG9tCg==";
 		public override UIWindow Window { get; set; }
 
 		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
