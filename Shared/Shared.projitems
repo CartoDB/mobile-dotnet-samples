@@ -24,6 +24,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Geocoding\" />
     <Folder Include="$(MSBuildThisFileDirectory)PackageManagerClient\Routing\" />
     <Folder Include="$(MSBuildThisFileDirectory)PackageManagerClient\Mapping\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Networking\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CartoVisBuilderWithGridEvent.cs" />
@@ -67,5 +68,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Cities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\ClearMapListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\LocationMarker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Networking\HttpClientWithProgress.cs" />
   </ItemGroup>
 </Project>
