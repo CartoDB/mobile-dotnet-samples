@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AdvancedMap.Droid.Sections.VectorObject;
 using Shared.Droid;
 
 namespace AdvancedMap.Droid
@@ -109,7 +110,13 @@ namespace AdvancedMap.Droid
 				Title = "Package Data",
                 Description = "Displays available CARTO Mobile packages",
                 ImageResource = Resource.Drawable.icon_sample_user_data
-			}
+			},
+            new Sample {
+                Type = typeof(City3DActivity),
+                Title = "3D City",
+                Description = "Downloads a 3D NMLModel of Chicago",
+                ImageResource = Resource.Drawable.icon_sample_city3d
+            }
         };
 	}
 }

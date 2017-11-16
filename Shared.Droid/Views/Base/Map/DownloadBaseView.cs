@@ -29,8 +29,14 @@ namespace Shared.Droid
             base.LayoutSubviews();
 
             var height = BottomLabelHeight;
-            ProgressLabel.Frame = new CGRect(0, Frame.H - height, Frame.W, height);
+            // I have no idea why it's necessary to substract the additional 7.1 * Density,
+            // but otherwise the blue progress bar is hidden
+            ProgressLabel.Frame = new CGRect(0, Frame.H - height - ((int)(7.1 * Density)), Frame.W, height);
         }
 
+        public void SetFrame()
+        {
+            Frame = new CGRect(0, 0, Metrics.WidthPixels, UsableHeight);
+        }
     }
 }

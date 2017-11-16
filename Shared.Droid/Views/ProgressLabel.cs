@@ -20,7 +20,7 @@ namespace Shared.Droid
 
         public ProgressLabel(Context context) : base(context)
         {
-            SetBackgroundColor(Colors.DarkTransparentGray);
+            SetBackgroundColor(Colors.TransparentGray);
 
             label = new TextView(context);
             label.Gravity = Android.Views.GravityFlags.Center;
