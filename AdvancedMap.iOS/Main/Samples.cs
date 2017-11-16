@@ -118,7 +118,7 @@ namespace AdvancedMap.iOS
                 Controller = new City3DController(),
                 Title = "3D City",
                 Description = "Downloads a 3D NMLModel of Chicago",
-                ImageResource = ""
+                ImageResource = "gallery/icon_sample_city3d.png"
             }
 		};
 	}
