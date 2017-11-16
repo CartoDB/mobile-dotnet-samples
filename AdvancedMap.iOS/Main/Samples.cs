@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using AdvancedMap.iOS.Sections.OfflineMap;
+using AdvancedMap.iOS.Sections.VectorObjects;
 using Shared.iOS;
 using UIKit;
 
@@ -112,7 +113,13 @@ namespace AdvancedMap.iOS
 				Title = "Package Data",
                 Description = "Displays available CARTO Mobile packages",
 				ImageResource = "gallery/icon_sample_user_data.png"
-			}
+			},
+            new Sample {
+                Controller = new City3DController(),
+                Title = "3D City",
+                Description = "Downloads a 3D NMLModel of Chicago",
+                ImageResource = ""
+            }
 		};
 	}
 }
