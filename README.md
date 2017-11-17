@@ -45,5 +45,5 @@ Here are samples of CARTO Mobile SDK, usable in two .NET platforms:
 
 ## Other Samples
 
-* Android Studio (Android samples in Java): https://github.com/CartoDB/mobile-android-samples
-* XCode (iOS samples in Objective-C and Swift): https://github.com/CartoDB/mobile-ios-samples
+* Android (Java and Kotlin), iPhone (Objective-C and Swift) and others: https://github.com/CartoDB/mobile-sdk-samples
+
