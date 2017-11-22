@@ -17,6 +17,9 @@ namespace AdvancedMap.Droid.Sections.VectorObject
     {
         DownloadBaseView contentView;
 
+        string serverPath, localPath;
+        MapPos position;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -36,17 +39,17 @@ namespace AdvancedMap.Droid.Sections.VectorObject
             contentView.AddBaseLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
 
             MapPos chicago = new MapPos(-87.6298, 41.8781);
-            MapPos position = contentView.Projection.FromWgs84(chicago);
+            position = contentView.Projection.FromWgs84(chicago);
 
             var baseUrl = "https://nutifront.s3.amazonaws.com/";
             var folder = "nml_models/";
             var filename = "chicago_tomtom_lod4_ios_2bpp.nmldb";
 
-            string serverPath = Path.Combine(baseUrl, folder);
+            serverPath = Path.Combine(baseUrl, folder);
             serverPath = Path.Combine(serverPath, filename);
 
             string directory = GetExternalFilesDir(null).ToString();
-            string localPath = Path.Combine(directory, "cities_3d");
+            localPath = Path.Combine(directory, "cities_3d");
 
             if (!Directory.Exists(localPath))
             {
@@ -54,46 +57,53 @@ namespace AdvancedMap.Droid.Sections.VectorObject
             }
 
             localPath = Path.Combine(localPath, filename);
-
-            //if (File.Exists(localPath))
-            //{
-            //    AddCity(localPath);
-            //    ZoomToPosition(position);
-            //}
-            //else
-            //{
-                DownloadCity(serverPath, localPath, position);
-            //}
         }
 
         HttpClientWithProgress client;
 
-        async void DownloadCity(string serverPath, string localPath, MapPos position)
+        protected override void OnResume()
         {
-            using (client = new HttpClientWithProgress(serverPath, localPath))
+            base.OnResume();
+
+            client = new HttpClientWithProgress(serverPath, localPath);
+
+            StartDownload();
+
+            client.ProgressChanged += OnProgressChanged;
+        }
+
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+
+            client.Dispose();
+
+            client.ProgressChanged -= OnProgressChanged;
+        }
+
+        void OnProgressChanged(long? size, long bytesDownloaded, double? progress)
+        {
+            int mb = (int)(size / 1024 / 1024);
+            string text = $"DOWNLOADING CHICAGO ({mb}MB) {(int)progress}%";
+            RunOnUiThread(delegate
             {
-                client.ProgressChanged += (size, bytesDownloaded, progress) =>
+                if (progress.Equals(100.0))
                 {
-                    int mb = (int)(size / 1024 / 1024);
-                    string text = $"DOWNLOADING CHICAGO ({mb}MB) {(int)progress}%";
-                    RunOnUiThread(delegate
-                    {
-                        if (progress.Equals(100.0))
-                        {
-                            contentView.ProgressLabel.Hide();
-                            AddCity(localPath);
-                            ZoomToPosition(position);
-                        }
-                        else
-                        {
-                            contentView.ProgressLabel.Update(text, (float)progress);
-                        }
+                    contentView.ProgressLabel.Hide();
+                    AddCity(localPath);
+                    ZoomToPosition();
+                }
+                else
+                {
+                    contentView.ProgressLabel.Update(text, (float)progress);
+                }
+            });
+        }
 
-                    });
-                };
-
-                await client.StartDownload();
-            }
+        async void StartDownload()
+        {
+            await client.StartDownload();
         }
 
         void AddCity(string path)
@@ -105,7 +115,7 @@ namespace AdvancedMap.Droid.Sections.VectorObject
             contentView.MapView.Layers.Add(layer);
         }
 
-        void ZoomToPosition(MapPos position)
+        void ZoomToPosition()
         {
             contentView.MapView.SetFocusPos(position, 1);
             contentView.MapView.SetZoom(15, 1);

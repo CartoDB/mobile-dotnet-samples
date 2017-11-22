@@ -59,25 +59,31 @@ namespace Shared
 
             using (var fileStream = new FileStream(_destinationFilePath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true))
             {
-                do
+                try
                 {
-                    var bytesRead = await contentStream.ReadAsync(buffer, 0, buffer.Length);
-                    if (bytesRead == 0)
+                    do
                     {
-                        isMoreToRead = false;
-                        TriggerProgressChanged(totalDownloadSize, totalBytesRead);
-                        continue;
+                        var bytesRead = await contentStream.ReadAsync(buffer, 0, buffer.Length);
+                        if (bytesRead == 0)
+                        {
+                            isMoreToRead = false;
+                            TriggerProgressChanged(totalDownloadSize, totalBytesRead);
+                            continue;
+                        }
+
+                        await fileStream.WriteAsync(buffer, 0, bytesRead);
+
+                        totalBytesRead += bytesRead;
+                        readCount += 1;
+
+                        if (readCount % 100 == 0)
+                            TriggerProgressChanged(totalDownloadSize, totalBytesRead);
                     }
-
-                    await fileStream.WriteAsync(buffer, 0, bytesRead);
-
-                    totalBytesRead += bytesRead;
-                    readCount += 1;
-
-                    if (readCount % 100 == 0)
-                        TriggerProgressChanged(totalDownloadSize, totalBytesRead);
+                    while (isMoreToRead);
+                } catch(Exception e)
+                {
+                    Console.WriteLine("Client has been disposed: " + e.Message);
                 }
-                while (isMoreToRead);
             }
         }
 
