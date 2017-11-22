@@ -80,7 +80,8 @@ namespace Shared
                             TriggerProgressChanged(totalDownloadSize, totalBytesRead);
                     }
                     while (isMoreToRead);
-                } catch(Exception e)
+                }
+                catch (Exception e)
                 {
                     Console.WriteLine("Client has been disposed: " + e.Message);
                 }
