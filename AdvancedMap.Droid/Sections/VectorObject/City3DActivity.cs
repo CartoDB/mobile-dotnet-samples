@@ -66,9 +66,11 @@ namespace AdvancedMap.Droid.Sections.VectorObject
             //}
         }
 
+        HttpClientWithProgress client;
+
         async void DownloadCity(string serverPath, string localPath, MapPos position)
         {
-            using (var client = new HttpClientWithProgress(serverPath, localPath))
+            using (client = new HttpClientWithProgress(serverPath, localPath))
             {
                 client.ProgressChanged += (size, bytesDownloaded, progress) =>
                 {
@@ -110,4 +112,6 @@ namespace AdvancedMap.Droid.Sections.VectorObject
             contentView.MapView.SetTilt(30, 1);
         }
     }
+
+
 }
