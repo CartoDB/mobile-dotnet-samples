@@ -236,7 +236,6 @@
     <BundleResource Include="Resources\mbtiles\world_zoom5.mbtiles" />
     <BundleResource Include="Resources\icons\marker.png" />
     <BundleResource Include="Resources\icons\marker_black.png" />
-    <BundleResource Include="Resources\styles\styles_mapzen.zip" />
     <BundleResource Include="Resources\styles\nutiteq-dark.zip" />
     <BundleResource Include="Resources\icons\icon_map%402x.png" />
     <BundleResource Include="Resources\gallery\image_gps_location.png" />
@@ -269,9 +268,6 @@
     <BundleResource Include="Resources\mbtiles\rome_carto-streets.mbtiles" />
     <BundleResource Include="Resources\icons\icon_basemap.png" />
     <BundleResource Include="Resources\icons\icon_language.png" />
-    <BundleResource Include="Resources\basemaps\style_image_mapzen_bright.png" />
-    <BundleResource Include="Resources\basemaps\style_image_mapzen_darkmatter.png" />
-    <BundleResource Include="Resources\basemaps\style_image_mapzen_positron.png" />
     <BundleResource Include="Resources\basemaps\style_image_nutiteq_darkmatter.png" />
     <BundleResource Include="Resources\basemaps\style_image_nutiteq_positron.png" />
     <BundleResource Include="Resources\basemaps\style_image_nutiteq_voyager.png" />

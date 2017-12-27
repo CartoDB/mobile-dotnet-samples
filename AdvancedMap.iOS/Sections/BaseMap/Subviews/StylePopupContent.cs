@@ -8,7 +8,6 @@ namespace AdvancedMap.iOS.Sections.BaseMap.Subviews
     public class StylePopupContent : UIView
     {
         public const string CartoVectorSource = "carto.streets";
-		public const string MapzenSource = "mapzen.osm";
 		public const string CartoRasterSource = "carto.osm";
 
 		public const string Bright = "BRIGHT";
@@ -25,19 +24,12 @@ namespace AdvancedMap.iOS.Sections.BaseMap.Subviews
 		UIScrollView container;
 		
 		public StylePopupContentSection CartoVector { get; private set; }
-		public StylePopupContentSection Mapzen { get; private set; }
 		public StylePopupContentSection CartoRaster { get; private set; }
 
 		public List<StylePopupContentSection> Sections
 		{
-			get
-			{
-				return new List<StylePopupContentSection>
-				{
-					CartoVector, Mapzen, CartoRaster
-				};
-			}
-		}
+            get => new List<StylePopupContentSection> { CartoVector, CartoRaster };
+        }
 
 		public StylePopupContent()
         {
@@ -53,14 +45,6 @@ namespace AdvancedMap.iOS.Sections.BaseMap.Subviews
 			CartoVector.AddItem(Positron, basefolder + "style_image_nutiteq_positron.png");
 			CartoVector.AddItem(DarkMatter, basefolder + "style_image_nutiteq_darkmatter.png");
 			container.AddSubview(CartoVector);
-
-			Mapzen = new StylePopupContentSection();
-			Mapzen.Source = MapzenSource;
-			Mapzen.Header.Text = "MAPZEN VECTOR";
-			Mapzen.AddItem(Bright, basefolder + "style_image_mapzen_bright.png");
-			Mapzen.AddItem(Positron, basefolder + "style_image_mapzen_positron.png");
-			Mapzen.AddItem(DarkMatter, basefolder + "style_image_mapzen_darkmatter.png");
-			container.AddSubview(Mapzen);
 
 			CartoRaster = new StylePopupContentSection();
 			CartoRaster.Source = CartoRasterSource;
@@ -83,11 +67,6 @@ namespace AdvancedMap.iOS.Sections.BaseMap.Subviews
 			nfloat h = CartoVector.CalculatedHeight;
 
 			CartoVector.Frame = new CGRect(x, y, w, h);
-
-			y += h + headerPadding;
-			h = Mapzen.CalculatedHeight;
-
-			Mapzen.Frame = new CGRect(x, y, w, h);
 
 			y += h + headerPadding;
 			h = CartoRaster.CalculatedHeight + headerPadding;
