@@ -60,40 +60,6 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Views
                     CurrentLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleDarkmatter);
                 }
             }
-            else if (source.Equals(StylePopupContent.MapzenSource))
-            {
-                // Mapzen styles are all bundled in one .zip file.
-                // Selection contains both the style name and file name (cf. Sections.cs in Shared)
-
-                // Create a style set from the file and style
-                BinaryData styleAsset = AssetUtils.LoadAsset("styles_mapzen.zip");
-                var package = new ZippedAssetPackage(styleAsset);
-
-                string name = "";
-
-                if (selection.Equals(StylePopupContent.Bright))
-                {
-                    // The name of the actual style is "bright", as it's displayed in the UI,
-                    // but in the style file it's a default "style", change the name
-                    name = "style";    
-                } 
-                else if (selection.Equals(StylePopupContent.Positron))
-                {
-                    name = "positron";
-                }
-                else if (selection.Equals(StylePopupContent.DarkMatter))
-                {
-                    name = "positron_dark";
-                }
-
-                CompiledStyleSet styleSet = new CompiledStyleSet(package, name);
-
-                // Create datasource and style decoder
-                var ds = new CartoOnlineTileDataSource(source);
-                var decoder = new MBVectorTileDecoder(styleSet);
-
-                CurrentLayer = new VectorTileLayer(ds, decoder);
-            }
             else if (source.Equals(StylePopupContent.CartoRasterSource))
             {
                 if (selection.Equals(StylePopupContent.HereSatelliteDaySource))

@@ -11,7 +11,6 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Subviews
     public class StylePopupContent : BaseView
     {
         public const string CartoVectorSource = "carto.streets";
-        public const string MapzenSource = "mapzen.osm";
         public const string CartoRasterSource = "carto.osm";
 
         public const string Bright = "BRIGHT";
@@ -32,18 +31,11 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Subviews
         ScrollView scrollContainer;
 
         public StylePopupContentSection CartoVector { get; private set; }
-        public StylePopupContentSection Mapzen { get; private set; }
         public StylePopupContentSection CartoRaster { get; private set; }
 
         public List<StylePopupContentSection> Sections
         {
-            get
-            {
-                return new List<StylePopupContentSection>
-                {
-                    CartoVector, Mapzen, CartoRaster
-                };
-            }
+            get => new List<StylePopupContentSection> { CartoVector, CartoRaster };
         }
 
         public StylePopupContent(Context context) : base(context)
@@ -61,14 +53,6 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Subviews
             CartoVector.AddItem(Positron, Resource.Drawable.style_image_nutiteq_positron);
             CartoVector.AddItem(DarkMatter, Resource.Drawable.style_image_nutiteq_darkmatter);
             container.AddView(CartoVector);
-
-            Mapzen = new StylePopupContentSection(context);
-            Mapzen.Source = MapzenSource;
-            Mapzen.Header.Text = "MAPZEN VECTOR";
-            Mapzen.AddItem(Bright, Resource.Drawable.style_image_mapzen_bright);
-            Mapzen.AddItem(Positron, Resource.Drawable.style_image_mapzen_positron);
-            Mapzen.AddItem(DarkMatter, Resource.Drawable.style_image_mapzen_darkmatter);
-            container.AddView(Mapzen);
 
             CartoRaster = new StylePopupContentSection(context);
             CartoRaster.Source = CartoRasterSource;
@@ -89,11 +73,6 @@ namespace AdvancedMap.Droid.Sections.BaseMap.Subviews
             int h = CartoVector.CalculatedHeight;
 
             CartoVector.Frame = new CGRect(x, y, w, h);
-
-            y += h + headerPadding;
-            h = Mapzen.CalculatedHeight;
-
-            Mapzen.Frame = new CGRect(x, y, w, h);
 
             y += h + headerPadding;
             h = CartoRaster.CalculatedHeight + headerPadding;
