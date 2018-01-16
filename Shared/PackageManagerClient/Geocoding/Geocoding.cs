@@ -1,10 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using Carto.Geocoding;
-using Carto.PackageManager;
 
 namespace Shared
 {
@@ -16,8 +14,6 @@ namespace Shared
         }
 
         public const string PackageFolder = "com.carto.geocodingpackages";
-
-        public string ApiKey { get; set; }
 
         public GeocodingService Service { get; private set; }
 
@@ -37,7 +33,7 @@ namespace Shared
 
         public void SetOnlineMode()
         {
-            Service = new PeliasOnlineGeocodingService(ApiKey);    
+            Service = new MapBoxOnlineGeocodingService(Tokens.MapBox);
         }
 
         public void SetOfflineMode()

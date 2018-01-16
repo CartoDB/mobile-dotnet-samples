@@ -10,6 +10,6 @@ namespace Shared
 		public const string RoutingTag = "routing:";
         public const string OfflineRouting = "carto.streets";
 
-		public const string MapzenApiKey = "mapzen-e2gmwsC";
+        public const string NutiteqRouting = "nutiteq.osm.car";
     }
 }

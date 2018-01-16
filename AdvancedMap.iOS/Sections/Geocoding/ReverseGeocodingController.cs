@@ -67,7 +67,7 @@ namespace AdvancedMap.iOS
 
 		public override void SetOnlineMode()
 		{
-            Listener.Service = new PeliasOnlineReverseGeocodingService(Geocoding.ApiKey);
+            Listener.Service = new MapBoxOnlineReverseGeocodingService(Tokens.MapBox);
 		}
 
 		public override void SetOfflineMode()

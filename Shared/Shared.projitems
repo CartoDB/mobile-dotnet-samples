@@ -69,5 +69,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\ClearMapListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\LocationMarker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Networking\HttpClientWithProgress.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants\Tokens.cs" />
   </ItemGroup>
 </Project>

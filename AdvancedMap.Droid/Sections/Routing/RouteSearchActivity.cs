@@ -67,7 +67,7 @@ namespace AdvancedMap.Droid
 
         protected override void SetOnlineMode()
         {
-            Routing.Service = new ValhallaOnlineRoutingService(Sources.MapzenApiKey);
+            Routing.Service = new CartoOnlineRoutingService(Sources.NutiteqRouting);
         }
 
 		void OnSingleTap(object sender, EventArgs e)
