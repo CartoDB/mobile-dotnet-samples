@@ -5,7 +5,6 @@ namespace Shared
     {
         public const string CartoVector = "carto.streets";
         public const string CartoRaster = "carto.osm";
-        public const string Mapzen = "mapzen.osm";
 
 		public const string RoutingTag = "routing:";
         public const string OfflineRouting = "carto.streets";
