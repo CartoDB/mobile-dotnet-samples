@@ -27,9 +27,10 @@ namespace AdvancedMap.Droid
             SetOnlineMode();
             ContentView.SetOnlineMode();
 
+            // Zoom to Washington
             MapPos pos = ContentView.MapView.Options.BaseProjection.FromWgs84(new MapPos(-77.004590, 38.888702));
             ContentView.MapView.SetFocusPos(pos, 0);
-            ContentView.MapView.SetZoom(15.0f, 0);
+            ContentView.MapView.SetZoom(16.0f, 0);
         }        
 
         protected override void OnResume()
