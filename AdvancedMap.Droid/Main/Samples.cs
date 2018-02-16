@@ -52,8 +52,8 @@ namespace AdvancedMap.Droid
             },
             new Sample {
                 Type = typeof(OfflineRoutingActivity),
-                Title = "Offline Routing",
-                Description = "Pelias Routing and Route Package download",
+                Title = "Routing",
+                Description = "Valhalla Routing and Route Package download",
                 ImageResource = Resource.Drawable.image_offline_routing
             },
             new Sample {

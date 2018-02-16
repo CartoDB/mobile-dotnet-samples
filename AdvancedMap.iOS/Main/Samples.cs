@@ -43,8 +43,8 @@ namespace AdvancedMap.iOS
 			},
 			new Sample {
 				Controller = new OfflineRoutingController(),
-				Title = "Offline Routing",
-                Description = "Pelias routing and Route Package download",
+				Title = "Routing",
+                Description = "Valhalla routing and Route Package download",
 				ImageResource = "gallery/image_offline_routing.png"
 			},
 			new Sample {

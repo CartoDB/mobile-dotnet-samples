@@ -4,6 +4,7 @@ using Android.App;
 using Android.Support.V7.App;
 using Shared.Droid;
 using Shared;
+using Carto.Core;
 using Carto.Geocoding;
 
 namespace AdvancedMap.Droid
@@ -25,6 +26,10 @@ namespace AdvancedMap.Droid
 
             SetOnlineMode();
             ContentView.SetOnlineMode();
+
+            MapPos pos = ContentView.MapView.Options.BaseProjection.FromWgs84(new MapPos(-77.004590, 38.888702));
+            ContentView.MapView.SetFocusPos(pos, 0);
+            ContentView.MapView.SetZoom(15.0f, 0);
         }        
 
         protected override void OnResume()

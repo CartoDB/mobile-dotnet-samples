@@ -42,8 +42,10 @@ namespace AdvancedMap.Droid
 
 			new System.Threading.Thread((obj) =>
 			{
-				// Create a basic style, as the ClusterElementBuilder will set the real style
-				MarkerStyle style = new MarkerStyleBuilder().BuildStyle();
+                // Create a basic style, as the ClusterElementBuilder will set the real style
+                var markerStyleBuilder = new MarkerStyleBuilder();
+                markerStyleBuilder.Size = 14;
+				MarkerStyle style = markerStyleBuilder.BuildStyle();
 
 				// Read GeoJSON, parse it using SDK GeoJSON parser
 				GeoJSONGeometryReader reader = new GeoJSONGeometryReader();
