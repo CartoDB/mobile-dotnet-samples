@@ -92,7 +92,6 @@ namespace Shared
 			builder.CornerRadius = 5;
 			// Make sure this label is shown on top of all other labels
 			builder.PlacementPriority = 10;
-            builder.DescriptionColor = new Carto.Graphics.Color(255, 255, 255, 255);
 
 			FeatureCollection collection = result.FeatureCollection;
 			int count = collection.FeatureCount;
@@ -109,7 +108,7 @@ namespace Shared
 				pointBuilder.Color = color;
 
 				var lineBuilder = new LineStyleBuilder();
-				builder.Color = color;
+				lineBuilder.Color = color;
 
 				var polygonBuilder = new PolygonStyleBuilder();
 				polygonBuilder.Color = color;

@@ -74,7 +74,14 @@ namespace Shared.Droid
                     MapView.Layers.Remove(offlineLayer);
                 }
 
-                MapView.Layers.Add(onlineLayer);
+                if (MapView.Layers.Count == 0)
+                {
+                    MapView.Layers.Add(onlineLayer);
+                }
+                else
+                {
+                    MapView.Layers.Insert(0, onlineLayer);
+                }
 
                 if (complete != null)
                 {
@@ -98,7 +105,14 @@ namespace Shared.Droid
                     offlineLayer.Preloading = true;
                 }
 
-                MapView.Layers.Add(offlineLayer);
+                if (MapView.Layers.Count == 0)
+                {
+                    MapView.Layers.Add(offlineLayer);
+                }
+                else
+                {
+                    MapView.Layers.Insert(0, offlineLayer);
+                }
             });
         }
     }
