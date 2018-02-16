@@ -57,8 +57,11 @@ namespace AdvancedMap.Droid
 
 			if (result == null)
 			{
-                string text = "Couldn't find any addresses. Please try again";
-                ContentView.Banner.Show(text);
+                RunOnUiThread(delegate
+                {
+                    string text = "Couldn't find any addresses. Please try again";
+                    ContentView.Banner.Show(text);
+                });
                 return;
 			}
 
