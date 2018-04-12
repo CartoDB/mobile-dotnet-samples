@@ -29,7 +29,9 @@ namespace Shared
 		public MarkerStyle instructionUp, instructionLeft, instructionRight;
 
 		public LocalVectorDataSource routeDataSource;
+        public LocalVectorDataSource routeInstructionSource;
 		public LocalVectorDataSource routeStartStopDataSource;
+
 		public BalloonPopupStyleBuilder balloonBuilder;
 
 		MapView MapView;
@@ -42,15 +44,27 @@ namespace Shared
             Projection = map.Options.BaseProjection;
 		}
 
-		public void Show(RoutingResult result)
+        public void BringLayersToFront()
+        {
+            MapView.Layers.Remove(routeLayer);
+            MapView.Layers.Remove(routeInstructionLayer);
+            MapView.Layers.Remove(startStopLayer);
+
+            MapView.Layers.Add(routeLayer);
+            MapView.Layers.Add(routeInstructionLayer);
+            MapView.Layers.Add(startStopLayer);
+        }
+
+        public void Show(RoutingResult result)
 		{
 			routeDataSource.Clear();
+            routeInstructionSource.Clear();
 
-            var color = new Color(0, 122, 255, 150);
-			Line line = CreatePolyline(startMarker.Geometry.CenterPos, stopMarker.Geometry.CenterPos, result, color);
+            var color = new Color(0, 122, 255, 225);
+			Line line = CreatePolyline(result, color);
 			routeDataSource.Add(line);
 
-			// Add instruction markers
+            // Add instruction markers
 			RoutingInstructionVector instructions = result.Instructions;
 
             if (ShowTurns)
@@ -59,9 +73,10 @@ namespace Shared
 				{
 					RoutingInstruction instruction = instructions[i];
 					MapPos position = result.Points[instruction.PointIndex];
-					CreateRoutePoint(position, instruction, routeDataSource);
+                    CreateRoutePoint(position, instruction, routeInstructionSource);
 				}
             }
+
 		}
 
 		public string GetMessage(RoutingResult result)
@@ -111,24 +126,26 @@ namespace Shared
             return result;
         }
 
+        VectorLayer routeLayer, routeInstructionLayer, startStopLayer;
+
 		public void SetSourcesAndElements(Bitmap olmarker, Bitmap up, Bitmap upleft, Bitmap upright, Color green, Color red, Color white)
 		{
-			// Define layer and datasource for route line and instructions
+			// Define layer and datasource for route line
 			routeDataSource = new LocalVectorDataSource(Projection);
-			VectorLayer routeLayer = new VectorLayer(routeDataSource);
+			routeLayer = new VectorLayer(routeDataSource);
 			MapView.Layers.Add(routeLayer);
+
+            // Define layer and datasource for route instructions
+            routeInstructionSource = new LocalVectorDataSource(Projection);
+            routeInstructionLayer = new VectorLayer(routeInstructionSource);
+            MapView.Layers.Add(routeInstructionLayer);
 
 			// Define layer and datasource for route start and stop markers
 			routeStartStopDataSource = new LocalVectorDataSource(Projection);
-
 			// Initialize a vector layer with the previous data source
-			VectorLayer vectorLayer = new VectorLayer(routeStartStopDataSource);
-
+            startStopLayer = new VectorLayer(routeStartStopDataSource);
 			// Add the previous vector layer to the map
-			MapView.Layers.Add(vectorLayer);
-
-			// Set visible zoom range for the vector layer
-			vectorLayer.VisibleZoomRange = new MapRange(0, 22);
+			MapView.Layers.Add(startStopLayer);
 
 			// Create markers for start & end and a layer for them
 			MarkerStyleBuilder markerBuilder = new MarkerStyleBuilder();
@@ -178,12 +195,11 @@ namespace Shared
             source.Add(marker);
         }
 
-		// Creates a line from GraphHopper response
-		protected Line CreatePolyline(MapPos start, MapPos end, RoutingResult result, Color color)
+		protected Line CreatePolyline(RoutingResult result, Color color)
 		{
 			LineStyleBuilder builder = new LineStyleBuilder();
 			builder.Color = color;
-            builder.Width = 7;
+            builder.Width = 10;
 
 			return new Line(result.Points, builder.BuildStyle());
 		}

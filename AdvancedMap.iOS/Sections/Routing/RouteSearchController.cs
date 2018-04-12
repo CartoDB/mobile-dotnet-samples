@@ -111,15 +111,14 @@ namespace AdvancedMap.iOS
 						return;
 					}
 
-                    string text = Routing.GetMessage(result);
-					ContentView.Banner.Show(text);
-					
-					Routing.Show(result);
+                    Routing.Show(result);
 
+                    ContentView.Banner.Show(Routing.GetMessage(result));
+					
 					FeatureCollection collection = Routing.routeDataSource.GetFeatureCollection();
 					Search.FindAttractions(collection, (count) =>
 					{
-						text = "Found " + count + " attractions. ";
+						string text = "Found " + count + " attractions. ";
 						text += "Click on one to find out more about it";
                         InvokeOnMainThread(delegate
 						{
@@ -128,6 +127,7 @@ namespace AdvancedMap.iOS
 					});
 				});
 			});
+
 		}
     }
 }

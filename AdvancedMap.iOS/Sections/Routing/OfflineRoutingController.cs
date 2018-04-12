@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Carto.Layers;
-using Carto.PackageManager;
+﻿
 using Carto.Routing;
-using CoreGraphics;
 using Shared;
-using Shared.iOS;
-using UIKit;
 
 namespace AdvancedMap.iOS
 {
@@ -23,20 +17,22 @@ namespace AdvancedMap.iOS
             string text = "Long click on the map to set route start point";
             ContentView.Banner.Show(text);
 
-			SetOnlineMode();
 			ContentView.SetOnlineMode();
+            SetOnlineMode();
 		}
 
         public override void SetOnlineMode()
 		{
             Routing.Service = new CartoOnlineRoutingService(Sources.NutiteqRouting);
+            Routing.BringLayersToFront();
 		}
 
 		public override void SetOfflineMode()
 		{
-			string text = "Click the globa icon to download routing packages";
+			string text = "Click the globe icon to download routing packages";
 			ContentView.Banner.Show(text);
 			Routing.Service = new PackageManagerValhallaRoutingService(Routing.Manager);
+            Routing.BringLayersToFront();
 		}
 	}
 }

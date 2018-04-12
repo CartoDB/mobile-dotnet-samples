@@ -26,23 +26,14 @@ namespace AdvancedMap.iOS
             View = ContentView;
 
 			string folder = GetPackageFolder(Routing.PackageFolder);
-			Client = new Routing(ContentView.MapView, folder);
+            Client = new Routing(ContentView.MapView, folder);
+
+            Routing.SetSourcesAndElements();
 
 			// Set route listener
 			MapListener = new RouteMapEventListener();
 			
 			Alert("Long-press on map to set route start and finish");
-
-			Bitmap olmarker = CreateBitmap("icons/olmarker.png");
-			Bitmap directionUp = CreateBitmap("icons/direction_up.png");
-			Bitmap directionUpLeft = CreateBitmap("icons/direction_upthenleft.png");
-			Bitmap directionUpRight = CreateBitmap("icons/direction_upthenright.png");
-
-			Color green = new Color(0, 255, 0, 255);
-			Color red = new Color(255, 0, 0, 255);
-			Color white = new Color(255, 255, 255, 255);
-
-			Routing.SetSourcesAndElements(olmarker, directionUp, directionUpLeft, directionUpRight, green, red, white);
 
             ContentView.SetOnlineMode();
 		}
@@ -83,18 +74,7 @@ namespace AdvancedMap.iOS
 			// Run routing in background
 			System.Threading.Tasks.Task.Run(() =>
 			{
-				long time = DateTime.Now.Millisecond;
-
-				RoutingResult result = null;
-
-				try
-				{
-					result = Routing.GetResult(startPos, stopPos);
-				}
-				catch(Exception e)
-				{
-					Console.WriteLine(e.Message);
-				}
+				RoutingResult result = Routing.GetResult(startPos, stopPos);
 
 				InvokeOnMainThread(() =>
 				{
@@ -104,19 +84,11 @@ namespace AdvancedMap.iOS
 						return;
 					}
 
-                    Alert(Routing.GetMessage(result));
+                    Routing.Show(result);
 
-					Color lineColor = new Color(0, 122, 255, 255);
-					Routing.Show(result);
-                    RoutingComplete();
+                    Alert(Routing.GetMessage(result));
 				});
 			});
 		}
-
-        public virtual void RoutingComplete()
-        {
-            // Implementation in RouteSearchController 
-            // where attractions are added after the route is calculated
-        }
 	}
 }
