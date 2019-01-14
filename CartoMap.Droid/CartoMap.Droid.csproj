@@ -56,7 +56,7 @@
       <HintPath>..\packages\HockeySDK.Xamarin.4.1.3\lib\MonoAndroid403\HockeySDK.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.Android.4.1.3\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.Android.4.1.4\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -112,6 +112,7 @@
     <AndroidResource Include="Resources\drawable-nodpi\image_viz_fonts.png" />
     <AndroidResource Include="Resources\drawable-nodpi\image_viz_store.png" />
     <AndroidResource Include="Resources\drawable-nodpi\image_viz_subway.png" />
+    <AndroidResource Include="Resources\xml\network_security_config.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sections\" />
