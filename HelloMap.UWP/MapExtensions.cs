@@ -14,31 +14,6 @@ namespace HelloMap.WindowsPhone
 {
     public static class MapExtensions
     {
-        public static async void UpdateVis(this MapView map, string url, Action<string> error = null)
-        {
-            await ThreadPool.RunAsync(delegate
-            {
-                map.Layers.Clear();
-
-                // Create VIS loader
-                CartoVisLoader loader = new CartoVisLoader();
-                loader.DefaultVectorLayerMode = true;
-                BasicCartoVisBuilder builder = new BasicCartoVisBuilder(map);
-
-                try
-                {
-                    loader.LoadVis(builder, url);
-                }
-                catch (Exception e)
-                {
-                    if (error != null)
-                    {
-                        error(e.Message);
-                    }
-                }
-            });
-        }
-
         public static async void AddMarkerToPosition(this MapView map, MapPos position)
         {
             await ThreadPool.RunAsync(delegate

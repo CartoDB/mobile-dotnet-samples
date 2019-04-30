@@ -2,6 +2,8 @@
 using Carto.Core;
 using Carto.Layers;
 using Carto.Projections;
+using Carto.Components;
+
 using Carto.Ui;
 
 using System;
@@ -40,7 +42,6 @@ namespace HelloMap.WindowsPhone
 
             // Add base map
 
-            // TODO: Crashes here for some reason
             CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
             MapView.Layers.Add(baseLayer);
 
@@ -53,7 +54,8 @@ namespace HelloMap.WindowsPhone
             MapView.SetFocusPos(tallinn, 0);
             MapView.SetZoom(13, 0);
 
-            MapView.Options.DPI = 240; 
+            MapView.Options.DPI = 240;
+            //MapView.Options.RenderProjectionMode = RenderProjectionMode.RenderProjectionModeSpherical;
 
             Window.Current.Content = MapView;
             Window.Current.Activate();

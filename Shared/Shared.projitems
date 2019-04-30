@@ -27,7 +27,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Networking\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Builders\CartoVisBuilderWithGridEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\MyClusterElementBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataSources\CartoDBSQLDataSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataSources\HttpWmsTileDataSource.cs" />
@@ -41,7 +40,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\RouteMapEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\VectorElementListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Package.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Builders\BasicCartoVisBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\JsonUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Listeners\VectorTileListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\Urls.cs" />
