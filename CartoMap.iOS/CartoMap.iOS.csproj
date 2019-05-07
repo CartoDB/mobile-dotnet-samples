@@ -153,7 +153,6 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Sections\" />
-    <Folder Include="Sections\CARTO.js API\" />
     <Folder Include="Sections\Import API\" />
     <Folder Include="Sections\Maps API\" />
     <Folder Include="Sections\SQL API\" />
@@ -178,9 +177,6 @@
     </Compile>
     <Compile Include="Device.cs" />
     <Compile Include="Samples.cs" />
-    <Compile Include="Sections\CARTO.js API\BaseVisController.cs" />
-    <Compile Include="Sections\CARTO.js API\TrainVisController.cs" />
-    <Compile Include="Sections\CARTO.js API\StoresVisController.cs" />
     <Compile Include="Sections\Import API\TilePackagerController.cs" />
     <Compile Include="Sections\Maps API\AnonymousRasterTableController.cs" />
     <Compile Include="Sections\Maps API\AnonymousVectorTableController.cs" />

@@ -10,18 +10,6 @@ namespace CartoMap.iOS
 		public static List<Sample> List = new List<Sample>
 		{
 			new Sample {
-				Controller = new TrainVisController(),
-				Title = "L-train area Vis",
-                Description = "L-train travel area analysis visualisation",
-				ImageResource = "image_viz_subway.png",
-			},
-			new Sample {
-				Controller = new StoresVisController(),
-				Title = "Store Locations Vis",
-                Description = "Predicted store locations analysis",
-				ImageResource = "image_viz_store.png",
-			},
-			new Sample {
 				Controller = new AnonymousRasterTableController(),
 				Title = "Raster Map in CARTO",
                 Description = "Raster tiles from CARTO Maps API",

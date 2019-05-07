@@ -51,41 +51,6 @@ namespace Shared
 			return marker;
 		}
 
-		public static void UpdateVisWithGridEvent(this MapView map, string url, Action<string> error = null)
-		{
-			ThreadPool.QueueUserWorkItem(delegate
-			{
-				map.Layers.Clear();
-
-				// Create overlay layer for Popups
-				Projection projection = map.Options.BaseProjection;
-				LocalVectorDataSource source = new LocalVectorDataSource(projection);
-				VectorLayer layer = new VectorLayer(source);
-
-				// Create VIS loader
-				CartoVisLoader loader = new CartoVisLoader();
-                loader.DefaultVectorLayerMode = true;
-				CartoVisBuilderWithGridEvent builder = new CartoVisBuilderWithGridEvent(map, layer);
-
-				BinaryData fontData = AssetUtils.LoadAsset("carto-fonts.zip");
-				loader.VectorTileAssetPackage = new ZippedAssetPackage(fontData);
-
-				try
-				{
-					loader.LoadVis(builder, url);
-				}
-				catch (Exception e)
-				{
-					if (error != null)
-					{
-						error(e.Message);
-					}
-				}
-
-				map.Layers.Add(layer);
-			});
-		}
-
 		public static void AnimateZoomTo(this MapView map, MapPos position)
 		{
 			position = map.Options.BaseProjection.FromWgs84(new MapPos(24.650415, 59.428773));

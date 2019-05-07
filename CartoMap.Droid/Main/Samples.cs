@@ -11,18 +11,6 @@ namespace CartoMap.Droid
 		public static List<Sample> Items = new List<Sample>
 		{
 			new Sample {
-				Type = typeof(CountriesVisActivity),
-				Title = "Subway Vis",
-                Description = "Vis.json of New York subway routes",
-				ImageResource = Resource.Drawable.image_viz_subway
-			},
-			new Sample {
-				Type = typeof(DotsVisActivity),
-				Title = "Store Locations",
-                Description = "Vis.json of predicted store locations",
-				ImageResource = Resource.Drawable.image_viz_store
-			},
-			new Sample {
 				Type = typeof(AnonymousRasterTableActivity),
 				Title = "Raster Tile",
                 Description = "Anonymous raster tiles via CARTO maps service",

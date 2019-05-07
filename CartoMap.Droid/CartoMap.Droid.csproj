@@ -16,7 +16,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <AndroidTlsProvider></AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -29,7 +28,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AndroidSupportedAbis>arm64-v8a;armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
+    <AndroidSupportedAbis>arm64-v8a;armeabi-v7a;x86;x86_64</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -56,7 +55,7 @@
       <HintPath>..\packages\HockeySDK.Xamarin.4.1.3\lib\MonoAndroid403\HockeySDK.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.Android">
-      <HintPath>..\packages\CartoMobileSDK.Android.4.1.4\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.Android.4.1.6\lib\MonoAndroid230\CartoMobileSDK.Android.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -64,15 +63,12 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MapApplication.cs" />
-    <Compile Include="Sections\CARTO.js API\TrainVisActivity.cs" />
-    <Compile Include="Sections\CARTO.js API\StoresVisActivity.cs" />
     <Compile Include="Sections\Torque API\TorqueActivity.cs" />
     <Compile Include="Sections\Import API\TilePackagerActivity.cs" />
     <Compile Include="Sections\Maps API\AnonymousRasterTableActivity.cs" />
     <Compile Include="Sections\Maps API\AnonymousVectorTableActivity.cs" />
     <Compile Include="Sections\Maps API\NamedMapActivity.cs" />
     <Compile Include="Sections\SQL API\SQLServiceActivity.cs" />
-    <Compile Include="Sections\CARTO.js API\BaseVisActivity.cs" />
     <Compile Include="MapBaseActivity.cs" />
     <Compile Include="Sections\Torque API\TorqueView.cs" />
     <Compile Include="Sections\Torque API\Histogram\TorqueHistogram.cs" />
@@ -109,14 +105,10 @@
     <AndroidResource Include="Resources\drawable-nodpi\image_named.png" />
     <AndroidResource Include="Resources\drawable-nodpi\image_sql.png" />
     <AndroidResource Include="Resources\drawable-nodpi\image_torque.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\image_viz_fonts.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\image_viz_store.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\image_viz_subway.png" />
     <AndroidResource Include="Resources\xml\network_security_config.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sections\" />
-    <Folder Include="Sections\CARTO.js API\" />
     <Folder Include="Sections\Import API\" />
     <Folder Include="Sections\Maps API\" />
     <Folder Include="Sections\SQL API\" />

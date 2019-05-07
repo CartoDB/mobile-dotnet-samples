@@ -237,15 +237,6 @@ namespace CartoMap.Droid
 			// aapt resource value: 0x7f020007
 			public const int image_torque = 2130837511;
 			
-			// aapt resource value: 0x7f020008
-			public const int image_viz_fonts = 2130837512;
-			
-			// aapt resource value: 0x7f020009
-			public const int image_viz_store = 2130837513;
-			
-			// aapt resource value: 0x7f02000a
-			public const int image_viz_subway = 2130837514;
-			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
