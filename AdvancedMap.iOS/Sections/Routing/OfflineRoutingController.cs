@@ -31,7 +31,7 @@ namespace AdvancedMap.iOS
 		{
 			string text = "Click the globe icon to download routing packages";
 			ContentView.Banner.Show(text);
-			Routing.Service = new PackageManagerValhallaRoutingService(Routing.Manager);
+			Routing.Service = new PackageManagerRoutingService(Routing.Manager);
             Routing.BringLayersToFront();
 		}
 	}

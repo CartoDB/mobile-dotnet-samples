@@ -17,10 +17,10 @@ namespace Shared
 	{
 		public override string Source
 		{
-            get { return "routing:" + Sources.CartoVector; }
+            get { return "routing:" + Sources.NutiteqRouting; }
 		}
 
-		public const string PackageFolder = "com.carto.routingpackages";
+		public const string PackageFolder = "com.carto.routingpackages." + Sources.NutiteqRouting;
 
 		protected Marker startMarker, stopMarker;
 

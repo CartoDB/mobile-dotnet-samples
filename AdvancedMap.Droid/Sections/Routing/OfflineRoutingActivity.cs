@@ -43,7 +43,7 @@ namespace AdvancedMap.Droid
         protected override void SetOfflineMode()
         {
             // Create offline routing service connected to package manager
-            Routing.Service = new PackageManagerValhallaRoutingService(Routing.Manager);
+            Routing.Service = new PackageManagerRoutingService(Routing.Manager);
         }
 	}
 }

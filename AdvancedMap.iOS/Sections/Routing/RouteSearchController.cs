@@ -81,7 +81,7 @@ namespace AdvancedMap.iOS
 
 		public override void SetOfflineMode()
 		{
-			Routing.Service = new PackageManagerValhallaRoutingService(Client.Manager);
+			Routing.Service = new PackageManagerRoutingService(Client.Manager);
 		}
 
 		protected void OnStartPositionClick(object sender, RouteMapEventArgs e)

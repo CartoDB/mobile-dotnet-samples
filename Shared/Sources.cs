@@ -7,8 +7,6 @@ namespace Shared
         public const string CartoRaster = "carto.osm";
 
 		public const string RoutingTag = "routing:";
-        public const string OfflineRouting = "carto.streets";
-
         public const string NutiteqRouting = "nutiteq.osm.car";
     }
 }
