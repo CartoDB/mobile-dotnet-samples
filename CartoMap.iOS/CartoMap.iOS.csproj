@@ -93,7 +93,7 @@
       <HintPath>..\packages\HockeySDK.Xamarin.5.1.2\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.iOS">
-      <HintPath>..\packages\CartoMobileSDK.iOS.4.1.6\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.iOS.4.2.0-rc.2\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

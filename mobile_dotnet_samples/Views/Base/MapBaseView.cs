@@ -26,6 +26,8 @@ namespace Shared.iOS
         {
 			MapView = new MapView();
 			AddSubview(MapView);
+
+            MapView.Options.ZoomGestures = true;
 			
             Banner = new Banner();
 			AddSubview(Banner);

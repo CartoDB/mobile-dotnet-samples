@@ -117,7 +117,7 @@ namespace AdvancedMap.iOS
 				MarkerStyleBuilder styleBuilder = new MarkerStyleBuilder();
 				styleBuilder.Bitmap = BitmapUtils.CreateBitmapFromUIImage(newImage);
 				styleBuilder.Size = 30;
-				styleBuilder.PlacementPriority = -elements.Count;
+				styleBuilder.PlacementPriority = elements.Count;
 
 				style = styleBuilder.BuildStyle();
 

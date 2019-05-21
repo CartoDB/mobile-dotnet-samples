@@ -46,6 +46,14 @@ namespace HelloMap.iOS
 			// Add simple event listener that changes size and/or color on map click
 			MapView.MapEventListener = new HelloMapEventListener(marker);
 		}
-	}
+
+        public override void ViewWillUnload()
+        {
+            base.ViewWillUnload();
+
+            // Disconnect listener to avoid leaks
+            MapView.MapEventListener = null;
+        }
+    }
 }
 

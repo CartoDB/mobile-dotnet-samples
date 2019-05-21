@@ -120,7 +120,7 @@ namespace AdvancedMap.Droid
 				MarkerStyleBuilder styleBuilder = new MarkerStyleBuilder();
 				styleBuilder.Bitmap = BitmapUtils.CreateBitmapFromAndroidBitmap(canvasBitmap);
 				styleBuilder.Size = 30;
-				styleBuilder.PlacementPriority = -elements.Count;
+				styleBuilder.PlacementPriority = elements.Count;
 
 				style = styleBuilder.BuildStyle();
 

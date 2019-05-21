@@ -41,6 +41,8 @@ namespace Shared.Droid
 			MapView = new MapView(context);
             AddView(MapView);
 
+            MapView.Options.ZoomGestures = true;
+
             //InfoButton = new ActionButton(context, infoIcon);
             //AddButton(InfoButton);
 

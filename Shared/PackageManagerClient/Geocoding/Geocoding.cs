@@ -53,7 +53,15 @@ namespace Shared
 			Task.Run(delegate
 			{
 				var request = new GeocodingRequest(Projection, text);
-				GeocodingResultVector results = Service.CalculateAddresses(request);
+                GeocodingResultVector results = new GeocodingResultVector();
+                try
+                {
+                    results = Service.CalculateAddresses(request);
+                }
+                catch (Exception e)
+                {
+                    Carto.Utils.Log.Error("Geocoding failed: " + e.Message);
+                }
                 int count = results.Count;
 
 				Addresses.Clear();

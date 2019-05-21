@@ -53,8 +53,12 @@ namespace AdvancedMap.iOS
 		{
 			Carto.Graphics.Bitmap tileBitmap1 = CreateBitmap(source1, tile);
 			Carto.Graphics.Bitmap tileBitmap2 = CreateBitmap(source2, tile);
+            if (tileBitmap1 == null || tileBitmap2 == null)
+            {
+                return null;
+            }
 
-			UIImage image1 = BitmapUtils.CreateUIImageFromBitmap(tileBitmap1);
+            UIImage image1 = BitmapUtils.CreateUIImageFromBitmap(tileBitmap1);
 			UIImage image2 = BitmapUtils.CreateUIImageFromBitmap(tileBitmap2);
 
 			CGSize size = new CGSize(image1.CGImage.Width, image2.CGImage.Height);
@@ -73,7 +77,12 @@ namespace AdvancedMap.iOS
 
 		Carto.Graphics.Bitmap CreateBitmap(HTTPTileDataSource source, MapTile tile)
 		{
-			return Carto.Graphics.Bitmap.CreateFromCompressed(source.LoadTile(tile).Data);
+            var data = source.LoadTile(tile);
+            if (data == null)
+            {
+                return null;
+            }
+            return Carto.Graphics.Bitmap.CreateFromCompressed(data.Data);
 		}
 	}
 }

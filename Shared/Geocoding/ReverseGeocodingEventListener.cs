@@ -29,7 +29,15 @@ namespace Shared
             var meters = 125.0f;
             request.SearchRadius = meters;
 
-            GeocodingResultVector results = Service.CalculateAddresses(request);
+            GeocodingResultVector results = new GeocodingResultVector();
+            try
+            {
+                results = Service.CalculateAddresses(request);
+            }
+            catch (Exception e)
+            {
+                Carto.Utils.Log.Error("Reverse geocoding failed: " + e.Message);
+            }
 
             GeocodingResult result = null;
 

@@ -22,6 +22,8 @@ namespace Shared.iOS
 			MapView = new MapView();
 			View = MapView;
 
+            MapView.Options.ZoomGestures = true;
+
 			BaseProjection = MapView.Options.BaseProjection;
 
 			Title = Name;

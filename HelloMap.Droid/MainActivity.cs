@@ -4,13 +4,9 @@ using Android.OS;
 using Carto.Ui;
 using Carto.Layers;
 using Carto.Core;
-using System.Threading;
 using Carto.Projections;
-using Carto.Services;
-using System;
 using Shared;
 using Carto.VectorElements;
-using Android.Support.V7.App;
 
 namespace HelloMap.Droid
 {
@@ -58,7 +54,14 @@ namespace HelloMap.Droid
             Toast.MakeText(this, "Click on the map to update your marker", ToastLength.Long).Show();
         }
 
-	}
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            // Disconnect listener to avoid leaks
+            MapView.MapEventListener = null;
+        }
+    }
 }
 
 
