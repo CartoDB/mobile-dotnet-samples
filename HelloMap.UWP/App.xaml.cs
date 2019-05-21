@@ -33,29 +33,26 @@ namespace HelloMap.WindowsPhone
             // Register CARTO license
             bool registered = MapView.RegisterLicense(License);
 
-            if (registered)
-            {
-                Carto.Utils.Log.ShowDebug = true;
-            }
-
+            // Create MapView
             MapView = new MapView();
 
-            // Add base map
+            // Set MapView options
+            MapView.Options.ZoomGestures = true;
+            MapView.Options.BaseProjection = new EPSG4326();
+            MapView.Options.DPI = 240;
+            MapView.Options.RenderProjectionMode = RenderProjectionMode.RenderProjectionModeSpherical;
 
+            // Add base map layer
             CartoOnlineVectorTileLayer baseLayer = new CartoOnlineVectorTileLayer(CartoBaseMapStyle.CartoBasemapStyleVoyager);
             MapView.Layers.Add(baseLayer);
 
             // Set default location and zoom
-            Projection projection = MapView.Options.BaseProjection;
-
-            MapPos tallinn = projection.FromWgs84(new MapPos(24.646469, 59.426939));
+            MapPos tallinn = new MapPos(24.646469, 59.426939);
             MapView.AddMarkerToPosition(tallinn);
 
             MapView.SetFocusPos(tallinn, 0);
-            MapView.SetZoom(13, 0);
-
-            MapView.Options.DPI = 240;
-            //MapView.Options.RenderProjectionMode = RenderProjectionMode.RenderProjectionModeSpherical;
+            MapView.SetZoom(3, 0);
+            MapView.SetZoom(4, 2);
 
             Window.Current.Content = MapView;
             Window.Current.Activate();

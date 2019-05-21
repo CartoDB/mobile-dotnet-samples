@@ -11,4 +11,7 @@
     <DebugEngines>{3B476D35-A401-11D2-AAD4-00C04F990171}</DebugEngines>
     <BackgroundTaskDebugEngines>{3B476D35-A401-11D2-AAD4-00C04F990171}</BackgroundTaskDebugEngines>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <UseSimulator>false</UseSimulator>
+  </PropertyGroup>
 </Project>
