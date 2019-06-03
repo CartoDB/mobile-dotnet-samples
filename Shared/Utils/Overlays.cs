@@ -253,10 +253,12 @@ namespace Shared
 		{
 			// Add a single 3D model to the vector layer
 			// Be sure to add milktruck.nml to your *Assets*, not Drawable, folder (Android)
-			string name = "milktruck.nml";
+			string assetName = "milktruck.nml";
+            NMLModelStyleBuilder nmlModelStyleBuilder = new NMLModelStyleBuilder();
+            nmlModelStyleBuilder.ModelAsset = AssetUtils.LoadAsset(assetName);
 
-			MapPos modelPos = projection.FromWgs84(new MapPos(24.646469, 59.423939));
-			NMLModel model = new NMLModel(modelPos, AssetUtils.LoadAsset(name));
+            MapPos modelPos = projection.FromWgs84(new MapPos(24.646469, 59.423939));
+			NMLModel model = new NMLModel(modelPos, nmlModelStyleBuilder.BuildStyle());
 
 			model.Scale = 20;
 			model.SetMetaDataElement("ClickText", new Variant("Single model"));
