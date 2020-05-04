@@ -1,7 +1,6 @@
 ﻿
 using System;
 using Android.App;
-using Android.Support.V7.App;
 using Shared.Droid;
 using Shared;
 using Carto.Core;

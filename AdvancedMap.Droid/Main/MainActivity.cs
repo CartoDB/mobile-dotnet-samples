@@ -3,7 +3,6 @@ using Android.App;
 using Android.Content;
 using Android.Graphics.Drawables;
 using Android.OS;
-using Android.Support.V7.App;
 using Shared.Droid;
 
 namespace AdvancedMap.Droid

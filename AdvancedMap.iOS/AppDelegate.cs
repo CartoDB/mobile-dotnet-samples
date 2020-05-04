@@ -43,7 +43,7 @@ namespace AdvancedMap.iOS
 			Window.MakeKeyAndVisible();
 
 			#if ENABLE_TEST_CLOUD
-			Xamarin.Calabash.Start();
+			//Xamarin.Calabash.Start();
 			#endif
 
 			BITHockeyManager manager = BITHockeyManager.SharedHockeyManager;

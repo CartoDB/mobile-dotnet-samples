@@ -17,14 +17,13 @@ using System.Linq;
 
 using Carto.Ui;
 using Shared.Droid;
-using Android.Support.V4.App;
 using Shared.Utils;
 
 namespace AdvancedMap.Droid
 {
 	[Activity(ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
 	[ActivityData(Title = "GPS Location Map", Description = "Shows user GPS location on map.")]
-	public class GpsLocationActivity : MapBaseActivity, ILocationListener, ActivityCompat.IOnRequestPermissionsResultCallback
+	public class GpsLocationActivity : MapBaseActivity, ILocationListener
 	{
 		LocationManager manager;
 
@@ -78,7 +77,7 @@ namespace AdvancedMap.Droid
 		{
 			string fine = Android.Manifest.Permission.AccessFineLocation;
 			string coarse = Android.Manifest.Permission.AccessCoarseLocation;
-			ActivityCompat.RequestPermissions(this, new string[] { fine, coarse }, RequestCode);
+			RequestPermissions(new string[] { fine, coarse }, RequestCode);
 		}
 
 		void InitializeLocationManager()

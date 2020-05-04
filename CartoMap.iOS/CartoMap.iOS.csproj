@@ -87,13 +87,13 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Json" />
     <Reference Include="HockeySDK">
-      <HintPath>..\packages\HockeySDK.Xamarin.5.1.2\lib\Xamarin.iOS10\HockeySDK.dll</HintPath>
+      <HintPath>..\packages\HockeySDK.Xamarin.5.2.0\lib\Xamarin.iOS10\HockeySDK.dll</HintPath>
     </Reference>
     <Reference Include="HockeySDK.iOSBindings">
-      <HintPath>..\packages\HockeySDK.Xamarin.5.1.2\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
+      <HintPath>..\packages\HockeySDK.Xamarin.5.2.0\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
     </Reference>
     <Reference Include="CartoMobileSDK.iOS">
-      <HintPath>..\packages\CartoMobileSDK.iOS.4.2.2\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
+      <HintPath>..\packages\CartoMobileSDK.iOS.4.3.0\lib\Xamarin.iOS10\CartoMobileSDK.iOS.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
