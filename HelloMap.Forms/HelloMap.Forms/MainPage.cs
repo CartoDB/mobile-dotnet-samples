@@ -37,7 +37,7 @@ namespace HelloMap.Forms
 			// minimal platform-specific code is needed to create MapView
 
 #if __ANDROID__
-			MapView = new MapView(Xamarin.Forms.Forms.Context);
+			MapView = new MapView(Android.App.Application.Context);
 #elif WINDOWS_PHONE
             MapView = new MapView();
 

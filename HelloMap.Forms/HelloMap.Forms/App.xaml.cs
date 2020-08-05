@@ -15,6 +15,12 @@ namespace HelloMap.Forms
 
 		public App()
 		{
+#if __ANDROID__
+			MapView.RegisterLicense(License, Android.App.Application.Context);
+#else
+            MapView.RegisterLicense(License);
+#endif
+
 			InitializeComponent();
 
             Carto.Utils.Log.ShowDebug = true;
@@ -24,12 +30,6 @@ namespace HelloMap.Forms
 
             MainPage = new MainPage();
 			NavigationPage.SetHasNavigationBar(MainPage, true);
-
-#if __ANDROID__
-			MapView.RegisterLicense(License, Xamarin.Forms.Forms.Context);
-#else
-            MapView.RegisterLicense(License);
-#endif
 		}
 
 		protected override void OnStart()
