@@ -201,8 +201,8 @@
     <BundleResource Include="Resources\image_anon_vector.png" />
     <BundleResource Include="Resources\image_anon_raster.png" />
   </ItemGroup>
+  <Import Project="..\Shared.iOS\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\Shared.iOS\Shared.iOS.projitems')" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
-  <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="BeforeBuild" Condition=" $(SetVersion) == true ">
     <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = &#xD;&#xA;        'CFBundleVersion']/following-sibling::string[1]" Value="$(BuildNumber)" />

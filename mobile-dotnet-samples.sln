@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared.iOS", "mobile_dotnet_samples\Shared.iOS.shproj", "{1A7F279C-E528-42E0-B1EA-A1068502115E}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared.iOS", "Shared.iOS\Shared.iOS.shproj", "{1A7F279C-E528-42E0-B1EA-A1068502115E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedMap.iOS", "AdvancedMap.iOS\AdvancedMap.iOS.csproj", "{3EB31822-FE89-4990-9CA7-1DEC49AE4DAD}"
 EndProject
@@ -26,15 +26,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartoMap.iOS", "CartoMap.iO
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		mobile_dotnet_samples\Shared.iOS.projitems*{0e3298ec-4d81-47b3-a308-05a82ad89fb3}*SharedItemsImports = 4
+		Shared.iOS\Shared.iOS.projitems*{0e3298ec-4d81-47b3-a308-05a82ad89fb3}*SharedItemsImports = 4
 		Shared\Shared.projitems*{0e3298ec-4d81-47b3-a308-05a82ad89fb3}*SharedItemsImports = 4
-		mobile_dotnet_samples\Shared.iOS.projitems*{1a7f279c-e528-42e0-b1ea-a1068502115e}*SharedItemsImports = 13
+		Shared.iOS\Shared.iOS.projitems*{1a7f279c-e528-42e0-b1ea-a1068502115e}*SharedItemsImports = 13
 		Shared.Droid\Shared.Droid.projitems*{2456d025-1de5-42b9-934c-ae00781e533b}*SharedItemsImports = 4
 		Shared\Shared.projitems*{2456d025-1de5-42b9-934c-ae00781e533b}*SharedItemsImports = 4
-		mobile_dotnet_samples\Shared.iOS.projitems*{3eb31822-fe89-4990-9ca7-1dec49ae4dad}*SharedItemsImports = 4
+		Shared.iOS\Shared.iOS.projitems*{3eb31822-fe89-4990-9ca7-1dec49ae4dad}*SharedItemsImports = 4
 		Shared\Shared.projitems*{3eb31822-fe89-4990-9ca7-1dec49ae4dad}*SharedItemsImports = 4
 		Shared.Droid\Shared.Droid.projitems*{528ef7d5-3b72-4956-919f-8703ce0e388d}*SharedItemsImports = 13
-		mobile_dotnet_samples\Shared.iOS.projitems*{5b58a78c-04e0-4d47-8ef6-ed3c317b8ad9}*SharedItemsImports = 4
+		Shared.iOS\Shared.iOS.projitems*{5b58a78c-04e0-4d47-8ef6-ed3c317b8ad9}*SharedItemsImports = 4
 		Shared\Shared.projitems*{5b58a78c-04e0-4d47-8ef6-ed3c317b8ad9}*SharedItemsImports = 4
 		Shared.Droid\Shared.Droid.projitems*{845358cd-197b-4946-bbd9-6bee2d906bdc}*SharedItemsImports = 4
 		Shared\Shared.projitems*{845358cd-197b-4946-bbd9-6bee2d906bdc}*SharedItemsImports = 4

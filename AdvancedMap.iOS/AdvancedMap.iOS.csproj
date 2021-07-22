@@ -93,7 +93,7 @@
       <HintPath>..\packages\HockeySDK.Xamarin.5.2.0\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
     </Reference>
     <Reference Include="Calabash">
-      <HintPath>..\packages\Xamarin.TestCloud.Agent.0.21.9\lib\Xamarin.iOS\Calabash.dll</HintPath>
+      <HintPath>..\packages\Xamarin.TestCloud.Agent.0.22.2\lib\Xamarin.iOS\Calabash.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Extensions.dll</HintPath>
@@ -275,8 +275,8 @@
     <BundleResource Include="Resources\basemaps\style_image_here_normal.png" />
     <BundleResource Include="Resources\basemaps\style_image_here_satellite.png" />
   </ItemGroup>
+  <Import Project="..\Shared.iOS\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\Shared.iOS\Shared.iOS.projitems')" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
-  <Import Project="..\mobile_dotnet_samples\Shared.iOS.projitems" Label="Shared" Condition="Exists('..\mobile_dotnet_samples\Shared.iOS.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="BeforeBuild" Condition=" $(SetVersion) == true ">
     <XmlPoke XmlInputPath="Info.plist" Query="//dict/key[. = &#xD;&#xA;        'CFBundleVersion']/following-sibling::string[1]" Value="$(BuildNumber)" />
