@@ -13,7 +13,7 @@ using UIKit;
 
 namespace HelloMap.iOS
 {
-	public partial class ViewController : UIViewController
+	public partial class ViewController : UIKit.UIViewController
 	{
 		MapView MapView { get; set; }
 
